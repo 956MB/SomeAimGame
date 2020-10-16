@@ -1,0 +1,65 @@
+Keybind editing
+
+crosshair preset colors/styles
+
+score combo thing
+
+terrain generate brackeys
+
+skyboxes: solid colors, gradients, more premade
+
+more new gamemodes
+
+map presets: skybox/terrain color combos
+
+hyperlink to patch notes site
+
+leaderboard stuff
+
+steam friends api integration
+
+console commands, like csgo
+
+hire graphic artist to draw corner/border pieces for ui, LoL/Dota2 style, lol yeah right
+
+bunch of spawn flying in one direction gamemode
+
+themes, light/dark/twitch/LoL etc
+
+finish language supports in resources
+
+target spawn size/rate/loation/target spawn area editing stuff
+
+profile panel to left of main large panel center: draw concepets tomorrow
+
+frenzy gamemode, targets spawn in all different states at same time and are constantly respawning. color changing? "frenzy" gamemode?
+
+visualize target spawn area/target size when changing, line shader when chaning values, example videos? example targets spawning?
+
+fix exclusive fullscreen thing
+
+display options
+
+fix "bug" in follow gamemode where target continues on path instead of pausing
+	^ possible fix for this: pause game time completely? need to check if any ui elements or anything will be affected by update
+
+Descriptions:
+Scatter:
+You like ''balls''? Well, there's a LOT of ''balls'' in the Scatter gamemode. The ''balls'' will continuously spawn in a grid box, so you will have plenty of targets to choose from.
+
+Flick:
+As simple as can be, youve only got to focus on one target at a time. Practice those quick, but controlled, flicks from every possible direction.
+
+Grid:
+Old faithful. An FPS players' best friend. The perfect combination of speed and accuracy practice in this triple target, grid wall layout. EZ.
+
+Grid 2:
+Grid the 2nd, a bit more challenging. Same concept as 'Grid', but with more inital targets and a MUCH smaller target size. Take you time on this one.
+
+Pairs:
+The game is simple. Match the spawned target to its appropriately matched color buddy. The targets switch colors at random, so stay focused.
+
+Follow:
+Classic tracking target gamemode. Try to keep your crosshair on the target as it floats around your non existant body. It's pretty easy, just do it man. Christ.
+
+"achievments" or "medals" for special happenings in the game, like an all green/gold/red color outcome in the afterActionReport. all red: "yuck" all gold: "i love goooold". somehow an all grey outcome could have something.

@@ -1,0 +1,41 @@
+ADDITIONS/FIXES
+
+1. 'Gamemode Select' panel added in gamemode sub-section in settings. This is to show gamemode info like name, type, difficulty, and description. As well to give a buffer for starting a new gamemode.
+2. (Related to 1) 'Quick Start Game' toggle added. This hides the new 'Gamemode Select' panel and makes gamemodes instantly start when their buttons are clicked.
+3. Gamemode preview videos updated to be more "responsive". You'll notice the targets (and eventually skyboxes) in the videos change according to yuor color choices.
+4. Game timer added. Make game 30, 60, 90 or 120 seconds long. (Custom/infinity time obviously next).
+5. Visual changes made to UI overlay holding time, score and accuracy.
+6. Tooltips added to certain UI elements to explain usage or other info. All Misc settings given tooltips, as well as all 'up/down' items in after action report screen (to show differences in previous/current run stats).
+7. Wide spread font change to better the look of the UI.
+8. NEED TO DO: Crosshairs center dot now has outline if outline option toggled.
+9. 'Movement lock' toggle removed. No character movement being used at this time, so this is unnessecary.
+10. FPS counter MAYBE causing frame drops possibly fixed. Probably. Also new/better look to it. Toggle added back to Misc settings.
+11. Crosshair size can no longer be set too high and cause lag.
+12. General UI visual changes.
+
+KNOWN BUGS:
+
+1. Accuracy value in Pairs gamemode still does not accurately get calculated.
+2. Target in Follow gamemode still continues on its path when settings panel/after action report is opened.
+3. Not a bug, but the other 5 skybox options have been temporarily disabled to test some gamemode preview video thing.
+4. Problem causing input boxes for mouse sensitivity and other crosshair options to not respond to value changes "fixed". You can no longer input a value for said items, only use sliders.
+
+UPCOMING:
+
+1. Controls:
+	- Full keybind editing
+2. Targets:
+	- Control over target size, move/spawn speed, and target spawn area size/location.
+3. Stats:
+	- Seperate stat screen for viewing past 5-10 games, as well as differnt gamemode highscores and other stats.
+	- Stat sharing? idfk.
+4. Map(s):
+	- Different terrain colors to further cusomize current map.
+	- More Skyboxes/atmospheres.
+	- New map(s), at some point.
+5. Gamemode(s):
+	- 1-2 planned gamemodes added soon, more later on.
+6. Steam:
+	- Steam account integration for things like profile, friends stat viewing/sharing, leaderboards, etc.
+7. Crosshair:
+	- Extra crosshair options for people who like weird shaped crosshairs.
