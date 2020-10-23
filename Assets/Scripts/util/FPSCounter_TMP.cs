@@ -14,13 +14,13 @@ public class FPSCounter_TMP : MonoBehaviour {
     }
 
     private void Update() {
-        if (ExtraSettings.fpsCounter) {
+        if (WidgetSettings.showFPS) {
             m_FpsAccumulator++;
             if (Time.realtimeSinceStartup > m_FpsNextPeriod) {
                 m_CurrentFps = (int)(m_FpsAccumulator / fpsMeasurePeriod);
                 m_FpsAccumulator = 0;
                 m_FpsNextPeriod += fpsMeasurePeriod;
-                m_FPSText.SetText(string.Format(displayFPS, m_CurrentFps * 2));
+                m_FPSText.SetText(string.Format(displayFPS, m_CurrentFps));
             }
         }
     }
