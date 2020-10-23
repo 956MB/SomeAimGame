@@ -132,10 +132,10 @@ public class ToggleHandler : MonoBehaviour {
                 // Toggles 'ExtraStats' backgrounds panel in 'AfterActionReport'.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
                 if (toggleClicked.isOn) {
-                    StatsManager.SetBackgrounds();
+                    StatsManager.SetExtraStatsBackgrounds();
                     ExtraSettings.SaveShowExtraStatsBackgrounds(true);
                 } else {
-                    StatsManager.ClearBackgrounds();
+                    StatsManager.ClearExtraStatsBackgrounds();
                     ExtraSettings.SaveShowExtraStatsBackgrounds(false);
                 }
                 break;

@@ -9,7 +9,11 @@ public class StatsManager : MonoBehaviour {
     public TMP_Text scoreTextPrevious, accuracyTextPrevious, ttkTextPrevious, kpsTextPrevious, bestStreakTextPrevious, targetsTotalTextPrevious, taretsHitTextPrevious, targetsMissesTextPrevious;
     public TMP_Text scoreTextHighscore, accuracyTextHighscore, ttkTextHighscore, kpsTextHighscore, bestStreakTextHighscore, targetsTotalTextHighscore, taretsHitTextHighscore, targetsMissesTextHighscore;
     public TMP_Text scoreEffectText, newHighscoreEffectText;
-    public GameObject highscoreLineTop, highscoreLineBottom, extraStatsPanel;
+    public GameObject extraStatsPanel;
+    public Image highscoreLineTop, highscoreLineBottom;
+    public static bool showBackgrounds = true;
+    public static bool backgroundsSaved = false;
+    private static Color32[] backgroundsSaves;
 
     private static int highscoreScore;
     private static HighscoreDataSerial highscoreData;
@@ -21,7 +25,7 @@ public class StatsManager : MonoBehaviour {
     private static string itemUp            = "▲";
     private static string itemDown          = "▼";
     private static string itemNeutral       = "-";
-    private static Color32 newHighscoreBackgroundColor = new Color32(255, 209, 0, 45);
+    private static Color32 newHighscoreBackgroundColor = new Color32(255, 209, 0, 55);
     private static Color32 upBackgroundColor           = new Color32(0, 255, 0, 20);
     private static Color32 downBackgroundColor         = new Color32(255, 0, 0, 20);
     private static Color32 neutralBackgroundColor      = new Color32(255, 255, 255, 15);
@@ -33,6 +37,8 @@ public class StatsManager : MonoBehaviour {
     private static Color32 downLineColor      = new Color32(255, 0, 0, 150);
     private static Color32 neutralLineColor   = new Color32(255, 255, 255, 35);
     private static Color32 highscoreLineColor = new Color32(255, 209, 0, 255);
+    private static Color32 clearBackgroundLight = new Color32(255, 255, 255, 15);
+    private static Color32 clearBackgroundDark  = new Color32(0, 0, 0, 0);
 
     private static string gamemodeStat;
     private static int scoreStat, accuracyStat, ttkStat, bestStreakStat, targetTotalStat, targetHitStat, targetMissesStat;
@@ -45,6 +51,7 @@ public class StatsManager : MonoBehaviour {
         //loadHighscore();
         scoreTitleText.enabled = true;
         newHighscoreEffectText.enabled = false;
+        backgroundsSaves = new Color32[8];
     }
 
     /// <summary>
@@ -84,7 +91,7 @@ public class StatsManager : MonoBehaviour {
         targetHitStat    = SpawnTargets.shotsHit;
         targetMissesStat = SpawnTargets.shotMisses;
         kpsStat          = (double)targetHitStat / GameUI.timeStart;
-        //Debug.Log($"gamemode?? :: {gamemodeStat}");
+        //Debug.Log($"scoreStat?? :: {scoreStat}");
     }
 
     /// <summary>
@@ -110,13 +117,14 @@ public class StatsManager : MonoBehaviour {
                 EnableNewHighscoreText();
                 LoadOldHighscore();
             } else {
-                stats.highscoreLineTop.GetComponent<Image>().color = GetLineColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue);
-                stats.highscoreLineBottom.GetComponent<Image>().color = GetLineColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue);
+                //Debug.Log($"{scoreStat} {previousGameStats.scoreValue} {bestGameStats.scoreValue}");
+                stats.highscoreLineTop.color = GetLineColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue);
+                stats.highscoreLineBottom.color = GetLineColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue);
             }
         } else {
             // No saved highscore on first run, sets current games run as new highscore.
-            stats.highscoreLineTop.GetComponent<Image>().color = neutralLineColor;
-            stats.highscoreLineBottom.GetComponent<Image>().color = neutralLineColor;
+            stats.highscoreLineTop.color = neutralLineColor;
+            stats.highscoreLineBottom.color = neutralLineColor;
             stats.newHighscoreEffectText.transform.parent.gameObject.GetComponent<Image>().color = neutralBackgroundColor;
             HighscoreSave.SaveNewHighscoreStats(CosmeticsSettings.gamemode.Split('-')[1], scoreStat, accuracyStat, ttkStat, kpsStat, bestStreakStat, targetTotalStat, targetHitStat, targetMissesStat);
         }
@@ -155,14 +163,15 @@ public class StatsManager : MonoBehaviour {
         stats.newHighscoreEffectText.enabled = true;
         stats.scoreTitleText.enabled = false;
         stats.newHighscoreEffectText.transform.parent.gameObject.GetComponent<Image>().color = newHighscoreBackgroundColor;
-        stats.highscoreLineTop.GetComponent<Image>().color = highscoreLineColor;
-        stats.highscoreLineBottom.GetComponent<Image>().color = highscoreLineColor;
+        stats.highscoreLineTop.color = highscoreLineColor;
+        stats.highscoreLineBottom.color = highscoreLineColor;
     }
 
     /// <summary>
     /// Sets all stat items neutral, then sets stat items for previous and highscore in 'AfterActionReport' and 'ExtraStats' panel.
     /// </summary>
     private static void SetStatItems() {
+        ClearExtraStatsBackgrounds();
         SetStatsNeutralItems();
 
         if (previousGameStats != null) {
@@ -251,14 +260,9 @@ public class StatsManager : MonoBehaviour {
         stats.taretsHitItem.color     = GetItemColor(targetHitStat, previousGameStats.targetsHitValue, bestGameStats.targetsHitValue);
         stats.targetsMissesItem.color = GetItemColor_Flip(targetMissesStat, previousGameStats.targetsMissesValue, bestGameStats.targetsMissesValue);
 
-        stats.newHighscoreEffectText.transform.parent.gameObject.GetComponent<Image>().color = GetItemBackgroundColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue);
-        stats.accuracyItem.transform.parent.gameObject.GetComponent<Image>().color           = GetItemBackgroundColor(accuracyStat, previousGameStats.accuracyValue, bestGameStats.accuracyValue);
-        stats.ttkItem.transform.parent.gameObject.GetComponent<Image>().color                = GetItemBackgroundColor_Flip(ttkStat, previousGameStats.ttkValue, bestGameStats.ttkValue);
-        stats.kpsItem.transform.parent.gameObject.GetComponent<Image>().color                = GetItemBackgroundColor(kpsStat, previousGameStats.kpsValue, bestGameStats.kpsValue);
-        stats.bestStreakItem.transform.parent.gameObject.GetComponent<Image>().color         = GetItemBackgroundColor(bestStreakStat, previousGameStats.bestStreakValue, bestGameStats.bestStreakValue);
-        stats.targetsTotalItem.transform.parent.gameObject.GetComponent<Image>().color       = GetItemBackgroundColor(targetTotalStat, previousGameStats.targetsTotalValue, bestGameStats.targetsTotalValue);
-        stats.taretsHitItem.transform.parent.gameObject.GetComponent<Image>().color          = GetItemBackgroundColor(targetHitStat, previousGameStats.targetsHitValue, bestGameStats.targetsHitValue);
-        stats.targetsMissesItem.transform.parent.gameObject.GetComponent<Image>().color      = GetItemBackgroundColor_Flip(targetMissesStat, previousGameStats.targetsMissesValue, bestGameStats.targetsMissesValue);
+        SaveExtraStatsBackgrounds();
+
+        if (showBackgrounds) { SetExtraStatsBackgrounds(); }
     }
 
     /// <summary>
@@ -313,6 +317,41 @@ public class StatsManager : MonoBehaviour {
             // If best stats file doesnt exist, save current run stats to new best file.
             StatsJsonSaveSystem.SaveBestGameStatsData(gamemodeStat, scoreStat, accuracyStat, ttkStat, kpsStat, bestStreakStat, targetTotalStat, targetHitStat, targetMissesStat);
         }
+    }
+
+    public static void SaveExtraStatsBackgrounds() {
+        backgroundsSaves[0] = GetItemBackgroundColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue);
+        backgroundsSaves[1] = GetItemBackgroundColor(accuracyStat, previousGameStats.accuracyValue, bestGameStats.accuracyValue);
+        backgroundsSaves[2] = GetItemBackgroundColor_Flip(ttkStat, previousGameStats.ttkValue, bestGameStats.ttkValue);
+        backgroundsSaves[3] = GetItemBackgroundColor(kpsStat, previousGameStats.kpsValue, bestGameStats.kpsValue);
+        backgroundsSaves[4] = GetItemBackgroundColor(bestStreakStat, previousGameStats.bestStreakValue, bestGameStats.bestStreakValue);
+        backgroundsSaves[5] = GetItemBackgroundColor(targetTotalStat, previousGameStats.targetsTotalValue, bestGameStats.targetsTotalValue);
+        backgroundsSaves[6] = GetItemBackgroundColor(targetHitStat, previousGameStats.targetsHitValue, bestGameStats.targetsHitValue);
+        backgroundsSaves[7] = GetItemBackgroundColor_Flip(targetMissesStat, previousGameStats.targetsMissesValue, bestGameStats.targetsMissesValue);
+
+        backgroundsSaved = true;
+    }
+
+    public static void SetExtraStatsBackgrounds() {
+        stats.newHighscoreEffectText.transform.parent.gameObject.GetComponent<Image>().color = backgroundsSaves[0];
+        stats.accuracyItem.transform.parent.gameObject.GetComponent<Image>().color           = backgroundsSaves[1];
+        stats.ttkItem.transform.parent.gameObject.GetComponent<Image>().color                = backgroundsSaves[2];
+        stats.kpsItem.transform.parent.gameObject.GetComponent<Image>().color                = backgroundsSaves[3];
+        stats.bestStreakItem.transform.parent.gameObject.GetComponent<Image>().color         = backgroundsSaves[4];
+        stats.targetsTotalItem.transform.parent.gameObject.GetComponent<Image>().color       = backgroundsSaves[5];
+        stats.taretsHitItem.transform.parent.gameObject.GetComponent<Image>().color          = backgroundsSaves[6];
+        stats.targetsMissesItem.transform.parent.gameObject.GetComponent<Image>().color      = backgroundsSaves[7];
+    }
+
+    public static void ClearExtraStatsBackgrounds() {
+        stats.newHighscoreEffectText.transform.parent.gameObject.GetComponent<Image>().color = clearBackgroundLight;
+        stats.accuracyItem.transform.parent.gameObject.GetComponent<Image>().color           = clearBackgroundLight;
+        stats.ttkItem.transform.parent.gameObject.GetComponent<Image>().color                = clearBackgroundDark;
+        stats.kpsItem.transform.parent.gameObject.GetComponent<Image>().color                = clearBackgroundLight;
+        stats.bestStreakItem.transform.parent.gameObject.GetComponent<Image>().color         = clearBackgroundDark;
+        stats.targetsTotalItem.transform.parent.gameObject.GetComponent<Image>().color       = clearBackgroundLight;
+        stats.taretsHitItem.transform.parent.gameObject.GetComponent<Image>().color          = clearBackgroundDark;
+        stats.targetsMissesItem.transform.parent.gameObject.GetComponent<Image>().color      = clearBackgroundLight;
     }
 
     /// <summary>
