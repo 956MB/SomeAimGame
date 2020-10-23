@@ -2,6 +2,12 @@
 
 Some aim game, made by some guy, for some reason. Unity C#.
 
+<img src="https://github.com/Bloumbs/SomeAimGame/blob/main/Assets/misc/screenshots/gamemode.png" width="900">
+<img src="https://github.com/Bloumbs/SomeAimGame/blob/main/Assets/misc/screenshots/general.png" width="900">
+<img src="https://github.com/Bloumbs/SomeAimGame/blob/main/Assets/misc/screenshots/controls.png" width="900">
+<img src="https://github.com/Bloumbs/SomeAimGame/blob/main/Assets/misc/screenshots/crosshair.png" width="900">
+<img src="https://github.com/Bloumbs/SomeAimGame/blob/main/Assets/misc/screenshots/widgets.png" width="900">
+
 <img src="https://github.com/Bloumbs/SomeAimGame/blob/main/Assets/misc/oni.gif" width="900">
 <img src="https://github.com/Bloumbs/SomeAimGame/blob/main/Assets/misc/omen2.gif" width="900">
 <img src="https://github.com/Bloumbs/SomeAimGame/blob/main/Assets/misc/omen.gif" width="900">
