@@ -10,8 +10,13 @@ public class HighscoreSaveSystem : MonoBehaviour {
     /// <param name="category"></param>
     public static void SaveHighscoreData(string category) {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + $"/{category}.highscore";
-        FileStream stream = new FileStream(path, FileMode.Create);
+        string dirPath = Application.persistentDataPath + "/stats/highscores";
+        string filePath = dirPath + $"/{category}.highscore";
+
+        DirectoryInfo dirInf = new DirectoryInfo(dirPath);
+        if (!dirInf.Exists) { dirInf.Create(); }
+
+        FileStream stream = new FileStream(filePath, FileMode.Create);
 
         HighscoreDataSerial highscoreData = new HighscoreDataSerial();
         formatter.Serialize(stream, highscoreData);
@@ -24,7 +29,7 @@ public class HighscoreSaveSystem : MonoBehaviour {
     /// <param name="category"></param>
     /// <returns></returns>
     public static HighscoreDataSerial LoadHighscoreData(string category) {
-        string path = Application.persistentDataPath + $"/{category}.highscore";
+        string path = Application.persistentDataPath + $"/stats/highscores/{category}.highscore";
         if (File.Exists(path)) {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);

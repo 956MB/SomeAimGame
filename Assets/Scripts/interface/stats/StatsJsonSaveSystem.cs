@@ -29,7 +29,7 @@ public class StatsJsonSaveSystem : MonoBehaviour {
     /// <param name="loadedGamemode"></param>
     /// <returns></returns>
     public static PreviousGameStats LoadLastGameData(string loadedGamemode) {
-        string jsonPath = Application.persistentDataPath + $"/{loadedGamemode}_stats_previous.json";
+        string jsonPath = Application.persistentDataPath + $"/stats/previous/{loadedGamemode}_stats_previous.json";
         if (File.Exists(jsonPath)) {
             previousGameStatsLoaded = JsonUtility.FromJson<PreviousGameStats>(File.ReadAllText(jsonPath));
             return previousGameStatsLoaded;
@@ -44,7 +44,7 @@ public class StatsJsonSaveSystem : MonoBehaviour {
     /// <param name="loadedGamemode"></param>
     /// <returns></returns>
     public static BestGameStats LoadBestGameStatsData(string loadedGamemode) {
-        string jsonPath = Application.persistentDataPath + $"/{loadedGamemode}_stats_best.json";
+        string jsonPath = Application.persistentDataPath + $"/stats/best/{loadedGamemode}_stats_best.json";
         if (File.Exists(jsonPath)) {
             bestGameStatsLoaded = JsonUtility.FromJson<BestGameStats>(File.ReadAllText(jsonPath));
             return bestGameStatsLoaded;
@@ -69,8 +69,12 @@ public class StatsJsonSaveSystem : MonoBehaviour {
         PreviousGameStats previousGameStats = new PreviousGameStats();
         previousGameStats = SetPreviousGameStats(previousGameStats, setGamemode, setScore, setAccuracy, setTTK, setKPS, setBestStreak, setTargetsTotal, setTargetsHit, setTargetsMisses);
 
+        string dirPath = Application.persistentDataPath + "/stats/previous";
+        DirectoryInfo dirInf = new DirectoryInfo(dirPath);
+        if (!dirInf.Exists) { dirInf.Create(); }
+
         string jsonData = JsonUtility.ToJson(previousGameStats, true);
-        File.WriteAllText(Application.persistentDataPath + $"/{setGamemode}_stats_previous.json", jsonData);
+        File.WriteAllText(Application.persistentDataPath + $"/stats/previous/{setGamemode}_stats_previous.json", jsonData);
     }
 
     /// <summary>
@@ -89,8 +93,12 @@ public class StatsJsonSaveSystem : MonoBehaviour {
         BestGameStats bestGameStatsLoaded = new BestGameStats();
         bestGameStatsLoaded = SetBestGameStats(bestGameStatsLoaded, setScore, setAccuracy, setTTK, setKPS, setBestStreak, setTargetsTotal, setTargetsHit, setTargetsMisses);
 
+        string dirPath = Application.persistentDataPath + "/stats/best";
+        DirectoryInfo dirInf = new DirectoryInfo(dirPath);
+        if (!dirInf.Exists) { dirInf.Create(); }
+
         string jsonData = JsonUtility.ToJson(bestGameStatsLoaded, true);
-        File.WriteAllText(Application.persistentDataPath + $"/{setGamemode}_stats_best.json", jsonData);
+        File.WriteAllText(Application.persistentDataPath + $"/stats/best/{setGamemode}_stats_best.json", jsonData);
     }
 
     /// <summary>
