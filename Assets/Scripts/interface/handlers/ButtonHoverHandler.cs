@@ -1,28 +1,29 @@
 ﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.EventSystems;
 using TMPro;
 
-public class ButtonHoverHandler : MonoBehaviour {
+public class ButtonHoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     //public Texture2D hoverBorder;
     public GameObject childBorder;
     public static string selectedGamemode;
     public static string selectedTargetColor;
     public static string selectedSkybox;
 
-    public TMP_Text targetColorSelected, skyboxSelected;
+    private static string currentHoveredButton;
 
-    //void Start() {
-    //    childBorder = this.transform.Find("Border").gameObject;
-    //    //childBorder.SetActive(false);
-    //}
+    public TMP_Text targetColorSelected, skyboxSelected;
 
     /// <summary>
     /// Enables hovered button border and sets 'selected/hovered' text on 'pointerEnter'.
     /// </summary>
-    /// <param name="hoveredButton"></param>
-    public void ButtonHoverEnter(GameObject hoveredButton) {
-        if (hoveredButton.name != selectedTargetColor && hoveredButton.name != selectedSkybox && hoveredButton.name != selectedGamemode) {
+    /// <param name="pointerEventData"></param>
+    public void OnPointerEnter(PointerEventData pointerEventData) {
+        string buttonName = pointerEventData.pointerCurrentRaycast.gameObject.name;
+        currentHoveredButton = buttonName;
+        if (buttonName != selectedTargetColor && buttonName != selectedSkybox && buttonName != selectedGamemode) {
             childBorder.SetActive(true);
-            SetHoverButtonText(hoveredButton.name);
+            SetHoverButtonText(buttonName);
             //CursorHandler.setHoverCursorStatic();
             if (ToggleHandler.UISoundOn()) { UISound.PlayUISound(); }
 
@@ -32,18 +33,13 @@ public class ButtonHoverHandler : MonoBehaviour {
     /// <summary>
     /// Disables hovered button border and sets 'selected/hovered' text back to selected on 'pointerExit'.
     /// </summary>
-    /// <param name="hoveredButton"></param>
-    public void ButtonHoverExit(GameObject hoveredButton) {
-        //CursorHandler.setDefaultCursorStatic();
-        if (hoveredButton.name != selectedTargetColor && hoveredButton.name != selectedSkybox && hoveredButton.name != selectedGamemode) {
+    /// <param name="pointerEventData"></param>
+    public void OnPointerExit(PointerEventData pointerEventData) {
+        if (currentHoveredButton != selectedTargetColor && currentHoveredButton != selectedSkybox && currentHoveredButton != selectedGamemode) {
             childBorder.SetActive(false);
             targetColorSelected.SetText(CosmeticsSaveSystem.activeTargetColorText);
             skyboxSelected.SetText(CosmeticsSaveSystem.activeSkyboxText);
         }
-    }
-
-    public void GamemodeStartHover() {
-        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound(); }
     }
 
     /// <summary>
