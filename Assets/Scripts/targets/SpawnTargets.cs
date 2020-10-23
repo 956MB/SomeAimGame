@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnTargets : MonoBehaviour {
     public GameObject redTarget, orangeTarget, yellowTarget, greenTarget, blueTarget, purpleTarget, pinkTarget, whiteTarget;
-    public static GameObject targetObject, currentTargetObj;
+    public static GameObject primaryTargetObject, currentTargetObj;
     static GameObject[] targetObjects;
     private static Rigidbody targetRb, secondaryTargetRb;
 
@@ -98,12 +99,12 @@ public class SpawnTargets : MonoBehaviour {
             targetSpawnAreaCenter  = ST.targetSpawnArea.GetComponent<Renderer>().bounds.center;
             targetSpawnAreaBox     = ST.targetSpawnArea.GetComponent<BoxCollider>();
             targetSpawnAreaBounds  = ST.targetSpawnArea.GetComponent<BoxCollider>().bounds;
-            targetRb               = targetObject.GetComponent<Rigidbody>();
+            targetRb               = primaryTargetObject.GetComponent<Rigidbody>();
             targetRb.isKinematic = true;
         }
 
         // Init targer spawns lists and size of target.
-        targetSize            = targetObject.transform.lossyScale.y;
+        targetSize            = primaryTargetObject.transform.lossyScale.y;
         targetSpawns          = new List<Vector3>();
         targetSpawnsPrimary   = new List<Vector3>();
         targetSpawnsSecondary = new List<Vector3>();
@@ -132,7 +133,7 @@ public class SpawnTargets : MonoBehaviour {
             // Spawn initial single target for "Gamemode-Flick".
             targetRb.isKinematic = !ST.targetFall ? true : false;
             DestroySpawnAreas();
-            SpawnSingle();
+            SpawnSingle(primaryTargetObject);
         } else if (gamemode == "Gamemode-Grid" || gamemode == "Gamemode-Grid2") {
             if (!targetAreasDestroyed) {
                 try {
@@ -146,9 +147,12 @@ public class SpawnTargets : MonoBehaviour {
 
             // Spawn initial 3 targets for "Gamemode-Grid", or initial 8 for "Gamemode-Grid2".
             if (gamemode == "Gamemode-Grid") {
-                for (int i = 0; i < 3; i++) { SpawnSingle(); }
+                for (int i = 0; i < 3; i++) { SpawnSingle(primaryTargetObject); }
             } else if (gamemode == "Gamemode-Grid2") {
-                for (int i = 0; i < 8; i++) { SpawnSingle(); }
+                for (int i = 0; i < 8; i++) { SpawnSingle(primaryTargetObject); }
+            } else if (gamemode == "Gamemode-Grid3") {
+                for (int i = 0; i < 2; i++) { SpawnSingle(secondaryTargetObject); }
+                for (int i = 0; i < 1; i++) { SpawnSingle(primaryTargetObject); }
             }
 
         } else if (gamemode == "Gamemode-Pairs") {
@@ -186,7 +190,7 @@ public class SpawnTargets : MonoBehaviour {
         ST.purpleTarget.transform.localScale = tinyTargetSize;
         ST.pinkTarget.transform.localScale   = tinyTargetSize;
         ST.whiteTarget.transform.localScale  = tinyTargetSize;
-        targetSize = targetObject.transform.lossyScale.y;
+        targetSize = primaryTargetObject.transform.lossyScale.y;
     }
 
     /// <summary>
@@ -201,15 +205,15 @@ public class SpawnTargets : MonoBehaviour {
         ST.purpleTarget.transform.localScale = normalTargetSize;
         ST.pinkTarget.transform.localScale   = normalTargetSize;
         ST.whiteTarget.transform.localScale  = normalTargetSize;
-        targetSize = targetObject.transform.lossyScale.y;
+        targetSize = primaryTargetObject.transform.lossyScale.y;
     }
 
     /// <summary>
     /// Spawns single target at random point in spawn area bounds, then increases counts.
     /// </summary>
-    public static void SpawnSingle() {
+    public static void SpawnSingle(GameObject targetType) {
         targetInArea = CheckTargetSpawn(RandomPointInBounds(targetSpawnAreaBounds));
-        currentTargetObj = Instantiate(targetObject, targetInArea, Quaternion.identity);
+        currentTargetObj = Instantiate(targetType, targetInArea, Quaternion.identity);
 
         preFallTargetSpawn = currentTargetObj.transform.position;
         count += 1;
@@ -238,8 +242,8 @@ public class SpawnTargets : MonoBehaviour {
     /// Spawns single random target from scatter spawns list, then removes spawned target positon from scatter spawns list. Increases counts.
     /// </summary>
     public static void SpawnSingleScatter() {
-        targetInArea = scatterTargetSpawns[Random.Range(0, scatterTargetSpawns.Count)];
-        currentTargetObj = Instantiate(targetObject, targetInArea, Quaternion.identity);
+        targetInArea = scatterTargetSpawns[UnityEngine.Random.Range(0, scatterTargetSpawns.Count)];
+        currentTargetObj = Instantiate(primaryTargetObject, targetInArea, Quaternion.identity);
         scatterTargetSpawns.Remove(targetInArea);
 
         preFallTargetSpawn = currentTargetObj.transform.position;
@@ -252,8 +256,8 @@ public class SpawnTargets : MonoBehaviour {
     /// </summary>
     public static void SpawnScatter() {
         while (count < ST.targetMax + 1) {
-            targetInArea = scatterTargetSpawns[Random.Range(0, scatterTargetSpawns.Count)];
-            currentTargetObj = Instantiate(targetObject, targetInArea, Quaternion.identity);
+            targetInArea = scatterTargetSpawns[UnityEngine.Random.Range(0, scatterTargetSpawns.Count)];
+            currentTargetObj = Instantiate(primaryTargetObject, targetInArea, Quaternion.identity);
             scatterTargetSpawns.Remove(targetInArea);
             preFallTargetSpawn = currentTargetObj.transform.position;
             count += 1;
@@ -267,12 +271,12 @@ public class SpawnTargets : MonoBehaviour {
     public static void SpawnPairsStarter() {
         pairStarterActive = true;
         starterTargetCords = targetSpawnAreaCenter;
-        int randomPick = Random.Range(0, 2);
+        int randomPick = UnityEngine.Random.Range(0, 2);
 
         // Picks 0 or 1 randomly, spawns either primary or secondary target color.
         if (randomPick == 0) {
             // Primary
-            currentTargetObj = Instantiate(targetObject, starterTargetCords, Quaternion.identity);
+            currentTargetObj = Instantiate(primaryTargetObject, starterTargetCords, Quaternion.identity);
             pairStarterPrimaryActive = false;
             pairStarterSecondaryActive = true;
             targetSpawnsPrimary.Add(starterTargetCords);
@@ -294,7 +298,7 @@ public class SpawnTargets : MonoBehaviour {
     /// </summary>
     public static void SpawnPairs() {
         pairStarterActive = false;
-        int randomPick = Random.Range(0, 2);
+        int randomPick = UnityEngine.Random.Range(0, 2);
         Vector3 pairPrimary, pairSecondary;
 
         // Picks 0 or 1 randomly, spawns primary on right / secondary on left OR primary on left / secondary on right.
@@ -307,7 +311,7 @@ public class SpawnTargets : MonoBehaviour {
         }
 
         // Spawns both primary/secondary targets, then adds them to target spawns lists.
-        currentTargetObj = Instantiate(targetObject, pairPrimary, Quaternion.identity);
+        currentTargetObj = Instantiate(primaryTargetObject, pairPrimary, Quaternion.identity);
         currentTargetObj = Instantiate(secondaryTargetObject, pairSecondary, Quaternion.identity);
         //Debug.Log($"spawnPairs PAIRS : {pairPrimary} {pairSecondary} pairStarterPrimaryActive: {pairStarterPrimaryActive}, pairStarterSecondaryActive: {pairStarterSecondaryActive}");
         targetSpawns.Add(pairPrimary);
@@ -358,16 +362,16 @@ public class SpawnTargets : MonoBehaviour {
 
         switch (side) {
             case "left":
-                randomX = Random.Range(bounds.min.x + targetSize, bounds.max.x - targetSize);
-                randomY = Random.Range(bounds.min.y + targetSize, bounds.max.y - targetSize);
-                //randomZ = Random.Range(bounds.min.z + targetSize, targetSpawnAreaCenterY - targetSize);
-                randomZ = Random.Range(bounds.min.z, bounds.center.z);
+                randomX = UnityEngine.Random.Range(bounds.min.x + targetSize, bounds.max.x - targetSize);
+                randomY = UnityEngine.Random.Range(bounds.min.y + targetSize, bounds.max.y - targetSize);
+                //randomZ = UnityEngine.Random.Range(bounds.min.z + targetSize, targetSpawnAreaCenterY - targetSize);
+                randomZ = UnityEngine.Random.Range(bounds.min.z, bounds.center.z);
                 break;
             case "right":
-                randomX = Random.Range(bounds.min.x + targetSize, bounds.max.x - targetSize);
-                randomY = Random.Range(bounds.min.y + targetSize, bounds.max.y - targetSize);
-                //randomZ = Random.Range(targetSpawnAreaCenterY + targetSize, bounds.max.z - targetSize);
-                randomZ = Random.Range(bounds.center.z, bounds.max.z);
+                randomX = UnityEngine.Random.Range(bounds.min.x + targetSize, bounds.max.x - targetSize);
+                randomY = UnityEngine.Random.Range(bounds.min.y + targetSize, bounds.max.y - targetSize);
+                //randomZ = UnityEngine.Random.Range(targetSpawnAreaCenterY + targetSize, bounds.max.z - targetSize);
+                randomZ = UnityEngine.Random.Range(bounds.center.z, bounds.max.z);
                 break;
         }
 
@@ -399,7 +403,7 @@ public class SpawnTargets : MonoBehaviour {
         for (int i = 0; i < targetObjects.Length; i++) {
             Vector3 currentScatterPos = targetObjects[i].transform.position;
             Destroy(targetObjects[i]);
-            currentTargetObj = Instantiate(targetObject, currentScatterPos, Quaternion.identity);
+            currentTargetObj = Instantiate(primaryTargetObject, currentScatterPos, Quaternion.identity);
         }
     }
 
@@ -411,42 +415,42 @@ public class SpawnTargets : MonoBehaviour {
     public static void SetTargetColor(string setColor, bool gamemodeFollow) {
         switch (setColor) {
             case "TargetColor-Red":
-                targetObject          = ST.redTarget;
+                primaryTargetObject          = ST.redTarget;
                 secondaryTargetObject = ST.blueTarget;
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.RedAlbedo(), TargetColors.RedEmission(), TargetColors.RedLight()); }
                 break;
             case "TargetColor-Orange":
-                targetObject          = ST.orangeTarget;
+                primaryTargetObject          = ST.orangeTarget;
                 secondaryTargetObject = ST.blueTarget;
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.OrangeAlbedo(), TargetColors.OrangeEmission(), TargetColors.OrangeLight()); }
                 break;
             case "TargetColor-Yellow":
-                targetObject          = ST.yellowTarget;
+                primaryTargetObject          = ST.yellowTarget;
                 secondaryTargetObject = ST.redTarget;
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.YellowAlbedo(), TargetColors.YellowEmission(), TargetColors.YellowLight()); }
                 break;
             case "TargetColor-Green":
-                targetObject          = ST.greenTarget;
+                primaryTargetObject          = ST.greenTarget;
                 secondaryTargetObject = ST.redTarget;
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.GreenAlbedo(), TargetColors.GreenEmission(), TargetColors.GreenLight()); }
                 break;
             case "TargetColor-Blue":
-                targetObject          = ST.blueTarget;
+                primaryTargetObject          = ST.blueTarget;
                 secondaryTargetObject = ST.redTarget;
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.BlueAlbedo(), TargetColors.BlueEmission(), TargetColors.BlueLight()); }
                 break;
             case "TargetColor-Purple":
-                targetObject          = ST.purpleTarget;
+                primaryTargetObject          = ST.purpleTarget;
                 secondaryTargetObject = ST.yellowTarget;
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.PurpleAlbedo(), TargetColors.PurpleEmission(), TargetColors.PurpleLight()); }
                 break;
             case "TargetColor-Pink":
-                targetObject          = ST.pinkTarget;
+                primaryTargetObject          = ST.pinkTarget;
                 secondaryTargetObject = ST.yellowTarget;
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.PinkAlbedo(), TargetColors.PinkEmission(), TargetColors.PinkLight()); }
                 break;
             case "TargetColor-White":
-                targetObject          = ST.whiteTarget;
+                primaryTargetObject          = ST.whiteTarget;
                 secondaryTargetObject = ST.blueTarget;
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.WhiteAlbedo(), TargetColors.WhiteEmission(), TargetColors.WhiteLight()); }
                 break;
@@ -475,20 +479,23 @@ public class SpawnTargets : MonoBehaviour {
                 } else {
                     // Loop all currently spawned targets and re-instantiate them.
                     for (int i = 0; i < targetSpawns.Count; i++) {
-                        currentTargetObj = Instantiate(targetObject, targetSpawns[i], Quaternion.identity);
+                        currentTargetObj = Instantiate(primaryTargetObject, targetSpawns[i], Quaternion.identity);
                         preFallTargetSpawn = currentTargetObj.transform.position;
                     }
                 }
             } else {
                 if (targetSpawns.Count == 1 && targetSpawnsPrimary.Count == 1) {
-                    currentTargetObj = Instantiate(targetObject, targetSpawns[0], Quaternion.identity);
+                    currentTargetObj = Instantiate(primaryTargetObject, targetSpawns[0], Quaternion.identity);
                 } else if (targetSpawns.Count == 1 && targetSpawnsSecondary.Count == 1) {
                     currentTargetObj = Instantiate(secondaryTargetObject, targetSpawns[0], Quaternion.identity);
                 }
 
                 for (int i = 0; i < targetSpawnsPrimary.Count; i++) {
-                    currentTargetObj = Instantiate(targetObject, targetSpawnsPrimary[i], Quaternion.identity);
-                    currentTargetObj = Instantiate(secondaryTargetObject, targetSpawnsSecondary[i], Quaternion.identity);
+                    try { currentTargetObj = Instantiate(primaryTargetObject, targetSpawnsPrimary[i], Quaternion.identity);
+                    } catch (ArgumentOutOfRangeException AORE) { Debug.Log($"ArgumentOutOfRangeException I GUESS: {AORE}"); }
+
+                    try { currentTargetObj = Instantiate(secondaryTargetObject, targetSpawnsSecondary[i], Quaternion.identity);
+                    } catch (ArgumentOutOfRangeException AORE) { Debug.Log($"ArgumentOutOfRangeException I GUESS: {AORE}"); }
                 }
             }
         } else {
@@ -517,7 +524,7 @@ public class SpawnTargets : MonoBehaviour {
                 }
             } else if (gamemode == "Gamemode-Flick" || gamemode == "Gamemode-Grid" || gamemode == "Gamemode-Grid2") {
                 //shotsHit += 1;
-                SpawnSingle();
+                SpawnSingle(primaryTargetObject);
             } else if (gamemode == "Gamemode-Pairs") {
                 if (pairStarterActive) {
                     shotsHit += 1;
@@ -547,9 +554,9 @@ public class SpawnTargets : MonoBehaviour {
     /// <param name="bounds"></param>
     /// <returns></returns>
     public static Vector3 RandomPointInBounds(Bounds bounds) {
-        float randomX = Random.Range(bounds.min.x + targetSize, bounds.max.x - targetSize);
-        float randomY = Random.Range(bounds.min.y + targetSize, bounds.max.y - targetSize);
-        float randomZ = Random.Range(bounds.min.z + targetSize, bounds.max.z - targetSize);
+        float randomX = UnityEngine.Random.Range(bounds.min.x + targetSize, bounds.max.x - targetSize);
+        float randomY = UnityEngine.Random.Range(bounds.min.y + targetSize, bounds.max.y - targetSize);
+        float randomZ = UnityEngine.Random.Range(bounds.min.z + targetSize, bounds.max.z - targetSize);
 
         if (gamemode == "Gamemode-Grid" || gamemode == "Gamemode-Grid2") {
             randomX = (float)(bounds.size.x * 1.75) - targetSize * 3;
