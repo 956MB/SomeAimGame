@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using TMPro;
 
-public class ButtonClickHandler : MonoBehaviour {
+public class ButtonClickHandler : MonoBehaviour, IPointerUpHandler {
     public TMP_Text targetColorSelected, skyboxSelected;
+    GameObject buttonBorder;
 
     /// <summary>
     /// Closes settings panel.
@@ -17,8 +19,29 @@ public class ButtonClickHandler : MonoBehaviour {
     /// Closes 'AfterActionReport' panel then restarts the game with current gamemode.
     /// </summary>
     public void RestartCurrentGame() {
-        SettingsPanel.CloseAfterActionReport();
+        //SettingsPanel.CloseAfterActionReport();
         GameUI.RestartGame(CosmeticsSettings.gamemode);
+    }
+
+    /// <summary>
+    /// Sets hovered border to active and calls appropriate function for clicked button.
+    /// </summary>
+    /// <param name="pointerEventData"></param>
+    public void OnPointerUp(PointerEventData pointerEventData) {
+        string clickedButtonName = pointerEventData.pointerCurrentRaycast.gameObject.name;
+
+        try { buttonBorder = pointerEventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).transform.gameObject;
+        } catch (UnityException) { }
+
+        if (buttonBorder != null) {
+            if (clickedButtonName.Contains("Gamemode")) {
+                SelectNewGamemode(buttonBorder);
+            } else if (clickedButtonName.Contains("TargetColor")) {
+                SetNewTargetColor(buttonBorder);
+            } else if (clickedButtonName.Contains("Skybox")) {
+                SetNewSkyboxColor(buttonBorder);
+            }
+        }
     }
 
     /// <summary>
@@ -44,6 +67,7 @@ public class ButtonClickHandler : MonoBehaviour {
 
         // Primary target color cannot be red if gamemode is "Gamemode-Follow"
         if (targetColorClickedName == "TargetColor-Red" && SpawnTargets.gamemode == "Gamemode-Follow") { return; }
+        if (NotificationHandler.notificationOpen) { NotificationHandler.HideNotification(); }
 
         SpawnTargets.targetColorReset = true;
         ClearTargetColorButtonBorders();
@@ -86,7 +110,7 @@ public class ButtonClickHandler : MonoBehaviour {
         }
 
         // Changes gamemode video previews when new target color selected.
-        //SettingsPanel.LoadGamemodePreviews();
+        SettingsPanel.LoadGamemodePreviews();
     }
 
     /// <summary>
