@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour {
         controller.Move(moveDirection * Time.fixedDeltaTime);
     }*/
 
+    /*
     void Update() {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
@@ -59,4 +60,5 @@ public class PlayerMovement : MonoBehaviour {
 
         //AnimateCharacter.animateCharacterMovement(f_axisZ, f_axisX, velocity.y);
     }
+    */
 }
