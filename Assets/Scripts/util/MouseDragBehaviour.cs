@@ -41,6 +41,7 @@ public class MouseDragBehaviour : MonoBehaviour, IDragHandler, IBeginDragHandler
     /// </summary>
     /// <param name="eventData"></param>
     public void OnEndDrag(PointerEventData eventData) {
+        Debug.Log($"{windowsRectTransform.name}, {transform.position.x}, {transform.position.y}");
         CosmeticsSettings.SavePanelLocationXY(windowsRectTransform.name, transform.position.x, transform.position.y);
     }
 
