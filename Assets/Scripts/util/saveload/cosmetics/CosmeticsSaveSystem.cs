@@ -23,8 +23,13 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     /// <param name="cosmeticsSettings"></param>
     public static void SaveCosmeticsSettingsData(CosmeticsSettings cosmeticsSettings) {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/cosmetics.settings";
-        FileStream stream = new FileStream(path, FileMode.Create);
+        string dirPath = Application.persistentDataPath + "/settings";
+        string filePath = dirPath + "/cosmetics.settings";
+
+        DirectoryInfo dirInf = new DirectoryInfo(dirPath);
+        if (!dirInf.Exists) { dirInf.Create(); }
+
+        FileStream stream = new FileStream(filePath, FileMode.Create);
 
         CosmeticsDataSerial cosmeticsData = new CosmeticsDataSerial();
         formatter.Serialize(stream, cosmeticsData);
@@ -38,7 +43,7 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     /// </summary>
     /// <returns></returns>
     public static CosmeticsDataSerial LoadCosmeticsSettingsData() {
-        string path = Application.persistentDataPath + "/cosmetics.settings";
+        string path = Application.persistentDataPath + "/settings/cosmetics.settings";
         if (File.Exists(path)) {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
@@ -65,8 +70,8 @@ public class CosmeticsSaveSystem : MonoBehaviour {
             SetGamemode(loadedCosmeticsData.gamemode, loadedCosmeticsData.quickStartGame);
             SetTargetColor(loadedCosmeticsData.targetColor, loadedCosmeticsData.gamemode);
             SetSkybox(loadedCosmeticsData.skybox);
-            SetAfterActionReportPanel(loadedCosmeticsData.afterActionReportPanelX, loadedCosmeticsData.afterActionReportPanelY);
-            SetExtraStatsPanel(loadedCosmeticsData.extraStatsPanelX, loadedCosmeticsData.extraStatsPanelY);
+            //SetAfterActionReportPanel(loadedCosmeticsData.afterActionReportPanelX, loadedCosmeticsData.afterActionReportPanelY);
+            //SetExtraStatsPanel(loadedCosmeticsData.extraStatsPanelX, loadedCosmeticsData.extraStatsPanelY);
 
             CosmeticsSettings.SaveAllCosmeticsToggleDefaults(loadedCosmeticsData.gamemode, loadedCosmeticsData.targetColor, loadedCosmeticsData.skybox, loadedCosmeticsData.afterActionReportPanelX, loadedCosmeticsData.afterActionReportPanelY, loadedCosmeticsData.extraStatsPanelX, loadedCosmeticsData.extraStatsPanelY, loadedCosmeticsData.quickStartGame);
         } else {
@@ -91,13 +96,13 @@ public class CosmeticsSaveSystem : MonoBehaviour {
         saveLoad.skyboxSelected.SetText($"//    {I18nTextTranslator.SetTranslatedText("skyboxslate")}");
         
         // Settings and extra stats panel values.
-        SetAfterActionReportPanel(960f, 540f);
-        SetExtraStatsPanel(1608.53f, 585.93f);
+        //SetAfterActionReportPanel(960f, 540f);
+        //SetExtraStatsPanel(1455.711f, 638.3904f);
 
         saveLoad.quickStartToggle.isOn = false;
 
         // Saves defaults to new 'cometics.settings' file.
-        CosmeticsSettings.SaveAllCosmeticsToggleDefaults("Gamemode-Grid", "TargetColor-Yellow", "Skybox-Slate", 960f, 540f, 1608.5f, 585.93f, false);
+        CosmeticsSettings.SaveAllCosmeticsToggleDefaults("Gamemode-Grid", "TargetColor-Yellow", "Skybox-Slate", 960f, 540f, 1455.711f, 638.3904f, false);
     }
 
     /// <summary>

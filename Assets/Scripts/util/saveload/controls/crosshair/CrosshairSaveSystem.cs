@@ -27,8 +27,13 @@ public class CrosshairSaveSystem : MonoBehaviour {
     /// <param name="crosshairSettings"></param>
     public static void SaveCrosshairSettingsData(CrosshairSettings crosshairSettings) {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/crosshair.settings";
-        FileStream stream = new FileStream(path, FileMode.Create);
+        string dirPath = Application.persistentDataPath + "/settings";
+        string filePath = dirPath + "/crosshair.settings";
+
+        DirectoryInfo dirInf = new DirectoryInfo(dirPath);
+        if (!dirInf.Exists) { dirInf.Create(); }
+
+        FileStream stream = new FileStream(filePath, FileMode.Create);
 
         CrosshairDataSerial crosshairData = new CrosshairDataSerial();
         formatter.Serialize(stream, crosshairData);
@@ -40,7 +45,7 @@ public class CrosshairSaveSystem : MonoBehaviour {
     /// </summary>
     /// <returns></returns>
     public static CrosshairDataSerial LoadCrosshairSettingsData() {
-        string path = Application.persistentDataPath + "/crosshair.settings";
+        string path = Application.persistentDataPath + "/settings/crosshair.settings";
         if (File.Exists(path)) {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
