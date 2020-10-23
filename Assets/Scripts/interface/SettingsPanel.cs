@@ -1,5 +1,4 @@
 ﻿//using Steamworks;
-using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.Video;
 //using UnityEditor;
@@ -18,7 +17,7 @@ public class SettingsPanel : MonoBehaviour {
     public static float panelWidth;
     RectTransform rt;
 
-    private static GamemodePreviews gamemodePreviewVideos;
+    private static VideoClip[] gamemodePreviewVideos;
     public VideoPlayer selectedVideoPlayer, scatterVideoPlayer, flickVideoPlayer, gridVideoPlayer, grid2VideoPlayer, pairsVideoPlayer, followVideoPlayer;
     //private static Texture2D thumbnailTexture2D;
     //private static Sprite thumbnailSprite;
@@ -33,18 +32,19 @@ public class SettingsPanel : MonoBehaviour {
         //LeanTween.moveX(settings.settingsPanel, -280, 0f);
 
         // Load target color, skybox and gamemode previews.
+        LoadGamemodePreviews();
         LoadTargetColorThumbnails();
         LoadSkyboxThumbnails();
-        //LoadGamemodePreviews();
 
         // Init saved settings for settings panel.
         ExtraSaveSystem.InitSavedExtraSettings();
         StatsManager.HideExtraStatsPanel();
         CrosshairSaveSystem.InitSavedCrosshairSettings();
+        WidgetSaveSystem.InitSavedWidgetSettings();
 
         // Close settings and 'AfterActionReport' panels at start.
-        settings.settingsPanel.transform.localScale = new Vector3(0f, 0f, 0f);
-        settings.afterPanel.transform.localScale = new Vector3(0f, 0f, 0f);
+        settings.settingsPanel.transform.localScale = new Vector3(0f, 0f, 1f);
+        settings.afterPanel.transform.localScale = new Vector3(0f, 0f, 1f);
         
         //CosmeticsSaveSystem.initSettingsDefaults();
         //settingsPanel.SetActive(false);
@@ -82,10 +82,9 @@ public class SettingsPanel : MonoBehaviour {
     /// Opens settings panel.
     /// </summary>
     public static void OpenSettingsPanel() {
-        //settings.darkenBackground.SetActive(true);
+        settings.settingsPanel.transform.localScale = new Vector3(1f, 1f, 1f);
         settings.mainMenuCanvas.SetActive(true);
         OpenAction();
-        settings.settingsPanel.transform.localScale = new Vector3(1.15f, 1.1f, 1f);
         settingsOpen = true;
         GameUI.HideUI();
     }
@@ -94,10 +93,9 @@ public class SettingsPanel : MonoBehaviour {
     /// Closes settings panel.
     /// </summary>
     public static void CloseSettingsPanel() {
-        //settings.darkenBackground.SetActive(false);
+        settings.settingsPanel.transform.localScale = new Vector3(0f, 0f, 1f);
         settings.mainMenuCanvas.SetActive(false);
         CloseAction();
-        settings.settingsPanel.transform.localScale = new Vector3(0f, 0f, 0f);
         settingsOpen = false;
 
         if (ExtraSettings.hideUI) { GameUI.ShowUI(); }
@@ -113,7 +111,7 @@ public class SettingsPanel : MonoBehaviour {
             settings.extendedStatsPanel.SetActive(true);
         }
         OpenAction();
-        settings.afterPanel.transform.localScale = new Vector3(1.15f, 1.1f, 1f);
+        settings.afterPanel.transform.localScale = new Vector3(1f, 1f, 1f);
         afterActionReportOpen = true;
         GameUI.HideUI();
     }
@@ -126,7 +124,7 @@ public class SettingsPanel : MonoBehaviour {
         settings.mainMenuCanvas.SetActive(false);
         settings.extendedStatsPanel.SetActive(false);
         CloseAction();
-        settings.afterPanel.transform.localScale = new Vector3(0f, 0f, 0f);
+        settings.afterPanel.transform.localScale = new Vector3(0f, 0f, 1f);
         afterActionReportOpen = false;
 
         if (ExtraSettings.hideUI) { GameUI.ShowUI(); }
@@ -220,21 +218,21 @@ public class SettingsPanel : MonoBehaviour {
         gamemodePreviewVideos = VideoManager.PopulateGamemodePreviews(CosmeticsSettings.gamemode, CosmeticsSettings.targetColor, CosmeticsSettings.skybox);
 
         // Set clips for every gamemode preview button.
-        settings.scatterVideoPlayer.clip  = gamemodePreviewVideos.gamemodeScatterPreview;
-        settings.flickVideoPlayer.clip    = gamemodePreviewVideos.gamemodeFlickPreview;
-        settings.gridVideoPlayer.clip     = gamemodePreviewVideos.gamemodeGridPreview;
-        settings.grid2VideoPlayer.clip    = gamemodePreviewVideos.gamemodeGrid2Preview;
-        settings.pairsVideoPlayer.clip    = gamemodePreviewVideos.gamemodePairsPreview;
-        settings.followVideoPlayer.clip   = gamemodePreviewVideos.gamemodeFollowPreview;
-        settings.selectedVideoPlayer.clip = gamemodePreviewVideos.gamemodeSelectedPreview;
+        settings.scatterVideoPlayer.clip  = gamemodePreviewVideos[0];
+        settings.flickVideoPlayer.clip    = gamemodePreviewVideos[1];
+        settings.gridVideoPlayer.clip     = gamemodePreviewVideos[2];
+        settings.grid2VideoPlayer.clip    = gamemodePreviewVideos[3];
+        settings.pairsVideoPlayer.clip    = gamemodePreviewVideos[4];
+        settings.followVideoPlayer.clip   = gamemodePreviewVideos[5];
+        settings.selectedVideoPlayer.clip = gamemodePreviewVideos[6];
         // Set video player aspect ratios.
-        settings.scatterVideoPlayer.aspectRatio  = VideoAspectRatio.FitVertically;
-        settings.flickVideoPlayer.aspectRatio    = VideoAspectRatio.FitVertically;
-        settings.gridVideoPlayer.aspectRatio     = VideoAspectRatio.FitVertically;
-        settings.grid2VideoPlayer.aspectRatio    = VideoAspectRatio.FitVertically;
-        settings.pairsVideoPlayer.aspectRatio    = VideoAspectRatio.FitVertically;
-        settings.followVideoPlayer.aspectRatio   = VideoAspectRatio.FitVertically;
-        settings.selectedVideoPlayer.aspectRatio = VideoAspectRatio.FitVertically;
+        settings.scatterVideoPlayer.aspectRatio  = VideoAspectRatio.NoScaling;
+        settings.flickVideoPlayer.aspectRatio    = VideoAspectRatio.NoScaling;
+        settings.gridVideoPlayer.aspectRatio     = VideoAspectRatio.NoScaling;
+        settings.grid2VideoPlayer.aspectRatio    = VideoAspectRatio.NoScaling;
+        settings.pairsVideoPlayer.aspectRatio    = VideoAspectRatio.NoScaling;
+        settings.followVideoPlayer.aspectRatio   = VideoAspectRatio.NoScaling;
+        settings.selectedVideoPlayer.aspectRatio = VideoAspectRatio.NoScaling;
         // Play clips once set.
         settings.scatterVideoPlayer.Play();
         settings.flickVideoPlayer.Play();
