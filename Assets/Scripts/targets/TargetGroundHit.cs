@@ -15,7 +15,7 @@ public class TargetGroundHit : MonoBehaviour {
                 //Debug.Log("targte grounded??");
                 Destroy(targetObj.transform.gameObject);
                 GameUI.DecreaseScore();
-                SpawnTargets.SpawnSingle();
+                SpawnTargets.SpawnSingle(SpawnTargets.primaryTargetObject);
             }
         }
     }

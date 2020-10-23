@@ -23,7 +23,7 @@ public class GenerateFollowPath : MonoBehaviour {
         waypoints = new List<Vector3>();
         followTargetSpawnAreaBounds = generateFollow.followTargetSpawnArea.GetComponent<BoxCollider>().bounds;
         GenerateRandomWaypoints();
-        pathFollowerTarget = Instantiate(SpawnTargets.targetObject, waypoints[0], Quaternion.identity);
+        pathFollowerTarget = Instantiate(SpawnTargets.primaryTargetObject, waypoints[0], Quaternion.identity);
         CreatePathObj();
     }
 
