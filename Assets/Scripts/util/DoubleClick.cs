@@ -16,12 +16,12 @@ public class DoubleClick : MonoBehaviour, IPointerClickHandler {
     /// </summary>
     void OnDoubleClick() {
         switch (transform.name) {
-            case "StatsPage":
+            case "AfterActionReport":
                 transform.position = new Vector3(960f, 540f, 0f);
                 CosmeticsSettings.resetAfterActionReportPanelCenter();
                 break;
             case "ExtraStats":
-                transform.position = new Vector3(1608.53f, 585.93f, 0f);
+                transform.position = new Vector3(1455.711f, 638.3904f, 0f);
                 CosmeticsSettings.resetExtraStatsPanelCenter();
                 break;
         }
