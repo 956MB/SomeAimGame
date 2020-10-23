@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.ComponentModel.Design;
+using UnityEngine;
 using UnityEngine.UI;
 
 public enum CrosshairColorChannel
@@ -183,7 +184,7 @@ public class SimpleCrosshair : MonoBehaviour
     public void SetSize(int newSize, bool redrawCrosshair)
     {
         m_crosshair.size = newSize;
-        if(m_crosshair.size < 1) { m_crosshair.size = 1; }
+        //if(m_crosshair.size < 1) { m_crosshair.size = 1; }
         if (redrawCrosshair)
         {
             GenerateCrosshair();
@@ -231,64 +232,88 @@ public class SimpleCrosshair : MonoBehaviour
         }
 
         if (m_crosshair.enableOutline) {
+            // top outline
             if (!m_crosshair.tStyle) {
-                // top outline
+                if (crosshair.size >= 1) {
+                    DrawBox((centerBias - startGapShort),
+                        (centerBias + crosshair.gap) - (m_crosshair.outlineThickness),
+                        crosshair.thickness + (m_crosshair.outlineThickness + 1),
+                        crosshair.size + (m_crosshair.outlineThickness+1),
+                        crosshairTexture,
+                        new Color(0f, 0f, 0f, 255f));
+                }
+            }
+
+            // Center dot outline
+            if (m_crosshair.centerDot) {
                 DrawBox((centerBias - startGapShort),
-                    (centerBias + crosshair.gap) - (m_crosshair.outlineThickness),
-                    crosshair.thickness + (m_crosshair.outlineThickness + 1),
-                    crosshair.size + (m_crosshair.outlineThickness+1),
+                    centerBias - (crosshair.thickness / 2),
+                    crosshair.thickness + 2,
+                    crosshair.thickness + 2,
                     crosshairTexture,
                     new Color(0f, 0f, 0f, 255f));
             }
 
             // Right outline
-            DrawBox((centerBias + crosshair.gap) - m_crosshair.outlineThickness,
-                (centerBias - startGapShort),
-                crosshair.size + (m_crosshair.outlineThickness + 1),
-                crosshair.thickness + (m_crosshair.outlineThickness + 1),
-                crosshairTexture,
-                new Color(0f, 0f, 0f, 255f));
+            if (crosshair.size >= 1) {
+                DrawBox((centerBias + crosshair.gap) - m_crosshair.outlineThickness,
+                    (centerBias - startGapShort),
+                    crosshair.size + (m_crosshair.outlineThickness + 1),
+                    crosshair.thickness + (m_crosshair.outlineThickness + 1),
+                    crosshairTexture,
+                    new Color(0f, 0f, 0f, 255f));
+            }
+
 
             if (crosshair.thickness % 2 == 0) {
                 // Left outline
-                DrawBox((centerBias - crosshair.gap - crosshair.size) + 1,
-                    (centerBias - startGapShort),
-                    crosshair.size + (m_crosshair.outlineThickness + 1),
-                    crosshair.thickness + (m_crosshair.outlineThickness + 1),
-                    crosshairTexture,
-                    new Color(0f, 0f, 0f, 255f));
+                if (crosshair.size >= 1) {
+                    DrawBox((centerBias - crosshair.gap - crosshair.size) + 1,
+                        (centerBias - startGapShort),
+                        crosshair.size + (m_crosshair.outlineThickness + 1),
+                        crosshair.thickness + (m_crosshair.outlineThickness + 1),
+                        crosshairTexture,
+                        new Color(0f, 0f, 0f, 255f));
+                }
 
                 // Bottom outline
-                DrawBox((centerBias - startGapShort),
-                    (centerBias - crosshair.gap - crosshair.size) + 1,
-                    crosshair.thickness + (m_crosshair.outlineThickness + 1),
-                    crosshair.size + (m_crosshair.outlineThickness + 1),
-                    crosshairTexture,
-                    new Color(0f, 0f, 0f, 255f));
+                if (crosshair.size >= 1) {
+                    DrawBox((centerBias - startGapShort),
+                        (centerBias - crosshair.gap - crosshair.size) + 1,
+                        crosshair.thickness + (m_crosshair.outlineThickness + 1),
+                        crosshair.size + (m_crosshair.outlineThickness + 1),
+                        crosshairTexture,
+                        new Color(0f, 0f, 0f, 255f));
+                }
 
             } else {
                 // Left outline
-                DrawBox((centerBias - crosshair.gap - crosshair.size),
-                    (centerBias - startGapShort),
-                    crosshair.size + (m_crosshair.outlineThickness + 1),
-                    crosshair.thickness + (m_crosshair.outlineThickness + 1),
-                    crosshairTexture,
-                    new Color(0f, 0f, 0f, 255f));
+                if (crosshair.size >= 1) {
+                    DrawBox((centerBias - crosshair.gap - crosshair.size),
+                        (centerBias - startGapShort),
+                        crosshair.size + (m_crosshair.outlineThickness + 1),
+                        crosshair.thickness + (m_crosshair.outlineThickness + 1),
+                        crosshairTexture,
+                        new Color(0f, 0f, 0f, 255f));
+                }
             
                 // Bottom outline
-                DrawBox((centerBias - startGapShort),
-                    (centerBias - crosshair.gap - crosshair.size),
-                    crosshair.thickness + (m_crosshair.outlineThickness + 1),
-                    crosshair.size + (m_crosshair.outlineThickness+1),
-                    crosshairTexture,
-                    new Color(0f, 0f, 0f, 255f));
+                if (crosshair.size >= 1) {
+                    DrawBox((centerBias - startGapShort),
+                        (centerBias - crosshair.gap - crosshair.size),
+                        crosshair.thickness + (m_crosshair.outlineThickness + 1),
+                        crosshair.size + (m_crosshair.outlineThickness+1),
+                        crosshairTexture,
+                        new Color(0f, 0f, 0f, 255f));
+                }
             }
 
         }
 
             
-            if (!m_crosshair.tStyle) {
-                // top
+        if (!m_crosshair.tStyle) {
+            // top
+            if (crosshair.size >= 1) {
                 DrawBox((centerBias - startGapShort) + m_crosshair.outlineThickness,
                     (centerBias + crosshair.gap),
                     crosshair.thickness,
@@ -296,76 +321,94 @@ public class SimpleCrosshair : MonoBehaviour
                     crosshairTexture,
                     crosshair.color);
             }
+        }
 
-            if (crosshair.thickness == 1) {
-                // Left
+        if (crosshair.thickness == 1) {
+            // Left
+            if (crosshair.size >= 1) {
                 DrawBox((centerBias - crosshair.gap - crosshair.size) + (m_crosshair.outlineThickness),
-                   (centerBias - startGapShort) + 1,
-                   crosshair.size - leftExtra,
-                   crosshair.thickness + (m_crosshair.outlineThickness) - 1,
-                   crosshairTexture,
-                   crosshair.color);
+                    (centerBias - startGapShort) + 1,
+                    crosshair.size - leftExtra,
+                    crosshair.thickness + (m_crosshair.outlineThickness) - 1,
+                    crosshairTexture,
+                    crosshair.color);
+            }
             
-                // Right
+            // Right
+            if (crosshair.size >= 1) {
                 DrawBox((centerBias + crosshair.gap),
                     (centerBias - startGapShort) + 1,
                     crosshair.size,
                     crosshair.thickness,
                     crosshairTexture,
                     crosshair.color);
+            }
 
-                // Bottom
+            // Bottom
+            if (crosshair.size >= 1) {
                 DrawBox((centerBias - startGapShort) + (m_crosshair.outlineThickness),
                     (centerBias - crosshair.gap - crosshair.size) + (m_crosshair.outlineThickness),
                     crosshair.thickness,
                     crosshair.size,
                     crosshairTexture,
                     crosshair.color);
+            }
 
-            } else {
-                if (crosshair.thickness % 2 == 0) {
-                    // Left
+        } else {
+            if (crosshair.thickness % 2 == 0) {
+                // Left
+                if (crosshair.size >= 1) {
                     DrawBox((centerBias - crosshair.gap - crosshair.size) + (m_crosshair.outlineThickness) + 1,
-                       (centerBias - startGapShort) + 1,
-                       (crosshair.size - leftExtra) + 1,
-                       crosshair.thickness,
-                       crosshairTexture,
-                       crosshair.color);
+                        (centerBias - startGapShort) + 1,
+                        (crosshair.size - leftExtra) + 1,
+                        crosshair.thickness,
+                        crosshairTexture,
+                        crosshair.color);
+                }
 
-                    // Right
+                // Right
+                if (crosshair.size >= 1) {
                     DrawBox((centerBias + crosshair.gap),
-                       (centerBias - startGapShort) + 1,
-                       (crosshair.size - leftExtra) + 1,
-                       crosshair.thickness,
-                       crosshairTexture,
-                       crosshair.color);
+                        (centerBias - startGapShort) + 1,
+                        (crosshair.size - leftExtra) + 1,
+                        crosshair.thickness,
+                        crosshairTexture,
+                        crosshair.color);
+                }
 
-                    // Bottom
+                // Bottom
+                if (crosshair.size >= 1) {
                     DrawBox((centerBias - startGapShort) + (m_crosshair.outlineThickness),
                         (centerBias - crosshair.gap - crosshair.size) + (m_crosshair.outlineThickness + 1),
                         crosshair.thickness,
                         crosshair.size,
                         crosshairTexture,
                         crosshair.color);
+                }
 
-                } else {
-                    // Right
+            } else {
+                // Right
+                if (crosshair.size >= 1) {
                     DrawBox((centerBias + crosshair.gap),
                         (centerBias - startGapShort) + 1,
                         crosshair.size - leftExtra,
                         crosshair.thickness,
                         crosshairTexture,
                         crosshair.color);
+                }
 
-                    // Left
+                // Left
+                if (crosshair.size >= 1) {
                     DrawBox((centerBias - crosshair.gap - crosshair.size) + (m_crosshair.outlineThickness),
-                       (centerBias - startGapShort) + 1,
-                       crosshair.size - leftExtra,
-                       crosshair.thickness,
-                       crosshairTexture,
-                       crosshair.color);
+                        (centerBias - startGapShort) + 1,
+                        crosshair.size - leftExtra,
+                        crosshair.thickness,
+                        crosshairTexture,
+                        crosshair.color);
+                }
 
-                    // Bottom
+                // Bottom
+                if (crosshair.size >= 1) {
                     DrawBox((centerBias - startGapShort) + (m_crosshair.outlineThickness),
                         (centerBias - crosshair.gap - crosshair.size) + (m_crosshair.outlineThickness),
                         crosshair.thickness,
@@ -373,6 +416,7 @@ public class SimpleCrosshair : MonoBehaviour
                         crosshairTexture,
                         crosshair.color);
                 }
+            }
             //if (m_crosshair.enableOutline) {
             //    // Left
             //    DrawBox((centerBias - crosshair.gap - crosshair.size) + m_crosshair.outlineThickness,
@@ -396,7 +440,7 @@ public class SimpleCrosshair : MonoBehaviour
         //int startGapShort = Mathf.CeilToInt(crosshair.thickness / 2.0f);
         if (m_crosshair.centerDot) {
             DrawBox((centerBias - startGapShort) + 1,
-                centerBias - (crosshair.thickness / 2),
+                centerBias - (crosshair.thickness / 2) + 1,
                 crosshair.thickness,
                 crosshair.thickness,
                 crosshairTexture,
