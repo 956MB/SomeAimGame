@@ -7,8 +7,8 @@ public class CosmeticsSettings : MonoBehaviour {
     public static string skybox      = "Skybox-Slate";
     public static float afterActionReportPanelX = 960f;
     public static float afterActionReportPanelY = 540f;
-    public static float extraStatsPanelX = 1606f;
-    public static float extraStatsPanelY = 554f;
+    public static float extraStatsPanelX = 1455.711f;
+    public static float extraStatsPanelY = 638.3904f;
     public static bool quickStartGame    = false;
 
     private static CosmeticsSettings cosmeticsSettings;
@@ -127,8 +127,8 @@ public class CosmeticsSettings : MonoBehaviour {
     /// Sets 'ExtraStats' panel location (X/Y) back to default location, then saves cosmetics settings.
     /// </summary>
     public static void resetExtraStatsPanelCenter() {
-        extraStatsPanelX = 1608.53f;
-        extraStatsPanelY = 585.93f;
+        extraStatsPanelX = 1455.711f;
+        extraStatsPanelY = 638.3904f;
         cosmeticsSettings.SaveCosmeticsSettings();
     }
 }
