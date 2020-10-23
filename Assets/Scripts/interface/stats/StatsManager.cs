@@ -20,26 +20,6 @@ public class StatsManager : MonoBehaviour {
     public static PreviousGameStats previousGameStats;
     public static BestGameStats bestGameStats;
 
-    private static string itemHighscore     = "▲▲";
-    private static string itemHighscoreFlip = "▼▼";
-    private static string itemUp            = "▲";
-    private static string itemDown          = "▼";
-    private static string itemNeutral       = "-";
-    private static Color32 newHighscoreBackgroundColor = new Color32(255, 209, 0, 55);
-    private static Color32 upBackgroundColor           = new Color32(0, 255, 0, 20);
-    private static Color32 downBackgroundColor         = new Color32(255, 0, 0, 20);
-    private static Color32 neutralBackgroundColor      = new Color32(255, 255, 255, 15);
-    private static Color32 itemColorRed       = new Color32(255, 0, 0, 255);
-    private static Color32 itemColorGreen     = new Color32(0, 255, 0, 255);
-    private static Color32 itemColorGrey      = new Color32(255, 255, 255, 85);
-    private static Color32 itemColorHighscore = new Color32(255, 209, 0, 255);
-    private static Color32 upLineColor        = new Color32(0, 255, 0, 150);
-    private static Color32 downLineColor      = new Color32(255, 0, 0, 150);
-    private static Color32 neutralLineColor   = new Color32(255, 255, 255, 35);
-    private static Color32 highscoreLineColor = new Color32(255, 209, 0, 255);
-    private static Color32 clearBackgroundLight = new Color32(255, 255, 255, 15);
-    private static Color32 clearBackgroundDark  = new Color32(0, 0, 0, 0);
-
     private static string gamemodeStat;
     private static int scoreStat, accuracyStat, ttkStat, bestStreakStat, targetTotalStat, targetHitStat, targetMissesStat;
     private static double kpsStat;
@@ -118,14 +98,14 @@ public class StatsManager : MonoBehaviour {
                 LoadOldHighscore();
             } else {
                 //Debug.Log($"{scoreStat} {previousGameStats.scoreValue} {bestGameStats.scoreValue}");
-                stats.highscoreLineTop.color = GetLineColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue);
-                stats.highscoreLineBottom.color = GetLineColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue);
+                stats.highscoreLineTop.color    = StatsUtil.GetLineColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue);
+                stats.highscoreLineBottom.color = StatsUtil.GetLineColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue);
             }
         } else {
             // No saved highscore on first run, sets current games run as new highscore.
-            stats.highscoreLineTop.color = neutralLineColor;
-            stats.highscoreLineBottom.color = neutralLineColor;
-            stats.newHighscoreEffectText.transform.parent.gameObject.GetComponent<Image>().color = neutralBackgroundColor;
+            stats.highscoreLineTop.color    = StatsUtil.neutralLineColor;
+            stats.highscoreLineBottom.color = StatsUtil.neutralLineColor;
+            stats.newHighscoreEffectText.transform.parent.gameObject.GetComponent<Image>().color = StatsUtil.neutralBackgroundColor;
             HighscoreSave.SaveNewHighscoreStats(CosmeticsSettings.gamemode.Split('-')[1], scoreStat, accuracyStat, ttkStat, kpsStat, bestStreakStat, targetTotalStat, targetHitStat, targetMissesStat);
         }
 
@@ -162,9 +142,9 @@ public class StatsManager : MonoBehaviour {
     private static void EnableNewHighscoreText() {
         stats.newHighscoreEffectText.enabled = true;
         stats.scoreTitleText.enabled = false;
-        stats.newHighscoreEffectText.transform.parent.gameObject.GetComponent<Image>().color = newHighscoreBackgroundColor;
-        stats.highscoreLineTop.color = highscoreLineColor;
-        stats.highscoreLineBottom.color = highscoreLineColor;
+        stats.newHighscoreEffectText.transform.parent.gameObject.GetComponent<Image>().color = StatsUtil.newHighscoreBackgroundColor;
+        stats.highscoreLineTop.color    = StatsUtil.highscoreLineColor;
+        stats.highscoreLineBottom.color = StatsUtil.highscoreLineColor;
     }
 
     /// <summary>
@@ -210,55 +190,55 @@ public class StatsManager : MonoBehaviour {
     /// Compares current vs previous game stats, then sets stat differences in 'StatsDiff' object for respective tooltips.
     /// </summary>
     private static void SetStatItemDiffs() {
-        StatsDiff.scoreDiff         = CheckDifference(scoreStat, previousGameStats.scoreValue);
-        StatsDiff.accuracyDiff      = CheckDifference(accuracyStat, previousGameStats.accuracyValue);
-        StatsDiff.ttkDiff           = CheckDifference(ttkStat, previousGameStats.ttkValue);
-        StatsDiff.kpsDiff           = CheckDifference(kpsStat, previousGameStats.kpsValue);
-        StatsDiff.bestStreakDiff    = CheckDifference(bestStreakStat, previousGameStats.bestStreakValue);
-        StatsDiff.targetsTotalDiff  = CheckDifference(targetTotalStat, previousGameStats.targetsTotalValue);
-        StatsDiff.targetHitDiff     = CheckDifference(targetHitStat, previousGameStats.targetsHitValue);
-        StatsDiff.targetsMissesDiff = CheckDifference(targetMissesStat, previousGameStats.targetsMissesValue);
+        StatsDiff.scoreDiff         = StatsUtil.CheckDifference(scoreStat, previousGameStats.scoreValue);
+        StatsDiff.accuracyDiff      = StatsUtil.CheckDifference(accuracyStat, previousGameStats.accuracyValue);
+        StatsDiff.ttkDiff           = StatsUtil.CheckDifference(ttkStat, previousGameStats.ttkValue);
+        StatsDiff.kpsDiff           = StatsUtil.CheckDifference(kpsStat, previousGameStats.kpsValue);
+        StatsDiff.bestStreakDiff    = StatsUtil.CheckDifference(bestStreakStat, previousGameStats.bestStreakValue);
+        StatsDiff.targetsTotalDiff  = StatsUtil.CheckDifference(targetTotalStat, previousGameStats.targetsTotalValue);
+        StatsDiff.targetHitDiff     = StatsUtil.CheckDifference(targetHitStat, previousGameStats.targetsHitValue);
+        StatsDiff.targetsMissesDiff = StatsUtil.CheckDifference(targetMissesStat, previousGameStats.targetsMissesValue);
 
-        StatsDiff.scoreDiffPercent         = CheckDifference_Percent(scoreStat, previousGameStats.scoreValue);
-        StatsDiff.accuracyDiffPercent      = CheckDifference_Percent(accuracyStat, previousGameStats.accuracyValue);
-        StatsDiff.ttkDiffPercent           = CheckDifference_Percent(ttkStat, previousGameStats.ttkValue);
-        StatsDiff.kpsDiffPercent           = CheckDifference_Percent(kpsStat, previousGameStats.kpsValue);
-        StatsDiff.bestStreakDiffPercent    = CheckDifference_Percent(bestStreakStat, previousGameStats.bestStreakValue);
-        StatsDiff.targetsTotalDiffPercent  = CheckDifference_Percent(targetTotalStat, previousGameStats.targetsTotalValue);
-        StatsDiff.targetHitDiffPercent     = CheckDifference_Percent(targetHitStat, previousGameStats.targetsHitValue);
-        StatsDiff.targetsMissesDiffPercent = CheckDifference_Percent(targetMissesStat, previousGameStats.targetsMissesValue);
+        StatsDiff.scoreDiffPercent         = StatsUtil.CheckDifference_Percent(scoreStat, previousGameStats.scoreValue);
+        StatsDiff.accuracyDiffPercent      = StatsUtil.CheckDifference_Percent(accuracyStat, previousGameStats.accuracyValue);
+        StatsDiff.ttkDiffPercent           = StatsUtil.CheckDifference_Percent(ttkStat, previousGameStats.ttkValue);
+        StatsDiff.kpsDiffPercent           = StatsUtil.CheckDifference_Percent(kpsStat, previousGameStats.kpsValue);
+        StatsDiff.bestStreakDiffPercent    = StatsUtil.CheckDifference_Percent(bestStreakStat, previousGameStats.bestStreakValue);
+        StatsDiff.targetsTotalDiffPercent  = StatsUtil.CheckDifference_Percent(targetTotalStat, previousGameStats.targetsTotalValue);
+        StatsDiff.targetHitDiffPercent     = StatsUtil.CheckDifference_Percent(targetHitStat, previousGameStats.targetsHitValue);
+        StatsDiff.targetsMissesDiffPercent = StatsUtil.CheckDifference_Percent(targetMissesStat, previousGameStats.targetsMissesValue);
         
-        StatsDiff.scoreDiffSymbol         = CheckDifference_Symbol(scoreStat, previousGameStats.scoreValue);
-        StatsDiff.accuracyDiffSymbol      = CheckDifference_Symbol(accuracyStat, previousGameStats.accuracyValue);
-        StatsDiff.ttkDiffSymbol           = CheckDifference_Symbol(ttkStat, previousGameStats.ttkValue);
-        StatsDiff.kpsDiffSymbol           = CheckDifference_Symbol(kpsStat, previousGameStats.kpsValue);
-        StatsDiff.bestStreakDiffSymbol    = CheckDifference_Symbol(bestStreakStat, previousGameStats.bestStreakValue);
-        StatsDiff.targetsTotalDiffSymbol  = CheckDifference_Symbol(targetTotalStat, previousGameStats.targetsTotalValue);
-        StatsDiff.targetHitDiffSymbol     = CheckDifference_Symbol(targetHitStat, previousGameStats.targetsHitValue);
-        StatsDiff.targetsMissesDiffSymbol = CheckDifference_Symbol(targetMissesStat, previousGameStats.targetsMissesValue);
+        StatsDiff.scoreDiffSymbol         = StatsUtil.CheckDifference_Symbol(scoreStat, previousGameStats.scoreValue);
+        StatsDiff.accuracyDiffSymbol      = StatsUtil.CheckDifference_Symbol(accuracyStat, previousGameStats.accuracyValue);
+        StatsDiff.ttkDiffSymbol           = StatsUtil.CheckDifference_Symbol(ttkStat, previousGameStats.ttkValue);
+        StatsDiff.kpsDiffSymbol           = StatsUtil.CheckDifference_Symbol(kpsStat, previousGameStats.kpsValue);
+        StatsDiff.bestStreakDiffSymbol    = StatsUtil.CheckDifference_Symbol(bestStreakStat, previousGameStats.bestStreakValue);
+        StatsDiff.targetsTotalDiffSymbol  = StatsUtil.CheckDifference_Symbol(targetTotalStat, previousGameStats.targetsTotalValue);
+        StatsDiff.targetHitDiffSymbol     = StatsUtil.CheckDifference_Symbol(targetHitStat, previousGameStats.targetsHitValue);
+        StatsDiff.targetsMissesDiffSymbol = StatsUtil.CheckDifference_Symbol(targetMissesStat, previousGameStats.targetsMissesValue);
     }
 
     /// <summary>
     /// Compares current vs previous game stats to determine item text, color and background color to be set in 'AfterActionReport', then sets everything.
     /// </summary>
     private static void SetStatsItemsUpDown() {
-        stats.scoreItem.SetText($"{GetItemText(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue)}");
-        stats.accuracyItem.SetText($"{GetItemText(accuracyStat, previousGameStats.accuracyValue, bestGameStats.accuracyValue)}");
-        stats.ttkItem.SetText($"{GetItemText_Flip(ttkStat, previousGameStats.ttkValue, bestGameStats.ttkValue)}");
-        stats.kpsItem.SetText($"{GetItemText(kpsStat, previousGameStats.kpsValue, bestGameStats.kpsValue)}");
-        stats.bestStreakItem.SetText($"{GetItemText(bestStreakStat, previousGameStats.bestStreakValue, bestGameStats.bestStreakValue)}");
-        stats.targetsTotalItem.SetText($"{GetItemText(targetTotalStat, previousGameStats.targetsTotalValue, bestGameStats.targetsTotalValue)}");
-        stats.taretsHitItem.SetText($"{GetItemText(targetHitStat, previousGameStats.targetsHitValue, bestGameStats.targetsHitValue)}");
-        stats.targetsMissesItem.SetText($"{GetItemText_Flip(targetMissesStat, previousGameStats.targetsMissesValue, bestGameStats.targetsMissesValue)}");
+        stats.scoreItem.SetText($"{StatsUtil.GetItemText(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue)}");
+        stats.accuracyItem.SetText($"{StatsUtil.GetItemText(accuracyStat, previousGameStats.accuracyValue, bestGameStats.accuracyValue)}");
+        stats.ttkItem.SetText($"{StatsUtil.GetItemText_Flip(ttkStat, previousGameStats.ttkValue, bestGameStats.ttkValue)}");
+        stats.kpsItem.SetText($"{StatsUtil.GetItemText(kpsStat, previousGameStats.kpsValue, bestGameStats.kpsValue)}");
+        stats.bestStreakItem.SetText($"{StatsUtil.GetItemText(bestStreakStat, previousGameStats.bestStreakValue, bestGameStats.bestStreakValue)}");
+        stats.targetsTotalItem.SetText($"{StatsUtil.GetItemText(targetTotalStat, previousGameStats.targetsTotalValue, bestGameStats.targetsTotalValue)}");
+        stats.taretsHitItem.SetText($"{StatsUtil.GetItemText(targetHitStat, previousGameStats.targetsHitValue, bestGameStats.targetsHitValue)}");
+        stats.targetsMissesItem.SetText($"{StatsUtil.GetItemText_Flip(targetMissesStat, previousGameStats.targetsMissesValue, bestGameStats.targetsMissesValue)}");
 
-        stats.scoreItem.color         = GetItemColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue);
-        stats.accuracyItem.color      = GetItemColor(accuracyStat, previousGameStats.accuracyValue, bestGameStats.accuracyValue);
-        stats.ttkItem.color           = GetItemColor_Flip(ttkStat, previousGameStats.ttkValue, bestGameStats.ttkValue);
-        stats.kpsItem.color           = GetItemColor(kpsStat, previousGameStats.kpsValue, bestGameStats.kpsValue);
-        stats.bestStreakItem.color    = GetItemColor(bestStreakStat, previousGameStats.bestStreakValue, bestGameStats.bestStreakValue);
-        stats.targetsTotalItem.color  = GetItemColor(targetTotalStat, previousGameStats.targetsTotalValue, bestGameStats.targetsTotalValue);
-        stats.taretsHitItem.color     = GetItemColor(targetHitStat, previousGameStats.targetsHitValue, bestGameStats.targetsHitValue);
-        stats.targetsMissesItem.color = GetItemColor_Flip(targetMissesStat, previousGameStats.targetsMissesValue, bestGameStats.targetsMissesValue);
+        stats.scoreItem.color         = StatsUtil.GetItemColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue);
+        stats.accuracyItem.color      = StatsUtil.GetItemColor(accuracyStat, previousGameStats.accuracyValue, bestGameStats.accuracyValue);
+        stats.ttkItem.color           = StatsUtil.GetItemColor_Flip(ttkStat, previousGameStats.ttkValue, bestGameStats.ttkValue);
+        stats.kpsItem.color           = StatsUtil.GetItemColor(kpsStat, previousGameStats.kpsValue, bestGameStats.kpsValue);
+        stats.bestStreakItem.color    = StatsUtil.GetItemColor(bestStreakStat, previousGameStats.bestStreakValue, bestGameStats.bestStreakValue);
+        stats.targetsTotalItem.color  = StatsUtil.GetItemColor(targetTotalStat, previousGameStats.targetsTotalValue, bestGameStats.targetsTotalValue);
+        stats.taretsHitItem.color     = StatsUtil.GetItemColor(targetHitStat, previousGameStats.targetsHitValue, bestGameStats.targetsHitValue);
+        stats.targetsMissesItem.color = StatsUtil.GetItemColor_Flip(targetMissesStat, previousGameStats.targetsMissesValue, bestGameStats.targetsMissesValue);
 
         SaveExtraStatsBackgrounds();
 
@@ -269,21 +249,21 @@ public class StatsManager : MonoBehaviour {
     /// Sets all items in 'AfterActionReport' neutral text and color.
     /// </summary>
     private static void SetStatsNeutralItems() {
-        stats.accuracyItem.SetText($"{itemNeutral}");
-        stats.ttkItem.SetText($"{itemNeutral}");
-        stats.kpsItem.SetText($"{itemNeutral}");
-        stats.bestStreakItem.SetText($"{itemNeutral}");
-        stats.targetsTotalItem.SetText($"{itemNeutral}");
-        stats.taretsHitItem.SetText($"{itemNeutral}");
-        stats.targetsMissesItem.SetText($"{itemNeutral}");
+        stats.accuracyItem.SetText($"{StatsUtil.itemNeutral}");
+        stats.ttkItem.SetText($"{StatsUtil.itemNeutral}");
+        stats.kpsItem.SetText($"{StatsUtil.itemNeutral}");
+        stats.bestStreakItem.SetText($"{StatsUtil.itemNeutral}");
+        stats.targetsTotalItem.SetText($"{StatsUtil.itemNeutral}");
+        stats.taretsHitItem.SetText($"{StatsUtil.itemNeutral}");
+        stats.targetsMissesItem.SetText($"{StatsUtil.itemNeutral}");
 
-        stats.accuracyItem.color      = itemColorGrey;
-        stats.ttkItem.color           = itemColorGrey;
-        stats.kpsItem.color           = itemColorGrey;
-        stats.bestStreakItem.color    = itemColorGrey;
-        stats.targetsTotalItem.color  = itemColorGrey;
-        stats.taretsHitItem.color     = itemColorGrey;
-        stats.targetsMissesItem.color = itemColorGrey;
+        stats.accuracyItem.color      = StatsUtil.itemColorGrey;
+        stats.ttkItem.color           = StatsUtil.itemColorGrey;
+        stats.kpsItem.color           = StatsUtil.itemColorGrey;
+        stats.bestStreakItem.color    = StatsUtil.itemColorGrey;
+        stats.targetsTotalItem.color  = StatsUtil.itemColorGrey;
+        stats.taretsHitItem.color     = StatsUtil.itemColorGrey;
+        stats.targetsMissesItem.color = StatsUtil.itemColorGrey;
     }
 
     /// <summary>
@@ -292,14 +272,14 @@ public class StatsManager : MonoBehaviour {
     public static void SetNewBestGameStats() {
         // If saved best stats file exists, compare new to old and set each best stat.
         if (bestGameStats != null) {
-            if (CheckHighestStatValue(scoreStat, bestGameStats.scoreValue)) { bestGameStats.scoreValue = scoreStat; }
-            if (CheckHighestStatValue(accuracyStat, bestGameStats.accuracyValue)) { bestGameStats.accuracyValue = accuracyStat; }
-            if (CheckHighestStatValue_Flip(ttkStat, bestGameStats.ttkValue)) { bestGameStats.ttkValue = ttkStat; }
-            if (CheckHighestStatValue(kpsStat, bestGameStats.kpsValue)) { bestGameStats.kpsValue = kpsStat; }
-            if (CheckHighestStatValue(bestStreakStat, bestGameStats.bestStreakValue)) { bestGameStats.bestStreakValue = bestStreakStat; }
-            if (CheckHighestStatValue(targetTotalStat, bestGameStats.targetsTotalValue)) { bestGameStats.targetsTotalValue = targetTotalStat; }
-            if (CheckHighestStatValue(targetHitStat, bestGameStats.targetsHitValue)) { bestGameStats.targetsHitValue = targetHitStat; }
-            if (CheckHighestStatValue_Flip(targetMissesStat, bestGameStats.targetsMissesValue)) { bestGameStats.targetsMissesValue = targetMissesStat; }
+            if (StatsUtil.CheckHighestStatValue(scoreStat, bestGameStats.scoreValue)) { bestGameStats.scoreValue = scoreStat; }
+            if (StatsUtil.CheckHighestStatValue(accuracyStat, bestGameStats.accuracyValue)) { bestGameStats.accuracyValue = accuracyStat; }
+            if (StatsUtil.CheckHighestStatValue_Flip(ttkStat, bestGameStats.ttkValue)) { bestGameStats.ttkValue = ttkStat; }
+            if (StatsUtil.CheckHighestStatValue(kpsStat, bestGameStats.kpsValue)) { bestGameStats.kpsValue = kpsStat; }
+            if (StatsUtil.CheckHighestStatValue(bestStreakStat, bestGameStats.bestStreakValue)) { bestGameStats.bestStreakValue = bestStreakStat; }
+            if (StatsUtil.CheckHighestStatValue(targetTotalStat, bestGameStats.targetsTotalValue)) { bestGameStats.targetsTotalValue = targetTotalStat; }
+            if (StatsUtil.CheckHighestStatValue(targetHitStat, bestGameStats.targetsHitValue)) { bestGameStats.targetsHitValue = targetHitStat; }
+            if (StatsUtil.CheckHighestStatValue_Flip(targetMissesStat, bestGameStats.targetsMissesValue)) { bestGameStats.targetsMissesValue = targetMissesStat; }
 
             // Set best stats text.
             stats.scoreTextBest.SetText($"{string.Format("{0:0,.0}K", bestGameStats.scoreValue)}");
@@ -320,14 +300,14 @@ public class StatsManager : MonoBehaviour {
     }
 
     public static void SaveExtraStatsBackgrounds() {
-        backgroundsSaves[0] = GetItemBackgroundColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue);
-        backgroundsSaves[1] = GetItemBackgroundColor(accuracyStat, previousGameStats.accuracyValue, bestGameStats.accuracyValue);
-        backgroundsSaves[2] = GetItemBackgroundColor_Flip(ttkStat, previousGameStats.ttkValue, bestGameStats.ttkValue);
-        backgroundsSaves[3] = GetItemBackgroundColor(kpsStat, previousGameStats.kpsValue, bestGameStats.kpsValue);
-        backgroundsSaves[4] = GetItemBackgroundColor(bestStreakStat, previousGameStats.bestStreakValue, bestGameStats.bestStreakValue);
-        backgroundsSaves[5] = GetItemBackgroundColor(targetTotalStat, previousGameStats.targetsTotalValue, bestGameStats.targetsTotalValue);
-        backgroundsSaves[6] = GetItemBackgroundColor(targetHitStat, previousGameStats.targetsHitValue, bestGameStats.targetsHitValue);
-        backgroundsSaves[7] = GetItemBackgroundColor_Flip(targetMissesStat, previousGameStats.targetsMissesValue, bestGameStats.targetsMissesValue);
+        backgroundsSaves[0] = StatsUtil.GetItemBackgroundColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue);
+        backgroundsSaves[1] = StatsUtil.GetItemBackgroundColor(accuracyStat, previousGameStats.accuracyValue, bestGameStats.accuracyValue);
+        backgroundsSaves[2] = StatsUtil.GetItemBackgroundColor_Flip(ttkStat, previousGameStats.ttkValue, bestGameStats.ttkValue);
+        backgroundsSaves[3] = StatsUtil.GetItemBackgroundColor(kpsStat, previousGameStats.kpsValue, bestGameStats.kpsValue);
+        backgroundsSaves[4] = StatsUtil.GetItemBackgroundColor(bestStreakStat, previousGameStats.bestStreakValue, bestGameStats.bestStreakValue);
+        backgroundsSaves[5] = StatsUtil.GetItemBackgroundColor(targetTotalStat, previousGameStats.targetsTotalValue, bestGameStats.targetsTotalValue);
+        backgroundsSaves[6] = StatsUtil.GetItemBackgroundColor(targetHitStat, previousGameStats.targetsHitValue, bestGameStats.targetsHitValue);
+        backgroundsSaves[7] = StatsUtil.GetItemBackgroundColor_Flip(targetMissesStat, previousGameStats.targetsMissesValue, bestGameStats.targetsMissesValue);
 
         backgroundsSaved = true;
     }
@@ -344,14 +324,14 @@ public class StatsManager : MonoBehaviour {
     }
 
     public static void ClearExtraStatsBackgrounds() {
-        stats.newHighscoreEffectText.transform.parent.gameObject.GetComponent<Image>().color = clearBackgroundLight;
-        stats.accuracyItem.transform.parent.gameObject.GetComponent<Image>().color           = clearBackgroundLight;
-        stats.ttkItem.transform.parent.gameObject.GetComponent<Image>().color                = clearBackgroundDark;
-        stats.kpsItem.transform.parent.gameObject.GetComponent<Image>().color                = clearBackgroundLight;
-        stats.bestStreakItem.transform.parent.gameObject.GetComponent<Image>().color         = clearBackgroundDark;
-        stats.targetsTotalItem.transform.parent.gameObject.GetComponent<Image>().color       = clearBackgroundLight;
-        stats.taretsHitItem.transform.parent.gameObject.GetComponent<Image>().color          = clearBackgroundDark;
-        stats.targetsMissesItem.transform.parent.gameObject.GetComponent<Image>().color      = clearBackgroundLight;
+        stats.newHighscoreEffectText.transform.parent.gameObject.GetComponent<Image>().color = StatsUtil.clearBackgroundLight;
+        stats.accuracyItem.transform.parent.gameObject.GetComponent<Image>().color           = StatsUtil.clearBackgroundLight;
+        stats.ttkItem.transform.parent.gameObject.GetComponent<Image>().color                = StatsUtil.clearBackgroundDark;
+        stats.kpsItem.transform.parent.gameObject.GetComponent<Image>().color                = StatsUtil.clearBackgroundLight;
+        stats.bestStreakItem.transform.parent.gameObject.GetComponent<Image>().color         = StatsUtil.clearBackgroundDark;
+        stats.targetsTotalItem.transform.parent.gameObject.GetComponent<Image>().color       = StatsUtil.clearBackgroundLight;
+        stats.taretsHitItem.transform.parent.gameObject.GetComponent<Image>().color          = StatsUtil.clearBackgroundDark;
+        stats.targetsMissesItem.transform.parent.gameObject.GetComponent<Image>().color      = StatsUtil.clearBackgroundLight;
     }
 
     /// <summary>
@@ -362,147 +342,4 @@ public class StatsManager : MonoBehaviour {
     /// Hides 'ExtraStats' panel;
     /// </summary>
     public static void HideExtraStatsPanel() { stats.extraStatsPanel.SetActive(false); }
-
-    // TODO: do summary comments for all these utility methods:
-
-    private static string GetItemText(double newValue, double oldValue, double highscoreValue) {
-        if (newValue < oldValue) {
-            return itemDown;
-        } else if (newValue > oldValue) {
-            if (newValue > highscoreValue) {
-                return itemHighscore;
-            } else {
-                return itemUp;
-            }
-        } else {
-            return itemNeutral;
-        }
-    }
-    private static string GetItemText_Flip(double newValue, double oldValue, double highscoreValue) {
-        if (newValue > oldValue) {
-            return itemUp;
-        } else if (newValue < oldValue) {
-            if (newValue < highscoreValue) {
-                return itemHighscoreFlip;
-            } else {
-                return itemDown;
-            }
-        } else {
-            return itemNeutral;
-        }
-    }
-
-    private static Color32 GetItemColor(double newValue, double oldValue, double highscoreValue) {
-        if (newValue < oldValue) {
-            return itemColorRed;
-        } else if (newValue > oldValue) {
-            if (newValue > highscoreValue) {
-                return itemColorHighscore;
-            } else {
-                return itemColorGreen;
-            }
-        } else {
-            return itemColorGrey;
-        }
-    }
-
-    private static Color32 GetLineColor(double newValue, double oldValue, double highscoreValue) {
-        if (newValue < oldValue) {
-            return downLineColor;
-        } else if (newValue > oldValue) {
-            if (newValue > highscoreValue) {
-                return highscoreLineColor;
-            } else {
-                return upLineColor;
-            }
-        } else {
-            return neutralLineColor;
-        }
-    }
-
-    private static Color32 GetItemColor_Flip(double newValue, double oldValue, double highscoreValue) {
-        if (newValue < oldValue) {
-            if (newValue < highscoreValue) {
-                return itemColorHighscore;
-            } else {
-                return itemColorGreen;
-            }
-        } else if (newValue > oldValue) {
-            return itemColorRed;
-        } else {
-            return itemColorGrey;
-        }
-    }
-
-    private static Color32 GetItemBackgroundColor(double newValue, double oldValue, double highscoreValue) {
-        if (newValue < oldValue) {
-            return downBackgroundColor;
-        } else if (newValue > oldValue) {
-            if (newValue > highscoreValue) {
-                return newHighscoreBackgroundColor;
-            } else {
-                return upBackgroundColor;
-            }
-        }
-
-        return neutralBackgroundColor;
-    }
-    private static Color32 GetItemBackgroundColor_Flip(int newValue, int oldValue, int highscoreValue) {
-        if (newValue < oldValue) {
-            if (newValue < highscoreValue) {
-                return newHighscoreBackgroundColor;
-            } else {
-                return upBackgroundColor;
-            }
-        } else if (newValue > oldValue) {
-            return downBackgroundColor;
-        }
-
-        return neutralBackgroundColor;
-    }
-
-    private static bool CheckHighestStatValue(double newValue, double highestValue) {
-        if (newValue > highestValue) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    private static bool CheckHighestStatValue_Flip(int newValue, int highestValue) {
-        if (newValue > highestValue) {
-            return false;
-        } else if (newValue == 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    private static double CheckDifference(double newValue, double oldValue) {
-        if (newValue > oldValue) {
-            return newValue - oldValue;
-        } else if (newValue < oldValue) {
-            return oldValue - newValue;
-        } else {
-            return newValue - oldValue;
-        }
-    }
-    private static double CheckDifference_Percent(double newValue, double oldValue) {
-        if (newValue > oldValue) {
-            return (int)((newValue - oldValue) * 100) / oldValue;
-        } else if (newValue < oldValue) {
-            return (int)((oldValue - newValue) * 100) / newValue;
-        } else {
-            return 0;
-        }
-    }
-    private static string CheckDifference_Symbol(double newValue, double oldValue) {
-        if (newValue > oldValue) {
-            return "+ ";
-        } else if (newValue < oldValue) {
-            return "- ";
-        } else {
-            return "";
-        }
-    }
 }
