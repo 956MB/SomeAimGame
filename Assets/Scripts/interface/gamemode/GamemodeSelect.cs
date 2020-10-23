@@ -36,28 +36,31 @@ public class GamemodeSelect : MonoBehaviour {
         // Set current selected gamemode and its buttons hover border.
         currentOpenGamemode = gamemodeName;
         ButtonHoverHandler.selectedGamemode = gamemodeName;
+        if (NotificationHandler.notificationOpen) { NotificationHandler.HideNotification(); }
 
         if (quickStart) {
             gamemodeSelect.GamemodeSelectStart();
         } else {
+            VideoClip selectedVideoClip = VideoManager.PopulateIndividualClip(gamemodeName, CosmeticsSettings.targetColor, CosmeticsSettings.skybox);
+
             switch (gamemodeName) {
                 case "Gamemode-Scatter":
-                    PopulateAllGamemodeInfo(gamemodeSelect.gamemodeScatterClip, "gamemodestartscatter", "gamemodecapsscatter", "gamemodetypespeed", easyColor, "gamemodescatterdescription");
+                    PopulateAllGamemodeInfo(selectedVideoClip, "gamemodestartscatter", "gamemodecapsscatter", "gamemodetypespeed", easyColor, "gamemodescatterdescription");
                     break;
                 case "Gamemode-Flick":
-                    PopulateAllGamemodeInfo(gamemodeSelect.gamemodeFlickClip, "gamemodestartflick", "gamemodecapsflick", "gamemodetypecontrol", easyColor, "gamemodeflickdescription");
+                    PopulateAllGamemodeInfo(selectedVideoClip, "gamemodestartflick", "gamemodecapsflick", "gamemodetypecontrol", easyColor, "gamemodeflickdescription");
                     break;
                 case "Gamemode-Grid":
-                    PopulateAllGamemodeInfo(gamemodeSelect.gamemodeGridClip, "gamemodestartgrid", "gamemodecapsgrid", "gamemodetypespeed", easyColor, "gamemodegriddescription");
+                    PopulateAllGamemodeInfo(selectedVideoClip, "gamemodestartgrid", "gamemodecapsgrid", "gamemodetypespeed", easyColor, "gamemodegriddescription");
                     break;
                 case "Gamemode-Grid2":
-                    PopulateAllGamemodeInfo(gamemodeSelect.gamemodeGrid2Clip, "gamemodestartgrid2", "gamemodecapsgrid2", "gamemodetypecontrol", hardColor, "gamemodegrid2description");
+                    PopulateAllGamemodeInfo(selectedVideoClip, "gamemodestartgrid2", "gamemodecapsgrid2", "gamemodetypecontrol", hardColor, "gamemodegrid2description");
                     break;
                 case "Gamemode-Pairs":
-                    PopulateAllGamemodeInfo(gamemodeSelect.gamemodePairsClip, "gamemodestartpairs", "gamemodecapspairs", "gamemodetypecontrol", mediumColor, "gamemodepairsdescription");
+                    PopulateAllGamemodeInfo(selectedVideoClip, "gamemodestartpairs", "gamemodecapspairs", "gamemodetypecontrol", mediumColor, "gamemodepairsdescription");
                     break;
                 case "Gamemode-Follow":
-                    PopulateAllGamemodeInfo(gamemodeSelect.gamemodeFollowClip, "gamemodestartfollow", "gamemodecapsfollow", "gamemodetypetracking", mediumColor, "gamemodefollowdescription");
+                    PopulateAllGamemodeInfo(selectedVideoClip, "gamemodestartfollow", "gamemodecapsfollow", "gamemodetypetracking", mediumColor, "gamemodefollowdescription");
                     break;
             }
         }
@@ -111,11 +114,11 @@ public class GamemodeSelect : MonoBehaviour {
     /// <param name="gamemodeDescription"></param>
     private static void PopulateAllGamemodeInfo(VideoClip gamemodeVideoClip, string gamemodeNameStart, string gamemodeName, string gamemodeType, Color32 gamemodeTypeColor, string 
 gamemodeDescription) {
-        PopulateGamemodeVideoClip(gamemodeVideoClip);
         PopulateGamemodeName_TranslatedText(gamemodeName);
         PopulateGamemodeType_TranslatedText(gamemodeType, gamemodeTypeColor);
         PopulateGamemodeDescription_TranslatedText(gamemodeDescription);
         PopulateGamemodeStartButton_TranslatedText(gamemodeNameStart);
+        PopulateGamemodeVideoClip(gamemodeVideoClip);
     }
 
     /// <summary>
@@ -123,6 +126,10 @@ gamemodeDescription) {
     /// </summary>
     public void GamemodeSelectStart() {
         if (SpawnTargets.gamemode != currentOpenGamemode) {
+            if (currentOpenGamemode == "Gamemode-Follow" && CosmeticsSettings.targetColor == "TargetColor-Red") {
+                NotificationHandler.ShowNotification_Translated("followwarning", Color.red);
+                return;
+            }
             //Debug.Log(currentOpenGamemode);
             SettingsPanel.ToggleSettingsPanel();
             //Debug.Log("before save");

@@ -37,6 +37,10 @@ public class GameUI : MonoBehaviour {
 
         //yield return StartCoroutine(spawnScatterCoroutine);
         //yield return StartCoroutine(timerCoroutine);
+        SettingsPanel.CloseAfterActionReport();
+        SettingsPanel.afterActionReportOpen = false;
+        SettingsPanel.CloseSettingsPanel();
+        SettingsPanel.settingsOpen = false;
 
         SpawnTargets.InitSpawnTargets();
         // Load all stats objects at start.
@@ -80,8 +84,8 @@ public class GameUI : MonoBehaviour {
             if (!MouseLook.settingsOpen) {
                 SpawnTargets.CheckScatterSpawns();
             }
-            //yield return new WaitForSeconds(UnityEngine.Random.Range(0.2f, 0.45f));
-            yield return new WaitForSeconds(UnityEngine.Random.Range(0.6f, 0.85f));
+            yield return new WaitForSeconds(UnityEngine.Random.Range(0.2f, 0.45f));
+            //yield return new WaitForSeconds(UnityEngine.Random.Range(0.6f, 0.85f));
         }
     }
 
@@ -291,8 +295,8 @@ public class GameUI : MonoBehaviour {
 
         // Reset important game values.
         timeCount = timeStart;
-        scoreNum = 0;
-        accuracy = 100;
+        scoreNum  = 0;
+        accuracy  = 100;
 
         // reset targets and reload scene.
         SpawnTargets.ResetSpawnTargets();
