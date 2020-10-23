@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class ToggleHandler : MonoBehaviour {
-    public Toggle extraToggle;
+    public Toggle checkToggle;
     private string clickedToggleName;
-    public GameObject fpsCounter;
+    public GameObject fpsWidget, timeWidget, ScoreWidget, accuracyWidget, streakWidget, ttkWidget, kpsWidget;
 
     public SimpleCrosshair simpleCrosshair;
 
@@ -16,12 +17,16 @@ public class ToggleHandler : MonoBehaviour {
         }
 
         SettingsPanel.CloseSettingsPanel();
-        extraToggle = GetComponent<Toggle>();
+        checkToggle = GetComponent<Toggle>();
         //extraToggleName = extraToggle.name;
-        extraToggle.onValueChanged.AddListener(delegate {
-            //Debug.Log($"extraToggle '{extraToggleName}' : {extraToggle.isOn}");
-            HandleToggle(extraToggle);
-        });
+        try {
+            checkToggle.onValueChanged.AddListener(delegate {
+                //Debug.Log($"extraToggle '{extraToggleName}' : {extraToggle.isOn}");
+                HandleToggle(checkToggle);
+            });
+        } catch (NullReferenceException NRE) {
+            //Debug.Log("Null reference exception here: " + NRE);
+        }
     }
 
     /// <summary>
@@ -63,20 +68,6 @@ public class ToggleHandler : MonoBehaviour {
                 //    ExtraSettings.saveMovementLockItem(false);
                 //}
                 ExtraSettings.SaveMovementLockItem(true);
-                break;
-
-            case "FPSCounterToggle":
-                // Toggles FPS Counter.
-                if (UISoundOn()) { UISound.PlayUISound02(); }
-                if (toggleClicked.isOn) {
-                    ExtraSettings.SaveFPSCounter(true);
-                    fpsCounter.gameObject.SetActive(true);
-                    //Debug.Log("after fps turn on");
-                } else {
-                    ExtraSettings.SaveFPSCounter(false);
-                    fpsCounter.gameObject.SetActive(false);
-                    //Debug.Log("after fps turn off");
-                }
                 break;
 
             case "AARToggle":
@@ -136,6 +127,19 @@ public class ToggleHandler : MonoBehaviour {
                     ExtraSettings.SaveShowExtraStats(false);
                 }
                 break;
+
+            case "ShowExtraStatsBackgroundsToggle":
+                // Toggles 'ExtraStats' backgrounds panel in 'AfterActionReport'.
+                if (UISoundOn()) { UISound.PlayUISound02(); }
+                if (toggleClicked.isOn) {
+                    StatsManager.SetBackgrounds();
+                    ExtraSettings.SaveShowExtraStatsBackgrounds(true);
+                } else {
+                    StatsManager.ClearBackgrounds();
+                    ExtraSettings.SaveShowExtraStatsBackgrounds(false);
+                }
+                break;
+
             case "QuickStartToggle":
                 // Toggles quick start game in gamemode panel.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
@@ -145,6 +149,90 @@ public class ToggleHandler : MonoBehaviour {
                 } else {
                     CosmeticsSaveSystem.SetQuickStartGame(false);
                     CosmeticsSettings.SaveQuickStartGameItem(false);
+                }
+                break;
+
+            case "ShowFPSToggle":
+                // Toggles FPS widget.
+                if (UISoundOn()) { UISound.PlayUISound02(); }
+                if (toggleClicked.isOn) {
+                    fpsWidget.SetActive(true);
+                    WidgetSettings.SaveShowFPSItem(true);
+                } else {
+                    fpsWidget.SetActive(false);
+                    WidgetSettings.SaveShowFPSItem(false);
+                }
+                break;
+
+            case "ShowTimeToggle":
+                // Toggles time widget.
+                if (UISoundOn()) { UISound.PlayUISound02(); }
+                if (toggleClicked.isOn) {
+                    timeWidget.SetActive(true);
+                    WidgetSettings.SaveShowTimeItem(true);
+                } else {
+                    timeWidget.SetActive(false);
+                    WidgetSettings.SaveShowTimeItem(false);
+                }
+                break;
+
+            case "ShowScoreToggle":
+                // Toggles score widget.
+                if (UISoundOn()) { UISound.PlayUISound02(); }
+                if (toggleClicked.isOn) {
+                    ScoreWidget.SetActive(true);
+                    WidgetSettings.SaveShowScoreItem(true);
+                } else {
+                    ScoreWidget.SetActive(false);
+                    WidgetSettings.SaveShowScoreItem(false);
+                }
+                break;
+
+            case "ShowAccuracyToggle":
+                // Toggles accuracy widget.
+                if (UISoundOn()) { UISound.PlayUISound02(); }
+                if (toggleClicked.isOn) {
+                    accuracyWidget.SetActive(true);
+                    WidgetSettings.SaveShowAccuracyItem(true);
+                } else {
+                    accuracyWidget.SetActive(false);
+                    WidgetSettings.SaveShowAccuracyItem(false);
+                }
+                break;
+
+            case "ShowStreakToggle":
+                // Toggles streak widget.
+                if (UISoundOn()) { UISound.PlayUISound02(); }
+                if (toggleClicked.isOn) {
+                    streakWidget.SetActive(true);
+                    WidgetSettings.SaveShowStreakItem(true);
+                } else {
+                    streakWidget.SetActive(false);
+                    WidgetSettings.SaveShowStreakItem(false);
+                }
+                break;
+
+            case "ShowTTKToggle":
+                // Toggles ttk widget.
+                if (UISoundOn()) { UISound.PlayUISound02(); }
+                if (toggleClicked.isOn) {
+                    ttkWidget.SetActive(true);
+                    WidgetSettings.SaveShowTTKItem(true);
+                } else {
+                    ttkWidget.SetActive(false);
+                    WidgetSettings.SaveShowTTKItem(false);
+                }
+                break;
+
+            case "ShowKPSToggle":
+                // Toggles kps widget.
+                if (UISoundOn()) { UISound.PlayUISound02(); }
+                if (toggleClicked.isOn) {
+                    kpsWidget.SetActive(true);
+                    WidgetSettings.SaveShowKPSItem(true);
+                } else {
+                    kpsWidget.SetActive(false);
+                    WidgetSettings.SaveShowKPSItem(false);
                 }
                 break;
         }
@@ -175,10 +263,10 @@ public class ToggleHandler : MonoBehaviour {
     /// <returns></returns>
     public static bool MovementLockOn() { return ExtraSettings.movementLock; }
     /// <summary>
-    /// Returns ExtraSettings.fpsCounter value.
+    /// Returns WidgetSettings.showFPS value.
     /// </summary>
     /// <returns></returns>
-    public static bool FPSCounterOn() { return ExtraSettings.fpsCounter; }
+    public static bool FPSCounterOn() { return WidgetSettings.showFPS; }
     /// <summary>
     /// Returns ExtraSettings.showAAR value.
     /// </summary>
