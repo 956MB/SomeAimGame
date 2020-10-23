@@ -58,18 +58,6 @@ public class ToggleHandler : MonoBehaviour {
                 }
                 break;
 
-            case "MovementLockToggle":
-                // Toggles movement lock.
-                if (UISoundOn()) { UISound.PlayUISound02(); }
-                //if (extra.isOn) {
-                //    ExtraSettings.saveMovementLockItem(true);
-                //    GameUI.restartGame(CosmeticsSettings.gamemode);
-                //} else {
-                //    ExtraSettings.saveMovementLockItem(false);
-                //}
-                ExtraSettings.SaveMovementLockItem(true);
-                break;
-
             case "AARToggle":
                 // Toggles showing 'AfterActionReport'.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
@@ -257,11 +245,6 @@ public class ToggleHandler : MonoBehaviour {
     /// </summary>
     /// <returns></returns>
     public static bool UISoundOn() { return ExtraSettings.uiSound; }
-    /// <summary>
-    /// Returns ExtraSettings.movementLock value.
-    /// </summary>
-    /// <returns></returns>
-    public static bool MovementLockOn() { return ExtraSettings.movementLock; }
     /// <summary>
     /// Returns WidgetSettings.showFPS value.
     /// </summary>
