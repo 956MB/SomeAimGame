@@ -20,8 +20,6 @@ steam friends api integration
 
 console commands, like csgo
 
-hire graphic artist to draw corner/border pieces for ui, LoL/Dota2 style, lol yeah right
-
 bunch of spawn flying in one direction gamemode
 
 themes, light/dark/twitch/LoL etc
