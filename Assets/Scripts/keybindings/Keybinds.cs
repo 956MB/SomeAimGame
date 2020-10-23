@@ -9,10 +9,6 @@ public class Keybinds : MonoBehaviour {
             GameUI.ToggleWorldUI();
         } else if (Input.GetKeyDown(KeyCode.R)) {
             //Debug.Log("restart keybind hit");
-            SettingsPanel.CloseAfterActionReport();
-            SettingsPanel.afterActionReportOpen = false;
-            SettingsPanel.CloseSettingsPanel();
-            SettingsPanel.settingsOpen = false;
             GameUI.RestartGame(CosmeticsSettings.gamemode);
             //GameUI.triggerRestart = true;
             //if (GameUI.timeCount < 0) {
@@ -42,13 +38,11 @@ public class Keybinds : MonoBehaviour {
             //if (SettingsPanel.afterActionReportOpen) {
             //    SettingsPanel.closeAfterActionReport();
             //}
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow)) {
+        } else if (Input.GetKeyDown(KeyCode.RightArrow)) {
             if (MouseLook.settingsOpen) {
                 SettingsPanel.MoveSettingsPanelRight();
             }
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+        } else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
             if (MouseLook.settingsOpen) {
                 SettingsPanel.MoveSettingsPanelLeft();
             }
