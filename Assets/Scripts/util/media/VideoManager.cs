@@ -4,6 +4,7 @@ using UnityEngine.Video;
 public class VideoManager : MonoBehaviour {
     public VideoClip[] allVideoClips;
     public static VideoClip[] gamemodeVideoClips = new VideoClip[7];
+    VideoClip[] previewsObject = new VideoClip[7];
 
     public static VideoManager videoManager;
     private void Awake() { videoManager = this; }
@@ -14,25 +15,16 @@ public class VideoManager : MonoBehaviour {
     /// <param name="currentGamemode"></param>
     /// <param name="targetColor"></param>
     /// <param name="skybox"></param>
-    public static GamemodePreviews PopulateGamemodePreviews(string currentGamemode, string targetColor, string skybox) {
-        GamemodePreviews previewsObject = new GamemodePreviews();
+    public static VideoClip[] PopulateGamemodePreviews(string currentGamemode, string targetColor, string skybox) {
+        videoManager.previewsObject[0] = LoopVideoClips("Gamemode-Scatter", targetColor, skybox);
+        videoManager.previewsObject[1] = LoopVideoClips("Gamemode-Flick", targetColor, skybox);
+        videoManager.previewsObject[2] = LoopVideoClips("Gamemode-Grid", targetColor, skybox);
+        videoManager.previewsObject[3] = LoopVideoClips("Gamemode-Grid2", targetColor, skybox);
+        videoManager.previewsObject[4] = LoopVideoClips("Gamemode-Pairs", targetColor, skybox);
+        videoManager.previewsObject[5] = LoopVideoClips("Gamemode-Follow", targetColor, skybox);
+        videoManager.previewsObject[6] = LoopVideoClips(currentGamemode, targetColor, skybox);
 
-        previewsObject.gamemodeScatterPreview  = LoopVideoClips("Gamemode-Scatter", targetColor, skybox);
-        previewsObject.gamemodeFlickPreview    = LoopVideoClips("Gamemode-Scatter", targetColor, skybox);
-        previewsObject.gamemodeGridPreview     = LoopVideoClips("Gamemode-Scatter", targetColor, skybox);
-        previewsObject.gamemodeGrid2Preview    = LoopVideoClips("Gamemode-Scatter", targetColor, skybox);
-        previewsObject.gamemodePairsPreview    = LoopVideoClips("Gamemode-Scatter", targetColor, skybox);
-        previewsObject.gamemodeFollowPreview   = LoopVideoClips("Gamemode-Scatter", targetColor, skybox);
-        previewsObject.gamemodeSelectedPreview = LoopVideoClips("Gamemode-Scatter", targetColor, skybox);
-        //previewsObject.gamemodeSelectedPreview = LoopVideoClips(currentGamemode, targetColor, skybox);
-
-        //foreach (GameObject previewObject in videoManager.gamemodeVideoObjects) {
-        //    previewObject.GetComponent<VideoPlayer>().clip = gamemodeVideoClips[idx];
-        //    previewObject.GetComponent<VideoPlayer>().Play();
-        //    idx++;
-        //}
-
-        return previewsObject;
+        return videoManager.previewsObject;
     }
 
     /// <summary>
