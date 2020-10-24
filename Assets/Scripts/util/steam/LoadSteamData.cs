@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Steamworks;
@@ -14,29 +13,33 @@ public class LoadSteamData : MonoBehaviour {
     private static int avatarInt;
     private static uint avatarWidth, avatarHeight;
     private static Texture2D downloadedAvatarTexture;
-    private static Rect avatarRect = new Rect(0f, 0f, 184f, 184f);
-    private static Vector2 avatarPivot = new Vector2(0.5f, 0.5f);
 
     private static LoadSteamData steamData;
     private void Awake() { steamData = this; }
 
     void Start() {
         SetSteamDataDefaults();
+
         if (!SteamManager.Initialized) { return; }
         userSteamID = SteamUser.GetSteamID();
 
-        //Debug.Log($"SteamManager LOADED! ID: {userSteamID}");
-
-        LoadSteamUsername();
-        StartCoroutine(LoadSteamAvatar());
+        FetchSteamUsername();
+        StartCoroutine(FetchSteamAvatar());
     }
 
-    public static void LoadSteamUsername() {
+    /// <summary>
+    /// Retrieves users steam username and sets username text in steam data container.
+    /// </summary>
+    public static void FetchSteamUsername() {
         string steamUsername = SteamFriends.GetPersonaName();
         steamData.steamUsernameText.SetText($"{steamUsername}");
     }
 
-    public static IEnumerator LoadSteamAvatar() {
+    /// <summary>
+    /// Fetches users steam avatar image and sets sprite in steam data container (steamAvatarImage).
+    /// </summary>
+    /// <returns></returns>
+    public static IEnumerator FetchSteamAvatar() {
         avatarInt = SteamFriends.GetLargeFriendAvatar(userSteamID);
         while(avatarInt == -1) { yield return null; }
 
@@ -52,26 +55,34 @@ public class LoadSteamData : MonoBehaviour {
                 downloadedAvatarTexture.LoadRawTextureData(avatarStream);
                 downloadedAvatarTexture.Apply();
 
+                // Flips upside down steam avatar
                 Texture2D flippedAvatar = FlipTexture(downloadedAvatarTexture);
-                steamData.steamAvatarImage.sprite = Sprite.Create(flippedAvatar, avatarRect, avatarPivot);
+                steamData.steamAvatarImage.sprite = Sprite.Create(flippedAvatar, new Rect(0f, 0f, 184f, 184f), new Vector2(0.5f, 0.5f));
             }
         }
     }
 
+    /// <summary>
+    /// Sets default avatar and username text if users steam data not available, or steam manager not initialized.
+    /// </summary>
     public static void SetSteamDataDefaults() {
-        steamData.steamUsernameText.SetText($"not logged in");
+        steamData.steamUsernameText.SetText($"User01");
         steamData.steamAvatarImage.sprite = steamData.placeholderAvatar;
     }
 
-    private static Texture2D FlipTexture(Texture2D original) {
-        Texture2D flipped = new Texture2D(original.width, original.height);
-
-        int xN = original.width;
-        int yN = original.height;
+    /// <summary>
+    /// Returns supplied steam avatar texture (originalAvatar) flipped.
+    /// </summary>
+    /// <param name="originalAvatar"></param>
+    /// <returns></returns>
+    private static Texture2D FlipTexture(Texture2D originalAvatar) {
+        Texture2D flipped = new Texture2D(originalAvatar.width, originalAvatar.height);
+        int xN = originalAvatar.width;
+        int yN = originalAvatar.height;
 
         for (int i = 0; i < xN; i++) {
             for (int j = 0; j < yN; j++) {
-                flipped.SetPixel(i, yN - j - 1, original.GetPixel(i, j));
+                flipped.SetPixel(i, yN - j - 1, originalAvatar.GetPixel(i, j));
             }
         }
 
