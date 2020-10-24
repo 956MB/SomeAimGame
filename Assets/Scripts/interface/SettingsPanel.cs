@@ -4,7 +4,7 @@ using UnityEngine.Video;
 //using UnityEditor;
 
 public class SettingsPanel : MonoBehaviour {
-    public GameObject mainMenuCanvas, settingsPanel, afterPanel, extendedStatsPanel;
+    public GameObject mainMenuCanvas, settingsPanel, afterPanel, extendedStatsPanel, steamDataContainer;
     public static bool settingsOpen = false;
     public static bool afterActionReportOpen = false;
     public static bool afterActionReportSet;
@@ -44,6 +44,7 @@ public class SettingsPanel : MonoBehaviour {
 
         // Close settings and 'AfterActionReport' panels at start.
         settings.settingsPanel.transform.localScale = new Vector3(0f, 0f, 1f);
+        settings.steamDataContainer.SetActive(false);
         settings.afterPanel.transform.localScale = new Vector3(0f, 0f, 1f);
         
         //CosmeticsSaveSystem.initSettingsDefaults();
@@ -83,6 +84,7 @@ public class SettingsPanel : MonoBehaviour {
     /// </summary>
     public static void OpenSettingsPanel() {
         settings.settingsPanel.transform.localScale = new Vector3(1f, 1f, 1f);
+        settings.steamDataContainer.SetActive(true);
         settings.mainMenuCanvas.SetActive(true);
         OpenAction();
         settingsOpen = true;
@@ -94,6 +96,7 @@ public class SettingsPanel : MonoBehaviour {
     /// </summary>
     public static void CloseSettingsPanel() {
         settings.settingsPanel.transform.localScale = new Vector3(0f, 0f, 1f);
+        settings.steamDataContainer.SetActive(false);
         settings.mainMenuCanvas.SetActive(false);
         CloseAction();
         settingsOpen = false;
