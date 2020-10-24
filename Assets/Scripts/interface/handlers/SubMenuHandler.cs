@@ -8,7 +8,7 @@ public class SubMenuHandler : MonoBehaviour {
 
     public static Color32 disabledSubMenuTextColor  = new Color32(255,255,255,150);
     public static Color32 enabledSubMenuTextColor   = new Color32(255,255,255,255);
-    public static Color32 hoveredSubMenuTextColor   = new Color32(255,255,255,200);
+    public static Color32 hoveredSubMenuTextColor   = new Color32(255,255,255,190);
     public static Vector3 disabledSubMenuScrollView = new Vector3(0, 0, 0);
     public static Vector3 enabledSubMenuScrollView  = new Vector3(1, 1, 1);
 
