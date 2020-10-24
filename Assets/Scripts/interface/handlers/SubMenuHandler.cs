@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class SubMenuHandler : MonoBehaviour {
     public TMP_Text gamemodeSubMenuText, generalSubMenuText, controlsSubMenuText, crosshairSubMenuText, extraSubMenuText;
@@ -7,7 +8,7 @@ public class SubMenuHandler : MonoBehaviour {
 
     public static Color32 disabledSubMenuTextColor  = new Color32(255,255,255,150);
     public static Color32 enabledSubMenuTextColor   = new Color32(255,255,255,255);
-    public static Color32 hoveredSubMenuTextColor   = new Color32(255,255,255,205);
+    public static Color32 hoveredSubMenuTextColor   = new Color32(255,255,255,200);
     public static Vector3 disabledSubMenuScrollView = new Vector3(0, 0, 0);
     public static Vector3 enabledSubMenuScrollView  = new Vector3(1, 1, 1);
 
@@ -33,6 +34,7 @@ public class SubMenuHandler : MonoBehaviour {
             case "GeneralSubMenuButton":
                 generalSubMenuText.color = enabledSubMenuTextColor;
                 generalScrollView.transform.localScale = enabledSubMenuScrollView;
+                ScrollRectExtension.ScrollToTop(generalScrollView.GetComponent<ScrollRect>());
                 break;
             case "ControlsSubMenuButton":
                 controlsSubMenuText.color = enabledSubMenuTextColor;
@@ -48,8 +50,7 @@ public class SubMenuHandler : MonoBehaviour {
                 break;
         }
 
-        if (ToggleHandler.UISoundOn())
-            UISound.PlayUISound02();
+        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound02(); }
     }
 
     /// <summary>
