@@ -66,7 +66,7 @@ public class LoadSteamData : MonoBehaviour {
     /// Sets default avatar and username text if users steam data not available, or steam manager not initialized.
     /// </summary>
     public static void SetSteamDataDefaults() {
-        steamData.steamUsernameText.SetText($"User01");
+        steamData.steamUsernameText.SetText($"{I18nTextTranslator.SetTranslatedText("steamdataplaceholderusername")}");
         steamData.steamAvatarImage.sprite = steamData.placeholderAvatar;
     }
 
