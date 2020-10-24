@@ -125,3 +125,6 @@ quickstarttooltip=Toggles on/off the 'gamemode select' sub panel in settings, an
 crosshairdistortion=Wondering about the distorted crosshair? This panel in the settings is unfortunatly not rendered pixel perfect, so it appears distorted. The crosshair center screen in the game is fine though.
 skyboxdisable=All Skybox options except Slate have been temporarily disabled to test some things.
 followwarning=CHOOSE ANOTHER TARGET COLOR TO START 'Follow' GAMEMODE!
+steamdataplaceholderusername=User0
+gamelanguage=Game language
+selectedgamemodewarning=SELECTED GAMEMODE IS ALREADY ACTIVE.
