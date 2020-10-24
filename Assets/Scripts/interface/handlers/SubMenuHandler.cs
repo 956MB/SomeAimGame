@@ -7,8 +7,11 @@ public class SubMenuHandler : MonoBehaviour {
 
     public static Color32 disabledSubMenuTextColor  = new Color32(255,255,255,150);
     public static Color32 enabledSubMenuTextColor   = new Color32(255,255,255,255);
+    public static Color32 hoveredSubMenuTextColor   = new Color32(255,255,255,205);
     public static Vector3 disabledSubMenuScrollView = new Vector3(0, 0, 0);
     public static Vector3 enabledSubMenuScrollView  = new Vector3(1, 1, 1);
+
+    private static string activeSubMenuText = "GamemodeTitleText (TMP)";
 
     private static SubMenuHandler subMenu;
     void Awake() { subMenu = this; }
@@ -19,6 +22,7 @@ public class SubMenuHandler : MonoBehaviour {
     /// <param name="buttonClicked"></param>
     public void SetSubMenuText(GameObject buttonClicked) {
         string buttonClickedName = buttonClicked.name;
+        activeSubMenuText = buttonClicked.GetComponentInChildren<TMP_Text>().name;
         ClearSubMenus();
 
         switch (buttonClickedName) {
@@ -46,6 +50,22 @@ public class SubMenuHandler : MonoBehaviour {
 
         if (ToggleHandler.UISoundOn())
             UISound.PlayUISound02();
+    }
+
+    /// <summary>
+    /// Sets sub menu text color to hovered color (hoveredSubMenuTextColor) when pointer enter.
+    /// </summary>
+    /// <param name="subMenuText"></param>
+    public void SetHoveredSubMenuColor(TMP_Text subMenuText) {
+        if (subMenuText.name != activeSubMenuText) { subMenuText.color = hoveredSubMenuTextColor; }
+    }
+
+    /// <summary>
+    /// Sets sub menu text color to disabled color (disabledSubMenuTextColor) when pointer exit.
+    /// </summary>
+    /// <param name="subMenuText"></param>
+    public void ClearHoveredSubMenuColor(TMP_Text subMenuText) {
+        if (subMenuText.name != activeSubMenuText) { subMenuText.color = disabledSubMenuTextColor; }
     }
 
     /// <summary>
