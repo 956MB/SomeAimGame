@@ -33,7 +33,6 @@ public class I18n : MonoBehaviour {
     public static Dictionary<String, String> Fields { get; private set; }
     public TMP_Text langText;
 
-
     public static I18n i18n;
     private void Awake() {
         i18n = this;
@@ -50,12 +49,13 @@ public class I18n : MonoBehaviour {
         string lang = Get2LetterISOCodeFromSystemLanguage();
         string allTexts = "";
         string key, value;
-        lang = "KO";
+        lang = "JA";
+        //lang = "KO";
         //lang = "RU";
         SetLanguageCodeText(lang);
         var textAsset = Resources.Load(@"I18n/" + lang.ToLower()); //no .txt needed
 
-        if (textAsset == null) { textAsset = Resources.Load(@"I18n/en") as TextAsset; }//no .txt needed
+        if (textAsset == null) { textAsset = Resources.Load(@"I18n/en") as TextAsset; } //no .txt needed
         if (textAsset == null) { Debug.LogError("File not found for I18n: Assets/Resources/I18n/" + lang + ".txt"); }
 
         allTexts = (textAsset as TextAsset).text;

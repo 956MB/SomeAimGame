@@ -61,3 +61,6 @@ Follow:
 Classic tracking target gamemode. Try to keep your crosshair on the target as it floats around your non existant body. It's pretty easy, just do it man. Christ.
 
 "achievments" or "medals" for special happenings in the game, like an all green/gold/red color outcome in the afterActionReport. all red: "yuck" all gold: "i love goooold". somehow an all grey outcome could have something.
+
+
+ui drag system for someaimgame. certain elements of the ui will be dragable, like the settings/afteractionreport/extrastats panel etc, and when the elements are being dragged, available locations will be highlighted in different spots, when dragging is done, if cursor holding ui element is inside available move spot, that ui will be placed in the new spot, and location saved.
