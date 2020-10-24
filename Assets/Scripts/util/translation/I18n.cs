@@ -22,61 +22,65 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
-class I18n {
+public class I18n : MonoBehaviour {
     /// <summary>
     /// Text Fields
     /// Useage: Fields[key]
     /// Example: I18n.Fields["world"]
     /// </summary>
     public static Dictionary<String, String> Fields { get; private set; }
+    public TMP_Text langText;
 
-    /// <summary>
-    /// Init on first use
-    /// </summary>
-    static I18n() {
+
+    public static I18n i18n;
+    private void Awake() {
+        i18n = this;
         LoadLanguage();
     }
 
     /// <summary>
-    /// Load language files from ressources
+    /// Loads language files from ressources and sets keys/values in Fields dict.
     /// </summary>
     private static void LoadLanguage() {
-        if (Fields == null)
-            Fields = new Dictionary<string, string>();
-
+        if (Fields == null) { Fields = new Dictionary<string, string>(); }
         Fields.Clear();
-        string lang = Get2LetterISOCodeFromSystemLanguage().ToLower();
-        //lang = "ko";
-        //lang = "ru";
-        var textAsset = Resources.Load(@"I18n/" + lang); //no .txt needed
+
+        string lang = Get2LetterISOCodeFromSystemLanguage();
         string allTexts = "";
-        if (textAsset == null)
-            textAsset = Resources.Load(@"I18n/en") as TextAsset; //no .txt needed
-        if (textAsset == null)
-            Debug.LogError("File not found for I18n: Assets/Resources/I18n/" + lang + ".txt");
-        allTexts = (textAsset as TextAsset).text;
-        string[] lines = allTexts.Split(new string[] { "\r\n", "\n" },
-            StringSplitOptions.None);
         string key, value;
+        lang = "KO";
+        //lang = "RU";
+        SetLanguageCodeText(lang);
+        var textAsset = Resources.Load(@"I18n/" + lang.ToLower()); //no .txt needed
+
+        if (textAsset == null) { textAsset = Resources.Load(@"I18n/en") as TextAsset; }//no .txt needed
+        if (textAsset == null) { Debug.LogError("File not found for I18n: Assets/Resources/I18n/" + lang + ".txt"); }
+
+        allTexts = (textAsset as TextAsset).text;
+        string[] lines = allTexts.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
+
         for (int i = 0; i < lines.Length; i++) {
             if (lines[i].IndexOf("=") >= 0 && !lines[i].StartsWith("#")) {
                 key = lines[i].Substring(0, lines[i].IndexOf("="));
-                value = lines[i].Substring(lines[i].IndexOf("=") + 1,
-                        lines[i].Length - lines[i].IndexOf("=") - 1).Replace("\\n", Environment.NewLine);
+                value = lines[i].Substring(lines[i].IndexOf("=") + 1, lines[i].Length - lines[i].IndexOf("=") - 1).Replace("\\n", Environment.NewLine);
                 Fields.Add(key, value);
             }
         }
     }
 
     /// <summary>
-    /// get the current language
+    /// Gets the current language code.
     /// </summary>
     /// <returns></returns>
-    public static string GetLanguage() {
-        return Get2LetterISOCodeFromSystemLanguage().ToLower();
-    }
+    public static string GetLanguage() { return Get2LetterISOCodeFromSystemLanguage().ToLower(); }
+
+    /// <summary>
+    /// Sets language code text in settings UI.
+    /// </summary>
+    /// <param name="langCode"></param>
+    private static void SetLanguageCodeText(string langCode) { i18n.langText.SetText($"{langCode}"); }
 
     /// <summary>
     /// Helps to convert Unity's Application.systemLanguage to a 
@@ -87,54 +91,54 @@ class I18n {
     /// <returns>The 2-letter ISO code from system language.</returns>
     public static string Get2LetterISOCodeFromSystemLanguage() {
         SystemLanguage lang = Application.systemLanguage;
-        string res = "EN";
-        switch (lang) {
-            case SystemLanguage.Afrikaans: res = "AF"; break;
-            case SystemLanguage.Arabic: res = "AR"; break;
-            case SystemLanguage.Basque: res = "EU"; break;
-            case SystemLanguage.Belarusian: res = "BY"; break;
-            case SystemLanguage.Bulgarian: res = "BG"; break;
-            case SystemLanguage.Catalan: res = "CA"; break;
-            case SystemLanguage.Chinese: res = "ZH"; break;
-            case SystemLanguage.ChineseSimplified: res = "ZH"; break;
-            case SystemLanguage.ChineseTraditional: res = "ZH"; break;
-            case SystemLanguage.Czech: res = "CS"; break;
-            case SystemLanguage.Danish: res = "DA"; break;
-            case SystemLanguage.Dutch: res = "NL"; break;
-            case SystemLanguage.English: res = "EN"; break;
-            case SystemLanguage.Estonian: res = "ET"; break;
-            case SystemLanguage.Faroese: res = "FO"; break;
-            case SystemLanguage.Finnish: res = "FI"; break;
-            case SystemLanguage.French: res = "FR"; break;
-            case SystemLanguage.German: res = "DE"; break;
-            case SystemLanguage.Greek: res = "EL"; break;
-            case SystemLanguage.Hebrew: res = "IW"; break;
-            case SystemLanguage.Hungarian: res = "HU"; break;
-            case SystemLanguage.Icelandic: res = "IS"; break;
-            case SystemLanguage.Indonesian: res = "IN"; break;
-            case SystemLanguage.Italian: res = "IT"; break;
-            case SystemLanguage.Japanese: res = "JA"; break;
-            case SystemLanguage.Korean: res = "KO"; break;
-            case SystemLanguage.Latvian: res = "LV"; break;
-            case SystemLanguage.Lithuanian: res = "LT"; break;
-            case SystemLanguage.Norwegian: res = "NO"; break;
-            case SystemLanguage.Polish: res = "PL"; break;
-            case SystemLanguage.Portuguese: res = "PT"; break;
-            case SystemLanguage.Romanian: res = "RO"; break;
-            case SystemLanguage.Russian: res = "RU"; break;
-            case SystemLanguage.SerboCroatian: res = "SH"; break;
-            case SystemLanguage.Slovak: res = "SK"; break;
-            case SystemLanguage.Slovenian: res = "SL"; break;
-            case SystemLanguage.Spanish: res = "ES"; break;
-            case SystemLanguage.Swedish: res = "SV"; break;
-            case SystemLanguage.Thai: res = "TH"; break;
-            case SystemLanguage.Turkish: res = "TR"; break;
-            case SystemLanguage.Ukrainian: res = "UK"; break;
-            case SystemLanguage.Unknown: res = "EN"; break;
-            case SystemLanguage.Vietnamese: res = "VI"; break;
-        }
-        //		Debug.Log ("Lang: " + res);
-        return res;
-    }
+        string langCode = "EN";
 
+        switch (lang) {
+            case SystemLanguage.Afrikaans:          langCode = "AF"; break;
+            case SystemLanguage.Arabic:             langCode = "AR"; break;
+            case SystemLanguage.Basque:             langCode = "EU"; break;
+            case SystemLanguage.Belarusian:         langCode = "BY"; break;
+            case SystemLanguage.Bulgarian:          langCode = "BG"; break;
+            case SystemLanguage.Catalan:            langCode = "CA"; break;
+            case SystemLanguage.Chinese:            langCode = "ZH"; break;
+            case SystemLanguage.ChineseSimplified:  langCode = "ZH"; break;
+            case SystemLanguage.ChineseTraditional: langCode = "ZH"; break;
+            case SystemLanguage.Czech:              langCode = "CS"; break;
+            case SystemLanguage.Danish:             langCode = "DA"; break;
+            case SystemLanguage.Dutch:              langCode = "NL"; break;
+            case SystemLanguage.English:            langCode = "EN"; break;
+            case SystemLanguage.Estonian:           langCode = "ET"; break;
+            case SystemLanguage.Faroese:            langCode = "FO"; break;
+            case SystemLanguage.Finnish:            langCode = "FI"; break;
+            case SystemLanguage.French:             langCode = "FR"; break;
+            case SystemLanguage.German:             langCode = "DE"; break;
+            case SystemLanguage.Greek:              langCode = "EL"; break;
+            case SystemLanguage.Hebrew:             langCode = "IW"; break;
+            case SystemLanguage.Hungarian:          langCode = "HU"; break;
+            case SystemLanguage.Icelandic:          langCode = "IS"; break;
+            case SystemLanguage.Indonesian:         langCode = "IN"; break;
+            case SystemLanguage.Italian:            langCode = "IT"; break;
+            case SystemLanguage.Japanese:           langCode = "JA"; break;
+            case SystemLanguage.Korean:             langCode = "KO"; break;
+            case SystemLanguage.Latvian:            langCode = "LV"; break;
+            case SystemLanguage.Lithuanian:         langCode = "LT"; break;
+            case SystemLanguage.Norwegian:          langCode = "NO"; break;
+            case SystemLanguage.Polish:             langCode = "PL"; break;
+            case SystemLanguage.Portuguese:         langCode = "PT"; break;
+            case SystemLanguage.Romanian:           langCode = "RO"; break;
+            case SystemLanguage.Russian:            langCode = "RU"; break;
+            case SystemLanguage.SerboCroatian:      langCode = "SH"; break;
+            case SystemLanguage.Slovak:             langCode = "SK"; break;
+            case SystemLanguage.Slovenian:          langCode = "SL"; break;
+            case SystemLanguage.Spanish:            langCode = "ES"; break;
+            case SystemLanguage.Swedish:            langCode = "SV"; break;
+            case SystemLanguage.Thai:               langCode = "TH"; break;
+            case SystemLanguage.Turkish:            langCode = "TR"; break;
+            case SystemLanguage.Ukrainian:          langCode = "UK"; break;
+            case SystemLanguage.Unknown:            langCode = "EN"; break;
+            case SystemLanguage.Vietnamese:         langCode = "VI"; break;
+        }
+
+        return langCode;
+    }
 }
