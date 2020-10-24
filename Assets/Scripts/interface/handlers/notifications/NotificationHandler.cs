@@ -34,8 +34,8 @@ public class NotificationHandler : MonoBehaviour {
     /// </summary>
     /// <param name="translateTextID"></param>
     /// <param name="notificationColor"></param>
-    public static void ShowNotification_Translated(string translateTextID, Color notificationColor) {
-        notificationTextContent.SetText($"{I18nTextTranslator.SetTranslatedText(translateTextID)}");
+    public static void ShowNotification_Translated(string translateTextID, string extraText, Color notificationColor) {
+        notificationTextContent.SetText($"{I18nTextTranslator.SetTranslatedText(translateTextID)}{extraText}");
         notificationTextContent.color = notificationColor;
         notification.gameObject.SetActive(true);
         notificationOpen = true;

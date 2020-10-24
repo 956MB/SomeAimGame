@@ -127,7 +127,7 @@ gamemodeDescription) {
     public void GamemodeSelectStart() {
         if (SpawnTargets.gamemode != currentOpenGamemode) {
             if (currentOpenGamemode == "Gamemode-Follow" && CosmeticsSettings.targetColor == "TargetColor-Red") {
-                NotificationHandler.ShowNotification_Translated("followwarning", Color.red);
+                NotificationHandler.ShowNotification_Translated("followwarning", "", Color.red);
                 return;
             }
             //Debug.Log(currentOpenGamemode);
@@ -137,6 +137,8 @@ gamemodeDescription) {
             //Debug.Log("after save, before start new gamemode");
             SpawnTargets.StartNewGamemode(currentOpenGamemode);
             //Debug.Log("after start new gamemode");
+        } else {
+            NotificationHandler.ShowNotification_Translated($"gamemodecaps{currentOpenGamemode.Split('-')[1].ToLower()}", $": {I18nTextTranslator.SetTranslatedText("selectedgamemodewarning")}", new Color32(255, 209, 0, 255));
         }
     }
 }
