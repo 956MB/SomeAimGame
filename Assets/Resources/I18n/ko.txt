@@ -126,5 +126,5 @@ crosshairdistortion=왜곡 된 십자선이 궁금하십니까? 설정의이 패
 skyboxdisable=일부 테스트를 위해 Slate를 제외한 모든 Skybox 옵션이 일시적으로 비활성화되었습니다.
 followwarning=GAMEMODE를 '팔로우'하려면 다른 대상 색상을 선택하십시오!
 steamdataplaceholderusername=사용자 0
-gamelanguage=게임 언어
+gamelanguage=언어
 selectedgamemodewarning=선택한 게임 모드가 이미 활성화되었습니다.

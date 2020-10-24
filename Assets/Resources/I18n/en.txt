@@ -126,5 +126,5 @@ crosshairdistortion=Wondering about the distorted crosshair? This panel in the s
 skyboxdisable=All Skybox options except Slate have been temporarily disabled to test some things.
 followwarning=CHOOSE ANOTHER TARGET COLOR TO START 'Follow' GAMEMODE!
 steamdataplaceholderusername=User0
-gamelanguage=Game language
+gamelanguage=Language
 selectedgamemodewarning=SELECTED GAMEMODE IS ALREADY ACTIVE.

@@ -126,5 +126,5 @@ crosshairdistortion=Хотите знать об искаженном прице
 skyboxdisable=Все параметры Skybox, кроме Slate, были временно отключены для тестирования некоторых вещей.
 followwarning=ВЫБЕРИТЕ ДРУГОЙ ЦЕЛЕВОЙ ЦВЕТ, ЧТОБЫ ЗАПУСТИТЬ ИГРОВОЙ РЕЖИМ "Следить"!
 steamdataplaceholderusername=Пользователь0
-gamelanguage=Язык игры
+gamelanguage=Язык
 selectedgamemodewarning=ВЫБРАННЫЙ ИГРОВОЙ РЕЖИМ УЖЕ АКТИВЕН.
