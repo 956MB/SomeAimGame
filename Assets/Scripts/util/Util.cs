@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Util : MonoBehaviour {
     /// <summary>
@@ -12,5 +13,9 @@ public class Util : MonoBehaviour {
             targetList += $" {list[i]}";
         }
         Debug.Log($"Vector3 List: {targetList}");
+    }
+
+    public static void RefreshRootLayoutGroup(GameObject rootGroup) {
+        LayoutRebuilder.ForceRebuildLayoutImmediate(rootGroup.gameObject.GetComponent<RectTransform>());
     }
 }
