@@ -9,6 +9,7 @@ public class LoadSteamData : MonoBehaviour {
     public Image steamAvatarImage;
     public Sprite placeholderAvatar;
     public TMP_Text steamUsernameText;
+    public GameObject rootGroup;
 
     private static int avatarInt;
     private static uint avatarWidth, avatarHeight;
@@ -25,14 +26,30 @@ public class LoadSteamData : MonoBehaviour {
 
         FetchSteamUsername();
         StartCoroutine(FetchSteamAvatar());
+
+        //ButtonHoverHandler_EventTrigger.ToggleOptionsObject_Static();
+        //ButtonHoverHandler_EventTrigger.ToggleOptionsObject_Static();
+        Util.RefreshRootLayoutGroup(steamData.rootGroup);
     }
 
     /// <summary>
     /// Retrieves users steam username and sets username text in steam data container.
     /// </summary>
     public static void FetchSteamUsername() {
-        string steamUsername = SteamFriends.GetPersonaName();
-        steamData.steamUsernameText.SetText($"{steamUsername}");
+        //string steamUsername = SteamFriends.GetPersonaName();
+        //string steamUsername = "Bloumbs";
+        //string steamUsername = "BjornWillDoMatteBlackFjorg";
+        string steamUsername = $"{I18nTextTranslator.SetTranslatedText("testuser")}";
+
+        if (steamUsername.Length > 16) { steamData.steamUsernameText.SetText($"{ShortenSteamUsername(steamUsername)}");
+        } else { steamData.steamUsernameText.SetText($"{steamUsername}"); }
+    }
+
+    public static string ShortenSteamUsername(string username) {
+        string usernameResult = "";
+        for (int i = 0; i < 16; i++) { usernameResult += username[i]; }
+
+        return $"{usernameResult}...";
     }
 
     /// <summary>
