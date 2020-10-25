@@ -128,3 +128,7 @@ followwarning=ВЫБЕРИТЕ ДРУГОЙ ЦЕЛЕВОЙ ЦВЕТ, ЧТОБЫ 
 steamdataplaceholderusername=Пользователь0
 gamelanguage=Язык
 selectedgamemodewarning=ВЫБРАННЫЙ ИГРОВОЙ РЕЖИМ УЖЕ АКТИВЕН.
+patchnotesbutton=ЗАМЕТКИ О ПАТЧЕ
+quitgamebutton=ВЫЙТИ ИЗ ИГРЫ
+testuser=Заливы
+languagerestartnotification=НОВЫЙ ЯЗЫК ИГРЫ ВЛИЯЕТ НА ПЕРЕЗАПУСК.
