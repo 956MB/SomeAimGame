@@ -131,4 +131,4 @@ selectedgamemodewarning=选定的游戏模式已激活。
 patchnotesbutton=补丁说明
 quitgamebutton=退出游戏
 testuser=海湾
-languagerestartnotification=重新启动后，新的游戏语言将生效。
+languagerestartnotification=语言选择将在下次重新启动时生效。

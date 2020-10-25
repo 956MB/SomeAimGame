@@ -131,4 +131,4 @@ selectedgamemodewarning=وضع اللعبة المحدد نشط بالفعل.
 patchnotesbutton=ملاحظات التصحيح
 quitgamebutton=إنهاء اللعبة
 testuser=الخلجان
-languagerestartnotification=ستؤثر لغة اللعبة الجديدة عند إعادة التشغيل.
+languagerestartnotification=سيؤثر اختيار اللغة على إعادة التشغيل التالية.

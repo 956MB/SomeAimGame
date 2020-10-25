@@ -131,4 +131,4 @@ selectedgamemodewarning=選択したゲームモードはすでにアクティ�
 patchnotesbutton=パッチノート
 quitgamebutton=ゲームをやめる
 testuser=アレクサンダー
-languagerestartnotification=新しいゲーム言語は再起動時に影響を及ぼします。
+languagerestartnotification=言語の選択は、次回の再起動時に影響します。

@@ -131,4 +131,4 @@ selectedgamemodewarning=SELECTED GAMEMODE IS ALREADY ACTIVE.
 patchnotesbutton=PATCH NOTES
 quitgamebutton=QUIT GAME
 testuser=Bloumbs
-languagerestartnotification=NEW GAME LANGUAGE WILL TAKE EFFECT ON RESTART.
+languagerestartnotification=LANGUAGE SELECTION WILL TAKE EFFECT ON NEXT RESTART.

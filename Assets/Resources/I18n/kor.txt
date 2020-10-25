@@ -131,4 +131,4 @@ selectedgamemodewarning=선택한 게임 모드가 이미 활성화되었습니�
 patchnotesbutton=패치 노트
 quitgamebutton=게임 종료
 testuser=베이
-languagerestartnotification=새로운 게임 언어는 다시 시작할 때 적용됩니다.
+languagerestartnotification=언어 선택은 다음에 다시 시작할 때 적용됩니다.

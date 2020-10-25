@@ -131,4 +131,4 @@ selectedgamemodewarning=ВЫБРАННЫЙ ИГРОВОЙ РЕЖИМ УЖЕ АК
 patchnotesbutton=ЗАМЕТКИ О ПАТЧЕ
 quitgamebutton=ВЫЙТИ ИЗ ИГРЫ
 testuser=Заливы
-languagerestartnotification=НОВЫЙ ЯЗЫК ИГРЫ ВЛИЯЕТ НА ПЕРЕЗАПУСК.
+languagerestartnotification=ВЫБОР ЯЗЫКА ПРИНИМАЕТ ЭФФЕКТИВНОСТЬ ПРИ СЛЕДУЮЩЕМ ПЕРЕЗАПУСКЕ.
