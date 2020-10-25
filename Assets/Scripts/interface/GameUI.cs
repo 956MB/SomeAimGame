@@ -21,6 +21,9 @@ public class GameUI : MonoBehaviour {
     private static Color32 missColor  = new Color32(255, 0, 0, 255);
     private static Color32 bonusColor = new Color32(255, 209, 0, 255);
 
+    private static WaitForSeconds timerDelay = new WaitForSeconds(1f);
+    private static WaitForSeconds scatterDelay = new WaitForSeconds(0.2f);
+
     private static GameUI gameUI;
     void Awake() {
         gameUI = this;
@@ -81,10 +84,9 @@ public class GameUI : MonoBehaviour {
     public static IEnumerator ContinuousScatterSpawn() {
         while (true) {
             //Debug.Log("continuousScatterSpawn called??? -----------------");
-            if (!MouseLook.settingsOpen) {
-                SpawnTargets.CheckScatterSpawns();
-            }
-            yield return new WaitForSeconds(UnityEngine.Random.Range(0.2f, 0.45f));
+            if (!MouseLook.settingsOpen) { SpawnTargets.CheckScatterSpawns(); }
+            yield return scatterDelay;
+            //yield return new WaitForSeconds(UnityEngine.Random.Range(0.2f, 0.45f));
             //yield return new WaitForSeconds(UnityEngine.Random.Range(0.6f, 0.85f));
         }
     }
@@ -129,7 +131,7 @@ public class GameUI : MonoBehaviour {
             gameUI.timeText.SetText($"{timeFormatted}");
             SetTTKText();
             SetKPSText();
-            yield return new WaitForSeconds(1f);
+            yield return timerDelay;
         }
         //Debug.Log($"coroutine ended?? {timeCount}");
         //triggerRestart = false;
@@ -147,7 +149,7 @@ public class GameUI : MonoBehaviour {
 
             gameUI.timeText.SetText($"{timeFormatted}");
             timeCount += 1;
-            yield return new WaitForSeconds(1f);
+            yield return timerDelay;
         }
     }
 
@@ -289,9 +291,7 @@ public class GameUI : MonoBehaviour {
     /// <param name="newGamemode"></param>
     public static void RestartGame(string newGamemode) {
         gameUI.StopCoroutine(gameUI.timerCoroutine);
-        if (SpawnTargets.gamemode == "Gamemode-Scatter") {
-            gameUI.StopCoroutine(gameUI.spawnScatterCoroutine);
-        }
+        if (SpawnTargets.gamemode == "Gamemode-Scatter") { gameUI.StopCoroutine(gameUI.spawnScatterCoroutine); }
 
         // Reset important game values.
         timeCount = timeStart;

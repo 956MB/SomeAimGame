@@ -10,7 +10,7 @@ public class ButtonHoverHandler_EventTrigger : MonoBehaviour {
 
     private void Start() {
         foreach (Transform child in parentOptionsObject.transform) {
-            if (child.gameObject.tag == "OptionObjectItem") { child.gameObject.SetActive(false); }
+            if (child.CompareTag("OptionObjectItem")) { child.gameObject.SetActive(false); }
         }
     }
 
@@ -29,7 +29,7 @@ public class ButtonHoverHandler_EventTrigger : MonoBehaviour {
 
     public void LoopToggleOptions() {
         foreach (Transform child in parentOptionsObject.transform) {
-            if (child.gameObject.tag == "OptionObjectItem") { child.gameObject.SetActive(!optionsObjectOpen); }
+            if (child.CompareTag("OptionObjectItem")) { child.gameObject.SetActive(!optionsObjectOpen); }
         }
 
         optionsObjectOpen = !optionsObjectOpen;
