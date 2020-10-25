@@ -15,6 +15,7 @@ public class GamemodeSelect : MonoBehaviour {
     private static Color32 hardColor  = new Color32(255, 0, 0, 255);
 
     public VideoClip gamemodeScatterClip, gamemodeFlickClip, gamemodeGridClip, gamemodeGrid2Clip, gamemodePairsClip, gamemodeFollowClip;
+    public static VideoClip gamemodeScatterClip_Loaded, gamemodeFlickClip_Loaded, gamemodeGridClip_Loaded, gamemodeGrid2Clip_Loaded, gamemodePairsClip_Loaded, gamemodeFollowClip_Loaded;
 
     public static GamemodeSelect gamemodeSelect;
     private void Awake() { gamemodeSelect = this; }
@@ -41,26 +42,26 @@ public class GamemodeSelect : MonoBehaviour {
         if (quickStart) {
             gamemodeSelect.GamemodeSelectStart();
         } else {
-            VideoClip selectedVideoClip = VideoManager.PopulateIndividualClip(gamemodeName, CosmeticsSettings.targetColor, CosmeticsSettings.skybox);
+            //VideoClip selectedVideoClip = VideoManager.PopulateIndividualClip(gamemodeName, CosmeticsSettings.targetColor, CosmeticsSettings.skybox);
 
             switch (gamemodeName) {
                 case "Gamemode-Scatter":
-                    PopulateAllGamemodeInfo(selectedVideoClip, "gamemodestartscatter", "gamemodecapsscatter", "gamemodetypespeed", easyColor, "gamemodescatterdescription");
+                    PopulateAllGamemodeInfo(gamemodeScatterClip_Loaded, "gamemodestartscatter", "gamemodecapsscatter", "gamemodetypespeed", easyColor, "gamemodescatterdescription");
                     break;
                 case "Gamemode-Flick":
-                    PopulateAllGamemodeInfo(selectedVideoClip, "gamemodestartflick", "gamemodecapsflick", "gamemodetypecontrol", easyColor, "gamemodeflickdescription");
+                    PopulateAllGamemodeInfo(gamemodeFlickClip_Loaded, "gamemodestartflick", "gamemodecapsflick", "gamemodetypecontrol", easyColor, "gamemodeflickdescription");
                     break;
                 case "Gamemode-Grid":
-                    PopulateAllGamemodeInfo(selectedVideoClip, "gamemodestartgrid", "gamemodecapsgrid", "gamemodetypespeed", easyColor, "gamemodegriddescription");
+                    PopulateAllGamemodeInfo(gamemodeGridClip_Loaded, "gamemodestartgrid", "gamemodecapsgrid", "gamemodetypespeed", easyColor, "gamemodegriddescription");
                     break;
                 case "Gamemode-Grid2":
-                    PopulateAllGamemodeInfo(selectedVideoClip, "gamemodestartgrid2", "gamemodecapsgrid2", "gamemodetypecontrol", hardColor, "gamemodegrid2description");
+                    PopulateAllGamemodeInfo(gamemodeGrid2Clip_Loaded, "gamemodestartgrid2", "gamemodecapsgrid2", "gamemodetypecontrol", hardColor, "gamemodegrid2description");
                     break;
                 case "Gamemode-Pairs":
-                    PopulateAllGamemodeInfo(selectedVideoClip, "gamemodestartpairs", "gamemodecapspairs", "gamemodetypecontrol", mediumColor, "gamemodepairsdescription");
+                    PopulateAllGamemodeInfo(gamemodePairsClip_Loaded, "gamemodestartpairs", "gamemodecapspairs", "gamemodetypecontrol", mediumColor, "gamemodepairsdescription");
                     break;
                 case "Gamemode-Follow":
-                    PopulateAllGamemodeInfo(selectedVideoClip, "gamemodestartfollow", "gamemodecapsfollow", "gamemodetypetracking", mediumColor, "gamemodefollowdescription");
+                    PopulateAllGamemodeInfo(gamemodeFollowClip_Loaded, "gamemodestartfollow", "gamemodecapsfollow", "gamemodetypetracking", mediumColor, "gamemodefollowdescription");
                     break;
             }
         }
@@ -72,7 +73,7 @@ public class GamemodeSelect : MonoBehaviour {
     /// <param name="gamemodeVideoClip"></param>
     private static void PopulateGamemodeVideoClip(VideoClip gamemodeVideoClip) {
         gamemodeSelect.gamemodePreviewVideoRT.clip = gamemodeVideoClip;
-        gamemodeSelect.gamemodePreviewVideoRT.Play();
+        if (!gamemodeSelect.gamemodePreviewVideoRT.isPlaying) { gamemodeSelect.gamemodePreviewVideoRT.Play(); }
     }
     /// <summary>
     /// Populates gamemode name text inside 'GamemodeSelect' in settings. (gamemode sub-section).
@@ -114,11 +115,11 @@ public class GamemodeSelect : MonoBehaviour {
     /// <param name="gamemodeDescription"></param>
     private static void PopulateAllGamemodeInfo(VideoClip gamemodeVideoClip, string gamemodeNameStart, string gamemodeName, string gamemodeType, Color32 gamemodeTypeColor, string 
 gamemodeDescription) {
+        PopulateGamemodeVideoClip(gamemodeVideoClip);
         PopulateGamemodeName_TranslatedText(gamemodeName);
         PopulateGamemodeType_TranslatedText(gamemodeType, gamemodeTypeColor);
         PopulateGamemodeDescription_TranslatedText(gamemodeDescription);
         PopulateGamemodeStartButton_TranslatedText(gamemodeNameStart);
-        PopulateGamemodeVideoClip(gamemodeVideoClip);
     }
 
     /// <summary>

@@ -5,6 +5,9 @@ public class ButtonHoverHandler_EventTrigger : MonoBehaviour {
     public GameObject parentOptionsObject;
     public static bool optionsObjectOpen = false;
 
+    private static ButtonHoverHandler_EventTrigger hoverHandle;
+    private void Awake() { hoverHandle = this; }
+
     private void Start() {
         foreach (Transform child in parentOptionsObject.transform) {
             if (child.gameObject.tag == "OptionObjectItem") { child.gameObject.SetActive(false); }
@@ -14,6 +17,8 @@ public class ButtonHoverHandler_EventTrigger : MonoBehaviour {
     public void EnableBorder() { childBorder.SetActive(true); }
 
     public void DisableBorder() { childBorder.SetActive(false); }
+
+    public static void ToggleOptionsObject_Static() { hoverHandle.ToggleOptionsObject(); }
 
     public void ToggleOptionsObject() {
         if (optionsObjectOpen) DisableBorder();

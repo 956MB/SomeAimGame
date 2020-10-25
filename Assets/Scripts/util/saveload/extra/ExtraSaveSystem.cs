@@ -43,8 +43,7 @@ public class ExtraSaveSystem : MonoBehaviour {
             stream.Close();
 
             return extraData;
-        }
-        else {
+        } else {
             //Debug.Log("Save file not found in " + path);
             return null;
         }

@@ -86,6 +86,9 @@ public class SettingsPanel : MonoBehaviour {
         settings.settingsPanel.transform.localScale = new Vector3(1f, 1f, 1f);
         settings.steamDataContainer.SetActive(true);
         settings.mainMenuCanvas.SetActive(true);
+
+        if (LanguageSelect.languageSelectOpen) { LanguageSelect.CloseLanguageSelect_Static(); }
+
         OpenAction();
         settingsOpen = true;
         GameUI.HideUI();
@@ -98,6 +101,9 @@ public class SettingsPanel : MonoBehaviour {
         settings.settingsPanel.transform.localScale = new Vector3(0f, 0f, 1f);
         settings.steamDataContainer.SetActive(false);
         settings.mainMenuCanvas.SetActive(false);
+
+        if (LanguageSelect.languageSelectOpen) { LanguageSelect.CloseLanguageSelect_Static(); }
+
         CloseAction();
         settingsOpen = false;
 
@@ -228,6 +234,13 @@ public class SettingsPanel : MonoBehaviour {
         settings.pairsVideoPlayer.clip    = gamemodePreviewVideos[4];
         settings.followVideoPlayer.clip   = gamemodePreviewVideos[5];
         settings.selectedVideoPlayer.clip = gamemodePreviewVideos[6];
+        // Set gamemode select clips from loaded previews
+        GamemodeSelect.gamemodeScatterClip_Loaded = gamemodePreviewVideos[0];
+        GamemodeSelect.gamemodeFlickClip_Loaded   = gamemodePreviewVideos[1];
+        GamemodeSelect.gamemodeGridClip_Loaded    = gamemodePreviewVideos[2];
+        GamemodeSelect.gamemodeGrid2Clip_Loaded   = gamemodePreviewVideos[3];
+        GamemodeSelect.gamemodePairsClip_Loaded   = gamemodePreviewVideos[4];
+        GamemodeSelect.gamemodeFollowClip_Loaded  = gamemodePreviewVideos[5];
         // Set video player aspect ratios.
         settings.scatterVideoPlayer.aspectRatio  = VideoAspectRatio.NoScaling;
         settings.flickVideoPlayer.aspectRatio    = VideoAspectRatio.NoScaling;
@@ -235,7 +248,7 @@ public class SettingsPanel : MonoBehaviour {
         settings.grid2VideoPlayer.aspectRatio    = VideoAspectRatio.NoScaling;
         settings.pairsVideoPlayer.aspectRatio    = VideoAspectRatio.NoScaling;
         settings.followVideoPlayer.aspectRatio   = VideoAspectRatio.NoScaling;
-        settings.selectedVideoPlayer.aspectRatio = VideoAspectRatio.NoScaling;
+        settings.selectedVideoPlayer.aspectRatio = VideoAspectRatio.FitVertically;
         // Play clips once set.
         settings.scatterVideoPlayer.Play();
         settings.flickVideoPlayer.Play();

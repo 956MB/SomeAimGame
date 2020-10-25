@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class ButtonClickHandler : MonoBehaviour, IPointerUpHandler {
+public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     public TMP_Text targetColorSelected, skyboxSelected;
     GameObject buttonBorder;
 
@@ -27,7 +27,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerUpHandler {
     /// Sets hovered border to active and calls appropriate function for clicked button.
     /// </summary>
     /// <param name="pointerEventData"></param>
-    public void OnPointerUp(PointerEventData pointerEventData) {
+    public void OnPointerClick(PointerEventData pointerEventData) {
         string clickedButtonName = pointerEventData.pointerCurrentRaycast.gameObject.name;
 
         try { buttonBorder = pointerEventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).transform.gameObject;
