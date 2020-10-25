@@ -8,20 +8,21 @@ public class FPSCounter_TMP : MonoBehaviour {
     private int m_CurrentFps;
     const string displayFPS = "{0}";
     public TMP_Text m_FPSText;
+    private int interval = 3;
 
     private void Start() {
         m_FpsNextPeriod = Time.realtimeSinceStartup + fpsMeasurePeriod;
     }
 
     private void Update() {
-        if (WidgetSettings.showFPS) {
-            m_FpsAccumulator++;
+        m_FpsAccumulator++;
+        if (WidgetSettings.showFPS && Time.frameCount % interval == 0) {
             if (Time.realtimeSinceStartup > m_FpsNextPeriod) {
                 m_CurrentFps = (int)(m_FpsAccumulator / fpsMeasurePeriod);
                 m_FpsAccumulator = 0;
                 m_FpsNextPeriod += fpsMeasurePeriod;
                 m_FPSText.SetText(string.Format(displayFPS, m_CurrentFps));
-            }
+            }       
         }
     }
 }
