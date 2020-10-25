@@ -19,9 +19,11 @@ public class Tooltip : MonoBehaviour {
     }
 
     void Update() {
-        // Set tooltip localposition to mouse position every frame.
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(transform.parent.GetComponent<RectTransform>(), Input.mousePosition, null, out localPoint);
-        transform.localPosition = localPoint;
+        if (tooltipShown) {
+            // Set tooltip localposition to mouse position every frame.
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(transform.parent.GetComponent<RectTransform>(), Input.mousePosition, null, out localPoint);
+            transform.localPosition = localPoint;
+        }
     }
 
     /// <summary>
