@@ -49,8 +49,8 @@ public class I18n : MonoBehaviour {
         string allTexts, key, value;
 
         // Testing
-        // lang = "JPN"; // "JPN" "ARA" "CHI" "KOR" "RUS"
-        
+        lang = "ENG"; // "JPN" "ARA" "CHI" "KOR" "RUS" "ENG"
+
         LanguageSelect.SetLanguageCodeText(lang);
         var textAsset = Resources.Load(@"I18n/" + lang.ToLower()); //no .txt needed
 
@@ -74,6 +74,18 @@ public class I18n : MonoBehaviour {
     /// </summary>
     /// <returns></returns>
     public static string GetLanguage() { return Get2LetterISOCodeFromSystemLanguage().ToLower(); }
+
+    public static void CalculateLongestKey() {
+        string[] eventCardKeys = new string[] { Fields["cardtypegamemode"], Fields["cardtypetime"], Fields["cardtypecrosshair"], Fields["cardtypetargets"], Fields["cardtypeinterface"], Fields["cardtypesave"], Fields["cardtypeskybox"], Fields["cardtypelanguage"], Fields["cardtypekeybind"], Fields["cardtypesound"], Fields["cardtypenotification"] };
+        string res = "";
+
+        for (int i = 0; i < eventCardKeys.Length; i++) {
+            string currentKey = eventCardKeys[i];
+            if (currentKey.Length > res.Length) { res = currentKey; }
+        }
+
+        DevEventHandler.longestCardTypeText = res;
+    }
 
     /// <summary>
     /// Helps to convert Unity's Application.systemLanguage to a 

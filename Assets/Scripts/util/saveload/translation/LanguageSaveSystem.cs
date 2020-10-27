@@ -44,6 +44,7 @@ public class LanguageSaveSystem : MonoBehaviour {
             LanguageSetting.LoadLanguageSetting(loadedLanguageData);
 
             I18n.LoadLanguage(loadedLanguageData.languageCode);
+            I18n.CalculateLongestKey();
         } else {
             InitLanguageSettingDefault();
         }
@@ -53,6 +54,7 @@ public class LanguageSaveSystem : MonoBehaviour {
         string lang = I18n.Get2LetterISOCodeFromSystemLanguage();
 
         I18n.LoadLanguage(lang);
+        I18n.CalculateLongestKey();
         LanguageSetting.SaveLanguageSettingDefault(lang);
     }
 }

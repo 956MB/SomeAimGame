@@ -5,38 +5,42 @@ using System.Collections;
 
 public class DevEventHandler : MonoBehaviour {
     public VerticalLayoutGroup eventLayoutGroup;
-    public GameObject gamemodeEventPrefab, timeEventPrefab, crosshairEventPrefab, targetsEventPrefab, interfaceEventPrefab, saveEventPrefab, skyboxEventPrefab, languageEventPrefab, keybindEventPrefab, soundEventPrefab;
+    public GameObject gamemodeEventPrefab, timeEventPrefab, crosshairEventPrefab, targetsEventPrefab, interfaceEventPrefab, saveEventPrefab, skyboxEventPrefab, languageEventPrefab, keybindEventPrefab, soundEventPrefab, notificationEventPrefab;
 
-    private static WaitForSeconds cardDestroyDelay = new WaitForSeconds(3f);
+    private static WaitForSeconds cardDestroyDelay = new WaitForSeconds(5f);
     public static bool selfDestructCard = true;
-    public static int cardLimit = 5;
+    public static int cardLimit = 10;
+
+    public static string longestCardTypeText, gamemodeCardSpaces, timeCardSpaces, crosshairCardSpaces, targetsCardSpaces, interfaceCardSpaces, saveCardSpaces, skyboxCardSpaces, languageCardSpaces, keybindCardSpaces, soundCardSpaces, notificationCardSpaces;
 
     public static DevEventHandler devEvents;
     private void Awake() { devEvents = this; }
 
     private void Start() {
         ClearDevEventLayoutGroup();
+        PopulateExtraSpaces();
     }
 
-    public static void CreateGamemodeEvent(string textContent) { NewEventCard(devEvents.gamemodeEventPrefab, textContent); }
-    public static void CreateTimeEvent(string textContent) { NewEventCard(devEvents.timeEventPrefab, textContent); }
-    public static void CreateCrosshairEvent(string textContent) { NewEventCard(devEvents.crosshairEventPrefab, textContent); }
-    public static void CreateTargetsEvent(string textContent) { NewEventCard(devEvents.targetsEventPrefab, textContent); }
-    public static void CreateInterfaceEvent(string textContent) { NewEventCard(devEvents.interfaceEventPrefab, textContent); }
-    public static void CreateSaveEvent(string textContent) { NewEventCard(devEvents.saveEventPrefab, textContent); }
-    public static void CreateSkyboxEvent(string textContent) { NewEventCard(devEvents.skyboxEventPrefab, textContent); }
-    public static void CreateLanguageEvent(string textContent) { NewEventCard(devEvents.languageEventPrefab, textContent); }
-    public static void CreateKeybindEvent(string textContent) { NewEventCard(devEvents.keybindEventPrefab, textContent); }
-    public static void CreateSoundEvent(string textContent) { NewEventCard(devEvents.soundEventPrefab, textContent); }
+    public static void CreateGamemodeEvent(string textContent) { NewEventCard($"{gamemodeCardSpaces}", devEvents.gamemodeEventPrefab, textContent); }
+    public static void CreateTimeEvent(string textContent) { NewEventCard($"{timeCardSpaces}", devEvents.timeEventPrefab, textContent); }
+    public static void CreateCrosshairEvent(string textContent) { NewEventCard($"{crosshairCardSpaces}", devEvents.crosshairEventPrefab, textContent); }
+    public static void CreateTargetsEvent(string textContent) { NewEventCard($"{targetsCardSpaces}", devEvents.targetsEventPrefab, textContent); }
+    public static void CreateInterfaceEvent(string textContent) { NewEventCard($"{interfaceCardSpaces}", devEvents.interfaceEventPrefab, textContent); }
+    public static void CreateSaveEvent(string textContent) { NewEventCard($"{saveCardSpaces}", devEvents.saveEventPrefab, textContent); }
+    public static void CreateSkyboxEvent(string textContent) { NewEventCard($"{skyboxCardSpaces}", devEvents.skyboxEventPrefab, textContent); }
+    public static void CreateLanguageEvent(string textContent) { NewEventCard($"{languageCardSpaces}", devEvents.languageEventPrefab, textContent); }
+    public static void CreateKeybindEvent(string textContent) { NewEventCard($"{keybindCardSpaces}", devEvents.keybindEventPrefab, textContent); }
+    public static void CreateSoundEvent(string textContent) { NewEventCard($"{soundCardSpaces}", devEvents.soundEventPrefab, textContent); }
+    public static void CreateNotificationEvent(string textContent) { NewEventCard($"{notificationCardSpaces}", devEvents.notificationEventPrefab, textContent); }
 
     /// <summary>
     /// Creates new card with supplied card prefab (cardPrefab), gives new card self destroy timer (DestroyCardAfterDelay), then "flattens" or destroys card thats above card limit.
     /// </summary>
     /// <param name="cardPrefab"></param>
     /// <param name="textContent"></param>
-    public static void NewEventCard(GameObject cardPrefab, string textContent) {
-        GameObject createdCard = CreateEventCard(cardPrefab, textContent);
-        devEvents.StartCoroutine(DestroyCardAfterDelay(createdCard));
+    public static void NewEventCard(string typeTranslated, GameObject cardPrefab, string textContent) {
+        GameObject createdCard = CreateEventCard(typeTranslated, cardPrefab, textContent);
+        //devEvents.StartCoroutine(DestroyCardAfterDelay(createdCard));
 
         if (!CheckEventGroupCount()) {
             if (selfDestructCard) {
@@ -62,12 +66,14 @@ public class DevEventHandler : MonoBehaviour {
     /// </summary>
     /// <param name="cardPrefab"></param>
     /// <param name="textContent"></param>
-    public static GameObject CreateEventCard(GameObject cardPrefab, string textContent) {
+    public static GameObject CreateEventCard(string typeTranslated, GameObject cardPrefab, string textContent) {
         GameObject eventCard = Instantiate(cardPrefab);
+        TMP_Text typeText    = eventCard.GetComponentsInChildren<TMP_Text>()[0];
         TMP_Text timeText    = eventCard.GetComponentsInChildren<TMP_Text>()[1];
         TMP_Text contentText = eventCard.GetComponentsInChildren<TMP_Text>()[2];
 
-        // Sets time and text content.
+        // Sets type, time and content text.
+        typeText.SetText($"{typeTranslated}");
         timeText.SetText($"{System.DateTime.Now:HH:mm:ss}");
         contentText.SetText($"{textContent}");
 
@@ -124,4 +130,27 @@ public class DevEventHandler : MonoBehaviour {
     /// Prints child count of dev event vertical layout group.
     /// </summary>
     public static void PrintEventGroupCount() { Debug.Log($"{devEvents.eventLayoutGroup.transform.childCount}"); }
+
+    public static void PopulateExtraSpaces() {
+        gamemodeCardSpaces     = GetDifference(I18nTextTranslator.SetTranslatedText("cardtypegamemode"));
+        timeCardSpaces         = GetDifference(I18nTextTranslator.SetTranslatedText("cardtypetime"));
+        crosshairCardSpaces    = GetDifference(I18nTextTranslator.SetTranslatedText("cardtypecrosshair"));
+        targetsCardSpaces      = GetDifference(I18nTextTranslator.SetTranslatedText("cardtypetargets"));
+        interfaceCardSpaces    = GetDifference(I18nTextTranslator.SetTranslatedText("cardtypeinterface"));
+        saveCardSpaces         = GetDifference(I18nTextTranslator.SetTranslatedText("cardtypesave"));
+        skyboxCardSpaces       = GetDifference(I18nTextTranslator.SetTranslatedText("cardtypeskybox"));
+        languageCardSpaces     = GetDifference(I18nTextTranslator.SetTranslatedText("cardtypelanguage"));
+        keybindCardSpaces      = GetDifference(I18nTextTranslator.SetTranslatedText("cardtypekeybind"));
+        soundCardSpaces        = GetDifference(I18nTextTranslator.SetTranslatedText("cardtypesound"));
+        notificationCardSpaces = GetDifference(I18nTextTranslator.SetTranslatedText("cardtypenotification"));
+    }
+
+    public static string GetDifference(string translatedText) {
+        int diff = longestCardTypeText.Length - translatedText.Length;
+        if (diff == 0) { return $"<mspace=mspace=7>{translatedText}\u00A0</mspace>"; }
+
+        for (int i = 0; i < diff + 1; i++) { translatedText += "\u00A0"; } // \u00A0
+
+        return $"<mspace=mspace=7>{translatedText}</mspace>";
+    }
 }
