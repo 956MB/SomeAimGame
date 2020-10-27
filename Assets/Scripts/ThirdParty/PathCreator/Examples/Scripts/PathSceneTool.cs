@@ -2,7 +2,7 @@
 
 namespace PathCreation.Examples
 {
-    [ExecuteInEditMode]
+    //[ExecuteInEditMode]
     public abstract class PathSceneTool : MonoBehaviour
     {
         public event System.Action onDestroyed;

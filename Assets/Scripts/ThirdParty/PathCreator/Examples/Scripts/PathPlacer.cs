@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace PathCreation.Examples {
 
-    [ExecuteInEditMode]
+    //[ExecuteInEditMode]
     public class PathPlacer : PathSceneTool {
 
         public GameObject prefab;
