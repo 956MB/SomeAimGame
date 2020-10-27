@@ -4,7 +4,7 @@ using UnityEngine.Video;
 //using UnityEditor;
 
 public class SettingsPanel : MonoBehaviour {
-    public GameObject mainMenuCanvas, settingsPanel, afterPanel, extendedStatsPanel, steamDataContainer;
+    public GameObject mainMenuCanvas, settingsPanel, afterPanel, extendedStatsPanel, steamDataContainer, devEventContainer;
     public static bool settingsOpen = false;
     public static bool afterActionReportOpen = false;
     public static bool afterActionReportSet;
@@ -86,6 +86,7 @@ public class SettingsPanel : MonoBehaviour {
         settings.settingsPanel.transform.localScale = new Vector3(1f, 1f, 1f);
         settings.steamDataContainer.SetActive(true);
         settings.mainMenuCanvas.SetActive(true);
+        //settings.devEventContainer.SetActive(false);
 
         if (LanguageSelect.languageSelectOpen) { LanguageSelect.CloseLanguageSelect_Static(); }
 
@@ -101,6 +102,7 @@ public class SettingsPanel : MonoBehaviour {
         settings.settingsPanel.transform.localScale = new Vector3(0f, 0f, 1f);
         settings.steamDataContainer.SetActive(false);
         settings.mainMenuCanvas.SetActive(false);
+        //settings.devEventContainer.SetActive(true);
 
         if (LanguageSelect.languageSelectOpen) { LanguageSelect.CloseLanguageSelect_Static(); }
 
