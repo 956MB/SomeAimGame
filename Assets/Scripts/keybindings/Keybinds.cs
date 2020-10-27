@@ -48,5 +48,33 @@ public class Keybinds : MonoBehaviour {
                 SettingsPanel.MoveSettingsPanelLeft();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Y)) {
+            DevEventHandler.CreateGamemodeEvent("'Follow' GAMEMODE SELECTED.");
+        } else if (Input.GetKeyDown(KeyCode.U)) {
+            DevEventHandler.CreateTimeEvent("GAME TIMER CHANGED TO '00:60'.");
+        } else if (Input.GetKeyDown(KeyCode.I)) {
+            DevEventHandler.CreateCrosshairEvent("CROSSHAIR GAP CHANGED TO '6'.");
+        } else if (Input.GetKeyDown(KeyCode.O)) {
+            DevEventHandler.CreateTargetsEvent("[Scatter] NEW TARGET SPAWN: (13,42,90).");
+        } else if (Input.GetKeyDown(KeyCode.P)) {
+            DevEventHandler.CreateInterfaceEvent("FPS Counter TOGGLE CLICKED.");
+        } else if (Input.GetKeyDown(KeyCode.J)) {
+            DevEventHandler.CreateSaveEvent("MOUSE SENSETIVITY SETTING SAVED.");
+        } else if (Input.GetKeyDown(KeyCode.K)) {
+            DevEventHandler.CreateSkyboxEvent("SKYBOX CHANGED TO 'Skybox_Pink'.");
+        } else if (Input.GetKeyDown(KeyCode.L)) {
+            DevEventHandler.CreateLanguageEvent("GAME LANGUAGE SET TO 'Korean' (KOR).");
+        } else if (Input.GetKeyDown(KeyCode.Semicolon)) {
+            DevEventHandler.CreateKeybindEvent("'HideUI' (H) KEYBIND PRESSED.");
+        } else if (Input.GetKeyDown(KeyCode.Quote)) {
+            DevEventHandler.CreateSoundEvent("'HitTarget' SOUND EVENT FIRED.");
+        } else if (Input.GetKeyDown(KeyCode.C)) {
+            // print child count
+            DevEventHandler.PrintEventGroupCount();
+        } else if (Input.GetKeyDown(KeyCode.Backspace)) {
+            // delete top element
+            DevEventHandler.DestroyEventCard_Top();
+        }
     }
 }
