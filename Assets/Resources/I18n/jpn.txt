@@ -1,8 +1,16 @@
+# Japanese language translation file
+# DO NOT CHANGE
+#
+#
+# // sub menu title buttons
 gamemodetitle=ゲームモード
 generaltitle=一般
 controlstitle=コントロール
 crosshairpaneltitle=十字線
 extratitle=追加
+#
+#
+# // gamemode button titles
 gamemodescatter=散乱
 gamemodeflick=フリック
 gamemodegrid=グリッド
@@ -10,35 +18,56 @@ gamemodegrid2=グリッドII
 gamemodepairs=ペア
 gamemodefollow=フォローする
 gamemodepatrol=パトロール
+#
+#
+# // gamemode button caps titles
 gamemodecapsscatter=スキャッター
 gamemodecapsflick=フリック
 gamemodecapsgrid=グリッド
 gamemodecapsgrid2=グリッドII
 gamemodecapspairs=ペア
 gamemodecapsfollow=フォローする
+#
+#
+# // gamemode start button text
 gamemodestartscatter=スタートスキャッター
 gamemodestartflick=スタートフリック
 gamemodestartgrid=スタートグリッド
 gamemodestartgrid2=グリッドIIを開始
 gamemodestartpairs=ペアを開始
 gamemodestartfollow=フォローを開始
+#
+#
+# // gamemode types
 gamemodetypespeed=速度
 gamemodetypecontrol=コントロール
 gamemodetypetracking=追跡
+#
+#
+# // gamemode descriptions
 gamemodescatterdescription=あなたは「ボール」が好きですか？さて、スキャッターゲームモードにはたくさんの「ボール」があります。 「ボール」はグリッドボックス内に継続的にスポーンするため、選択できるターゲットがたくさんあります。
 gamemodeflickdescription=できるだけ簡単に、一度に1つのターゲットに集中する必要があります。可能な限りあらゆる方向から、すばやく、しかし制御されたフリックを練習します。
 gamemodegriddescription=オールドフェイスフル。 FPSプレイヤーの親友。このトリプルターゲット、グリッド壁レイアウトでの速度と精度の練習の完璧な組み合わせ。 EZ。
 gamemodegrid2description=2番目のグリッド、もう少し難しい。 「グリッド」と同じ概念ですが、初期ターゲットが多く、ターゲットサイズがはるかに小さくなっています。これに時間をかけてください。
 gamemodepairsdescription=ゲームはシンプルです。スポーンされたターゲットを適切に一致したカラーバディに一致させます。ターゲットはランダムに色を切り替えるので、集中してください。
 gamemodefollowdescription=古典的な追跡ターゲットゲームモード。十字線は存在しない体の周りに浮かんでいるので、ターゲットに照準を合わせてください。それはとても簡単です、ただそれを男にしてください。キリスト。
+#
+#
+# // gamemode names
 Scatter=散乱
 Flick=フリック
 Grid=グリッド
 Grid2=グリッドII
 Pairs=ペア
 Follow=フォローする
+#
+#
+# // categories
 targetcolor=ターゲットカラー
 skybox=スカイボックス
+#
+#
+# // target colors
 colorred=赤
 colororange=オレンジ
 coloryellow=黄
@@ -47,14 +76,23 @@ colorblue=青
 colorpurple=紫の
 colorpink=ピンク
 colorwhite=白い
+#
+#
+# // skyboxes
 skyboxpink=ピンク
 skyboxgolden=ゴールデン
 skyboxnight=夜
 skyboxgrey=グレー
 skyboxblue=青
 skyboxslate=スレート
+#
+#
+# // titles
 misctitle=その他
 widgetstitle=ウィジェット
+#
+#
+# // general section items
 gametimer=タイマー（秒）  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 targetsound=ターゲットサウンド  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 uisound=UIサウンド  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
@@ -68,6 +106,9 @@ showaccuracy=精度を表示  .   .   .   .   .   .   .   .   .   .   .   .   . 
 showstreak=ストリークを表示  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showttk=TTKを表示  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showkps=KPSを表示  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+#
+#
+# // general sections tooltips
 showfpstooltip=トップゲームUIのFPSウィジェットを切り替えます。
 showtimetooltip=トップゲームUIの時間ウィジェットを切り替えます。
 showscoretooltip=トップゲームUIのスコアウィジェットを切り替えます。
@@ -76,17 +117,26 @@ showstreaktooltip=トップゲームUIのストリークウィジェットを切
 showttktooltip=トップゲームUIの殺す時間（TTK）ウィジェットを切り替えます。
 showkpstooltip=トップゲームUIの1秒あたりのキル数（KPS）ウィジェットを切り替えます。
 scrolltotop= 
+#
+#
+# // titles
 mousetitle=マウス
 mousesensitivity=マウス感度
 keybindstitle=キーバインド
 keybindlegend=//  キーバインド編集は近日公開予定
+crosshairtitle=十字線
+#
+#
+# // controls section items
 shoot=''シュート'' .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showhidesettings=設定の表示/非表示  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showhideafteractionreport=「アクション後レポート」の表示/非表示   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showhideworldui=ワールドUIの表示/非表示  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 quickstartgame=クイックスタートゲーム   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 restart=再起動   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-crosshairtitle=十字線
+#
+#
+# // crosshair section items
 tstyle=Tスタイル
 centerdot=        センタードット
 crosshairsize=サイズ
@@ -97,9 +147,15 @@ crosshairred=赤
 crosshairgreen=青
 crosshairblue=緑
 crosshairalpha=アルファ
+#
+#
+# // titles
 afteractionreporttitle=アクションレポート後
 aarscore=スコア
 aarnewhighscore=新ハイスコア！
+#
+#
+# // after action report section items
 aaraccuracy=正確さ   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 aartimetokill=殺す時間（ms）    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  
 aarkillssec=キル/秒   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
@@ -112,10 +168,16 @@ aartargetsmisses=ミス    .   .   .   .   .   .   .   .   .   .   .   .   .   .
 aarrestart=[R]再起動
 showextrastats=        追加の統計を表示する
 showbackgrounds=背景を表示
+#
+#
+# // extra stats sections items
 extrastatsprevious=前
 extrastatsaverage=平均
 extrastatsbest=ベスト
 extrastatshighscore=高得点
+#
+#
+# // tooltips
 gametimertooltip=ゲームタイマーを秒単位で設定します。
 targetsoundtooltip=ターゲットに当たったときに鳴る音のオン/オフを切り替えます。
 uisoundtooltip=設定のUI要素にカーソルを合わせたりクリックしたりしたときに鳴る音のオン/オフを切り替えます。
@@ -124,11 +186,84 @@ showaartooltip=ゲームの終了時に「AfterActionReport」パネルの表示
 quickstarttooltip=設定の「ゲームモード選択」サブパネルのオン/オフを切り替え、代わりにクリックされた新しいゲームモードを即座に起動します。
 crosshairdistortion=歪んだ十字線について疑問に思っていますか？設定のこのパネルは、残念ながらピクセルパーフェクトにレンダリングされていないため、歪んで表示されます。ただし、ゲームの十字線の中央画面は問題ありません。
 skyboxdisable=Slateを除くすべてのSkyboxオプションは、いくつかのことをテストするために一時的に無効になっています。
+#
+#
+# // notifications
 followwarning=別のターゲットカラーを選択して「フォロー」ゲームモードを開始してください！
-steamdataplaceholderusername=User0
-gamelanguage=ゲーム言語
 selectedgamemodewarning=選択したゲームモードはすでにアクティブです。
+languagerestartnotification=言語の選択は、次回の再起動時に影響します。
+#
+#
+# // steam data container items
+gamelanguage=ゲーム言語
+steamdataplaceholderusername=User0
 patchnotesbutton=パッチノート
 quitgamebutton=ゲームをやめる
 testuser=アレクサンダー
-languagerestartnotification=言語の選択は、次回の再起動時に影響します。
+#
+#
+# // dev event cards
+cardtypegamemode=ゲームモード
+cardtypetime=時間
+cardtypecrosshair=十字線
+cardtypetargets=ターゲット
+cardtypeinterface=玉ねぎ
+cardtypesave=保存/ロード
+cardtypeskybox=スカイボックス
+cardtypelanguage=言語
+cardtypekeybind=キーバインド
+cardtypesound=音
+cardtypenotification=お知らせ
+#
+#
+# // dev event content
+# -- gamemode
+eventgamemodeselected=GAMEMODEが選択されました
+eventgamemodestarted=ゲームモード開始
+# -- time
+eventtimerchanged=ゲームタイマーがに変更されました
+# -- crosshair
+eventcrosshaircenterdot=CROSSHAIRセンタードットセット
+eventcrosshairtstyle=CROSSHAIRTスタイルセット
+eventcrosshairsize=CROSSHAIRのサイズがに変更されました
+eventcrosshairthickness=CROSSHAIRの厚さがに変更されました
+eventcrosshairgap=CROSSHAIRギャップがに変更されました
+eventcrosshairoutline=CROSSHAIRアウトラインセット
+eventcrosshairred=CROSSHAIRREDの値がに変更されました
+eventcrosshairgreen=CROSSHAIRの緑の値がに変更されました
+eventcrosshairblue=CROSSHAIRBLUEの値がに変更されました
+eventcrosshairalpha=CROSSHAIRアルファ値がに変更されました
+# -- targets
+eventtargetshit=ターゲットヒット、ヒットロケーション：
+eventtargetsmiss=ターゲットがありません
+eventtargetsnewspawnprimary=新しいプライマリターゲットスポーン：
+eventtargetsnewspawnsecondary=新しいセカンダリターゲットスポーン：
+eventtargetscolorchange=ターゲットカラーがに変更されました
+eventtargetssziechange=ターゲットサイズがに変更されました
+# -- interface
+#       -- target color
+eventinterfacegamemodebuttonhover=GAMEMODEボタンがホバーされました
+eventinterfacegamemodebutton=ゲームモードボタンセット
+eventinterfacetargetcolorbuttonhover=ターゲットカラーボタンがホバーされました
+eventinterfacetargetcolorbutton=ターゲットカラーボタンセット
+eventinterfaceskyboxbuttonhover=スカイボックスボタンホバー
+eventinterfaceskyboxbutton=スカイボックスボタンセット
+#       -- widgets
+eventinterfacewidgettoggle=ウィジェットトグルセット
+# -- save/load
+eventsettingsobjectsave=保存された設定
+# -- skybox
+eventskyboxchange=SKYBOXがに変更されました
+# -- language
+eventlanguagefileload=言語ファイルが読み込まれました
+eventlanguagegameset=ゲーム言語をに設定
+eventlanguagetextset=保存された言語に設定されたすべてのテキスト
+eventlanguagetexttranslated=保存された言語値に設定されたテキスト
+# -- keybind
+eventkeybindpressed=キーバインドが押されました
+eventkeybindchanged=キーバインドが変更されました
+eventkeybindset=キーバインドをに設定
+# -- sound
+eventsoundfired=サウンドイベントが発火
+# -- notifications
+eventnotificationcreated=通知が作成されました

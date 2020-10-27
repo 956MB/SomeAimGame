@@ -1,8 +1,16 @@
-﻿gamemodetitle=GAMEMODE
+﻿# English language translation file
+# DO NOT CHANGE
+#
+#
+# // sub menu title buttons
+gamemodetitle=GAMEMODE
 generaltitle=GENERAL
 controlstitle=CONTROLS
 crosshairpaneltitle=CROSSHAIR
 extratitle=0.4.1
+#
+#
+# // gamemode button titles
 gamemodescatter=Scatter
 gamemodeflick=Flick
 gamemodegrid=Grid
@@ -10,35 +18,56 @@ gamemodegrid2=Grid II
 gamemodepairs=Pairs
 gamemodefollow=Follow
 gamemodepatrol=Patrol
+#
+#
+# // gamemode button caps titles
 gamemodecapsscatter=SCATTER
 gamemodecapsflick=FLICK
 gamemodecapsgrid=GRID
 gamemodecapsgrid2=GRID II
 gamemodecapspairs=PAIRS
 gamemodecapsfollow=FOLLOW
+#
+#
+# // gamemode start button text
 gamemodestartscatter=START SCATTER
 gamemodestartflick=START FLICK
 gamemodestartgrid=START GRID
 gamemodestartgrid2=START GRID II
 gamemodestartpairs=START PAIRS
 gamemodestartfollow=START FOLLOW
+#
+#
+# // gamemode types
 gamemodetypespeed=SPEED
 gamemodetypecontrol=CONTROL
 gamemodetypetracking=TRACKING
+#
+#
+# // gamemode descriptions
 gamemodescatterdescription=You like ''balls''? Well, there's a LOT of ''balls'' in the Scatter gamemode. The ''balls'' will continuously spawn in a grid box, so you will have plenty of targets to choose from.
 gamemodeflickdescription=As simple as can be, youve only got to focus on one target at a time. Practice those quick, but controlled, flicks from every possible direction.
 gamemodegriddescription=Old faithful. An FPS players' best friend. The perfect combination of speed and accuracy practice in this triple target, grid wall layout. EZ.
 gamemodegrid2description=Grid the 2nd, a bit more challenging. Same concept as 'Grid', but with more inital targets and a MUCH smaller target size. Take you time on this one.
 gamemodepairsdescription=The game is simple. Match the spawned target to its appropriately matched color buddy. The targets switch colors at random, so stay focused.
 gamemodefollowdescription=Classic tracking target gamemode. Try to keep your crosshair on the target as it floats around your non existant body. It's pretty easy, just do it man. Christ.
+#
+#
+# // gamemode names
 Scatter=Scatter
 Flick=Flick
 Grid=Grid
 Grid2=Grid II
 Pairs=Pairs
 Follow=Follow
+#
+#
+# // categories
 targetcolor=Target Color
 skybox=Skybox
+#
+#
+# // target colors
 colorred=Red
 colororange=Orange
 coloryellow=Yellow
@@ -47,14 +76,23 @@ colorblue=Blue
 colorpurple=Purple
 colorpink=Pink
 colorwhite=White
+#
+#
+# // skyboxes
 skyboxpink=Pink
 skyboxgolden=Golden
 skyboxnight=Night
 skyboxgrey=Grey
 skyboxblue=Blue
 skyboxslate=Slate
+#
+#
+# // titles
 misctitle=Misc
 widgetstitle=Widgets
+#
+#
+# // general section items
 gametimer=Timer (Seconds)  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 targetsound=Target Sound  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 uisound=UI Sound  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
@@ -68,6 +106,9 @@ showaccuracy=Show Accuracy  .   .   .   .   .   .   .   .   .   .   .   .   .   
 showstreak=Show Streak  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showttk=Show TTK  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showkps=Show KPS  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+#
+#
+# // general sections tooltips
 showfpstooltip=Toggles FPS widget in top game UI.
 showtimetooltip=Toggles Time widget in top game UI.
 showscoretooltip=Toggles Score widget in top game UI.
@@ -76,17 +117,26 @@ showstreaktooltip=Toggles Streak widget in top game UI.
 showttktooltip=Toggles Time To Kill (TTK) widget in top game UI.
 showkpstooltip=Toggles Kills Per Secoond (KPS) widget in top game UI.
 scrolltotop= 
+#
+#
+# // titles
 mousetitle=Mouse
 mousesensitivity=Mouse Sensitivity
 keybindstitle=Keybinds
 keybindlegend=//  keybind editing coming soon
+crosshairtitle=Crosshair
+#
+#
+# // controls section items
 shoot=''Shoot'' .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showhidesettings=Show/Hide Settings  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showhideafteractionreport=Show/Hide 'After Action Report'   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showhideworldui=Show/Hide World UI  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 quickstartgame=Quick Start Game   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 restart=Restart   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-crosshairtitle=Crosshair
+#
+#
+# // crosshair section items
 tstyle=T Style
 centerdot=        Center Dot
 crosshairsize=Size
@@ -97,9 +147,15 @@ crosshairred=Red
 crosshairgreen=Blue
 crosshairblue=Green
 crosshairalpha=Alpha
+#
+#
+# // titles
 afteractionreporttitle=AFTER ACTION REPORT
 aarscore=Score
 aarnewhighscore=NEW HIGHSCORE!
+#
+#
+# // after action report section items
 aaraccuracy=Accuracy   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 aartimetokill=Time To Kill (ms)    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  
 aarkillssec=Kills/Sec   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
@@ -112,10 +168,16 @@ aartargetsmisses=Misses    .   .   .   .   .   .   .   .   .   .   .   .   .   .
 aarrestart=[R] RESTART
 showextrastats=        Show Extra Stats
 showbackgrounds=Show Backgrounds
+#
+#
+# // extra stats sections items
 extrastatsprevious=Previous
 extrastatsaverage=Average
 extrastatsbest=Best
 extrastatshighscore=Highscore
+#
+#
+# // tooltips
 gametimertooltip=Sets the game timer in seconds.
 targetsoundtooltip=Toggles on/off the sound made when targets are hit.
 uisoundtooltip=Toggles on/off the sound made when UI elements in settings are hovered/clicked.
@@ -124,11 +186,84 @@ showaartooltip=Toggles on/off showing the 'AfterActionReport' panel at the end o
 quickstarttooltip=Toggles on/off the 'gamemode select' sub panel in settings, and instead instantly launches new gamemodes that are clicked.
 crosshairdistortion=Wondering about the distorted crosshair? This panel in the settings is unfortunatly not rendered pixel perfect, so it appears distorted. The crosshair center screen in the game is fine though.
 skyboxdisable=All Skybox options except Slate have been temporarily disabled to test some things.
+#
+#
+# // notifications
 followwarning=CHOOSE ANOTHER TARGET COLOR TO START 'Follow' GAMEMODE!
-steamdataplaceholderusername=User0
-gamelanguage=Language
 selectedgamemodewarning=SELECTED GAMEMODE IS ALREADY ACTIVE.
+languagerestartnotification=LANGUAGE SELECTION WILL TAKE EFFECT ON NEXT RESTART.
+#
+#
+# // steam data container items
+gamelanguage=Language
+steamdataplaceholderusername=User0
 patchnotesbutton=PATCH NOTES
 quitgamebutton=QUIT GAME
 testuser=Bloumbs
-languagerestartnotification=LANGUAGE SELECTION WILL TAKE EFFECT ON NEXT RESTART.
+#
+#
+# // dev event cards
+cardtypegamemode=GAMEMODE
+cardtypetime=TIME
+cardtypecrosshair=CROSSHAIR
+cardtypetargets=TARGETS
+cardtypeinterface=INTERFACE
+cardtypesave=SAVE/LOAD
+cardtypeskybox=SKYBOX
+cardtypelanguage=LANGUAGE
+cardtypekeybind=KEYBIND
+cardtypesound=SOUND
+cardtypenotification=NOTIFICATION
+#
+#
+# // dev event content
+# -- gamemode
+eventgamemodeselected=GAMEMODE SELECTED
+eventgamemodestarted=GAMEMODE STARTED
+# -- time
+eventtimerchanged=GAME TIMER CHANGED TO
+# -- crosshair
+eventcrosshaircenterdot=CROSSHAIR CENTER DOT SET
+eventcrosshairtstyle=CROSSHAIR T STYLE SET
+eventcrosshairsize=CROSSHAIR SIZE CHANGED TO
+eventcrosshairthickness=CROSSHAIR THICKNESS CHANGED TO
+eventcrosshairgap=CROSSHAIR GAP CHANGED TO
+eventcrosshairoutline=CROSSHAIR OUTLINE SET
+eventcrosshairred=CROSSHAIR RED VALUE CHANGED TO
+eventcrosshairgreen=CROSSHAIR GREEN VALUE CHANGED TO
+eventcrosshairblue=CROSSHAIR BLUE VALUE CHANGED TO
+eventcrosshairalpha=CROSSHAIR ALPHA VALUE CHANGED TO
+# -- targets
+eventtargetshit=TARGET HIT, HIT LOCATION:
+eventtargetsmiss=TARGET MISSED
+eventtargetsnewspawnprimary=NEW PRIMARY TARGET SPAWN:
+eventtargetsnewspawnsecondary=NEW SECONDARY TARGET SPAWN:
+eventtargetscolorchange=TARGET COLOR CHANGED TO
+eventtargetssziechange=TARGET SIZE CHANGED TO
+# -- interface
+#       -- target color
+eventinterfacegamemodebuttonhover=GAMEMODE BUTTON HOVERED
+eventinterfacegamemodebutton=GAMEMODE BUTTON SET
+eventinterfacetargetcolorbuttonhover=TARGET COLOR BUTTON HOVERED
+eventinterfacetargetcolorbutton=TARGET COLOR BUTTON SET
+eventinterfaceskyboxbuttonhover=SKYBOX BUTTON HOVERED
+eventinterfaceskyboxbutton=SKYBOX BUTTON SET
+#       -- widgets
+eventinterfacewidgettoggle=WIDGET TOGGLE SET
+# -- save/load
+eventsettingsobjectsave=SETTINGS SAVED
+# -- skybox
+eventskyboxchange=SKYBOX CHANGED TO
+# -- language
+eventlanguagefileload=LANGUAGE FILE LOADED
+eventlanguagegameset=GAME LANGUAGE SET TO
+eventlanguagetextset=ALL TEXT SET TO SAVED LANGUAGE
+eventlanguagetexttranslated=TEXT SET TO SAVED LANGUAGE VALUE
+# -- keybind
+eventkeybindpressed=KEYBIND PRESSED
+eventkeybindchanged=KEYBIND CHANGED
+eventkeybindset=KEYBIND SET TO
+# -- sound
+eventsoundfired=SOUND EVENT FIRED
+# -- notifications
+eventnotificationcreated=NOTIFICATION CREATED

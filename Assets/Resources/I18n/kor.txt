@@ -132,3 +132,70 @@ patchnotesbutton=패치 노트
 quitgamebutton=게임 종료
 testuser=베이
 languagerestartnotification=언어 선택은 다음에 다시 시작할 때 적용됩니다.
+#
+#
+# // dev event cards
+cardtypegamemode=게임 모드
+cardtypetime=시각
+cardtypecrosshair=십자선
+cardtypetargets=목표
+cardtypeinterface=상호 작용
+cardtypesave=저장 /로드
+cardtypeskybox=스카이 박스
+cardtypelanguage=언어
+cardtypekeybind=키 바인드
+cardtypesound=소리
+cardtypenotification=공고
+#
+#
+# // dev event content
+# -- gamemode
+eventgamemodeselected=게임 모드 선택
+eventgamemodestarted=게임 모드 시작됨
+# -- time
+eventtimerchanged=게임 타이머가 다음으로 변경되었습니다.
+# -- crosshair
+eventcrosshaircenterdot=크로스 헤어 센터 도트 세트
+eventcrosshairtstyle=크로스 헤어 T 스타일 세트
+eventcrosshairsize=십자선 크기가 다음으로 변경되었습니다.
+eventcrosshairthickness=십자선 두께가 다음으로 변경되었습니다.
+eventcrosshairgap=크로스 헤어 갭 변경
+eventcrosshairoutline=크로스 헤어 개요 세트
+eventcrosshairred=크로스 헤어 레드 밸류 변경
+eventcrosshairgreen=십자선 녹색 가치 변경
+eventcrosshairblue=크로스 헤어 블루 값이 다음으로 변경되었습니다.
+eventcrosshairalpha=크로스 헤어 알파 값이 다음으로 변경되었습니다.
+# -- targets
+eventtargetshit=타겟 히트, 히트 위치 :
+eventtargetsmiss=누락 된 목표
+eventtargetsnewspawnprimary=새로운 1 차 타겟 생성 :
+eventtargetsnewspawnsecondary=새로운 보조 대상 생성 :
+eventtargetscolorchange=대상 색상이 다음으로 변경되었습니다.
+eventtargetssziechange=타겟 크기가 다음으로 변경됨
+# -- interface
+#       -- target color
+eventinterfacegamemodebuttonhover=게임 모드 버튼을 가져옴
+eventinterfacegamemodebutton=게임 모드 버튼 설정
+eventinterfacetargetcolorbuttonhover=대상 색상 버튼을 가져옴
+eventinterfacetargetcolorbutton=대상 색상 버튼 설정
+eventinterfaceskyboxbuttonhover=스카이 박스 버튼을 가리 켰습니다.
+eventinterfaceskyboxbutton=스카이 박스 버튼 세트
+#       -- widgets
+eventinterfacewidgettoggle=위젯 토글 세트
+# -- save/load
+eventsettingsobjectsave=설정이 저장되었습니다
+# -- skybox
+eventskyboxchange=스카이 박스 변경
+# -- language
+eventlanguagefileload=언어 파일이로드되었습니다.
+eventlanguagegameset=게임 언어 설정
+eventlanguagetextset=모든 텍스트가 저장된 언어로 설정 됨
+eventlanguagetexttranslated=저장된 언어 값으로 설정된 텍스트
+# -- keybind
+eventkeybindpressed=키 바인드 눌림
+eventkeybindchanged=키 바인드 변경
+eventkeybindset=키 바인드 설정
+# -- sound
+eventsoundfired=사운드 이벤트 발사
+# -- notifications
+eventnotificationcreated=알림이 생성되었습니다.
