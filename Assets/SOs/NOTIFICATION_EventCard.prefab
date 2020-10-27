@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0.5315132, a: 0.078431375}
+  m_Color: {r: 0.7571955, g: 1, b: 0, a: 0.078431375}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -601,8 +601,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4287103231
-  m_fontColor: {r: 1, g: 0, b: 0.5315132, a: 1}
+    rgba: 4278255553
+  m_fontColor: {r: 0.7571955, g: 1, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -970,7 +970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0.5315132, a: 1}
+  m_Color: {r: 0.7571955, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1020,7 +1020,7 @@ GameObject:
   - component: {fileID: 3848285914753204311}
   - component: {fileID: 3848285914753204310}
   m_Layer: 5
-  m_Name: KEYBIND_EventCard
+  m_Name: NOTIFICATION_EventCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
