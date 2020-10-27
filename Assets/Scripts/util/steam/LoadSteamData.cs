@@ -29,7 +29,6 @@ public class LoadSteamData : MonoBehaviour {
 
         //ButtonHoverHandler_EventTrigger.ToggleOptionsObject_Static();
         //ButtonHoverHandler_EventTrigger.ToggleOptionsObject_Static();
-        Util.RefreshRootLayoutGroup(steamData.rootGroup);
     }
 
     /// <summary>
@@ -43,6 +42,8 @@ public class LoadSteamData : MonoBehaviour {
 
         if (steamUsername.Length > 16) { steamData.steamUsernameText.SetText($"{ShortenSteamUsername(steamUsername)}");
         } else { steamData.steamUsernameText.SetText($"{steamUsername}"); }
+
+        Util.RefreshRootLayoutGroup(steamData.rootGroup);
     }
 
     public static string ShortenSteamUsername(string username) {
@@ -85,6 +86,8 @@ public class LoadSteamData : MonoBehaviour {
     public static void SetSteamDataDefaults() {
         steamData.steamUsernameText.SetText($"{I18nTextTranslator.SetTranslatedText("steamdataplaceholderusername")}");
         steamData.steamAvatarImage.sprite = steamData.placeholderAvatar;
+
+        Util.RefreshRootLayoutGroup(steamData.rootGroup);
     }
 
     /// <summary>
