@@ -50,25 +50,27 @@ public class Keybinds : MonoBehaviour {
         }
 
         if (Input.GetKeyDown(KeyCode.Y)) {
-            DevEventHandler.CreateGamemodeEvent("'Follow' GAMEMODE SELECTED.");
+            DevEventHandler.CreateGamemodeEvent($"'Follow' {I18nTextTranslator.SetTranslatedText("eventgamemodeselected")}");
         } else if (Input.GetKeyDown(KeyCode.U)) {
-            DevEventHandler.CreateTimeEvent("GAME TIMER CHANGED TO '00:60'.");
+            DevEventHandler.CreateTimeEvent($"{I18nTextTranslator.SetTranslatedText("eventtimerchanged")} '00:60'");
         } else if (Input.GetKeyDown(KeyCode.I)) {
-            DevEventHandler.CreateCrosshairEvent("CROSSHAIR GAP CHANGED TO '6'.");
+            DevEventHandler.CreateCrosshairEvent($"{I18nTextTranslator.SetTranslatedText("eventcrosshairgap")} '6'");
         } else if (Input.GetKeyDown(KeyCode.O)) {
-            DevEventHandler.CreateTargetsEvent("[Scatter] NEW TARGET SPAWN: (13,42,90).");
+            DevEventHandler.CreateTargetsEvent($"[Scatter] {I18nTextTranslator.SetTranslatedText("eventtargetsnewspawnprimary")} (13,42,90).");
         } else if (Input.GetKeyDown(KeyCode.P)) {
-            DevEventHandler.CreateInterfaceEvent("FPS Counter TOGGLE CLICKED.");
+            DevEventHandler.CreateInterfaceEvent($"FPS Counter {I18nTextTranslator.SetTranslatedText("eventinterfacewidgettoggle")}");
         } else if (Input.GetKeyDown(KeyCode.J)) {
-            DevEventHandler.CreateSaveEvent("MOUSE SENSETIVITY SETTING SAVED.");
+            DevEventHandler.CreateSaveEvent($"'Cosmetics' {I18nTextTranslator.SetTranslatedText("eventsettingsobjectsave")}");
         } else if (Input.GetKeyDown(KeyCode.K)) {
-            DevEventHandler.CreateSkyboxEvent("SKYBOX CHANGED TO 'Skybox_Pink'.");
+            DevEventHandler.CreateSkyboxEvent($"{I18nTextTranslator.SetTranslatedText("eventskyboxchange")} 'Skybox_Pink'");
         } else if (Input.GetKeyDown(KeyCode.L)) {
-            DevEventHandler.CreateLanguageEvent("GAME LANGUAGE SET TO 'Korean' (KOR).");
+            DevEventHandler.CreateLanguageEvent($"{I18nTextTranslator.SetTranslatedText("eventlanguagegameset")} 'Korean' (KOR)");
         } else if (Input.GetKeyDown(KeyCode.Semicolon)) {
-            DevEventHandler.CreateKeybindEvent("'HideUI' (H) KEYBIND PRESSED.");
+            DevEventHandler.CreateKeybindEvent($"'HideUI' (H) {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}");
         } else if (Input.GetKeyDown(KeyCode.Quote)) {
-            DevEventHandler.CreateSoundEvent("'HitTarget' SOUND EVENT FIRED.");
+            DevEventHandler.CreateSoundEvent($"'HitTarget' {I18nTextTranslator.SetTranslatedText("eventsoundfired")}");
+        } else if (Input.GetKeyDown(KeyCode.Quote)) {
+            DevEventHandler.CreateNotificationEvent($"'GamemodeError' {I18nTextTranslator.SetTranslatedText("eventnotificationcreated")}");
         } else if (Input.GetKeyDown(KeyCode.C)) {
             // print child count
             DevEventHandler.PrintEventGroupCount();
