@@ -241,6 +241,12 @@ eventtargetsnewspawnsecondary=NEW SECONDARY TARGET SPAWN:
 eventtargetscolorchange=TARGET COLOR CHANGED TO
 eventtargetssziechange=TARGET SIZE CHANGED TO
 # -- interface
+eventinterfacesettingsopened=SETTINGS PANEL OPENED
+eventinterfacesettingsclosed=SETTINGS PANEL CLOSED
+eventinterfacelanguageselectopened=LANGUAGE SELECT PANEL OPENED
+eventinterfacelanguageselectclosed=LANGUAGE SELECT PANEL CLOSED
+eventinterfaceaaropened='AfterActionReport' PANEL OPENED
+eventinterfaceaarclosed='AfterActionReport' PANEL CLOSED
 #       -- target color
 eventinterfacegamemodebuttonhover=GAMEMODE BUTTON HOVERED
 eventinterfacegamemodebutton=GAMEMODE BUTTON SET
@@ -250,12 +256,15 @@ eventinterfaceskyboxbuttonhover=SKYBOX BUTTON HOVERED
 eventinterfaceskyboxbutton=SKYBOX BUTTON SET
 #       -- widgets
 eventinterfacewidgettoggle=WIDGET TOGGLE SET
+eventinterfacepanelmoveleft=SETTINGS PANEL MOVED LEFT. NEW POS:
+eventinterfacepanelmoveright=SETTINGS PANEL MOVED RIGHT. NEW POS:
 # -- save/load
 eventsettingsobjectsave=SETTINGS SAVED
 # -- skybox
 eventskyboxchange=SKYBOX CHANGED TO
 # -- language
-eventlanguagefileload=LANGUAGE FILE LOADED
+eventlanguagefileload=SAVED LANGUAGE FILE LOADED
+eventlanguagefileloaddefault=DEFAULT LANGUAGE FILE LOADED
 eventlanguagegameset=GAME LANGUAGE SET TO
 eventlanguagetextset=ALL TEXT SET TO SAVED LANGUAGE
 eventlanguagetexttranslated=TEXT SET TO SAVED LANGUAGE VALUE
@@ -264,6 +273,11 @@ eventkeybindpressed=KEYBIND PRESSED
 eventkeybindchanged=KEYBIND CHANGED
 eventkeybindset=KEYBIND SET TO
 # -- sound
-eventsoundfired=SOUND EVENT FIRED
+eventsoundfiredhit=HIT SOUND EVENT FIRED
+eventsoundfiredhover=HOVER UI SOUND EVENT FIRED
+eventsoundfiredclick=CLICK UI SOUND EVENT FIRED
 # -- notifications
-eventnotificationcreated=NOTIFICATION CREATED
+eventnotificationcreatedtranslation=TRANSLATED NOTIFICATION CREATED:
+eventnotificationcreatedstring=STRING NOTIFICATION CREATED:
+eventnotificationhidden=ACTIVE NOTIFICATION HIDDEN
+eventnotificationdisabled=NOTIFICATION OBJECT HIDDEN

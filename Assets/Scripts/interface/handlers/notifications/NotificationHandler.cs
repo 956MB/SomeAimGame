@@ -15,6 +15,9 @@ public class NotificationHandler : MonoBehaviour {
 
         // Disable notification gameObject by default.
         gameObject.SetActive(false);
+
+        // EVENT:: for notification object hidden on awake
+        if (DevEventHandler.eventsOn) { DevEventHandler.CreateNotificationEvent($"{I18nTextTranslator.SetTranslatedText("eventnotificationdisabled")}"); }
     }
 
     /// <summary>
@@ -27,6 +30,9 @@ public class NotificationHandler : MonoBehaviour {
         notificationTextContent.color = notificationColor;
         notification.gameObject.SetActive(true);
         notificationOpen = true;
+
+        // EVENT:: for new string notification
+        if (DevEventHandler.eventsOn) { DevEventHandler.CreateNotificationEvent($"{I18nTextTranslator.SetTranslatedText("eventnotificationcreatedstring")} \"{notificationText}\""); }
     }
 
     /// <summary>
@@ -35,10 +41,14 @@ public class NotificationHandler : MonoBehaviour {
     /// <param name="translateTextID"></param>
     /// <param name="notificationColor"></param>
     public static void ShowNotification_Translated(string translateTextID, string extraText, Color notificationColor) {
-        notificationTextContent.SetText($"{I18nTextTranslator.SetTranslatedText(translateTextID)}{extraText}");
+        string notificationContent = $"{I18nTextTranslator.SetTranslatedText(translateTextID)}{extraText}";
+        notificationTextContent.SetText(notificationContent);
         notificationTextContent.color = notificationColor;
         notification.gameObject.SetActive(true);
         notificationOpen = true;
+
+        // EVENT:: for new translated notification
+        if (DevEventHandler.eventsOn) { DevEventHandler.CreateNotificationEvent($"{I18nTextTranslator.SetTranslatedText("eventnotificationcreatedtranslation")} \"{notificationContent}\""); }
     }
 
     /// <summary>
@@ -47,5 +57,8 @@ public class NotificationHandler : MonoBehaviour {
     public static void HideNotification() {
         notification.gameObject.SetActive(false);
         notificationOpen = false;
+
+        // EVENT:: for active notification hidden
+        if (DevEventHandler.eventsOn) { DevEventHandler.CreateNotificationEvent(I18nTextTranslator.SetTranslatedText("eventnotificationhidden")); }
     }
 }

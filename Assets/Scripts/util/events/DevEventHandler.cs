@@ -11,6 +11,8 @@ public class DevEventHandler : MonoBehaviour {
     public static bool selfDestructCard = true;
     public static int cardLimit = 10;
 
+    public static bool eventsOn = false;
+
     public static string longestCardTypeText, gamemodeCardSpaces, timeCardSpaces, crosshairCardSpaces, targetsCardSpaces, interfaceCardSpaces, saveCardSpaces, skyboxCardSpaces, languageCardSpaces, keybindCardSpaces, soundCardSpaces, notificationCardSpaces;
 
     public static DevEventHandler devEvents;
@@ -28,10 +30,10 @@ public class DevEventHandler : MonoBehaviour {
     public static void CreateInterfaceEvent(string textContent) { NewEventCard($"{interfaceCardSpaces}", devEvents.interfaceEventPrefab, textContent); }
     public static void CreateSaveEvent(string textContent) { NewEventCard($"{saveCardSpaces}", devEvents.saveEventPrefab, textContent); }
     public static void CreateSkyboxEvent(string textContent) { NewEventCard($"{skyboxCardSpaces}", devEvents.skyboxEventPrefab, textContent); }
-    public static void CreateLanguageEvent(string textContent) { NewEventCard($"{languageCardSpaces}", devEvents.languageEventPrefab, textContent); }
-    public static void CreateKeybindEvent(string textContent) { NewEventCard($"{keybindCardSpaces}", devEvents.keybindEventPrefab, textContent); }
-    public static void CreateSoundEvent(string textContent) { NewEventCard($"{soundCardSpaces}", devEvents.soundEventPrefab, textContent); }
-    public static void CreateNotificationEvent(string textContent) { NewEventCard($"{notificationCardSpaces}", devEvents.notificationEventPrefab, textContent); }
+    public static void CreateLanguageEvent(string textContent) { NewEventCard($"{languageCardSpaces}", devEvents.languageEventPrefab, textContent); } // DONE
+    public static void CreateKeybindEvent(string textContent) { NewEventCard($"{keybindCardSpaces}", devEvents.keybindEventPrefab, textContent); } // DONE
+    public static void CreateSoundEvent(string textContent) { NewEventCard($"{soundCardSpaces}", devEvents.soundEventPrefab, textContent); } // DONE
+    public static void CreateNotificationEvent(string textContent) { NewEventCard($"{notificationCardSpaces}", devEvents.notificationEventPrefab, textContent); } // DONE
 
     /// <summary>
     /// Creates new card with supplied card prefab (cardPrefab), gives new card self destroy timer (DestroyCardAfterDelay), then "flattens" or destroys card thats above card limit.
@@ -40,7 +42,7 @@ public class DevEventHandler : MonoBehaviour {
     /// <param name="textContent"></param>
     public static void NewEventCard(string typeTranslated, GameObject cardPrefab, string textContent) {
         GameObject createdCard = CreateEventCard(typeTranslated, cardPrefab, textContent);
-        //devEvents.StartCoroutine(DestroyCardAfterDelay(createdCard));
+        devEvents.StartCoroutine(DestroyCardAfterDelay(createdCard));
 
         if (!CheckEventGroupCount()) {
             if (selfDestructCard) {

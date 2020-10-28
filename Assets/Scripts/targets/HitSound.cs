@@ -14,6 +14,11 @@ public class HitSound : MonoBehaviour {
     /// </summary>
     public static void PlayHitSound() {
         // TODO: if playHitSound enabled
-        audioSrc.PlayOneShot(hitSound.hitSoundSrc);
+        if (audioSrc != null) {
+            audioSrc.PlayOneShot(hitSound.hitSoundSrc);
+
+            // EVENT:: for new hit sound triggered
+            if (DevEventHandler.eventsOn) { DevEventHandler.CreateSoundEvent($"{I18nTextTranslator.SetTranslatedText("eventsoundfiredhit")}"); }
+        }
     }
 }

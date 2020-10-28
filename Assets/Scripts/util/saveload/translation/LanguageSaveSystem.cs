@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using TMPro;
 
 public class LanguageSaveSystem : MonoBehaviour {
     private static LanguageSaveSystem languageSave;
@@ -42,11 +40,20 @@ public class LanguageSaveSystem : MonoBehaviour {
         LanguageSettingDataSerial loadedLanguageData = LoadLanguageSettingData();
         if (loadedLanguageData != null) {
             LanguageSetting.LoadLanguageSetting(loadedLanguageData);
-
             I18n.LoadLanguage(loadedLanguageData.languageCode);
             I18n.CalculateLongestKey();
+
+            // EVENT:: for saved language file loaded
+            if (DevEventHandler.eventsOn) { DevEventHandler.CreateLanguageEvent($"[{loadedLanguageData.languageCode}] {I18nTextTranslator.SetTranslatedText("eventlanguagefileload")}"); }
+            // EVENT:: for game language set
+            if (DevEventHandler.eventsOn) { DevEventHandler.CreateLanguageEvent($"{I18nTextTranslator.SetTranslatedText("eventlanguagegameset")} [{loadedLanguageData.languageCode}]"); }
         } else {
             InitLanguageSettingDefault();
+
+            // EVENT:: for default language file loaded
+            if (DevEventHandler.eventsOn) { DevEventHandler.CreateLanguageEvent($"[ENG] {I18nTextTranslator.SetTranslatedText("eventlanguagefileloaddefault")}"); }
+            // EVENT:: for game language set
+            if (DevEventHandler.eventsOn) { DevEventHandler.CreateLanguageEvent($"{I18nTextTranslator.SetTranslatedText("eventlanguagegameset")} [ENG]"); }
         }
     }
 

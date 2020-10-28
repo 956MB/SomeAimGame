@@ -10,12 +10,19 @@ public class UISound : MonoBehaviour {
 
     void Start() { audioSrc = GetComponent<AudioSource>(); }
 
+    // TODO: add error sound, like for when target color is red when starting follow gamemode and notification fires
+
     /// <summary>
     /// Plays UI sound 01.
     /// </summary>
     public static void PlayUISound() {
         // TODO: if playHitSound enabled
-        if (audioSrc != null) { audioSrc.PlayOneShot(uiSound.uiSoundSrc01); }
+        if (audioSrc != null) {
+            audioSrc.PlayOneShot(uiSound.uiSoundSrc01);
+
+            // EVENT:: for new hover sound triggered
+            if (DevEventHandler.eventsOn) { DevEventHandler.CreateSoundEvent($"{I18nTextTranslator.SetTranslatedText("eventsoundfiredhover")}"); }
+        }
     }
 
     /// <summary>
@@ -23,7 +30,12 @@ public class UISound : MonoBehaviour {
     /// </summary>
     public static void PlayUISound02() {
         // TODO: if playHitSound enabled
-        if (audioSrc != null) { audioSrc.PlayOneShot(uiSound.uiSoundSrc02); }
+        if (audioSrc != null) {
+            audioSrc.PlayOneShot(uiSound.uiSoundSrc02);
+
+            // EVENT:: for new click sound triggered
+            if (DevEventHandler.eventsOn) { DevEventHandler.CreateSoundEvent($"{I18nTextTranslator.SetTranslatedText("eventsoundfiredclick")}"); }
+        }
     }
 
     //public static void playUISoundExtra() {

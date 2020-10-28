@@ -32,6 +32,14 @@ public class LanguageSelect : MonoBehaviour {
     public static void ToggleLanguageSelect_Static() {
         langSelect.languageCodeSelectObject.SetActive(!languageSelectOpen);
         languageSelectOpen = !languageSelectOpen;
+
+        if (languageSelectOpen) {
+            // EVENT:: for language select panel opened
+            if (DevEventHandler.eventsOn) { DevEventHandler.CreateInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacelanguageselectopened")}"); }
+        } else {
+            // EVENT:: for language select panel closed
+            if (DevEventHandler.eventsOn) { DevEventHandler.CreateInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacelanguageselectclosed")}"); }
+        }
     }
 
     /// <summary>
@@ -40,6 +48,9 @@ public class LanguageSelect : MonoBehaviour {
     public static void OpenLanguageSelect_Static() {
         langSelect.languageCodeSelectObject.SetActive(true);
         languageSelectOpen = true;
+
+        // EVENT:: for language select panel opened
+        if (DevEventHandler.eventsOn) { DevEventHandler.CreateInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacelanguageselectopened")}"); }
     }
 
     /// <summary>
@@ -48,5 +59,8 @@ public class LanguageSelect : MonoBehaviour {
     public static void CloseLanguageSelect_Static() {
         langSelect.languageCodeSelectObject.SetActive(false);
         languageSelectOpen = false;
+
+        // EVENT:: for language select panel closed
+        if (DevEventHandler.eventsOn) { DevEventHandler.CreateInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacelanguageselectclosed")}"); }
     }
 }

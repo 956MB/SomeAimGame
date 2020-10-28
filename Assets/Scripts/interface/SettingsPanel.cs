@@ -194,7 +194,7 @@ public class SettingsPanel : MonoBehaviour {
     /// <summary>
     /// Moves settings panel location right along X (not currently used, i think).
     /// </summary>
-    public static void MoveSettingsPanelRight() {
+    public static Vector3 MoveSettingsPanelRight() {
         float currentPanelX = settings.settingsPanel.transform.position.x;
         float newPanelX = (currentPanelX + panelMoveSize) + (panelWidth / 2);
 
@@ -203,13 +203,16 @@ public class SettingsPanel : MonoBehaviour {
             panelPos.x += panelMoveSize;
             settings.settingsPanel.transform.position = panelPos;
 
+            return panelPos;
             //CosmeticsSettings.saveSettingsPanelItem(settings.settingsPanel.transform.position.x);
+        } else {
+            return settings.settingsPanel.transform.position;
         }
     }
     /// <summary>
     /// Moves settings panel location left along X (not currently used, i think).
     /// </summary>
-    public static void MoveSettingsPanelLeft() {
+    public static Vector3 MoveSettingsPanelLeft() {
         float currentPanelX = settings.settingsPanel.transform.position.x;
         float newPanelX = (currentPanelX - panelMoveSize) - (panelWidth / 2);
 
@@ -218,7 +221,10 @@ public class SettingsPanel : MonoBehaviour {
             panelPos.x -= panelMoveSize;
             settings.settingsPanel.transform.position = panelPos;
 
+            return panelPos;
             //CosmeticsSettings.saveSettingsPanelItem(settings.settingsPanel.transform.position.x);
+        } else {
+            return settings.settingsPanel.transform.position;
         }
     }
 
