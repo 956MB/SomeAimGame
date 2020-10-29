@@ -19,29 +19,29 @@ public class Keybinds : MonoBehaviour {
         }
 
         // Dev events test keybinds
-        if (DevEventHandler.eventsOn) {
+        if (DevEventHandler.cardsOn) {
             if (Input.GetKeyDown(KeyCode.Y)) {
-                DevEventHandler.CreateGamemodeEvent($"'Follow' {I18nTextTranslator.SetTranslatedText("eventgamemodeselected")}");
+                DevEventHandler.CreateGamemodeCard($"'Follow' {I18nTextTranslator.SetTranslatedText("eventgamemodeselected")}");
             } else if (Input.GetKeyDown(KeyCode.U)) {
-                DevEventHandler.CreateTimeEvent($"{I18nTextTranslator.SetTranslatedText("eventtimerchanged")} '00:60'");
+                DevEventHandler.CreateTimeCard($"{I18nTextTranslator.SetTranslatedText("eventtimerchanged")} '00:60'");
             } else if (Input.GetKeyDown(KeyCode.I)) {
-                DevEventHandler.CreateCrosshairEvent($"{I18nTextTranslator.SetTranslatedText("eventcrosshairgap")} '6'");
+                DevEventHandler.CreateCrosshairCard($"{I18nTextTranslator.SetTranslatedText("eventcrosshairgap")} '6'");
             } else if (Input.GetKeyDown(KeyCode.O)) {
-                DevEventHandler.CreateTargetsEvent($"[Scatter] {I18nTextTranslator.SetTranslatedText("eventtargetsnewspawnprimary")} (13,42,90).");
+                DevEventHandler.CreateTargetsCard($"[Scatter] {I18nTextTranslator.SetTranslatedText("eventtargetsnewspawnprimary")} (13,42,90).");
             } else if (Input.GetKeyDown(KeyCode.P)) {
-                DevEventHandler.CreateInterfaceEvent($"FPS Counter {I18nTextTranslator.SetTranslatedText("eventinterfacewidgettoggle")}");
+                DevEventHandler.CreateInterfaceCard($"FPS Counter {I18nTextTranslator.SetTranslatedText("eventinterfacewidgettoggle")}");
             } else if (Input.GetKeyDown(KeyCode.J)) {
-                DevEventHandler.CreateSaveEvent($"'Cosmetics' {I18nTextTranslator.SetTranslatedText("eventsettingsobjectsave")}");
+                DevEventHandler.CreateSaveCard($"'Cosmetics' {I18nTextTranslator.SetTranslatedText("eventsettingsobjectsave")}");
             } else if (Input.GetKeyDown(KeyCode.K)) {
-                DevEventHandler.CreateSkyboxEvent($"{I18nTextTranslator.SetTranslatedText("eventskyboxchange")} 'Skybox_Pink'");
+                DevEventHandler.CreateSkyboxCard($"{I18nTextTranslator.SetTranslatedText("eventskyboxchange")} 'Skybox_Pink'");
             } else if (Input.GetKeyDown(KeyCode.L)) {
-                DevEventHandler.CreateLanguageEvent($"{I18nTextTranslator.SetTranslatedText("eventlanguagegameset")} 'Korean' (KOR)");
+                DevEventHandler.CreateLanguageCard($"{I18nTextTranslator.SetTranslatedText("eventlanguagegameset")} 'Korean' (KOR)");
             } else if (Input.GetKeyDown(KeyCode.Semicolon)) {
-                DevEventHandler.CreateKeybindEvent($"'HideUI' (H) {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}");
+                DevEventHandler.CreateKeybindCard($"'HideUI' (H) {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}");
             } else if (Input.GetKeyDown(KeyCode.Quote)) {
-                DevEventHandler.CreateSoundEvent($"'HitTarget' {I18nTextTranslator.SetTranslatedText("eventsoundfired")}");
+                DevEventHandler.CreateSoundCard($"'HitTarget' {I18nTextTranslator.SetTranslatedText("eventsoundfired")}");
             } else if (Input.GetKeyDown(KeyCode.Quote)) {
-                DevEventHandler.CreateNotificationEvent($"'GamemodeError' {I18nTextTranslator.SetTranslatedText("eventnotificationcreated")}");
+                DevEventHandler.CreateNotificationCard($"'GamemodeError' {I18nTextTranslator.SetTranslatedText("eventnotificationcreated")}");
             } else if (Input.GetKeyDown(KeyCode.C)) {
                 // print child count
                 DevEventHandler.PrintEventGroupCount();
@@ -53,13 +53,10 @@ public class Keybinds : MonoBehaviour {
     }
 
     /// <summary>
-    /// Toggle WorldUI keybind function.
+    /// Toggle WorldUI keybind function. [EVENT]
     /// </summary>
     private static void ToggleWorldUI_Keybind() {
         GameUI.ToggleWorldUI();
-
-        // EVENT:: for toggle world UI keybind pressed
-        if (DevEventHandler.eventsOn) { DevEventHandler.CreateKeybindEvent($"'Toggle WorldUI' [H] {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}"); }
     }
 
     /// <summary>
@@ -69,53 +66,41 @@ public class Keybinds : MonoBehaviour {
         GameUI.RestartGame(CosmeticsSettings.gamemode);
 
         // EVENT:: for game restart keybind pressed
-        if (DevEventHandler.eventsOn) { DevEventHandler.CreateKeybindEvent($"'RestartGame' [R] {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}"); }
+        DevEventHandler.CheckKeybindEvent($"'RestartGame' [R] {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}");
     }
 
     /// <summary>
-    /// Toggle AAR keybind function.
+    /// Toggle AAR keybind function. [EVENT]
     /// </summary>
     private static void ToggleAARPanel_Keybind() {
         if (SettingsPanel.afterActionReportSet) {
             if (!SettingsPanel.afterActionReportOpen) {
-                SettingsPanel.OpenAfterActionReport();
                 SettingsPanel.CloseSettingsPanel();
+                SettingsPanel.OpenAfterActionReport();
                 GameUI.HideUI();
-
-                // EVENT:: for AAR panel being opened
-                if (DevEventHandler.eventsOn) { DevEventHandler.CreateInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceaaropened")}"); }
             } else {
                 SettingsPanel.CloseAfterActionReport();
-
-                // EVENT:: for AAR panel being opened
-                if (DevEventHandler.eventsOn) { DevEventHandler.CreateInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceaarclosed")}"); }
             }
         }
         
         // EVENT:: for toggle AAR keybind pressed
-        if (DevEventHandler.eventsOn) { DevEventHandler.CreateKeybindEvent($"'Toggle AAR' [TAB] {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}"); }
+        DevEventHandler.CheckKeybindEvent($"'Toggle AAR' [TAB] {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}");
     }
 
     /// <summary>
-    /// Toggle settings panel keybind function.
+    /// Toggle settings panel keybind function. [EVENT]
     /// </summary>
     private static void ToggleSettingsPanel_Keybind() {
         if (SettingsPanel.settingsOpen) {
             SettingsPanel.CloseSettingsPanel();
-
-            // EVENT:: for settings panel being closed
-            if (DevEventHandler.eventsOn) { DevEventHandler.CreateInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacesettingsclosed")}"); }
         } else {
             if (!SettingsPanel.afterActionReportOpen) {
                 SettingsPanel.OpenSettingsPanel();
-
-                // EVENT:: for settings panel being opened
-                if (DevEventHandler.eventsOn) { DevEventHandler.CreateInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacesettingsopened")}"); }
             }
         }
         
         // EVENT:: for toggle settings panel keybind pressed
-        if (DevEventHandler.eventsOn) { DevEventHandler.CreateKeybindEvent($"'Toggle Settings Panel' [ESC] {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}"); }
+        DevEventHandler.CheckKeybindEvent($"'Toggle Settings Panel' [ESC] {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}");
     }
 
     /// <summary>
@@ -126,11 +111,11 @@ public class Keybinds : MonoBehaviour {
             Vector3 settingsPanelPos_Right = SettingsPanel.MoveSettingsPanelRight();
             
             // EVENT:: for settings panel being moved right
-            if (DevEventHandler.eventsOn) { DevEventHandler.CreateInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacepanelmoveright")} ({settingsPanelPos_Right})"); }
+            DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacepanelmoveright")} ({settingsPanelPos_Right})");
         }
 
         // EVENT:: for move settings panel right keybind pressed
-        if (DevEventHandler.eventsOn) { DevEventHandler.CreateKeybindEvent($"'Move Settings Panel Right' [RightArrow] {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}"); }
+        DevEventHandler.CheckKeybindEvent($"'Move Settings Panel Right' [RightArrow] {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}");
     }
 
     /// <summary>
@@ -141,10 +126,10 @@ public class Keybinds : MonoBehaviour {
             Vector3 settingsPanelPos_Left = SettingsPanel.MoveSettingsPanelLeft();
 
             // EVENT:: for settings panel being moved left
-            if (DevEventHandler.eventsOn) { DevEventHandler.CreateInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacepanelmoveleft")} ({settingsPanelPos_Left})"); }
+            DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacepanelmoveleft")} ({settingsPanelPos_Left})");
         }
         
         // EVENT:: for move settings panel left keybind pressed
-        if (DevEventHandler.eventsOn) { DevEventHandler.CreateKeybindEvent($"'Move Settings Panel Left' [LeftArrow] {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}"); }
+        DevEventHandler.CheckKeybindEvent($"'Move Settings Panel Left' [LeftArrow] {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}");
     }
 }

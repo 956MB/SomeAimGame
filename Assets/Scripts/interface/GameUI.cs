@@ -78,13 +78,17 @@ public class GameUI : MonoBehaviour {
     }
 
     /// <summary>
-    /// Coroutine to continuously spawn targets if gamemode "Gamemode-Scatter".
+    /// Coroutine to continuously spawn targets if gamemode "Gamemode-Scatter". [EVENT]
     /// </summary>
     /// <returns></returns>
     public static IEnumerator ContinuousScatterSpawn() {
         while (true) {
             //Debug.Log("continuousScatterSpawn called??? -----------------");
             if (!MouseLook.settingsOpen) { SpawnTargets.CheckScatterSpawns(); }
+
+            // EVENT:: for scatter game timer tick
+            //if (DevEventHandler.eventsOn) { DevEventHandler.CreateGamemodeEvent($"{I18nTextTranslator.SetTranslatedText("eventgamemodescattertick")}"); }
+
             yield return scatterDelay;
             //yield return new WaitForSeconds(UnityEngine.Random.Range(0.2f, 0.45f));
             //yield return new WaitForSeconds(UnityEngine.Random.Range(0.6f, 0.85f));
@@ -92,7 +96,7 @@ public class GameUI : MonoBehaviour {
     }
 
     /// <summary>
-    /// Coroutine to start game timer countdown.
+    /// Coroutine to start game timer countdown. [EVENT]
     /// </summary>
     /// <returns></returns>
     public static IEnumerator StartGameTimerDown() {
@@ -131,6 +135,10 @@ public class GameUI : MonoBehaviour {
             gameUI.timeText.SetText($"{timeFormatted}");
             SetTTKText();
             SetKPSText();
+
+            // EVENT:: for normal game timer tick
+            //if (DevEventHandler.eventsOn) { DevEventHandler.CreateTimeEvent($"{I18nTextTranslator.SetTranslatedText("eventtimerticknormal")}"); }
+
             yield return timerDelay;
         }
         //Debug.Log($"coroutine ended?? {timeCount}");
@@ -149,6 +157,10 @@ public class GameUI : MonoBehaviour {
 
             gameUI.timeText.SetText($"{timeFormatted}");
             timeCount += 1;
+
+            // EVENT:: for up game timer tick
+            //if (DevEventHandler.eventsOn) { DevEventHandler.CreateTimeEvent($"{I18nTextTranslator.SetTranslatedText("eventtimertickup")}"); }
+
             yield return timerDelay;
         }
     }
@@ -228,7 +240,7 @@ public class GameUI : MonoBehaviour {
     }
 
     /// <summary>
-    /// Updates current accuracy score based on supplied 'shotsHit' value and 'shotsTaken' value, then sets accuracy text.
+    /// Updates current accuracy score based on supplied 'shotsHit' value and 'shotsTaken' value, then sets accuracy text. [EVENT]
     /// </summary>
     /// <param name="shotsHit"></param>
     /// <param name="shotsTaken"></param>
@@ -236,10 +248,13 @@ public class GameUI : MonoBehaviour {
         //Debug.Log($"hit:{shotsHit} taken:{shotsTaken}");
         accuracy = (100 * shotsHit) / shotsTaken;
         gameUI.accuracyText.SetText($"{accuracy}%");
+
+        // EVENT:: for update reaction time
+        //if (DevEventHandler.eventsOn) { DevEventHandler.CreateInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceaccuracyupdate")}"); }
     }
 
     /// <summary>
-    /// Updates current reaction time score based on time between one hit target and the next, then adds reaction time (ms) to list.
+    /// Updates current reaction time score based on time between one hit target and the next, then adds reaction time (ms) to list. [EVENT]
     /// </summary>
     public static void UpdateReactionTime() {
         float currentMs = Time.time * 1000;
@@ -248,14 +263,19 @@ public class GameUI : MonoBehaviour {
 
         reactionTime = (int)currentMs;
         reactionTimeList.Add(newTime);
+
+        // EVENT:: for update reaction time
+        //if (DevEventHandler.eventsOn) { DevEventHandler.CreateInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacereactiontimeupdate")}"); }
     }
 
     /// <summary>
-    /// Resets current hit target streak.
+    /// Resets current hit target streak. [EVENT]
     /// </summary>
     private static void ResetCurrentStreak() {
         streakCurrent = 0;
-        //setStreakText();
+
+        // EVENT:: for reset streak
+        //if (DevEventHandler.eventsOn) { DevEventHandler.CreateInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacestreakreset")}"); }
     }
 
     /// <summary>
@@ -272,17 +292,35 @@ public class GameUI : MonoBehaviour {
     }
 
     /// <summary>
-    /// Sets current/best streak text in UI (if exists).
+    /// Sets current/best streak text in UI (if exists). [EVENT]
     /// </summary>
-    private static void SetStreakText() { gameUI.streakText.SetText($"{streakCurrent} / {streakBest}"); }
+    private static void SetStreakText() {
+        gameUI.streakText.SetText($"{streakCurrent} / {streakBest}");
+
+        // EVENT:: for set streak widget text
+        //if (DevEventHandler.eventsOn) { DevEventHandler.CreateInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacestreakset")} ({streakCurrent} / {streakBest})"); }
+    }
+
     /// <summary>
-    /// Sets time to kill (TTK) text in UI (if exists).
+    /// Sets time to kill (TTK) text in UI (if exists). [EVENT]
     /// </summary>
-    private static void SetTTKText() { gameUI.ttkText.SetText($"{newTime}"); }
+    private static void SetTTKText() {
+        gameUI.ttkText.SetText($"{newTime}");
+
+        // EVENT:: for set TTK widget text
+        //if (DevEventHandler.eventsOn) { DevEventHandler.CreateInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacettkset")} ({newTime})"); }
+    }
+
     /// <summary>
-    /// Sets kills per second (KPS) text in UI (if exists).
+    /// Sets kills per second (KPS) text in UI (if exists). [EVENT]
     /// </summary>
-    private static void SetKPSText() { gameUI.kpsText.SetText($"{string.Format("{0:0.00}", (double)SpawnTargets.shotsHit / timeStart)}"); }
+    private static void SetKPSText() {
+        gameUI.kpsText.SetText($"{string.Format("{0:0.00}", (double)SpawnTargets.shotsHit / timeStart)}");
+
+        // EVENT:: for set KPS widget text
+        //if (DevEventHandler.eventsOn) { DevEventHandler.CreateInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacekpsset")} ({string.Format("{0:0.00}", (double)SpawnTargets.shotsHit / timeStart)})"); }
+    }
+
     //private static void SetKPSText() { gameUI.kpsText.SetText($"{(double)SpawnTargets.shotsHit / timeStart}"); }
 
     /// <summary>
@@ -305,7 +343,7 @@ public class GameUI : MonoBehaviour {
     }
 
     /// <summary>
-    /// Resets all game UI elements text/color.
+    /// Resets all game UI elements text/color. [EVENT]
     /// </summary>
     public static void ResetUIElements() {
         gameUI.scoreText.SetText($"{string.Format("{0:n0}", scoreNum)}");
@@ -313,6 +351,9 @@ public class GameUI : MonoBehaviour {
         gameUI.accuracyText.SetText($"{accuracy}%");
         gameUI.timeText.SetText($"00:{timeCount}");
         gameUI.timeText.color = Color.white;
+
+        // EVENT:: for game UI elements reset
+        //if (DevEventHandler.eventsOn) { DevEventHandler.CreateKeybindEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceelementsreset")}"); }
     }
 
     /// <summary>
@@ -341,7 +382,7 @@ public class GameUI : MonoBehaviour {
     }
 
     /// <summary>
-    /// Shows UI if hidden and hides UI is shown (toggle), then saves shown/hidden value.
+    /// Shows UI if hidden and hides UI is shown (toggle), then saves shown/hidden value. [EVENT]
     /// </summary>
     public static void ToggleWorldUI() {
         if (UIHidden) {
@@ -351,24 +392,31 @@ public class GameUI : MonoBehaviour {
             HideUI();
             ExtraSettings.SaveHideUI(false);
         }
+
+        // EVENT:: for toggle world UI keybind pressed
+        DevEventHandler.CheckKeybindEvent($"'Toggle WorldUI' [H] {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}");
     }
 
     /// <summary>
-    /// Hides UI holding timer, score and accuracy etc.
+    /// Hides UI holding timer, score and accuracy etc. [EVENT]
     /// </summary>
     public static void HideUI() {
-        //Debug.Log("hideUI");
         //gameUI.UICanvas.layer = 1;
         gameUI.newUICanvas.SetActive(false);
         UIHidden = true;
+
+        // EVENT:: for game ui hidden
+        //if (DevEventHandler.eventsOn) { DevEventHandler.CreateInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacehideui")}"); }
     }
     /// <summary>
-    /// Shows UI holding timer, score and accuracy etc.
+    /// Shows UI holding timer, score and accuracy etc. [EVENT]
     /// </summary>
     public static void ShowUI() {
-        //Debug.Log("showUI");
         //gameUI.UICanvas.layer = 15;
         gameUI.newUICanvas.SetActive(true);
         UIHidden = false;
+
+        // EVENT:: for game ui shown
+        //if (DevEventHandler.eventsOn) { DevEventHandler.CreateInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceshowui")}"); }
     }
 }

@@ -80,7 +80,7 @@ public class SettingsPanel : MonoBehaviour {
     }
 
     /// <summary>
-    /// Opens settings panel.
+    /// Opens settings panel. [EVENT]
     /// </summary>
     public static void OpenSettingsPanel() {
         settings.settingsPanel.transform.localScale = new Vector3(1f, 1f, 1f);
@@ -93,10 +93,13 @@ public class SettingsPanel : MonoBehaviour {
         OpenAction();
         settingsOpen = true;
         GameUI.HideUI();
+
+        // EVENT:: for settings panel being opened
+        DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacesettingsopened")}");
     }
 
     /// <summary>
-    /// Closes settings panel.
+    /// Closes settings panel. [EVENT]
     /// </summary>
     public static void CloseSettingsPanel() {
         settings.settingsPanel.transform.localScale = new Vector3(0f, 0f, 1f);
@@ -110,10 +113,13 @@ public class SettingsPanel : MonoBehaviour {
         settingsOpen = false;
 
         if (ExtraSettings.hideUI) { GameUI.ShowUI(); }
+
+        // EVENT:: for settings panel being closed
+        DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacesettingsclosed")}");
     }
 
     /// <summary>
-    /// Opens 'AfterActionReport' panel.
+    /// Opens 'AfterActionReport' panel. [EVENT]
     /// </summary>
     public static void OpenAfterActionReport() {
         //settings.darkenBackground.SetActive(true);
@@ -125,10 +131,13 @@ public class SettingsPanel : MonoBehaviour {
         settings.afterPanel.transform.localScale = new Vector3(1f, 1f, 1f);
         afterActionReportOpen = true;
         GameUI.HideUI();
+
+        // EVENT:: for AAR panel being opened
+        DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceaaropened")}");
     }
 
     /// <summary>
-    /// Closes 'AfterActionReport' panel.
+    /// Closes 'AfterActionReport' panel. [EVENT]
     /// </summary>
     public static void CloseAfterActionReport() {
         //settings.darkenBackground.SetActive(false);
@@ -139,6 +148,9 @@ public class SettingsPanel : MonoBehaviour {
         afterActionReportOpen = false;
 
         if (ExtraSettings.hideUI) { GameUI.ShowUI(); }
+
+        // EVENT:: for AAR panel being opened
+        DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceaarclosed")}");
     }
 
     /// <summary>

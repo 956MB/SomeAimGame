@@ -91,5 +91,21 @@ public class ButtonHoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
                 skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxslate")}");
                 break;
         }
+
+        if (buttonHoverName.Contains("TargetColor")) {
+            TargetColorHoverEvent(buttonHoverName);
+        } else if (buttonHoverName.Contains("Skybox")) {
+            SkyboxHoverEvent(buttonHoverName);
+        }
+    }
+
+    private static void SkyboxHoverEvent(string skyboxString) {
+        // EVENT:: for new skybox button hovered
+        DevEventHandler.CheckInterfaceEvent($"\"{skyboxString}\" {I18nTextTranslator.SetTranslatedText("eventinterfaceskyboxbuttonhover")}");
+    }
+
+    private static void TargetColorHoverEvent(string targetColorString) {
+        // EVENT:: for new target color button hovered
+        DevEventHandler.CheckInterfaceEvent($"\"{targetColorString}\" {I18nTextTranslator.SetTranslatedText("eventinterfacetargetcolorbuttonhover")}");
     }
 }

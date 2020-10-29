@@ -6,6 +6,7 @@ using TMPro;
 public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     public TMP_Text targetColorSelected, skyboxSelected;
     GameObject buttonBorder;
+    string gamemodeClickedName;
 
     /// <summary>
     /// Closes settings panel.
@@ -20,6 +21,9 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     /// </summary>
     public void RestartCurrentGame() {
         //SettingsPanel.CloseAfterActionReport();
+        // EVENT:: for new gamemode start
+        DevEventHandler.CheckGamemodeEvent($"\"{gamemodeClickedName}\" {I18nTextTranslator.SetTranslatedText("eventgamemodestarted")}");
+
         GameUI.RestartGame(CosmeticsSettings.gamemode);
     }
 
@@ -49,13 +53,18 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     /// </summary>
     /// <param name="clickedButtonBorder"></param>
     public void SelectNewGamemode(GameObject clickedButtonBorder) {
-        string gamemodeClickedName = clickedButtonBorder.transform.parent.name;
+        gamemodeClickedName = clickedButtonBorder.transform.parent.name;
         ClearGamemodeButtonBorders();
         clickedButtonBorder.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         clickedButtonBorder.SetActive(true);
 
         // Populate selected gamemode based on button clicked in gamemode settings panel.
         GamemodeSelect.PopulateGamemodeSelect(gamemodeClickedName, CosmeticsSettings.quickStartGame);
+
+        // EVENT:: for new gamemode button clicked
+        DevEventHandler.CheckInterfaceEvent($"\"{gamemodeClickedName}\" {I18nTextTranslator.SetTranslatedText("eventinterfacegamemodebutton")}");
+        // EVENT:: for new gamemode selected
+        DevEventHandler.CheckGamemodeEvent($"\"{gamemodeClickedName}\" {I18nTextTranslator.SetTranslatedText("eventinterfacegamemodebutton")}");
     }
 
     /// <summary>
@@ -111,6 +120,11 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
 
         // Changes gamemode video previews when new target color selected.
         SettingsPanel.LoadGamemodePreviews();
+
+        // EVENT:: for new target color button clicked
+        DevEventHandler.CheckTargetsEvent($"\"{targetColorClickedName}\" {I18nTextTranslator.SetTranslatedText("eventinterfacetargetcolorbutton")}");
+        // EVENT:: for new target color selected
+        DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetscolorchange")} \"{targetColorClickedName}\"");
     }
 
     /// <summary>
@@ -152,6 +166,11 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
                 break;
         }
 
+        // EVENT:: for new skybox button clicked
+        DevEventHandler.CheckInterfaceEvent($"\"{skyboxClickedName}\" {I18nTextTranslator.SetTranslatedText("eventinterfaceskyboxbutton")}");
+        // EVENT:: for new skybox selected
+        DevEventHandler.CheckSkyboxEvent($"{I18nTextTranslator.SetTranslatedText("eventskyboxchange")} \"{skyboxClickedName}\"");
+        
         //CrosshairRenderTextureBackground.initRenderTexture();
     }
 

@@ -18,7 +18,7 @@ public class HitSound : MonoBehaviour {
             audioSrc.PlayOneShot(hitSound.hitSoundSrc);
 
             // EVENT:: for new hit sound triggered
-            if (DevEventHandler.eventsOn) { DevEventHandler.CreateSoundEvent($"{I18nTextTranslator.SetTranslatedText("eventsoundfiredhit")}"); }
+            DevEventHandler.CheckSoundEvent($"{I18nTextTranslator.SetTranslatedText("eventsoundfiredhit")}");
         }
     }
 }

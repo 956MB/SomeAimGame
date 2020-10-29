@@ -16,7 +16,7 @@ public class ToggleHandler : MonoBehaviour {
             enabled = false;
         }
 
-        SettingsPanel.CloseSettingsPanel();
+        //SettingsPanel.CloseSettingsPanel();
         checkToggle = GetComponent<Toggle>();
         //extraToggleName = extraToggle.name;
         try {

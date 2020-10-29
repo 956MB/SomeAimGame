@@ -21,7 +21,7 @@ public class UISound : MonoBehaviour {
             audioSrc.PlayOneShot(uiSound.uiSoundSrc01);
 
             // EVENT:: for new hover sound triggered
-            if (DevEventHandler.eventsOn) { DevEventHandler.CreateSoundEvent($"{I18nTextTranslator.SetTranslatedText("eventsoundfiredhover")}"); }
+            DevEventHandler.CheckSoundEvent($"{I18nTextTranslator.SetTranslatedText("eventsoundfiredhover")}");
         }
     }
 
@@ -34,7 +34,7 @@ public class UISound : MonoBehaviour {
             audioSrc.PlayOneShot(uiSound.uiSoundSrc02);
 
             // EVENT:: for new click sound triggered
-            if (DevEventHandler.eventsOn) { DevEventHandler.CreateSoundEvent($"{I18nTextTranslator.SetTranslatedText("eventsoundfiredclick")}"); }
+            DevEventHandler.CheckSoundEvent($"{I18nTextTranslator.SetTranslatedText("eventsoundfiredclick")}");
         }
     }
 

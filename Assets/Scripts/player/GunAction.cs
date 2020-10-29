@@ -35,7 +35,7 @@ public class GunAction : MonoBehaviour {
     }
 
     /// <summary>
-    /// Fires raycast from center screen to "shoot" and hit targets in game.
+    /// Fires raycast from center screen to "shoot" and hit targets in game. [EVENT]
     /// </summary>
     private void Shoot() {
         RaycastHit gunHit;
@@ -52,14 +52,23 @@ public class GunAction : MonoBehaviour {
                             bool correctTargetHit = SpawnTargets.CheckPairHit(gunHit.transform.position);
                             if (correctTargetHit) {
                                 GameUI.IncreaseScore();
+
+                                // EVENT:: for pair target hit, update score
+                                DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetshitpairs")} ({gunHit.transform.position})");
                             } else {
                                 GameUI.DecreaseScore();
+
+                                // EVENT:: for pair target miss, descrease score
+                                DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsmisspairs")} ({gunHit.transform.position})");
                             }
                         }
                         SpawnTargets.CheckTargetCount(gunHit, true);
                     } else {
                         GameUI.IncreaseScore();
                         SpawnTargets.CheckTargetCount(gunHit, true);
+
+                        // EVENT:: for target hit, update score
+                        DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetshit")} ({gunHit.transform.position})");
                     }
                     break;
                 default:
@@ -67,6 +76,9 @@ public class GunAction : MonoBehaviour {
                     if (SpawnTargets.gamemode != "Gamemode-Pairs") {
                         GameUI.DecreaseScore();
                         SpawnTargets.CheckTargetCount(gunHit, false);
+
+                        // EVENT:: for target miss, descrease score
+                        DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsmiss")} ({gunHit.transform.position})");
                     }
                     break;
             }

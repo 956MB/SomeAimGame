@@ -16,6 +16,6 @@ public class LanguageChangeButton : MonoBehaviour, IPointerClickHandler {
         LanguageSetting.SaveLanguageCodeItem(langCode);
 
         // EVENT:: for new game language set
-        if (DevEventHandler.eventsOn) { DevEventHandler.CreateLanguageEvent($"{I18nTextTranslator.SetTranslatedText("eventlanguagegameset")} [{langCode}]"); }
+        DevEventHandler.CheckLanguageEvent($"{I18nTextTranslator.SetTranslatedText("eventlanguagegameset")} [{langCode}]");
     }
 }

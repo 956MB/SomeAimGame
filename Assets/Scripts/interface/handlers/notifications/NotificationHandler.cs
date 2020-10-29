@@ -17,7 +17,7 @@ public class NotificationHandler : MonoBehaviour {
         gameObject.SetActive(false);
 
         // EVENT:: for notification object hidden on awake
-        if (DevEventHandler.eventsOn) { DevEventHandler.CreateNotificationEvent($"{I18nTextTranslator.SetTranslatedText("eventnotificationdisabled")}"); }
+        //DevEventHandler.CheckNotificationEvent($"{I18nTextTranslator.SetTranslatedText("eventnotificationdisabled")}");
     }
 
     /// <summary>
@@ -32,7 +32,7 @@ public class NotificationHandler : MonoBehaviour {
         notificationOpen = true;
 
         // EVENT:: for new string notification
-        if (DevEventHandler.eventsOn) { DevEventHandler.CreateNotificationEvent($"{I18nTextTranslator.SetTranslatedText("eventnotificationcreatedstring")} \"{notificationText}\""); }
+        DevEventHandler.CheckNotificationEvent($"{I18nTextTranslator.SetTranslatedText("eventnotificationcreatedstring")} \"{notificationText}\"");
     }
 
     /// <summary>
@@ -48,7 +48,7 @@ public class NotificationHandler : MonoBehaviour {
         notificationOpen = true;
 
         // EVENT:: for new translated notification
-        if (DevEventHandler.eventsOn) { DevEventHandler.CreateNotificationEvent($"{I18nTextTranslator.SetTranslatedText("eventnotificationcreatedtranslation")} \"{notificationContent}\""); }
+        DevEventHandler.CheckNotificationEvent($"{I18nTextTranslator.SetTranslatedText("eventnotificationcreatedtranslation")} \"{notificationContent}\"");
     }
 
     /// <summary>
@@ -59,6 +59,6 @@ public class NotificationHandler : MonoBehaviour {
         notificationOpen = false;
 
         // EVENT:: for active notification hidden
-        if (DevEventHandler.eventsOn) { DevEventHandler.CreateNotificationEvent(I18nTextTranslator.SetTranslatedText("eventnotificationhidden")); }
+        DevEventHandler.CheckNotificationEvent(I18nTextTranslator.SetTranslatedText("eventnotificationhidden"));
     }
 }

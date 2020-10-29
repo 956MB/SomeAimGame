@@ -35,6 +35,7 @@ public class I18n : MonoBehaviour {
     public static I18n i18n;
     private void Awake() {
         i18n = this;
+        //DevEventHandler.ClearDevEventLayoutGroup();
         LanguageSaveSystem.InitSavedLanguageSetting();
     }
 

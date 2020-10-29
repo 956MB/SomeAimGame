@@ -80,7 +80,7 @@ public class SpawnTargets : MonoBehaviour {
     //}
 
     /// <summary>
-    /// Init game with target size, spawns list and saved gamemode.
+    /// Init game with target size, spawns list and saved gamemode. [EVENT]
     /// </summary>
     public static void InitSpawnTargets() {
         // Init gamemode setting.
@@ -111,6 +111,9 @@ public class SpawnTargets : MonoBehaviour {
 
         // Start game by selecting saved gamemode.
         SelectGamemode();
+
+        // EVENT:: for saved gamemode load
+        DevEventHandler.CheckGamemodeEvent($"\"{gamemode}\" {I18nTextTranslator.SetTranslatedText("eventgamemodeloaded")}");
     }
 
     /// <summary>
@@ -587,7 +590,7 @@ public class SpawnTargets : MonoBehaviour {
     }
 
     /// <summary>
-    /// Checks supplied spawn point (targetSpawn) to see if targetSpawns list already contains it (target location already used), then returns valid spawn point after while loop.
+    /// Checks supplied spawn point (targetSpawn) to see if targetSpawns list already contains it (target location already used), then returns valid spawn point after while loop. [EVENT //TODO]
     /// </summary>
     /// <param name="targetSpawn"></param>
     /// <returns></returns>
@@ -608,7 +611,7 @@ public class SpawnTargets : MonoBehaviour {
     }
 
     /// <summary>
-    /// Returns initial list of available scatter spawns (Vector3).
+    /// Returns initial list of available scatter spawns (Vector3). [EVENT]
     /// </summary>
     /// <returns></returns>
     private static List<Vector3> GetScatterTargetSpawns() {
@@ -621,6 +624,9 @@ public class SpawnTargets : MonoBehaviour {
             }
 
             if (scatterTargetSpawns.Count >= 72) {
+                // EVENT:: for initial scatter spawns list
+                DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsscatterinitial")} ({scatterTargetSpawns.Count})");
+
                 return scatterTargetSpawns;
             }
         }
@@ -629,7 +635,7 @@ public class SpawnTargets : MonoBehaviour {
     }
 
     /// <summary>
-    /// Finds and removes supplied target position (targetPos) from target spawns list.
+    /// Finds and removes supplied target position (targetPos) from target spawns list. [EVENT]
     /// </summary>
     /// <param name="targetPos"></param>
     private static void FindAndRemoveTargetFromList(Vector3 targetPos) {
@@ -648,19 +654,25 @@ public class SpawnTargets : MonoBehaviour {
                 targetSpawnsSecondary.Remove(targetPos);
             }
         }
+
+        // EVENT:: for remove target from spawn list
+        DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsremove")} ({pos})");
     }
 
     /// <summary>
-    /// Clears all target spawns lists.
+    /// Clears all target spawns lists. [EVENT]
     /// </summary>
     public static void ClearTargetLists() {
         targetSpawns.Clear();
         targetSpawnsPrimary.Clear();
         targetSpawnsSecondary.Clear();
+
+        // EVENT:: for clear target lists
+        DevEventHandler.CheckGamemodeEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceelementsreset")} \"{gamemode}\"");
     }
 
     /// <summary>
-    /// Destroys target spawn area boxes after their bounds are saved.
+    /// Destroys target spawn area boxes after their bounds are saved. [EVENT]
     /// </summary>
     private static void DestroySpawnAreas() {
         if (!targetAreasDestroyed) {
@@ -672,11 +684,14 @@ public class SpawnTargets : MonoBehaviour {
                 Debug.Log("missing reference exception here, couldnt destroy spawn area: " + mre);
                 targetAreasDestroyed = true;
             }
+
+            // EVENT:: for destroy spawn areas
+            DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsdestroyspawnarea")} \"{gamemode}\"");
         }
     }
 
     /// <summary>
-    /// Loops and finds any lasting target spawn area boxes and destroys them (possible bug).
+    /// Loops and finds any lasting target spawn area boxes and destroys them (possible bug). [EVENT]
     /// </summary>
     private static void DestroyNewSpawnAreas() {
         // Finds any gameObjects with "TargetSpawnArea" tag and destroys them.
@@ -688,26 +703,36 @@ public class SpawnTargets : MonoBehaviour {
         } catch (MissingReferenceException mre) {
             Debug.Log("missing reference exception here, couldnt destroy \"NEW\" spawn area: " + mre);
         }
+
+        // EVENT:: for destroy new spawn areas
+        DevEventHandler.CheckTargetsEvent($"*NEW* {I18nTextTranslator.SetTranslatedText("eventtargetsdestroyspawnarea")} \"{gamemode}\"");
     }
 
     /// <summary>
-    /// Finds any gameObjects with tag "Target" and destroys them.
+    /// Finds any gameObjects with tag "Target" and destroys them. [EVENT]
     /// </summary>
     public static void DestroyTargetObjects() {
         targetObjects = GameObject.FindGameObjectsWithTag("Target");
         for (int i = 0; i < targetObjects.Length; i++) { Destroy(targetObjects[i]); }
+
+        // EVENT:: for destroy new spawn areas
+        DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsalldestroyed")} \"{gamemode}\"");
     }
 
     /// <summary>
-    /// Destroys all target gameObjects and respawns them with current gamemode.
+    /// Destroys all target gameObjects and respawns them with current gamemode. [EVENT]
     /// </summary>
     public static void RespawnTargets() {
         DestroyTargetObjects();
+
+        // EVENT:: for respawn targets
+        DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsrespawn")} \"{gamemode}\"");
+
         SelectGamemode();
     }
 
     /// <summary>
-    /// Resets all target game values.
+    /// Resets all target game values. [EVENT]
     /// </summary>
     public static void ResetSpawnTargets() {
         shotsHit   = 0;
@@ -716,5 +741,8 @@ public class SpawnTargets : MonoBehaviour {
         totalCount = 0;
         targetAreasDestroyed   = false;
         GunAction.timerRunning = true;
+
+        // EVENT:: for reset targets spawn values
+        DevEventHandler.CheckGamemodeEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsreset")}");
     }
 }
