@@ -8,7 +8,8 @@ public class DevEventHandler : MonoBehaviour {
     public VerticalLayoutGroup eventLayoutGroup;
     public GameObject gamemodeEventPrefab, timeEventPrefab, crosshairEventPrefab, targetsEventPrefab, interfaceEventPrefab, saveEventPrefab, skyboxEventPrefab, languageEventPrefab, keybindEventPrefab, soundEventPrefab, notificationEventPrefab, statsEventPrefab;
     public Image gamemodeSignalPrefabImage, timeSignalPrefabImage, crosshairSignalPrefabImage, targetsSignalPrefabImage, interfaceSignalPrefabImage, saveSignalPrefabImage, skyboxSignalPrefabImage, languageSignalPrefabImage, keybindSignalPrefabImage, soundSignalPrefabImage, notificationSignalPrefabImage, statsSignalPrefabImage;
-    public TMP_Text eventCountText; 
+    public TMP_Text eventCountText;
+    private Image currentSignalImage;
 
     public static bool gamemodeSignalRunning, timeSignalRunning, crosshairSignalRunning, targetsSignalRunning, interfaceSignalRunning, saveSignalRunning, skyboxSignalRunning, languageSignalRunning, keybindSignalRunning, soundSignalRunning, notificationSignalRunning, statsSignalRunning;
 
@@ -23,36 +24,40 @@ public class DevEventHandler : MonoBehaviour {
 
     public static string longestCardTypeText, gamemodeCardSpaces, timeCardSpaces, crosshairCardSpaces, targetsCardSpaces, interfaceCardSpaces, saveCardSpaces, skyboxCardSpaces, languageCardSpaces, keybindCardSpaces, soundCardSpaces, notificationCardSpaces, statsCardSpaces;
 
-    public static Color signalGamemodeColor     = new Color(255f, 130f, 0f, 255f);
-    public static Color signalTimeColor         = new Color(255f, 183f, 0f, 255f);
-    public static Color signalCrosshairColor    = new Color(0f, 184f, 255f, 255f);
-    public static Color signalTargetsColor      = new Color(117f, 0f, 255f, 255f);
-    public static Color signalInterfaceColor    = new Color(0f, 255f, 0f, 255f);
-    public static Color signalSaveColor         = new Color(255f, 130f, 0f, 255f);
-    public static Color signalSkyboxColor       = new Color(255f, 0f, 0f, 255f);
-    public static Color signalLanguageColor     = new Color(110f, 0f, 255f, 255f);
-    public static Color signalKeybindColor      = new Color(0f, 255f, 227f, 255f);
-    public static Color signalSoundColor        = new Color(255f, 0f, 136f, 255f);
-    public static Color signalNotificationColor = new Color(0f, 85f, 255f, 255f);
-    public static Color signalStatsColor        = new Color(255f, 255f, 255f, 255f);
-    public static Color signalDefaultColor      = new Color(255f, 255f, 255f, 200f);
+    public static Color signalGamemodeColor, signalTimeColor, signalCrosshairColor, signalTargetsColor, signalInterfaceColor, signalSaveColor, signalSkyboxColor, signalLanguageColor, signalKeybindColor, signalSoundColor, signalNotificationColor, signalStatsColor, signalDefaultColor;
 
     public static DevEventHandler devEvents;
-    private void Awake() { devEvents = this; }
+    private void Awake() {
+        devEvents = this;
+        
+        signalGamemodeColor     = gamemodeSignalPrefabImage.GetComponent<Image>().color;
+        signalTimeColor         = timeSignalPrefabImage.GetComponent<Image>().color;
+        signalCrosshairColor    = crosshairSignalPrefabImage.GetComponent<Image>().color;
+        signalTargetsColor      = targetsSignalPrefabImage.GetComponent<Image>().color;
+        signalInterfaceColor    = interfaceSignalPrefabImage.GetComponent<Image>().color;
+        signalSaveColor         = saveSignalPrefabImage.GetComponent<Image>().color;
+        signalSkyboxColor       = skyboxSignalPrefabImage.GetComponent<Image>().color;
+        signalLanguageColor     = languageSignalPrefabImage.GetComponent<Image>().color;
+        signalKeybindColor      = keybindSignalPrefabImage.GetComponent<Image>().color;
+        signalSoundColor        = soundSignalPrefabImage.GetComponent<Image>().color;
+        signalNotificationColor = notificationSignalPrefabImage.GetComponent<Image>().color;
+        signalStatsColor        = statsSignalPrefabImage.GetComponent<Image>().color;
+        signalDefaultColor      = statsSignalPrefabImage.GetComponent<Image>().color;
+    }
 
     // Cards vs signals check
-    public static void CheckGamemodeEvent(string eventContent) { if (cardsOn) {     CreateGamemodeCard(eventContent); } else if (signalsOn) {     CreateGamemodeSignal(); } }
-    public static void CheckTimeEvent(string eventContent) { if (cardsOn) {         CreateTimeCard(eventContent); } else if (signalsOn) {         CreateTimeSignal(); } }
-    public static void CheckCrossahairEvent(string eventContent) { if (cardsOn) {   CreateCrosshairCard(eventContent); } else if (signalsOn) {    CreateCrosshairSignal(); } }
-    public static void CheckTargetsEvent(string eventContent) { if (cardsOn) {      CreateTargetsCard(eventContent); } else if (signalsOn) {      CreateTargetsSignal(); } }
-    public static void CheckInterfaceEvent(string eventContent) { if (cardsOn) {    CreateInterfaceCard(eventContent); } else if (signalsOn) {    CreateInterfaceSignal(); } }
-    public static void CheckSaveEvent(string eventContent) { if (cardsOn) {         CreateSaveCard(eventContent); } else if (signalsOn) {         CreateSaveSignal(); } }
-    public static void CheckSkyboxEvent(string eventContent) { if (cardsOn) {       CreateSkyboxCard(eventContent); } else if (signalsOn) {       CreateSkyboxSignal(); } }
-    public static void CheckLanguageEvent(string eventContent) { if (cardsOn) {     CreateLanguageCard(eventContent); } else if (signalsOn) {     CreateLanguageSignal(); } }
-    public static void CheckKeybindEvent(string eventContent) { if (cardsOn) {      CreateKeybindCard(eventContent); } else if (signalsOn) {      CreateKeybindSignal(); } }
-    public static void CheckSoundEvent(string eventContent) { if (cardsOn) {        CreateSoundCard(eventContent); } else if (signalsOn) {        CreateSoundSignal(); } }
-    public static void CheckNotificationEvent(string eventContent) { if (cardsOn) { CreateNotificationCard(eventContent); } else if (signalsOn) { CreateNotificationSignal(); } }
-    public static void CheckStatsEvent(string eventContent) { if (cardsOn) {        CreateStatsCard(eventContent); } else if (signalsOn) {        CreateStatsSignal(); } }
+    public static void CheckGamemodeEvent(string eventContent) { if (cardsOn) {     CreateGamemodeCard(eventContent); } else if (signalsOn) {     CreateSignal(DevEventType.Gamemode, ref gamemodeSignalRunning); } }
+    public static void CheckTimeEvent(string eventContent) { if (cardsOn) {         CreateTimeCard(eventContent); } else if (signalsOn) {         CreateSignal(DevEventType.Time, ref timeSignalRunning); } }
+    public static void CheckCrossahairEvent(string eventContent) { if (cardsOn) {   CreateCrosshairCard(eventContent); } else if (signalsOn) {    CreateSignal(DevEventType.Crosshair, ref crosshairSignalRunning); } }
+    public static void CheckTargetsEvent(string eventContent) { if (cardsOn) {      CreateTargetsCard(eventContent); } else if (signalsOn) {      CreateSignal(DevEventType.Targets, ref targetsSignalRunning); } }
+    public static void CheckInterfaceEvent(string eventContent) { if (cardsOn) {    CreateInterfaceCard(eventContent); } else if (signalsOn) {    CreateSignal(DevEventType.Interface, ref interfaceSignalRunning); } }
+    public static void CheckSaveEvent(string eventContent) { if (cardsOn) {         CreateSaveCard(eventContent); } else if (signalsOn) {         CreateSignal(DevEventType.Save, ref saveSignalRunning); } }
+    public static void CheckSkyboxEvent(string eventContent) { if (cardsOn) {       CreateSkyboxCard(eventContent); } else if (signalsOn) {       CreateSignal(DevEventType.Skybox, ref skyboxSignalRunning); } }
+    public static void CheckLanguageEvent(string eventContent) { if (cardsOn) {     CreateLanguageCard(eventContent); } else if (signalsOn) {     CreateSignal(DevEventType.Language, ref languageSignalRunning); } }
+    public static void CheckKeybindEvent(string eventContent) { if (cardsOn) {      CreateKeybindCard(eventContent); } else if (signalsOn) {      CreateSignal(DevEventType.Keybind, ref keybindSignalRunning); } }
+    public static void CheckSoundEvent(string eventContent) { if (cardsOn) {        CreateSoundCard(eventContent); } else if (signalsOn) {        CreateSignal(DevEventType.Sound, ref soundSignalRunning); } }
+    public static void CheckNotificationEvent(string eventContent) { if (cardsOn) { CreateNotificationCard(eventContent); } else if (signalsOn) { CreateSignal(DevEventType.Notification, ref notificationSignalRunning); } }
+    public static void CheckStatsEvent(string eventContent) { if (cardsOn) {        CreateStatsCard(eventContent); } else if (signalsOn) {        CreateSignal(DevEventType.Stats, ref statsSignalRunning); } }
 
     // Event cards
     public static void CreateGamemodeCard(string textContent) {     NewEventCard($"{gamemodeCardSpaces}", devEvents.gamemodeEventPrefab, textContent); }
@@ -69,95 +74,44 @@ public class DevEventHandler : MonoBehaviour {
     public static void CreateStatsCard(string textContent) {        NewEventCard($"{statsCardSpaces}", devEvents.statsEventPrefab, textContent); }
 
     // Event signals
-    public static void CreateGamemodeSignal() {
-        if (!gamemodeSignalRunning) {
-            gamemodeSignalRunning = true;
-            NewSignalEvent(devEvents.gamemodeSignalPrefabImage, signalGamemodeColor);
-            devEvents.StartCoroutine(DisableGamemodeSignal_Delay(devEvents.gamemodeSignalPrefabImage));
+
+    public static void CreateSignal(DevEventType devEventType, ref bool signalRunning) {
+        if (!signalRunning) { signalRunning = true; }
+
+        switch (devEventType) {
+            case DevEventType.Gamemode:
+                NewSignalEvent(devEvents.gamemodeSignalPrefabImage, signalGamemodeColor); devEvents.currentSignalImage = devEvents.gamemodeSignalPrefabImage; break;
+            case DevEventType.Time:
+                NewSignalEvent(devEvents.timeSignalPrefabImage, signalTimeColor); devEvents.currentSignalImage = devEvents.timeSignalPrefabImage; break;
+            case DevEventType.Crosshair:
+                NewSignalEvent(devEvents.crosshairSignalPrefabImage, signalCrosshairColor); devEvents.currentSignalImage = devEvents.crosshairSignalPrefabImage; break;
+            case DevEventType.Targets:
+                NewSignalEvent(devEvents.targetsSignalPrefabImage, signalTargetsColor); devEvents.currentSignalImage = devEvents.targetsSignalPrefabImage; break;
+            case DevEventType.Interface:
+                NewSignalEvent(devEvents.interfaceSignalPrefabImage, signalInterfaceColor); devEvents.currentSignalImage = devEvents.interfaceSignalPrefabImage; break;
+            case DevEventType.Save:
+                NewSignalEvent(devEvents.saveSignalPrefabImage, signalSaveColor); devEvents.currentSignalImage = devEvents.saveSignalPrefabImage; break;
+            case DevEventType.Skybox:
+                NewSignalEvent(devEvents.skyboxSignalPrefabImage, signalSkyboxColor); devEvents.currentSignalImage = devEvents.skyboxSignalPrefabImage; break;
+            case DevEventType.Language:
+                NewSignalEvent(devEvents.languageSignalPrefabImage, signalLanguageColor); devEvents.currentSignalImage = devEvents.languageSignalPrefabImage; break;
+            case DevEventType.Keybind:
+                NewSignalEvent(devEvents.keybindSignalPrefabImage, signalKeybindColor); devEvents.currentSignalImage = devEvents.keybindSignalPrefabImage; break;
+            case DevEventType.Sound:
+                NewSignalEvent(devEvents.soundSignalPrefabImage, signalSoundColor); devEvents.currentSignalImage = devEvents.soundSignalPrefabImage; break;
+            case DevEventType.Notification:
+                NewSignalEvent(devEvents.notificationSignalPrefabImage, signalNotificationColor); devEvents.currentSignalImage = devEvents.notificationSignalPrefabImage; break;
+            case DevEventType.Stats:
+                NewSignalEvent(devEvents.statsSignalPrefabImage, signalStatsColor); devEvents.currentSignalImage = devEvents.statsSignalPrefabImage; break;
         }
-    }
-    public static void CreateTimeSignal() {
-        if (!timeSignalRunning) {
-            timeSignalRunning = true;
-            NewSignalEvent(devEvents.timeSignalPrefabImage, signalTimeColor);
-            devEvents.StartCoroutine(DisableTimeSignal_Delay(devEvents.timeSignalPrefabImage));
-        }
-    }
-    public static void CreateCrosshairSignal() {
-        if (!crosshairSignalRunning) {
-            timeSignalRunning = true;
-            NewSignalEvent(devEvents.crosshairSignalPrefabImage, signalCrosshairColor);
-            devEvents.StartCoroutine(DisableCrossahirSignal_Delay(devEvents.crosshairSignalPrefabImage));
-        }
-    }
-    public static void CreateTargetsSignal() {
-        if (!targetsSignalRunning) {
-            targetsSignalRunning = true;
-            NewSignalEvent(devEvents.targetsSignalPrefabImage, signalTargetsColor);
-            devEvents.StartCoroutine(DisableTargetsSignal_Delay(devEvents.targetsSignalPrefabImage));
-        }
-    }
-    public static void CreateInterfaceSignal() {
-        if (!interfaceSignalRunning) {
-            interfaceSignalRunning = true;
-            NewSignalEvent(devEvents.interfaceSignalPrefabImage, signalInterfaceColor);
-            devEvents.StartCoroutine(DisableInterfaceSignal_Delay(devEvents.interfaceSignalPrefabImage));
-        }
-    }
-    public static void CreateSaveSignal() {
-        if (!saveSignalRunning) {
-            saveSignalRunning = true;
-            NewSignalEvent(devEvents.saveSignalPrefabImage, signalSaveColor);
-            devEvents.StartCoroutine(DisableSaveSignal_Delay(devEvents.saveSignalPrefabImage));
-        }
-    }
-    public static void CreateSkyboxSignal() {
-        if (!skyboxSignalRunning) {
-            skyboxSignalRunning = true;
-            NewSignalEvent(devEvents.skyboxSignalPrefabImage, signalSkyboxColor);
-            devEvents.StartCoroutine(DisableSkyboxSignal_Delay(devEvents.skyboxSignalPrefabImage));
-        }
-    }
-    public static void CreateLanguageSignal() {
-        if (!languageSignalRunning) {
-            languageSignalRunning = true;
-            NewSignalEvent(devEvents.languageSignalPrefabImage, signalLanguageColor);
-            devEvents.StartCoroutine(DisableLanguageSignal_Delay(devEvents.languageSignalPrefabImage));
-        }
-    }
-    public static void CreateKeybindSignal() {
-        if (!keybindSignalRunning) {
-            keybindSignalRunning = true;
-            NewSignalEvent(devEvents.keybindSignalPrefabImage, signalKeybindColor);
-            devEvents.StartCoroutine(DisableKeybindSignal_Delay(devEvents.keybindSignalPrefabImage));
-        }
-    }
-    public static void CreateSoundSignal() {
-        if (!soundSignalRunning) {
-            soundSignalRunning = true;
-            NewSignalEvent(devEvents.soundSignalPrefabImage, signalSoundColor);
-            devEvents.StartCoroutine(DisableSoundSignal_Delay(devEvents.soundSignalPrefabImage));
-        }
-    }
-    public static void CreateNotificationSignal() {
-        if (!notificationSignalRunning) {
-            notificationSignalRunning = true;
-            NewSignalEvent(devEvents.notificationSignalPrefabImage, signalNotificationColor);
-            devEvents.StartCoroutine(DisableNotificationSignal_Delay(devEvents.notificationSignalPrefabImage));
-        }
-    }
-    public static void CreateStatsSignal() {
-        if (!statsSignalRunning) {
-            statsSignalRunning = true;
-            NewSignalEvent(devEvents.statsSignalPrefabImage, signalStatsColor);
-            devEvents.StartCoroutine(DisableStatsSignal_Delay(devEvents.statsSignalPrefabImage));
-        }
+        
+        devEvents.StartCoroutine(DisableSignal_Delay(devEvents.currentSignalImage, devEventType));
     }
 
     public static void NewSignalEvent(Image signalPrefabImage, Color signalColor) {
         signalPrefabImage.color = signalColor;
         eventCount++;
-        devEvents.eventCountText.SetText($"{eventCount}");
+        //devEvents.eventCountText.SetText($"{eventCount}");
     }
 
     /// <summary>
@@ -283,64 +237,30 @@ public class DevEventHandler : MonoBehaviour {
     }
 
     // Signal delays
-    public static IEnumerator DisableGamemodeSignal_Delay(Image signalImage) {
-        yield return signalDestroyDelay;
-        signalImage.color     = new Color(signalImage.color.r, signalImage.color.g, signalImage.color.b, 0.15f);
-        gamemodeSignalRunning = false;
-    }
-    public static IEnumerator DisableTimeSignal_Delay(Image signalImage) {
+    public static IEnumerator DisableSignal_Delay(Image signalImage, DevEventType signalRunning) {
         yield return signalDestroyDelay;
         signalImage.color = new Color(signalImage.color.r, signalImage.color.g, signalImage.color.b, 0.15f);
-        timeSignalRunning = false;
+        DisableRunningSignal(signalRunning);
     }
-    public static IEnumerator DisableCrossahirSignal_Delay(Image signalImage) {
-        yield return signalDestroyDelay;
-        signalImage.color      = new Color(signalImage.color.r, signalImage.color.g, signalImage.color.b, 0.15f);
-        crosshairSignalRunning = false;
-    }
-    public static IEnumerator DisableTargetsSignal_Delay(Image signalImage) {
-        yield return signalDestroyDelay;
-        signalImage.color    = new Color(signalImage.color.r, signalImage.color.g, signalImage.color.b, 0.15f);
-        targetsSignalRunning = false;
-    }
-    public static IEnumerator DisableInterfaceSignal_Delay(Image signalImage) {
-        yield return signalDestroyDelay;
-        signalImage.color      = new Color(signalImage.color.r, signalImage.color.g, signalImage.color.b, 0.15f);
-        interfaceSignalRunning = false;
-    }
-    public static IEnumerator DisableSaveSignal_Delay(Image signalImage) {
-        yield return signalDestroyDelay;
-        signalImage.color = new Color(signalImage.color.r, signalImage.color.g, signalImage.color.b, 0.15f);
-        saveSignalRunning = false;
-    }
-    public static IEnumerator DisableSkyboxSignal_Delay(Image signalImage) {
-        yield return signalDestroyDelay;
-        signalImage.color   = new Color(signalImage.color.r, signalImage.color.g, signalImage.color.b, 0.15f);
-        skyboxSignalRunning = false;
-    }
-    public static IEnumerator DisableLanguageSignal_Delay(Image signalImage) {
-        yield return signalDestroyDelay;
-        signalImage.color     = new Color(signalImage.color.r, signalImage.color.g, signalImage.color.b, 0.15f);
-        languageSignalRunning = false;
-    }
-    public static IEnumerator DisableKeybindSignal_Delay(Image signalImage) {
-        yield return signalDestroyDelay;
-        signalImage.color    = new Color(signalImage.color.r, signalImage.color.g, signalImage.color.b, 0.15f);
-        keybindSignalRunning = false;
-    }
-    public static IEnumerator DisableSoundSignal_Delay(Image signalImage) {
-        yield return signalDestroyDelay;
-        signalImage.color  = new Color(signalImage.color.r, signalImage.color.g, signalImage.color.b, 0.15f);
-        soundSignalRunning = false;
-    }
-    public static IEnumerator DisableNotificationSignal_Delay(Image signalImage) {
-        yield return signalDestroyDelay;
-        signalImage.color         = new Color(signalImage.color.r, signalImage.color.g, signalImage.color.b, 0.15f);
-        notificationSignalRunning = false;
-    }
-    public static IEnumerator DisableStatsSignal_Delay(Image signalImage) {
-        yield return signalDestroyDelay;
-        signalImage.color  = new Color(signalImage.color.r, signalImage.color.g, signalImage.color.b, 0.15f);
-        statsSignalRunning = false;
+
+    /// <summary>
+    /// Disables supplied currently ran dev event bool (runningDevEventType).
+    /// </summary>
+    /// <param name="runningDevEventType"></param>
+    public static void DisableRunningSignal(DevEventType runningDevEventType) {
+        switch (runningDevEventType) {
+            case DevEventType.Gamemode:     gamemodeSignalRunning     = false; break;
+            case DevEventType.Time:         timeSignalRunning         = false; break;
+            case DevEventType.Crosshair:    crosshairSignalRunning    = false; break;
+            case DevEventType.Targets:      targetsSignalRunning      = false; break;
+            case DevEventType.Interface:    interfaceSignalRunning    = false; break;
+            case DevEventType.Save:         saveSignalRunning         = false; break;
+            case DevEventType.Skybox:       skyboxSignalRunning       = false; break;
+            case DevEventType.Language:     languageSignalRunning     = false; break;
+            case DevEventType.Keybind:      keybindSignalRunning      = false; break;
+            case DevEventType.Sound:        soundSignalRunning        = false; break;
+            case DevEventType.Notification: notificationSignalRunning = false; break;
+            case DevEventType.Stats:        statsSignalRunning        = false; break;
+        }
     }
 }
