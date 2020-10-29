@@ -238,24 +238,35 @@ eventtargetshit=ターゲットヒット、ヒットロケーション：
 eventtargetsmiss=ターゲットがありません
 eventtargetsnewspawnprimary=新しいプライマリターゲットスポーン：
 eventtargetsnewspawnsecondary=新しいセカンダリターゲットスポーン：
-eventtargetscolorchange=ターゲットカラーがに変更されました
-eventtargetssziechange=ターゲットサイズがに変更されました
+eventtargetscolorchange=ターゲットカラーが次のように変更されました：
+eventtargetssziechange=ターゲットサイズが次のように変更されました：
 # -- interface
-#       -- target color
+eventinterfacesettingsopened=設定パネルが開きました
+eventinterfacesettingsclosed=設定パネルが閉じています
+eventinterfacelanguageselectopened=言語選択パネルが開きました
+eventinterfacelanguageselectclosed=言語選択パネルが閉じています
+eventinterfaceaaropened=「AfterActionReport」パネルが開かれました
+eventinterfaceaarclosed='AfterActionReport'パネルが閉じました
+#       -- gamemode
 eventinterfacegamemodebuttonhover=GAMEMODEボタンがホバーされました
 eventinterfacegamemodebutton=ゲームモードボタンセット
+#       -- target color
 eventinterfacetargetcolorbuttonhover=ターゲットカラーボタンがホバーされました
 eventinterfacetargetcolorbutton=ターゲットカラーボタンセット
+#       -- skybox
 eventinterfaceskyboxbuttonhover=スカイボックスボタンホバー
 eventinterfaceskyboxbutton=スカイボックスボタンセット
 #       -- widgets
 eventinterfacewidgettoggle=ウィジェットトグルセット
+eventinterfacepanelmoveleft=設定パネルを左に移動しました。新しいPOS：
+eventinterfacepanelmoveright=設定パネルが右に移動しました。新しいPOS：
 # -- save/load
 eventsettingsobjectsave=保存された設定
 # -- skybox
 eventskyboxchange=SKYBOXがに変更されました
 # -- language
-eventlanguagefileload=言語ファイルが読み込まれました
+eventlanguagefileload=保存された言語ファイルがロードされました
+eventlanguagefileloaddefault=ロードされたデフォルトの言語ファイル
 eventlanguagegameset=ゲーム言語をに設定
 eventlanguagetextset=保存された言語に設定されたすべてのテキスト
 eventlanguagetexttranslated=保存された言語値に設定されたテキスト
@@ -264,6 +275,11 @@ eventkeybindpressed=キーバインドが押されました
 eventkeybindchanged=キーバインドが変更されました
 eventkeybindset=キーバインドをに設定
 # -- sound
-eventsoundfired=サウンドイベントが発火
+eventsoundfiredhit=ヒットサウンドイベントが発火
+eventsoundfiredhover=ホバーuiサウンドイベントが発生しました
+eventsoundfiredclick=UIサウンドイベントの起動をクリック
 # -- notifications
-eventnotificationcreated=通知が作成されました
+eventnotificationcreatedtranslation=翻訳された通知が作成されました：
+eventnotificationcreatedstring=作成された文字列通知：
+eventnotificationhidden=非表示のアクティブな通知
+eventnotificationdisabled=通知オブジェクトが非表示

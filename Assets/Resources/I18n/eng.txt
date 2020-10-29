@@ -214,14 +214,20 @@ cardtypelanguage=LANGUAGE
 cardtypekeybind=KEYBIND
 cardtypesound=SOUND
 cardtypenotification=NOTIFICATION
+cardtypestats=STATS
 #
 #
 # // dev event content
 # -- gamemode
+eventgamemodeloaded=SAVED GAMEMODE LOADED
 eventgamemodeselected=GAMEMODE SELECTED
 eventgamemodestarted=GAMEMODE STARTED
+eventgamemodescattertick=SCATTER GAMEMODE SPAWN TICK
+eventgamemodespawnsclear=SPAWNS CLEARED FOR GAMEMODE
 # -- time
 eventtimerchanged=GAME TIMER CHANGED TO
+eventtimerticknormal=NORMAL GAME TIMER TICK
+eventtimertickup=UP GAME TIMER TICK
 # -- crosshair
 eventcrosshaircenterdot=CROSSHAIR CENTER DOT SET
 eventcrosshairtstyle=CROSSHAIR T STYLE SET
@@ -234,12 +240,20 @@ eventcrosshairgreen=CROSSHAIR GREEN VALUE CHANGED TO
 eventcrosshairblue=CROSSHAIR BLUE VALUE CHANGED TO
 eventcrosshairalpha=CROSSHAIR ALPHA VALUE CHANGED TO
 # -- targets
-eventtargetshit=TARGET HIT, HIT LOCATION:
-eventtargetsmiss=TARGET MISSED
+eventtargetsrespawn=TARGETS RESPAWNED FOR CURRENT GAMEMODE
+eventtargetsreset=ALL TARGETS GAME VALUE RESET
+eventtargetsremove=REMOVED TARGET POS FROM SPAWN LIST:
+eventtargetsscatterinitial=RETURNED INITIAL SCATTER SPAWNS LIST
+eventtargetsalldestroyed=ALL TARGETS DESTROYED FOR GAMEMODE
+eventtargetsdestroyspawnarea=TARGET SPAWN AREAS DESTROYED FOR GAMEMODE
+eventtargetshit=TARGET HIT, UPDATED SCORE. POS:
+eventtargetsmiss=TARGET MISSED. POS:
+eventtargetshitpairs=CORRECT PAIR TARGET HIT. POS:
+eventtargetsmisspairs=INCORRECT PAIR TARGET HIT. POS:
 eventtargetsnewspawnprimary=NEW PRIMARY TARGET SPAWN:
 eventtargetsnewspawnsecondary=NEW SECONDARY TARGET SPAWN:
-eventtargetscolorchange=TARGET COLOR CHANGED TO
-eventtargetssziechange=TARGET SIZE CHANGED TO
+eventtargetscolorchange=TARGET COLOR CHANGED TO:
+eventtargetssziechange=TARGET SIZE CHANGED TO:
 # -- interface
 eventinterfacesettingsopened=SETTINGS PANEL OPENED
 eventinterfacesettingsclosed=SETTINGS PANEL CLOSED
@@ -247,11 +261,22 @@ eventinterfacelanguageselectopened=LANGUAGE SELECT PANEL OPENED
 eventinterfacelanguageselectclosed=LANGUAGE SELECT PANEL CLOSED
 eventinterfaceaaropened='AfterActionReport' PANEL OPENED
 eventinterfaceaarclosed='AfterActionReport' PANEL CLOSED
-#       -- target color
+eventinterfaceshowui=GAME UI SHOWN
+eventinterfacehideui=GAME UI HIDDEN
+eventinterfaceelementsreset=UI GAME ELEMENTS RESET
+eventinterfacettkset=SET TTK WIDGET TEXT:
+eventinterfacekpsset=SET KPS WIDGET TEXT:
+eventinterfacestreakset=SET STREAK WIDGET TEXT:
+eventinterfacestreakreset=RESET STREAK
+eventinterfacereactiontimeupdate=UPDATED REACTION TIME
+eventinterfaceaccuracyupdate=UPDATED ACCURACY
+#       -- gamemode
 eventinterfacegamemodebuttonhover=GAMEMODE BUTTON HOVERED
 eventinterfacegamemodebutton=GAMEMODE BUTTON SET
+#       -- target color
 eventinterfacetargetcolorbuttonhover=TARGET COLOR BUTTON HOVERED
 eventinterfacetargetcolorbutton=TARGET COLOR BUTTON SET
+#       -- skybox
 eventinterfaceskyboxbuttonhover=SKYBOX BUTTON HOVERED
 eventinterfaceskyboxbutton=SKYBOX BUTTON SET
 #       -- widgets
