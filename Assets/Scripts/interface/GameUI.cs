@@ -118,11 +118,11 @@ public class GameUI : MonoBehaviour {
             if (timeCount > -1) {
                 // Set timer color to red if time hits 10 seconds.
                 if (timeCount == 10) {
-                    gameUI.timeText.color = missColor;
+                    if (WidgetSettings.showTime) { gameUI.timeText.color = missColor; }
                     //gameUI.newTimerCanvasImage.GetComponent<Image>().color = new Color32(255, 0, 0, 20);
                 } else if (timeCount == 0) {
                     // Wiggle timer text, set all stats in 'AfterActionReport', then stop timer.
-                    TextEffects.WiggleText(gameUI.timeText, 0.5f, 55);
+                    if (WidgetSettings.showTime) { TextEffects.WiggleText(gameUI.timeText, 0.5f, 55); }
                     StatsManager.CheckAndSetAllStats();
                     //StatsManager.setAfterActionStats();
                     //SettingsPanel.ToggleAfterActionReportPanel();
@@ -132,7 +132,7 @@ public class GameUI : MonoBehaviour {
                 yield break;
             }
 
-            gameUI.timeText.SetText($"{timeFormatted}");
+            if (WidgetSettings.showTime) { gameUI.timeText.SetText($"{timeFormatted}"); }
             SetTTKText();
             SetKPSText();
 
@@ -155,7 +155,9 @@ public class GameUI : MonoBehaviour {
             TimeSpan t = TimeSpan.FromSeconds(timeCount);
             string timeFormatted = ReturnTimerString(t);
 
-            gameUI.timeText.SetText($"{timeFormatted}");
+            if (WidgetSettings.showTime) {
+                gameUI.timeText.SetText($"{timeFormatted}");
+            }
             timeCount += 1;
 
             // EVENT:: for up game timer tick
@@ -193,8 +195,10 @@ public class GameUI : MonoBehaviour {
     /// </summary>
     public static void IncreaseScore() {
         scoreNum += gameUI.scoreUp;
-        gameUI.scoreText.SetText($"{string.Format("{0:n0}", scoreNum)}");
-        gameUI.scoreText.color = hitColor;
+        if (WidgetSettings.showScore) {
+            gameUI.scoreText.SetText($"{string.Format("{0:n0}", scoreNum)}");
+            gameUI.scoreText.color = hitColor;
+        }
         CheckBestStreak(1);
     }
 
@@ -203,7 +207,9 @@ public class GameUI : MonoBehaviour {
     /// </summary>
     public static void IncreaseScore_Bonus() {
         scoreNum += gameUI.scoreUp * 5;
-        gameUI.scoreText.color = bonusColor;
+        if (WidgetSettings.showScore) {
+            gameUI.scoreText.color = bonusColor;
+        }
         CheckBestStreak(1);
     }
 
@@ -212,8 +218,10 @@ public class GameUI : MonoBehaviour {
     /// </summary>
     public static void DecreaseScore() {
         scoreNum -= gameUI.scoreDown;
-        gameUI.scoreText.SetText($"{string.Format("{0:n0}", scoreNum)}");
-        gameUI.scoreText.color = missColor;
+        if (WidgetSettings.showScore) {
+            gameUI.scoreText.SetText($"{string.Format("{0:n0}", scoreNum)}");
+            gameUI.scoreText.color = missColor;
+        }
         CheckBestStreak(0);
         ResetCurrentStreak();
     }
@@ -223,8 +231,10 @@ public class GameUI : MonoBehaviour {
     /// </summary>
     public static void IncreaseScore_Follow() {
         scoreNum += gameUI.followScoreUp;
-        gameUI.scoreText.SetText($"{string.Format("{0:n0}", scoreNum)}");
-        gameUI.scoreText.color = hitColor;
+        if (WidgetSettings.showScore) {
+            gameUI.scoreText.SetText($"{string.Format("{0:n0}", scoreNum)}");
+            gameUI.scoreText.color = hitColor;
+        }
         CheckBestStreak(6);
     }
 
@@ -233,8 +243,10 @@ public class GameUI : MonoBehaviour {
     /// </summary>
     public static void DecreaseScore_Follow() {
         scoreNum -= gameUI.followScoreDown;
-        gameUI.scoreText.SetText($"{string.Format("{0:n0}", scoreNum)}");
-        gameUI.scoreText.color = missColor;
+        if (WidgetSettings.showScore) {
+            gameUI.scoreText.SetText($"{string.Format("{0:n0}", scoreNum)}");
+            gameUI.scoreText.color = missColor;
+        }
         CheckBestStreak(0);
         ResetCurrentStreak();
     }
@@ -247,7 +259,9 @@ public class GameUI : MonoBehaviour {
     public static void UpdateAccuracy(int shotsHit, int shotsTaken) {
         //Debug.Log($"hit:{shotsHit} taken:{shotsTaken}");
         accuracy = (100 * shotsHit) / shotsTaken;
-        gameUI.accuracyText.SetText($"{accuracy}%");
+        if (WidgetSettings.showAccuracy) {
+            gameUI.accuracyText.SetText($"{accuracy}%");
+        }
 
         // EVENT:: for update reaction time
         //if (DevEventHandler.eventsOn) { DevEventHandler.CreateInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceaccuracyupdate")}"); }
@@ -295,7 +309,9 @@ public class GameUI : MonoBehaviour {
     /// Sets current/best streak text in UI (if exists). [EVENT]
     /// </summary>
     private static void SetStreakText() {
-        gameUI.streakText.SetText($"{streakCurrent} / {streakBest}");
+        if (WidgetSettings.showStreak) {
+            gameUI.streakText.SetText($"{streakCurrent} / {streakBest}");
+        }
 
         // EVENT:: for set streak widget text
         //if (DevEventHandler.eventsOn) { DevEventHandler.CreateInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacestreakset")} ({streakCurrent} / {streakBest})"); }
@@ -305,7 +321,9 @@ public class GameUI : MonoBehaviour {
     /// Sets time to kill (TTK) text in UI (if exists). [EVENT]
     /// </summary>
     private static void SetTTKText() {
-        gameUI.ttkText.SetText($"{newTime}");
+        if (WidgetSettings.showTTK) {
+            gameUI.ttkText.SetText($"{newTime}");
+        }
 
         // EVENT:: for set TTK widget text
         //if (DevEventHandler.eventsOn) { DevEventHandler.CreateInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacettkset")} ({newTime})"); }
@@ -315,7 +333,9 @@ public class GameUI : MonoBehaviour {
     /// Sets kills per second (KPS) text in UI (if exists). [EVENT]
     /// </summary>
     private static void SetKPSText() {
-        gameUI.kpsText.SetText($"{string.Format("{0:0.00}", (double)SpawnTargets.shotsHit / timeStart)}");
+        if (WidgetSettings.showKPS) {
+            gameUI.kpsText.SetText($"{string.Format("{0:0.00}", (double)SpawnTargets.shotsHit / timeStart)}");
+        }
 
         // EVENT:: for set KPS widget text
         //if (DevEventHandler.eventsOn) { DevEventHandler.CreateInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacekpsset")} ({string.Format("{0:0.00}", (double)SpawnTargets.shotsHit / timeStart)})"); }
@@ -329,7 +349,9 @@ public class GameUI : MonoBehaviour {
     /// <param name="newGamemode"></param>
     public static void RestartGame(string newGamemode) {
         gameUI.StopCoroutine(gameUI.timerCoroutine);
-        if (SpawnTargets.gamemode == "Gamemode-Scatter") { gameUI.StopCoroutine(gameUI.spawnScatterCoroutine); }
+        if (SpawnTargets.gamemode == "Gamemode-Scatter") {
+            gameUI.StopCoroutine(gameUI.spawnScatterCoroutine);
+        }
 
         // Reset important game values.
         timeCount = timeStart;
@@ -346,11 +368,17 @@ public class GameUI : MonoBehaviour {
     /// Resets all game UI elements text/color. [EVENT]
     /// </summary>
     public static void ResetUIElements() {
-        gameUI.scoreText.SetText($"{string.Format("{0:n0}", scoreNum)}");
-        gameUI.scoreText.color = Color.white;
-        gameUI.accuracyText.SetText($"{accuracy}%");
-        gameUI.timeText.SetText($"00:{timeCount}");
-        gameUI.timeText.color = Color.white;
+        if (WidgetSettings.showScore) {
+            gameUI.scoreText.SetText($"{string.Format("{0:n0}", scoreNum)}");
+            gameUI.scoreText.color = Color.white;
+        }
+        if (WidgetSettings.showAccuracy) {
+            gameUI.accuracyText.SetText($"{accuracy}%");
+        }
+        if (WidgetSettings.showTime) {
+            gameUI.timeText.SetText($"00:{timeCount}");
+            gameUI.timeText.color = Color.white;
+        }
 
         // EVENT:: for game UI elements reset
         //if (DevEventHandler.eventsOn) { DevEventHandler.CreateKeybindEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceelementsreset")}"); }
