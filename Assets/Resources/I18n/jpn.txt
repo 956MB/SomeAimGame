@@ -50,7 +50,7 @@ gamemodeflickdescription=できるだけ簡単に、一度に1つのターゲッ
 gamemodegriddescription=オールドフェイスフル。 FPSプレイヤーの親友。このトリプルターゲット、グリッド壁レイアウトでの速度と精度の練習の完璧な組み合わせ。 EZ。
 gamemodegrid2description=2番目のグリッド、もう少し難しい。 「グリッド」と同じ概念ですが、初期ターゲットが多く、ターゲットサイズがはるかに小さくなっています。これに時間をかけてください。
 gamemodepairsdescription=ゲームはシンプルです。スポーンされたターゲットを適切に一致したカラーバディに一致させます。ターゲットはランダムに色を切り替えるので、集中してください。
-gamemodefollowdescription=古典的な追跡ターゲットゲームモード。十字線は存在しない体の周りに浮かんでいるので、ターゲットに照準を合わせてください。それはとても簡単です、ただそれを男にしてください。キリスト。
+gamemodefollowdescription=古典的な追跡ターゲットゲームモード。十字線が存在しない体の周りに浮かんでいるので、ターゲットに照準を合わせてください。それはとても簡単です、ただそれを男にしてください。キリスト。
 #
 #
 # // gamemode names
@@ -114,8 +114,8 @@ showtimetooltip=トップゲームUIの時間ウィジェットを切り替え�
 showscoretooltip=トップゲームUIのスコアウィジェットを切り替えます。
 showaccuracytooltip=トップゲームUIの精度ウィジェットを切り替えます。
 showstreaktooltip=トップゲームUIのストリークウィジェットを切り替えます。
-showttktooltip=トップゲームUIの殺す時間（TTK）ウィジェットを切り替えます。
-showkpstooltip=トップゲームUIの1秒あたりのキル数（KPS）ウィジェットを切り替えます。
+showttktooltip=トップゲームUIのTimeTo Kill（TTK）ウィジェットを切り替えます。
+showkpstooltip=トップゲームUIのKillsPer Secoond（KPS）ウィジェットを切り替えます。
 scrolltotop= 
 #
 #
@@ -123,7 +123,7 @@ scrolltotop=
 mousetitle=マウス
 mousesensitivity=マウス感度
 keybindstitle=キーバインド
-keybindlegend=//  キーバインド編集は近日公開予定
+keybindlegend=//キーバインド編集は近日公開予定
 crosshairtitle=十字線
 #
 #
@@ -165,7 +165,7 @@ aarstatstitle=統計
 aartargetstotal=合計   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 aartargetshit=ヒット     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 aartargetsmisses=ミス    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aarrestart=[R]再起動
+aarrestart=[R] 再起動
 showextrastats=        追加の統計を表示する
 showbackgrounds=背景を表示
 #
@@ -182,7 +182,7 @@ gametimertooltip=ゲームタイマーを秒単位で設定します。
 targetsoundtooltip=ターゲットに当たったときに鳴る音のオン/オフを切り替えます。
 uisoundtooltip=設定のUI要素にカーソルを合わせたりクリックしたりしたときに鳴る音のオン/オフを切り替えます。
 fpscountertooltip=画面左上のFPSカウンターのオン/オフを切り替えます。
-showaartooltip=ゲームの終了時に「AfterActionReport」パネルの表示のオン/オフを切り替えます。
+showaartooltip=ゲーム終了時に「AfterActionReport」パネルの表示のオン/オフを切り替えます。
 quickstarttooltip=設定の「ゲームモード選択」サブパネルのオン/オフを切り替え、代わりにクリックされた新しいゲームモードを即座に起動します。
 crosshairdistortion=歪んだ十字線について疑問に思っていますか？設定のこのパネルは、残念ながらピクセルパーフェクトにレンダリングされていないため、歪んで表示されます。ただし、ゲームの十字線の中央画面は問題ありません。
 skyboxdisable=Slateを除くすべてのSkyboxオプションは、いくつかのことをテストするために一時的に無効になっています。
@@ -195,7 +195,7 @@ languagerestartnotification=言語の選択は、次回の再起動時に影響�
 #
 #
 # // steam data container items
-gamelanguage=ゲーム言語
+gamelanguage=言語
 steamdataplaceholderusername=User0
 patchnotesbutton=パッチノート
 quitgamebutton=ゲームをやめる
@@ -207,21 +207,27 @@ cardtypegamemode=ゲームモード
 cardtypetime=時間
 cardtypecrosshair=十字線
 cardtypetargets=ターゲット
-cardtypeinterface=玉ねぎ
+cardtypeinterface=インターフェース
 cardtypesave=保存/ロード
 cardtypeskybox=スカイボックス
 cardtypelanguage=言語
 cardtypekeybind=キーバインド
 cardtypesound=音
 cardtypenotification=お知らせ
+cardtypestats=統計
 #
 #
 # // dev event content
 # -- gamemode
+eventgamemodeloaded=保存されたゲームモードが読み込まれました
 eventgamemodeselected=GAMEMODEが選択されました
 eventgamemodestarted=ゲームモード開始
+eventgamemodescattertick=スキャッターゲームモードスポーンティック
+eventgamemodespawnsclear=GAMEMODE用にクリアされたスポーン
 # -- time
 eventtimerchanged=ゲームタイマーがに変更されました
+eventtimerticknormal=通常のゲームタイマーティック
+eventtimertickup=アップゲームタイマーティック
 # -- crosshair
 eventcrosshaircenterdot=CROSSHAIRセンタードットセット
 eventcrosshairtstyle=CROSSHAIRTスタイルセット
@@ -234,8 +240,16 @@ eventcrosshairgreen=CROSSHAIRの緑の値がに変更されました
 eventcrosshairblue=CROSSHAIRBLUEの値がに変更されました
 eventcrosshairalpha=CROSSHAIRアルファ値がに変更されました
 # -- targets
-eventtargetshit=ターゲットヒット、ヒットロケーション：
-eventtargetsmiss=ターゲットがありません
+eventtargetsrespawn=現在のゲームモードでリスポーンされたターゲット
+eventtargetsreset=すべてのターゲットゲーム値のリセット
+eventtargetsremove=スポーンリストからターゲットPOSを削除しました：
+eventtargetsscatterinitial=返された最初のスキャッタースポーンリスト
+eventtargetsalldestroyed=GAMEMODEで破壊されたすべてのターゲット
+eventtargetsdestroyspawnarea=ゲームモードで破壊されたターゲットスポーンエリア
+eventtargetshit=ターゲットヒット、更新されたスコア。 POS：
+eventtargetsmiss=ターゲットがありません。 POS：
+eventtargetshitpairs=正しいペアターゲットヒット。 POS：
+eventtargetsmisspairs=誤ったペアターゲットヒット。 POS：
 eventtargetsnewspawnprimary=新しいプライマリターゲットスポーン：
 eventtargetsnewspawnsecondary=新しいセカンダリターゲットスポーン：
 eventtargetscolorchange=ターゲットカラーが次のように変更されました：
@@ -247,6 +261,15 @@ eventinterfacelanguageselectopened=言語選択パネルが開きました
 eventinterfacelanguageselectclosed=言語選択パネルが閉じています
 eventinterfaceaaropened=「AfterActionReport」パネルが開かれました
 eventinterfaceaarclosed='AfterActionReport'パネルが閉じました
+eventinterfaceshowui=ゲームUIが表示されます
+eventinterfacehideui=ゲームUI非表示
+eventinterfaceelementsreset=UIゲーム要素のリセット
+eventinterfacettkset=TTKウィジェットテキストの設定：
+eventinterfacekpsset=KPSウィジェットテキストの設定：
+eventinterfacestreakset=ストリークウィジェットテキストの設定：
+eventinterfacestreakreset=リセットストリーク
+eventinterfacereactiontimeupdate=更新された反応時間
+eventinterfaceaccuracyupdate=更新された精度
 #       -- gamemode
 eventinterfacegamemodebuttonhover=GAMEMODEボタンがホバーされました
 eventinterfacegamemodebutton=ゲームモードボタンセット
