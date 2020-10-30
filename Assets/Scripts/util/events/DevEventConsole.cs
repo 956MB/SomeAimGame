@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using System;
 
 // 0. Title bar
 // 1. Menu bar
@@ -56,11 +57,16 @@ public class DevEventConsole : EditorWindow {
 
     private Texture2D boxBgOdd, boxBgEven, boxBgSelected, icon, errorIcon, errorIconSmall, warningIcon, warningIconSmall, infoIcon, infoIconSmall;
 
-    private List<DevEvent> devEvents;
-    private DevEvent selectedDevEvent;
+    public static List<DevEvent> devEvents;
+    public DevEvent selectedDevEvent;
     private int devEventCount = 5;
 
-    [MenuItem("Window/DevEvent Console")]
+    public static DevEventConsole devEventsConsole;
+    private void Awake() {
+        devEventsConsole = this;
+    }
+
+        [MenuItem("Window/DevEvent Console")]
     private static void OpenWindow() {
         DevEventConsole devEventWindow = GetWindow<DevEventConsole>();
         // 0.0
@@ -99,6 +105,14 @@ public class DevEventConsole : EditorWindow {
     }
 
     private void OnGUI() {
+        DrawAllConsole();
+    }
+    public void OnInspectorUpdate() {
+        // This will only get called 10 times per second.
+        if (DevEventHandler.logsOn) { Repaint(); }
+    }
+
+    private void DrawAllConsole() {
         DrawMenuBar();
         //DrawFilterBar1();
         DrawUpperPanel();
@@ -197,21 +211,20 @@ public class DevEventConsole : EditorWindow {
 
         // 2.3 Upper panel right scroll bar
         upperPanelScroll = GUILayout.BeginScrollView(upperPanelScroll);
+        //upperPanelScroll = GUILayout.BeginScrollView(new Vector2(0, upperPanel.height));
 
         // Loop events in dev events object list
 
         // Draw boxed test:
-        //LoopDevEvents();
-        DrawDevEventBox("[23:47:14]", DevEventType.Gamemode, "'Follow' GAMEMODE SELECTED", "Hello, World EXTRA!", true, false); // 2.0
-        DrawDevEventBox("[23:47:14]", DevEventType.Time, "GAME TIMER CHANGED TO '00:60'", "EXTRA", false, false); // 2.1
-        DrawDevEventBox("[23:47:14]", DevEventType.Crosshair, "CROSSHAIR GAP CHANGED TO '6", "CROSSHAIR EXTRA", true, false); // 2.2
-        DrawDevEventBox("[23:47:14]", DevEventType.Targets, "[Scatter] NEW PRIMARY TARGET SPAWN: (13,42,90).", "Targets EXTRA", false, false); // 2.3
-        DrawDevEventBox("[23:47:14]", DevEventType.Interface, "FPS Counter WIDGET TOGGLE SET", "Interface EXTRA", true, false); // 2.4
-        DrawDevEventBox("[23:47:14]", DevEventType.Save, "'Cosmetics' SETTINGS SAVED", "Save EXTRA", false, false); // 2.5
-        //DrawDevEventBox("ResizablePanels here!", LogType.Log, false, false);
-        //DrawDevEventBox("How do I look?", LogType.Warning, true, false);
-        //DrawDevEventBox("The lower panel doesn't seem to be working.", LogType.Error, false, false);
-        //DrawDevEventBox("You should start working on that.", LogType.Warning, true, false);
+        //DrawDevEventBox("[23:47:14]", DevEventType.Stats, "TEST LOG HERE", "", true, false); // 2.0
+        LoopDevEvents();
+
+        //DrawDevEventBox("[23:47:14]", DevEventType.Gamemode, "'Follow' GAMEMODE SELECTED", "Hello, World EXTRA!", true, false); // 2.0
+        //DrawDevEventBox("[23:47:14]", DevEventType.Time, "GAME TIMER CHANGED TO '00:60'", "EXTRA", false, false); // 2.1
+        //DrawDevEventBox("[23:47:14]", DevEventType.Crosshair, "CROSSHAIR GAP CHANGED TO '6", "CROSSHAIR EXTRA", true, false); // 2.2
+        //DrawDevEventBox("[23:47:14]", DevEventType.Targets, "[Scatter] NEW PRIMARY TARGET SPAWN: (13,42,90).", "Targets EXTRA", false, false); // 2.3
+        //DrawDevEventBox("[23:47:14]", DevEventType.Interface, "FPS Counter WIDGET TOGGLE SET", "Interface EXTRA", true, false); // 2.4
+        //DrawDevEventBox("[23:47:14]", DevEventType.Save, "'Cosmetics' SETTINGS SAVED", "Save EXTRA", false, false); // 2.5
 
         GUILayout.EndScrollView();
 
@@ -363,5 +376,14 @@ public class DevEventConsole : EditorWindow {
                 GUI.changed = true;
             }
         }
+    }
+
+    public static void AddNewDevEventLog(DevEvent newEventLog) {
+        devEvents.Add(newEventLog);
+
+        //try {
+        //    GUI.changed = true;
+        //    devEventsConsole.DrawAllConsole();
+        //} catch (NullReferenceException) { }
     }
 }

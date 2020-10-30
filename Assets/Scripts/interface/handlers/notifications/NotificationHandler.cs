@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using System.Collections;
 
 /// <summary>
 /// Class for handling notification gameObjects.
@@ -7,6 +8,12 @@ using TMPro;
 public class NotificationHandler : MonoBehaviour {
     public static TMP_Text notificationTextContent;
     public static bool notificationOpen = false;
+    private static WaitForSeconds notificationDestroyDelay = new WaitForSeconds(3.5f);
+
+    public static Color32 notificationColorGreen  = new Color32(0, 255, 0, 255);
+    public static Color32 notificationColorYellow = new Color32(255, 209, 0, 255);
+    public static Color32 notificationColorRed    = new Color32(255, 0, 0, 255);
+    public static Color32 notificationColorWhite  = new Color32(255, 255, 255, 255);
 
     public static NotificationHandler notification;
     private void Awake() {
@@ -25,11 +32,13 @@ public class NotificationHandler : MonoBehaviour {
     /// </summary>
     /// <param name="notificationText"></param>
     /// <param name="notificationColor"></param>
-    public static void ShowNotification_String(string notificationText, Color notificationColor) {
+    public static void ShowNotification_String(string notificationText, Color32 notificationColor) {
         notificationTextContent.SetText($"{notificationText}");
         notificationTextContent.color = notificationColor;
         notification.gameObject.SetActive(true);
         notificationOpen = true;
+
+        notification.StartCoroutine(HideNotification_Delay());
 
         // EVENT:: for new string notification
         DevEventHandler.CheckNotificationEvent($"{I18nTextTranslator.SetTranslatedText("eventnotificationcreatedstring")} \"{notificationText}\"");
@@ -40,12 +49,14 @@ public class NotificationHandler : MonoBehaviour {
     /// </summary>
     /// <param name="translateTextID"></param>
     /// <param name="notificationColor"></param>
-    public static void ShowNotification_Translated(string translateTextID, string extraText, Color notificationColor) {
+    public static void ShowNotification_Translated(string translateTextID, string extraText, Color32 notificationColor) {
         string notificationContent = $"{I18nTextTranslator.SetTranslatedText(translateTextID)}{extraText}";
         notificationTextContent.SetText(notificationContent);
         notificationTextContent.color = notificationColor;
         notification.gameObject.SetActive(true);
         notificationOpen = true;
+
+        notification.StartCoroutine(HideNotification_Delay());
 
         // EVENT:: for new translated notification
         DevEventHandler.CheckNotificationEvent($"{I18nTextTranslator.SetTranslatedText("eventnotificationcreatedtranslation")} \"{notificationContent}\"");
@@ -60,5 +71,14 @@ public class NotificationHandler : MonoBehaviour {
 
         // EVENT:: for active notification hidden
         DevEventHandler.CheckNotificationEvent(I18nTextTranslator.SetTranslatedText("eventnotificationhidden"));
+    }
+
+    /// <summary>
+    /// Starts notification destroy delay after show.
+    /// </summary>
+    /// <returns></returns>
+    public static IEnumerator HideNotification_Delay() {
+        yield return notificationDestroyDelay;
+        HideNotification();
     }
 }
