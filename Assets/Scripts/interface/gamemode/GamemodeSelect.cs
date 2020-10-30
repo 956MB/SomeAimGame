@@ -115,11 +115,11 @@ public class GamemodeSelect : MonoBehaviour {
     /// <param name="gamemodeDescription"></param>
     private static void PopulateAllGamemodeInfo(VideoClip gamemodeVideoClip, string gamemodeNameStart, string gamemodeName, string gamemodeType, Color32 gamemodeTypeColor, string 
 gamemodeDescription) {
-        PopulateGamemodeVideoClip(gamemodeVideoClip);
         PopulateGamemodeName_TranslatedText(gamemodeName);
         PopulateGamemodeType_TranslatedText(gamemodeType, gamemodeTypeColor);
         PopulateGamemodeDescription_TranslatedText(gamemodeDescription);
         PopulateGamemodeStartButton_TranslatedText(gamemodeNameStart);
+        PopulateGamemodeVideoClip(gamemodeVideoClip);
     }
 
     /// <summary>

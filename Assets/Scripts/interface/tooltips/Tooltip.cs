@@ -74,13 +74,9 @@ public class Tooltip : MonoBehaviour {
     /// Shows tooltip with supplied string as text content (static).
     /// </summary>
     /// <param name="tooltipText"></param>
-    public static void ShowTooltip_Static(string tooltipText) {
-        tooltipInstance.ShowTooltip(tooltipText);
-    }
+    public static void ShowTooltip_Static(string tooltipText) { tooltipInstance.ShowTooltip(tooltipText); }
     /// <summary>
     /// Hides tooltip.
     /// </summary>
-    public static void HideTooltip_Static() {
-        tooltipInstance.HideTooltip();
-    }
+    public static void HideTooltip_Static() { tooltipInstance.HideTooltip(); }
 }

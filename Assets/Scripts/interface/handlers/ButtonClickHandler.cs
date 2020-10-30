@@ -84,11 +84,10 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
         clickedButtonBorder.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         clickedButtonBorder.SetActive(true);
 
-        // Save new target color, then replace all currently spawned targets colors.
-        CosmeticsSettings.SaveTargetColorItem(targetColorClickedName);
+        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound02(); }
+
+        // Replace all currently spawned targets colors.
         SpawnTargets.ReplaceCurrentTargetColors(targetColorClickedName);
-        if (ToggleHandler.UISoundOn())
-            UISound.PlayUISound02();
 
         // Change selected target color text based on button clicked in general settings panel.
         switch (targetColorClickedName) {
@@ -118,13 +117,16 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
                 break;
         }
 
-        // Changes gamemode video previews when new target color selected.
+        // Changes gamemode video previews when new target color selected, then saves
         SettingsPanel.LoadGamemodePreviews();
 
         // EVENT:: for new target color button clicked
         DevEventHandler.CheckTargetsEvent($"\"{targetColorClickedName}\" {I18nTextTranslator.SetTranslatedText("eventinterfacetargetcolorbutton")}");
         // EVENT:: for new target color selected
         DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetscolorchange")} \"{targetColorClickedName}\"");
+
+        // Saves new selected target color
+        CosmeticsSettings.SaveTargetColorItem(targetColorClickedName);
     }
 
     /// <summary>
@@ -142,7 +144,6 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
 
         // Set new skybox, then save currently selected skybox in cosmetics.
         Skybox.SetNewSkybox(skyboxClickedName);
-        CosmeticsSettings.SaveSkyboxItem(skyboxClickedName);
 
         // Change selected skybox text based on button clicked in general settings panel.
         switch (skyboxClickedName) {
@@ -171,7 +172,8 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
         // EVENT:: for new skybox selected
         DevEventHandler.CheckSkyboxEvent($"{I18nTextTranslator.SetTranslatedText("eventskyboxchange")} \"{skyboxClickedName}\"");
         
-        //CrosshairRenderTextureBackground.initRenderTexture();
+        // Saves new selected skybox
+        CosmeticsSettings.SaveSkyboxItem(skyboxClickedName);
     }
 
     /// <summary>
