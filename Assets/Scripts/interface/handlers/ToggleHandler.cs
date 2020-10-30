@@ -35,7 +35,7 @@ public class ToggleHandler : MonoBehaviour {
     /// <param name="toggleClicked"></param>
     public void HandleToggle(Toggle toggleClicked) {
         clickedToggleName = toggleClicked.name;
-        //Debug.Log("hhfiefbsifbsanbfgsubfgib" + extraToggleName);
+        //Debug.Log("hhfiefbsifbsanbfgsubfgib");
 
         switch (clickedToggleName) {
             case "TargetSoundToggle":
