@@ -107,7 +107,9 @@ public class SettingsPanel : MonoBehaviour {
         settings.mainMenuCanvas.SetActive(false);
         //settings.devEventContainer.SetActive(true);
 
+        // If language select/notification object active, hide
         if (LanguageSelect.languageSelectOpen) { LanguageSelect.CloseLanguageSelect_Static(); }
+        if (NotificationHandler.notificationOpen) { NotificationHandler.HideNotification(); }
 
         CloseAction();
         settingsOpen = false;
