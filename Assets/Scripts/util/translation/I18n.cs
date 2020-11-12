@@ -49,8 +49,8 @@ public class I18n : MonoBehaviour {
         lang = langCode;
         string allTexts, key, value;
 
-        // Testing
-        lang = "ENG"; // "JPN" "ARA" "CHI" "KOR" "RUS" "ENG"
+        // Language esting
+        lang = "FIN"; // "JPN" "ARA" "CHI" "KOR" "RUS" "ENG" "FIN"
 
         LanguageSelect.SetLanguageCodeText(lang);
         var textAsset = Resources.Load(@"I18n/" + lang.ToLower()); //no .txt needed
@@ -115,7 +115,7 @@ public class I18n : MonoBehaviour {
             case SystemLanguage.English:            langCode = "ENG"; break; // "EN";
             //case SystemLanguage.Estonian:           langCode = "ET"; break; // "ET";
             //case SystemLanguage.Faroese:            langCode = "FO"; break; // "FO";
-            //case SystemLanguage.Finnish:            langCode = "FI"; break; // "FI";
+            case SystemLanguage.Finnish:            langCode = "FIN"; break; // "FI";
             //case SystemLanguage.French:             langCode = "FR"; break; // "FR";
             //case SystemLanguage.German:             langCode = "DE"; break; // "DE";
             //case SystemLanguage.Greek:              langCode = "EL"; break; // "EL";

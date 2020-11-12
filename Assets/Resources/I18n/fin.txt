@@ -1,0 +1,309 @@
+# Finnish language translation file
+# DO NOT CHANGE
+#
+#
+# // sub menu title buttons
+gamemodetitle=PELITILA
+generaltitle=YLEISTÄ
+controlstitle=VALVONTA
+crosshairpaneltitle=RISKI
+extratitle=YLIMÄÄRÄINEN
+#
+#
+# // gamemode button titles
+gamemodescatter=Hajaantua
+gamemodeflick=Leffa
+gamemodegrid=Ruudukko
+gamemodegrid2=Ruudukko II
+gamemodepairs=Parit
+gamemodefollow=Seuraa
+gamemodepatrol=Partio
+#
+#
+# // gamemode button caps titles
+gamemodecapsscatter=HAJAANTUA
+gamemodecapsflick=LEFFA
+gamemodecapsgrid=RUUDUKKO
+gamemodecapsgrid2=RUUDUKKO II
+gamemodecapspairs=PARIT
+gamemodecapsfollow=SEURAA
+#
+#
+# // gamemode start button text
+gamemodestartscatter=ALOITA SCATTER
+gamemodestartflick=KÄYNNISTÄ
+gamemodestartgrid=ALOITA RUUDUKKO
+gamemodestartgrid2=ALOITA RUUDUKKO II
+gamemodestartpairs=ALOITA PARIT
+gamemodestartfollow=ALOITA SEURAA
+#
+#
+# // gamemode types
+gamemodetypespeed=NOPEUS
+gamemodetypecontrol=OHJAUS
+gamemodetypetracking=SEURANTA
+#
+#
+# // gamemode descriptions
+gamemodescatterdescription=Pidätkö palloista? No, Scatter-pelitilassa on PALJON '' palloja ''. '' Pallot '' kutevat jatkuvasti ruudukossa, joten sinulla on runsaasti kohteita, joista valita.
+gamemodeflickdescription=Niin yksinkertaista kuin voi olla, sinun on keskityttävä vain yhteen kohteeseen kerrallaan. Harjoittele niitä nopeita, mutta hallittuja otteita kaikesta mahdollisesta suunnasta.
+gamemodegriddescription=Vanha uskollinen. FPS-pelaajien paras ystävä. Täydellinen yhdistelmä nopeutta ja tarkkuutta käytännössä tässä kolmoiskohteessa, ristikkoseinäasettelussa. EZ.
+gamemodegrid2description=Ruudukko 2., hieman haastavampi. Sama käsite kuin 'Ruudukko', mutta siinä on enemmän alkuperäisiä tavoitteita ja PALJON pienempi tavoitekoko. Ota aikaa tähän.
+gamemodepairsdescription=Peli on yksinkertainen. Yhdistä kutettu kohde sen sopivaan värikaveriin. Kohteet vaihtavat värejä satunnaisesti, joten pysy keskittyneenä.
+gamemodefollowdescription=Klassinen seurantakohdepelimoodi. Yritä pitää tähtäin tavoitteen päällä, kun se kelluu olemattoman kehosi ympärillä. Se on melko helppoa, vain tee se mies. Kristus.
+#
+#
+# // gamemode names
+Scatter=Hajaantua
+Flick=Leffa
+Grid=Ruudukko
+Grid2=Ruudukko II
+Pairs=Parit
+Follow=Seuraa
+#
+#
+# // categories
+targetcolor=Kohteen väri
+skybox=Taivas
+#
+#
+# // target colors
+colorred=Punainen
+colororange=Oranssi
+coloryellow=Keltainen
+colorgreen=Vihreä
+colorblue=Sininen
+colorpurple=Violetti
+colorpink=Vaaleanpunainen
+colorwhite=Valkoinen
+#
+#
+# // skyboxes
+skyboxpink=Vaaleanpunainen
+skyboxgolden=Kultainen
+skyboxnight=Yö
+skyboxgrey=Harmaa
+skyboxblue=Sininen
+skyboxslate=Liuskekivi
+#
+#
+# // titles
+misctitle=Muut
+widgetstitle=Widgetit
+#
+#
+# // general section items
+gametimer=Ajastin (sekuntia)  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+targetsound=Kohdeääni  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+uisound=Käyttöliittymän ääni  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+movementlock=Liikelukko  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+fpscounter=FPS-laskuri    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+afteractionreport=Näytä toimintaraportti     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+showfps=Näytä FPS  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+showtime=Esitysaika  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+showscore=Näytä pisteet  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+showaccuracy=Näytä tarkkuus  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+showstreak=Näytä putki  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+showttk=Näytä TTK  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+showkps=Näytä KPS  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+#
+#
+# // general sections tooltips
+showfpstooltip=Vaihtaa FPS-widgetin huippupelien käyttöliittymässä.
+showtimetooltip=Vaihtaa Aika-widgetin huippupelien käyttöliittymässä.
+showscoretooltip=Vaihtaa Pisteet-widgetin huippupelien käyttöliittymässä.
+showaccuracytooltip=Vaihtaa Tarkkuus-widgetin huippupelin käyttöliittymässä.
+showstreaktooltip=Toggles Streak -widget huippupelien käyttöliittymässä.
+showttktooltip=Vaihtaa Time To Kill (TTK) -widgetin huippupelin käyttöliittymässä.
+showkpstooltip=Vaihtaa tappaa sekunnissa (KPS) -widgetin huippupelin käyttöliittymässä.
+scrolltotop= 
+#
+#
+# // titles
+mousetitle=Hiiri
+mousesensitivity=Hiiren herkkyys
+keybindstitle=Avaimenperät
+keybindlegend=//  avaimensiirron muokkaus on tulossa pian
+crosshairtitle=Ristikko
+#
+#
+# // controls section items
+shoot=''Ampua'' .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+showhidesettings=Näytä / piilota asetukset  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+showhideafteractionreport=Näytä / piilota toimintaraportti   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+showhideworldui=Näytä / piilota maailman käyttöliittymä  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+quickstartgame=Pika-aloituspeli   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+restart=Uudelleenkäynnistää   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+#
+#
+# // crosshair section items
+tstyle=T-tyyli
+centerdot=        Keskipiste
+crosshairsize=Koko
+crosshairthickness=Paksuus
+crosshairgap=Aukko
+crosshairoutline=Ääriviivat   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+crosshairred=Punainen
+crosshairgreen=Sininen
+crosshairblue=Vihreä
+crosshairalpha=Alfa
+#
+#
+# // titles
+afteractionreporttitle=TOIMINTARAPORTIN JÄLKEEN
+aarscore=Pisteet
+aarnewhighscore=UUSI HUIPPUTULOS!
+#
+#
+# // after action report section items
+aaraccuracy=Tarkkuus   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+aartimetokill=Aika tappaa (ms)    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  
+aarkillssec=Tappaa / sek   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+aarbeststreak=Paras putki  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+targetstitle=Tavoitteet
+aarstatstitle=Tilastot
+aartargetstotal=Kaikki yhteensä   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+aartargetshit=Osumat     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+aartargetsmisses=Neiti    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+aarrestart=[R] UUDELLEENKÄYNNISTYS
+showextrastats=        Näytä ylimääräiset tilastot
+showbackgrounds=Näytä taustat
+#
+#
+# // extra stats sections items
+extrastatsprevious=Edellinen
+extrastatsaverage=Keskiverto
+extrastatsbest=Parhaat
+extrastatshighscore=Ennätys
+#
+#
+# // tooltips
+gametimertooltip=Asettaa peliajastimen sekunneissa.
+targetsoundtooltip=Vaihtaa päälle / pois äänen, joka kuuluu, kun kohteet osuvat.
+uisoundtooltip=Kytkee päälle / pois päältä äänen, joka kuuluu, kun asetusten käyttöliittymän elementtejä siirretään hiiren osoittimelle / napsautetaan.
+fpscountertooltip=Vaihtaa FPS-laskurin päälle / pois ruudun vasemmassa yläkulmassa.
+showaartooltip=Vaihtaa päälle / pois, kun AfterActionReport-paneeli näkyy pelien lopussa.
+quickstarttooltip=Kytkee 'gamemode select' -alipaneelin päälle / pois asetuksista ja käynnistää sen sijaan uudet napsautetut pelitilat.
+crosshairdistortion=Mietitkö vääristynyttä hiusristikkoa? Tätä asetuspaneelia ei valitettavasti tehdä pikselistä täydellistä, joten se näyttää vääristyneeltä. Pelissä oleva hiusristikon keskinäyttö on kuitenkin hieno.
+skyboxdisable=Kaikki Skybox-vaihtoehdot paitsi Slate on tilapäisesti poistettu käytöstä joidenkin asioiden testaamiseksi.
+#
+#
+# // notifications
+followwarning=VALITSE TOINEN KOHTEEN VÄRI ALOITTAMISEKSI 'Seuraa' pelitilaa!
+selectedgamemodewarning=VALITTU PELIMoodi on jo aktiivinen.
+languagerestartnotification=KIELEN VALINTA VAIKUTTAA SEURAAVAAN UUDELLEEN Käynnistykseen.
+languagetemporarilydisabled=KIELEN KÄÄNTÖ TILAPÄISESTI POIS.
+#
+#
+# // steam data container items
+gamelanguage=Kieli
+steamdataplaceholderusername=User0
+patchnotesbutton=PATCH-HUOMAUTUKSET
+quitgamebutton=LOPETA PELI
+testuser=Bloumbs
+#
+#
+# // dev event cards
+cardtypegamemode=GAMEMODE
+cardtypetime=TIME
+cardtypecrosshair=CROSSHAIR
+cardtypetargets=TARGETS
+cardtypeinterface=INTERFACE
+cardtypesave=SAVE/LOAD
+cardtypeskybox=SKYBOX
+cardtypelanguage=LANGUAGE
+cardtypekeybind=KEYBIND
+cardtypesound=SOUND
+cardtypenotification=NOTIFICATION
+cardtypestats=STATS
+#
+#
+# // dev event content
+# -- gamemode
+eventgamemodeloaded=SAVED GAMEMODE LOADED
+eventgamemodeselected=GAMEMODE SELECTED
+eventgamemodestarted=GAMEMODE STARTED
+eventgamemodescattertick=SCATTER GAMEMODE SPAWN TICK
+eventgamemodespawnsclear=SPAWNS CLEARED FOR GAMEMODE
+# -- time
+eventtimerchanged=GAME TIMER CHANGED TO
+eventtimerticknormal=NORMAL GAME TIMER TICK
+eventtimertickup=UP GAME TIMER TICK
+# -- crosshair
+eventcrosshaircenterdot=CROSSHAIR CENTER DOT SET
+eventcrosshairtstyle=CROSSHAIR T STYLE SET
+eventcrosshairsize=CROSSHAIR SIZE CHANGED TO
+eventcrosshairthickness=CROSSHAIR THICKNESS CHANGED TO
+eventcrosshairgap=CROSSHAIR GAP CHANGED TO
+eventcrosshairoutline=CROSSHAIR OUTLINE SET
+eventcrosshairred=CROSSHAIR RED VALUE CHANGED TO
+eventcrosshairgreen=CROSSHAIR GREEN VALUE CHANGED TO
+eventcrosshairblue=CROSSHAIR BLUE VALUE CHANGED TO
+eventcrosshairalpha=CROSSHAIR ALPHA VALUE CHANGED TO
+# -- targets
+eventtargetsrespawn=TARGETS RESPAWNED FOR CURRENT GAMEMODE
+eventtargetsreset=ALL TARGETS GAME VALUE RESET
+eventtargetsremove=REMOVED TARGET POS FROM SPAWN LIST:
+eventtargetsscatterinitial=RETURNED INITIAL SCATTER SPAWNS LIST
+eventtargetsalldestroyed=ALL TARGETS DESTROYED FOR GAMEMODE
+eventtargetsdestroyspawnarea=TARGET SPAWN AREAS DESTROYED FOR GAMEMODE
+eventtargetshit=TARGET HIT, UPDATED SCORE. POS:
+eventtargetsmiss=TARGET MISSED. POS:
+eventtargetshitpairs=CORRECT PAIR TARGET HIT. POS:
+eventtargetsmisspairs=INCORRECT PAIR TARGET HIT. POS:
+eventtargetsnewspawnprimary=NEW PRIMARY TARGET SPAWN:
+eventtargetsnewspawnsecondary=NEW SECONDARY TARGET SPAWN:
+eventtargetscolorchange=TARGET COLOR CHANGED TO:
+eventtargetssziechange=TARGET SIZE CHANGED TO:
+# -- interface
+eventinterfacesettingsopened=SETTINGS PANEL OPENED
+eventinterfacesettingsclosed=SETTINGS PANEL CLOSED
+eventinterfacelanguageselectopened=LANGUAGE SELECT PANEL OPENED
+eventinterfacelanguageselectclosed=LANGUAGE SELECT PANEL CLOSED
+eventinterfaceaaropened='AfterActionReport' PANEL OPENED
+eventinterfaceaarclosed='AfterActionReport' PANEL CLOSED
+eventinterfaceshowui=GAME UI SHOWN
+eventinterfacehideui=GAME UI HIDDEN
+eventinterfaceelementsreset=UI GAME ELEMENTS RESET
+eventinterfacettkset=SET TTK WIDGET TEXT:
+eventinterfacekpsset=SET KPS WIDGET TEXT:
+eventinterfacestreakset=SET STREAK WIDGET TEXT:
+eventinterfacestreakreset=RESET STREAK
+eventinterfacereactiontimeupdate=UPDATED REACTION TIME
+eventinterfaceaccuracyupdate=UPDATED ACCURACY
+#       -- gamemode
+eventinterfacegamemodebuttonhover=GAMEMODE BUTTON HOVERED
+eventinterfacegamemodebutton=GAMEMODE BUTTON SET
+#       -- target color
+eventinterfacetargetcolorbuttonhover=TARGET COLOR BUTTON HOVERED
+eventinterfacetargetcolorbutton=TARGET COLOR BUTTON SET
+#       -- skybox
+eventinterfaceskyboxbuttonhover=SKYBOX BUTTON HOVERED
+eventinterfaceskyboxbutton=SKYBOX BUTTON SET
+#       -- widgets
+eventinterfacewidgettoggle=WIDGET TOGGLE SET
+eventinterfacepanelmoveleft=SETTINGS PANEL MOVED LEFT. NEW POS:
+eventinterfacepanelmoveright=SETTINGS PANEL MOVED RIGHT. NEW POS:
+# -- save/load
+eventsettingsobjectsave=SETTINGS SAVED
+# -- skybox
+eventskyboxchange=SKYBOX CHANGED TO
+# -- language
+eventlanguagefileload=SAVED LANGUAGE FILE LOADED
+eventlanguagefileloaddefault=DEFAULT LANGUAGE FILE LOADED
+eventlanguagegameset=GAME LANGUAGE SET TO
+eventlanguagetextset=ALL TEXT SET TO SAVED LANGUAGE
+eventlanguagetexttranslated=TEXT SET TO SAVED LANGUAGE VALUE
+# -- keybind
+eventkeybindpressed=KEYBIND PRESSED
+eventkeybindchanged=KEYBIND CHANGED
+eventkeybindset=KEYBIND SET TO
+# -- sound
+eventsoundfiredhit=HIT SOUND EVENT FIRED
+eventsoundfiredhover=HOVER UI SOUND EVENT FIRED
+eventsoundfiredclick=CLICK UI SOUND EVENT FIRED
+# -- notifications
+eventnotificationcreatedtranslation=TRANSLATED NOTIFICATION CREATED:
+eventnotificationcreatedstring=STRING NOTIFICATION CREATED:
+eventnotificationhidden=ACTIVE NOTIFICATION HIDDEN
+eventnotificationdisabled=NOTIFICATION OBJECT HIDDEN
