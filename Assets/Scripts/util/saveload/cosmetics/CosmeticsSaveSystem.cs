@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using TMPro;
-using UnityEngine.UI;
 
 public class CosmeticsSaveSystem : MonoBehaviour {
     //public GameObject redTarget, greenTarget, blueTarget, yellowTarget, pinkTarget, whiteTarget;
@@ -23,14 +23,13 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     /// <param name="cosmeticsSettings"></param>
     public static void SaveCosmeticsSettingsData(CosmeticsSettings cosmeticsSettings) {
         BinaryFormatter formatter = new BinaryFormatter();
-        string dirPath = Application.persistentDataPath + "/settings";
-        string filePath = dirPath + "/cosmetics.settings";
+        string dirPath            = Application.persistentDataPath + "/settings";
+        string filePath           = dirPath + "/cosmetics.settings";
 
         DirectoryInfo dirInf = new DirectoryInfo(dirPath);
         if (!dirInf.Exists) { dirInf.Create(); }
 
-        FileStream stream = new FileStream(filePath, FileMode.Create);
-
+        FileStream stream                 = new FileStream(filePath, FileMode.Create);
         CosmeticsDataSerial cosmeticsData = new CosmeticsDataSerial();
         formatter.Serialize(stream, cosmeticsData);
         stream.Close();
@@ -46,7 +45,7 @@ public class CosmeticsSaveSystem : MonoBehaviour {
         string path = Application.persistentDataPath + "/settings/cosmetics.settings";
         if (File.Exists(path)) {
             BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
+            FileStream stream         = new FileStream(path, FileMode.Open);
 
             CosmeticsDataSerial cosmeticsData = formatter.Deserialize(stream) as CosmeticsDataSerial;
             stream.Close();

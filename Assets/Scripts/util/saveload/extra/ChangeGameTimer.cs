@@ -18,18 +18,10 @@ public class ChangeGameTimer : MonoBehaviour {
         clickedButtonText.color = selectedTextColor;
 
         switch (clickedButtonText.transform.name) {
-            case "30Text (TMP)":
-                SetNewGameTimer(30, true);
-                break;
-            case "60Text (TMP)":
-                SetNewGameTimer(60, true);
-                break;
-            case "90Text (TMP)":
-                SetNewGameTimer(90, true);
-                break;
-            case "120Text (TMP)":
-                SetNewGameTimer(120, true);
-                break;
+            case "30Text (TMP)":  SetNewGameTimer(30, true);  break;
+            case "60Text (TMP)":  SetNewGameTimer(60, true);  break;
+            case "90Text (TMP)":  SetNewGameTimer(90, true);  break;
+            case "120Text (TMP)": SetNewGameTimer(120, true); break;
         }
     }
 
@@ -53,18 +45,10 @@ public class ChangeGameTimer : MonoBehaviour {
         ClearTimerButtons();
 
         switch (setButton) {
-            case 30:
-                gameTimer.text30.color = selectedTextColor;
-                break;
-            case 60:
-                gameTimer.text60.color = selectedTextColor;
-                break;
-            case 90:
-                gameTimer.text90.color = selectedTextColor;
-                break;
-            case 120:
-                gameTimer.text120.color = selectedTextColor;
-                break;
+            case 30:  gameTimer.text30.color = selectedTextColor;  break;
+            case 60:  gameTimer.text60.color = selectedTextColor;  break;
+            case 90:  gameTimer.text90.color = selectedTextColor;  break;
+            case 120: gameTimer.text120.color = selectedTextColor; break;
         }
     }
 

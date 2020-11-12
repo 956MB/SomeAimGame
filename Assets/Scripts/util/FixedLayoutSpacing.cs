@@ -8,7 +8,7 @@ public class FixedLayoutSpacing : MonoBehaviour {
 
     void Update() {
         if (transform.childCount > 0) {
-            int dotCount = transform.childCount;
+            int dotCount        = transform.childCount;
             layoutGroup.spacing = (lengthRectTransform.rect.width - (dotCount * dotWidth)) / (dotCount - 1);
             Debug.Log(layoutGroup.spacing);
         }
@@ -16,7 +16,7 @@ public class FixedLayoutSpacing : MonoBehaviour {
     }
 
     void OnValidate() {
-        layoutGroup = GetComponent<HorizontalLayoutGroup>();
+        layoutGroup         = GetComponent<HorizontalLayoutGroup>();
         lengthRectTransform = GetComponent<RectTransform>();
     }
 }

@@ -2,13 +2,14 @@
 using UnityEngine;
 
 public class CosmeticsSettings : MonoBehaviour {
-    public static string gamemode    = "Gamemode-Grid";
-    public static string targetColor = "TargetColor-Yellow";
-    public static string skybox      = "Skybox-Slate";
+    public static string gamemode               = "Gamemode-Grid";
+    public static string targetColor            = "TargetColor-Yellow";
+    public static string skybox                 = "Skybox-Slate";
     public static float afterActionReportPanelX = 960f;
     public static float afterActionReportPanelY = 540f;
-    public static float extraStatsPanelX = 1455.711f;
-    public static float extraStatsPanelY = 638.3904f;
+    public static float extraStatsPanelX        = 1455.711f;
+    public static float extraStatsPanelY        = 638.3904f;
+    
     public static bool quickStartGame    = false;
 
     private static CosmeticsSettings cosmeticsSettings;
@@ -87,14 +88,14 @@ public class CosmeticsSettings : MonoBehaviour {
     /// <param name="setPanelExtraStatsX"></param>
     /// <param name="setPanelExtraStatsY"></param>
     public static void SaveAllCosmeticsToggleDefaults(string setGamemode, string setTargetColor, string setSkybox, float setPanelSettingsX, float setPanelSettingsY, float setPanelExtraStatsX, float setPanelExtraStatsY, bool setQuickStart) {
-        gamemode    = setGamemode;
-        targetColor = setTargetColor;
-        skybox      = setSkybox;
+        gamemode                = setGamemode;
+        targetColor             = setTargetColor;
+        skybox                  = setSkybox;
         afterActionReportPanelX = setPanelSettingsX;
         afterActionReportPanelY = setPanelSettingsY;
-        extraStatsPanelX = setPanelExtraStatsX;
-        extraStatsPanelY = setPanelExtraStatsY;
-        quickStartGame   = setQuickStart;
+        extraStatsPanelX        = setPanelExtraStatsX;
+        extraStatsPanelY        = setPanelExtraStatsY;
+        quickStartGame          = setQuickStart;
 
         cosmeticsSettings.SaveCosmeticsSettings();
     }
@@ -104,14 +105,14 @@ public class CosmeticsSettings : MonoBehaviour {
     /// </summary>
     /// <param name="cometicsData"></param>
     public static void LoadCosmeticsSettings(CosmeticsDataSerial cometicsData) {
-        gamemode    = cometicsData.gamemode;
-        targetColor = cometicsData.targetColor;
-        skybox      = cometicsData.skybox;
+        gamemode                = cometicsData.gamemode;
+        targetColor             = cometicsData.targetColor;
+        skybox                  = cometicsData.skybox;
         afterActionReportPanelX = cometicsData.afterActionReportPanelX;
         afterActionReportPanelY = cometicsData.afterActionReportPanelY;
-        extraStatsPanelX = cometicsData.extraStatsPanelX;
-        extraStatsPanelX = cometicsData.extraStatsPanelY;
-        quickStartGame   = cometicsData.quickStartGame;
+        extraStatsPanelX        = cometicsData.extraStatsPanelX;
+        extraStatsPanelX        = cometicsData.extraStatsPanelY;
+        quickStartGame          = cometicsData.quickStartGame;
     }
 
     /// <summary>

@@ -4,7 +4,7 @@ using UnityEngine.Video;
 public class VideoManager : MonoBehaviour {
     public VideoClip[] allVideoClips;
     public static VideoClip[] gamemodeVideoClips = new VideoClip[7];
-    VideoClip[] previewsObject = new VideoClip[7];
+    VideoClip[] previewsObject                   = new VideoClip[7];
 
     public static VideoManager videoManager;
     private void Awake() { videoManager = this; }

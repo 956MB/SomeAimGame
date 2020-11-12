@@ -11,13 +11,13 @@ public class CosmeticsDataSerial {
     public bool quickStartGame;
 
     public CosmeticsDataSerial() {
-        gamemode    = CosmeticsSettings.gamemode;
-        targetColor = CosmeticsSettings.targetColor;
-        skybox      = CosmeticsSettings.skybox;
+        gamemode                = CosmeticsSettings.gamemode;
+        targetColor             = CosmeticsSettings.targetColor;
+        skybox                  = CosmeticsSettings.skybox;
         afterActionReportPanelX = CosmeticsSettings.afterActionReportPanelX;
         afterActionReportPanelY = CosmeticsSettings.afterActionReportPanelY;
-        extraStatsPanelX = CosmeticsSettings.extraStatsPanelX;
-        extraStatsPanelY = CosmeticsSettings.extraStatsPanelY;
-        quickStartGame   = CosmeticsSettings.quickStartGame;
+        extraStatsPanelX        = CosmeticsSettings.extraStatsPanelX;
+        extraStatsPanelY        = CosmeticsSettings.extraStatsPanelY;
+        quickStartGame          = CosmeticsSettings.quickStartGame;
     }
 }

@@ -11,13 +11,13 @@ public class ExtraSettingsDataSerial {
     public bool showExtraStatsBackgrounds;
 
     public ExtraSettingsDataSerial() {
-        gameTimer        = ExtraSettings.gameTimer;
-        targetSound      = ExtraSettings.targetSound;
-        uiSound          = ExtraSettings.uiSound;
-        showAAR          = ExtraSettings.showAAR;
-        mouseSensitivity = ExtraSettings.mouseSensitivity;
-        hideUI           = ExtraSettings.hideUI;
-        showExtraStats   = ExtraSettings.showExtraStats;
+        gameTimer                 = ExtraSettings.gameTimer;
+        targetSound               = ExtraSettings.targetSound;
+        uiSound                   = ExtraSettings.uiSound;
+        showAAR                   = ExtraSettings.showAAR;
+        mouseSensitivity          = ExtraSettings.mouseSensitivity;
+        hideUI                    = ExtraSettings.hideUI;
+        showExtraStats            = ExtraSettings.showExtraStats;
         showExtraStatsBackgrounds = ExtraSettings.showExtraStatsBackgrounds;
     }
 }

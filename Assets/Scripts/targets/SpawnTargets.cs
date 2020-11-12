@@ -10,7 +10,7 @@ public class SpawnTargets : MonoBehaviour {
 
     public static List<Vector3> targetSpawns, targetSpawnsPrimary, targetSpawnsSecondary;
     private static float targetSize;
-    private static Vector3 tinyTargetSize = new Vector3(0.75f, 0.75f, 0.75f);
+    private static Vector3 tinyTargetSize   = new Vector3(0.75f, 0.75f, 0.75f);
     private static Vector3 normalTargetSize = new Vector3(2.6f, 2.6f, 2.6f);
     public static bool targetAreasDestroyed = false;
     //Coroutine scatterCoroutine;
@@ -25,7 +25,7 @@ public class SpawnTargets : MonoBehaviour {
     public int targetMax;
     public static int count, totalCount;
     private static int stepCount = 4;
-    public bool targetFall = false;
+    public bool targetFall       = false;
 
     public static int shotsTaken, shotsHit, shotMisses, accuracy;
     public static string gamemode;
@@ -215,12 +215,12 @@ public class SpawnTargets : MonoBehaviour {
     /// Spawns single target at random point in spawn area bounds, then increases counts.
     /// </summary>
     public static void SpawnSingle(GameObject targetType) {
-        targetInArea = CheckTargetSpawn(RandomPointInBounds(targetSpawnAreaBounds));
+        targetInArea     = CheckTargetSpawn(RandomPointInBounds(targetSpawnAreaBounds));
         currentTargetObj = Instantiate(targetType, targetInArea, Quaternion.identity);
 
         preFallTargetSpawn = currentTargetObj.transform.position;
-        count += 1;
-        totalCount += 1;
+        count              += 1;
+        totalCount         += 1;
         //Debug.Log($"totalTargetCount: {totalCount}");
     }
 
@@ -245,13 +245,13 @@ public class SpawnTargets : MonoBehaviour {
     /// Spawns single random target from scatter spawns list, then removes spawned target positon from scatter spawns list. Increases counts.
     /// </summary>
     public static void SpawnSingleScatter() {
-        targetInArea = scatterTargetSpawns[UnityEngine.Random.Range(0, scatterTargetSpawns.Count)];
+        targetInArea     = scatterTargetSpawns[UnityEngine.Random.Range(0, scatterTargetSpawns.Count)];
         currentTargetObj = Instantiate(primaryTargetObject, targetInArea, Quaternion.identity);
         scatterTargetSpawns.Remove(targetInArea);
 
         preFallTargetSpawn = currentTargetObj.transform.position;
-        count += 1;
-        totalCount += 1;
+        count              += 1;
+        totalCount         += 1;
     }
 
     /// <summary>
@@ -259,12 +259,13 @@ public class SpawnTargets : MonoBehaviour {
     /// </summary>
     public static void SpawnScatter() {
         while (count < ST.targetMax + 1) {
-            targetInArea = scatterTargetSpawns[UnityEngine.Random.Range(0, scatterTargetSpawns.Count)];
+            targetInArea     = scatterTargetSpawns[UnityEngine.Random.Range(0, scatterTargetSpawns.Count)];
             currentTargetObj = Instantiate(primaryTargetObject, targetInArea, Quaternion.identity);
             scatterTargetSpawns.Remove(targetInArea);
+
             preFallTargetSpawn = currentTargetObj.transform.position;
-            count += 1;
-            totalCount += 1;
+            count              += 1;
+            totalCount         += 1;
         }
     }
 
@@ -272,27 +273,27 @@ public class SpawnTargets : MonoBehaviour {
     /// Spawns inital target as pairs starter (if gamemode "Gamemode-Pairs"). Increases counts.
     /// </summary>
     public static void SpawnPairsStarter() {
-        pairStarterActive = true;
+        pairStarterActive  = true;
         starterTargetCords = targetSpawnAreaCenter;
-        int randomPick = UnityEngine.Random.Range(0, 2);
+        int randomPick     = UnityEngine.Random.Range(0, 2);
 
         // Picks 0 or 1 randomly, spawns either primary or secondary target color.
         if (randomPick == 0) {
             // Primary
-            currentTargetObj = Instantiate(primaryTargetObject, starterTargetCords, Quaternion.identity);
-            pairStarterPrimaryActive = false;
+            currentTargetObj           = Instantiate(primaryTargetObject, starterTargetCords, Quaternion.identity);
+            pairStarterPrimaryActive   = false;
             pairStarterSecondaryActive = true;
             targetSpawnsPrimary.Add(starterTargetCords);
         } else {
             // Secondary
-            currentTargetObj = Instantiate(secondaryTargetObject, starterTargetCords, Quaternion.identity);
-            pairStarterPrimaryActive = true;
+            currentTargetObj           = Instantiate(secondaryTargetObject, starterTargetCords, Quaternion.identity);
+            pairStarterPrimaryActive   = true;
             pairStarterSecondaryActive = false;
             targetSpawnsSecondary.Add(starterTargetCords);
         }
 
         targetSpawns.Add(starterTargetCords);
-        count += 1;
+        count      += 1;
         totalCount += 1;
     }
 
@@ -301,15 +302,15 @@ public class SpawnTargets : MonoBehaviour {
     /// </summary>
     public static void SpawnPairs() {
         pairStarterActive = false;
-        int randomPick = UnityEngine.Random.Range(0, 2);
+        int randomPick    = UnityEngine.Random.Range(0, 2);
         Vector3 pairPrimary, pairSecondary;
 
         // Picks 0 or 1 randomly, spawns primary on right / secondary on left OR primary on left / secondary on right.
         if (randomPick == 0) {
-            pairPrimary = PickRandomPairs(targetSpawnAreaBounds, "left");
+            pairPrimary   = PickRandomPairs(targetSpawnAreaBounds, "left");
             pairSecondary = PickRandomPairs(targetSpawnAreaBounds, "right");
         } else {
-            pairPrimary = PickRandomPairs(targetSpawnAreaBounds, "right");
+            pairPrimary   = PickRandomPairs(targetSpawnAreaBounds, "right");
             pairSecondary = PickRandomPairs(targetSpawnAreaBounds, "left");
         }
 
@@ -418,42 +419,42 @@ public class SpawnTargets : MonoBehaviour {
     public static void SetTargetColor(string setColor, bool gamemodeFollow) {
         switch (setColor) {
             case "TargetColor-Red":
-                primaryTargetObject          = ST.redTarget;
+                primaryTargetObject   = ST.redTarget;
                 secondaryTargetObject = ST.blueTarget;
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.RedAlbedo(), TargetColors.RedEmission(), TargetColors.RedLight()); }
                 break;
             case "TargetColor-Orange":
-                primaryTargetObject          = ST.orangeTarget;
+                primaryTargetObject   = ST.orangeTarget;
                 secondaryTargetObject = ST.blueTarget;
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.OrangeAlbedo(), TargetColors.OrangeEmission(), TargetColors.OrangeLight()); }
                 break;
             case "TargetColor-Yellow":
-                primaryTargetObject          = ST.yellowTarget;
+                primaryTargetObject   = ST.yellowTarget;
                 secondaryTargetObject = ST.redTarget;
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.YellowAlbedo(), TargetColors.YellowEmission(), TargetColors.YellowLight()); }
                 break;
             case "TargetColor-Green":
-                primaryTargetObject          = ST.greenTarget;
+                primaryTargetObject   = ST.greenTarget;
                 secondaryTargetObject = ST.redTarget;
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.GreenAlbedo(), TargetColors.GreenEmission(), TargetColors.GreenLight()); }
                 break;
             case "TargetColor-Blue":
-                primaryTargetObject          = ST.blueTarget;
+                primaryTargetObject   = ST.blueTarget;
                 secondaryTargetObject = ST.redTarget;
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.BlueAlbedo(), TargetColors.BlueEmission(), TargetColors.BlueLight()); }
                 break;
             case "TargetColor-Purple":
-                primaryTargetObject          = ST.purpleTarget;
+                primaryTargetObject   = ST.purpleTarget;
                 secondaryTargetObject = ST.yellowTarget;
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.PurpleAlbedo(), TargetColors.PurpleEmission(), TargetColors.PurpleLight()); }
                 break;
             case "TargetColor-Pink":
-                primaryTargetObject          = ST.pinkTarget;
+                primaryTargetObject   = ST.pinkTarget;
                 secondaryTargetObject = ST.yellowTarget;
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.PinkAlbedo(), TargetColors.PinkEmission(), TargetColors.PinkLight()); }
                 break;
             case "TargetColor-White":
-                primaryTargetObject          = ST.whiteTarget;
+                primaryTargetObject   = ST.whiteTarget;
                 secondaryTargetObject = ST.blueTarget;
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.WhiteAlbedo(), TargetColors.WhiteEmission(), TargetColors.WhiteLight()); }
                 break;
@@ -482,7 +483,7 @@ public class SpawnTargets : MonoBehaviour {
                 } else {
                     // Loop all currently spawned targets and re-instantiate them.
                     for (int i = 0; i < targetSpawns.Count; i++) {
-                        currentTargetObj = Instantiate(primaryTargetObject, targetSpawns[i], Quaternion.identity);
+                        currentTargetObj   = Instantiate(primaryTargetObject, targetSpawns[i], Quaternion.identity);
                         preFallTargetSpawn = currentTargetObj.transform.position;
                     }
                 }

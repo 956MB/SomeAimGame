@@ -12,8 +12,8 @@ public class TextEffects : MonoBehaviour {
     /// <param name="distance"></param>
     public static void WiggleText(TMP_Text text, float delay, int distance) {
         GameObject moveText = text.gameObject;
-        startX = moveText.transform.position.x;
-        endX = startX - distance;
+        startX              = moveText.transform.position.x;
+        endX                = startX - distance;
 
         for (int i = 0; i < 3; i++) {
             LeanTween.moveX(moveText, endX, delay);

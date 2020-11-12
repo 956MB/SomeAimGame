@@ -16,14 +16,13 @@ public class ExtraSaveSystem : MonoBehaviour {
     /// <param name="extraSettings"></param>
     public static void SaveExtraSettingsData(ExtraSettings extraSettings) {
         BinaryFormatter formatter = new BinaryFormatter();
-        string dirPath = Application.persistentDataPath + "/settings";
-        string filePath = dirPath + "/extra.settings";
+        string dirPath            = Application.persistentDataPath + "/settings";
+        string filePath           = dirPath + "/extra.settings";
 
         DirectoryInfo dirInf = new DirectoryInfo(dirPath);
         if (!dirInf.Exists) { dirInf.Create(); }
 
-        FileStream stream = new FileStream(filePath, FileMode.Create);
-
+        FileStream stream                 = new FileStream(filePath, FileMode.Create);
         ExtraSettingsDataSerial extraData = new ExtraSettingsDataSerial();
         formatter.Serialize(stream, extraData);
         stream.Close();
@@ -37,14 +36,13 @@ public class ExtraSaveSystem : MonoBehaviour {
         string path = Application.persistentDataPath + "/settings/extra.settings";
         if (File.Exists(path)) {
             BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
+            FileStream stream         = new FileStream(path, FileMode.Open);
 
             ExtraSettingsDataSerial extraData = formatter.Deserialize(stream) as ExtraSettingsDataSerial;
             stream.Close();
 
             return extraData;
         } else {
-            //Debug.Log("Save file not found in " + path);
             return null;
         }
     }
@@ -77,17 +75,16 @@ public class ExtraSaveSystem : MonoBehaviour {
     public static void InitExtraSettingsDefaults() {
         SetGameTimerButtons(60);
 
-        extraSave.targetSoundToggleObject.isOn    = true;
-        extraSave.UISoundToggleObject.isOn        = true;
-        extraSave.ShowAARToggleObject.isOn        = true;
-        extraSave.ShowExtraStatsToggleObject.isOn = false;
+        extraSave.targetSoundToggleObject.isOn               = true;
+        extraSave.UISoundToggleObject.isOn                   = true;
+        extraSave.ShowAARToggleObject.isOn                   = true;
+        extraSave.ShowExtraStatsToggleObject.isOn            = false;
         extraSave.ShowExtraStatsBackgroundsToggleObject.isOn = true;
 
         MouseSensitivitySlider.SetMouseSensitivityValueText(2.0f);
         MouseSensitivitySlider.SetMouseSensitivitySlider(2.0f);
 
-        MouseLook.mouseSensitivity = 2.0f;
-
+        MouseLook.mouseSensitivity   = 2.0f;
         StatsManager.showBackgrounds = true;
 
         ExtraSettings.SaveAllExtraSettingsDefaults(60, true, false, true, 2.0f, true, false, true);
@@ -145,7 +142,7 @@ public class ExtraSaveSystem : MonoBehaviour {
     }
 
     private static void SetShowExtraStatsBackgroundsToggle(bool showExtraStatsBackgroundsToggle) {
-        StatsManager.showBackgrounds = showExtraStatsBackgroundsToggle;
+        StatsManager.showBackgrounds                         = showExtraStatsBackgroundsToggle;
         extraSave.ShowExtraStatsBackgroundsToggleObject.isOn = showExtraStatsBackgroundsToggle;
     }
     /// <summary>

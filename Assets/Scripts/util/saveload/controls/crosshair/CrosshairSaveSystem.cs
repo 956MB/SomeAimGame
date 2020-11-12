@@ -33,8 +33,7 @@ public class CrosshairSaveSystem : MonoBehaviour {
         DirectoryInfo dirInf = new DirectoryInfo(dirPath);
         if (!dirInf.Exists) { dirInf.Create(); }
 
-        FileStream stream = new FileStream(filePath, FileMode.Create);
-
+        FileStream stream                 = new FileStream(filePath, FileMode.Create);
         CrosshairDataSerial crosshairData = new CrosshairDataSerial();
         formatter.Serialize(stream, crosshairData);
         stream.Close();

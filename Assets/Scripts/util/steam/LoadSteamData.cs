@@ -74,7 +74,7 @@ public class LoadSteamData : MonoBehaviour {
                 downloadedAvatarTexture.Apply();
 
                 // Flips upside down steam avatar
-                Texture2D flippedAvatar = FlipTexture(downloadedAvatarTexture);
+                Texture2D flippedAvatar           = FlipTexture(downloadedAvatarTexture);
                 steamData.steamAvatarImage.sprite = Sprite.Create(flippedAvatar, new Rect(0f, 0f, 184f, 184f), new Vector2(0.5f, 0.5f));
             }
         }

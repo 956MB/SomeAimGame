@@ -72,34 +72,32 @@ public class SimpleCrosshair : MonoBehaviour
         GameObject crosshairGameObject = new GameObject();
         crosshairGameObject.name = "Crosshair Canvas";
 
-        Canvas crosshairCanvas = crosshairGameObject.AddComponent<Canvas>();
+        Canvas crosshairCanvas     = crosshairGameObject.AddComponent<Canvas>();
         crosshairCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
         crosshairGameObject.AddComponent<CanvasScaler>();
 
-        GameObject imageGameObject = new GameObject();
-        imageGameObject.name = "Crosshair Image";
+        GameObject imageGameObject       = new GameObject();
+        imageGameObject.name             = "Crosshair Image";
         imageGameObject.transform.parent = crosshairGameObject.transform;
 
-        m_crosshairImage = imageGameObject.AddComponent<Image>();
-        m_crosshairImageSettings = imageGameObject.AddComponent<Image>();
-        m_crosshairImage.rectTransform.localPosition = new Vector2(0, 0);
+        m_crosshairImage                                     = imageGameObject.AddComponent<Image>();
+        m_crosshairImageSettings                             = imageGameObject.AddComponent<Image>();
+        m_crosshairImage.rectTransform.localPosition         = new Vector2(0, 0);
         m_crosshairImageSettings.rectTransform.localPosition = new Vector2(0, 0);
-        m_crosshairImage.raycastTarget = false;
-        m_crosshairImageSettings.raycastTarget = false;
+        m_crosshairImage.raycastTarget                       = false;
+        m_crosshairImageSettings.raycastTarget               = false;
     }
 
     public void GenerateCrosshair()
     {
         Texture2D crosshairTexture =  DrawCrosshair(m_crosshair);
 
-        m_crosshairImage.rectTransform.sizeDelta = new Vector2(m_crosshair.SizeNeeded, m_crosshair.SizeNeeded);
+        m_crosshairImage.rectTransform.sizeDelta         = new Vector2(m_crosshair.SizeNeeded, m_crosshair.SizeNeeded);
         m_crosshairImageSettings.rectTransform.sizeDelta = new Vector2(m_crosshair.SizeNeeded, m_crosshair.SizeNeeded);
-        Sprite crosshairSprite = Sprite.Create(crosshairTexture,
-            new Rect(0, 0, crosshairTexture.width, crosshairTexture.height),
-            Vector2.one / 2);
+        Sprite crosshairSprite                           = Sprite.Create(crosshairTexture, new Rect(0, 0, crosshairTexture.width, crosshairTexture.height), Vector2.one / 2);
 
-        m_crosshairImage.sprite = crosshairSprite;
+        m_crosshairImage.sprite         = crosshairSprite;
         m_crosshairImageSettings.sprite = crosshairSprite;
     }
 
@@ -107,26 +105,10 @@ public class SimpleCrosshair : MonoBehaviour
     {
         switch (channel)
         {
-            case CrosshairColorChannel.RED:
-                {
-                    m_crosshair.color.r = value / 255.0f;
-                }
-                break;
-            case CrosshairColorChannel.GREEN:
-                {
-                    m_crosshair.color.g = value / 255.0f; ;
-                }
-                break;
-            case CrosshairColorChannel.BLUE:
-                {
-                    m_crosshair.color.b = value / 255.0f; ;
-                }
-                break;
-            case CrosshairColorChannel.ALPHA:
-                {
-                    m_crosshair.color.a = value / 255.0f; ;
-                }
-                break;
+            case CrosshairColorChannel.RED:   m_crosshair.color.r = value / 255.0f; break;
+            case CrosshairColorChannel.GREEN: m_crosshair.color.g = value / 255.0f; break;
+            case CrosshairColorChannel.BLUE:  m_crosshair.color.b = value / 255.0f; break;
+            case CrosshairColorChannel.ALPHA: m_crosshair.color.a = value / 255.0f; break;
         }
         if (redrawCrosshair)
         {
@@ -217,10 +199,10 @@ public class SimpleCrosshair : MonoBehaviour
         //int outlineTemp = 1;
         int sizeNeeded = crosshair.SizeNeeded;
         int centerBias = sizeNeeded / 2;
-        int leftExtra = 0;
+        int leftExtra  = 0;
 
-        Texture2D crosshairTexture = new Texture2D(sizeNeeded + (m_crosshair.outlineThickness + 1), sizeNeeded + (m_crosshair.outlineThickness + 1), TextureFormat.RGBA32, false);
-        crosshairTexture.wrapMode = TextureWrapMode.Clamp;
+        Texture2D crosshairTexture  = new Texture2D(sizeNeeded + (m_crosshair.outlineThickness + 1), sizeNeeded + (m_crosshair.outlineThickness + 1), TextureFormat.RGBA32, false);
+        crosshairTexture.wrapMode   = TextureWrapMode.Clamp;
         crosshairTexture.filterMode = FilterMode.Point;
 
         //DrawBox(0, 0, crosshairTexture.width, crosshairTexture.height, crosshairTexture, new Color(255, 0, 0, 50));

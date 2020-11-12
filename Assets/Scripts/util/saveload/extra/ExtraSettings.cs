@@ -92,13 +92,13 @@ public class ExtraSettings : MonoBehaviour {
     /// <param name="setShowExtraStats"></param>
     public static void SaveAllExtraSettingsDefaults(int setGameTimer, bool setTargetSound, bool setUISound,
     bool setShowAAR, float setMouseSens, bool setHideUI, bool setShowExtraStats, bool setShowExtraStatsBackgrounds) {
-        gameTimer        = setGameTimer;
-        targetSound      = setTargetSound;
-        uiSound          = setUISound;
-        showAAR          = setShowAAR;
-        mouseSensitivity = setMouseSens;
-        hideUI           = setHideUI;
-        showExtraStats   = setShowExtraStats;
+        gameTimer                 = setGameTimer;
+        targetSound               = setTargetSound;
+        uiSound                   = setUISound;
+        showAAR                   = setShowAAR;
+        mouseSensitivity          = setMouseSens;
+        hideUI                    = setHideUI;
+        showExtraStats            = setShowExtraStats;
         showExtraStatsBackgrounds = setShowExtraStatsBackgrounds;
         extraSettings.SaveExtraSettings();
     }
@@ -108,13 +108,13 @@ public class ExtraSettings : MonoBehaviour {
     /// </summary>
     /// <param name="extraData"></param>
     public static void LoadExtraSettings(ExtraSettingsDataSerial extraData) {
-        gameTimer        = extraData.gameTimer;
-        targetSound      = extraData.targetSound;
-        uiSound          = extraData.uiSound;
-        showAAR          = extraData.showAAR;
-        mouseSensitivity = extraData.mouseSensitivity;
-        hideUI           = extraData.hideUI;
-        showExtraStats   = extraData.showExtraStats;
+        gameTimer                 = extraData.gameTimer;
+        targetSound               = extraData.targetSound;
+        uiSound                   = extraData.uiSound;
+        showAAR                   = extraData.showAAR;
+        mouseSensitivity          = extraData.mouseSensitivity;
+        hideUI                    = extraData.hideUI;
+        showExtraStats            = extraData.showExtraStats;
         showExtraStatsBackgrounds = extraData.showExtraStatsBackgrounds;
     }
 }

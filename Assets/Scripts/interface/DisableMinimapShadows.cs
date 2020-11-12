@@ -7,17 +7,17 @@ public class DisableMinimapShadows : MonoBehaviour {
     private ShadowQuality _originalShadowSettings;
 
     private void Awake() {
-        mainCamera = GetComponent<Camera>();
+        mainCamera              = GetComponent<Camera>();
         _originalShadowSettings = QualitySettings.shadows;
     }
 
     private void OnEnable() {
-        Camera.onPreRender += MyPreRender;
+        Camera.onPreRender  += MyPreRender;
         Camera.onPostRender += MyPostRender;
     }
 
     private void OnDisable() {
-        Camera.onPreRender -= MyPreRender;
+        Camera.onPreRender  -= MyPreRender;
         Camera.onPostRender -= MyPostRender;
     }
 

@@ -8,14 +8,13 @@ public class LanguageSaveSystem : MonoBehaviour {
 
     public static void SaveLanguageSettingData(LanguageSetting languageSetting) {
         BinaryFormatter formatter = new BinaryFormatter();
-        string dirPath = Application.persistentDataPath + "/settings";
-        string filePath = dirPath + "/language.setting";
+        string dirPath            = Application.persistentDataPath + "/settings";
+        string filePath           = dirPath + "/language.setting";
 
         DirectoryInfo dirInf = new DirectoryInfo(dirPath);
         if (!dirInf.Exists) { dirInf.Create(); }
 
-        FileStream stream = new FileStream(filePath, FileMode.Create);
-
+        FileStream stream                      = new FileStream(filePath, FileMode.Create);
         LanguageSettingDataSerial languageData = new LanguageSettingDataSerial();
         formatter.Serialize(stream, languageData);
         stream.Close();
@@ -25,7 +24,7 @@ public class LanguageSaveSystem : MonoBehaviour {
         string path = Application.persistentDataPath + "/settings/language.setting";
         if (File.Exists(path)) {
             BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
+            FileStream stream         = new FileStream(path, FileMode.Open);
 
             LanguageSettingDataSerial languageData = formatter.Deserialize(stream) as LanguageSettingDataSerial;
             stream.Close();

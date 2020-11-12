@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TargetCube : MonoBehaviour {
-    public float targetUpForce = 1.0f;
+    public float targetUpForce   = 1.0f;
     public float targetSideForce = 0.1f;
 
     void Start() {

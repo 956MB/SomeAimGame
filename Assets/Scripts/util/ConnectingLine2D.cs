@@ -14,14 +14,15 @@ public class ConnectingLine2D : MonoBehaviour {
 
     private void drawConnectingLine() {
         GameObject lineObj = new GameObject();
+
         this.line = lineObj.AddComponent<LineRenderer>();
-        this.line.startWidth = 1f;
-        this.line.endWidth = 1f;
+        this.line.startWidth    = 1f;
+        this.line.endWidth      = 1f;
         this.line.positionCount = 2;
 
         Vector3[] checkPointArray = new Vector3[this.points.Count];
         for (int i = 0; i < this.points.Count; i++) {
-            Vector3 pointPos = this.points[i].position;
+            Vector3 pointPos   = this.points[i].position;
             checkPointArray[i] = new Vector3(pointPos.x, pointPos.y, 0f);
         }
 
