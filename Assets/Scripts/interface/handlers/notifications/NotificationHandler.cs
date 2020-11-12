@@ -7,7 +7,7 @@ using System.Collections;
 /// </summary>
 public class NotificationHandler : MonoBehaviour {
     public static TMP_Text notificationTextContent;
-    public static bool notificationOpen = false;
+    public static bool notificationOpen                    = false;
     private static WaitForSeconds notificationDestroyDelay = new WaitForSeconds(3.5f);
 
     public static Color32 notificationColorGreen  = new Color32(0, 255, 0, 255);
@@ -17,7 +17,7 @@ public class NotificationHandler : MonoBehaviour {
 
     public static NotificationHandler notification;
     private void Awake() {
-        notification = this;
+        notification            = this;
         notificationTextContent = gameObject.GetComponentInChildren<TMP_Text>();
 
         // Disable notification gameObject by default.

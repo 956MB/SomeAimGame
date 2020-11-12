@@ -5,7 +5,7 @@ using UnityEngine.Video;
 
 public class SettingsPanel : MonoBehaviour {
     public GameObject mainMenuCanvas, settingsPanel, afterPanel, extendedStatsPanel, steamDataContainer, devEventContainer;
-    public static bool settingsOpen = false;
+    public static bool settingsOpen          = false;
     public static bool afterActionReportOpen = false;
     public static bool afterActionReportSet;
     public GameObject targetColorOrange, targetColorPurple;
@@ -26,8 +26,8 @@ public class SettingsPanel : MonoBehaviour {
     void Awake() { settings = this; }
 
     void Start() {
-        rt = (RectTransform)settingsPanel.transform;
-        panelWidth = rt.rect.width;
+        rt                   = (RectTransform)settingsPanel.transform;
+        panelWidth           = rt.rect.width;
         afterActionReportSet = false;
         //LeanTween.moveX(settings.settingsPanel, -280, 0f);
 
@@ -44,8 +44,8 @@ public class SettingsPanel : MonoBehaviour {
 
         // Close settings and 'AfterActionReport' panels at start.
         settings.settingsPanel.transform.localScale = new Vector3(0f, 0f, 1f);
+        settings.afterPanel.transform.localScale    = new Vector3(0f, 0f, 1f);
         settings.steamDataContainer.SetActive(false);
-        settings.afterPanel.transform.localScale = new Vector3(0f, 0f, 1f);
         
         //CosmeticsSaveSystem.initSettingsDefaults();
         //settingsPanel.SetActive(false);
@@ -131,7 +131,7 @@ public class SettingsPanel : MonoBehaviour {
         }
         OpenAction();
         settings.afterPanel.transform.localScale = new Vector3(1f, 1f, 1f);
-        afterActionReportOpen = true;
+        afterActionReportOpen                    = true;
         GameUI.HideUI();
 
         // EVENT:: for AAR panel being opened
@@ -147,7 +147,7 @@ public class SettingsPanel : MonoBehaviour {
         settings.extendedStatsPanel.SetActive(false);
         CloseAction();
         settings.afterPanel.transform.localScale = new Vector3(0f, 0f, 1f);
-        afterActionReportOpen = false;
+        afterActionReportOpen                    = false;
 
         if (ExtraSettings.hideUI) { GameUI.ShowUI(); }
 
@@ -178,14 +178,14 @@ public class SettingsPanel : MonoBehaviour {
     /// </summary>
     public static void LockCursor() {
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        Cursor.visible   = false;
     }
     /// <summary>
     /// Unlocks cursor if settings panel open and game inactive.
     /// </summary>
     public static void UnlockCursor() {
         Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        Cursor.visible   = true;
     }
 
     /// <summary>
@@ -193,10 +193,9 @@ public class SettingsPanel : MonoBehaviour {
     /// </summary>
     /// <param name="panelX"></param>
     public static void PlaceSettingsPanel(float panelX) {
-        Vector3 panelPos = settings.settingsPanel.transform.position;
-        panelPos.x = panelX;
+        Vector3 panelPos                          = settings.settingsPanel.transform.position;
+        panelPos.x                                = panelX;
         settings.settingsPanel.transform.position = panelPos;
-        //Debug.Log("current panel x : " + settings.settingsPanel.transform.position.x);
     }
 
     /// <summary>
@@ -210,11 +209,11 @@ public class SettingsPanel : MonoBehaviour {
     /// </summary>
     public static Vector3 MoveSettingsPanelRight() {
         float currentPanelX = settings.settingsPanel.transform.position.x;
-        float newPanelX = (currentPanelX + panelMoveSize) + (panelWidth / 2);
+        float newPanelX     = (currentPanelX + panelMoveSize) + (panelWidth / 2);
 
         if (newPanelX < Screen.width) {
-            Vector3 panelPos = settings.settingsPanel.transform.position;
-            panelPos.x += panelMoveSize;
+            Vector3 panelPos                          = settings.settingsPanel.transform.position;
+            panelPos.x                                += panelMoveSize;
             settings.settingsPanel.transform.position = panelPos;
 
             return panelPos;
@@ -228,11 +227,11 @@ public class SettingsPanel : MonoBehaviour {
     /// </summary>
     public static Vector3 MoveSettingsPanelLeft() {
         float currentPanelX = settings.settingsPanel.transform.position.x;
-        float newPanelX = (currentPanelX - panelMoveSize) - (panelWidth / 2);
+        float newPanelX     = (currentPanelX - panelMoveSize) - (panelWidth / 2);
 
         if (newPanelX > 0) {
-            Vector3 panelPos = settings.settingsPanel.transform.position;
-            panelPos.x -= panelMoveSize;
+            Vector3 panelPos                          = settings.settingsPanel.transform.position;
+            panelPos.x                                -= panelMoveSize;
             settings.settingsPanel.transform.position = panelPos;
 
             return panelPos;
@@ -291,17 +290,17 @@ public class SettingsPanel : MonoBehaviour {
         //settings.canvasOrange.transform.GetComponent<UnityEngine.UI.Image>().sprite = thumbnailSprite;
 
         // Red target
-        settings.canvasRed.transform.GetComponent<UnityEngine.UI.Image>().sprite = settings.targetColorRedThumbnail;
+        settings.canvasRed.transform.GetComponent<UnityEngine.UI.Image>().sprite    = settings.targetColorRedThumbnail;
         // Green target
-        settings.canvasGreen.transform.GetComponent<UnityEngine.UI.Image>().sprite = settings.targetColorGreenThumbnail;
+        settings.canvasGreen.transform.GetComponent<UnityEngine.UI.Image>().sprite  = settings.targetColorGreenThumbnail;
         // Blue target
-        settings.canvasBlue.transform.GetComponent<UnityEngine.UI.Image>().sprite = settings.targetColorBlueThumbnail;
+        settings.canvasBlue.transform.GetComponent<UnityEngine.UI.Image>().sprite   = settings.targetColorBlueThumbnail;
         // Yellow target
         settings.canvasYellow.transform.GetComponent<UnityEngine.UI.Image>().sprite = settings.targetColorYellowThumbnail;
         // Pink target
-        settings.canvasPink.transform.GetComponent<UnityEngine.UI.Image>().sprite = settings.targetColorPinkThumbnail;
+        settings.canvasPink.transform.GetComponent<UnityEngine.UI.Image>().sprite   = settings.targetColorPinkThumbnail;
         // White target
-        settings.canvasWhite.transform.GetComponent<UnityEngine.UI.Image>().sprite = settings.targetColorWhiteThumbnail;
+        settings.canvasWhite.transform.GetComponent<UnityEngine.UI.Image>().sprite  = settings.targetColorWhiteThumbnail;
         // Orange target
         settings.canvasOrange.transform.GetComponent<UnityEngine.UI.Image>().sprite = settings.targetColorOrangeThumbnail;
         // Purple target
@@ -313,16 +312,16 @@ public class SettingsPanel : MonoBehaviour {
     /// </summary>
     private static void LoadSkyboxThumbnails() {
         // Pink skybox
-        settings.skyboxCanvasPink.transform.GetComponent<UnityEngine.UI.Image>().sprite = settings.skyboxPinkThumbnail;
+        settings.skyboxCanvasPink.transform.GetComponent<UnityEngine.UI.Image>().sprite   = settings.skyboxPinkThumbnail;
         // Golden skybox
         settings.skyboxCanvasGolden.transform.GetComponent<UnityEngine.UI.Image>().sprite = settings.skyboxGoldenThumbnail;
         // Night skybox
-        settings.skyboxCanvasNight.transform.GetComponent<UnityEngine.UI.Image>().sprite = settings.skyboxNightThumbnail;
+        settings.skyboxCanvasNight.transform.GetComponent<UnityEngine.UI.Image>().sprite  = settings.skyboxNightThumbnail;
         // Grey skybox
-        settings.skyboxCanvasGrey.transform.GetComponent<UnityEngine.UI.Image>().sprite = settings.skyboxGreyThumbnail;
+        settings.skyboxCanvasGrey.transform.GetComponent<UnityEngine.UI.Image>().sprite   = settings.skyboxGreyThumbnail;
         // Blue skybox
-        settings.skyboxCanvasStars.transform.GetComponent<UnityEngine.UI.Image>().sprite = settings.skyboxBlueThumbnail;
+        settings.skyboxCanvasStars.transform.GetComponent<UnityEngine.UI.Image>().sprite  = settings.skyboxBlueThumbnail;
         // Slate skybox
-        settings.skyboxCanvasSlate.transform.GetComponent<UnityEngine.UI.Image>().sprite = settings.skyboxSlateThumbnail;
+        settings.skyboxCanvasSlate.transform.GetComponent<UnityEngine.UI.Image>().sprite  = settings.skyboxSlateThumbnail;
     }
 }

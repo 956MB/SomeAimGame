@@ -10,9 +10,9 @@ public class GamemodeSelect : MonoBehaviour {
 
     private static string currentOpenGamemode = "";
 
-    private static Color32 easyColor    = new Color32(0, 255, 0, 255);
+    private static Color32 easyColor   = new Color32(0, 255, 0, 255);
     private static Color32 mediumColor = new Color32(255, 209, 0, 255);
-    private static Color32 hardColor  = new Color32(255, 0, 0, 255);
+    private static Color32 hardColor   = new Color32(255, 0, 0, 255);
 
     public VideoClip gamemodeScatterClip, gamemodeFlickClip, gamemodeGridClip, gamemodeGrid2Clip, gamemodePairsClip, gamemodeFollowClip;
     public static VideoClip gamemodeScatterClip_Loaded, gamemodeFlickClip_Loaded, gamemodeGridClip_Loaded, gamemodeGrid2Clip_Loaded, gamemodePairsClip_Loaded, gamemodeFollowClip_Loaded;
@@ -35,7 +35,7 @@ public class GamemodeSelect : MonoBehaviour {
     /// <param name="gamemodeName"></param>
     public static void PopulateGamemodeSelect(string gamemodeName, bool quickStart) {
         // Set current selected gamemode and its buttons hover border.
-        currentOpenGamemode = gamemodeName;
+        currentOpenGamemode                 = gamemodeName;
         ButtonHoverHandler.selectedGamemode = gamemodeName;
         if (NotificationHandler.notificationOpen) { NotificationHandler.HideNotification(); }
 

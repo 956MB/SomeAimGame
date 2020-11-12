@@ -12,7 +12,7 @@ public class MouseLook : MonoBehaviour {
     public float maximumX = 360F;
     public float minimumY = -90F;
     public float maximumY = 90F;
-    float rotationY = 0F;
+    float rotationY       = 0F;
 
 
     //// private static float mouseStep = 5.0f;
@@ -27,7 +27,7 @@ public class MouseLook : MonoBehaviour {
     void Awake() {
         // Lock/hide cursor to game on awake.
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        Cursor.visible   = false;
     }
 
     void Start() {

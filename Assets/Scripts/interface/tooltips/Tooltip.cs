@@ -10,9 +10,9 @@ public class Tooltip : MonoBehaviour {
 
     public static Tooltip tooltipInstance;
     private void Awake() {
-        tooltipInstance = this;
+        tooltipInstance                = this;
         tooltipBackgroundRectTransform = transform.Find("TooltipBackground").GetComponent<RectTransform>();
-        tooltipTextContent = transform.Find("TooltipText").GetComponent<TMP_Text>();
+        tooltipTextContent             = transform.Find("TooltipText").GetComponent<TMP_Text>();
 
         //ShowTooltip("Stats of highscore run in gamemode 'Grid'.");
         gameObject.SetActive(false);
@@ -37,9 +37,9 @@ public class Tooltip : MonoBehaviour {
             // Set supplied string (tooltipText) as text content, then calculate tooltip size based on text.
             tooltipTextContent.SetText(SpliceText(tooltipText, 35));
 
-            Vector2 tooltipBackgroundSize = new Vector2(tooltipTextContent.preferredWidth + 12f, tooltipTextContent.preferredHeight + 11f);
+            Vector2 tooltipBackgroundSize            = new Vector2(tooltipTextContent.preferredWidth + 12f, tooltipTextContent.preferredHeight + 11f);
             tooltipBackgroundRectTransform.sizeDelta = tooltipBackgroundSize;
-            tooltipShown = true;
+            tooltipShown                             = true;
         }
     }
 

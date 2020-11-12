@@ -6,20 +6,21 @@ public class StatsUtil : MonoBehaviour {
     public static string itemUp            = "▲";
     public static string itemDown          = "▼";
     public static string itemNeutral       = "-";
+
     public static Color32 newHighscoreBackgroundColor = new Color32(255, 209, 0, 55);
     public static Color32 upBackgroundColor           = new Color32(0, 255, 0, 20);
     public static Color32 downBackgroundColor         = new Color32(255, 0, 0, 20);
     public static Color32 neutralBackgroundColor      = new Color32(255, 255, 255, 15);
-    public static Color32 itemColorRed       = new Color32(255, 0, 0, 255);
-    public static Color32 itemColorGreen     = new Color32(0, 255, 0, 255);
-    public static Color32 itemColorGrey      = new Color32(255, 255, 255, 85);
-    public static Color32 itemColorHighscore = new Color32(255, 209, 0, 255);
-    public static Color32 upLineColor          = new Color32(0, 255, 0, 150);
-    public static Color32 downLineColor        = new Color32(255, 0, 0, 150);
-    public static Color32 neutralLineColor     = new Color32(255, 255, 255, 35);
-    public static Color32 highscoreLineColor   = new Color32(255, 209, 0, 255);
-    public static Color32 clearBackgroundLight = new Color32(255, 255, 255, 15);
-    public static Color32 clearBackgroundDark  = new Color32(0, 0, 0, 0);
+    public static Color32 itemColorRed                = new Color32(255, 0, 0, 255);
+    public static Color32 itemColorGreen              = new Color32(0, 255, 0, 255);
+    public static Color32 itemColorGrey               = new Color32(255, 255, 255, 85);
+    public static Color32 itemColorHighscore          = new Color32(255, 209, 0, 255);
+    public static Color32 upLineColor                 = new Color32(0, 255, 0, 150);
+    public static Color32 downLineColor               = new Color32(255, 0, 0, 150);
+    public static Color32 neutralLineColor            = new Color32(255, 255, 255, 35);
+    public static Color32 highscoreLineColor          = new Color32(255, 209, 0, 255);
+    public static Color32 clearBackgroundLight        = new Color32(255, 255, 255, 15);
+    public static Color32 clearBackgroundDark         = new Color32(0, 0, 0, 0);
 
     public static string GetItemText(double newValue, double oldValue, double highscoreValue) {
         if (newValue < oldValue) return itemDown;

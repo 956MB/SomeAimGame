@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using PathCreation;
 
 public class GenerateFollowPath : MonoBehaviour {
-    public static bool closedLoop = true;
     public static List<Vector3> waypoints;
+    public static bool closedLoop   = true;
     public static int waypointCount = 50;
     public GameObject followTargetSpawnArea;
     public static Bounds followTargetSpawnAreaBounds;
@@ -20,7 +19,7 @@ public class GenerateFollowPath : MonoBehaviour {
     /// </summary>
     public static void StartFollowGamemode() {
         //Debug.Log("startFollowGamemode START::");
-        waypoints = new List<Vector3>();
+        waypoints                   = new List<Vector3>();
         followTargetSpawnAreaBounds = generateFollow.followTargetSpawnArea.GetComponent<BoxCollider>().bounds;
         GenerateRandomWaypoints();
         pathFollowerTarget = Instantiate(SpawnTargets.primaryTargetObject, waypoints[0], Quaternion.identity);

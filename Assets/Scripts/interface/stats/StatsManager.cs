@@ -141,8 +141,10 @@ public class StatsManager : MonoBehaviour {
     /// </summary>
     private static void EnableNewHighscoreText() {
         stats.newHighscoreEffectText.enabled = true;
-        stats.scoreTitleText.enabled = false;
+        stats.scoreTitleText.enabled         = false;
+
         stats.newHighscoreEffectText.transform.parent.gameObject.GetComponent<Image>().color = StatsUtil.newHighscoreBackgroundColor;
+
         stats.highscoreLineTop.color    = StatsUtil.highscoreLineColor;
         stats.highscoreLineBottom.color = StatsUtil.highscoreLineColor;
     }

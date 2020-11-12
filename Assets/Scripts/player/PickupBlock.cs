@@ -8,14 +8,14 @@ public class PickupBlock : MonoBehaviour {
     void OnMouseDown() {
         //GetComponent<BoxCollider>().enabled = false;
         GetComponent<Rigidbody>().useGravity = false;
-        this.transform.position = pickupDestination.position;
-        this.transform.parent = GameObject.Find("BlockPickupDestination").transform;
+        this.transform.position              = pickupDestination.position;
+        this.transform.parent                = GameObject.Find("BlockPickupDestination").transform;
     }
 
     void OnMouseUp() {
         this.transform.parent = null;
         //GetComponent<BoxCollider>().enabled = true;
         GetComponent<Rigidbody>().useGravity = true;
-        GetComponent<Rigidbody>().mass = 1;
+        GetComponent<Rigidbody>().mass       = 1;
     }
 }

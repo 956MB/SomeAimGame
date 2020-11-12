@@ -20,12 +20,12 @@ public class ToggleMinimap : MonoBehaviour {
     public static void enableDisableMinimap() {
         if (minimapEnabled) {
             Minimap.minimapContainer.enabled = true;
-            Minimap.minimapRawImage.enabled = true;
-            Minimap.minimapArrow.enabled = true;
+            Minimap.minimapRawImage.enabled  = true;
+            Minimap.minimapArrow.enabled     = true;
         } else {
             Minimap.minimapContainer.enabled = false;
-            Minimap.minimapRawImage.enabled = false;
-            Minimap.minimapArrow.enabled = false;
+            Minimap.minimapRawImage.enabled  = false;
+            Minimap.minimapArrow.enabled     = false;
         }
     }
 }

@@ -27,8 +27,8 @@ public class CrosshairSaveSystem : MonoBehaviour {
     /// <param name="crosshairSettings"></param>
     public static void SaveCrosshairSettingsData(CrosshairSettings crosshairSettings) {
         BinaryFormatter formatter = new BinaryFormatter();
-        string dirPath = Application.persistentDataPath + "/settings";
-        string filePath = dirPath + "/crosshair.settings";
+        string dirPath            = Application.persistentDataPath + "/settings";
+        string filePath           = dirPath + "/crosshair.settings";
 
         DirectoryInfo dirInf = new DirectoryInfo(dirPath);
         if (!dirInf.Exists) { dirInf.Create(); }
@@ -48,7 +48,7 @@ public class CrosshairSaveSystem : MonoBehaviour {
         string path = Application.persistentDataPath + "/settings/crosshair.settings";
         if (File.Exists(path)) {
             BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
+            FileStream stream         = new FileStream(path, FileMode.Open);
 
             CrosshairDataSerial crosshairData = formatter.Deserialize(stream) as CrosshairDataSerial;
             stream.Close();
@@ -91,8 +91,8 @@ public class CrosshairSaveSystem : MonoBehaviour {
     /// </summary>
     public static void InitSettingsDefaults() {
         // Crosshair toggles.
-        crosshairSave.TStyleToggle.isOn = false;
-        crosshairSave.centerDotToggle.isOn = false;
+        crosshairSave.TStyleToggle.isOn         = false;
+        crosshairSave.centerDotToggle.isOn      = false;
         crosshairSave.OutlineEnabledToggle.isOn = true;
 
         // All crosshair values.
@@ -143,7 +143,7 @@ public class CrosshairSaveSystem : MonoBehaviour {
     public static void SetCrosshairTStyleToggle(bool setTStyle, bool redraw) {
         crosshairSave.simpleCrosshair.SetTStyle(setTStyle, redraw);
         crosshairSave.TStyleToggle.isOn = setTStyle;
-        CrosshairSettings.TStyle = setTStyle;
+        CrosshairSettings.TStyle        = setTStyle;
     }
     /// <summary>
     /// Sets crosshair center dot value and toggle to supplied bool (setCenterDot), and redraws crosshair if bool true (redraw).
@@ -153,7 +153,7 @@ public class CrosshairSaveSystem : MonoBehaviour {
     public static void SetCrosshairCenterDotToggle(bool setCenterDot, bool redraw) {
         crosshairSave.simpleCrosshair.SetCenterDot(setCenterDot, redraw);
         crosshairSave.centerDotToggle.isOn = setCenterDot;
-        CrosshairSettings.centerDot = setCenterDot;
+        CrosshairSettings.centerDot        = setCenterDot;
     }
     /// <summary>
     /// Sets crosshair outline enable value and toggle to supplied bool (setOutlineEnable), and redraws crosshair if bool true (redraw).
@@ -163,7 +163,7 @@ public class CrosshairSaveSystem : MonoBehaviour {
     public static void SetCrosshairOutlineToggle(bool setOutlineEnable, bool redraw) {
         crosshairSave.simpleCrosshair.SetOutlineEnabled(setOutlineEnable, redraw);
         crosshairSave.OutlineEnabledToggle.isOn = setOutlineEnable;
-        CrosshairSettings.outlineEnabled = setOutlineEnable;
+        CrosshairSettings.outlineEnabled        = setOutlineEnable;
     }
     /// <summary>
     /// Sets crosshair thickness value to supplied float (setOutlineThickness), and redraws crosshair if bool true (redraw).

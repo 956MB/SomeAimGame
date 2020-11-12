@@ -3,8 +3,8 @@
 public class PlayerMovement : MonoBehaviour {
     private float f_axisX, f_axisZ;
     private float groundDistance = 0.2f;
-    private float jumpHeight = 2.6f;
-    public float movementSpeed = 13.0f;
+    private float jumpHeight     = 2.6f;
+    public float movementSpeed   = 13.0f;
     public float gravityStrength = 85.0f;
 
     private bool isGrounded;

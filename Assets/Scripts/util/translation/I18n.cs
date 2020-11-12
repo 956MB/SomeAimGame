@@ -63,7 +63,7 @@ public class I18n : MonoBehaviour {
 
         for (int i = 0; i < lines.Length; i++) {
             if (lines[i].IndexOf("=") >= 0 && !lines[i].StartsWith("#")) {
-                key = lines[i].Substring(0, lines[i].IndexOf("="));
+                key   = lines[i].Substring(0, lines[i].IndexOf("="));
                 value = lines[i].Substring(lines[i].IndexOf("=") + 1, lines[i].Length - lines[i].IndexOf("=") - 1).Replace("\\n", Environment.NewLine);
                 Fields.Add(key, value);
             }

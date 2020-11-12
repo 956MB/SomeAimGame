@@ -6,8 +6,8 @@ public class FollowRaycast : MonoBehaviour {
     private RaycastHit raycastHit;
     Material currentTargetRendererMaterial;
     //Light targetLight;
-    private bool targetPrimary = true;
-    private static int shotsHit = 0;
+    private bool targetPrimary    = true;
+    private static int shotsHit   = 0;
     private static int shotsTaken = 0;
 
     private static FollowRaycast followRaycast;
@@ -76,9 +76,9 @@ public class FollowRaycast : MonoBehaviour {
     /// <param name="emission"></param>
     /// <param name="light"></param>
     public static void ChangeFollowTargetColor(Color albedo, Color emission, Color light) {
-        followRaycast.followTargetAlbedo = albedo;
+        followRaycast.followTargetAlbedo   = albedo;
         followRaycast.followTargetEmission = emission;
-        followRaycast.followTargetLight = light;
+        followRaycast.followTargetLight    = light;
         //followRaycast.currentTargetRendererMaterial = GenerateFollowPath.pathFollowerTarget.GetComponent<Renderer>().material;
         //followRaycast.targetLight = GenerateFollowPath.pathFollowerTarget.GetComponent<Light>();
 

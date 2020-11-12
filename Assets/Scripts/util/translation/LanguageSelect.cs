@@ -4,7 +4,7 @@ using TMPro;
 public class LanguageSelect : MonoBehaviour {
     public TMP_Text langText;
     public GameObject languageCodeSelectObject;
-    public static bool languageSelectOpen = false;
+    public static bool languageSelectOpen     = false;
     public static bool languageSelectDisabled = true;
 
     public static LanguageSelect langSelect;

@@ -138,7 +138,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
 
         ClearSkyboxButtonBorders();
         //Debug.Log("GHJGJHGHGGHJGHGHJG:: " + skyboxClickedName);
-        ButtonHoverHandler.selectedSkybox = skyboxClickedName;
+        ButtonHoverHandler.selectedSkybox               = skyboxClickedName;
         clickedButtonBorder.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         clickedButtonBorder.SetActive(true);
 

@@ -67,9 +67,9 @@ public class StatsJsonSaveSystem : MonoBehaviour {
     /// <param name="setTargetsMisses"></param>
     public static void SavePreviousGameData(string setGamemode, int setScore, int setAccuracy, int setTTK, double setKPS, int setBestStreak, int setTargetsTotal, int setTargetsHit, int setTargetsMisses) {
         PreviousGameStats previousGameStats = new PreviousGameStats();
-        previousGameStats = SetPreviousGameStats(previousGameStats, setGamemode, setScore, setAccuracy, setTTK, setKPS, setBestStreak, setTargetsTotal, setTargetsHit, setTargetsMisses);
+        previousGameStats                   = SetPreviousGameStats(previousGameStats, setGamemode, setScore, setAccuracy, setTTK, setKPS, setBestStreak, setTargetsTotal, setTargetsHit, setTargetsMisses);
 
-        string dirPath = Application.persistentDataPath + "/stats/previous";
+        string dirPath       = Application.persistentDataPath + "/stats/previous";
         DirectoryInfo dirInf = new DirectoryInfo(dirPath);
         if (!dirInf.Exists) { dirInf.Create(); }
 
@@ -91,9 +91,9 @@ public class StatsJsonSaveSystem : MonoBehaviour {
     /// <param name="setTargetsMisses"></param>
     public static void SaveBestGameStatsData(string setGamemode, int setScore, int setAccuracy, int setTTK, double setKPS, int setBestStreak, int setTargetsTotal, int setTargetsHit, int setTargetsMisses) {
         BestGameStats bestGameStatsLoaded = new BestGameStats();
-        bestGameStatsLoaded = SetBestGameStats(bestGameStatsLoaded, setScore, setAccuracy, setTTK, setKPS, setBestStreak, setTargetsTotal, setTargetsHit, setTargetsMisses);
+        bestGameStatsLoaded               = SetBestGameStats(bestGameStatsLoaded, setScore, setAccuracy, setTTK, setKPS, setBestStreak, setTargetsTotal, setTargetsHit, setTargetsMisses);
 
-        string dirPath = Application.persistentDataPath + "/stats/best";
+        string dirPath       = Application.persistentDataPath + "/stats/best";
         DirectoryInfo dirInf = new DirectoryInfo(dirPath);
         if (!dirInf.Exists) { dirInf.Create(); }
 

@@ -21,7 +21,7 @@ public class GameUI : MonoBehaviour {
     private static Color32 missColor  = new Color32(255, 0, 0, 255);
     private static Color32 bonusColor = new Color32(255, 209, 0, 255);
 
-    private static WaitForSeconds timerDelay = new WaitForSeconds(1f);
+    private static WaitForSeconds timerDelay   = new WaitForSeconds(1f);
     private static WaitForSeconds scatterDelay = new WaitForSeconds(0.2f);
 
     private static GameUI gameUI;
@@ -41,9 +41,9 @@ public class GameUI : MonoBehaviour {
         //yield return StartCoroutine(spawnScatterCoroutine);
         //yield return StartCoroutine(timerCoroutine);
         SettingsPanel.CloseAfterActionReport();
-        SettingsPanel.afterActionReportOpen = false;
         SettingsPanel.CloseSettingsPanel();
-        SettingsPanel.settingsOpen = false;
+        SettingsPanel.afterActionReportOpen = false;
+        SettingsPanel.settingsOpen          = false;
 
         SpawnTargets.InitSpawnTargets();
         // Load all stats objects at start.

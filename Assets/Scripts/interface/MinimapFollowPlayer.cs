@@ -14,12 +14,12 @@ public class MinimapFollowPlayer : MonoBehaviour {
 
         if (followPlayer) {
             minimapCamera.orthographicSize = 7.5f;
-            newMinimapCameraPosition = FPP.position;
-            newMinimapCameraPosition.y = transform.position.y;
-            transform.position = newMinimapCameraPosition;
+            newMinimapCameraPosition       = FPP.position;
+            newMinimapCameraPosition.y     = transform.position.y;
+            transform.position             = newMinimapCameraPosition;
         } else {
             minimapCamera.orthographicSize = 49f;
-            transform.position = new Vector3(14f, 22f, -2f);
+            transform.position             = new Vector3(14f, 22f, -2f);
         }
         
         if (rotateMinimap) {
