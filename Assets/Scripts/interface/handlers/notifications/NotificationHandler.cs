@@ -32,7 +32,7 @@ public class NotificationHandler : MonoBehaviour {
     /// </summary>
     /// <param name="notificationText"></param>
     /// <param name="notificationColor"></param>
-    public static void ShowNotification_String(string notificationText, Color32 notificationColor) {
+    public static void ShowTimedNotification_String(string notificationText, Color32 notificationColor) {
         notificationTextContent.SetText($"{notificationText}");
         notificationTextContent.color = notificationColor;
         notification.gameObject.SetActive(true);
@@ -49,7 +49,7 @@ public class NotificationHandler : MonoBehaviour {
     /// </summary>
     /// <param name="translateTextID"></param>
     /// <param name="notificationColor"></param>
-    public static void ShowNotification_Translated(string translateTextID, string extraText, Color32 notificationColor) {
+    public static void ShowTimedNotification_Translated(string translateTextID, string extraText, Color32 notificationColor) {
         string notificationContent = $"{I18nTextTranslator.SetTranslatedText(translateTextID)}{extraText}";
         notificationTextContent.SetText(notificationContent);
         notificationTextContent.color = notificationColor;
