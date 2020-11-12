@@ -26,16 +26,16 @@ public class GameUI : MonoBehaviour {
 
     private static GameUI gameUI;
     void Awake() {
-        gameUI = this;
-        UIHidden = false;
+        gameUI         = this;
+        UIHidden       = false;
         triggerRestart = false;
-        streakCurrent = streakBest = 0;
+        streakCurrent  = streakBest = 0;
     }
 
     void Start() {
         //spawnScatterCoroutine = continuousScatterSpawn();
         //timerCoroutine = startGameTimerDown();
-        reactionTime = 0;
+        reactionTime     = 0;
         reactionTimeList = new List<int>();
 
         //yield return StartCoroutine(spawnScatterCoroutine);
@@ -60,9 +60,7 @@ public class GameUI : MonoBehaviour {
         //}
         //timerCoroutine = StartCoroutine(startGameTimerDown());
         //StartCoroutine(startGameTimer());
-        if (!ExtraSettings.hideUI) {
-            HideUI();
-        }
+        if (!ExtraSettings.hideUI) { HideUI(); }
         StartGame();
     }
 

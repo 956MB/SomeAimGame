@@ -17,12 +17,12 @@ public class DevEventHandler : MonoBehaviour {
     private static WaitForSeconds cardDestroyDelay   = new WaitForSeconds(2f);
     private static WaitForSeconds signalDestroyDelay = new WaitForSeconds(0.5f);
     public static bool selfDestructCard = true;
-    public static int cardLimit = 50;
+    public static int cardLimit         = 50;
     public static int eventCount;
 
     public static bool cardsOn   = false;
     public static bool signalsOn = false;
-    public static bool logsOn = false;
+    public static bool logsOn    = false;
 
     public static string longestCardTypeText, gamemodeCardSpaces, timeCardSpaces, crosshairCardSpaces, targetsCardSpaces, interfaceCardSpaces, saveCardSpaces, skyboxCardSpaces, languageCardSpaces, keybindCardSpaces, soundCardSpaces, notificationCardSpaces, statsCardSpaces;
 

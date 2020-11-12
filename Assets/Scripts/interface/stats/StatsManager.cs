@@ -11,7 +11,7 @@ public class StatsManager : MonoBehaviour {
     public TMP_Text scoreEffectText, newHighscoreEffectText;
     public GameObject extraStatsPanel;
     public Image highscoreLineTop, highscoreLineBottom;
-    public static bool showBackgrounds = true;
+    public static bool showBackgrounds  = true;
     public static bool backgroundsSaved = false;
     private static Color32[] backgroundsSaves;
 
@@ -29,9 +29,9 @@ public class StatsManager : MonoBehaviour {
 
     private void Start() {
         //loadHighscore();
-        scoreTitleText.enabled = true;
+        scoreTitleText.enabled         = true;
         newHighscoreEffectText.enabled = false;
-        backgroundsSaves = new Color32[8];
+        backgroundsSaves               = new Color32[8];
     }
 
     /// <summary>

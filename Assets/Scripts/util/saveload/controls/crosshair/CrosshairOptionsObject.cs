@@ -27,7 +27,7 @@ public class CrosshairOptionsObject : MonoBehaviour {
         crosshairSizeSlider.onValueChanged.AddListener(delegate { SetCrosshairSizeValue(); });
         crosshairThicknessSlider.onValueChanged.AddListener(delegate { SetThicknessSizeValue(); });
         crosshairGapSlider.onValueChanged.AddListener(delegate { SetGapSizeValue(); });
-        crosshairOutlineSlider.onValueChanged.AddListener(delegate { SetOutlineSizeValue(); });
+        //crosshairOutlineSlider.onValueChanged.AddListener(delegate { SetOutlineSizeValue(); });
         crosshairRedSlider.onValueChanged.AddListener(delegate { SetRedValue(); });
         crosshairGreenSlider.onValueChanged.AddListener(delegate { SetGreenValue(); });
         crosshairBlueSlider.onValueChanged.AddListener(delegate { SetBlueValue(); });
