@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using System;
 
 public class ToggleHandler : MonoBehaviour {
     public Toggle checkToggle;
@@ -17,16 +15,16 @@ public class ToggleHandler : MonoBehaviour {
         }
 
         //SettingsPanel.CloseSettingsPanel();
-        checkToggle = GetComponent<Toggle>();
+        //checkToggle = GetComponent<Toggle>();
         //extraToggleName = extraToggle.name;
-        try {
-            checkToggle.onValueChanged.AddListener(delegate {
-                //Debug.Log($"extraToggle '{extraToggleName}' : {extraToggle.isOn}");
-                HandleToggle(checkToggle);
-            });
-        } catch (NullReferenceException NRE) {
+        //try {
+            //checkToggle.onValueChanged.AddListener(delegate {
+            //    //Debug.Log($"extraToggle '{extraToggleName}' : {extraToggle.isOn}");
+            //    HandleToggle(checkToggle);
+            //});
+        //} catch (NullReferenceException NRE) {
             //Debug.Log("Null reference exception here: " + NRE);
-        }
+        //}
     }
 
     /// <summary>
@@ -38,8 +36,7 @@ public class ToggleHandler : MonoBehaviour {
         //Debug.Log("hhfiefbsifbsanbfgsubfgib");
 
         switch (clickedToggleName) {
-            case "TargetSoundToggle":
-                // Toggles target sound.
+            case "TargetSoundToggle": // Toggles target sound.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
                 if (toggleClicked.isOn) {
                     ExtraSettings.SaveTargetSoundItem(true);
@@ -48,8 +45,7 @@ public class ToggleHandler : MonoBehaviour {
                 }
                 break;
 
-            case "UISoundToggle":
-                // Toggles UI sound.
+            case "UISoundToggle": // Toggles UI sound.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
                 if (toggleClicked.isOn) {
                     ExtraSettings.SaveUISoundItem(true);
@@ -58,8 +54,7 @@ public class ToggleHandler : MonoBehaviour {
                 }
                 break;
 
-            case "AARToggle":
-                // Toggles showing 'AfterActionReport'.
+            case "AARToggle": // Toggles showing 'AfterActionReport'.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
                 if (toggleClicked.isOn) {
                     ExtraSettings.SaveShowAAR(true);
@@ -68,8 +63,7 @@ public class ToggleHandler : MonoBehaviour {
                 }
                 break;
 
-            case "CenterDotToggle":
-                // Toggles center dot for crosshair.
+            case "CenterDotToggle": // Toggles center dot for crosshair.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
                 if (toggleClicked.isOn) {
                     CrosshairSettings.SaveCenterDot(true);
@@ -80,8 +74,7 @@ public class ToggleHandler : MonoBehaviour {
                 }
                 break;
 
-            case "TStyleToggle":
-                // Toggles TStyle for crosshair.
+            case "TStyleToggle": // Toggles TStyle for crosshair.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
                 if (toggleClicked.isOn) {
                     CrosshairSettings.SaveTStyle(true);
@@ -92,8 +85,7 @@ public class ToggleHandler : MonoBehaviour {
                 }
                 break;
 
-            case "OutlineEnableToggle":
-                // Toggles outline for crosshair.
+            case "OutlineEnableToggle": // Toggles outline for crosshair.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
                 if (toggleClicked.isOn) {
                     CrosshairSettings.SaveOutlineEnabled(true);
@@ -104,8 +96,7 @@ public class ToggleHandler : MonoBehaviour {
                 }
                 break;
 
-            case "ShowExtraStatsToggle":
-                // Toggles 'ExtraStats' panel in 'AfterActionReport'.
+            case "ShowExtraStatsToggle": // Toggles 'ExtraStats' panel in 'AfterActionReport'.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
                 if (toggleClicked.isOn) {
                     StatsManager.ShowExtraStatsPanel();
@@ -116,8 +107,7 @@ public class ToggleHandler : MonoBehaviour {
                 }
                 break;
 
-            case "ShowExtraStatsBackgroundsToggle":
-                // Toggles 'ExtraStats' backgrounds panel in 'AfterActionReport'.
+            case "ShowExtraStatsBackgroundsToggle": // Toggles 'ExtraStats' backgrounds panel in 'AfterActionReport'.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
                 if (toggleClicked.isOn) {
                     StatsManager.SetExtraStatsBackgrounds();
@@ -128,8 +118,7 @@ public class ToggleHandler : MonoBehaviour {
                 }
                 break;
 
-            case "QuickStartToggle":
-                // Toggles quick start game in gamemode panel.
+            case "QuickStartToggle": // Toggles quick start game in gamemode panel.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
                 if (toggleClicked.isOn) {
                     CosmeticsSaveSystem.SetQuickStartGame(true);
@@ -140,8 +129,7 @@ public class ToggleHandler : MonoBehaviour {
                 }
                 break;
 
-            case "ShowFPSToggle":
-                // Toggles FPS widget.
+            case "ShowFPSToggle": // Toggles FPS widget.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
                 if (toggleClicked.isOn) {
                     fpsWidget.SetActive(true);
@@ -152,8 +140,7 @@ public class ToggleHandler : MonoBehaviour {
                 }
                 break;
 
-            case "ShowTimeToggle":
-                // Toggles time widget.
+            case "ShowTimeToggle": // Toggles time widget.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
                 if (toggleClicked.isOn) {
                     timeWidget.SetActive(true);
@@ -164,8 +151,7 @@ public class ToggleHandler : MonoBehaviour {
                 }
                 break;
 
-            case "ShowScoreToggle":
-                // Toggles score widget.
+            case "ShowScoreToggle": // Toggles score widget.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
                 if (toggleClicked.isOn) {
                     ScoreWidget.SetActive(true);
@@ -176,8 +162,7 @@ public class ToggleHandler : MonoBehaviour {
                 }
                 break;
 
-            case "ShowAccuracyToggle":
-                // Toggles accuracy widget.
+            case "ShowAccuracyToggle": // Toggles accuracy widget.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
                 if (toggleClicked.isOn) {
                     accuracyWidget.SetActive(true);
@@ -188,8 +173,7 @@ public class ToggleHandler : MonoBehaviour {
                 }
                 break;
 
-            case "ShowStreakToggle":
-                // Toggles streak widget.
+            case "ShowStreakToggle": // Toggles streak widget.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
                 if (toggleClicked.isOn) {
                     streakWidget.SetActive(true);
@@ -200,8 +184,7 @@ public class ToggleHandler : MonoBehaviour {
                 }
                 break;
 
-            case "ShowTTKToggle":
-                // Toggles ttk widget.
+            case "ShowTTKToggle": // Toggles ttk widget.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
                 if (toggleClicked.isOn) {
                     ttkWidget.SetActive(true);
@@ -212,8 +195,7 @@ public class ToggleHandler : MonoBehaviour {
                 }
                 break;
 
-            case "ShowKPSToggle":
-                // Toggles kps widget.
+            case "ShowKPSToggle": // Toggles kps widget.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
                 if (toggleClicked.isOn) {
                     kpsWidget.SetActive(true);
