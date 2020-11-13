@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEditor.UI;
 
 public class ChangeGameTimer : MonoBehaviour {
     public TMP_Text text30, text60, text90, text120;
     private static Color32 selectedTextColor   = new Color32(255, 255, 255, 255);
+    private static Color32 hoveredTextColor    = new Color32(255, 255, 255, 190);
     private static Color32 unselectedTextColor = new Color32(255, 255, 255, 120);
+    public static string selectedTimeText      = "60Text (TMP)";
 
     private static ChangeGameTimer gameTimer;
     void Awake() { gameTimer = this; }
@@ -45,10 +48,22 @@ public class ChangeGameTimer : MonoBehaviour {
         ClearTimerButtons();
 
         switch (setButton) {
-            case 30:  gameTimer.text30.color = selectedTextColor;  break;
-            case 60:  gameTimer.text60.color = selectedTextColor;  break;
-            case 90:  gameTimer.text90.color = selectedTextColor;  break;
-            case 120: gameTimer.text120.color = selectedTextColor; break;
+            case 30:
+                gameTimer.text30.color = selectedTextColor;
+                selectedTimeText = "30Text (TMP)";
+                break;
+            case 60:
+                gameTimer.text60.color = selectedTextColor;
+                selectedTimeText = "60Text (TMP)";
+                break;
+            case 90:
+                gameTimer.text90.color = selectedTextColor;
+                selectedTimeText = "90Text (TMP)";
+                break;
+            case 120:
+                gameTimer.text120.color = selectedTextColor;
+                selectedTimeText = "120Text (TMP)";
+                break;
         }
     }
 
@@ -60,5 +75,16 @@ public class ChangeGameTimer : MonoBehaviour {
         gameTimer.text60.color  = unselectedTextColor;
         gameTimer.text90.color  = unselectedTextColor;
         gameTimer.text120.color = unselectedTextColor;
+    }
+
+    public void SetHoveredTimeText_Color(TMP_Text hoveredTimeText) {
+        if (hoveredTimeText.text != selectedTimeText) {
+            hoveredTimeText.color = selectedTextColor;
+        }
+    }
+
+    public void ClearHoveredTimeText_Color() {
+        ClearTimerButtons();
+        GameObject.Find(selectedTimeText).GetComponent<TMP_Text>().color = selectedTextColor;
     }
 }
