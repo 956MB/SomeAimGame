@@ -177,6 +177,16 @@ extrastatsbest=ベスト
 extrastatshighscore=高得点
 #
 #
+# // widgets
+fpswidgetpre=FPS
+timewidgetpre=時間
+scorewidgetpre=スコア
+accuracywidgetpre=正確さ
+streakwidgetpre=ストリーク
+ttkwidgetpre=TTK
+kpswidgetpre=KPS
+#
+#
 # // tooltips
 gametimertooltip=ゲームタイマーを秒単位で設定します。
 targetsoundtooltip=ターゲットに当たったときに鳴る音のオン/オフを切り替えます。

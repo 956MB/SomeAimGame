@@ -1,8 +1,16 @@
-﻿gamemodetitle=РЕЖИМ
-generaltitle=ОБЩЕЕ
-controlstitle=УПРАВЛЕНИЕ
+﻿# Russian language translation file
+# DO NOT CHANGE
+#
+#
+# // sub menu title buttons
+gamemodetitle=ИГРОВОЙ РЕЖИМ
+generaltitle=ГЕНЕРАЛЬНАЯ
+controlstitle=КОНТРОЛЬ
 crosshairpaneltitle=ПЕРЕКРЕСТОК
-extratitle=0.4.1
+extratitle=EXTRA
+#
+#
+# // gamemode button titles
 gamemodescatter=Разброс
 gamemodeflick=Щелкнуть
 gamemodegrid=Сетка
@@ -10,56 +18,86 @@ gamemodegrid2=Сетка II
 gamemodepairs=Пары
 gamemodefollow=следить
 gamemodepatrol=Патруль
+#
+#
+# // gamemode button caps titles
 gamemodecapsscatter=РАССЕЯНИЕ
 gamemodecapsflick=щелкнуть
 gamemodecapsgrid=СЕТКА
 gamemodecapsgrid2=СЕТКА II
 gamemodecapspairs=ПАРЫ
 gamemodecapsfollow=СЛЕДОВАТЬ
+#
+#
+# // gamemode start button text
 gamemodestartscatter=НАЧАТЬ РАССЕЯНИЕ
 gamemodestartflick=НАЧАТЬ БЛИК
 gamemodestartgrid=НАЧАТЬ СЕТКУ
-gamemodestartgrid2=НАЧАТЬ СЕТКУ II
+gamemodestartgrid2=НАЧАТЬ СЕТЬ II
 gamemodestartpairs=НАЧАТЬ ПАРЫ
 gamemodestartfollow=НАЧАТЬ ПОДПИСАТЬСЯ
+#
+#
+# // gamemode types
 gamemodetypespeed=СКОРОСТЬ
 gamemodetypecontrol=КОНТРОЛЬ
 gamemodetypetracking=ОТСЛЕЖИВАНИЕ
-gamemodescatterdescription=Тебе нравятся "шары"? Что ж, в режиме игры Разброс МНОГО "шаров". «Шары» будут постоянно появляться в сетке, так что у вас будет много целей на выбор..
+#
+#
+# // gamemode descriptions
+gamemodescatterdescription=Тебе нравятся "шары"? Что ж, в режиме Scatter МНОГО «шаров». «Шары» будут постоянно появляться в сетке, так что у вас будет множество целей на выбор.
 gamemodeflickdescription=Как можно проще, вам нужно сосредоточиться только на одной цели за раз. Практикуйте эти быстрые, но контролируемые движения во всех возможных направлениях.
 gamemodegriddescription=Старый Верный. Лучший друг игроков FPS. Идеальное сочетание скорости и точности в этой трехцелевой сетке стен. EZ.
 gamemodegrid2description=Сетка 2-го, немного посложнее. Та же концепция, что и «Сетка», но с большим количеством исходных целей и НАМНОГО меньшего размера цели. Не торопитесь с этим.
-gamemodepairsdescription=Игра простая. Сопоставьте порожденную цель с соответствующим цветным приятелем. Цели меняют цвет в случайном порядке, так что оставайтесь сосредоточенными.
+gamemodepairsdescription=Игра простая. Сопоставьте порожденную цель с соответствующим цветным товарищем. Цели меняют цвет в случайном порядке, так что оставайтесь сосредоточенными.
 gamemodefollowdescription=Классический игровой режим с отслеживанием цели. Старайтесь держать прицел на цели, пока она плавает вокруг вашего несуществующего тела. Это довольно просто, просто сделай это, чувак. Христос.
+#
+#
+# // gamemode names
 Scatter=Разброс
 Flick=Щелкнуть
 Grid=Сетка
 Grid2=Сетка II
 Pairs=Пары
 Follow=следить
+#
+#
+# // categories
 targetcolor=Целевой цвет
-skybox=Cкайбокс
+skybox=skybox
+#
+#
+# // target colors
 colorred=Красный
-colororange=оранжевый
+colororange=апельсин
 coloryellow=Желтый
 colorgreen=Зеленый
 colorblue=Синий
-colorpurple=Пурпурный
+colorpurple=Фиолетовый
 colorpink=Розовый
 colorwhite=Белый
+#
+#
+# // skyboxes
 skyboxpink=Розовый
 skyboxgolden=Золотой
 skyboxnight=Ночь
 skyboxgrey=Серый
 skyboxblue=Синий
 skyboxslate=Шифер
+#
+#
+# // titles
 misctitle=Разное
 widgetstitle=Виджеты
+#
+#
+# // general section items
 gametimer=Таймер (секунды)  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 targetsound=Целевой звук  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-uisound=UI Звук  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+uisound=Звук пользовательского интерфейса  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 movementlock=Блокировка движения  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-fpscounter=FPS Счетчик    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+fpscounter=Счетчик FPS    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 afteractionreport=Показать отчет о действиях     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showfps=Показать FPS  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showtime=Время для шоу  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
@@ -68,26 +106,38 @@ showaccuracy=Показать точность  .   .   .   .   .   .   .   .   
 showstreak=Показать серию  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showttk=Показать ТТК  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showkps=Показать КПС  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+#
+#
+# // general sections tooltips
 showfpstooltip=Переключает виджет FPS в верхнем интерфейсе игры.
 showtimetooltip=Включает виджет времени в верхнем интерфейсе игры.
 showscoretooltip=Включает виджет Score в верхнем интерфейсе игры.
 showaccuracytooltip=Включает виджет точности в верхнем интерфейсе игры.
 showstreaktooltip=Переключает виджет полосы в верхнем интерфейсе игры.
-showttktooltip=Включает виджет Время убить (TTK) в верхнем интерфейсе игры.
+showttktooltip=Включает виджет Time To Kill (TTK) в верхнем интерфейсе игры.
 showkpstooltip=Переключает виджет убийств в секунду (KPS) в верхнем интерфейсе игры.
 scrolltotop= 
+#
+#
+# // titles
 mousetitle=Мышь
-mousesensitivity=Чувствительность
+mousesensitivity=Чувствительность мыши
 keybindstitle=Связки клавиш
 keybindlegend=//  редактирование привязки клавиш скоро
+crosshairtitle=Перекрестие
+#
+#
+# // controls section items
 shoot=''Стрелять'' .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showhidesettings=Показать / скрыть настройки  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showhideafteractionreport=Показать / скрыть отчет о действиях   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showhideworldui=Показать / скрыть мир UI  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+showhideworldui=Показать / скрыть интерфейс мира  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 quickstartgame=Быстрый старт игры   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-restart=Перезапуск   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-crosshairtitle=Перекрестие
-tstyle=T Стиль
+restart=Restart   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+#
+#
+# // crosshair section items
+tstyle=Т Стиль
 centerdot=        Центральная точка
 crosshairsize=Размер
 crosshairthickness=Толщина
@@ -97,38 +147,173 @@ crosshairred=Красный
 crosshairgreen=Синий
 crosshairblue=Зеленый
 crosshairalpha=Альфа
+#
+#
+# // titles
 afteractionreporttitle=ОТЧЕТ ПО ДЕЙСТВИЯМ
 aarscore=Гол
 aarnewhighscore=НОВЫЙ РЕКОРД!
+#
+#
+# // after action report section items
 aaraccuracy=Точность   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aartimetokill=Время убить (ms)    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  
+aartimetokill=Время убить (мс)    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  
 aarkillssec=Убийств в секунду   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 aarbeststreak=Лучшая серия  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 targetstitle=Цели
 aarstatstitle=Статистика
-aartargetstotal=Всего   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+aartargetstotal=Общее   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 aartargetshit=Хиты     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 aartargetsmisses=Промахов    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aarrestart=[R] ПЕРЕЗАПУСК
+aarrestart=[R] НАЧАТЬ СНАЧАЛА
 showextrastats=        Показать дополнительную статистику
 showbackgrounds=Показать фон
+#
+#
+# // extra stats sections items
 extrastatsprevious=Предыдущий
-extrastatsaverage=Средний
+extrastatsaverage=В среднем
 extrastatsbest=Лучший
 extrastatshighscore=Рекорд
+#
+#
+# // widgets
+fpswidgetpre=FPS
+timewidgetpre=ВРЕМЯ
+scorewidgetpre=ГОЛ
+accuracywidgetpre=ТОЧНОСТЬ
+streakwidgetpre=СТРИК
+ttkwidgetpre=TTK
+kpswidgetpre=KPS
+#
+#
+# // tooltips
 gametimertooltip=Устанавливает игровой таймер в секундах.
 targetsoundtooltip=Включает / выключает звук, издаваемый при поражении цели.
 uisoundtooltip=Включает / выключает звук, издаваемый при наведении / нажатии элементов пользовательского интерфейса в настройках.
 fpscountertooltip=Включает / выключает счетчик FPS в верхнем левом углу экрана.
-showaartooltip=Включает / выключает отображение панели 'AfterActionReport' в конце игры.
+showaartooltip=Включает / выключает отображение панели AfterActionReport в конце игры.
 quickstarttooltip=Включает / выключает субпанель «Выбор игрового режима» в настройках и вместо этого мгновенно запускает новые игровые режимы, по которым щелкают.
-crosshairdistortion=Хотите знать об искаженном прицеле? К сожалению, эта панель в настройках не отрисована идеально по пикселям, поэтому выглядит искаженной. Однако центральный экран прицела в игре в порядке.
+crosshairdistortion=Хотите знать об искаженном прицеле? К сожалению, эта панель в настройках не отрисована идеально, поэтому она выглядит искаженной. Однако центральный экран прицела в игре в порядке.
 skyboxdisable=Все параметры Skybox, кроме Slate, были временно отключены для тестирования некоторых вещей.
-followwarning=ВЫБЕРИТЕ ДРУГОЙ ЦЕЛЕВОЙ ЦВЕТ, ЧТОБЫ ЗАПУСТИТЬ ИГРОВОЙ РЕЖИМ "Следить"!
-steamdataplaceholderusername=Пользователь0
-gamelanguage=Язык
+#
+#
+# // notifications
+followwarning=ВЫБЕРИТЕ ДРУГОЙ ЦЕЛЕВЫЙ ЦВЕТ, ЧТОБЫ ЗАПУСТИТЬ ИГРОВОЙ РЕЖИМ "Follow"!
 selectedgamemodewarning=ВЫБРАННЫЙ ИГРОВОЙ РЕЖИМ УЖЕ АКТИВЕН.
+languagerestartnotification=ВЫБОР ЯЗЫКА ПРИНИМАЕТ ЭФФЕКТИВНОСТЬ ПРИ СЛЕДУЮЩЕМ ПЕРЕЗАПУСКЕ.
+languagetemporarilydisabled=ПЕРЕВОД ЯЗЫКА ВРЕМЕННО ОТКЛЮЧЕН.
+#
+#
+# // steam data container items
+gamelanguage=Язык
+steamdataplaceholderusername=User0
 patchnotesbutton=ЗАМЕТКИ О ПАТЧЕ
 quitgamebutton=ВЫЙТИ ИЗ ИГРЫ
-testuser=Заливы
-languagerestartnotification=ВЫБОР ЯЗЫКА ПРИНИМАЕТ ЭФФЕКТИВНОСТЬ ПРИ СЛЕДУЮЩЕМ ПЕРЕЗАПУСКЕ.
+testuser=Bloumbs
+#
+#
+# // dev event cards
+cardtypegamemode=GAMEMODE
+cardtypetime=TIME
+cardtypecrosshair=CROSSHAIR
+cardtypetargets=TARGETS
+cardtypeinterface=INTERFACE
+cardtypesave=SAVE/LOAD
+cardtypeskybox=SKYBOX
+cardtypelanguage=LANGUAGE
+cardtypekeybind=KEYBIND
+cardtypesound=SOUND
+cardtypenotification=NOTIFICATION
+cardtypestats=STATS
+#
+#
+# // dev event content
+# -- gamemode
+eventgamemodeloaded=SAVED GAMEMODE LOADED
+eventgamemodeselected=GAMEMODE SELECTED
+eventgamemodestarted=GAMEMODE STARTED
+eventgamemodescattertick=SCATTER GAMEMODE SPAWN TICK
+eventgamemodespawnsclear=SPAWNS CLEARED FOR GAMEMODE
+# -- time
+eventtimerchanged=GAME TIMER CHANGED TO
+eventtimerticknormal=NORMAL GAME TIMER TICK
+eventtimertickup=UP GAME TIMER TICK
+# -- crosshair
+eventcrosshaircenterdot=CROSSHAIR CENTER DOT SET
+eventcrosshairtstyle=CROSSHAIR T STYLE SET
+eventcrosshairsize=CROSSHAIR SIZE CHANGED TO
+eventcrosshairthickness=CROSSHAIR THICKNESS CHANGED TO
+eventcrosshairgap=CROSSHAIR GAP CHANGED TO
+eventcrosshairoutline=CROSSHAIR OUTLINE SET
+eventcrosshairred=CROSSHAIR RED VALUE CHANGED TO
+eventcrosshairgreen=CROSSHAIR GREEN VALUE CHANGED TO
+eventcrosshairblue=CROSSHAIR BLUE VALUE CHANGED TO
+eventcrosshairalpha=CROSSHAIR ALPHA VALUE CHANGED TO
+# -- targets
+eventtargetsrespawn=TARGETS RESPAWNED FOR CURRENT GAMEMODE
+eventtargetsreset=ALL TARGETS GAME VALUE RESET
+eventtargetsremove=REMOVED TARGET POS FROM SPAWN LIST:
+eventtargetsscatterinitial=RETURNED INITIAL SCATTER SPAWNS LIST
+eventtargetsalldestroyed=ALL TARGETS DESTROYED FOR GAMEMODE
+eventtargetsdestroyspawnarea=TARGET SPAWN AREAS DESTROYED FOR GAMEMODE
+eventtargetshit=TARGET HIT, UPDATED SCORE. POS:
+eventtargetsmiss=TARGET MISSED. POS:
+eventtargetshitpairs=CORRECT PAIR TARGET HIT. POS:
+eventtargetsmisspairs=INCORRECT PAIR TARGET HIT. POS:
+eventtargetsnewspawnprimary=NEW PRIMARY TARGET SPAWN:
+eventtargetsnewspawnsecondary=NEW SECONDARY TARGET SPAWN:
+eventtargetscolorchange=TARGET COLOR CHANGED TO:
+eventtargetssziechange=TARGET SIZE CHANGED TO:
+# -- interface
+eventinterfacesettingsopened=SETTINGS PANEL OPENED
+eventinterfacesettingsclosed=SETTINGS PANEL CLOSED
+eventinterfacelanguageselectopened=LANGUAGE SELECT PANEL OPENED
+eventinterfacelanguageselectclosed=LANGUAGE SELECT PANEL CLOSED
+eventinterfaceaaropened='AfterActionReport' PANEL OPENED
+eventinterfaceaarclosed='AfterActionReport' PANEL CLOSED
+eventinterfaceshowui=GAME UI SHOWN
+eventinterfacehideui=GAME UI HIDDEN
+eventinterfaceelementsreset=UI GAME ELEMENTS RESET
+eventinterfacettkset=SET TTK WIDGET TEXT:
+eventinterfacekpsset=SET KPS WIDGET TEXT:
+eventinterfacestreakset=SET STREAK WIDGET TEXT:
+eventinterfacestreakreset=RESET STREAK
+eventinterfacereactiontimeupdate=UPDATED REACTION TIME
+eventinterfaceaccuracyupdate=UPDATED ACCURACY
+#       -- gamemode
+eventinterfacegamemodebuttonhover=GAMEMODE BUTTON HOVERED
+eventinterfacegamemodebutton=GAMEMODE BUTTON SET
+#       -- target color
+eventinterfacetargetcolorbuttonhover=TARGET COLOR BUTTON HOVERED
+eventinterfacetargetcolorbutton=TARGET COLOR BUTTON SET
+#       -- skybox
+eventinterfaceskyboxbuttonhover=SKYBOX BUTTON HOVERED
+eventinterfaceskyboxbutton=SKYBOX BUTTON SET
+#       -- widgets
+eventinterfacewidgettoggle=WIDGET TOGGLE SET
+eventinterfacepanelmoveleft=SETTINGS PANEL MOVED LEFT. NEW POS:
+eventinterfacepanelmoveright=SETTINGS PANEL MOVED RIGHT. NEW POS:
+# -- save/load
+eventsettingsobjectsave=SETTINGS SAVED
+# -- skybox
+eventskyboxchange=SKYBOX CHANGED TO
+# -- language
+eventlanguagefileload=SAVED LANGUAGE FILE LOADED
+eventlanguagefileloaddefault=DEFAULT LANGUAGE FILE LOADED
+eventlanguagegameset=GAME LANGUAGE SET TO
+eventlanguagetextset=ALL TEXT SET TO SAVED LANGUAGE
+eventlanguagetexttranslated=TEXT SET TO SAVED LANGUAGE VALUE
+# -- keybind
+eventkeybindpressed=KEYBIND PRESSED
+eventkeybindchanged=KEYBIND CHANGED
+eventkeybindset=KEYBIND SET TO
+# -- sound
+eventsoundfiredhit=HIT SOUND EVENT FIRED
+eventsoundfiredhover=HOVER UI SOUND EVENT FIRED
+eventsoundfiredclick=CLICK UI SOUND EVENT FIRED
+# -- notifications
+eventnotificationcreatedtranslation=TRANSLATED NOTIFICATION CREATED:
+eventnotificationcreatedstring=STRING NOTIFICATION CREATED:
+eventnotificationhidden=ACTIVE NOTIFICATION HIDDEN
+eventnotificationdisabled=NOTIFICATION OBJECT HIDDEN

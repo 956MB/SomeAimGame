@@ -115,7 +115,7 @@ showscoretooltip=Toggles Score widget in top game UI.
 showaccuracytooltip=Toggles Accuracy widget in top game UI.
 showstreaktooltip=Toggles Streak widget in top game UI.
 showttktooltip=Toggles Time To Kill (TTK) widget in top game UI.
-showkpstooltip=Toggles Kills Per Secoond (KPS) widget in top game UI.
+showkpstooltip=Toggles Kills Per Second (KPS) widget in top game UI.
 scrolltotop= 
 #
 #
@@ -175,6 +175,16 @@ extrastatsprevious=Previous
 extrastatsaverage=Average
 extrastatsbest=Best
 extrastatshighscore=Highscore
+#
+#
+# // widgets
+fpswidgetpre=FPS
+timewidgetpre=TIME
+scorewidgetpre=SCORE
+accuracywidgetpre=ACCURACY
+streakwidgetpre=STREAK
+ttkwidgetpre=TTK
+kpswidgetpre=KPS
 #
 #
 # // tooltips

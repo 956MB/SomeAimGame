@@ -50,7 +50,7 @@ public class I18n : MonoBehaviour {
         string allTexts, key, value;
 
         // Language esting
-        lang = "FIN"; // "JPN" "ARA" "CHI" "KOR" "RUS" "ENG" "FIN"
+        lang = "JPN"; // "JPN" "ARA" "CHI" "KOR" "RUS" "ENG" "FIN"
 
         LanguageSelect.SetLanguageCodeText(lang);
         var textAsset = Resources.Load(@"I18n/" + lang.ToLower()); //no .txt needed

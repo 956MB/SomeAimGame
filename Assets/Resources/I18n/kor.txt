@@ -1,44 +1,73 @@
-﻿gamemodetitle=게임 모드
+﻿# Korean language translation file
+# DO NOT CHANGE
+#
+#
+# // sub menu title buttons
+gamemodetitle=게임 모드
 generaltitle=일반
 controlstitle=통제 수단
 crosshairpaneltitle=십자선
-extratitle=0.4.1
+extratitle=특별한
+#
+#
+# // gamemode button titles
 gamemodescatter=흩어지게하다
 gamemodeflick=영화
 gamemodegrid=그리드
 gamemodegrid2=그리드 II
-gamemodepairs=한쌍
+gamemodepairs=한 쌍
 gamemodefollow=따르다
 gamemodepatrol=순찰
+#
+#
+# // gamemode button caps titles
 gamemodecapsscatter=흩어지게하다
 gamemodecapsflick=영화
 gamemodecapsgrid=그리드
 gamemodecapsgrid2=그리드 II
 gamemodecapspairs=한 쌍
 gamemodecapsfollow=따르다
+#
+#
+# // gamemode start button text
 gamemodestartscatter=스 캐터 시작
-gamemodestartflick=스타트 영화
+gamemodestartflick=FLICK 시작
 gamemodestartgrid=그리드 시작
-gamemodestartgrid2=그리드 시작 II
+gamemodestartgrid2=그리드 II 시작
 gamemodestartpairs=쌍 시작
 gamemodestartfollow=팔로우 시작
+#
+#
+# // gamemode types
 gamemodetypespeed=속도
 gamemodetypecontrol=제어
 gamemodetypetracking=추적
-gamemodescatterdescription=당신은 "공"을 좋아합니까? 음, 흩어지게하다 게임 모드에는 많은``공 ''이 있습니다. ``공 ''은 그리드 상자에 지속적으로 생성되므로 선택할 수있는 많은 대상이 있습니다..
+#
+#
+# // gamemode descriptions
+gamemodescatterdescription=당신은 "공"을 좋아합니까? 음, Scatter 게임 모드에는 많은``공 ''이 있습니다. ``공 ''은 그리드 상자에 지속적으로 생성되므로 선택할 수있는 많은 대상이 있습니다.
 gamemodeflickdescription=가능한 한 간단하게 한 번에 하나의 목표에만 집중하면됩니다. 가능한 모든 방향에서 빠르고 통제 된 긋기를 연습하십시오.
-gamemodegriddescription=오래된 충실. FPS 플레이어의 가장 친한 친구. 이 트리플 타겟, 그리드 월 레이아웃에서 속도와 정확성 연습의 완벽한 조합. EZ.
-gamemodegrid2description=그리드 2, 조금 더 도전적입니다. '그리드'와 동일한 개념이지만 초기 대상이 더 많고 대상 크기가 훨씬 작습니다. 이것에 시간을 가지십시오.
+gamemodegriddescription=오래된 충실. FPS 플레이어의 가장 친한 친구. 이 트리플 타겟, 그리드 월 레이아웃에서 속도와 정확도 연습의 완벽한 조합. EZ.
+gamemodegrid2description=그리드 2, 조금 더 도전적입니다. '그리드'와 동일한 개념이지만 초기 대상이 더 많고 대상 크기가 훨씬 작습니다. 이것에 시간을 가져라.
 gamemodepairsdescription=게임은 간단합니다. 생성 된 대상을 적절하게 일치하는 색상 친구와 일치시킵니다. 대상은 무작위로 색상을 전환하므로 집중하십시오.
 gamemodefollowdescription=클래식 추적 대상 게임 모드. 십자선이 존재하지 않는 몸 주위를 떠 다니면서 목표물에 계속 유지하십시오. 아주 쉽습니다. 그냥하세요. 그리스도.
+#
+#
+# // gamemode names
 Scatter=흩어지게하다
 Flick=영화
 Grid=그리드
 Grid2=그리드 II
-Pairs=한쌍
+Pairs=한 쌍
 Follow=따르다
-targetcolor=목표 색상
+#
+#
+# // categories
+targetcolor=대상 색상
 skybox=스카이 박스
+#
+#
+# // target colors
 colorred=빨간
 colororange=주황색
 coloryellow=노랑
@@ -47,20 +76,29 @@ colorblue=푸른
 colorpurple=보라색
 colorpink=분홍
 colorwhite=하얀
+#
+#
+# // skyboxes
 skyboxpink=분홍
-skyboxgolden=황금빛
+skyboxgolden=골든
 skyboxnight=밤
 skyboxgrey=회색
 skyboxblue=푸른
 skyboxslate=슬레이트
+#
+#
+# // titles
 misctitle=기타
 widgetstitle=위젯
-gametimer=타이머 (초)  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-targetsound=타겟 사운드   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-uisound=유나는 소리   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-movementlock=운동 잠금   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-fpscounter=에프피에스 카운터  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-afteractionreport=보여 주다 '사후 보고서'   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+#
+#
+# // general section items
+gametimer=타이머 (초)  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+targetsound=타겟 사운드  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+uisound=UI 사운드  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+movementlock=운동 잠금  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+fpscounter=FPS 카운터    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+afteractionreport='사후 보고서'표시     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showfps=FPS 표시  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showtime=쇼 시간  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showscore=점수 표시  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
@@ -68,134 +106,214 @@ showaccuracy=정확성 표시  .   .   .   .   .   .   .   .   .   .   .   .   .
 showstreak=연속 표시  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showttk=TTK 표시  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showkps=KPS 표시  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+#
+#
+# // general sections tooltips
 showfpstooltip=상위 게임 UI에서 FPS 위젯을 토글합니다.
 showtimetooltip=상단 게임 UI에서 시간 위젯을 토글합니다.
 showscoretooltip=상위 게임 UI에서 점수 위젯을 토글합니다.
 showaccuracytooltip=최고의 게임 UI에서 정확도 위젯을 토글합니다.
-showstreaktooltip=최고의 게임 UI에서 줄 위젯을 토글합니다.
-showttktooltip=죽일 시간 전환 (TTK) 최고의 게임 UI의 위젯.
+showstreaktooltip=최고의 게임 UI에서 Streak 위젯을 토글합니다.
+showttktooltip=최고의 게임 UI에서 TTTK (Time To Kill) 위젯을 토글합니다.
 showkpstooltip=최고의 게임 UI에서 초당 킬 (KPS) 위젯을 토글합니다.
 scrolltotop= 
+#
+#
+# // titles
 mousetitle=쥐
 mousesensitivity=마우스 감도
 keybindstitle=키 바인드
-keybindlegend=//  곧 키 바인딩 편집 가능
-shoot=''사격''   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showhidesettings=설정 표시 / 숨기기   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showhideafteractionreport='작업 후 보고서'표시 / 숨기기   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showhideworldui=월드 UI 표시 / 숨기기     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-quickstartgame=빠른 시작 게임   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-restart=재시작     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+keybindlegend=//  곧 키 바인딩 편집
 crosshairtitle=십자선
+#
+#
+# // controls section items
+shoot=''사격'' .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+showhidesettings=설정 표시 / 숨기기  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+showhideafteractionreport='작업 후 보고서'표시 / 숨기기   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+showhideworldui=월드 UI 표시 / 숨기기  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+quickstartgame=빠른 시작 게임   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+restart=재시작   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+#
+#
+# // crosshair section items
 tstyle=T 스타일
 centerdot=        센터 도트
 crosshairsize=크기
 crosshairthickness=두께
 crosshairgap=갭
-crosshairoutline=개요   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+crosshairoutline=개요   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 crosshairred=빨간
 crosshairgreen=푸른
 crosshairblue=초록
 crosshairalpha=알파
+#
+#
+# // titles
 afteractionreporttitle=조치보고 후
 aarscore=점수
 aarnewhighscore=새로운 최고 점수!
-aaraccuracy=정확성   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aartimetokill=죽일 시간 (ms)     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aarkillssec=킬 / 초   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aarbeststreak=최고의 연승   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+#
+#
+# // after action report section items
+aaraccuracy=정확성   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+aartimetokill=죽일 시간 (밀리 초)    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  
+aarkillssec=킬 / 초   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+aarbeststreak=최고의 연승  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 targetstitle=목표
 aarstatstitle=통계
 aartargetstotal=합계   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aartargetshit=조회수   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aartargetsmisses=미스   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+aartargetshit=조회수     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+aartargetsmisses=미스    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 aarrestart=[R] 재시작
 showextrastats=        추가 통계 표시
 showbackgrounds=배경 표시
+#
+#
+# // extra stats sections items
 extrastatsprevious=이전
 extrastatsaverage=평균
 extrastatsbest=베스트
 extrastatshighscore=높은 점수
+#
+#
+# // widgets
+fpswidgetpre=초당 프레임
+timewidgetpre=시각
+scorewidgetpre=점수
+accuracywidgetpre=정확성
+streakwidgetpre=줄
+ttkwidgetpre=죽일 시간
+kpswidgetpre=초당 킬
+#
+#
+# // tooltips
 gametimertooltip=게임 타이머를 초 단위로 설정합니다.
-targetsoundtooltip=목표물에 맞았을 때 나는 소리를 켜거나 끕니다.
-uisoundtooltip=설정의 UI 요소를 가리 키거나 클릭 할 때 나는 소리를 켜거나 끕니다.
+targetsoundtooltip=목표물이 맞았을 때 나는 소리를 켜거나 끕니다.
+uisoundtooltip=설정의 UI 요소를 마우스로 가리 키거나 클릭 할 때 나는 소리를 켜거나 끕니다.
 fpscountertooltip=화면 왼쪽 상단에서 FPS 카운터를 켜거나 끕니다.
 showaartooltip=게임 종료시 'AfterActionReport'패널 표시를 켜거나 끕니다.
 quickstarttooltip=설정에서 '게임 모드 선택'하위 패널을 켜거나 끄고, 대신 클릭 한 새 게임 모드를 즉시 시작합니다.
 crosshairdistortion=왜곡 된 십자선이 궁금하십니까? 설정의이 패널은 안타깝게도 픽셀이 완벽하게 렌더링되지 않아 왜곡 된 것처럼 보입니다. 하지만 게임의 십자선 중앙 화면은 괜찮습니다.
-skyboxdisable=일부 테스트를 위해 Slate를 제외한 모든 Skybox 옵션이 일시적으로 비활성화되었습니다.
+skyboxdisable=Slate를 제외한 모든 Skybox 옵션은 일부 테스트를 위해 일시적으로 비활성화되었습니다.
+#
+#
+# // notifications
 followwarning=GAMEMODE를 '팔로우'하려면 다른 대상 색상을 선택하십시오!
-steamdataplaceholderusername=사용자 0
+selectedgamemodewarning=선택한 게임 모드가 이미 활성화되어 있습니다.
+languagerestartnotification=언어 선택은 다음에 다시 시작할 때 적용됩니다.
+languagetemporarilydisabled=언어 번역이 일시적으로 비활성화되었습니다.
+#
+#
+# // steam data container items
 gamelanguage=언어
-selectedgamemodewarning=선택한 게임 모드가 이미 활성화되었습니다.
+steamdataplaceholderusername=User0
 patchnotesbutton=패치 노트
 quitgamebutton=게임 종료
-testuser=베이
-languagerestartnotification=언어 선택은 다음에 다시 시작할 때 적용됩니다.
+testuser=Bloumbs
 #
 #
 # // dev event cards
-cardtypegamemode=게임 모드
-cardtypetime=시각
-cardtypecrosshair=십자선
-cardtypetargets=목표
-cardtypeinterface=상호 작용
-cardtypesave=저장 /로드
-cardtypeskybox=스카이 박스
-cardtypelanguage=언어
-cardtypekeybind=키 바인드
-cardtypesound=소리
-cardtypenotification=공고
+cardtypegamemode=GAMEMODE
+cardtypetime=TIME
+cardtypecrosshair=CROSSHAIR
+cardtypetargets=TARGETS
+cardtypeinterface=INTERFACE
+cardtypesave=SAVE/LOAD
+cardtypeskybox=SKYBOX
+cardtypelanguage=LANGUAGE
+cardtypekeybind=KEYBIND
+cardtypesound=SOUND
+cardtypenotification=NOTIFICATION
+cardtypestats=STATS
 #
 #
 # // dev event content
 # -- gamemode
-eventgamemodeselected=게임 모드 선택
-eventgamemodestarted=게임 모드 시작됨
+eventgamemodeloaded=SAVED GAMEMODE LOADED
+eventgamemodeselected=GAMEMODE SELECTED
+eventgamemodestarted=GAMEMODE STARTED
+eventgamemodescattertick=SCATTER GAMEMODE SPAWN TICK
+eventgamemodespawnsclear=SPAWNS CLEARED FOR GAMEMODE
 # -- time
-eventtimerchanged=게임 타이머가 다음으로 변경되었습니다.
+eventtimerchanged=GAME TIMER CHANGED TO
+eventtimerticknormal=NORMAL GAME TIMER TICK
+eventtimertickup=UP GAME TIMER TICK
 # -- crosshair
-eventcrosshaircenterdot=크로스 헤어 센터 도트 세트
-eventcrosshairtstyle=크로스 헤어 T 스타일 세트
-eventcrosshairsize=십자선 크기가 다음으로 변경되었습니다.
-eventcrosshairthickness=십자선 두께가 다음으로 변경되었습니다.
-eventcrosshairgap=크로스 헤어 갭 변경
-eventcrosshairoutline=크로스 헤어 개요 세트
-eventcrosshairred=크로스 헤어 레드 밸류 변경
-eventcrosshairgreen=십자선 녹색 가치 변경
-eventcrosshairblue=크로스 헤어 블루 값이 다음으로 변경되었습니다.
-eventcrosshairalpha=크로스 헤어 알파 값이 다음으로 변경되었습니다.
+eventcrosshaircenterdot=CROSSHAIR CENTER DOT SET
+eventcrosshairtstyle=CROSSHAIR T STYLE SET
+eventcrosshairsize=CROSSHAIR SIZE CHANGED TO
+eventcrosshairthickness=CROSSHAIR THICKNESS CHANGED TO
+eventcrosshairgap=CROSSHAIR GAP CHANGED TO
+eventcrosshairoutline=CROSSHAIR OUTLINE SET
+eventcrosshairred=CROSSHAIR RED VALUE CHANGED TO
+eventcrosshairgreen=CROSSHAIR GREEN VALUE CHANGED TO
+eventcrosshairblue=CROSSHAIR BLUE VALUE CHANGED TO
+eventcrosshairalpha=CROSSHAIR ALPHA VALUE CHANGED TO
 # -- targets
-eventtargetshit=타겟 히트, 히트 위치 :
-eventtargetsmiss=누락 된 목표
-eventtargetsnewspawnprimary=새로운 1 차 타겟 생성 :
-eventtargetsnewspawnsecondary=새로운 보조 대상 생성 :
-eventtargetscolorchange=대상 색상이 다음으로 변경되었습니다.
-eventtargetssziechange=타겟 크기가 다음으로 변경됨
+eventtargetsrespawn=TARGETS RESPAWNED FOR CURRENT GAMEMODE
+eventtargetsreset=ALL TARGETS GAME VALUE RESET
+eventtargetsremove=REMOVED TARGET POS FROM SPAWN LIST:
+eventtargetsscatterinitial=RETURNED INITIAL SCATTER SPAWNS LIST
+eventtargetsalldestroyed=ALL TARGETS DESTROYED FOR GAMEMODE
+eventtargetsdestroyspawnarea=TARGET SPAWN AREAS DESTROYED FOR GAMEMODE
+eventtargetshit=TARGET HIT, UPDATED SCORE. POS:
+eventtargetsmiss=TARGET MISSED. POS:
+eventtargetshitpairs=CORRECT PAIR TARGET HIT. POS:
+eventtargetsmisspairs=INCORRECT PAIR TARGET HIT. POS:
+eventtargetsnewspawnprimary=NEW PRIMARY TARGET SPAWN:
+eventtargetsnewspawnsecondary=NEW SECONDARY TARGET SPAWN:
+eventtargetscolorchange=TARGET COLOR CHANGED TO:
+eventtargetssziechange=TARGET SIZE CHANGED TO:
 # -- interface
+eventinterfacesettingsopened=SETTINGS PANEL OPENED
+eventinterfacesettingsclosed=SETTINGS PANEL CLOSED
+eventinterfacelanguageselectopened=LANGUAGE SELECT PANEL OPENED
+eventinterfacelanguageselectclosed=LANGUAGE SELECT PANEL CLOSED
+eventinterfaceaaropened='AfterActionReport' PANEL OPENED
+eventinterfaceaarclosed='AfterActionReport' PANEL CLOSED
+eventinterfaceshowui=GAME UI SHOWN
+eventinterfacehideui=GAME UI HIDDEN
+eventinterfaceelementsreset=UI GAME ELEMENTS RESET
+eventinterfacettkset=SET TTK WIDGET TEXT:
+eventinterfacekpsset=SET KPS WIDGET TEXT:
+eventinterfacestreakset=SET STREAK WIDGET TEXT:
+eventinterfacestreakreset=RESET STREAK
+eventinterfacereactiontimeupdate=UPDATED REACTION TIME
+eventinterfaceaccuracyupdate=UPDATED ACCURACY
+#       -- gamemode
+eventinterfacegamemodebuttonhover=GAMEMODE BUTTON HOVERED
+eventinterfacegamemodebutton=GAMEMODE BUTTON SET
 #       -- target color
-eventinterfacegamemodebuttonhover=게임 모드 버튼을 가져옴
-eventinterfacegamemodebutton=게임 모드 버튼 설정
-eventinterfacetargetcolorbuttonhover=대상 색상 버튼을 가져옴
-eventinterfacetargetcolorbutton=대상 색상 버튼 설정
-eventinterfaceskyboxbuttonhover=스카이 박스 버튼을 가리 켰습니다.
-eventinterfaceskyboxbutton=스카이 박스 버튼 세트
+eventinterfacetargetcolorbuttonhover=TARGET COLOR BUTTON HOVERED
+eventinterfacetargetcolorbutton=TARGET COLOR BUTTON SET
+#       -- skybox
+eventinterfaceskyboxbuttonhover=SKYBOX BUTTON HOVERED
+eventinterfaceskyboxbutton=SKYBOX BUTTON SET
 #       -- widgets
-eventinterfacewidgettoggle=위젯 토글 세트
+eventinterfacewidgettoggle=WIDGET TOGGLE SET
+eventinterfacepanelmoveleft=SETTINGS PANEL MOVED LEFT. NEW POS:
+eventinterfacepanelmoveright=SETTINGS PANEL MOVED RIGHT. NEW POS:
 # -- save/load
-eventsettingsobjectsave=설정이 저장되었습니다
+eventsettingsobjectsave=SETTINGS SAVED
 # -- skybox
-eventskyboxchange=스카이 박스 변경
+eventskyboxchange=SKYBOX CHANGED TO
 # -- language
-eventlanguagefileload=언어 파일이로드되었습니다.
-eventlanguagegameset=게임 언어 설정
-eventlanguagetextset=모든 텍스트가 저장된 언어로 설정 됨
-eventlanguagetexttranslated=저장된 언어 값으로 설정된 텍스트
+eventlanguagefileload=SAVED LANGUAGE FILE LOADED
+eventlanguagefileloaddefault=DEFAULT LANGUAGE FILE LOADED
+eventlanguagegameset=GAME LANGUAGE SET TO
+eventlanguagetextset=ALL TEXT SET TO SAVED LANGUAGE
+eventlanguagetexttranslated=TEXT SET TO SAVED LANGUAGE VALUE
 # -- keybind
-eventkeybindpressed=키 바인드 눌림
-eventkeybindchanged=키 바인드 변경
-eventkeybindset=키 바인드 설정
+eventkeybindpressed=KEYBIND PRESSED
+eventkeybindchanged=KEYBIND CHANGED
+eventkeybindset=KEYBIND SET TO
 # -- sound
-eventsoundfired=사운드 이벤트 발사
+eventsoundfiredhit=HIT SOUND EVENT FIRED
+eventsoundfiredhover=HOVER UI SOUND EVENT FIRED
+eventsoundfiredclick=CLICK UI SOUND EVENT FIRED
 # -- notifications
-eventnotificationcreated=알림이 생성되었습니다.
+eventnotificationcreatedtranslation=TRANSLATED NOTIFICATION CREATED:
+eventnotificationcreatedstring=STRING NOTIFICATION CREATED:
+eventnotificationhidden=ACTIVE NOTIFICATION HIDDEN
+eventnotificationdisabled=NOTIFICATION OBJECT HIDDEN
