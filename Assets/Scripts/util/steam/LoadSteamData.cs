@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using Steamworks;
@@ -35,10 +36,8 @@ public class LoadSteamData : MonoBehaviour {
     /// Retrieves users steam username and sets username text in steam data container.
     /// </summary>
     public static void FetchSteamUsername() {
-        //string steamUsername = SteamFriends.GetPersonaName();
-        //string steamUsername = "Bloumbs";
-        //string steamUsername = "BjornWillDoMatteBlackFjorg";
-        string steamUsername = $"{I18nTextTranslator.SetTranslatedText("testuser")}";
+        string steamUsername = SteamFriends.GetPersonaName();
+        //string steamUsername = $"{I18nTextTranslator.SetTranslatedText("testuser")}";
 
         if (steamUsername.Length > 16) { steamData.steamUsernameText.SetText($"{ShortenSteamUsername(steamUsername)}");
         } else { steamData.steamUsernameText.SetText($"{steamUsername}"); }
@@ -84,7 +83,9 @@ public class LoadSteamData : MonoBehaviour {
     /// Sets default avatar and username text if users steam data not available, or steam manager not initialized.
     /// </summary>
     public static void SetSteamDataDefaults() {
-        steamData.steamUsernameText.SetText($"{I18nTextTranslator.SetTranslatedText("steamdataplaceholderusername")}");
+        string userName = Environment.UserName;
+
+        steamData.steamUsernameText.SetText($"{userName}");
         steamData.steamAvatarImage.sprite = steamData.placeholderAvatar;
 
         Util.RefreshRootLayoutGroup(steamData.rootGroup);
@@ -100,7 +101,7 @@ public class LoadSteamData : MonoBehaviour {
         int xN = originalAvatar.width;
         int yN = originalAvatar.height;
 
-        for (int i = 0; i < xN; i++) {
+        for (int i = 0; i < xN; i++){
             for (int j = 0; j < yN; j++) {
                 flipped.SetPixel(i, yN - j - 1, originalAvatar.GetPixel(i, j));
             }
