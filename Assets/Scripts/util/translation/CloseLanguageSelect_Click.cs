@@ -3,7 +3,10 @@ using UnityEngine.EventSystems;
 
 public class CloseLanguageSelect_Click : MonoBehaviour, IPointerClickHandler {
     public void OnPointerClick(PointerEventData pointerEventData) {
+        // Closes language select if selection panel open.
         if (LanguageSelect.languageSelectOpen) { LanguageSelect.CloseLanguageSelect_Static(); }
-        //if (QuitGame.gameQuitConfirmationOpen) { QuitGame.CloseQuitConfirmation(); }
+
+        // Closes quit game section if confirmation not open.
+        if (!QuitGame.gameQuitConfirmationOpen && QuitGame.gameQuitButtonOpen) { QuitGame.CloseQuitConfirmation(); }
     }
 }

@@ -8,11 +8,12 @@ public class ButtonHoverHandler_EventTrigger : MonoBehaviour {
     private static ButtonHoverHandler_EventTrigger hoverHandle;
     private void Awake() { hoverHandle = this; }
 
-    private void Start() {
-        foreach (Transform child in parentOptionsObject.transform) {
-            if (child.CompareTag("OptionObjectItem")) { child.gameObject.SetActive(false); }
-        }
-    }
+    //private void Start() {
+        //foreach (Transform child in parentOptionsObject.transform) {
+        //    if (child.CompareTag("OptionObjectItem")) { child.gameObject.SetActive(false); }
+        //}
+        //QuitGame.CloseQuitConfirmation();
+    //}
 
     public void EnableBorder() { childBorder.SetActive(true); }
 
@@ -21,15 +22,24 @@ public class ButtonHoverHandler_EventTrigger : MonoBehaviour {
     public static void ToggleOptionsObject_Static() { hoverHandle.ToggleOptionsObject(); }
 
     public void ToggleOptionsObject() {
-        if (optionsObjectOpen) DisableBorder();
-        else EnableBorder();
+        if (optionsObjectOpen) {
+            DisableBorder();
+        } else {
+            EnableBorder();
+        }
 
         LoopToggleOptions();
     }
 
     public void LoopToggleOptions() {
-        foreach (Transform child in parentOptionsObject.transform) {
-            if (child.CompareTag("OptionObjectItem")) { child.gameObject.SetActive(!optionsObjectOpen); }
+        //foreach (Transform child in parentOptionsObject.transform) {
+        //    if (child.CompareTag("OptionObjectItem")) { child.gameObject.SetActive(!optionsObjectOpen); }
+        //}
+
+        if (optionsObjectOpen) {
+            QuitGame.CloseQuitButton();
+        } else {
+            QuitGame.OpenQuitButton();
         }
 
         optionsObjectOpen = !optionsObjectOpen;
