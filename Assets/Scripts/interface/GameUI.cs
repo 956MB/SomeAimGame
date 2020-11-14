@@ -22,7 +22,7 @@ public class GameUI : MonoBehaviour {
     private static Color32 bonusColor = new Color32(255, 209, 0, 255);
 
     private static WaitForSeconds timerDelay   = new WaitForSeconds(1f);
-    private static WaitForSeconds scatterDelay = new WaitForSeconds(0.2f);
+    private static WaitForSeconds scatterDelay = new WaitForSeconds(0.30f);
 
     private static GameUI gameUI;
     void Awake() {

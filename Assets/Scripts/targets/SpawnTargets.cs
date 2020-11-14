@@ -22,7 +22,7 @@ public class SpawnTargets : MonoBehaviour {
     private static BoxCollider targetSpawnAreaBox;
 
     private static Vector3 targetInArea, preFallTargetSpawn;
-    public int targetMax;
+    public int startingTargetCount;
     public static int count, totalCount;
     private static int stepCount = 4;
     public bool targetFall       = false;
@@ -258,7 +258,7 @@ public class SpawnTargets : MonoBehaviour {
     /// Spawns initial targets from scatter spawns list, then removes those from list. Increases counts.
     /// </summary>
     public static void SpawnScatter() {
-        while (count < ST.targetMax + 1) {
+        while (count < ST.startingTargetCount + 1) {
             targetInArea     = scatterTargetSpawns[UnityEngine.Random.Range(0, scatterTargetSpawns.Count)];
             currentTargetObj = Instantiate(primaryTargetObject, targetInArea, Quaternion.identity);
             scatterTargetSpawns.Remove(targetInArea);
