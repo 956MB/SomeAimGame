@@ -15,6 +15,7 @@ public class LoadSteamData : MonoBehaviour {
     private static int avatarInt;
     private static uint avatarWidth, avatarHeight;
     private static Texture2D downloadedAvatarTexture;
+    public static int usernameMaxLength = 16;
 
     private static LoadSteamData steamData;
     private void Awake() { steamData = this; }
@@ -39,15 +40,18 @@ public class LoadSteamData : MonoBehaviour {
         string steamUsername = SteamFriends.GetPersonaName();
         //string steamUsername = $"{I18nTextTranslator.SetTranslatedText("testuser")}";
 
-        if (steamUsername.Length > 16) { steamData.steamUsernameText.SetText($"{ShortenSteamUsername(steamUsername)}");
-        } else { steamData.steamUsernameText.SetText($"{steamUsername}"); }
+        if (steamUsername.Length > usernameMaxLength) {
+            steamData.steamUsernameText.SetText($"{ShortenSteamUsername(steamUsername)}");
+        } else {
+            steamData.steamUsernameText.SetText($"{steamUsername}");
+        }
 
         Util.RefreshRootLayoutGroup(steamData.rootGroup);
     }
 
     public static string ShortenSteamUsername(string username) {
         string usernameResult = "";
-        for (int i = 0; i < 16; i++) { usernameResult += username[i]; }
+        for (int i = 0; i < usernameMaxLength; i++) { usernameResult += username[i]; }
 
         return $"{usernameResult}...";
     }
