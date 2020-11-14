@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 
 public class ExtraSettings : MonoBehaviour {
-    public static int gameTimer          = 60;
-    public static bool targetSound       = true;
-    public static bool uiSound           = true;
-    public static bool showAAR           = true;
-    public static float mouseSensitivity = 2.0f;
-    public static bool hideUI            = false;
-    public static bool showExtraStats    = false;
-    public static bool showExtraStatsBackgrounds = false;
+    public static int   gameTimer                 = 60;
+    public static bool  targetSound               = true;
+    public static bool  uiSound                   = true;
+    public static bool  showAAR                   = true;
+    public static float mouseSensitivity          = 2.0f;
+    public static bool  hideUI                    = false;
+    public static bool  showExtraStats            = false;
+    public static bool  showExtraStatsBackgrounds = false;
 
     private static ExtraSettings extraSettings;
     void Awake() { extraSettings = this; }

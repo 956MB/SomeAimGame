@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 
 public class CrosshairSettings : MonoBehaviour {
-    public static bool centerDot      = false;
-    public static bool TStyle         = false;
-    public static float size          = 1f;
-    public static float thickness     = 12f;
-    public static float gap           = 0f;
-    public static bool outlineEnabled = false;
-    public static float outline       = 1f;
-    public static float red           = 255f;
-    public static float green         = 255f;
-    public static float blue          = 255f;
-    public static float alpha         = 255f;
+    public static bool  centerDot      = false;
+    public static bool  TStyle         = false;
+    public static float size           = 1f;
+    public static float thickness      = 12f;
+    public static float gap            = 0f;
+    public static bool  outlineEnabled = false;
+    public static float outline        = 1f;
+    public static float red            = 255f;
+    public static float green          = 255f;
+    public static float blue           = 255f;
+    public static float alpha          = 255f;
 
     private static CrosshairSettings crosshairSettings;
     void Awake() { crosshairSettings = this; }

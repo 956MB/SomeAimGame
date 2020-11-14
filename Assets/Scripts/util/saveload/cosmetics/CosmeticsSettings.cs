@@ -2,15 +2,15 @@
 using UnityEngine;
 
 public class CosmeticsSettings : MonoBehaviour {
-    public static Gamemode gamemode             = Gamemode.Scatter;
-    public static TargetColor targetColor       = TargetColor.Yellow;
-    public static string skybox                 = "Skybox-Slate";
-    public static float afterActionReportPanelX = 960f;
-    public static float afterActionReportPanelY = 540f;
-    public static float extraStatsPanelX        = 1455.711f;
-    public static float extraStatsPanelY        = 638.3904f;
+    public static Gamemode    gamemode                = Gamemode.Scatter;
+    public static TargetColor targetColor             = TargetColor.Yellow;
+    public static string      skybox                  = "Skybox-Slate";
+    public static float       afterActionReportPanelX = 960f;
+    public static float       afterActionReportPanelY = 540f;
+    public static float       extraStatsPanelX        = 1455.711f;
+    public static float       extraStatsPanelY        = 638.3904f;
     
-    public static bool quickStartGame    = false;
+    public static bool quickStartGame = false;
 
     private static CosmeticsSettings cosmeticsSettings;
     void Awake() { cosmeticsSettings = this; }
