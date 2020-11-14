@@ -117,6 +117,9 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
                 break;
         }
 
+        // Saves new selected target color
+        CosmeticsSettings.SaveTargetColorItem(targetColorClickedName);
+
         // Changes gamemode video previews when new target color selected, then saves
         SettingsPanel.LoadGamemodePreviews();
 
@@ -124,9 +127,6 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
         DevEventHandler.CheckTargetsEvent($"\"{targetColorClickedName}\" {I18nTextTranslator.SetTranslatedText("eventinterfacetargetcolorbutton")}");
         // EVENT:: for new target color selected
         DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetscolorchange")} \"{targetColorClickedName}\"");
-
-        // Saves new selected target color
-        CosmeticsSettings.SaveTargetColorItem(targetColorClickedName);
     }
 
     /// <summary>
