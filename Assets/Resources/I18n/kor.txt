@@ -209,7 +209,9 @@ languagetemporarilydisabled=언어 번역이 일시적으로 비활성화되었�
 gamelanguage=언어
 steamdataplaceholderusername=User0
 patchnotesbutton=패치 노트
+quitconfirmbutton=확실합니까?
 quitgamebutton=게임 종료
+quitcancelbutton=취소
 testuser=Bloumbs
 #
 #

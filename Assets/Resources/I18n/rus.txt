@@ -209,7 +209,9 @@ languagetemporarilydisabled=ПЕРЕВОД ЯЗЫКА ВРЕМЕННО ОТКЛ�
 gamelanguage=Язык
 steamdataplaceholderusername=User0
 patchnotesbutton=ЗАМЕТКИ О ПАТЧЕ
+quitconfirmbutton=ТЫ УВЕРЕН?
 quitgamebutton=ВЫЙТИ ИЗ ИГРЫ
+quitcancelbutton=ОТМЕНА
 testuser=Bloumbs
 #
 #

@@ -209,7 +209,9 @@ languagetemporarilydisabled=言語翻訳が一時的に無効になっていま�
 gamelanguage=言語
 steamdataplaceholderusername=User0
 patchnotesbutton=パッチノート
+quitconfirmbutton=本気ですか？
 quitgamebutton=ゲームをやめる
+quitcancelbutton=キャンセル
 testuser=アレクサンダー
 #
 #

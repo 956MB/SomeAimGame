@@ -209,7 +209,9 @@ languagetemporarilydisabled=LANGUAGE TRANSLATION TEMPORARILY DISABLED.
 gamelanguage=Language
 steamdataplaceholderusername=User0
 patchnotesbutton=PATCH NOTES
+quitconfirmbutton=ARE YOU SURE?
 quitgamebutton=QUIT GAME
+quitcancelbutton=CANCEL
 testuser=Bloumbs
 #
 #

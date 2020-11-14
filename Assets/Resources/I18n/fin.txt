@@ -209,7 +209,9 @@ languagetemporarilydisabled=KIELEN KÄÄNTÖ TILAPÄISESTI POIS.
 gamelanguage=Kieli
 steamdataplaceholderusername=User0
 patchnotesbutton=PATCH-HUOMAUTUKSET
+quitconfirmbutton=OLETKO VARMA?
 quitgamebutton=LOPETA PELI
+quitcancelbutton=PERUUTTAA
 testuser=Bloumbs
 #
 #
