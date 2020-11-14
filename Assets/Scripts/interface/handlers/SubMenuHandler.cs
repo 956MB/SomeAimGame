@@ -30,6 +30,7 @@ public class SubMenuHandler : MonoBehaviour {
             case "GamemodeSubMenuButton":
                 gamemodeSubMenuText.color               = enabledSubMenuTextColor;
                 gamemodeScrollView.transform.localScale = enabledSubMenuScrollView;
+                ScrollRectExtension.ScrollToTop(gamemodeScrollView.GetComponent<ScrollRect>());
                 break;
             case "GeneralSubMenuButton":
                 generalSubMenuText.color               = enabledSubMenuTextColor;
@@ -39,14 +40,17 @@ public class SubMenuHandler : MonoBehaviour {
             case "ControlsSubMenuButton":
                 controlsSubMenuText.color               = enabledSubMenuTextColor;
                 controlsScrollView.transform.localScale = enabledSubMenuScrollView;
+                ScrollRectExtension.ScrollToTop(controlsScrollView.GetComponent<ScrollRect>());
                 break;
             case "CrosshairSubMenuButton":
                 crosshairSubMenuText.color               = enabledSubMenuTextColor;
                 crosshairScrollView.transform.localScale = enabledSubMenuScrollView;
+                ScrollRectExtension.ScrollToTop(crosshairScrollView.GetComponent<ScrollRect>());
                 break;
             case "ExtraSubMenuButton":
                 extraSubMenuText.color               = enabledSubMenuTextColor;
                 extraScrollView.transform.localScale = enabledSubMenuScrollView;
+                ScrollRectExtension.ScrollToTop(extraScrollView.GetComponent<ScrollRect>());
                 break;
         }
 
