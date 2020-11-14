@@ -123,7 +123,7 @@ scrolltotop=
 mousetitle=Мышь
 mousesensitivity=Чувствительность мыши
 keybindstitle=Связки клавиш
-keybindlegend=//  редактирование привязки клавиш скоро
+keybindlegend=Pедактирование привязки клавиш скоро
 crosshairtitle=Перекрестие
 #
 #

@@ -123,7 +123,7 @@ scrolltotop=
 mousetitle=쥐
 mousesensitivity=마우스 감도
 keybindstitle=키 바인드
-keybindlegend=//  곧 키 바인딩 편집
+keybindlegend=곧 키 바인딩 편집
 crosshairtitle=십자선
 #
 #

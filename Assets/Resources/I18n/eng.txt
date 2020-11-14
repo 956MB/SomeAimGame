@@ -123,7 +123,7 @@ scrolltotop=
 mousetitle=Mouse
 mousesensitivity=Mouse Sensitivity
 keybindstitle=Keybinds
-keybindlegend=//  keybind editing coming soon
+keybindlegend=Keybind editing coming soon
 crosshairtitle=Crosshair
 #
 #
