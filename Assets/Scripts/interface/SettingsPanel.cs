@@ -245,7 +245,7 @@ public class SettingsPanel : MonoBehaviour {
     /// Loads then plays all gamemode preview videos in their repsective buttons from the current gamemode, target color and skybox.
     /// </summary>
     public static void LoadGamemodePreviews() {
-        gamemodePreviewVideos = VideoManager.PopulateGamemodePreviews(CosmeticsSettings.gamemode, CosmeticsSettings.targetColor, CosmeticsSettings.skybox);
+        gamemodePreviewVideos = VideoManager.PopulateGamemodePreviews(GamemodeType.ReturnGamemodeType_StringFull(CosmeticsSettings.gamemode), TargetColorType.ReturnTargetColorType_StringFull(CosmeticsSettings.targetColor), CosmeticsSettings.skybox);
 
         // Set clips for every gamemode preview button.
         settings.scatterVideoPlayer.clip  = gamemodePreviewVideos[0];

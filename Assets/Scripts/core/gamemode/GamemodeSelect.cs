@@ -8,7 +8,7 @@ public class GamemodeSelect : MonoBehaviour {
     public VideoPlayer gamemodePreviewVideoRT;
     public TMP_Text gamemodeStartButtonText;
 
-    private static string currentOpenGamemode = "";
+    private static Gamemode currentOpenGamemode;
 
     private static Color32 easyColor   = new Color32(0, 255, 0, 255);
     private static Color32 mediumColor = new Color32(255, 209, 0, 255);
@@ -33,10 +33,11 @@ public class GamemodeSelect : MonoBehaviour {
     /// Sets current selected gamemode, and calls 'PopulateAllGamemodeInfo()' to populate all 'GamemodeSelect' panel info.
     /// </summary>
     /// <param name="gamemodeName"></param>
-    public static void PopulateGamemodeSelect(string gamemodeName, bool quickStart) {
+    public static void PopulateGamemodeSelect(Gamemode gamemodeName, bool quickStart) {
         // Set current selected gamemode and its buttons hover border.
-        currentOpenGamemode                 = gamemodeName;
-        ButtonHoverHandler.selectedGamemode = gamemodeName;
+        currentOpenGamemode                       = gamemodeName;
+        ButtonHoverHandler.selectedGamemode       = gamemodeName;
+        ButtonHoverHandler.selectedGamemodeString = GamemodeType.ReturnGamemodeType_StringFull(gamemodeName);
         if (NotificationHandler.notificationOpen) { NotificationHandler.HideNotification(); }
 
         if (quickStart) {
@@ -45,22 +46,22 @@ public class GamemodeSelect : MonoBehaviour {
             //VideoClip selectedVideoClip = VideoManager.PopulateIndividualClip(gamemodeName, CosmeticsSettings.targetColor, CosmeticsSettings.skybox);
 
             switch (gamemodeName) {
-                case "Gamemode-Scatter":
+                case Gamemode.Scatter:
                     PopulateAllGamemodeInfo(gamemodeScatterClip_Loaded, "gamemodestartscatter", "gamemodecapsscatter", "gamemodetypespeed", easyColor, "gamemodescatterdescription");
                     break;
-                case "Gamemode-Flick":
+                case Gamemode.Flick:
                     PopulateAllGamemodeInfo(gamemodeFlickClip_Loaded, "gamemodestartflick", "gamemodecapsflick", "gamemodetypecontrol", easyColor, "gamemodeflickdescription");
                     break;
-                case "Gamemode-Grid":
+                case Gamemode.Grid:
                     PopulateAllGamemodeInfo(gamemodeGridClip_Loaded, "gamemodestartgrid", "gamemodecapsgrid", "gamemodetypespeed", easyColor, "gamemodegriddescription");
                     break;
-                case "Gamemode-Grid2":
+                case Gamemode.Grid2:
                     PopulateAllGamemodeInfo(gamemodeGrid2Clip_Loaded, "gamemodestartgrid2", "gamemodecapsgrid2", "gamemodetypecontrol", hardColor, "gamemodegrid2description");
                     break;
-                case "Gamemode-Pairs":
+                case Gamemode.Pairs:
                     PopulateAllGamemodeInfo(gamemodePairsClip_Loaded, "gamemodestartpairs", "gamemodecapspairs", "gamemodetypecontrol", mediumColor, "gamemodepairsdescription");
                     break;
-                case "Gamemode-Follow":
+                case Gamemode.Follow:
                     PopulateAllGamemodeInfo(gamemodeFollowClip_Loaded, "gamemodestartfollow", "gamemodecapsfollow", "gamemodetypetracking", mediumColor, "gamemodefollowdescription");
                     break;
             }
@@ -127,7 +128,7 @@ gamemodeDescription) {
     /// </summary>
     public void GamemodeSelectStart() {
         if (SpawnTargets.gamemode != currentOpenGamemode) {
-            if (currentOpenGamemode == "Gamemode-Follow" && CosmeticsSettings.targetColor == "TargetColor-Red") {
+            if (currentOpenGamemode == Gamemode.Follow && CosmeticsSettings.targetColor == TargetColor.Red) {
                 NotificationHandler.ShowTimedNotification_Translated("followwarning", "", NotificationHandler.notificationColorRed);
                 return;
             }
@@ -139,7 +140,7 @@ gamemodeDescription) {
             SpawnTargets.StartNewGamemode(currentOpenGamemode);
             //Debug.Log("after start new gamemode");
         } else {
-            NotificationHandler.ShowTimedNotification_Translated($"gamemodecaps{currentOpenGamemode.Split('-')[1].ToLower()}", $": {I18nTextTranslator.SetTranslatedText("selectedgamemodewarning")}", NotificationHandler.notificationColorYellow);
+            //NotificationHandler.ShowTimedNotification_Translated($"gamemodecaps{currentOpenGamemode.Split('-')[1].ToLower()}", $": {I18nTextTranslator.SetTranslatedText("selectedgamemodewarning")}", NotificationHandler.notificationColorYellow);
         }
     }
 }

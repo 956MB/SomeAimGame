@@ -38,7 +38,7 @@ public class StatsManager : MonoBehaviour {
     /// Loads highscore stats of current gamemode into 'highscoreData' object, then sets 'highscoreScore' from highscore stats.
     /// </summary>
     public static void LoadOldHighscore() {
-        highscoreData = HighscoreSaveSystem.LoadHighscoreData(SpawnTargets.gamemode.Split('-')[1]);
+        highscoreData = HighscoreSaveSystem.LoadHighscoreData(GamemodeType.ReturnGamemodeType_StringShort(SpawnTargets.gamemode));
         if (highscoreData != null) {
             highscoreScore = highscoreData.scoreValue;
         }
@@ -48,21 +48,21 @@ public class StatsManager : MonoBehaviour {
     /// Loads previous stats of current gamemode into 'previousGameStats' object.
     /// </summary>
     public static void LoadPreviousGameStats() {
-        previousGameStats = StatsJsonSaveSystem.LoadLastGameData(SpawnTargets.gamemode.Split('-')[1]);
+        previousGameStats = StatsJsonSaveSystem.LoadLastGameData(GamemodeType.ReturnGamemodeType_StringShort(SpawnTargets.gamemode));
     }
 
     /// <summary>
     /// Loads best stats of current gamemode into 'bestGameStats' object.
     /// </summary>
     public static void LoadBestGameStats() {
-        bestGameStats = StatsJsonSaveSystem.LoadBestGameStatsData(SpawnTargets.gamemode.Split('-')[1]);
+        bestGameStats = StatsJsonSaveSystem.LoadBestGameStatsData(GamemodeType.ReturnGamemodeType_StringShort(SpawnTargets.gamemode));
     }
 
     /// <summary>
     /// Sets current gamemodes stats after finish to be compared.
     /// </summary>
     public static void SetStatValues() {
-        gamemodeStat     = CosmeticsSettings.gamemode.Split('-')[1];
+        gamemodeStat     = GamemodeType.ReturnGamemodeType_StringShort(CosmeticsSettings.gamemode);
         scoreStat        = GameUI.scoreNum;
         accuracyStat     = GameUI.accuracy;
         ttkStat          = GameUI.newTime;
@@ -106,7 +106,7 @@ public class StatsManager : MonoBehaviour {
             stats.highscoreLineTop.color    = StatsUtil.neutralLineColor;
             stats.highscoreLineBottom.color = StatsUtil.neutralLineColor;
             stats.newHighscoreEffectText.transform.parent.gameObject.GetComponent<Image>().color = StatsUtil.neutralBackgroundColor;
-            HighscoreSave.SaveNewHighscoreStats(CosmeticsSettings.gamemode.Split('-')[1], scoreStat, accuracyStat, ttkStat, kpsStat, bestStreakStat, targetTotalStat, targetHitStat, targetMissesStat);
+            HighscoreSave.SaveNewHighscoreStats(GamemodeType.ReturnGamemodeType_StringShort(CosmeticsSettings.gamemode), scoreStat, accuracyStat, ttkStat, kpsStat, bestStreakStat, targetTotalStat, targetHitStat, targetMissesStat);
         }
 
         // Saves current games stats as new 'previous' for next run.
@@ -119,7 +119,7 @@ public class StatsManager : MonoBehaviour {
     public static void SetAfterActionStats() {
         double kps = kpsStat;
 
-        stats.titleText.SetText($"{I18nTextTranslator.SetTranslatedText("afteractionreporttitle")} - {I18nTextTranslator.SetTranslatedText(CosmeticsSettings.gamemode.Split('-')[1])}");
+        stats.titleText.SetText($"{I18nTextTranslator.SetTranslatedText("afteractionreporttitle")} - {I18nTextTranslator.SetTranslatedText(GamemodeType.ReturnGamemodeType_StringShort(CosmeticsSettings.gamemode))}");
         //stats.showExtraGamemodeText.SetText($"({I18nTextTranslator.SetTranslatedText(CosmeticsSettings.gamemode.Split('-')[1])})");
         //stats.scoreText.SetText($"{string.Format("{0:n0}", scoreStat)}");
         stats.scoreEffectText.SetText($"{string.Format("{0:n0}", scoreStat)}");

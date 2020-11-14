@@ -46,6 +46,7 @@ public class GameUI : MonoBehaviour {
         SettingsPanel.settingsOpen          = false;
 
         SpawnTargets.InitSpawnTargets();
+
         // Load all stats objects at start.
         StatsManager.LoadOldHighscore();
         StatsManager.LoadPreviousGameStats();
@@ -69,7 +70,7 @@ public class GameUI : MonoBehaviour {
     /// </summary>
     public static void StartGame() {
         //gameUI.preTipText.SetText("''R'' to restart");
-        if (SpawnTargets.gamemode == "Gamemode-Scatter") {
+        if (SpawnTargets.gamemode == Gamemode.Scatter) {
             gameUI.spawnScatterCoroutine = gameUI.StartCoroutine(ContinuousScatterSpawn());
         }
         gameUI.timerCoroutine = gameUI.StartCoroutine(StartGameTimerDown());
@@ -345,9 +346,9 @@ public class GameUI : MonoBehaviour {
     /// Restarts game with current supplied gamemode and resets all game values like timer, score and accuracy. Then targets are reset and scene reloaded.
     /// </summary>
     /// <param name="newGamemode"></param>
-    public static void RestartGame(string newGamemode) {
+    public static void RestartGame(Gamemode newGamemode) {
         gameUI.StopCoroutine(gameUI.timerCoroutine);
-        if (SpawnTargets.gamemode == "Gamemode-Scatter") {
+        if (SpawnTargets.gamemode == Gamemode.Scatter) {
             gameUI.StopCoroutine(gameUI.spawnScatterCoroutine);
         }
 
@@ -387,9 +388,9 @@ public class GameUI : MonoBehaviour {
     /// </summary>
     public static void StopEverything() {
         //gameUI.StopCoroutine(gameUI.timerCoroutine);
-        if (SpawnTargets.gamemode == "Gamemode-Scatter") {
+        if (SpawnTargets.gamemode == Gamemode.Scatter) {
             gameUI.StopCoroutine(gameUI.spawnScatterCoroutine);
-        } else if (SpawnTargets.gamemode == "Gamemode-Follow") {
+        } else if (SpawnTargets.gamemode == Gamemode.Follow) {
             PathFollower.DestroyPathObj();
         }
 

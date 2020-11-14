@@ -21,7 +21,7 @@ public class PathFollower : MonoBehaviour {
 
     void Update() {
         // Update target position along follow path if gamemode is "Gamemode-Follow" and 'pathCreator' not null.
-        if (pathCreator != null && SpawnTargets.gamemode == "Gamemode-Follow") {
+        if (pathCreator != null && SpawnTargets.gamemode == Gamemode.Follow) {
             distanceTravelled += speed * Time.deltaTime;
             //speedValueText.SetText($"{speed}");
             GenerateFollowPath.pathFollowerTarget.transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);

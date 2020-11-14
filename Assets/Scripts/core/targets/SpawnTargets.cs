@@ -28,7 +28,7 @@ public class SpawnTargets : MonoBehaviour {
     public bool targetFall       = false;
 
     public static int shotsTaken, shotsHit, shotMisses, accuracy;
-    public static string gamemode;
+    public static Gamemode gamemode;
     //public string targetColor;
     public static bool gamemodeRestart, targetColorReset;
 
@@ -87,7 +87,7 @@ public class SpawnTargets : MonoBehaviour {
         CosmeticsSaveSystem.InitSavedCosmeticsSettings();
 
         // Use secondary spawning area if gamemode is "Gamemode-Pairs".
-        if (gamemode == "Gamemode-Pairs") {
+        if (gamemode == Gamemode.Pairs) {
             targetSpawnAreaCenterY = ST.secondaryTargetSpawnArea.GetComponent<Renderer>().bounds.center.y;
             targetSpawnAreaCenter  = ST.secondaryTargetSpawnArea.GetComponent<Renderer>().bounds.center;
             targetSpawnAreaBox     = ST.secondaryTargetSpawnArea.GetComponent<BoxCollider>();
@@ -121,23 +121,23 @@ public class SpawnTargets : MonoBehaviour {
     /// </summary>
     public static void SelectGamemode() {
         // Set target size to normal if gamemode is not "Gamemode-Grid2".
-        if (gamemode == "Gamemode-Grid2") {
+        if (gamemode == Gamemode.Grid2) {
             SetTinyTargets();
         } else {
             SetNormalTargets();
         }
 
-        if (gamemode == "Gamemode-Scatter") {
+        if (gamemode == Gamemode.Scatter) {
             // Init scatter spawns and destroy target spawn areas.
             scatterTargetSpawns = GetScatterTargetSpawns();
             DestroySpawnAreas();
             SpawnScatter();
-        } else if (gamemode == "Gamemode-Flick") {
+        } else if (gamemode == Gamemode.Flick) {
             // Spawn initial single target for "Gamemode-Flick".
             targetRb.isKinematic = !ST.targetFall ? true : false;
             DestroySpawnAreas();
             SpawnSingle(primaryTargetObject);
-        } else if (gamemode == "Gamemode-Grid" || gamemode == "Gamemode-Grid2") {
+        } else if (gamemode == Gamemode.Grid || gamemode == Gamemode.Grid2) {
             if (!targetAreasDestroyed) {
                 try {
                     ST.targetSpawnArea.GetComponent<BoxCollider>().size = new Vector3(1f, 1f, 0.55f);
@@ -149,20 +149,20 @@ public class SpawnTargets : MonoBehaviour {
             DestroySpawnAreas();
 
             // Spawn initial 3 targets for "Gamemode-Grid", or initial 8 for "Gamemode-Grid2".
-            if (gamemode == "Gamemode-Grid") {
+            if (gamemode == Gamemode.Grid) {
                 for (int i = 0; i < 3; i++) { SpawnSingle(primaryTargetObject); }
-            } else if (gamemode == "Gamemode-Grid2") {
+            } else if (gamemode == Gamemode.Grid2) {
                 for (int i = 0; i < 8; i++) { SpawnSingle(primaryTargetObject); }
-            } else if (gamemode == "Gamemode-Grid3") {
+            } else if (gamemode == Gamemode.Grid3) {
                 for (int i = 0; i < 2; i++) { SpawnSingle(secondaryTargetObject); }
                 for (int i = 0; i < 1; i++) { SpawnSingle(primaryTargetObject); }
             }
 
-        } else if (gamemode == "Gamemode-Pairs") {
+        } else if (gamemode == Gamemode.Pairs) {
             // Destroy spawn areas and spawn starter target for "Gamemode-Pairs".
             DestroySpawnAreas();
             SpawnPairsStarter();
-        } else if (gamemode == "Gamemode-Follow") {
+        } else if (gamemode == Gamemode.Follow) {
             // Generate path for "Gamemode-Follow" and start.
             GenerateFollowPath.StartFollowGamemode();
         }
@@ -175,7 +175,7 @@ public class SpawnTargets : MonoBehaviour {
     /// Start new game (restart) with supplied new gamemode string (newGamemode).
     /// </summary>
     /// <param name="newGamemode"></param>
-    public static void StartNewGamemode(string newGamemode) {
+    public static void StartNewGamemode(Gamemode newGamemode) {
         GameUI.RestartGame(newGamemode);
         //gamemode = newGamemode;
         //selectGamemode();
@@ -416,44 +416,44 @@ public class SpawnTargets : MonoBehaviour {
     /// </summary>
     /// <param name="setColor"></param>
     /// <param name="gamemodeFollow"></param>
-    public static void SetTargetColor(string setColor, bool gamemodeFollow) {
+    public static void SetTargetColor(TargetColor setColor, bool gamemodeFollow) {
         switch (setColor) {
-            case "TargetColor-Red":
+            case TargetColor.Red:
                 primaryTargetObject   = ST.redTarget;
                 secondaryTargetObject = ST.blueTarget;
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.RedAlbedo(), TargetColors.RedEmission(), TargetColors.RedLight()); }
                 break;
-            case "TargetColor-Orange":
+            case TargetColor.Orange:
                 primaryTargetObject   = ST.orangeTarget;
                 secondaryTargetObject = ST.blueTarget;
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.OrangeAlbedo(), TargetColors.OrangeEmission(), TargetColors.OrangeLight()); }
                 break;
-            case "TargetColor-Yellow":
+            case TargetColor.Yellow:
                 primaryTargetObject   = ST.yellowTarget;
                 secondaryTargetObject = ST.redTarget;
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.YellowAlbedo(), TargetColors.YellowEmission(), TargetColors.YellowLight()); }
                 break;
-            case "TargetColor-Green":
+            case TargetColor.Green:
                 primaryTargetObject   = ST.greenTarget;
                 secondaryTargetObject = ST.redTarget;
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.GreenAlbedo(), TargetColors.GreenEmission(), TargetColors.GreenLight()); }
                 break;
-            case "TargetColor-Blue":
+            case TargetColor.Blue:
                 primaryTargetObject   = ST.blueTarget;
                 secondaryTargetObject = ST.redTarget;
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.BlueAlbedo(), TargetColors.BlueEmission(), TargetColors.BlueLight()); }
                 break;
-            case "TargetColor-Purple":
+            case TargetColor.Purple:
                 primaryTargetObject   = ST.purpleTarget;
                 secondaryTargetObject = ST.yellowTarget;
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.PurpleAlbedo(), TargetColors.PurpleEmission(), TargetColors.PurpleLight()); }
                 break;
-            case "TargetColor-Pink":
+            case TargetColor.Pink:
                 primaryTargetObject   = ST.pinkTarget;
                 secondaryTargetObject = ST.yellowTarget;
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.PinkAlbedo(), TargetColors.PinkEmission(), TargetColors.PinkLight()); }
                 break;
-            case "TargetColor-White":
+            case TargetColor.White:
                 primaryTargetObject   = ST.whiteTarget;
                 secondaryTargetObject = ST.blueTarget;
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.WhiteAlbedo(), TargetColors.WhiteEmission(), TargetColors.WhiteLight()); }
@@ -471,14 +471,14 @@ public class SpawnTargets : MonoBehaviour {
     /// Replaces all currently spawned target colors to new supplied color (setColor).
     /// </summary>
     /// <param name="setColor"></param>
-    public static void ReplaceCurrentTargetColors(string setColor) {
-        if (gamemode != "Gamemode-Follow") {
+    public static void ReplaceCurrentTargetColors(TargetColor setColor) {
+        if (gamemode != Gamemode.Follow) {
             // Destroy all targets and set new target color if gamemode is not "Gamemode-Follow" or "Gamemode-Scatter".
             SetTargetColor(setColor, false);
-            if (gamemode != "Gamemode-Scatter") { DestroyTargetObjects(); }
+            if (gamemode != Gamemode.Scatter) { DestroyTargetObjects(); }
 
-            if (gamemode != "Gamemode-Pairs") {
-                if (gamemode == "Gamemode-Scatter") {
+            if (gamemode != Gamemode.Pairs) {
+                if (gamemode == Gamemode.Scatter) {
                     FindAndReplaceCurrentScatterTargets();
                 } else {
                     // Loop all currently spawned targets and re-instantiate them.
@@ -518,7 +518,7 @@ public class SpawnTargets : MonoBehaviour {
                 shotsHit += 1;
             }
 
-            if (gamemode == "Gamemode-Scatter") {
+            if (gamemode == Gamemode.Scatter) {
                 count -= 1;
                 if (count <= 0) {
                     scatterTargetSpawns.Remove(hitTarget.transform.position);
@@ -526,10 +526,10 @@ public class SpawnTargets : MonoBehaviour {
                     SpawnScatter();
                     GameUI.IncreaseScore_Bonus();
                 }
-            } else if (gamemode == "Gamemode-Flick" || gamemode == "Gamemode-Grid" || gamemode == "Gamemode-Grid2") {
+            } else if (gamemode == Gamemode.Flick || gamemode == Gamemode.Grid || gamemode == Gamemode.Grid2) {
                 //shotsHit += 1;
                 SpawnSingle(primaryTargetObject);
-            } else if (gamemode == "Gamemode-Pairs") {
+            } else if (gamemode == Gamemode.Pairs) {
                 if (pairStarterActive) {
                     shotsHit += 1;
                     SpawnPairs();
@@ -562,7 +562,7 @@ public class SpawnTargets : MonoBehaviour {
         float randomY = UnityEngine.Random.Range(bounds.min.y + targetSize, bounds.max.y - targetSize);
         float randomZ = UnityEngine.Random.Range(bounds.min.z + targetSize, bounds.max.z - targetSize);
 
-        if (gamemode == "Gamemode-Grid" || gamemode == "Gamemode-Grid2") {
+        if (gamemode == Gamemode.Grid || gamemode == Gamemode.Grid2) {
             randomX = (float)(bounds.size.x * 1.75) - targetSize * 3;
             //randomX = (float)(bounds.size.x * 1.75) - targetSize * 2;
             //randomX = bounds.size.x;
@@ -574,7 +574,7 @@ public class SpawnTargets : MonoBehaviour {
             //randomX = randomX * stepCount;
             randomY = randomY * stepCount;
             randomZ = randomZ * stepCount;
-        } else if (gamemode == "Gamemode-Scatter") {
+        } else if (gamemode == Gamemode.Scatter) {
             randomX = Mathf.Floor(randomX / stepCount);
             randomY = Mathf.Floor(randomY / stepCount);
             randomZ = Mathf.Floor(randomZ / stepCount);
@@ -645,7 +645,7 @@ public class SpawnTargets : MonoBehaviour {
         if (ST.targetFall) { pos = preFallTargetSpawn; }
 
         //int targetIndex = targetSpawns.IndexOf(pos);
-        if (gamemode == "Gamemode-Scatter") {
+        if (gamemode == Gamemode.Scatter) {
             if (count != 0) { scatterTargetSpawns.Add(pos); }
         } else {
             targetSpawns.Remove(pos);
@@ -736,10 +736,10 @@ public class SpawnTargets : MonoBehaviour {
     /// Resets all target game values. [EVENT]
     /// </summary>
     public static void ResetSpawnTargets() {
-        shotsHit   = 0;
-        shotsTaken = 0;
-        count      = 0;
-        totalCount = 0;
+        shotsHit               = 0;
+        shotsTaken             = 0;
+        count                  = 0;
+        totalCount             = 0;
         targetAreasDestroyed   = false;
         GunAction.timerRunning = true;
 

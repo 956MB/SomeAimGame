@@ -21,7 +21,7 @@ public class FollowRaycast : MonoBehaviour {
 
     void Update() {
         // Only if game timer is running and gamemode is "Gamemode-Follow".
-        if (GunAction.timerRunning && SpawnTargets.gamemode == "Gamemode-Follow") {
+        if (GunAction.timerRunning && SpawnTargets.gamemode == Gamemode.Follow) {
             ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
 
             if (Physics.Raycast(ray, out raycastHit)) {

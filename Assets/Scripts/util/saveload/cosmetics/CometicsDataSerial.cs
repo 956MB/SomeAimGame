@@ -1,8 +1,8 @@
 ﻿
 [System.Serializable]
 public class CosmeticsDataSerial {
-    public string gamemode;
-    public string targetColor;
+    public Gamemode gamemode;
+    public TargetColor targetColor;
     public string skybox;
     public float afterActionReportPanelX;
     public float afterActionReportPanelY;

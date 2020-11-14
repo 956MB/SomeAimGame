@@ -6,7 +6,7 @@ using TMPro;
 public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     public TMP_Text targetColorSelected, skyboxSelected;
     GameObject buttonBorder;
-    string gamemodeClickedName;
+    Gamemode gamemodeClickedName;
 
     /// <summary>
     /// Closes settings panel.
@@ -53,7 +53,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     /// </summary>
     /// <param name="clickedButtonBorder"></param>
     public void SelectNewGamemode(GameObject clickedButtonBorder) {
-        gamemodeClickedName = clickedButtonBorder.transform.parent.name;
+        gamemodeClickedName = GamemodeType.ReturnGamemodeType_Gamemode(clickedButtonBorder.transform.parent.name);
         ClearGamemodeButtonBorders();
         clickedButtonBorder.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         clickedButtonBorder.SetActive(true);
@@ -72,10 +72,10 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     /// </summary>
     /// <param name="clickedButtonBorder"></param>
     public void SetNewTargetColor(GameObject clickedButtonBorder) {
-        string targetColorClickedName = clickedButtonBorder.transform.parent.name;
+        TargetColor targetColorClickedName = TargetColorType.ReturnTargetColorType_TargetColor(clickedButtonBorder.transform.parent.name);
 
         // Primary target color cannot be red if gamemode is "Gamemode-Follow"
-        if (targetColorClickedName == "TargetColor-Red" && SpawnTargets.gamemode == "Gamemode-Follow") { return; }
+        if (targetColorClickedName == TargetColor.Red && SpawnTargets.gamemode == Gamemode.Follow) { return; }
         if (NotificationHandler.notificationOpen) { NotificationHandler.HideNotification(); }
 
         SpawnTargets.targetColorReset = true;
@@ -91,28 +91,28 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
 
         // Change selected target color text based on button clicked in general settings panel.
         switch (targetColorClickedName) {
-            case "TargetColor-Red":
+            case TargetColor.Red:
                 targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colorred")}");
                 break;
-            case "TargetColor-Orange":
+            case TargetColor.Orange:
                 targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colororange")}");
                 break;
-            case "TargetColor-Yellow":
+            case TargetColor.Yellow:
                 targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("coloryellow")}");
                 break;
-            case "TargetColor-Green":
+            case TargetColor.Green:
                 targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colorgreen")}");
                 break;
-            case "TargetColor-Blue":
+            case TargetColor.Blue:
                 targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colorblue")}");
                 break;
-            case "TargetColor-Purple":
+            case TargetColor.Purple:
                 targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colorpurple")}");
                 break;
-            case "TargetColor-Pink":
+            case TargetColor.Pink:
                 targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colorpink")}");
                 break;
-            case "TargetColor-White":
+            case TargetColor.White:
                 targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colorwhite")}");
                 break;
         }

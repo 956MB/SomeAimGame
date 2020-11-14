@@ -5,8 +5,9 @@ using TMPro;
 public class ButtonHoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     //public Texture2D hoverBorder;
     public GameObject childBorder;
-    public static string selectedGamemode;
-    public static string selectedTargetColor;
+    public static Gamemode selectedGamemode;
+    public static string selectedGamemodeString;
+    public static TargetColor selectedTargetColor;
     public static string selectedSkybox;
 
     private static string currentHoveredButton;
@@ -19,8 +20,9 @@ public class ButtonHoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
     /// <param name="pointerEventData"></param>
     public void OnPointerEnter(PointerEventData pointerEventData) {
         string buttonName = pointerEventData.pointerCurrentRaycast.gameObject.name;
+        //string buttonNameGamemode = GamemodeType.ReturnGamemodeType_StringFull(buttonName);
         currentHoveredButton = buttonName;
-        if (buttonName != selectedTargetColor && buttonName != selectedSkybox && buttonName != selectedGamemode) {
+        if (buttonName != TargetColorType.ReturnTargetColorType_StringFull(selectedTargetColor) && buttonName != selectedSkybox && buttonName != GamemodeType.ReturnGamemodeType_StringFull(selectedGamemode)) {
             childBorder.SetActive(true);
             SetHoverButtonText(buttonName);
             //CursorHandler.setHoverCursorStatic();
@@ -34,7 +36,7 @@ public class ButtonHoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
     /// </summary>
     /// <param name="pointerEventData"></param>
     public void OnPointerExit(PointerEventData pointerEventData) {
-        if (currentHoveredButton != selectedTargetColor && currentHoveredButton != selectedSkybox && currentHoveredButton != selectedGamemode) {
+        if (currentHoveredButton != TargetColorType.ReturnTargetColorType_StringFull(selectedTargetColor) && currentHoveredButton != selectedSkybox && currentHoveredButton != selectedGamemodeString) {
             childBorder.SetActive(false);
             targetColorSelected.SetText(CosmeticsSaveSystem.activeTargetColorText);
             skyboxSelected.SetText(CosmeticsSaveSystem.activeSkyboxText);

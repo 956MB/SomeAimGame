@@ -27,5 +27,5 @@ public enum DevEventType {
     Keybind      = 8,
     Sound        = 9,
     Notification = 10,
-    Stats        = 11,
+    Stats        = 11
 }

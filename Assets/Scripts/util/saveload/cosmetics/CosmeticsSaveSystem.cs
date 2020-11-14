@@ -84,10 +84,10 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     /// </summary>
     public static void InitCosmeticsSettingsDefaults() {
         // Gamemode value.
-        SetGamemode("Gamemode-Grid", false);
+        SetGamemode(Gamemode.Grid, false);
 
         // Target color value.
-        SetTargetColor("TargetColor-Yellow", "Gamemode-Grid");
+        SetTargetColor(TargetColor.Yellow, Gamemode.Grid);
         saveLoad.targetColorSelected.SetText($"//    {I18nTextTranslator.SetTranslatedText("coloryellow")}");
         
         // Skybox value.
@@ -101,14 +101,14 @@ public class CosmeticsSaveSystem : MonoBehaviour {
         saveLoad.quickStartToggle.isOn = false;
 
         // Saves defaults to new 'cometics.settings' file.
-        CosmeticsSettings.SaveAllCosmeticsToggleDefaults("Gamemode-Grid", "TargetColor-Yellow", "Skybox-Slate", 960f, 540f, 1455.711f, 638.3904f, false);
+        CosmeticsSettings.SaveAllCosmeticsToggleDefaults(Gamemode.Grid, TargetColor.Yellow, "Skybox-Slate", 960f, 540f, 1455.711f, 638.3904f, false);
     }
 
     /// <summary>
     /// Sets current gamemode with supplied gamemode string (gamemode), and corresponding button/translated text in settings panel.
     /// </summary>
     /// <param name="gamemode"></param>
-    private static void SetGamemode(string gamemode, bool quickStart) {
+    private static void SetGamemode(Gamemode gamemode, bool quickStart) {
         ButtonHoverHandler.selectedGamemode = gamemode;
         ButtonClickHandler.ClearGamemodeButtonBorders();
         SpawnTargets.gamemode = gamemode;
@@ -117,27 +117,27 @@ public class CosmeticsSaveSystem : MonoBehaviour {
         GamemodeSelect.PopulateGamemodeSelect(gamemode, quickStart);
 
         switch (gamemode) {
-            case "Gamemode-Scatter":
+            case Gamemode.Scatter:
                 SetGamemodeBorder(saveLoad.gamemodeScatterBorder);
                 break;
-            case "Gamemode-Flick":
+            case Gamemode.Flick:
                 SetGamemodeBorder(saveLoad.gamemodeFlickBorder);
                 break;
-            case "Gamemode-Grid":
+            case Gamemode.Grid:
                 SetGamemodeBorder(saveLoad.gamemodeGridBorder);
                 break;
-            case "Gamemode-Grid2":
+            case Gamemode.Grid2:
                 SetGamemodeBorder(saveLoad.gamemodeGrid2Border);
                 break;
-            case "Gamemode-Pairs":
+            case Gamemode.Pairs:
                 SetGamemodeBorder(saveLoad.gamemodePairsBorder);
                 break;
-            case "Gamemode-Follow":
+            case Gamemode.Follow:
                 SetGamemodeBorder(saveLoad.gamemodeFollowBorder);
                 break;
-            case "Gamemode-Patrol":
-                SetGamemodeBorder(saveLoad.gamemodePatrolBorder);
-                break;
+            //case Gamemode.Scatter:
+            //    SetGamemodeBorder(saveLoad.gamemodePatrolBorder);
+            //    break;
         }
     }
 
@@ -146,8 +146,8 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     /// </summary>
     /// <param name="targetColor"></param>
     /// <param name="gamemode"></param>
-    private static void SetTargetColor(string targetColor, string gamemode) {
-        if (gamemode == "Gamemode-Follow") {
+    private static void SetTargetColor(TargetColor targetColor, Gamemode gamemode) {
+        if (gamemode == Gamemode.Follow) {
             SpawnTargets.SetTargetColor(targetColor, true);
         } else {
             SpawnTargets.SetTargetColor(targetColor, false);
@@ -157,35 +157,35 @@ public class CosmeticsSaveSystem : MonoBehaviour {
         ButtonClickHandler.ClearTargetColorButtonBorders();
 
         switch (targetColor) {
-            case "TargetColor-Red":
+            case TargetColor.Red:
                 SetCosmeticsItems(saveLoad.targetColorRedBorder, saveLoad.targetColorSelected, "colorred");
                 activeTargetColorText = $"//  {I18nTextTranslator.SetTranslatedText("colorred")}";
                 break;
-            case "TargetColor-Orange":
+            case TargetColor.Orange:
                 SetCosmeticsItems(saveLoad.targetColorOrangeBorder, saveLoad.targetColorSelected, "colororange");
                 activeTargetColorText = $"//  {I18nTextTranslator.SetTranslatedText("colororange")}";
                 break;
-            case "TargetColor-Yellow":
+            case TargetColor.Yellow:
                 SetCosmeticsItems(saveLoad.targetColorYellowBorder, saveLoad.targetColorSelected, "coloryellow");
                 activeTargetColorText = $"//  {I18nTextTranslator.SetTranslatedText("coloryellow")}";
                 break;
-            case "TargetColor-Green":
+            case TargetColor.Green:
                 SetCosmeticsItems(saveLoad.targetColorGreenBorder, saveLoad.targetColorSelected, "colorgreen");
                 activeTargetColorText = $"//  {I18nTextTranslator.SetTranslatedText("colorgreen")}";
                 break;
-            case "TargetColor-Blue":
+            case TargetColor.Blue:
                 SetCosmeticsItems(saveLoad.targetColorBlueBorder, saveLoad.targetColorSelected, "colorblue");
                 activeTargetColorText = $"//  {I18nTextTranslator.SetTranslatedText("colorblue")}";
                 break;
-            case "TargetColor-Purple":
+            case TargetColor.Purple:
                 SetCosmeticsItems(saveLoad.targetColorPurpleBorder, saveLoad.targetColorSelected, "colorpurple");
                 activeTargetColorText = $"//  {I18nTextTranslator.SetTranslatedText("colorpurple")}";
                 break;
-            case "TargetColor-Pink":
+            case TargetColor.Pink:
                 SetCosmeticsItems(saveLoad.targetColorPinkBorder, saveLoad.targetColorSelected, "colorpink");
                 activeTargetColorText = $"//  {I18nTextTranslator.SetTranslatedText("colorpink")}";
                 break;
-            case "TargetColor-White":
+            case TargetColor.White:
                 SetCosmeticsItems(saveLoad.targetColorWhiteBorder, saveLoad.targetColorSelected, "colorwhite");
                 activeTargetColorText = $"//  {I18nTextTranslator.SetTranslatedText("colorwhite")}";
                 break;

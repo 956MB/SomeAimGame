@@ -2,8 +2,8 @@
 using UnityEngine;
 
 public class CosmeticsSettings : MonoBehaviour {
-    public static string gamemode               = "Gamemode-Grid";
-    public static string targetColor            = "TargetColor-Yellow";
+    public static Gamemode gamemode             = Gamemode.Scatter;
+    public static TargetColor targetColor       = TargetColor.Yellow;
     public static string skybox                 = "Skybox-Slate";
     public static float afterActionReportPanelX = 960f;
     public static float afterActionReportPanelY = 540f;
@@ -19,7 +19,7 @@ public class CosmeticsSettings : MonoBehaviour {
     /// Saves supplied gamemode string (setGamemode) to cosmetics settings object (CosmeticsSettings), then saves cosmetics settings object.
     /// </summary>
     /// <param name="setGamemode"></param>
-    public static void SaveGamemodeItem(string setGamemode) {
+    public static void SaveGamemodeItem(Gamemode setGamemode) {
         gamemode = setGamemode;
         cosmeticsSettings.SaveCosmeticsSettings();
     }
@@ -28,7 +28,7 @@ public class CosmeticsSettings : MonoBehaviour {
     /// Saves supplied target color string (setTargetColor) to cosmetics settings object (CosmeticsSettings), then saves cosmetics settings object.
     /// </summary>
     /// <param name="setTargetColor"></param>
-    public static void SaveTargetColorItem(string setTargetColor) {
+    public static void SaveTargetColorItem(TargetColor setTargetColor) {
         //Debug.Log("save target color here????" + setTargetColor);
         targetColor = setTargetColor;
         cosmeticsSettings.SaveCosmeticsSettings();
@@ -87,7 +87,7 @@ public class CosmeticsSettings : MonoBehaviour {
     /// <param name="setPanelSettingsY"></param>
     /// <param name="setPanelExtraStatsX"></param>
     /// <param name="setPanelExtraStatsY"></param>
-    public static void SaveAllCosmeticsToggleDefaults(string setGamemode, string setTargetColor, string setSkybox, float setPanelSettingsX, float setPanelSettingsY, float setPanelExtraStatsX, float setPanelExtraStatsY, bool setQuickStart) {
+    public static void SaveAllCosmeticsToggleDefaults(Gamemode setGamemode, TargetColor setTargetColor, string setSkybox, float setPanelSettingsX, float setPanelSettingsY, float setPanelExtraStatsX, float setPanelExtraStatsY, bool setQuickStart) {
         gamemode                = setGamemode;
         targetColor             = setTargetColor;
         skybox                  = setSkybox;
