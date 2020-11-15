@@ -203,6 +203,7 @@ followwarning=VALITSE TOINEN KOHTEEN VÄRI ALOITTAMISEKSI 'Seuraa' pelitilaa!
 selectedgamemodewarning=VALITTU PELIMoodi on jo aktiivinen.
 languagerestartnotification=KIELEN VALINTA VAIKUTTAA SEURAAVAAN UUDELLEEN Käynnistykseen.
 languagetemporarilydisabled=KIELEN KÄÄNTÖ TILAPÄISESTI POIS.
+languageactive=VALITSEMASI KIELI ON JO AKTIIVINEN.
 #
 #
 # // steam data container items

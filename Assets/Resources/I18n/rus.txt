@@ -203,6 +203,7 @@ followwarning=ВЫБЕРИТЕ ДРУГОЙ ЦЕЛЕВЫЙ ЦВЕТ, ЧТОБЫ 
 selectedgamemodewarning=ВЫБРАННЫЙ ИГРОВОЙ РЕЖИМ УЖЕ АКТИВЕН.
 languagerestartnotification=ВЫБОР ЯЗЫКА ПРИНИМАЕТ ЭФФЕКТИВНОСТЬ ПРИ СЛЕДУЮЩЕМ ПЕРЕЗАПУСКЕ.
 languagetemporarilydisabled=ПЕРЕВОД ЯЗЫКА ВРЕМЕННО ОТКЛЮЧЕН.
+languageactive=ВЫБРАННЫЙ ЯЗЫК УЖЕ АКТИВЕН.
 #
 #
 # // steam data container items

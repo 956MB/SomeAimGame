@@ -203,6 +203,7 @@ followwarning=CHOOSE ANOTHER TARGET COLOR TO START 'Follow' GAMEMODE!
 selectedgamemodewarning=SELECTED GAMEMODE IS ALREADY ACTIVE.
 languagerestartnotification=LANGUAGE SELECTION WILL TAKE EFFECT ON NEXT RESTART.
 languagetemporarilydisabled=LANGUAGE TRANSLATION TEMPORARILY DISABLED.
+languageactive=LANGUAGE YOU SELECTED IS ALREADY ACTIVE.
 #
 #
 # // steam data container items

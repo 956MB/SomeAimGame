@@ -50,7 +50,7 @@ public class I18n : MonoBehaviour {
         string allTexts, key, value;
 
         // Language esting
-        lang = "KOR"; // "JPN" "ARA" "CHI" "KOR" "RUS" "ENG" "FIN"
+        lang = "ENG"; // "JPN" "ARA" "CHI" "KOR" "RUS" "ENG" "FIN"
 
         LanguageSelect.SetLanguageCodeText(lang);
         var textAsset = Resources.Load(@"I18n/" + lang.ToLower()); //no .txt needed
@@ -106,16 +106,16 @@ public class I18n : MonoBehaviour {
             //case SystemLanguage.Belarusian:         langCode = "BY"; break; // "BY";
             //case SystemLanguage.Bulgarian:          langCode = "BG"; break; // "BG";
             //case SystemLanguage.Catalan:            langCode = "CA"; break; // "CA";
-            case SystemLanguage.Chinese:            langCode = "CHI"; break; // "ZH";
-            case SystemLanguage.ChineseSimplified:  langCode = "CHI"; break; // "ZH";
-            case SystemLanguage.ChineseTraditional: langCode = "CHI"; break; // "ZH";
+            case SystemLanguage.Chinese:              langCode = "CHI"; break; // "ZH";
+            case SystemLanguage.ChineseSimplified:    langCode = "CHI"; break; // "ZH";
+            case SystemLanguage.ChineseTraditional:   langCode = "CHI"; break; // "ZH";
             //case SystemLanguage.Czech:              langCode = "CS"; break; // "CS";
             //case SystemLanguage.Danish:             langCode = "DA"; break; // "DA";
             //case SystemLanguage.Dutch:              langCode = "NL"; break; // "NL";
-            case SystemLanguage.English:            langCode = "ENG"; break; // "EN";
+            case SystemLanguage.English:              langCode = "ENG"; break; // "EN";
             //case SystemLanguage.Estonian:           langCode = "ET"; break; // "ET";
             //case SystemLanguage.Faroese:            langCode = "FO"; break; // "FO";
-            case SystemLanguage.Finnish:            langCode = "FIN"; break; // "FI";
+            case SystemLanguage.Finnish:              langCode = "FIN"; break; // "FI";
             //case SystemLanguage.French:             langCode = "FR"; break; // "FR";
             //case SystemLanguage.German:             langCode = "DE"; break; // "DE";
             //case SystemLanguage.Greek:              langCode = "EL"; break; // "EL";
@@ -124,15 +124,15 @@ public class I18n : MonoBehaviour {
             //case SystemLanguage.Icelandic:          langCode = "IS"; break; // "IS";
             //case SystemLanguage.Indonesian:         langCode = "IN"; break; // "IN";
             //case SystemLanguage.Italian:            langCode = "IT"; break; // "IT";
-            case SystemLanguage.Japanese:           langCode = "JPN"; break; // "JA";
-            case SystemLanguage.Korean:             langCode = "KOR"; break; // "KO";
+            case SystemLanguage.Japanese:             langCode = "JPN"; break; // "JA";
+            case SystemLanguage.Korean:               langCode = "KOR"; break; // "KO";
             //case SystemLanguage.Latvian:            langCode = "LV"; break; // "LV";
             //case SystemLanguage.Lithuanian:         langCode = "LT"; break; // "LT";
             //case SystemLanguage.Norwegian:          langCode = "NO"; break; // "NO";
             //case SystemLanguage.Polish:             langCode = "PL"; break; // "PL";
             //case SystemLanguage.Portuguese:         langCode = "PT"; break; // "PT";
             //case SystemLanguage.Romanian:           langCode = "RO"; break; // "RO";
-            case SystemLanguage.Russian:            langCode = "RUS"; break; // "RU";
+            case SystemLanguage.Russian:              langCode = "RUS"; break; // "RU";
             //case SystemLanguage.SerboCroatian:      langCode = "SH"; break; // "SH";
             //case SystemLanguage.Slovak:             langCode = "SK"; break; // "SK";
             //case SystemLanguage.Slovenian:          langCode = "SL"; break; // "SL";
@@ -141,7 +141,7 @@ public class I18n : MonoBehaviour {
             //case SystemLanguage.Thai:               langCode = "TH"; break; // "TH";
             //case SystemLanguage.Turkish:            langCode = "TR"; break; // "TR";
             //case SystemLanguage.Ukrainian:          langCode = "UK"; break; // "UK";
-            //case SystemLanguage.Unknown:            langCode = "EN"; break; // "EN";
+            case SystemLanguage.Unknown:              langCode = "ENG"; break; // "EN";
             //case SystemLanguage.Vietnamese:         langCode = "VI"; break; // "VI";
         }
 

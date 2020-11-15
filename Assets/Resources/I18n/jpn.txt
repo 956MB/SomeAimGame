@@ -203,6 +203,7 @@ followwarning=別のターゲットカラーを選択して「フォロー」ゲ
 selectedgamemodewarning=選択したゲームモードはすでにアクティブです。
 languagerestartnotification=言語の選択は、次回の再起動時に影響します。
 languagetemporarilydisabled=言語翻訳が一時的に無効になっています。
+languageactive=選択した言語はすでにアクティブです。
 #
 #
 # // steam data container items
