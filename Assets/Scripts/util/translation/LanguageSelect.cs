@@ -29,8 +29,12 @@ public class LanguageSelect : MonoBehaviour {
     /// Toggles language select scrollview.
     /// </summary>
     public static void ToggleLanguageSelect_Static() {
-        langSelect.languageCodeSelectObject.SetActive(!languageSelectOpen);
-        languageSelectOpen = !languageSelectOpen;
+        if (!languageSelectDisabled) {
+            langSelect.languageCodeSelectObject.SetActive(!languageSelectOpen);
+            languageSelectOpen = !languageSelectOpen;
+        } else {
+            NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("languagetemporarilydisabled")}", NotificationHandler.notificationColorYellow);
+        }
 
         //if (languageSelectOpen) {
         //    // EVENT:: for language select panel opened
