@@ -140,7 +140,7 @@ gamemodeDescription) {
             SpawnTargets.StartNewGamemode(currentOpenGamemode);
             //Debug.Log("after start new gamemode");
         } else {
-            //NotificationHandler.ShowTimedNotification_Translated($"gamemodecaps{currentOpenGamemode.Split('-')[1].ToLower()}", $": {I18nTextTranslator.SetTranslatedText("selectedgamemodewarning")}", NotificationHandler.notificationColorYellow);
+            NotificationHandler.ShowTimedNotification_Translated($"gamemodecaps{GamemodeType.ReturnGamemodeType_StringShort(currentOpenGamemode).ToLower()}", $": {I18nTextTranslator.SetTranslatedText("selectedgamemodewarning")}", NotificationHandler.notificationColorYellow);
         }
     }
 }
