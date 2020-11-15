@@ -61,7 +61,7 @@ public class GameUI : MonoBehaviour {
         //}
         //timerCoroutine = StartCoroutine(startGameTimerDown());
         //StartCoroutine(startGameTimer());
-        if (!ExtraSettings.hideUI) { HideUI(); }
+        if (!ExtraSettings.hideUI) { HideWidgetsUI(); }
         StartGame();
     }
 
@@ -411,23 +411,23 @@ public class GameUI : MonoBehaviour {
     /// <summary>
     /// Shows UI if hidden and hides UI is shown (toggle), then saves shown/hidden value. [EVENT]
     /// </summary>
-    public static void ToggleWorldUI() {
+    public static void ToggleWidgetsUI() {
         if (UIHidden) {
-            ShowUI();
+            ShowWidgetsUI();
             ExtraSettings.SaveHideUI(true);
         } else {
-            HideUI();
+            HideWidgetsUI();
             ExtraSettings.SaveHideUI(false);
         }
 
         // EVENT:: for toggle world UI keybind pressed
-        DevEventHandler.CheckKeybindEvent($"'Toggle WorldUI' [H] {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}");
+        //DevEventHandler.CheckKeybindEvent($"'Toggle WorldUI' [H] {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}");
     }
 
     /// <summary>
     /// Hides UI holding timer, score and accuracy etc. [EVENT]
     /// </summary>
-    public static void HideUI() {
+    public static void HideWidgetsUI() {
         //gameUI.UICanvas.layer = 1;
         gameUI.newUICanvas.SetActive(false);
         UIHidden = true;
@@ -438,7 +438,7 @@ public class GameUI : MonoBehaviour {
     /// <summary>
     /// Shows UI holding timer, score and accuracy etc. [EVENT]
     /// </summary>
-    public static void ShowUI() {
+    public static void ShowWidgetsUI() {
         //gameUI.UICanvas.layer = 15;
         gameUI.newUICanvas.SetActive(true);
         UIHidden = false;

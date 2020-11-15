@@ -41,7 +41,7 @@ public class NotificationHandler : MonoBehaviour {
         notification.StartCoroutine(HideNotification_Delay());
 
         // EVENT:: for new string notification
-        DevEventHandler.CheckNotificationEvent($"{I18nTextTranslator.SetTranslatedText("eventnotificationcreatedstring")} \"{notificationText}\"");
+        //DevEventHandler.CheckNotificationEvent($"{I18nTextTranslator.SetTranslatedText("eventnotificationcreatedstring")} \"{notificationText}\"");
     }
 
     /// <summary>
@@ -59,7 +59,7 @@ public class NotificationHandler : MonoBehaviour {
         notification.StartCoroutine(HideNotification_Delay());
 
         // EVENT:: for new translated notification
-        DevEventHandler.CheckNotificationEvent($"{I18nTextTranslator.SetTranslatedText("eventnotificationcreatedtranslation")} \"{notificationContent}\"");
+        //DevEventHandler.CheckNotificationEvent($"{I18nTextTranslator.SetTranslatedText("eventnotificationcreatedtranslation")} \"{notificationContent}\"");
     }
 
     /// <summary>
@@ -70,7 +70,7 @@ public class NotificationHandler : MonoBehaviour {
         notificationOpen = false;
 
         // EVENT:: for active notification hidden
-        DevEventHandler.CheckNotificationEvent(I18nTextTranslator.SetTranslatedText("eventnotificationhidden"));
+        //DevEventHandler.CheckNotificationEvent(I18nTextTranslator.SetTranslatedText("eventnotificationhidden"));
     }
 
     /// <summary>

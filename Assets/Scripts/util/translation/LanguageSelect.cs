@@ -32,13 +32,13 @@ public class LanguageSelect : MonoBehaviour {
         langSelect.languageCodeSelectObject.SetActive(!languageSelectOpen);
         languageSelectOpen = !languageSelectOpen;
 
-        if (languageSelectOpen) {
-            // EVENT:: for language select panel opened
-            DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacelanguageselectopened")}");
-        } else {
-            // EVENT:: for language select panel closed
-            DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacelanguageselectclosed")}");
-        }
+        //if (languageSelectOpen) {
+        //    // EVENT:: for language select panel opened
+        //    DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacelanguageselectopened")}");
+        //} else {
+        //    // EVENT:: for language select panel closed
+        //    DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacelanguageselectclosed")}");
+        //}
     }
 
     /// <summary>
@@ -49,7 +49,7 @@ public class LanguageSelect : MonoBehaviour {
         languageSelectOpen = true;
 
         // EVENT:: for language select panel opened
-        DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacelanguageselectopened")}");
+        //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacelanguageselectopened")}");
     }
 
     /// <summary>
@@ -60,6 +60,6 @@ public class LanguageSelect : MonoBehaviour {
         languageSelectOpen = false;
 
         // EVENT:: for language select panel closed
-        DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacelanguageselectclosed")}");
+        //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacelanguageselectclosed")}");
     }
 }

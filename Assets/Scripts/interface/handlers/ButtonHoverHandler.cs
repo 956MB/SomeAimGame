@@ -95,10 +95,10 @@ public class ButtonHoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
                 break;
         }
 
-        if (buttonHoverName.Contains("TargetColor")) {
-            DevEventHandler.CheckInterfaceEvent($"\"{buttonHoverName}\" {I18nTextTranslator.SetTranslatedText("eventinterfacetargetcolorbuttonhover")}");
-        } else if (buttonHoverName.Contains("Skybox")) {
-            DevEventHandler.CheckInterfaceEvent($"\"{buttonHoverName}\" {I18nTextTranslator.SetTranslatedText("eventinterfaceskyboxbuttonhover")}");
-        }
+        //if (buttonHoverName.Contains("TargetColor")) {
+        //    DevEventHandler.CheckInterfaceEvent($"\"{buttonHoverName}\" {I18nTextTranslator.SetTranslatedText("eventinterfacetargetcolorbuttonhover")}");
+        //} else if (buttonHoverName.Contains("Skybox")) {
+        //    DevEventHandler.CheckInterfaceEvent($"\"{buttonHoverName}\" {I18nTextTranslator.SetTranslatedText("eventinterfaceskyboxbuttonhover")}");
+        //}
     }
 }

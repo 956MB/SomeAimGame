@@ -88,7 +88,7 @@ public class ExtraSaveSystem : MonoBehaviour {
         StatsManager.showBackgrounds = true;
 
         ExtraSettings.SaveAllExtraSettingsDefaults(60, true, false, true, 2.0f, true, false, true);
-        GameUI.ShowUI();
+        GameUI.ShowWidgetsUI();
     }
 
     /// <summary>
@@ -161,10 +161,10 @@ public class ExtraSaveSystem : MonoBehaviour {
     /// <param name="setHideUIValue"></param>
     private static void SetHideUI(bool setHideUIValue) {
         if (setHideUIValue) {
-            GameUI.ShowUI();
+            GameUI.ShowWidgetsUI();
             ExtraSettings.SaveHideUI(true);
         } else {
-            GameUI.HideUI();
+            GameUI.HideWidgetsUI();
             ExtraSettings.SaveHideUI(false);
         }
     }

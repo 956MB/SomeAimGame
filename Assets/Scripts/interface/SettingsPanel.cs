@@ -70,10 +70,10 @@ public class SettingsPanel : MonoBehaviour {
     public static void ToggleAfterActionReportPanel() {
         if (afterActionReportOpen) {
             CloseAfterActionReport();
-            GameUI.ShowUI();
+            GameUI.ShowWidgetsUI();
         } else {
             OpenAfterActionReport();
-            GameUI.HideUI();
+            GameUI.HideWidgetsUI();
         }
 
         afterActionReportOpen = !afterActionReportOpen;
@@ -92,10 +92,10 @@ public class SettingsPanel : MonoBehaviour {
 
         OpenAction();
         settingsOpen = true;
-        GameUI.HideUI();
+        GameUI.HideWidgetsUI();
 
         // EVENT:: for settings panel being opened
-        DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacesettingsopened")}");
+        //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacesettingsopened")}");
     }
 
     /// <summary>
@@ -114,10 +114,10 @@ public class SettingsPanel : MonoBehaviour {
         CloseAction();
         settingsOpen = false;
 
-        if (ExtraSettings.hideUI) { GameUI.ShowUI(); }
+        if (ExtraSettings.hideUI) { GameUI.ShowWidgetsUI(); }
 
         // EVENT:: for settings panel being closed
-        DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacesettingsclosed")}");
+        //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacesettingsclosed")}");
     }
 
     /// <summary>
@@ -132,10 +132,10 @@ public class SettingsPanel : MonoBehaviour {
         OpenAction();
         settings.afterPanel.transform.localScale = new Vector3(1f, 1f, 1f);
         afterActionReportOpen                    = true;
-        GameUI.HideUI();
+        GameUI.HideWidgetsUI();
 
         // EVENT:: for AAR panel being opened
-        DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceaaropened")}");
+        //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceaaropened")}");
     }
 
     /// <summary>
@@ -149,10 +149,10 @@ public class SettingsPanel : MonoBehaviour {
         settings.afterPanel.transform.localScale = new Vector3(0f, 0f, 1f);
         afterActionReportOpen                    = false;
 
-        if (ExtraSettings.hideUI) { GameUI.ShowUI(); }
+        if (ExtraSettings.hideUI) { GameUI.ShowWidgetsUI(); }
 
         // EVENT:: for AAR panel being opened
-        DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceaarclosed")}");
+        //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceaarclosed")}");
     }
 
     /// <summary>

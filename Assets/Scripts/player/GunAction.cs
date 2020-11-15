@@ -26,7 +26,7 @@ public class GunAction : MonoBehaviour {
 
                 // Show 'AfterActionReport' if setting enabled.
                 if (ToggleHandler.ShowAAROn()) {
-                    GameUI.HideUI();
+                    GameUI.HideWidgetsUI();
                     SettingsPanel.OpenAfterActionReport();
                     //ConnectingLine2D.drawConnectingLine();
                 }
@@ -54,12 +54,12 @@ public class GunAction : MonoBehaviour {
                                 GameUI.IncreaseScore();
 
                                 // EVENT:: for pair target hit, update score
-                                DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetshitpairs")} ({gunHit.transform.position})");
+                                //DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetshitpairs")} ({gunHit.transform.position})");
                             } else {
                                 GameUI.DecreaseScore();
 
                                 // EVENT:: for pair target miss, descrease score
-                                DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsmisspairs")} ({gunHit.transform.position})");
+                                //DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsmisspairs")} ({gunHit.transform.position})");
                             }
                         }
                         SpawnTargets.CheckTargetCount(gunHit, true);
@@ -68,7 +68,7 @@ public class GunAction : MonoBehaviour {
                         SpawnTargets.CheckTargetCount(gunHit, true);
 
                         // EVENT:: for target hit, update score
-                        DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetshit")} ({gunHit.transform.position})");
+                        //DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetshit")} ({gunHit.transform.position})");
                     }
                     break;
                 default:
@@ -78,7 +78,7 @@ public class GunAction : MonoBehaviour {
                         SpawnTargets.CheckTargetCount(gunHit, false);
 
                         // EVENT:: for target miss, descrease score
-                        DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsmiss")} ({gunHit.transform.position})");
+                        //DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsmiss")} ({gunHit.transform.position})");
                     }
                     break;
             }

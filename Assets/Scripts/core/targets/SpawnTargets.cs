@@ -113,7 +113,7 @@ public class SpawnTargets : MonoBehaviour {
         SelectGamemode();
 
         // EVENT:: for saved gamemode load
-        DevEventHandler.CheckGamemodeEvent($"\"{gamemode}\" {I18nTextTranslator.SetTranslatedText("eventgamemodeloaded")}");
+        //DevEventHandler.CheckGamemodeEvent($"\"{gamemode}\" {I18nTextTranslator.SetTranslatedText("eventgamemodeloaded")}");
     }
 
     /// <summary>
@@ -626,7 +626,7 @@ public class SpawnTargets : MonoBehaviour {
 
             if (scatterTargetSpawns.Count >= 72) {
                 // EVENT:: for initial scatter spawns list
-                DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsscatterinitial")} ({scatterTargetSpawns.Count})");
+                //DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsscatterinitial")} ({scatterTargetSpawns.Count})");
 
                 return scatterTargetSpawns;
             }
@@ -657,7 +657,7 @@ public class SpawnTargets : MonoBehaviour {
         }
 
         // EVENT:: for remove target from spawn list
-        DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsremove")} ({pos})");
+        //DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsremove")} ({pos})");
     }
 
     /// <summary>
@@ -669,7 +669,7 @@ public class SpawnTargets : MonoBehaviour {
         targetSpawnsSecondary.Clear();
 
         // EVENT:: for clear target lists
-        DevEventHandler.CheckGamemodeEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceelementsreset")} \"{gamemode}\"");
+        //DevEventHandler.CheckGamemodeEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceelementsreset")} \"{gamemode}\"");
     }
 
     /// <summary>
@@ -687,7 +687,7 @@ public class SpawnTargets : MonoBehaviour {
             }
 
             // EVENT:: for destroy spawn areas
-            DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsdestroyspawnarea")} \"{gamemode}\"");
+            //DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsdestroyspawnarea")} \"{gamemode}\"");
         }
     }
 
@@ -706,7 +706,7 @@ public class SpawnTargets : MonoBehaviour {
         }
 
         // EVENT:: for destroy new spawn areas
-        DevEventHandler.CheckTargetsEvent($"*NEW* {I18nTextTranslator.SetTranslatedText("eventtargetsdestroyspawnarea")} \"{gamemode}\"");
+        //DevEventHandler.CheckTargetsEvent($"*NEW* {I18nTextTranslator.SetTranslatedText("eventtargetsdestroyspawnarea")} \"{gamemode}\"");
     }
 
     /// <summary>
@@ -717,7 +717,7 @@ public class SpawnTargets : MonoBehaviour {
         for (int i = 0; i < targetObjects.Length; i++) { Destroy(targetObjects[i]); }
 
         // EVENT:: for destroy new spawn areas
-        DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsalldestroyed")} \"{gamemode}\"");
+        //DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsalldestroyed")} \"{gamemode}\"");
     }
 
     /// <summary>
@@ -727,7 +727,7 @@ public class SpawnTargets : MonoBehaviour {
         DestroyTargetObjects();
 
         // EVENT:: for respawn targets
-        DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsrespawn")} \"{gamemode}\"");
+        //DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsrespawn")} \"{gamemode}\"");
 
         SelectGamemode();
     }
@@ -744,6 +744,6 @@ public class SpawnTargets : MonoBehaviour {
         GunAction.timerRunning = true;
 
         // EVENT:: for reset targets spawn values
-        DevEventHandler.CheckGamemodeEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsreset")}");
+        //DevEventHandler.CheckGamemodeEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsreset")}");
     }
 }

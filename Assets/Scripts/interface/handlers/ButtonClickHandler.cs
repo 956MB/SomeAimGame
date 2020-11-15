@@ -22,7 +22,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     public void RestartCurrentGame() {
         //SettingsPanel.CloseAfterActionReport();
         // EVENT:: for new gamemode start
-        DevEventHandler.CheckGamemodeEvent($"\"{gamemodeClickedName}\" {I18nTextTranslator.SetTranslatedText("eventgamemodestarted")}");
+        //DevEventHandler.CheckGamemodeEvent($"\"{gamemodeClickedName}\" {I18nTextTranslator.SetTranslatedText("eventgamemodestarted")}");
 
         GameUI.RestartGame(CosmeticsSettings.gamemode);
     }
@@ -62,9 +62,9 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
         GamemodeSelect.PopulateGamemodeSelect(gamemodeClickedName, CosmeticsSettings.quickStartGame);
 
         // EVENT:: for new gamemode button clicked
-        DevEventHandler.CheckInterfaceEvent($"\"{gamemodeClickedName}\" {I18nTextTranslator.SetTranslatedText("eventinterfacegamemodebutton")}");
+        //DevEventHandler.CheckInterfaceEvent($"\"{gamemodeClickedName}\" {I18nTextTranslator.SetTranslatedText("eventinterfacegamemodebutton")}");
         // EVENT:: for new gamemode selected
-        DevEventHandler.CheckGamemodeEvent($"\"{gamemodeClickedName}\" {I18nTextTranslator.SetTranslatedText("eventinterfacegamemodebutton")}");
+        //DevEventHandler.CheckGamemodeEvent($"\"{gamemodeClickedName}\" {I18nTextTranslator.SetTranslatedText("eventinterfacegamemodebutton")}");
     }
 
     /// <summary>
@@ -124,9 +124,9 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
         SettingsPanel.LoadGamemodePreviews();
 
         // EVENT:: for new target color button clicked
-        DevEventHandler.CheckTargetsEvent($"\"{targetColorClickedName}\" {I18nTextTranslator.SetTranslatedText("eventinterfacetargetcolorbutton")}");
+        //DevEventHandler.CheckTargetsEvent($"\"{targetColorClickedName}\" {I18nTextTranslator.SetTranslatedText("eventinterfacetargetcolorbutton")}");
         // EVENT:: for new target color selected
-        DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetscolorchange")} \"{targetColorClickedName}\"");
+        //DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetscolorchange")} \"{targetColorClickedName}\"");
     }
 
     /// <summary>
@@ -168,9 +168,9 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
         }
 
         // EVENT:: for new skybox button clicked
-        DevEventHandler.CheckInterfaceEvent($"\"{skyboxClickedName}\" {I18nTextTranslator.SetTranslatedText("eventinterfaceskyboxbutton")}");
+        //DevEventHandler.CheckInterfaceEvent($"\"{skyboxClickedName}\" {I18nTextTranslator.SetTranslatedText("eventinterfaceskyboxbutton")}");
         // EVENT:: for new skybox selected
-        DevEventHandler.CheckSkyboxEvent($"{I18nTextTranslator.SetTranslatedText("eventskyboxchange")} \"{skyboxClickedName}\"");
+        //DevEventHandler.CheckSkyboxEvent($"{I18nTextTranslator.SetTranslatedText("eventskyboxchange")} \"{skyboxClickedName}\"");
         
         // Saves new selected skybox
         CosmeticsSettings.SaveSkyboxItem(skyboxClickedName);

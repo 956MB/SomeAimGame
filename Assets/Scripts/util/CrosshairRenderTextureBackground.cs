@@ -16,7 +16,7 @@ public class CrosshairRenderTextureBackground : MonoBehaviour {
         var newMask                 = startingMask & ~(1 << 10);
         CRTB.mainCamera.cullingMask = newMask;
 
-        GameUI.HideUI();
+        GameUI.HideWidgetsUI();
 
         CRTB.mainCamera.targetTexture = CRTB.renderTexture;
         RenderTexture.active          = CRTB.renderTexture;
@@ -24,7 +24,7 @@ public class CrosshairRenderTextureBackground : MonoBehaviour {
         RenderTexture.active          = null;
         CRTB.mainCamera.targetTexture = null;
         
-        GameUI.ShowUI();
+        GameUI.ShowWidgetsUI();
         CRTB.mainCamera.cullingMask = startingMask;
     }
 }
