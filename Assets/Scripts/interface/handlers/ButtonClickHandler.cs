@@ -134,7 +134,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     /// </summary>
     /// <param name="clickedButtonBorder"></param>
     public void SetNewSkyboxColor(GameObject clickedButtonBorder) {
-        string skyboxClickedName = clickedButtonBorder.transform.parent.name;
+        Skybox skyboxClickedName = SkyboxType.ReturnSkyboxType_Skybox(clickedButtonBorder.transform.parent.name);
 
         ClearSkyboxButtonBorders();
         //Debug.Log("GHJGJHGHGGHJGHGHJG:: " + skyboxClickedName);
@@ -143,26 +143,26 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
         clickedButtonBorder.SetActive(true);
 
         // Set new skybox, then save currently selected skybox in cosmetics.
-        Skybox.SetNewSkybox(skyboxClickedName);
+        SkyboxHandler.SetNewSkybox(skyboxClickedName);
 
         // Change selected skybox text based on button clicked in general settings panel.
         switch (skyboxClickedName) {
-            case "Skybox-Pink":
+            case Skybox.Pink:
                 skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxpink")}");
                 break;
-            case "Skybox-Golden":
+            case Skybox.Golden:
                 skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxgolden")}");
                 break;
-            case "Skybox-Night":
+            case Skybox.Night:
                 skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxnight")}");
                 break;
-            case "Skybox-Grey":
+            case Skybox.Grey:
                 skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxgrey")}");
                 break;
-            case "Skybox-Blue":
+            case Skybox.Blue:
                 skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxblue")}");
                 break;
-            case "Skybox-Slate":
+            case Skybox.Slate:
                 skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxslate")}");
                 break;
         }

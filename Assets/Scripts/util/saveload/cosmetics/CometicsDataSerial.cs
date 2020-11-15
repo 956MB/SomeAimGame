@@ -1,14 +1,14 @@
 ﻿
 [System.Serializable]
 public class CosmeticsDataSerial {
-    public Gamemode gamemode;
+    public Gamemode    gamemode;
     public TargetColor targetColor;
-    public string skybox;
-    public float afterActionReportPanelX;
-    public float afterActionReportPanelY;
-    public float extraStatsPanelX;
-    public float extraStatsPanelY;
-    public bool quickStartGame;
+    public Skybox      skybox;
+    public float       afterActionReportPanelX;
+    public float       afterActionReportPanelY;
+    public float       extraStatsPanelX;
+    public float       extraStatsPanelY;
+    public bool        quickStartGame;
 
     public CosmeticsDataSerial() {
         gamemode                = CosmeticsSettings.gamemode;

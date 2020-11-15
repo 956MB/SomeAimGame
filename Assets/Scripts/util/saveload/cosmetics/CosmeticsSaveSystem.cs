@@ -91,7 +91,7 @@ public class CosmeticsSaveSystem : MonoBehaviour {
         saveLoad.targetColorSelected.SetText($"//    {I18nTextTranslator.SetTranslatedText("coloryellow")}");
         
         // Skybox value.
-        SetSkybox("Skybox-Slate");
+        SetSkybox(Skybox.Slate);
         saveLoad.skyboxSelected.SetText($"//    {I18nTextTranslator.SetTranslatedText("skyboxslate")}");
         
         // Settings and extra stats panel values.
@@ -101,7 +101,7 @@ public class CosmeticsSaveSystem : MonoBehaviour {
         saveLoad.quickStartToggle.isOn = false;
 
         // Saves defaults to new 'cometics.settings' file.
-        CosmeticsSettings.SaveAllCosmeticsToggleDefaults(Gamemode.Grid, TargetColor.Yellow, "Skybox-Slate", 960f, 540f, 1455.711f, 638.3904f, false);
+        CosmeticsSettings.SaveAllCosmeticsToggleDefaults(Gamemode.Grid, TargetColor.Yellow, Skybox.Slate, 960f, 540f, 1455.711f, 638.3904f, false);
     }
 
     /// <summary>
@@ -196,33 +196,33 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     /// Sets current skybox with supplied skybox string (skybox), and corresponding button/translated text in settings panel.
     /// </summary>
     /// <param name="skybox"></param>
-    private static void SetSkybox(string skybox) {
+    private static void SetSkybox(Skybox skybox) {
         ButtonClickHandler.ClearSkyboxButtonBorders();
         ButtonHoverHandler.selectedSkybox = skybox;
-        Skybox.SetNewSkybox(skybox);
+        SkyboxHandler.SetNewSkybox(skybox);
 
         switch (skybox) {
-            case "Skybox-Pink":
+            case Skybox.Pink:
                 SetCosmeticsItems(saveLoad.skyboxPinkBorder, saveLoad.skyboxSelected, "skyboxpink");
                 activeSkyboxText = $"//  {I18nTextTranslator.SetTranslatedText("skyboxpink")}";
                 break;
-            case "Skybox-Golden":
+            case Skybox.Golden:
                 SetCosmeticsItems(saveLoad.skyboxGoldenBorder, saveLoad.skyboxSelected, "skyboxgolden");
                 activeSkyboxText = $"//  {I18nTextTranslator.SetTranslatedText("skyboxgolden")}";
                 break;
-            case "Skybox-Night":
+            case Skybox.Night:
                 SetCosmeticsItems(saveLoad.skyboxNightBorder, saveLoad.skyboxSelected, "skyboxnight");
                 activeSkyboxText = $"//  {I18nTextTranslator.SetTranslatedText("skyboxnight")}";
                 break;
-            case "Skybox-Grey":
+            case Skybox.Grey:
                 SetCosmeticsItems(saveLoad.skyboxGreyBorder, saveLoad.skyboxSelected, "skyboxgrey");
                 activeSkyboxText = $"//  {I18nTextTranslator.SetTranslatedText("skyboxgrey")}";
                 break;
-            case "Skybox-Blue":
+            case Skybox.Blue:
                 SetCosmeticsItems(saveLoad.skyboxBlueBorder, saveLoad.skyboxSelected, "skyboxblue");
                 activeSkyboxText = $"//  {I18nTextTranslator.SetTranslatedText("skyboxblue")}";
                 break;
-            case "Skybox-Slate":
+            case Skybox.Slate:
                 SetCosmeticsItems(saveLoad.skyboxSlateBorder, saveLoad.skyboxSelected, "skyboxslate");
                 activeSkyboxText = $"//  {I18nTextTranslator.SetTranslatedText("skyboxslate")}";
                 break;

@@ -4,7 +4,7 @@ using UnityEngine;
 public class CosmeticsSettings : MonoBehaviour {
     public static Gamemode    gamemode                = Gamemode.Scatter;
     public static TargetColor targetColor             = TargetColor.Yellow;
-    public static string      skybox                  = "Skybox-Slate";
+    public static Skybox      skybox                  = Skybox.Slate;
     public static float       afterActionReportPanelX = 960f;
     public static float       afterActionReportPanelY = 540f;
     public static float       extraStatsPanelX        = 1455.711f;
@@ -38,7 +38,7 @@ public class CosmeticsSettings : MonoBehaviour {
     /// Saves supplied skybox string (setSkybox) to cosmetics settings object (CosmeticsSettings), then saves cosmetics settings object.
     /// </summary>
     /// <param name="setSkybox"></param>
-    public static void SaveSkyboxItem(string setSkybox) {
+    public static void SaveSkyboxItem(Skybox setSkybox) {
         skybox = setSkybox;
         cosmeticsSettings.SaveCosmeticsSettings();
     }
@@ -87,7 +87,7 @@ public class CosmeticsSettings : MonoBehaviour {
     /// <param name="setPanelSettingsY"></param>
     /// <param name="setPanelExtraStatsX"></param>
     /// <param name="setPanelExtraStatsY"></param>
-    public static void SaveAllCosmeticsToggleDefaults(Gamemode setGamemode, TargetColor setTargetColor, string setSkybox, float setPanelSettingsX, float setPanelSettingsY, float setPanelExtraStatsX, float setPanelExtraStatsY, bool setQuickStart) {
+    public static void SaveAllCosmeticsToggleDefaults(Gamemode setGamemode, TargetColor setTargetColor, Skybox setSkybox, float setPanelSettingsX, float setPanelSettingsY, float setPanelExtraStatsX, float setPanelExtraStatsY, bool setQuickStart) {
         gamemode                = setGamemode;
         targetColor             = setTargetColor;
         skybox                  = setSkybox;
