@@ -40,8 +40,11 @@ public class LanguageSaveSystem : MonoBehaviour {
         if (loadedLanguageData != null) {
             LanguageSetting.LoadLanguageSetting(loadedLanguageData);
             I18n.LoadLanguage(loadedLanguageData.languageCode);
-            I18n.CalculateLongestKey();
-            DevEventHandler.PopulateExtraSpaces();
+
+            if (DevEventHandler.cardsOn) {
+                I18n.CalculateLongestKey();
+                DevEventHandler.PopulateExtraSpaces();
+            }
 
             // EVENT:: for saved language file loaded
             //DevEventHandler.CheckLanguageEvent($"[{loadedLanguageData.languageCode}] {I18nTextTranslator.SetTranslatedText("eventlanguagefileload")}");
@@ -59,10 +62,13 @@ public class LanguageSaveSystem : MonoBehaviour {
 
     public static void InitLanguageSettingDefault() {
         string lang = I18n.Get2LetterISOCodeFromSystemLanguage();
-
         I18n.LoadLanguage(lang);
-        I18n.CalculateLongestKey();
-        DevEventHandler.PopulateExtraSpaces();
+        
+        if (DevEventHandler.cardsOn) {
+            I18n.CalculateLongestKey();
+            DevEventHandler.PopulateExtraSpaces();
+        }
+        
         LanguageSetting.SaveLanguageSettingDefault(lang);
     }
 }
