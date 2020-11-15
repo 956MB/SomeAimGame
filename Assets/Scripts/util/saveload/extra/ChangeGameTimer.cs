@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using TMPro;
-using UnityEditor.UI;
 
-public class ChangeGameTimer : MonoBehaviour {
+public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public TMP_Text text30, text60, text90, text120;
     private static Color32 selectedTextColor   = new Color32(255, 255, 255, 255);
     private static Color32 hoveredTextColor    = new Color32(255, 255, 255, 190);
@@ -11,6 +11,16 @@ public class ChangeGameTimer : MonoBehaviour {
 
     private static ChangeGameTimer gameTimer;
     void Awake() { gameTimer = this; }
+
+    public void OnPointerEnter(PointerEventData pointerEventData) {
+        GameObject hoveredButton = pointerEventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).gameObject;
+
+        SetHoveredTimeText_Color(hoveredButton);
+    }
+
+    public void OnPointerExit(PointerEventData pointerEventData) {
+        ClearHoveredTimeText_Color();
+    }
 
     /// <summary>
     /// Sets current game timer to supplied time string (clickedButtonText).
@@ -77,13 +87,13 @@ public class ChangeGameTimer : MonoBehaviour {
         gameTimer.text120.color = unselectedTextColor;
     }
 
-    public void SetHoveredTimeText_Color(TMP_Text hoveredTimeText) {
-        if (hoveredTimeText.text != selectedTimeText) {
-            hoveredTimeText.color = selectedTextColor;
+    public static void SetHoveredTimeText_Color(GameObject hoveredTimeText) {
+        if (hoveredTimeText.name != selectedTimeText) {
+            hoveredTimeText.GetComponent<TMP_Text>().color = selectedTextColor;
         }
     }
 
-    public void ClearHoveredTimeText_Color() {
+    public static void ClearHoveredTimeText_Color() {
         ClearTimerButtons();
         GameObject.Find(selectedTimeText).GetComponent<TMP_Text>().color = selectedTextColor;
     }
