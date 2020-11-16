@@ -107,15 +107,15 @@ public class CrosshairOptionsObjectInput : MonoBehaviour {
     /// Sets crosshair outline from string value, then saves value.
     /// </summary>
     /// <param name="optionValue"></param>
-    public void SetSaveCrosshairOptionOutline_Input(string optionValue) {
-        if (optionValue != "" && optionValue != " " && optionValue != "  ") {
-            float newOptionValue = float.Parse(optionValue);
-            SetCrosshairOptionText(crosshairOptionsInput.crosshairOutlineValueText, crosshairOptionsInput.crosshairOutlineValueTextPlaceholder, newOptionValue);
-            crosshairOutlineSlider.value = newOptionValue;
+    //public void SetSaveCrosshairOptionOutline_Input(string optionValue) {
+    //    if (optionValue != "" && optionValue != " " && optionValue != "  ") {
+    //        float newOptionValue = float.Parse(optionValue);
+    //        SetCrosshairOptionText(crosshairOptionsInput.crosshairOutlineValueText, crosshairOptionsInput.crosshairOutlineValueTextPlaceholder, newOptionValue);
+    //        crosshairOutlineSlider.value = newOptionValue;
 
-            CrosshairSettings.SaveOutline(newOptionValue);
-        }
-    }
+    //        CrosshairSettings.SaveOutline(newOptionValue);
+    //    }
+    //}
     /// <summary>
     /// Sets crosshair red color from string value, then saves value.
     /// </summary>

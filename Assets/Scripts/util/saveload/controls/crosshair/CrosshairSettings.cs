@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 
 public class CrosshairSettings : MonoBehaviour {
-    public static bool  centerDot      = false;
-    public static bool  TStyle         = false;
-    public static float size           = 1f;
-    public static float thickness      = 12f;
-    public static float gap            = 0f;
-    public static bool  outlineEnabled = false;
-    public static float outline        = 1f;
-    public static float red            = 255f;
-    public static float green          = 255f;
-    public static float blue           = 255f;
-    public static float alpha          = 255f;
+    public static bool  centerDot        = false;
+    public static bool  TStyle           = false;
+    public static float size             = 9f;
+    public static float thickness        = 2f;
+    public static float gap              = 5f;
+    public static bool  outlineEnabled   = false;
+    public static float red              = 255f;
+    public static float green            = 255f;
+    public static float blue             = 255f;
+    public static float alpha            = 255f;
+    public static string crosshairString = "000902050255255255255";
 
     private static CrosshairSettings crosshairSettings;
     void Awake() { crosshairSettings = this; }
@@ -65,14 +65,6 @@ public class CrosshairSettings : MonoBehaviour {
         crosshairSettings.SaveCrosshairSettings();
     }
     /// <summary>
-    /// Saves supplied outline float (setOutline) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
-    /// </summary>
-    /// <param name="setOutline"></param>
-    public static void SaveOutline (float setOutline) {
-        outline = setOutline;
-        crosshairSettings.SaveCrosshairSettings();
-    }
-    /// <summary>
     /// Saves supplied red color float (setRed) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
     /// </summary>
     /// <param name="setRed"></param>
@@ -105,6 +97,10 @@ public class CrosshairSettings : MonoBehaviour {
         crosshairSettings.SaveCrosshairSettings();
     }
 
+    public static void SaveCrosshairString(string newCrosshairString) {
+        crosshairString = newCrosshairString;
+    }
+
     /// <summary>
     /// Calls 'CrosshairSaveSystem.SaveCrosshairItem()' to save crosshair settings object (CrosshairSettings) to file.
     /// </summary>
@@ -119,23 +115,22 @@ public class CrosshairSettings : MonoBehaviour {
     /// <param name="setThickness"></param>
     /// <param name="setGap"></param>
     /// <param name="setOutlineEnabled"></param>
-    /// <param name="setOutline"></param>
     /// <param name="setRed"></param>
     /// <param name="setGreen"></param>
     /// <param name="setBlue"></param>
     /// <param name="setAlpha"></param>
-    public static void SaveAllCrosshairDefaults(bool setCenterDot, bool setTStyle, float setSize, float setThickness, float setGap, bool setOutlineEnabled, float setOutline, float setRed, float setGreen, float setBlue, float setAlpha) {
-        centerDot      = setCenterDot;
-        TStyle         = setTStyle;
-        size           = setSize;
-        thickness      = setThickness;
-        gap            = setGap;
-        outlineEnabled = setOutlineEnabled;
-        outline        = setOutline;
-        red            = setRed;
-        green          = setGreen;
-        blue           = setBlue;
-        alpha          = setAlpha;
+    public static void SaveAllCrosshairDefaults(bool setCenterDot, bool setTStyle, float setSize, float setThickness, float setGap, bool setOutlineEnabled, float setRed, float setGreen, float setBlue, float setAlpha, string setCrosshairString) {
+        centerDot       = setCenterDot;
+        TStyle          = setTStyle;
+        size            = setSize;
+        thickness       = setThickness;
+        gap             = setGap;
+        outlineEnabled  = setOutlineEnabled;
+        red             = setRed;
+        green           = setGreen;
+        blue            = setBlue;
+        alpha           = setAlpha;
+        crosshairString = setCrosshairString;
 
         crosshairSettings.SaveCrosshairSettings();
     }
@@ -145,16 +140,16 @@ public class CrosshairSettings : MonoBehaviour {
     /// </summary>
     /// <param name="crosshairData"></param>
     public static void LoadCrosshairSettings(CrosshairDataSerial crosshairData) {
-        centerDot      = crosshairData.centerDot;
-        TStyle         = crosshairData.TStyle;
-        size           = crosshairData.size;
-        thickness      = crosshairData.thickness;
-        gap            = crosshairData.gap;
-        outlineEnabled = crosshairData.outlineEnabled;
-        outline        = crosshairData.outline;
-        red            = crosshairData.red;
-        green          = crosshairData.green;
-        blue           = crosshairData.blue;
-        alpha          = crosshairData.alpha;
+        centerDot       = crosshairData.centerDot;
+        TStyle          = crosshairData.TStyle;
+        size            = crosshairData.size;
+        thickness       = crosshairData.thickness;
+        gap             = crosshairData.gap;
+        outlineEnabled  = crosshairData.outlineEnabled;
+        red             = crosshairData.red;
+        green           = crosshairData.green;
+        blue            = crosshairData.blue;
+        alpha           = crosshairData.alpha;
+        crosshairString = crosshairData.crosshairString;
     }
 }

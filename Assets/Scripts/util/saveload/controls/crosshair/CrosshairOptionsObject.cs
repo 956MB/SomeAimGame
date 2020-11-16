@@ -36,13 +36,13 @@ public class CrosshairOptionsObject : MonoBehaviour {
     /// <summary>
     /// Sets crosshair outline thickness from slider, then saves value.
     /// </summary>
-    public static void SetCrosshairOutlineThicknessValue() {
-        crosshairOutlineThicknessValue = crosshairOptions.crosshairOutlineSlider.value;
-        crosshairOptions.simpleCrosshair.SetOutlineThickness((int)crosshairOutlineThicknessValue, true);
-        SetCrosshairOptionText(crosshairOptions.crosshairOutlineValueText, crosshairOptions.crosshairOutlineValueTextPlaceholder, crosshairOutlineThicknessValue);
+    //public static void SetCrosshairOutlineThicknessValue() {
+    //    crosshairOutlineThicknessValue = crosshairOptions.crosshairOutlineSlider.value;
+    //    crosshairOptions.simpleCrosshair.SetOutlineThickness((int)crosshairOutlineThicknessValue, true);
+    //    SetCrosshairOptionText(crosshairOptions.crosshairOutlineValueText, crosshairOptions.crosshairOutlineValueTextPlaceholder, crosshairOutlineThicknessValue);
 
-        CrosshairSettings.SaveOutline(crosshairOutlineThicknessValue);
-    }
+    //    CrosshairSettings.SaveOutline(crosshairOutlineThicknessValue);
+    //}
     /// <summary>
     /// Sets crosshair size from slider, then saves value.
     /// </summary>
@@ -51,6 +51,7 @@ public class CrosshairOptionsObject : MonoBehaviour {
         crosshairOptions.simpleCrosshair.SetSize((int)crosshairSizeValue, true);
         SetCrosshairOptionText(crosshairOptions.crosshairSizeValueText, crosshairOptions.crosshairSizeValueTextPlaceholder, crosshairSizeValue);
 
+        CrosshairSettings.SaveCrosshairString(crosshairOptions.simpleCrosshair.ExportCrosshairString());
         CrosshairSettings.SaveSize(crosshairSizeValue);
     }
     /// <summary>
@@ -61,6 +62,7 @@ public class CrosshairOptionsObject : MonoBehaviour {
         crosshairOptions.simpleCrosshair.SetThickness((int)crosshairThicknessValue, true);
         SetCrosshairOptionText(crosshairOptions.crosshairThicknessValueText, crosshairOptions.crosshairThicknessValueTextPlaceholder, crosshairThicknessValue);
 
+        CrosshairSettings.SaveCrosshairString(crosshairOptions.simpleCrosshair.ExportCrosshairString());
         CrosshairSettings.SaveThickness(crosshairThicknessValue);
     }
     /// <summary>
@@ -71,17 +73,18 @@ public class CrosshairOptionsObject : MonoBehaviour {
         crosshairOptions.simpleCrosshair.SetGap((int)crosshairGapValue, true);
         SetCrosshairOptionText(crosshairOptions.crosshairGapValueText, crosshairOptions.crosshairGapValueTextPlaceholder, crosshairGapValue);
 
+        CrosshairSettings.SaveCrosshairString(crosshairOptions.simpleCrosshair.ExportCrosshairString());
         CrosshairSettings.SaveGap(crosshairGapValue);
     }
     /// <summary>
     /// Sets crosshair outline thickness from slider, then saves value.
     /// </summary>
-    public static void SetOutlineSizeValue() {
-        crosshairOutlineValue = crosshairOptions.crosshairOutlineSlider.value;
-        SetCrosshairOptionText(crosshairOptions.crosshairOutlineValueText, crosshairOptions.crosshairOutlineValueTextPlaceholder, crosshairOutlineValue);
+    //public static void SetOutlineSizeValue() {
+    //    crosshairOutlineValue = crosshairOptions.crosshairOutlineSlider.value;
+    //    SetCrosshairOptionText(crosshairOptions.crosshairOutlineValueText, crosshairOptions.crosshairOutlineValueTextPlaceholder, crosshairOutlineValue);
 
-        CrosshairSettings.SaveOutline(crosshairOutlineValue);
-    }
+    //    CrosshairSettings.SaveOutline(crosshairOutlineValue);
+    //}
     /// <summary>
     /// Sets crosshair red color from slider, then saves value.
     /// </summary>
@@ -89,7 +92,8 @@ public class CrosshairOptionsObject : MonoBehaviour {
         crosshairRedValue = crosshairOptions.crosshairRedSlider.value;
         crosshairOptions.simpleCrosshair.SetColor(CrosshairColorChannel.RED, (int)crosshairRedValue, true);
         SetCrosshairOptionText(crosshairOptions.crosshairRedValueText, crosshairOptions.crosshairRedValueTextPlaceholder, crosshairRedValue);
-        
+
+        CrosshairSettings.SaveCrosshairString(crosshairOptions.simpleCrosshair.ExportCrosshairString());
         CrosshairSettings.SaveRed(crosshairRedValue);
     }
     /// <summary>
@@ -100,6 +104,7 @@ public class CrosshairOptionsObject : MonoBehaviour {
         crosshairOptions.simpleCrosshair.SetColor(CrosshairColorChannel.GREEN, (int)crosshairGreenValue, true);
         SetCrosshairOptionText(crosshairOptions.crosshairGreenValueText, crosshairOptions.crosshairGreenValueTextPlaceholder, crosshairGreenValue);
 
+        CrosshairSettings.SaveCrosshairString(crosshairOptions.simpleCrosshair.ExportCrosshairString());
         CrosshairSettings.SaveGreen(crosshairGreenValue);
     }
     /// <summary>
@@ -109,7 +114,8 @@ public class CrosshairOptionsObject : MonoBehaviour {
         crosshairBlueValue = crosshairOptions.crosshairBlueSlider.value;
         crosshairOptions.simpleCrosshair.SetColor(CrosshairColorChannel.BLUE, (int)crosshairBlueValue, true);
         SetCrosshairOptionText(crosshairOptions.crosshairBlueValueText, crosshairOptions.crosshairBlueValueTextPlaceholder, crosshairBlueValue);
-        
+
+        CrosshairSettings.SaveCrosshairString(crosshairOptions.simpleCrosshair.ExportCrosshairString());
         CrosshairSettings.SaveBlue(crosshairBlueValue);
     }
     /// <summary>
@@ -119,12 +125,13 @@ public class CrosshairOptionsObject : MonoBehaviour {
         crosshairAlphaValue = crosshairOptions.crosshairAlphaSlider.value;
         crosshairOptions.simpleCrosshair.SetColor(CrosshairColorChannel.ALPHA, (int)crosshairAlphaValue, true);
         SetCrosshairOptionText(crosshairOptions.crosshairAlphaValueText, crosshairOptions.crosshairAlphaValueTextPlaceholder, crosshairAlphaValue);
-        
+
+        CrosshairSettings.SaveCrosshairString(crosshairOptions.simpleCrosshair.ExportCrosshairString());
         CrosshairSettings.SaveAlpha(crosshairAlphaValue);
     }
 
     public static void LoadNewCrosshairString(string crosshairString) {
-        bool validCrosshair = crosshairOptions.simpleCrosshair.ParseCrosshairString(crosshairString);
+        bool validCrosshair = crosshairOptions.simpleCrosshair.ParseCrosshairString(crosshairString, true);
         if (validCrosshair) {
             Debug.Log("VALID CROSSHAIR");
         } else {
@@ -133,7 +140,7 @@ public class CrosshairOptionsObject : MonoBehaviour {
     }
 
     public static void ExportCurrentCrosshairString() {
-        Debug.Log($"Crosshair string: {crosshairOptions.simpleCrosshair.ExportCrosshairString()}");
+        Debug.Log($"Crosshair string: {CrosshairSettings.crosshairString}");
     }
 
     /// <summary>
