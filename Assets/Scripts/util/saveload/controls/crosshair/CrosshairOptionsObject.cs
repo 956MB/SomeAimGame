@@ -11,6 +11,8 @@ public class CrosshairOptionsObject : MonoBehaviour {
 
     private static float crosshairOutlineThicknessValue, crosshairSizeValue, crosshairThicknessValue, crosshairGapValue, crosshairOutlineValue, crosshairRedValue, crosshairGreenValue, crosshairBlueValue, crosshairAlphaValue;
 
+    public static bool crossahairSaveReady = false;
+
     public SimpleCrosshair simpleCrosshair;
 
     private static CrosshairOptionsObject crosshairOptions;
@@ -51,8 +53,8 @@ public class CrosshairOptionsObject : MonoBehaviour {
         crosshairOptions.simpleCrosshair.SetSize((int)crosshairSizeValue, true);
         SetCrosshairOptionText(crosshairOptions.crosshairSizeValueText, crosshairOptions.crosshairSizeValueTextPlaceholder, crosshairSizeValue);
 
-        CrosshairSettings.SaveCrosshairString(crosshairOptions.simpleCrosshair.ExportCrosshairString());
         CrosshairSettings.SaveSize(crosshairSizeValue);
+        if (!crossahairSaveReady) { crossahairSaveReady = true; }
     }
     /// <summary>
     /// Sets crosshair thickness from slider, then saves value.
@@ -62,8 +64,8 @@ public class CrosshairOptionsObject : MonoBehaviour {
         crosshairOptions.simpleCrosshair.SetThickness((int)crosshairThicknessValue, true);
         SetCrosshairOptionText(crosshairOptions.crosshairThicknessValueText, crosshairOptions.crosshairThicknessValueTextPlaceholder, crosshairThicknessValue);
 
-        CrosshairSettings.SaveCrosshairString(crosshairOptions.simpleCrosshair.ExportCrosshairString());
         CrosshairSettings.SaveThickness(crosshairThicknessValue);
+        if (!crossahairSaveReady) { crossahairSaveReady = true; }
     }
     /// <summary>
     /// Sets crosshair gap size from slider, then saves value.
@@ -73,8 +75,8 @@ public class CrosshairOptionsObject : MonoBehaviour {
         crosshairOptions.simpleCrosshair.SetGap((int)crosshairGapValue, true);
         SetCrosshairOptionText(crosshairOptions.crosshairGapValueText, crosshairOptions.crosshairGapValueTextPlaceholder, crosshairGapValue);
 
-        CrosshairSettings.SaveCrosshairString(crosshairOptions.simpleCrosshair.ExportCrosshairString());
         CrosshairSettings.SaveGap(crosshairGapValue);
+        if (!crossahairSaveReady) { crossahairSaveReady = true; }
     }
     /// <summary>
     /// Sets crosshair outline thickness from slider, then saves value.
@@ -93,8 +95,8 @@ public class CrosshairOptionsObject : MonoBehaviour {
         crosshairOptions.simpleCrosshair.SetColor(CrosshairColorChannel.RED, (int)crosshairRedValue, true);
         SetCrosshairOptionText(crosshairOptions.crosshairRedValueText, crosshairOptions.crosshairRedValueTextPlaceholder, crosshairRedValue);
 
-        CrosshairSettings.SaveCrosshairString(crosshairOptions.simpleCrosshair.ExportCrosshairString());
         CrosshairSettings.SaveRed(crosshairRedValue);
+        if (!crossahairSaveReady) { crossahairSaveReady = true; }
     }
     /// <summary>
     /// Sets crosshair green color from slider, then saves value.
@@ -104,8 +106,8 @@ public class CrosshairOptionsObject : MonoBehaviour {
         crosshairOptions.simpleCrosshair.SetColor(CrosshairColorChannel.GREEN, (int)crosshairGreenValue, true);
         SetCrosshairOptionText(crosshairOptions.crosshairGreenValueText, crosshairOptions.crosshairGreenValueTextPlaceholder, crosshairGreenValue);
 
-        CrosshairSettings.SaveCrosshairString(crosshairOptions.simpleCrosshair.ExportCrosshairString());
         CrosshairSettings.SaveGreen(crosshairGreenValue);
+        if (!crossahairSaveReady) { crossahairSaveReady = true; }
     }
     /// <summary>
     /// Sets crosshair blue color from slider, then saves value.
@@ -115,8 +117,8 @@ public class CrosshairOptionsObject : MonoBehaviour {
         crosshairOptions.simpleCrosshair.SetColor(CrosshairColorChannel.BLUE, (int)crosshairBlueValue, true);
         SetCrosshairOptionText(crosshairOptions.crosshairBlueValueText, crosshairOptions.crosshairBlueValueTextPlaceholder, crosshairBlueValue);
 
-        CrosshairSettings.SaveCrosshairString(crosshairOptions.simpleCrosshair.ExportCrosshairString());
         CrosshairSettings.SaveBlue(crosshairBlueValue);
+        if (!crossahairSaveReady) { crossahairSaveReady = true; }
     }
     /// <summary>
     /// Sets crosshair alpha from slider, then saves value.
@@ -126,8 +128,8 @@ public class CrosshairOptionsObject : MonoBehaviour {
         crosshairOptions.simpleCrosshair.SetColor(CrosshairColorChannel.ALPHA, (int)crosshairAlphaValue, true);
         SetCrosshairOptionText(crosshairOptions.crosshairAlphaValueText, crosshairOptions.crosshairAlphaValueTextPlaceholder, crosshairAlphaValue);
 
-        CrosshairSettings.SaveCrosshairString(crosshairOptions.simpleCrosshair.ExportCrosshairString());
         CrosshairSettings.SaveAlpha(crosshairAlphaValue);
+        if (!crossahairSaveReady) { crossahairSaveReady = true; }
     }
 
     public static void LoadNewCrosshairString(string crosshairString) {
@@ -141,6 +143,18 @@ public class CrosshairOptionsObject : MonoBehaviour {
 
     public static void ExportCurrentCrosshairString() {
         Debug.Log($"Crosshair string: {CrosshairSettings.crosshairString}");
+    }
+
+    /// <summary>
+    /// Saves entire crosshair object to crosshair.settings if 'crossahairSaveReady' set true.
+    /// </summary>
+    public static void SaveCrosshairObject(bool overrideSave) {
+        if (crossahairSaveReady || overrideSave) {
+            Debug.Log("crosshair SAVE");
+            CrosshairSettings.SaveCrosshairString(crosshairOptions.simpleCrosshair.ExportCrosshairString());
+            CrosshairSettings.SaveCrosshairSettings_Static();
+            crossahairSaveReady = false;
+        }
     }
 
     /// <summary>

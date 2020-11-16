@@ -22,7 +22,6 @@ public class CrosshairSettings : MonoBehaviour {
     /// <param name="setCenterDot"></param>
     public static void SaveCenterDot(bool setCenterDot) {
         centerDot = setCenterDot;
-        crosshairSettings.SaveCrosshairSettings();
     }
     /// <summary>
     /// Saves supplied t-style bool (setTStyle) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
@@ -30,7 +29,6 @@ public class CrosshairSettings : MonoBehaviour {
     /// <param name="setTStyle"></param>
     public static void SaveTStyle(bool setTStyle) {
         TStyle = setTStyle;
-        crosshairSettings.SaveCrosshairSettings();
     }
     /// <summary>
     /// Saves supplied size float (setSize) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
@@ -38,7 +36,6 @@ public class CrosshairSettings : MonoBehaviour {
     /// <param name="setSize"></param>
     public static void SaveSize(float setSize) {
         size = setSize;
-        crosshairSettings.SaveCrosshairSettings();
     }
     /// <summary>
     /// Saves supplied thickness float (setThickness) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
@@ -46,7 +43,6 @@ public class CrosshairSettings : MonoBehaviour {
     /// <param name="setThickness"></param>
     public static void SaveThickness(float setThickness) {
         thickness = setThickness;
-        crosshairSettings.SaveCrosshairSettings();
     }
     /// <summary>
     /// Saves supplied gap float (setGap) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
@@ -54,7 +50,6 @@ public class CrosshairSettings : MonoBehaviour {
     /// <param name="setGap"></param>
     public static void SaveGap(float setGap) {
         gap = setGap;
-        crosshairSettings.SaveCrosshairSettings();
     }
     /// <summary>
     /// Saves supplied outline enabled bool (setOutlineEnabled) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
@@ -62,7 +57,6 @@ public class CrosshairSettings : MonoBehaviour {
     /// <param name="setOutlineEnabled"></param>
     public static void SaveOutlineEnabled(bool setOutlineEnabled) {
         outlineEnabled = setOutlineEnabled;
-        crosshairSettings.SaveCrosshairSettings();
     }
     /// <summary>
     /// Saves supplied red color float (setRed) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
@@ -70,7 +64,6 @@ public class CrosshairSettings : MonoBehaviour {
     /// <param name="setRed"></param>
     public static void SaveRed(float setRed) {
         red = setRed;
-        crosshairSettings.SaveCrosshairSettings();
     }
     /// <summary>
     /// Saves supplied green color float (setGreen) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
@@ -78,7 +71,6 @@ public class CrosshairSettings : MonoBehaviour {
     /// <param name="setGreen"></param>
     public static void SaveGreen(float setGreen) {
         green = setGreen;
-        crosshairSettings.SaveCrosshairSettings();
     }
     /// <summary>
     /// Saves supplied blue color float (setBlue) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
@@ -86,7 +78,6 @@ public class CrosshairSettings : MonoBehaviour {
     /// <param name="setBlue"></param>
     public static void SaveBlue(float setBlue) {
         blue = setBlue;
-        crosshairSettings.SaveCrosshairSettings();
     }
     /// <summary>
     /// Saves supplied alpha float (setAlpha) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
@@ -94,7 +85,6 @@ public class CrosshairSettings : MonoBehaviour {
     /// <param name="setAlpha"></param>
     public static void SaveAlpha(float setAlpha) {
         alpha = setAlpha;
-        crosshairSettings.SaveCrosshairSettings();
     }
 
     public static void SaveCrosshairString(string newCrosshairString) {
@@ -105,6 +95,8 @@ public class CrosshairSettings : MonoBehaviour {
     /// Calls 'CrosshairSaveSystem.SaveCrosshairItem()' to save crosshair settings object (CrosshairSettings) to file.
     /// </summary>
     public void SaveCrosshairSettings() { CrosshairSaveSystem.SaveCrosshairSettingsData(this); }
+
+    public static void SaveCrosshairSettings_Static() { crosshairSettings.SaveCrosshairSettings(); }
 
     /// <summary>
     /// Saves default crosshair settings object (CrosshairSettings).

@@ -111,11 +111,13 @@ public class SettingsPanel : MonoBehaviour {
         // If language select/notification object active, hide
         if (LanguageSelect.languageSelectOpen) { LanguageSelect.CloseLanguageSelect_Static(); }
         if (NotificationHandler.notificationOpen) { NotificationHandler.HideNotification(); }
+        if (ExtraSettings.hideUI) { GameUI.ShowWidgetsUI(); }
+        
+        CrosshairOptionsObject.SaveCrosshairObject(false);
 
         CloseAction();
         settingsOpen = false;
 
-        if (ExtraSettings.hideUI) { GameUI.ShowWidgetsUI(); }
 
         // EVENT:: for settings panel being closed
         //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacesettingsclosed")}");

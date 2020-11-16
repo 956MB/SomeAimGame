@@ -148,7 +148,7 @@ public class CrosshairSaveSystem : MonoBehaviour {
     public static void SetCrosshairTStyleToggle(bool setTStyle, bool redraw) {
         crosshairSave.simpleCrosshair.SetTStyle(setTStyle, redraw);
         crosshairSave.TStyleToggle.isOn = setTStyle;
-        CrosshairSettings.TStyle        = setTStyle;
+        CrosshairSettings.SaveTStyle(setTStyle);
     }
     /// <summary>
     /// Sets crosshair center dot value and toggle to supplied bool (setCenterDot), and redraws crosshair if bool true (redraw).
@@ -158,7 +158,7 @@ public class CrosshairSaveSystem : MonoBehaviour {
     public static void SetCrosshairCenterDotToggle(bool setCenterDot, bool redraw) {
         crosshairSave.simpleCrosshair.SetCenterDot(setCenterDot, redraw);
         crosshairSave.centerDotToggle.isOn = setCenterDot;
-        CrosshairSettings.centerDot        = setCenterDot;
+        CrosshairSettings.SaveCenterDot(setCenterDot);
     }
     /// <summary>
     /// Sets crosshair outline enable value and toggle to supplied bool (setOutlineEnable), and redraws crosshair if bool true (redraw).
@@ -168,7 +168,7 @@ public class CrosshairSaveSystem : MonoBehaviour {
     public static void SetCrosshairOutlineToggle(bool setOutlineEnable, bool redraw) {
         crosshairSave.simpleCrosshair.SetOutlineEnabled(setOutlineEnable, redraw);
         crosshairSave.OutlineEnabledToggle.isOn = setOutlineEnable;
-        CrosshairSettings.outlineEnabled        = setOutlineEnable;
+        CrosshairSettings.SaveOutlineEnabled(setOutlineEnable);
     }
     /// <summary>
     /// Sets crosshair thickness value to supplied float (setOutlineThickness), and redraws crosshair if bool true (redraw).
@@ -188,7 +188,7 @@ public class CrosshairSaveSystem : MonoBehaviour {
         crosshairSave.simpleCrosshair.SetSize((int)setSize, redraw);
         crosshairSave.crosshairSizeSlider.value = setSize;
         CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairSizeValueText, crosshairSave.crosshairSizeValueTextPlaceholder, setSize);
-        CrosshairSettings.size = setSize;
+        CrosshairSettings.SaveSize(setSize);
     }
     /// <summary>
     /// Sets crosshair thickness value, slider and text to supplied float (setThickness), and redraws crosshair if bool true (redraw).
@@ -199,7 +199,7 @@ public class CrosshairSaveSystem : MonoBehaviour {
         crosshairSave.simpleCrosshair.SetThickness((int)setThickness, redraw);
         crosshairSave.crosshairThicknessSlider.value = setThickness;
         CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairThicknessValueText, crosshairSave.crosshairThicknessValueTextPlaceholder, setThickness);
-        CrosshairSettings.thickness = setThickness;
+        CrosshairSettings.SaveThickness(setThickness);
     }
     /// <summary>
     /// Sets crosshair gap value, slider and text to supplied float (setGap), and redraws crosshair if bool true (redraw).
@@ -210,7 +210,7 @@ public class CrosshairSaveSystem : MonoBehaviour {
         crosshairSave.simpleCrosshair.SetGap((int)setGap, redraw);
         crosshairSave.crosshairGapSlider.value = setGap;
         CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairGapValueText, crosshairSave.crosshairGapValueTextPlaceholder, setGap);
-        CrosshairSettings.gap = setGap;
+        CrosshairSettings.SaveGap(setGap);
     }
     //public static void SetCrosshairOutlineSlider(float setOutline, bool redraw) {
     //    crosshairSave.crosshairOutlineSlider.value = setOutline;
@@ -225,7 +225,7 @@ public class CrosshairSaveSystem : MonoBehaviour {
         crosshairSave.simpleCrosshair.SetColor(CrosshairColorChannel.RED, (int)setRed, redraw);
         crosshairSave.crosshairRedSlider.value = setRed;
         CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairRedValueText, crosshairSave.crosshairRedValueTextPlaceholder, setRed);
-        CrosshairSettings.red = setRed;
+        CrosshairSettings.SaveRed(setRed);
     }
     /// <summary>
     /// Sets crosshair green color value, slider and text to supplied float (setGreen), and redraws crosshair if bool true (redraw).
@@ -236,7 +236,7 @@ public class CrosshairSaveSystem : MonoBehaviour {
         crosshairSave.simpleCrosshair.SetColor(CrosshairColorChannel.GREEN, (int)setGreen, redraw);
         crosshairSave.crosshairGreenSlider.value = setGreen;
         CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairGreenValueText, crosshairSave.crosshairGreenValueTextPlaceholder, setGreen);
-        CrosshairSettings.green = setGreen;
+        CrosshairSettings.SaveGreen(setGreen);
     }
     /// <summary>
     /// Sets crosshair blue color value, slider and text to supplied float (setBlue), and redraws crosshair if bool true (redraw).
@@ -247,7 +247,7 @@ public class CrosshairSaveSystem : MonoBehaviour {
         crosshairSave.simpleCrosshair.SetColor(CrosshairColorChannel.BLUE, (int)setBlue, redraw);
         crosshairSave.crosshairBlueSlider.value = setBlue;
         CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairBlueValueText, crosshairSave.crosshairBlueValueTextPlaceholder, setBlue);
-        CrosshairSettings.blue = setBlue;
+        CrosshairSettings.SaveBlue(setBlue);
     }
     /// <summary>
     /// Sets crosshair alpha value, slider and text to supplied float (setAlpha), and redraws crosshair if bool true (redraw).
@@ -258,6 +258,6 @@ public class CrosshairSaveSystem : MonoBehaviour {
         crosshairSave.simpleCrosshair.SetColor(CrosshairColorChannel.ALPHA, (int)setAlpha, redraw);
         crosshairSave.crosshairAlphaSlider.value = setAlpha;
         CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairAlphaValueText, crosshairSave.crosshairAlphaValueTextPlaceholder, setAlpha);
-        CrosshairSettings.alpha = setAlpha;
+        CrosshairSettings.SaveAlpha(setAlpha);
     }
 }

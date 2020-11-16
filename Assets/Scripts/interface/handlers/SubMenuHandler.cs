@@ -54,6 +54,8 @@ public class SubMenuHandler : MonoBehaviour {
                 break;
         }
 
+        CrosshairOptionsObject.SaveCrosshairObject(false);
+
         if (ToggleHandler.UISoundOn()) { UISound.PlayUISound02(); }
     }
 

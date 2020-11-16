@@ -58,24 +58,24 @@ public class ToggleHandler : MonoBehaviour {
                 if (UISoundOn()) { UISound.PlayUISound02(); }
 
                 simpleCrosshair.SetCenterDot(toggleClicked.isOn, true);
-                CrosshairSettings.SaveCrosshairString(simpleCrosshair.ExportCrosshairString());
                 CrosshairSettings.SaveCenterDot(toggleClicked.isOn);
+                CrosshairOptionsObject.SaveCrosshairObject(true);
                 break;
 
             case "TStyleToggle": // Toggles TStyle for crosshair.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
 
                 simpleCrosshair.SetTStyle(toggleClicked.isOn, true);
-                CrosshairSettings.SaveCrosshairString(simpleCrosshair.ExportCrosshairString());
                 CrosshairSettings.SaveTStyle(toggleClicked.isOn);
+                CrosshairOptionsObject.SaveCrosshairObject(true);
                 break;
 
             case "OutlineEnableToggle": // Toggles outline for crosshair.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
 
                 simpleCrosshair.SetOutlineEnabled(toggleClicked.isOn, true);
-                CrosshairSettings.SaveCrosshairString(simpleCrosshair.ExportCrosshairString());
                 CrosshairSettings.SaveOutlineEnabled(toggleClicked.isOn);
+                CrosshairOptionsObject.SaveCrosshairObject(true);
                 break;
 
             case "ShowExtraStatsToggle": // Toggles 'ExtraStats' panel in 'AfterActionReport'.
