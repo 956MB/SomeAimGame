@@ -15,14 +15,31 @@ public class Util : MonoBehaviour {
         Debug.Log($"Vector3 List: {targetList}");
     }
 
+    /// <summary>
+    /// Performs forced refresh on supplied scrollview group (rootGroup).
+    /// </summary>
+    /// <param name="rootGroup"></param>
     public static void RefreshRootLayoutGroup(GameObject rootGroup) {
         LayoutRebuilder.ForceRebuildLayoutImmediate(rootGroup.gameObject.GetComponent<RectTransform>());
     }
 
+    /// <summary>
+    /// Checks if supplied string (str) contains only digits.
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
     public static bool DigitsOnly(string str) {
         foreach (char c in str) {
             if (c < '0' || c > '9') return false;
         }
         return true;
+    }
+
+    /// <summary>
+    /// Copies supplied string (copyString) to clipboard.
+    /// </summary>
+    /// <param name="copyString"></param>
+    public static void CopyToClipboard(string copyString) {
+        GUIUtility.systemCopyBuffer = copyString;
     }
 }
