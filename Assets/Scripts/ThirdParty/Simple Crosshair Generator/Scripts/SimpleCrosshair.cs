@@ -107,7 +107,7 @@ public class SimpleCrosshair : MonoBehaviour
     /// </summary>
     /// <param name="newCrosshairString"></param>
     /// <returns></returns>
-    public bool ParseCrosshairString(string newCrosshairString) {
+    public bool ParseCrosshairString(string newCrosshairString, bool setValues) {
         if (newCrosshairString.Length != 21 || !Util.DigitsOnly(newCrosshairString)) { return false; }
 
         int tstyleValue, centerDotValue, outlineValue, sizeValueInt, thicknessValueInt, gapValueInt, redValueInt, greenValueInt, blueValueInt, alphaValueInt;
@@ -128,10 +128,10 @@ public class SimpleCrosshair : MonoBehaviour
         if (thicknessValue != "00") { thicknessValueInt = int.Parse(thicknessValue.TrimStart(new char[] { '0' })); } else { return false; }
         if (gapValue != "00") {       gapValueInt       = int.Parse(gapValue.TrimStart(new char[] { '0' })); }       else { return false; }
 
-        if (redValue != "000") {   redValueInt   = int.Parse(redValue.TrimStart(new char[] { '0' })); }   else { return false; }
-        if (greenValue != "000") { greenValueInt = int.Parse(greenValue.TrimStart(new char[] { '0' })); } else { return false; }
-        if (blueValue != "000") {  blueValueInt  = int.Parse(blueValue.TrimStart(new char[] { '0' })); }  else { return false; }
-        if (alphaValue != "000") { alphaValueInt = int.Parse(alphaValue.TrimStart(new char[] { '0' })); } else { return false; }
+        if (redValue == "000") {   redValueInt   = 0; } else { redValueInt   = int.Parse(redValue.TrimStart(new char[] { '0' })); }
+        if (greenValue == "000") { greenValueInt = 0; } else { greenValueInt = int.Parse(greenValue.TrimStart(new char[] { '0' })); }
+        if (blueValue == "000") {  blueValueInt  = 0; } else { blueValueInt  = int.Parse(blueValue.TrimStart(new char[] { '0' })); }
+        if (alphaValue == "000") { alphaValueInt = 0; } else { alphaValueInt = int.Parse(alphaValue.TrimStart(new char[] { '0' })); }
 
         if (!ValidateCrosshairValues(tstyleValue, centerDotValue, sizeValueInt, thicknessValueInt, gapValueInt, outlineValue, redValueInt, greenValueInt, blueValueInt, alphaValueInt)) { return false; }
 
@@ -152,7 +152,9 @@ public class SimpleCrosshair : MonoBehaviour
         bool centerDotValueBool = centerDotValue != 0;
         bool outlineValueBool   = outlineValue   != 0;
 
-        //SetAllCrosshairValues(tstyleValueBool, centerDotValueBool, sizeValue, thicknessValue, gapValue, outlineValueBool, redValue, greenValue, blueValue, alphaValue, true);
+        if (setValues) {
+            SetAllCrosshairValues(tstyleValueBool, centerDotValueBool, sizeValueInt, thicknessValueInt, gapValueInt, outlineValueBool, redValueInt, greenValueInt, blueValueInt, alphaValueInt, true);
+        }
 
         return true;
     }
