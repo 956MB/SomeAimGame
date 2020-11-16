@@ -110,20 +110,30 @@ public class SimpleCrosshair : MonoBehaviour
     public bool ParseCrosshairString(string newCrosshairString) {
         if (newCrosshairString.Length != 21 || !Util.DigitsOnly(newCrosshairString)) { return false; }
 
-        int tstyleValue, centerDotValue, sizeValue, thicknessValue, gapValue, outlineValue, redValue, greenValue, blueValue, alphaValue;
+        int tstyleValue, centerDotValue, outlineValue, sizeValueInt, thicknessValueInt, gapValueInt, redValueInt, greenValueInt, blueValueInt, alphaValueInt;
+        string sizeValue, thicknessValue, gapValue, redValue, greenValue, blueValue, alphaValue;
 
         tstyleValue    = int.Parse(newCrosshairString[0].ToString());
         centerDotValue = int.Parse(newCrosshairString[1].ToString());
-        sizeValue      = int.Parse(newCrosshairString.Substring(2, 2).TrimStart(new char[] { '0' }));
-        thicknessValue = int.Parse(newCrosshairString.Substring(4, 2).TrimStart(new char[] { '0' }));
-        gapValue       = int.Parse(newCrosshairString.Substring(6, 2).TrimStart(new char[] { '0' }));
+        sizeValue      = newCrosshairString.Substring(2, 2);
+        thicknessValue = newCrosshairString.Substring(4, 2);
+        gapValue       = newCrosshairString.Substring(6, 2);
         outlineValue   = int.Parse(newCrosshairString[8].ToString());
-        redValue       = int.Parse(newCrosshairString.Substring(9, 3).TrimStart(new char[] { '0' }));
-        greenValue     = int.Parse(newCrosshairString.Substring(12, 3).TrimStart(new char[] { '0' }));
-        blueValue      = int.Parse(newCrosshairString.Substring(15, 3).TrimStart(new char[] { '0' }));
-        alphaValue     = int.Parse(newCrosshairString.Substring(18, 3).TrimStart(new char[] { '0' }));
+        redValue       = newCrosshairString.Substring(9, 3);
+        greenValue     = newCrosshairString.Substring(12, 3);
+        blueValue      = newCrosshairString.Substring(15, 3);
+        alphaValue     = newCrosshairString.Substring(18, 3);
 
-        if (!ValidateCrosshairValues(tstyleValue, centerDotValue, sizeValue, thicknessValue, gapValue, outlineValue, redValue, greenValue, blueValue, alphaValue)) { return false; }
+        if (sizeValue != "00") {      sizeValueInt      = int.Parse(sizeValue.TrimStart(new char[] { '0' })); }      else { return false; }
+        if (thicknessValue != "00") { thicknessValueInt = int.Parse(thicknessValue.TrimStart(new char[] { '0' })); } else { return false; }
+        if (gapValue != "00") {       gapValueInt       = int.Parse(gapValue.TrimStart(new char[] { '0' })); }       else { return false; }
+
+        if (redValue != "000") {   redValueInt   = int.Parse(redValue.TrimStart(new char[] { '0' })); }   else { return false; }
+        if (greenValue != "000") { greenValueInt = int.Parse(greenValue.TrimStart(new char[] { '0' })); } else { return false; }
+        if (blueValue != "000") {  blueValueInt  = int.Parse(blueValue.TrimStart(new char[] { '0' })); }  else { return false; }
+        if (alphaValue != "000") { alphaValueInt = int.Parse(alphaValue.TrimStart(new char[] { '0' })); } else { return false; }
+
+        if (!ValidateCrosshairValues(tstyleValue, centerDotValue, sizeValueInt, thicknessValueInt, gapValueInt, outlineValue, redValueInt, greenValueInt, blueValueInt, alphaValueInt)) { return false; }
 
         #region logs
         //Debug.Log($"TStyle Value:       {tstyleValue}");
