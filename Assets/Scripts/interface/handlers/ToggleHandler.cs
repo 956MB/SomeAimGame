@@ -38,62 +38,44 @@ public class ToggleHandler : MonoBehaviour {
         switch (clickedToggleName) {
             case "TargetSoundToggle": // Toggles target sound.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
-                if (toggleClicked.isOn) {
-                    ExtraSettings.SaveTargetSoundItem(true);
-                } else {
-                    ExtraSettings.SaveTargetSoundItem(false);
-                }
+
+                ExtraSettings.SaveTargetSoundItem(toggleClicked.isOn);
                 break;
 
             case "UISoundToggle": // Toggles UI sound.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
-                if (toggleClicked.isOn) {
-                    ExtraSettings.SaveUISoundItem(true);
-                } else {
-                    ExtraSettings.SaveUISoundItem(false);
-                }
+
+                ExtraSettings.SaveUISoundItem(toggleClicked.isOn);
                 break;
 
             case "AARToggle": // Toggles showing 'AfterActionReport'.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
-                if (toggleClicked.isOn) {
-                    ExtraSettings.SaveShowAAR(true);
-                } else {
-                    ExtraSettings.SaveShowAAR(false);
-                }
+
+                ExtraSettings.SaveShowAAR(toggleClicked.isOn);
                 break;
 
             case "CenterDotToggle": // Toggles center dot for crosshair.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
-                if (toggleClicked.isOn) {
-                    CrosshairSettings.SaveCenterDot(true);
-                    simpleCrosshair.SetCenterDot(true, true);
-                } else {
-                    CrosshairSettings.SaveCenterDot(false);
-                    simpleCrosshair.SetCenterDot(false, true);
-                }
+
+                simpleCrosshair.SetCenterDot(toggleClicked.isOn, true);
+                CrosshairSettings.SaveCrosshairString(simpleCrosshair.ExportCrosshairString());
+                CrosshairSettings.SaveCenterDot(toggleClicked.isOn);
                 break;
 
             case "TStyleToggle": // Toggles TStyle for crosshair.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
-                if (toggleClicked.isOn) {
-                    CrosshairSettings.SaveTStyle(true);
-                    simpleCrosshair.SetTStyle(true, true);
-                } else {
-                    CrosshairSettings.SaveTStyle(false);
-                    simpleCrosshair.SetTStyle(false, true);
-                }
+
+                simpleCrosshair.SetTStyle(toggleClicked.isOn, true);
+                CrosshairSettings.SaveCrosshairString(simpleCrosshair.ExportCrosshairString());
+                CrosshairSettings.SaveTStyle(toggleClicked.isOn);
                 break;
 
             case "OutlineEnableToggle": // Toggles outline for crosshair.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
-                if (toggleClicked.isOn) {
-                    CrosshairSettings.SaveOutlineEnabled(true);
-                    simpleCrosshair.SetOutlineEnabled(true, true);
-                } else {
-                    CrosshairSettings.SaveOutlineEnabled(false);
-                    simpleCrosshair.SetOutlineEnabled(false, true);
-                }
+
+                simpleCrosshair.SetOutlineEnabled(toggleClicked.isOn, true);
+                CrosshairSettings.SaveCrosshairString(simpleCrosshair.ExportCrosshairString());
+                CrosshairSettings.SaveOutlineEnabled(toggleClicked.isOn);
                 break;
 
             case "ShowExtraStatsToggle": // Toggles 'ExtraStats' panel in 'AfterActionReport'.
@@ -120,90 +102,58 @@ public class ToggleHandler : MonoBehaviour {
 
             case "QuickStartToggle": // Toggles quick start game in gamemode panel.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
-                if (toggleClicked.isOn) {
-                    CosmeticsSaveSystem.SetQuickStartGame(true);
-                    CosmeticsSettings.SaveQuickStartGameItem(true);
-                } else {
-                    CosmeticsSaveSystem.SetQuickStartGame(false);
-                    CosmeticsSettings.SaveQuickStartGameItem(false);
-                }
+
+                CosmeticsSaveSystem.SetQuickStartGame(toggleClicked.isOn);
+                CosmeticsSettings.SaveQuickStartGameItem(toggleClicked.isOn);
                 break;
 
             case "ShowFPSToggle": // Toggles FPS widget.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
-                if (toggleClicked.isOn) {
-                    fpsWidget.SetActive(true);
-                    WidgetSettings.SaveShowFPSItem(true);
-                } else {
-                    fpsWidget.SetActive(false);
-                    WidgetSettings.SaveShowFPSItem(false);
-                }
+
+                fpsWidget.SetActive(toggleClicked.isOn);
+                WidgetSettings.SaveShowFPSItem(toggleClicked.isOn);
                 break;
 
             case "ShowTimeToggle": // Toggles time widget.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
-                if (toggleClicked.isOn) {
-                    timeWidget.SetActive(true);
-                    WidgetSettings.SaveShowTimeItem(true);
-                } else {
-                    timeWidget.SetActive(false);
-                    WidgetSettings.SaveShowTimeItem(false);
-                }
+
+                timeWidget.SetActive(toggleClicked.isOn);
+                WidgetSettings.SaveShowTimeItem(toggleClicked.isOn);
                 break;
 
             case "ShowScoreToggle": // Toggles score widget.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
-                if (toggleClicked.isOn) {
-                    ScoreWidget.SetActive(true);
-                    WidgetSettings.SaveShowScoreItem(true);
-                } else {
-                    ScoreWidget.SetActive(false);
-                    WidgetSettings.SaveShowScoreItem(false);
-                }
+
+                ScoreWidget.SetActive(toggleClicked.isOn);
+                WidgetSettings.SaveShowScoreItem(toggleClicked.isOn);
                 break;
 
             case "ShowAccuracyToggle": // Toggles accuracy widget.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
-                if (toggleClicked.isOn) {
-                    accuracyWidget.SetActive(true);
-                    WidgetSettings.SaveShowAccuracyItem(true);
-                } else {
-                    accuracyWidget.SetActive(false);
-                    WidgetSettings.SaveShowAccuracyItem(false);
-                }
+
+                accuracyWidget.SetActive(toggleClicked.isOn);
+                WidgetSettings.SaveShowAccuracyItem(toggleClicked.isOn);
                 break;
 
             case "ShowStreakToggle": // Toggles streak widget.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
-                if (toggleClicked.isOn) {
-                    streakWidget.SetActive(true);
-                    WidgetSettings.SaveShowStreakItem(true);
-                } else {
-                    streakWidget.SetActive(false);
-                    WidgetSettings.SaveShowStreakItem(false);
-                }
+
+                streakWidget.SetActive(toggleClicked.isOn);
+                WidgetSettings.SaveShowStreakItem(toggleClicked.isOn);
                 break;
 
             case "ShowTTKToggle": // Toggles ttk widget.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
-                if (toggleClicked.isOn) {
-                    ttkWidget.SetActive(true);
-                    WidgetSettings.SaveShowTTKItem(true);
-                } else {
-                    ttkWidget.SetActive(false);
-                    WidgetSettings.SaveShowTTKItem(false);
-                }
+
+                ttkWidget.SetActive(toggleClicked.isOn);
+                WidgetSettings.SaveShowTTKItem(toggleClicked.isOn);
                 break;
 
             case "ShowKPSToggle": // Toggles kps widget.
                 if (UISoundOn()) { UISound.PlayUISound02(); }
-                if (toggleClicked.isOn) {
-                    kpsWidget.SetActive(true);
-                    WidgetSettings.SaveShowKPSItem(true);
-                } else {
-                    kpsWidget.SetActive(false);
-                    WidgetSettings.SaveShowKPSItem(false);
-                }
+
+                kpsWidget.SetActive(toggleClicked.isOn);
+                WidgetSettings.SaveShowKPSItem(toggleClicked.isOn);
                 break;
         }
     }
