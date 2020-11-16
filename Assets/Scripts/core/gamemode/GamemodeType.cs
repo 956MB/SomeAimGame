@@ -4,13 +4,13 @@
 /// Enum holding all gamemode types.
 /// </summary>
 public enum Gamemode {
-    Scatter = 0,
-    Flick   = 1,
-    Grid    = 2,
-    Grid2   = 3,
-    Grid3   = 4,
-    Pairs   = 5,
-    Follow  = 6
+    Scatter,
+    Flick,
+    Grid,
+    Grid2,
+    Grid3,
+    Pairs,
+    Follow
 }
 
 public class GamemodeType : MonoBehaviour {

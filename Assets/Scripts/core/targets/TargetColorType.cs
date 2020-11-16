@@ -4,14 +4,14 @@
 /// Enum holding all target color types.
 /// </summary>
 public enum TargetColor {
-    Red    = 0,
-    Orange = 1,
-    Yellow = 2,
-    Green  = 3,
-    Blue   = 4,
-    Purple = 5,
-    Pink   = 6,
-    White  = 7
+    Red,
+    Orange,
+    Yellow,
+    Green,
+    Blue,
+    Purple,
+    Pink,
+    White
 }
 
 public class TargetColorType : MonoBehaviour {
