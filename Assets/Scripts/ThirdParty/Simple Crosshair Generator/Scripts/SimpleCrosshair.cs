@@ -231,16 +231,16 @@ public class SimpleCrosshair : MonoBehaviour
     /// <param name="alpha"></param>
     /// <returns></returns>
     public bool ValidateCrosshairValues(int tstyle, int centerDot, int size, int thickness, int gap, int outlineEnable, int red, int green, int blue, int alpha) {
-        if (tstyle < 0 || tstyle > 1)               return false;
-        if (centerDot < 0 || centerDot > 1)         return false;
-        if (size < 1 || size > 45)                  return false;
-        if (thickness < 1 || thickness > 15)        return false;
-        if (gap < 1 || gap > 25)                    return false;
-        if (outlineEnable < 0 || outlineEnable > 1) return false;
-        if (red < 0 || red > 255)                   return false;
-        if (green < 0 || green > 255)               return false;
-        if (blue < 0 || blue > 255)                 return false;
-        if (alpha < 0 || alpha > 255)               return false;
+        if (tstyle < 0 || tstyle > 1)               { return false; }
+        if (centerDot < 0 || centerDot > 1)         { return false; }
+        if (size < 1 || size > 45)                  { return false; }
+        if (thickness < 1 || thickness > 15)        { return false; }
+        if (gap < 1 || gap > 25)                    { return false; }
+        if (outlineEnable < 0 || outlineEnable > 1) { return false; }
+        if (red < 0 || red > 255)                   { return false; }
+        if (green < 0 || green > 255)               { return false; }
+        if (blue < 0 || blue > 255)                 { return false; }
+        if (alpha < 0 || alpha > 255)               { return false; }
 
         return true;
     }
