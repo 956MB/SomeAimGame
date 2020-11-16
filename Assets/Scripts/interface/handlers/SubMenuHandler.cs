@@ -88,4 +88,15 @@ public class SubMenuHandler : MonoBehaviour {
         crosshairScrollView.transform.localScale = disabledSubMenuScrollView;
         extraScrollView.transform.localScale     = disabledSubMenuScrollView;
     }
+
+    /// <summary>
+    /// Resets all sub menu scrollviews to the top.
+    /// </summary>
+    public static void ResetAllScrollviewsTop() {
+        ScrollRectExtension.ScrollToTop(subMenu.gamemodeScrollView.GetComponent<ScrollRect>());
+        ScrollRectExtension.ScrollToTop(subMenu.generalScrollView.GetComponent<ScrollRect>());
+        ScrollRectExtension.ScrollToTop(subMenu.controlsScrollView.GetComponent<ScrollRect>());
+        ScrollRectExtension.ScrollToTop(subMenu.crosshairScrollView.GetComponent<ScrollRect>());
+        ScrollRectExtension.ScrollToTop(subMenu.extraScrollView.GetComponent<ScrollRect>());
+    }
 }

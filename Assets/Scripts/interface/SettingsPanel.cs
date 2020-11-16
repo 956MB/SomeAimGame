@@ -93,6 +93,7 @@ public class SettingsPanel : MonoBehaviour {
         OpenAction();
         settingsOpen = true;
         GameUI.HideWidgetsUI();
+        SubMenuHandler.ResetAllScrollviewsTop();
 
         // EVENT:: for settings panel being opened
         //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacesettingsopened")}");
