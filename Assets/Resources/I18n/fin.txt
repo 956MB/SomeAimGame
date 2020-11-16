@@ -137,8 +137,8 @@ restart=Uudelleenkäynnistää   .   .   .   .   .   .   .   .   .   .   .   .  
 #
 #
 # // crosshair section items
-tstyle=T-tyyli
-centerdot=        Keskipiste
+tstyle=T-tyyli   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+centerdot=Keskipiste   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 crosshairsize=Koko
 crosshairthickness=Paksuus
 crosshairgap=Aukko

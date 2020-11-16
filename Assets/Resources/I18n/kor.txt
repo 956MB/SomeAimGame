@@ -137,8 +137,8 @@ restart=재시작   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   
 #
 #
 # // crosshair section items
-tstyle=T 스타일
-centerdot=        센터 도트
+tstyle=T 스타일   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+centerdot=센터 도트   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 crosshairsize=크기
 crosshairthickness=두께
 crosshairgap=갭

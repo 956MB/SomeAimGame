@@ -137,8 +137,8 @@ restart=Restart   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . 
 #
 #
 # // crosshair section items
-tstyle=T Style
-centerdot=        Center Dot
+tstyle=T Style   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+centerdot=Center Dot   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 crosshairsize=Size
 crosshairthickness=Thickness
 crosshairgap=Gap

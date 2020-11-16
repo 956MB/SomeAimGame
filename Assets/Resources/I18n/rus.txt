@@ -137,8 +137,8 @@ restart=Restart   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . 
 #
 #
 # // crosshair section items
-tstyle=Т Стиль
-centerdot=        Центральная точка
+tstyle=Т Стиль   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+centerdot=Центральная точка   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 crosshairsize=Размер
 crosshairthickness=Толщина
 crosshairgap=Разрыв
