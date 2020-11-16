@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Design;
+﻿using System;
+using System.ComponentModel.Design;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -101,6 +102,159 @@ public class SimpleCrosshair : MonoBehaviour
         m_crosshairImageSettings.sprite = crosshairSprite;
     }
 
+    /// <summary>
+    /// Parses given crosshair string (newCrosshairString), if all values valid SetAllCrosshairValues() called to set all values and redraw crosshair.
+    /// </summary>
+    /// <param name="newCrosshairString"></param>
+    /// <returns></returns>
+    public bool ParseCrosshairString(string newCrosshairString) {
+        if (newCrosshairString.Length != 21 || !Util.DigitsOnly(newCrosshairString)) { return false; }
+
+        int tstyleValue, centerDotValue, sizeValue, thicknessValue, gapValue, outlineValue, redValue, greenValue, blueValue, alphaValue;
+
+        tstyleValue    = int.Parse(newCrosshairString[0].ToString());
+        centerDotValue = int.Parse(newCrosshairString[1].ToString());
+        sizeValue      = int.Parse(newCrosshairString.Substring(2, 2).TrimStart(new char[] { '0' }));
+        thicknessValue = int.Parse(newCrosshairString.Substring(4, 2).TrimStart(new char[] { '0' }));
+        gapValue       = int.Parse(newCrosshairString.Substring(6, 2).TrimStart(new char[] { '0' }));
+        outlineValue   = int.Parse(newCrosshairString[8].ToString());
+        redValue       = int.Parse(newCrosshairString.Substring(9, 3).TrimStart(new char[] { '0' }));
+        greenValue     = int.Parse(newCrosshairString.Substring(12, 3).TrimStart(new char[] { '0' }));
+        blueValue      = int.Parse(newCrosshairString.Substring(15, 3).TrimStart(new char[] { '0' }));
+        alphaValue     = int.Parse(newCrosshairString.Substring(18, 3).TrimStart(new char[] { '0' }));
+
+        if (!ValidateCrosshairValues(tstyleValue, centerDotValue, sizeValue, thicknessValue, gapValue, outlineValue, redValue, greenValue, blueValue, alphaValue)) { return false; }
+
+        #region logs
+        //Debug.Log($"TStyle Value:       {tstyleValue}");
+        //Debug.Log($"Center Dot Value:   {centerDotValue}");
+        //Debug.Log($"Size Value:         {sizeValue}");
+        //Debug.Log($"Thickness Value:    {thicknessValue}");
+        //Debug.Log($"Gap Value:          {gapValue}");
+        //Debug.Log($"Outline Value:      {outlineValue}");
+        //Debug.Log($"Red Value:          {redValue}");
+        //Debug.Log($"Green Value:        {greenValue}");
+        //Debug.Log($"Blue Value:         {blueValue}");
+        //Debug.Log($"Alpha Value:        {alphaValue}");
+        #endregion
+
+        bool tstyleValueBool    = tstyleValue    != 0;
+        bool centerDotValueBool = centerDotValue != 0;
+        bool outlineValueBool   = outlineValue   != 0;
+
+        //SetAllCrosshairValues(tstyleValueBool, centerDotValueBool, sizeValue, thicknessValue, gapValue, outlineValueBool, redValue, greenValue, blueValue, alphaValue, true);
+
+        return true;
+    }
+
+    /// <summary>
+    /// Exports full crosshair string with all current crosshair values.
+    /// </summary>
+    /// <returns></returns>
+    public string ExportCrosshairString() {
+        // 1 0 06 02 05 1 255 200 050 255
+        // 255/80/175/255
+        // 0 0 06 01 05 1 1 0 0 1
+        // 0 0 06 01 05 1 1 0.3137255 0.6862745 1
+        // 0 0 06 01 05 1 255 80 175 255
+        // CORRECT: 0 0 06 01 05 1 255 080 175 255 = 000601051255080175255
+        int tstyleInt, centerDotInt, outlineInt;
+        string sizeString, thicknessString, gapString, redFloat, greenFloat, blueFloat, alphaFloat;
+
+        tstyleInt       = m_crosshair.tStyle ? 1 : 0;
+        centerDotInt    = m_crosshair.centerDot ? 1 : 0;
+        sizeString      = m_crosshair.size.ToString("00");
+        thicknessString = m_crosshair.thickness.ToString("00");
+        gapString       = m_crosshair.gap.ToString("00");
+        outlineInt      = m_crosshair.enableOutline ? 1 : 0;
+        redFloat        = (m_crosshair.color.r * 255.0f).ToString("000");
+        greenFloat      = (m_crosshair.color.g * 255.0f).ToString("000");
+        blueFloat       = (m_crosshair.color.b * 255.0f).ToString("000");
+        alphaFloat      = (m_crosshair.color.a * 255.0f).ToString("000");
+
+        return $"{tstyleInt}{centerDotInt}{sizeString}{thicknessString}{gapString}{outlineInt}{redFloat}{greenFloat}{blueFloat}{alphaFloat}";
+    }
+
+    /// <summary>
+    /// Sets all crosshair values and redraws.
+    /// </summary>
+    /// <param name="tstyle"></param>
+    /// <param name="centerDot"></param>
+    /// <param name="size"></param>
+    /// <param name="thickness"></param>
+    /// <param name="gap"></param>
+    /// <param name="outlineEnable"></param>
+    /// <param name="red"></param>
+    /// <param name="green"></param>
+    /// <param name="blue"></param>
+    /// <param name="alpha"></param>
+    /// <param name="redrawCrosshair"></param>
+    public void SetAllCrosshairValues(bool tstyle, bool centerDot, int size, int thickness, int gap, bool outlineEnable, int red, int green, int blue, int alpha, bool redrawCrosshair) {
+        m_crosshair.tStyle        = tstyle;
+        m_crosshair.centerDot     = centerDot;
+        m_crosshair.size          = size;
+        m_crosshair.thickness     = thickness;
+        m_crosshair.gap           = gap;
+        m_crosshair.enableOutline = outlineEnable;
+        m_crosshair.color.r       = red;
+        m_crosshair.color.g       = green;
+        m_crosshair.color.b       = blue;
+        m_crosshair.color.a       = alpha;
+
+        if (redrawCrosshair) { GenerateCrosshair(); }
+    }
+
+    /// <summary>
+    /// Validates all supplied crosshair values and returns true if valid, false otherwise.
+    /// </summary>
+    /// <param name="tstyle"></param>
+    /// <param name="centerDot"></param>
+    /// <param name="size"></param>
+    /// <param name="thickness"></param>
+    /// <param name="gap"></param>
+    /// <param name="outlineEnable"></param>
+    /// <param name="red"></param>
+    /// <param name="green"></param>
+    /// <param name="blue"></param>
+    /// <param name="alpha"></param>
+    /// <returns></returns>
+    public bool ValidateCrosshairValues(int tstyle, int centerDot, int size, int thickness, int gap, int outlineEnable, int red, int green, int blue, int alpha) {
+        if (tstyle < 0 || tstyle > 1)               return false;
+        if (centerDot < 0 || centerDot > 1)         return false;
+        if (size < 1 || size > 45)                  return false;
+        if (thickness < 1 || thickness > 15)        return false;
+        if (gap < 1 || gap > 25)                    return false;
+        if (outlineEnable < 0 || outlineEnable > 1) return false;
+        if (red < 0 || red > 255)                   return false;
+        if (green < 0 || green > 255)               return false;
+        if (blue < 0 || blue > 255)                 return false;
+        if (alpha < 0 || alpha > 255)               return false;
+
+        return true;
+    }
+
+    /// <summary>
+    /// Generates random crosshair values, sets them to crosshair, then redraws.
+    /// </summary>
+    public void GenerateRandomCrosshair() {
+        int randomTstyleValue    = UnityEngine.Random.Range(0, 2);
+        int randomCenterDotValue = UnityEngine.Random.Range(0, 2);
+        int randomSizeValue      = UnityEngine.Random.Range(1, 46);
+        int randomThicknessValue = UnityEngine.Random.Range(1, 16);
+        int randomGapValue       = UnityEngine.Random.Range(1, 26);
+        int randomOutlineValue   = UnityEngine.Random.Range(0, 2);
+        int randomRedValue       = UnityEngine.Random.Range(1, 256);
+        int randomGreenValue     = UnityEngine.Random.Range(1, 256);
+        int randomBlueValue      = UnityEngine.Random.Range(1, 256);
+        int randomAlphaValue     = UnityEngine.Random.Range(1, 256);
+
+        bool randomTstyleValueBool    = randomTstyleValue    != 0;
+        bool randomCenterDotValueBool = randomCenterDotValue != 0;
+        bool randomOutlineValueBool   = randomOutlineValue   != 0;
+
+        SetAllCrosshairValues(randomTstyleValueBool, randomCenterDotValueBool, randomSizeValue, randomThicknessValue, randomGapValue, randomOutlineValueBool, randomRedValue, randomGreenValue, randomBlueValue, randomAlphaValue, true);
+    }
+
     public void SetColor(CrosshairColorChannel channel, int value, bool redrawCrosshair)  // Set between 0 and 255
     {
         switch (channel)
@@ -110,77 +264,55 @@ public class SimpleCrosshair : MonoBehaviour
             case CrosshairColorChannel.BLUE:  m_crosshair.color.b = value / 255.0f; break;
             case CrosshairColorChannel.ALPHA: m_crosshair.color.a = value / 255.0f; break;
         }
-        if (redrawCrosshair)
-        {
-            GenerateCrosshair();
-        }
+
+        if (redrawCrosshair) { GenerateCrosshair(); }
     }
 
     public void SetColor(Color color, bool redrawCrosshair)
     {
         m_crosshair.color = color;
-        if (redrawCrosshair)
-        {
-            GenerateCrosshair();
-        }
+        if (redrawCrosshair) { GenerateCrosshair(); }
     }
 
     public void SetTStyle(bool enableTStyle, bool redrawCrosshair) {
         m_crosshair.tStyle = enableTStyle;
-        if (redrawCrosshair) {
-            GenerateCrosshair();
-        }
+        if (redrawCrosshair) { GenerateCrosshair(); }
     }
 
     public void SetCenterDot(bool centerDot, bool redrawCrosshair) {
         m_crosshair.centerDot = centerDot;
-        if (redrawCrosshair) {
-            GenerateCrosshair();
-        }
+        if (redrawCrosshair) { GenerateCrosshair(); }
     }
 
     public void SetOutlineEnabled(bool enableOutline, bool redrawCrosshair) {
         m_crosshair.enableOutline = enableOutline;
-        if (redrawCrosshair) {
-            GenerateCrosshair();
-        }
+        if (redrawCrosshair) { GenerateCrosshair(); }
     }
 
     public void SetOutlineThickness(int outlineThickness, bool redrawCrosshair) {
         m_crosshair.outlineThickness = outlineThickness;
-        if (redrawCrosshair) {
-            GenerateCrosshair();
-        }
+        if (redrawCrosshair) { GenerateCrosshair(); }
     }
 
     public void SetThickness(int newThickness, bool redrawCrosshair)
     {
         m_crosshair.thickness = newThickness;
         if (m_crosshair.thickness < 1) { m_crosshair.thickness = 1; }
-        if (redrawCrosshair)
-        {
-            GenerateCrosshair();
-        }
+        if (redrawCrosshair) { GenerateCrosshair(); }
     }
 
     public void SetSize(int newSize, bool redrawCrosshair)
     {
         m_crosshair.size = newSize;
         //if(m_crosshair.size < 1) { m_crosshair.size = 1; }
-        if (redrawCrosshair)
-        {
-            GenerateCrosshair();
-        }
+        if (redrawCrosshair) { GenerateCrosshair(); }
     }
 
     public void SetGap(int newGap, bool redrawCrosshair)
     {
         m_crosshair.gap = newGap;
         if (m_crosshair.gap < 0) { m_crosshair.gap = 0; }
-        if (redrawCrosshair)
-        {
-            GenerateCrosshair();
-        }
+        if (redrawCrosshair) { GenerateCrosshair(); }
     }
 
     #region Getters

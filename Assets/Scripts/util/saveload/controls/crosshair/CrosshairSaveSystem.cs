@@ -78,6 +78,9 @@ public class CrosshairSaveSystem : MonoBehaviour {
             SetCrosshairGreenSlider(loadedCrosshairData.green, true);
             SetCrosshairBlueSlider(loadedCrosshairData.blue, true);
             SetCrosshairAlphaSlider(loadedCrosshairData.alpha, true);
+
+            //CrosshairOptionsObject.LoadNewCrosshairString("100602051255200050255");
+            //CrosshairOptionsObject.ExportCurrentCrosshairString();
         }
         else {
             //Debug.Log("failed to init cosmetics in 'initSettingsDefaults', cosmetics: " + loadedCosmeticsData);

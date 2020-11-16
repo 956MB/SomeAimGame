@@ -18,4 +18,11 @@ public class Util : MonoBehaviour {
     public static void RefreshRootLayoutGroup(GameObject rootGroup) {
         LayoutRebuilder.ForceRebuildLayoutImmediate(rootGroup.gameObject.GetComponent<RectTransform>());
     }
+
+    public static bool DigitsOnly(string str) {
+        foreach (char c in str) {
+            if (c < '0' || c > '9') return false;
+        }
+        return true;
+    }
 }

@@ -123,6 +123,19 @@ public class CrosshairOptionsObject : MonoBehaviour {
         CrosshairSettings.SaveAlpha(crosshairAlphaValue);
     }
 
+    public static void LoadNewCrosshairString(string crosshairString) {
+        bool validCrosshair = crosshairOptions.simpleCrosshair.ParseCrosshairString(crosshairString);
+        if (validCrosshair) {
+            Debug.Log("VALID CROSSHAIR");
+        } else {
+            Debug.Log("INVALID CROSSHAIR");
+        }
+    }
+
+    public static void ExportCurrentCrosshairString() {
+        Debug.Log($"Crosshair string: {crosshairOptions.simpleCrosshair.ExportCrosshairString()}");
+    }
+
     /// <summary>
     /// Sets supplied option toggle (optionToggle) on/off from supplied (value).
     /// </summary>
