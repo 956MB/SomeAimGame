@@ -9,7 +9,7 @@ public class StatsManager : MonoBehaviour {
     public TMP_Text scoreTextPrevious, accuracyTextPrevious, ttkTextPrevious, kpsTextPrevious, bestStreakTextPrevious, targetsTotalTextPrevious, taretsHitTextPrevious, targetsMissesTextPrevious;
     public TMP_Text scoreTextHighscore, accuracyTextHighscore, ttkTextHighscore, kpsTextHighscore, bestStreakTextHighscore, targetsTotalTextHighscore, taretsHitTextHighscore, targetsMissesTextHighscore;
     public TMP_Text scoreEffectText, newHighscoreEffectText;
-    public GameObject extraStatsPanel;
+    public GameObject extraStatsPanel, aarScrollView;
     public Image highscoreLineTop, highscoreLineBottom;
     public static bool showBackgrounds  = true;
     public static bool backgroundsSaved = false;
@@ -344,4 +344,8 @@ public class StatsManager : MonoBehaviour {
     /// Hides 'ExtraStats' panel;
     /// </summary>
     public static void HideExtraStatsPanel() { stats.extraStatsPanel.SetActive(false); }
+    /// <summary>
+    /// Resets AAR scrollview to top.
+    /// </summary>
+    public static void ResetAARScrollView() { ScrollRectExtension.ScrollToTop(stats.aarScrollView.GetComponent<ScrollRect>()); }
 }

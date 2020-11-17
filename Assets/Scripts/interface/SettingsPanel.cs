@@ -86,7 +86,6 @@ public class SettingsPanel : MonoBehaviour {
         settings.settingsPanel.transform.localScale = new Vector3(1f, 1f, 1f);
         settings.steamDataContainer.SetActive(true);
         settings.mainMenuCanvas.SetActive(true);
-        //settings.devEventContainer.SetActive(false);
 
         if (LanguageSelect.languageSelectOpen) { LanguageSelect.CloseLanguageSelect_Static(); }
 
@@ -106,7 +105,6 @@ public class SettingsPanel : MonoBehaviour {
         settings.settingsPanel.transform.localScale = new Vector3(0f, 0f, 1f);
         settings.steamDataContainer.SetActive(false);
         settings.mainMenuCanvas.SetActive(false);
-        //settings.devEventContainer.SetActive(true);
 
         // If language select/notification object active, hide
         if (LanguageSelect.languageSelectOpen) { LanguageSelect.CloseLanguageSelect_Static(); }
@@ -127,14 +125,14 @@ public class SettingsPanel : MonoBehaviour {
     /// Opens 'AfterActionReport' panel. [EVENT]
     /// </summary>
     public static void OpenAfterActionReport() {
-        //settings.darkenBackground.SetActive(true);
         settings.mainMenuCanvas.SetActive(true);
-        if (ExtraSettings.showExtraStats) {
-            settings.extendedStatsPanel.SetActive(true);
-        }
+        if (ExtraSettings.showExtraStats) { settings.extendedStatsPanel.SetActive(true); }
         OpenAction();
+
         settings.afterPanel.transform.localScale = new Vector3(1f, 1f, 1f);
         afterActionReportOpen                    = true;
+
+        StatsManager.ResetAARScrollView();
         GameUI.HideWidgetsUI();
 
         // EVENT:: for AAR panel being opened
@@ -149,6 +147,7 @@ public class SettingsPanel : MonoBehaviour {
         settings.mainMenuCanvas.SetActive(false);
         settings.extendedStatsPanel.SetActive(false);
         CloseAction();
+
         settings.afterPanel.transform.localScale = new Vector3(0f, 0f, 1f);
         afterActionReportOpen                    = false;
 
