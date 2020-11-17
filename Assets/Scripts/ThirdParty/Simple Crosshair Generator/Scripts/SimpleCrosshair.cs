@@ -124,9 +124,9 @@ public class SimpleCrosshair : MonoBehaviour
         blueValue      = newCrosshairString.Substring(15, 3);
         alphaValue     = newCrosshairString.Substring(18, 3);
 
-        if (sizeValue != "00") {      sizeValueInt      = int.Parse(sizeValue.TrimStart(new char[] { '0' })); }      else { return false; }
+        if (sizeValue == "00") {      sizeValueInt      = 0; } else { sizeValueInt      = int.Parse(sizeValue.TrimStart(new char[] { '0' })); }
         if (thicknessValue != "00") { thicknessValueInt = int.Parse(thicknessValue.TrimStart(new char[] { '0' })); } else { return false; }
-        if (gapValue != "00") {       gapValueInt       = int.Parse(gapValue.TrimStart(new char[] { '0' })); }       else { return false; }
+        if (gapValue == "00") {       gapValueInt       = 0; } else { gapValueInt       = int.Parse(gapValue.TrimStart(new char[] { '0' })); }
 
         if (redValue == "000") {   redValueInt   = 0; } else { redValueInt   = int.Parse(redValue.TrimStart(new char[] { '0' })); }
         if (greenValue == "000") { greenValueInt = 0; } else { greenValueInt = int.Parse(greenValue.TrimStart(new char[] { '0' })); }
@@ -233,9 +233,9 @@ public class SimpleCrosshair : MonoBehaviour
     public bool ValidateCrosshairValues(int tstyle, int centerDot, int size, int thickness, int gap, int outlineEnable, int red, int green, int blue, int alpha) {
         if (tstyle < 0 || tstyle > 1)               { return false; }
         if (centerDot < 0 || centerDot > 1)         { return false; }
-        if (size < 1 || size > 45)                  { return false; }
+        if (size < 0 || size > 45)                  { return false; }
         if (thickness < 1 || thickness > 15)        { return false; }
-        if (gap < 1 || gap > 25)                    { return false; }
+        if (gap < 0 || gap > 25)                    { return false; }
         if (outlineEnable < 0 || outlineEnable > 1) { return false; }
         if (red < 0 || red > 255)                   { return false; }
         if (green < 0 || green > 255)               { return false; }
