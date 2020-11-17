@@ -58,6 +58,8 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
         clickedButtonBorder.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         clickedButtonBorder.SetActive(true);
 
+        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
+
         // Populate selected gamemode based on button clicked in gamemode settings panel.
         GamemodeSelect.PopulateGamemodeSelect(gamemodeClickedName, CosmeticsSettings.quickStartGame);
 
@@ -84,7 +86,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
         clickedButtonBorder.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         clickedButtonBorder.SetActive(true);
 
-        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound02(); }
+        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
 
         // Replace all currently spawned targets colors.
         SpawnTargets.ReplaceCurrentTargetColors(targetColorClickedName);

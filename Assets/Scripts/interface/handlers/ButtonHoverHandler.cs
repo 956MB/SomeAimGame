@@ -26,7 +26,7 @@ public class ButtonHoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
             childBorder.SetActive(true);
             SetHoverButtonText(buttonName);
             //CursorHandler.setHoverCursorStatic();
-            if (ToggleHandler.UISoundOn()) { UISound.PlayUISound(); }
+            if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Hover(); }
 
         }
     }

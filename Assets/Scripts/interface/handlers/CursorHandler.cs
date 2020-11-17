@@ -34,7 +34,7 @@ public class CursorHandler : MonoBehaviour {
     public void setHoverCursor() {
         //Cursor.SetCursor(cursor.hoverCursorTexture, cursor.hotSpot, cursor.cursorMode);
         if (ToggleHandler.UISoundOn())
-            UISound.PlayUISound();
+            UISound.PlayUISound_Hover();
     }
 
     //public static void ChangeCursor(WindowsCursor cursor) {

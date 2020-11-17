@@ -56,7 +56,7 @@ public class SubMenuHandler : MonoBehaviour {
 
         CrosshairOptionsObject.SaveCrosshairObject(false);
 
-        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound02(); }
+        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
     }
 
     /// <summary>
@@ -64,7 +64,10 @@ public class SubMenuHandler : MonoBehaviour {
     /// </summary>
     /// <param name="subMenuText"></param>
     public void SetHoveredSubMenuColor(TMP_Text subMenuText) {
-        if (subMenuText.name != activeSubMenuText) { subMenuText.color = hoveredSubMenuTextColor; }
+        if (subMenuText.name != activeSubMenuText) {
+            subMenuText.color = hoveredSubMenuTextColor;
+            if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Hover(); }
+        }
     }
 
     /// <summary>
