@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 public class LanguageSetting : MonoBehaviour {
-    public static string activeLanguageCode = "ENG";
+    public static string activeLanguageCode = "EN";
 
     private static LanguageSetting languageSetting;
     void Awake() { languageSetting = this; }

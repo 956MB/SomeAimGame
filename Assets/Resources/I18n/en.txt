@@ -178,13 +178,13 @@ extrastatshighscore=Highscore
 #
 #
 # // widgets
-fpswidgetpre=FPS
-timewidgetpre=TIME
-scorewidgetpre=SCORE
-accuracywidgetpre=ACCURACY
-streakwidgetpre=STREAK
-ttkwidgetpre=TTK
-kpswidgetpre=KPS
+fpswidgetpre=FPS:
+timewidgetpre=TIME:
+scorewidgetpre=SCORE:
+accuracywidgetpre=ACCURACY:
+streakwidgetpre=STREAK:
+ttkwidgetpre=TTK:
+kpswidgetpre=KPS:
 #
 #
 # // tooltips

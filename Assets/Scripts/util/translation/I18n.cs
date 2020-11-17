@@ -50,12 +50,12 @@ public class I18n : MonoBehaviour {
         string allTexts, key, value;
 
         // Language esting
-        lang = "ENG"; // "JPN" "ARA" "CHI" "KOR" "RUS" "ENG" "FIN"
+        lang = "EN"; // "JA" "AR" "ZH" "KO" "RU" "EN" "FI"
 
         LanguageSelect.SetLanguageCodeText(lang);
         var textAsset = Resources.Load(@"I18n/" + lang.ToLower()); //no .txt needed
 
-        if (textAsset == null) { textAsset = Resources.Load(@"I18n/eng") as TextAsset; } //no .txt needed
+        if (textAsset == null) { textAsset = Resources.Load(@"I18n/en") as TextAsset; } //no .txt needed
         if (textAsset == null) { Debug.LogError("File not found for I18n: Assets/Resources/I18n/" + lang + ".txt"); }
 
         allTexts = (textAsset as TextAsset).text;
@@ -97,7 +97,7 @@ public class I18n : MonoBehaviour {
     /// <returns>The 2-letter ISO code from system language.</returns>
     public static string Get2LetterISOCodeFromSystemLanguage() {
         SystemLanguage lang = Application.systemLanguage;
-        string langCode = "ENG"; // "EN";
+        string langCode = "EN"; // "ENG";
 
         switch (lang) {
             //case SystemLanguage.Afrikaans:          langCode = "AF"; break; // "AF";
@@ -106,16 +106,16 @@ public class I18n : MonoBehaviour {
             //case SystemLanguage.Belarusian:         langCode = "BY"; break; // "BY";
             //case SystemLanguage.Bulgarian:          langCode = "BG"; break; // "BG";
             //case SystemLanguage.Catalan:            langCode = "CA"; break; // "CA";
-            case SystemLanguage.Chinese:              langCode = "CHI"; break; // "ZH";
-            case SystemLanguage.ChineseSimplified:    langCode = "CHI"; break; // "ZH";
-            case SystemLanguage.ChineseTraditional:   langCode = "CHI"; break; // "ZH";
+            case SystemLanguage.Chinese:              langCode = "ZH"; break; // "CHI";
+            case SystemLanguage.ChineseSimplified:    langCode = "ZH"; break; // "CHI";
+            case SystemLanguage.ChineseTraditional:   langCode = "ZH"; break; // "CHI";
             //case SystemLanguage.Czech:              langCode = "CS"; break; // "CS";
             //case SystemLanguage.Danish:             langCode = "DA"; break; // "DA";
             //case SystemLanguage.Dutch:              langCode = "NL"; break; // "NL";
-            case SystemLanguage.English:              langCode = "ENG"; break; // "EN";
+            case SystemLanguage.English:              langCode = "EN"; break; // "ENG";
             //case SystemLanguage.Estonian:           langCode = "ET"; break; // "ET";
             //case SystemLanguage.Faroese:            langCode = "FO"; break; // "FO";
-            case SystemLanguage.Finnish:              langCode = "FIN"; break; // "FI";
+            case SystemLanguage.Finnish:              langCode = "FI"; break; // "FIN";
             //case SystemLanguage.French:             langCode = "FR"; break; // "FR";
             //case SystemLanguage.German:             langCode = "DE"; break; // "DE";
             //case SystemLanguage.Greek:              langCode = "EL"; break; // "EL";
@@ -124,15 +124,15 @@ public class I18n : MonoBehaviour {
             //case SystemLanguage.Icelandic:          langCode = "IS"; break; // "IS";
             //case SystemLanguage.Indonesian:         langCode = "IN"; break; // "IN";
             //case SystemLanguage.Italian:            langCode = "IT"; break; // "IT";
-            case SystemLanguage.Japanese:             langCode = "JPN"; break; // "JA";
-            case SystemLanguage.Korean:               langCode = "KOR"; break; // "KO";
+            case SystemLanguage.Japanese:             langCode = "JA"; break; // "JPN";
+            case SystemLanguage.Korean:               langCode = "KO"; break; // "KOR";
             //case SystemLanguage.Latvian:            langCode = "LV"; break; // "LV";
             //case SystemLanguage.Lithuanian:         langCode = "LT"; break; // "LT";
             //case SystemLanguage.Norwegian:          langCode = "NO"; break; // "NO";
             //case SystemLanguage.Polish:             langCode = "PL"; break; // "PL";
             //case SystemLanguage.Portuguese:         langCode = "PT"; break; // "PT";
             //case SystemLanguage.Romanian:           langCode = "RO"; break; // "RO";
-            case SystemLanguage.Russian:              langCode = "RUS"; break; // "RU";
+            case SystemLanguage.Russian:              langCode = "RU"; break; // "RUS";
             //case SystemLanguage.SerboCroatian:      langCode = "SH"; break; // "SH";
             //case SystemLanguage.Slovak:             langCode = "SK"; break; // "SK";
             //case SystemLanguage.Slovenian:          langCode = "SL"; break; // "SL";
@@ -141,7 +141,7 @@ public class I18n : MonoBehaviour {
             //case SystemLanguage.Thai:               langCode = "TH"; break; // "TH";
             //case SystemLanguage.Turkish:            langCode = "TR"; break; // "TR";
             //case SystemLanguage.Ukrainian:          langCode = "UK"; break; // "UK";
-            case SystemLanguage.Unknown:              langCode = "ENG"; break; // "EN";
+            case SystemLanguage.Unknown:              langCode = "EN"; break; // "ENG";
             //case SystemLanguage.Vietnamese:         langCode = "VI"; break; // "VI";
         }
 
