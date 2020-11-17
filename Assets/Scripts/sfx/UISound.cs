@@ -15,7 +15,7 @@ public class UISound : MonoBehaviour {
     /// <summary>
     /// Plays UI sound 01.
     /// </summary>
-    public static void PlayUISound() {
+    public static void PlayUISound_Hover() {
         // TODO: if playHitSound enabled
         if (audioSrc != null) {
             audioSrc.PlayOneShot(uiSound.uiSoundSrc01);
@@ -28,7 +28,7 @@ public class UISound : MonoBehaviour {
     /// <summary>
     /// Plays UI sounds 02.
     /// </summary>
-    public static void PlayUISound02() {
+    public static void PlayUISound_Click() {
         // TODO: if playHitSound enabled
         if (audioSrc != null) {
             audioSrc.PlayOneShot(uiSound.uiSoundSrc02);
