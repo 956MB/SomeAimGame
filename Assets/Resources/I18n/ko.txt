@@ -178,13 +178,13 @@ extrastatshighscore=높은 점수
 #
 #
 # // widgets
-fpswidgetpre=초당 프레임
-timewidgetpre=시각
-scorewidgetpre=점수
-accuracywidgetpre=정확성
-streakwidgetpre=줄
-ttkwidgetpre=죽일 시간
-kpswidgetpre=초당 킬
+fpswidgetpre=FPS:
+timewidgetpre=시각:
+scorewidgetpre=점수:
+accuracywidgetpre=정확성:
+streakwidgetpre=줄:
+ttkwidgetpre=TTK:
+kpswidgetpre=KPS:
 #
 #
 # // tooltips

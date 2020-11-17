@@ -178,13 +178,13 @@ extrastatshighscore=Рекорд
 #
 #
 # // widgets
-fpswidgetpre=FPS
-timewidgetpre=ВРЕМЯ
-scorewidgetpre=ГОЛ
-accuracywidgetpre=ТОЧНОСТЬ
-streakwidgetpre=СТРИК
-ttkwidgetpre=TTK
-kpswidgetpre=KPS
+fpswidgetpre=FPS:
+timewidgetpre=ВРЕМЯ:
+scorewidgetpre=ГОЛ:
+accuracywidgetpre=ТОЧНОСТЬ:
+streakwidgetpre=СТРИК:
+ttkwidgetpre=TTK:
+kpswidgetpre=KPS:
 #
 #
 # // tooltips

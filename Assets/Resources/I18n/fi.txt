@@ -178,13 +178,13 @@ extrastatshighscore=Ennätys
 #
 #
 # // widgets
-fpswidgetpre=FPS
-timewidgetpre=AIKA
-scorewidgetpre=PISTEET
-accuracywidgetpre=TARKKUUS
-streakwidgetpre=VIIVA
-ttkwidgetpre=TTK
-kpswidgetpre=KPS
+fpswidgetpre=FPS:
+timewidgetpre=AIKA:
+scorewidgetpre=PISTEET:
+accuracywidgetpre=TARKKUUS:
+streakwidgetpre=VIIVA:
+ttkwidgetpre=TTK:
+kpswidgetpre=KPS:
 #
 #
 # // tooltips

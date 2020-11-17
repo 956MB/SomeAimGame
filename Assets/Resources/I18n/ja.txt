@@ -178,13 +178,13 @@ extrastatshighscore=高得点
 #
 #
 # // widgets
-fpswidgetpre=FPS
-timewidgetpre=時間
-scorewidgetpre=スコア
-accuracywidgetpre=正確さ
-streakwidgetpre=ストリーク
-ttkwidgetpre=TTK
-kpswidgetpre=KPS
+fpswidgetpre=FPS:
+timewidgetpre=時間:
+scorewidgetpre=スコア:
+accuracywidgetpre=正確さ:
+streakwidgetpre=ストリーク:
+ttkwidgetpre=TTK:
+kpswidgetpre=KPS:
 #
 #
 # // tooltips
