@@ -44,7 +44,7 @@ public class QuitGame : MonoBehaviour {
 
     public static void OpenQuitConfirmation() {
         quit.confirmationContainer.SetActive(true);
-        quit.quitButton.SetActive(true);
+        //quit.quitButton.SetActive(true);
         quit.cancelButton.SetActive(true);
         gameQuitConfirmationOpen = true;
         gameQuitButtonOpen       = true;
@@ -53,7 +53,7 @@ public class QuitGame : MonoBehaviour {
 
     public static void CloseQuitConfirmation() {
         quit.confirmationContainer.SetActive(false);
-        quit.quitButton.SetActive(false);
+        //quit.quitButton.SetActive(false);
         quit.cancelButton.SetActive(false);
 
         gameQuitConfirmationOpen                          = false;
