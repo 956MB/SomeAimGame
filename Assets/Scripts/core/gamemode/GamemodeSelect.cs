@@ -4,9 +4,11 @@ using TMPro;
 
 public class GamemodeSelect : MonoBehaviour {
     public GameObject gamemodeSelectObject;
-    public TMP_Text gamemodeNameText, gamemodeTypeText, gamemodeDescriptionText;
+    public TMP_Text gamemodeNameText, gamemodeTypeText, gamemodeDescriptionText, gamemodeStartButtonText;
+    public TMP_Text gamemodeScatterText, gamemodeFlickText, gamemodeGridText, gamemodeGrid2Text, gamemodePairsText, gamemodeFollowText;
+    public static TMP_Text selectedGamemodeText;
     public VideoPlayer gamemodePreviewVideoRT;
-    public TMP_Text gamemodeStartButtonText;
+
 
     private static Gamemode currentOpenGamemode;
 
@@ -133,7 +135,7 @@ gamemodeDescription) {
                 return;
             }
             //Debug.Log(currentOpenGamemode);
-            SettingsPanel.ToggleSettingsPanel();
+            //SettingsPanel.ToggleSettingsPanel();
             //Debug.Log("before save");
             CosmeticsSettings.SaveGamemodeItem(currentOpenGamemode);
             //Debug.Log("after save, before start new gamemode");
@@ -142,5 +144,24 @@ gamemodeDescription) {
         } else {
             NotificationHandler.ShowTimedNotification_Translated($"gamemodecaps{GamemodeType.ReturnGamemodeType_StringShort(currentOpenGamemode).ToLower()}", $": {I18nTextTranslator.SetTranslatedText("selectedgamemodewarning")}", NotificationHandler.notificationColorYellow);
         }
+    }
+
+    /// <summary>
+    /// Clears all gamemode button text colors, then sets selected text color.
+    /// </summary>
+    /// <param name="buttonText"></param>
+    /// <param name="selected"></param>
+    /// <param name="clearColors"></param>
+    public static void ClearGamemodeButtonColors(TMP_Text buttonText, bool selected, bool clearColors) {
+        if (clearColors) {
+            gamemodeSelect.gamemodeScatterText.color = InterfaceColors.hoveredColor;
+            gamemodeSelect.gamemodeFlickText.color   = InterfaceColors.hoveredColor;
+            gamemodeSelect.gamemodeGridText.color    = InterfaceColors.hoveredColor;
+            gamemodeSelect.gamemodeGrid2Text.color   = InterfaceColors.hoveredColor;
+            gamemodeSelect.gamemodePairsText.color   = InterfaceColors.hoveredColor;
+            gamemodeSelect.gamemodeFollowText.color  = InterfaceColors.hoveredColor;
+        }
+
+        if (selected) { buttonText.color = InterfaceColors.selectedColor; } else { buttonText.color = InterfaceColors.hoveredColor; }
     }
 }

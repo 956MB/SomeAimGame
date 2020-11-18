@@ -4,9 +4,6 @@ using TMPro;
 
 public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public TMP_Text text30, text60, text90, text120;
-    private static Color32 selectedTextColor   = new Color32(255, 255, 255, 255);
-    private static Color32 hoveredTextColor    = new Color32(255, 255, 255, 190);
-    private static Color32 unselectedTextColor = new Color32(255, 255, 255, 120);
     public static string selectedTimeText      = "60Text (TMP)";
 
     private static ChangeGameTimer gameTimer;
@@ -28,7 +25,7 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
     /// <param name="clickedButtonText"></param>
     public void SetNewGameTimer(TMP_Text clickedButtonText) {
         ClearTimerButtons();
-        clickedButtonText.color = selectedTextColor;
+        clickedButtonText.color = InterfaceColors.selectedColor;
 
         switch (clickedButtonText.transform.name) {
             case "30Text (TMP)":  SetNewGameTimer(30, true);  break;
@@ -44,10 +41,11 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
     /// <param name="newGameTimer"></param>
     /// <param name="restartGame"></param>
     public static void SetNewGameTimer(int newGameTimer, bool restartGame) {
-        GameUI.timeCount = newGameTimer;
+        //GameUI.timeCount = newGameTimer;
         ExtraSettings.SaveGameTimerItem(newGameTimer);
+        SetGameTimerButton(newGameTimer);
 
-        if (restartGame) { GameUI.RestartGame(SpawnTargets.gamemode); }
+        if (restartGame) { GameUI.RestartGame(CosmeticsSettings.gamemode); }
     }
 
     /// <summary>
@@ -59,20 +57,20 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
         switch (setButton) {
             case 30:
-                gameTimer.text30.color = selectedTextColor;
-                selectedTimeText = "30Text (TMP)";
+                selectedTimeText       = "30Text (TMP)";
+                gameTimer.text30.color = InterfaceColors.selectedColor;
                 break;
             case 60:
-                gameTimer.text60.color = selectedTextColor;
-                selectedTimeText = "60Text (TMP)";
+                selectedTimeText       = "60Text (TMP)";
+                gameTimer.text60.color = InterfaceColors.selectedColor;
                 break;
             case 90:
-                gameTimer.text90.color = selectedTextColor;
-                selectedTimeText = "90Text (TMP)";
+                selectedTimeText       = "90Text (TMP)";
+                gameTimer.text90.color = InterfaceColors.selectedColor;
                 break;
             case 120:
-                gameTimer.text120.color = selectedTextColor;
-                selectedTimeText = "120Text (TMP)";
+                selectedTimeText        = "120Text (TMP)";
+                gameTimer.text120.color = InterfaceColors.selectedColor;
                 break;
         }
     }
@@ -81,21 +79,21 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
     /// Clears all time buttons in settings panel (general sub-section) to unselected color.
     /// </summary>
     public static void ClearTimerButtons() {
-        gameTimer.text30.color  = unselectedTextColor;
-        gameTimer.text60.color  = unselectedTextColor;
-        gameTimer.text90.color  = unselectedTextColor;
-        gameTimer.text120.color = unselectedTextColor;
+        gameTimer.text30.color  = InterfaceColors.unselectedColor;
+        gameTimer.text60.color  = InterfaceColors.unselectedColor;
+        gameTimer.text90.color  = InterfaceColors.unselectedColor;
+        gameTimer.text120.color = InterfaceColors.unselectedColor;
     }
 
     public static void SetHoveredTimeText_Color(GameObject hoveredTimeText) {
         if (hoveredTimeText.name != selectedTimeText) {
-            hoveredTimeText.GetComponent<TMP_Text>().color = selectedTextColor;
+            hoveredTimeText.GetComponent<TMP_Text>().color = InterfaceColors.hoveredColor;
             if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Hover(); }
         }
     }
 
     public static void ClearHoveredTimeText_Color() {
         ClearTimerButtons();
-        GameObject.Find(selectedTimeText).GetComponent<TMP_Text>().color = selectedTextColor;
+        GameObject.Find(selectedTimeText).GetComponent<TMP_Text>().color = InterfaceColors.selectedColor;
     }
 }
