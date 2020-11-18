@@ -9,12 +9,7 @@ public class GamemodeSelect : MonoBehaviour {
     public static TMP_Text selectedGamemodeText;
     public VideoPlayer gamemodePreviewVideoRT;
 
-
     private static Gamemode currentOpenGamemode;
-
-    private static Color32 easyColor   = new Color32(0, 255, 0, 255);
-    private static Color32 mediumColor = new Color32(255, 209, 0, 255);
-    private static Color32 hardColor   = new Color32(255, 0, 0, 255);
 
     public VideoClip gamemodeScatterClip, gamemodeFlickClip, gamemodeGridClip, gamemodeGrid2Clip, gamemodePairsClip, gamemodeFollowClip;
     public static VideoClip gamemodeScatterClip_Loaded, gamemodeFlickClip_Loaded, gamemodeGridClip_Loaded, gamemodeGrid2Clip_Loaded, gamemodePairsClip_Loaded, gamemodeFollowClip_Loaded;
@@ -49,22 +44,22 @@ public class GamemodeSelect : MonoBehaviour {
 
             switch (gamemodeName) {
                 case Gamemode.Scatter:
-                    PopulateAllGamemodeInfo(gamemodeScatterClip_Loaded, "gamemodestartscatter", "gamemodecapsscatter", "gamemodetypespeed", easyColor, "gamemodescatterdescription");
+                    PopulateAllGamemodeInfo(gamemodeScatterClip_Loaded, "gamemodestartscatter", "gamemodecapsscatter", "gamemodetypespeed", InterfaceColors.gamemodeEasyColor, "gamemodescatterdescription");
                     break;
                 case Gamemode.Flick:
-                    PopulateAllGamemodeInfo(gamemodeFlickClip_Loaded, "gamemodestartflick", "gamemodecapsflick", "gamemodetypecontrol", easyColor, "gamemodeflickdescription");
+                    PopulateAllGamemodeInfo(gamemodeFlickClip_Loaded, "gamemodestartflick", "gamemodecapsflick", "gamemodetypecontrol", InterfaceColors.gamemodeEasyColor, "gamemodeflickdescription");
                     break;
                 case Gamemode.Grid:
-                    PopulateAllGamemodeInfo(gamemodeGridClip_Loaded, "gamemodestartgrid", "gamemodecapsgrid", "gamemodetypespeed", easyColor, "gamemodegriddescription");
+                    PopulateAllGamemodeInfo(gamemodeGridClip_Loaded, "gamemodestartgrid", "gamemodecapsgrid", "gamemodetypespeed", InterfaceColors.gamemodeEasyColor, "gamemodegriddescription");
                     break;
                 case Gamemode.Grid2:
-                    PopulateAllGamemodeInfo(gamemodeGrid2Clip_Loaded, "gamemodestartgrid2", "gamemodecapsgrid2", "gamemodetypecontrol", hardColor, "gamemodegrid2description");
+                    PopulateAllGamemodeInfo(gamemodeGrid2Clip_Loaded, "gamemodestartgrid2", "gamemodecapsgrid2", "gamemodetypecontrol", InterfaceColors.gamemodeHardColor, "gamemodegrid2description");
                     break;
                 case Gamemode.Pairs:
-                    PopulateAllGamemodeInfo(gamemodePairsClip_Loaded, "gamemodestartpairs", "gamemodecapspairs", "gamemodetypecontrol", mediumColor, "gamemodepairsdescription");
+                    PopulateAllGamemodeInfo(gamemodePairsClip_Loaded, "gamemodestartpairs", "gamemodecapspairs", "gamemodetypecontrol", InterfaceColors.gamemodeMediumColor, "gamemodepairsdescription");
                     break;
                 case Gamemode.Follow:
-                    PopulateAllGamemodeInfo(gamemodeFollowClip_Loaded, "gamemodestartfollow", "gamemodecapsfollow", "gamemodetypetracking", mediumColor, "gamemodefollowdescription");
+                    PopulateAllGamemodeInfo(gamemodeFollowClip_Loaded, "gamemodestartfollow", "gamemodecapsfollow", "gamemodetypetracking", InterfaceColors.gamemodeMediumColor, "gamemodefollowdescription");
                     break;
             }
         }
@@ -142,7 +137,7 @@ gamemodeDescription) {
             SpawnTargets.StartNewGamemode(currentOpenGamemode);
             //Debug.Log("after start new gamemode");
         } else {
-            NotificationHandler.ShowTimedNotification_Translated($"gamemodecaps{GamemodeType.ReturnGamemodeType_StringShort(currentOpenGamemode).ToLower()}", $": {I18nTextTranslator.SetTranslatedText("selectedgamemodewarning")}", NotificationHandler.notificationColorYellow);
+            NotificationHandler.ShowTimedNotification_Translated($"gamemodecaps{GamemodeType.ReturnGamemodeType_StringShort(currentOpenGamemode).ToLower()}", $": {I18nTextTranslator.SetTranslatedText("selectedgamemodewarning")}", InterfaceColors.notificationColorYellow);
         }
     }
 

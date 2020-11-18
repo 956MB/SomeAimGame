@@ -10,11 +10,6 @@ public class NotificationHandler : MonoBehaviour {
     public static bool notificationOpen                    = false;
     private static WaitForSeconds notificationDestroyDelay = new WaitForSeconds(3.5f);
 
-    public static Color32 notificationColorGreen  = new Color32(0, 255, 0, 255);
-    public static Color32 notificationColorYellow = new Color32(255, 209, 0, 255);
-    public static Color32 notificationColorRed    = new Color32(255, 0, 0, 255);
-    public static Color32 notificationColorWhite  = new Color32(255, 255, 255, 255);
-
     public static NotificationHandler notification;
     private void Awake() {
         notification            = this;

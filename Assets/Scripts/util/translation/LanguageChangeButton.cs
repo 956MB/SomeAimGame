@@ -13,13 +13,13 @@ public class LanguageChangeButton : MonoBehaviour, IPointerClickHandler {
 
         if (newLangCode != LanguageSetting.activeLanguageCode) {
             LanguageSelect.SetLanguageCodeText(newLangCode);
-            NotificationHandler.ShowTimedNotification_String($"{newLangCode}: {I18nTextTranslator.SetTranslatedText("languagerestartnotification")}", NotificationHandler.notificationColorGreen);
+            NotificationHandler.ShowTimedNotification_String($"{newLangCode}: {I18nTextTranslator.SetTranslatedText("languagerestartnotification")}", InterfaceColors.notificationColorGreen);
             LanguageSetting.SaveLanguageCodeItem(newLangCode);
 
             // EVENT:: for new game language set
             //DevEventHandler.CheckLanguageEvent($"{I18nTextTranslator.SetTranslatedText("eventlanguagegameset")} [{newLangCode}]");
         } else {
-            NotificationHandler.ShowTimedNotification_String($"{newLangCode}: {I18nTextTranslator.SetTranslatedText("languageactive")}", NotificationHandler.notificationColorRed);
+            NotificationHandler.ShowTimedNotification_String($"{newLangCode}: {I18nTextTranslator.SetTranslatedText("languageactive")}", InterfaceColors.notificationColorRed);
         }
     }
 }

@@ -33,7 +33,7 @@ public class LanguageSelect : MonoBehaviour {
             langSelect.languageCodeSelectObject.SetActive(!languageSelectOpen);
             languageSelectOpen = !languageSelectOpen;
         } else {
-            NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("languagetemporarilydisabled")}", NotificationHandler.notificationColorYellow);
+            NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("languagetemporarilydisabled")}", InterfaceColors.notificationColorYellow);
         }
 
         //if (languageSelectOpen) {
