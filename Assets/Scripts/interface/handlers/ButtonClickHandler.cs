@@ -55,13 +55,14 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     public void SelectNewGamemode(GameObject clickedButtonBorder) {
         gamemodeClickedName = GamemodeType.ReturnGamemodeType_Gamemode(clickedButtonBorder.transform.parent.name);
         ClearGamemodeButtonBorders();
-        clickedButtonBorder.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        clickedButtonBorder.GetComponent<Image>().color = InterfaceColors.selectedColor;
         clickedButtonBorder.SetActive(true);
 
         if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
 
         // Populate selected gamemode based on button clicked in gamemode settings panel.
         GamemodeSelect.PopulateGamemodeSelect(gamemodeClickedName, CosmeticsSettings.quickStartGame);
+        GamemodeSelect.ClearGamemodeButtonColors(GameObject.Find($"{GamemodeType.ReturnGamemodeType_StringFull(gamemodeClickedName)}-Text (TMP)").GetComponent<TMP_Text>(), true, true);
 
         // EVENT:: for new gamemode button clicked
         //DevEventHandler.CheckInterfaceEvent($"\"{gamemodeClickedName}\" {I18nTextTranslator.SetTranslatedText("eventinterfacegamemodebutton")}");
@@ -83,7 +84,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
         SpawnTargets.targetColorReset = true;
         ClearTargetColorButtonBorders();
         ButtonHoverHandler.selectedTargetColor = targetColorClickedName;
-        clickedButtonBorder.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        clickedButtonBorder.GetComponent<Image>().color = InterfaceColors.selectedColor;
         clickedButtonBorder.SetActive(true);
 
         if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
@@ -141,7 +142,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
         ClearSkyboxButtonBorders();
         //Debug.Log("GHJGJHGHGGHJGHGHJG:: " + skyboxClickedName);
         ButtonHoverHandler.selectedSkybox               = skyboxClickedName;
-        clickedButtonBorder.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        clickedButtonBorder.GetComponent<Image>().color = InterfaceColors.selectedColor;
         clickedButtonBorder.SetActive(true);
 
         // Set new skybox, then save currently selected skybox in cosmetics.
@@ -184,7 +185,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     public static void ClearGamemodeButtonBorders() {
         foreach (GameObject buttonBorder in GameObject.FindGameObjectsWithTag("ButtonBorderGamemode")) {
             if (buttonBorder != null) {
-                buttonBorder.GetComponent<Image>().color = new Color32(255, 255, 255, 120);
+                buttonBorder.GetComponent<Image>().color = InterfaceColors.unselectedColor;
                 buttonBorder.SetActive(false);
             }
         }
@@ -195,7 +196,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     public static void ClearTargetColorButtonBorders() {
         foreach (GameObject buttonBorder in GameObject.FindGameObjectsWithTag("ButtonBorderTargetColor")) {
             if (buttonBorder != null) {
-                buttonBorder.GetComponent<Image>().color = new Color32(255, 255, 255, 120);
+                buttonBorder.GetComponent<Image>().color = InterfaceColors.unselectedColor;
                 buttonBorder.SetActive(false);
             }
         }
@@ -206,7 +207,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     public static void ClearSkyboxButtonBorders() {
         foreach (GameObject buttonBorder in GameObject.FindGameObjectsWithTag("ButtonBorderSkybox")) {
             if (buttonBorder != null) {
-                buttonBorder.GetComponent<Image>().color = new Color32(255, 255, 255, 120);
+                buttonBorder.GetComponent<Image>().color = InterfaceColors.unselectedColor;
                 buttonBorder.SetActive(false);
             }
         }

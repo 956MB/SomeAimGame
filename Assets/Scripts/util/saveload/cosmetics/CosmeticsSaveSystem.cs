@@ -118,6 +118,7 @@ public class CosmeticsSaveSystem : MonoBehaviour {
 
         // Populates gamemode select panel with saved gamemode.
         GamemodeSelect.PopulateGamemodeSelect(gamemode, quickStart);
+        GamemodeSelect.ClearGamemodeButtonColors(GameObject.Find($"{GamemodeType.ReturnGamemodeType_StringFull(gamemode)}-Text (TMP)").GetComponent<TMP_Text>(), true, true);
 
         switch (gamemode) {
             case Gamemode.Scatter:
@@ -242,7 +243,7 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     /// </summary>
     /// <param name="gamemodeBorder"></param>
     private static void SetGamemodeBorder(GameObject gamemodeBorder) {
-        gamemodeBorder.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        gamemodeBorder.GetComponent<Image>().color = InterfaceColors.selectedColor;
         gamemodeBorder.SetActive(true);
     }
 
@@ -254,7 +255,7 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     /// <param name="activeText"></param>
     /// <param name="translatedTextID"></param>
     private static void SetCosmeticsItems(GameObject border, TMP_Text selectedText, string translatedTextID) {
-        border.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        border.GetComponent<Image>().color = InterfaceColors.selectedColor;
         border.SetActive(true);
         selectedText.SetText($"//  {I18nTextTranslator.SetTranslatedText(translatedTextID)}");
     }

@@ -25,6 +25,7 @@ public class ButtonHoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
         if (buttonName != TargetColorType.ReturnTargetColorType_StringFull(selectedTargetColor) && buttonName != SkyboxType.ReturnSkyboxType_StringFull(selectedSkybox) && buttonName != GamemodeType.ReturnGamemodeType_StringFull(selectedGamemode)) {
             childBorder.SetActive(true);
             SetHoverButtonText(buttonName);
+            if (currentHoveredButton.Contains("Gamemode")) { SetHoverButtonColor(buttonName, GameObject.Find($"{buttonName}-Text (TMP)").GetComponent<TMP_Text>()); }
             //CursorHandler.setHoverCursorStatic();
             if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Hover(); }
 
@@ -40,6 +41,9 @@ public class ButtonHoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
             childBorder.SetActive(false);
             targetColorSelected.SetText(CosmeticsSaveSystem.activeTargetColorText);
             skyboxSelected.SetText(CosmeticsSaveSystem.activeSkyboxText);
+
+            if (currentHoveredButton.Contains("Gamemode")) { GamemodeSelect.ClearGamemodeButtonColors(GameObject.Find($"{currentHoveredButton}-Text (TMP)").GetComponent<TMP_Text>(), false, true); }
+            if (currentHoveredButton.Contains("Gamemode")) { GamemodeSelect.ClearGamemodeButtonColors(GameObject.Find($"{selectedGamemodeString}-Text (TMP)").GetComponent<TMP_Text>(), true, false); }
         }
     }
 
@@ -100,5 +104,14 @@ public class ButtonHoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
         //} else if (buttonHoverName.Contains("Skybox")) {
         //    DevEventHandler.CheckInterfaceEvent($"\"{buttonHoverName}\" {I18nTextTranslator.SetTranslatedText("eventinterfaceskyboxbuttonhover")}");
         //}
+    }
+
+    /// <summary>
+    /// Sets hovered gamemode button text color to selected. (Usually hovered, but selected looks a bit better.)
+    /// </summary>
+    /// <param name="buttonName"></param>
+    /// <param name="childButtonText"></param>
+    private void SetHoverButtonColor(string buttonName, TMP_Text childButtonText) {
+        childButtonText.color = InterfaceColors.selectedColor;
     }
 }
