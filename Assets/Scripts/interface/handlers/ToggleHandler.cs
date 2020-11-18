@@ -13,18 +13,6 @@ public class ToggleHandler : MonoBehaviour {
             Debug.LogError("You have not set the target SimpleCrosshair. Disabling!");
             enabled = false;
         }
-
-        //SettingsPanel.CloseSettingsPanel();
-        //checkToggle = GetComponent<Toggle>();
-        //extraToggleName = extraToggle.name;
-        //try {
-            //checkToggle.onValueChanged.AddListener(delegate {
-            //    //Debug.Log($"extraToggle '{extraToggleName}' : {extraToggle.isOn}");
-            //    HandleToggle(checkToggle);
-            //});
-        //} catch (NullReferenceException NRE) {
-            //Debug.Log("Null reference exception here: " + NRE);
-        //}
     }
 
     /// <summary>
@@ -33,7 +21,6 @@ public class ToggleHandler : MonoBehaviour {
     /// <param name="toggleClicked"></param>
     public void HandleToggle(Toggle toggleClicked) {
         clickedToggleName = toggleClicked.name;
-        //Debug.Log("hhfiefbsifbsanbfgsubfgib");
 
         switch (clickedToggleName) {
             case "TargetSoundToggle": // Toggles target sound.

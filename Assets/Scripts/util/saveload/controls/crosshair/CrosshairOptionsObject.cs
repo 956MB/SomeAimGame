@@ -4,7 +4,6 @@ using TMPro;
 
 public class CrosshairOptionsObject : MonoBehaviour {
     public Slider crosshairSizeSlider, crosshairThicknessSlider, crosshairGapSlider, crosshairOutlineSlider, crosshairRedSlider, crosshairGreenSlider, crosshairBlueSlider, crosshairAlphaSlider;
-    //public Toggle TStyleToggle, centerDotToggle, OutlineEnabledToggle;
 
     public TMP_Text crosshairSizeValueText, crosshairThicknessValueText, crosshairGapValueText, crosshairOutlineValueText, crosshairRedValueText, crosshairGreenValueText, crosshairBlueValueText, crosshairAlphaValueText;
     public TMP_Text crosshairSizeValueTextPlaceholder, crosshairThicknessValueTextPlaceholder, crosshairGapValueTextPlaceholder, crosshairOutlineValueTextPlaceholder, crosshairRedValueTextPlaceholder, crosshairGreenValueTextPlaceholder, crosshairBlueValueTextPlaceholder, crosshairAlphaValueTextPlaceholder;
@@ -25,23 +24,14 @@ public class CrosshairOptionsObject : MonoBehaviour {
         }
 
         // Init all crosshair value sliders with listeners.
-        //crosshairOutlineSlider.onValueChanged.AddListener(delegate { setCrosshairOutlineThickness(); });
         crosshairSizeSlider.onValueChanged.AddListener(delegate { SetCrosshairSizeValue(); });
         crosshairThicknessSlider.onValueChanged.AddListener(delegate { SetThicknessSizeValue(); });
         crosshairGapSlider.onValueChanged.AddListener(delegate { SetGapSizeValue(); });
-        //crosshairOutlineSlider.onValueChanged.AddListener(delegate { SetOutlineSizeValue(); });
         crosshairRedSlider.onValueChanged.AddListener(delegate { SetRedValue(); });
         crosshairGreenSlider.onValueChanged.AddListener(delegate { SetGreenValue(); });
         crosshairBlueSlider.onValueChanged.AddListener(delegate { SetBlueValue(); });
         crosshairAlphaSlider.onValueChanged.AddListener(delegate { SetAlphaValue(); });
     }
-    /// <summary>
-    /// Sets crosshair outline thickness from slider, then saves value.
-    /// </summary>
-    //public static void SetCrosshairOutlineThicknessValue() {
-    //    crosshairOutlineThicknessValue = crosshairOptions.crosshairOutlineSlider.value;
-    //    crosshairOptions.simpleCrosshair.SetOutlineThickness((int)crosshairOutlineThicknessValue, true);
-    //    SetCrosshairOptionText(crosshairOptions.crosshairOutlineValueText, crosshairOptions.crosshairOutlineValueTextPlaceholder, crosshairOutlineThicknessValue);
 
     //    CrosshairSettings.SaveOutline(crosshairOutlineThicknessValue);
     //}
@@ -78,12 +68,6 @@ public class CrosshairOptionsObject : MonoBehaviour {
         CrosshairSettings.SaveGap(crosshairGapValue);
         if (!crossahairSaveReady) { crossahairSaveReady = true; }
     }
-    /// <summary>
-    /// Sets crosshair outline thickness from slider, then saves value.
-    /// </summary>
-    //public static void SetOutlineSizeValue() {
-    //    crosshairOutlineValue = crosshairOptions.crosshairOutlineSlider.value;
-    //    SetCrosshairOptionText(crosshairOptions.crosshairOutlineValueText, crosshairOptions.crosshairOutlineValueTextPlaceholder, crosshairOutlineValue);
 
     //    CrosshairSettings.SaveOutline(crosshairOutlineValue);
     //}

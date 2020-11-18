@@ -28,13 +28,4 @@ public class ConnectingLine2D : MonoBehaviour {
 
         this.line.SetPositions(checkPointArray);
     }
-
-    //void Update() {
-    //    // Check if the GameObjects are not null
-    //    if (gameObject1 != null && gameObject2 != null) {
-    //        // Update position of the two vertex of the Line Renderer
-    //        line.SetPosition(0, gameObject1.transform.position);
-    //        line.SetPosition(1, gameObject2.transform.position);
-    //    }
-    //}
 }

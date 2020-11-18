@@ -5,7 +5,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 using TMPro;
 
 public class CosmeticsSaveSystem : MonoBehaviour {
-    //public GameObject redTarget, greenTarget, blueTarget, yellowTarget, pinkTarget, whiteTarget;
     public GameObject targetColorRedBorder, targetColorOrangeBorder, targetColorYellowBorder, targetColorGreenBorder, targetColorBlueBorder, targetColorPurpleBorder, targetColorPinkBorder, targetColorWhiteBorder;
     public GameObject skyboxPinkBorder, skyboxGoldenBorder, skyboxNightBorder, skyboxGreyBorder, skyboxBlueBorder, skyboxSlateBorder;
     public GameObject gamemodeScatterBorder, gamemodeFlickBorder, gamemodeGridBorder, gamemodeGrid2Border, gamemodePairsBorder, gamemodeFollowBorder, gamemodePatrolBorder;
@@ -33,8 +32,6 @@ public class CosmeticsSaveSystem : MonoBehaviour {
         CosmeticsDataSerial cosmeticsData = new CosmeticsDataSerial();
         formatter.Serialize(stream, cosmeticsData);
         stream.Close();
-
-        //Debug.Log("after cosmetics settings save");
     }
 
     /// <summary>
@@ -69,12 +66,9 @@ public class CosmeticsSaveSystem : MonoBehaviour {
             SetGamemode(loadedCosmeticsData.gamemode, loadedCosmeticsData.quickStartGame);
             SetTargetColor(loadedCosmeticsData.targetColor, loadedCosmeticsData.gamemode);
             SetSkybox(loadedCosmeticsData.skybox);
-            //SetAfterActionReportPanel(loadedCosmeticsData.afterActionReportPanelX, loadedCosmeticsData.afterActionReportPanelY);
-            //SetExtraStatsPanel(loadedCosmeticsData.extraStatsPanelX, loadedCosmeticsData.extraStatsPanelY);
-
+            
             CosmeticsSettings.SaveAllCosmeticsToggleDefaults(loadedCosmeticsData.gamemode, loadedCosmeticsData.targetColor, loadedCosmeticsData.skybox, loadedCosmeticsData.afterActionReportPanelX, loadedCosmeticsData.afterActionReportPanelY, loadedCosmeticsData.extraStatsPanelX, loadedCosmeticsData.extraStatsPanelY, loadedCosmeticsData.quickStartGame);
         } else {
-            //Debug.Log("failed to init cosmetics in 'initSettingsDefaults', cosmetics: " + loadedCosmeticsData);
             InitCosmeticsSettingsDefaults();
         }
     }
@@ -144,9 +138,6 @@ public class CosmeticsSaveSystem : MonoBehaviour {
             case Gamemode.Follow:
                 SetGamemodeBorder(saveLoad.gamemodeFollowBorder);
                 break;
-            //case Gamemode.Scatter:
-            //    SetGamemodeBorder(saveLoad.gamemodePatrolBorder);
-            //    break;
         }
     }
 
@@ -161,7 +152,7 @@ public class CosmeticsSaveSystem : MonoBehaviour {
         } else {
             SpawnTargets.SetTargetColor(targetColor, false);
         }
-        //SpawnTargets.setTargetColor(targetColor, true);
+
         ButtonHoverHandler.selectedTargetColor = targetColor;
         ButtonClickHandler.ClearTargetColorButtonBorders();
 

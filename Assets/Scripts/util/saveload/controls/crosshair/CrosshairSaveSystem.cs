@@ -70,12 +70,10 @@ public class CrosshairSaveSystem : MonoBehaviour {
             } else {
                 SetCrosshairTStyleToggle(loadedCrosshairData.TStyle, true);
                 SetCrosshairOutlineToggle(loadedCrosshairData.outlineEnabled, true);
-                //SetCrosshairOutlineThickness(loadedCrosshairData.outline, true);
                 SetCrosshairCenterDotToggle(loadedCrosshairData.centerDot, true);
                 SetCrosshairSizeSlider(loadedCrosshairData.size, true);
                 SetCrosshairThicknessSlider(loadedCrosshairData.thickness, true);
                 SetCrosshairGapSlider(loadedCrosshairData.gap, true);
-                //SetCrosshairOutlineSlider(loadedCrosshairData.outline, true);
                 SetCrosshairRedSlider(loadedCrosshairData.red, true);
                 SetCrosshairGreenSlider(loadedCrosshairData.green, true);
                 SetCrosshairBlueSlider(loadedCrosshairData.blue, true);
@@ -171,15 +169,6 @@ public class CrosshairSaveSystem : MonoBehaviour {
         CrosshairSettings.SaveOutlineEnabled(setOutlineEnable);
     }
     /// <summary>
-    /// Sets crosshair thickness value to supplied float (setOutlineThickness), and redraws crosshair if bool true (redraw).
-    /// </summary>
-    /// <param name="setOutlineThickness"></param>
-    /// <param name="redraw"></param>
-    //public static void SetCrosshairOutlineThickness(float setOutlineThickness, bool redraw) {
-    //    crosshairSave.simpleCrosshair.SetOutlineThickness((int)setOutlineThickness, redraw);
-    //    CrosshairSettings.outline = setOutlineThickness;
-    //}
-    /// <summary>
     /// Sets crosshair size value, slider and text to supplied float (setSize), and redraws crosshair if bool true (redraw).
     /// </summary>
     /// <param name="setSize"></param>
@@ -212,10 +201,6 @@ public class CrosshairSaveSystem : MonoBehaviour {
         CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairGapValueText, crosshairSave.crosshairGapValueTextPlaceholder, setGap);
         CrosshairSettings.SaveGap(setGap);
     }
-    //public static void SetCrosshairOutlineSlider(float setOutline, bool redraw) {
-    //    crosshairSave.crosshairOutlineSlider.value = setOutline;
-    //    CrosshairSettings.outline = setOutline;
-    //}
     /// <summary>
     /// Sets crosshair red color value, slider and text to supplied float (setRed), and redraws crosshair if bool true (redraw).
     /// </summary>

@@ -5,7 +5,6 @@ public class FollowRaycast : MonoBehaviour {
     private Ray ray;
     private RaycastHit raycastHit;
     Material currentTargetRendererMaterial;
-    //Light targetLight;
     private bool targetPrimary    = true;
     private static int shotsHit   = 0;
     private static int shotsTaken = 0;
@@ -13,11 +12,6 @@ public class FollowRaycast : MonoBehaviour {
     private static FollowRaycast followRaycast;
     void Awake() { followRaycast = this; }
     private Color followTargetAlbedo, followTargetEmission, followTargetLight;
-
-    //void Start() {
-    //    currentTargetRendererMaterial = GenerateFollowPath.pathFollowerTarget.GetComponent<Renderer>().material;
-    //    targetLight = GenerateFollowPath.pathFollowerTarget.GetComponent<Light>();
-    //}
 
     void Update() {
         // Only if game timer is running and gamemode is "Gamemode-Follow".
@@ -28,19 +22,16 @@ public class FollowRaycast : MonoBehaviour {
                 if (raycastHit.transform.CompareTag("Target")) {
                     if (!MouseLook.settingsOpen) { GameUI.IncreaseScore_Follow(); }
                     shotsHit += 1;
-                    //Debug.Log($"Hit follow pos: {raycastHit.transform.position}");
 
                     if (!targetPrimary) {
                         try {
                             currentTargetRendererMaterial = GenerateFollowPath.pathFollowerTarget.GetComponent<Renderer>().material;
-                            //targetLight = GenerateFollowPath.pathFollowerTarget.GetComponent<Light>();
 
                             currentTargetRendererMaterial.SetColor("_Color", followRaycast.followTargetAlbedo);
                             currentTargetRendererMaterial.SetColor("_EmissionColor", followRaycast.followTargetEmission);
                         } catch (MissingReferenceException mre) {
                             Debug.Log("missing reference exception here: " + mre);
                         }
-                        //targetLight.color = followRaycast.followTargetLight;
                         targetPrimary = true;
                     }
                 }
@@ -50,7 +41,6 @@ public class FollowRaycast : MonoBehaviour {
                     if (targetPrimary) {
                         try {
                             currentTargetRendererMaterial = GenerateFollowPath.pathFollowerTarget.GetComponent<Renderer>().material;
-                            //targetLight = GenerateFollowPath.pathFollowerTarget.GetComponent<Light>();
 
                             currentTargetRendererMaterial.SetColor("_Color", TargetColors.RedAlbedo());
                             currentTargetRendererMaterial.SetColor("_EmissionColor", TargetColors.RedEmission());
@@ -58,7 +48,6 @@ public class FollowRaycast : MonoBehaviour {
                             Debug.Log("missing reference exception here: " + mre);
                         }
 
-                        //targetLight.color = TargetColors.RedLight();
                         targetPrimary = false;
                     }
                 }
@@ -79,11 +68,5 @@ public class FollowRaycast : MonoBehaviour {
         followRaycast.followTargetAlbedo   = albedo;
         followRaycast.followTargetEmission = emission;
         followRaycast.followTargetLight    = light;
-        //followRaycast.currentTargetRendererMaterial = GenerateFollowPath.pathFollowerTarget.GetComponent<Renderer>().material;
-        //followRaycast.targetLight = GenerateFollowPath.pathFollowerTarget.GetComponent<Light>();
-
-        //followRaycast.currentTargetRendererMaterial.SetColor("_Color", albedo);
-        //followRaycast.currentTargetRendererMaterial.SetColor("_EmissionColor", emission);
-        //followRaycast.targetLight.color = light;
     }
 }

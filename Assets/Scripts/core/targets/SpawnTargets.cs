@@ -14,11 +14,7 @@ public class SpawnTargets : MonoBehaviour {
     private static Vector3 normalTargetSize = new Vector3(2.6f, 2.6f, 2.6f);
     public static bool targetAreasDestroyed = false;
     public static bool cosmeticsLoaded      = false;
-    //Coroutine scatterCoroutine;
-    //IEnumerator spawnScatterCoroutine;
     public GameObject targetSpawnArea, secondaryTargetSpawnArea;
-    //RectTransform targetSpawnAreaRect, secondaryTargetSpawnAreaRect;
-    //public static float targetSpawnAreaWidth, secondaryTargetSpawnAreaWidth;
     private static Bounds targetSpawnAreaBounds;
     private static BoxCollider targetSpawnAreaBox;
 
@@ -30,10 +26,9 @@ public class SpawnTargets : MonoBehaviour {
 
     public static int shotsTaken, shotsHit, shotMisses, accuracy;
     public static Gamemode gamemode;
-    //public string targetColor;
     public static bool gamemodeRestart, targetColorReset;
 
-    // pairs
+    // Pairs
     public static bool pairStarterPrimaryActive, pairStarterSecondaryActive, pairStarterActive;
     public static GameObject secondaryTargetObject;
     public static Vector3 activePairLocation, starterTargetCords, targetSpawnAreaCenter;
@@ -45,40 +40,7 @@ public class SpawnTargets : MonoBehaviour {
     void Awake() {
         ST = this;
         scatterTargetSpawns = new List<Vector3>();
-        //targetSpawnAreaRect = (RectTransform)targetSpawnArea.transform;
-        //targetSpawnAreaWidth = targetSpawnAreaRect.rect.width;
-        //Debug.Log("spawnTargets Awake: " + gamemode);
-        //if (!gamemodeRestart) {
-        //    gamemode = "grid";
-        //    //Debug.Log("gamemodeRestart false, gamemode reset to scatter");
-        //}
-        //Debug.Log("SpawnTargets awake");
     }
-
-    //void Start() {
-    //    targetSpawnAreaRect = (RectTransform)targetSpawnArea.transform;
-    //    targetSpawnAreaWidth = targetSpawnAreaRect.rect.width;
-    //    secondaryTargetSpawnAreaRect = (RectTransform)targetSpawnArea.transform;
-    //    secondaryTargetSpawnAreaWidth = targetSpawnAreaRect.rect.width;
-    //}
-
-    //void Start() {
-    //    //if (!targetColorReset)
-    //    //setTargetColor(targetColor);
-    //    CosmeticsSaveSystem.initSavedSettings();
-
-    //    targetSpawnAreaBounds = ST.targetSpawnArea.GetComponent<BoxCollider>().bounds;
-    //    targetSize = targetObject.transform.lossyScale.y;
-    //    targetRb = targetObject.GetComponent<Rigidbody>();
-    //    targetRb.isKinematic = true;
-    //    targetSpawns = new List<Vector3>();
-
-    //    //Debug.Log("SpawnTargets start");
-    //    //scatterCoroutine = StartCoroutine(continuousScatterSpawn());
-    //    //scatterCoroutine = StartCoroutine(continuousScatterSpawn());
-    //    selectGamemode();
-    //    //yield return StartCoroutine(spawnScatterCoroutine);
-    //}
 
     /// <summary>
     /// Init game with target size, spawns list and saved gamemode. [EVENT]
@@ -186,8 +148,6 @@ public class SpawnTargets : MonoBehaviour {
     /// <param name="newGamemode"></param>
     public static void StartNewGamemode(Gamemode newGamemode) {
         GameUI.RestartGame(newGamemode);
-        //gamemode = newGamemode;
-        //selectGamemode();
     }
 
     /// <summary>
@@ -230,7 +190,6 @@ public class SpawnTargets : MonoBehaviour {
         preFallTargetSpawn = currentTargetObj.transform.position;
         count              += 1;
         totalCount         += 1;
-        //Debug.Log($"totalTargetCount: {totalCount}");
     }
 
     /// <summary>
@@ -326,7 +285,6 @@ public class SpawnTargets : MonoBehaviour {
         // Spawns both primary/secondary targets, then adds them to target spawns lists.
         currentTargetObj = Instantiate(primaryTargetObject, pairPrimary, Quaternion.identity);
         currentTargetObj = Instantiate(secondaryTargetObject, pairSecondary, Quaternion.identity);
-        //Debug.Log($"spawnPairs PAIRS : {pairPrimary} {pairSecondary} pairStarterPrimaryActive: {pairStarterPrimaryActive}, pairStarterSecondaryActive: {pairStarterSecondaryActive}");
         targetSpawns.Add(pairPrimary);
         targetSpawns.Add(pairSecondary);
         targetSpawnsPrimary.Add(pairPrimary);
@@ -377,13 +335,11 @@ public class SpawnTargets : MonoBehaviour {
             case "left":
                 randomX = UnityEngine.Random.Range(bounds.min.x + targetSize, bounds.max.x - targetSize);
                 randomY = UnityEngine.Random.Range(bounds.min.y + targetSize, bounds.max.y - targetSize);
-                //randomZ = UnityEngine.Random.Range(bounds.min.z + targetSize, targetSpawnAreaCenterY - targetSize);
                 randomZ = UnityEngine.Random.Range(bounds.min.z, bounds.center.z);
                 break;
             case "right":
                 randomX = UnityEngine.Random.Range(bounds.min.x + targetSize, bounds.max.x - targetSize);
                 randomY = UnityEngine.Random.Range(bounds.min.y + targetSize, bounds.max.y - targetSize);
-                //randomZ = UnityEngine.Random.Range(targetSpawnAreaCenterY + targetSize, bounds.max.z - targetSize);
                 randomZ = UnityEngine.Random.Range(bounds.center.z, bounds.max.z);
                 break;
         }
@@ -393,18 +349,6 @@ public class SpawnTargets : MonoBehaviour {
             randomY,
             randomZ
         );
-    }
-
-    //public static IEnumerator continuousScatterSpawn() {
-    //    while (true) {
-    //        //Debug.Log("continuousScatterSpawn called???");
-    //        spawnSequential();
-    //        yield return new WaitForSeconds(0.1f);
-    //    }
-    //}
-
-    public static void stopContinuousScatterSpawn() {
-        //ST.StopCoroutine(ST.scatterCoroutine);
     }
 
     /// <summary>
@@ -468,12 +412,6 @@ public class SpawnTargets : MonoBehaviour {
                 if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.WhiteAlbedo(), TargetColors.WhiteEmission(), TargetColors.WhiteLight()); }
                 break;
         }
-        // Change target color dynamically
-        //Material currentTargetRendererMaterial = currentTargetObj.GetComponent<Renderer>().material;
-        //currentTargetRendererMaterial.SetColor("_Color", new Color(121f / 255f, 255f / 255f, 0f / 255f, 255f / 255f));
-        //currentTargetRendererMaterial.SetColor("_EmissionColor", new Color(0f / 255f, 183f / 255f, 2f / 255f, 255f / 255f));
-        //Light targetLight = currentTargetObj.GetComponent<Light>();
-        //targetLight.color = new Color(59f / 255f, 255f / 255f, 0f / 255f, 255f / 255f);
     }
 
     /// <summary>
@@ -536,7 +474,6 @@ public class SpawnTargets : MonoBehaviour {
                     GameUI.IncreaseScore_Bonus();
                 }
             } else if (gamemode == Gamemode.Flick || gamemode == Gamemode.Grid || gamemode == Gamemode.Grid2) {
-                //shotsHit += 1;
                 SpawnSingle(primaryTargetObject);
             } else if (gamemode == Gamemode.Pairs) {
                 if (pairStarterActive) {
@@ -552,7 +489,6 @@ public class SpawnTargets : MonoBehaviour {
 
             FindAndRemoveTargetFromList(hitTarget.transform.position);
             Destroy(hitTarget.transform.gameObject);
-            //Util.printVector3List(targetSpawns);
         } else {
             shotMisses += 1;
         }
@@ -573,14 +509,8 @@ public class SpawnTargets : MonoBehaviour {
 
         if (gamemode == Gamemode.Grid || gamemode == Gamemode.Grid2) {
             randomX = (float)(bounds.size.x * 1.75) - targetSize * 3;
-            //randomX = (float)(bounds.size.x * 1.75) - targetSize * 2;
-            //randomX = bounds.size.x;
-            //randomX = (bounds.size.x * 2) - targetSize*2;
-            //randomX = (bounds.size.x * 2) - targetSize*2;
-            //randomX = Mathf.Floor(randomX / stepCount);
             randomY = Mathf.Floor(randomY / stepCount);
             randomZ = Mathf.Floor(randomZ / stepCount);
-            //randomX = randomX * stepCount;
             randomY = randomY * stepCount;
             randomZ = randomZ * stepCount;
         } else if (gamemode == Gamemode.Scatter) {
@@ -653,7 +583,6 @@ public class SpawnTargets : MonoBehaviour {
 
         if (ST.targetFall) { pos = preFallTargetSpawn; }
 
-        //int targetIndex = targetSpawns.IndexOf(pos);
         if (gamemode == Gamemode.Scatter) {
             if (count != 0) { scatterTargetSpawns.Add(pos); }
         } else {
@@ -749,7 +678,6 @@ public class SpawnTargets : MonoBehaviour {
         shotsTaken             = 0;
         count                  = 0;
         totalCount             = 0;
-        //targetAreasDestroyed   = false;
         GunAction.timerRunning = true;
         cosmeticsLoaded        = false;
 

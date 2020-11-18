@@ -17,39 +17,6 @@ public class Keybinds : MonoBehaviour {
         } else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
             MoveSettingsPanelLeft_Keybind();
         }
-
-        // Dev events test keybinds
-        //if (DevEventHandler.cardsOn) {
-        //    if (Input.GetKeyDown(KeyCode.Y)) {
-        //        DevEventHandler.CreateGamemodeCard($"'Follow' {I18nTextTranslator.SetTranslatedText("eventgamemodeselected")}");
-        //    } else if (Input.GetKeyDown(KeyCode.U)) {
-        //        DevEventHandler.CreateTimeCard($"{I18nTextTranslator.SetTranslatedText("eventtimerchanged")} '00:60'");
-        //    } else if (Input.GetKeyDown(KeyCode.I)) {
-        //        DevEventHandler.CreateCrosshairCard($"{I18nTextTranslator.SetTranslatedText("eventcrosshairgap")} '6'");
-        //    } else if (Input.GetKeyDown(KeyCode.O)) {
-        //        DevEventHandler.CreateTargetsCard($"[Scatter] {I18nTextTranslator.SetTranslatedText("eventtargetsnewspawnprimary")} (13,42,90).");
-        //    } else if (Input.GetKeyDown(KeyCode.P)) {
-        //        DevEventHandler.CreateInterfaceCard($"FPS Counter {I18nTextTranslator.SetTranslatedText("eventinterfacewidgettoggle")}");
-        //    } else if (Input.GetKeyDown(KeyCode.J)) {
-        //        DevEventHandler.CreateSaveCard($"'Cosmetics' {I18nTextTranslator.SetTranslatedText("eventsettingsobjectsave")}");
-        //    } else if (Input.GetKeyDown(KeyCode.K)) {
-        //        DevEventHandler.CreateSkyboxCard($"{I18nTextTranslator.SetTranslatedText("eventskyboxchange")} 'Skybox_Pink'");
-        //    } else if (Input.GetKeyDown(KeyCode.L)) {
-        //        DevEventHandler.CreateLanguageCard($"{I18nTextTranslator.SetTranslatedText("eventlanguagegameset")} 'Korean' (KOR)");
-        //    } else if (Input.GetKeyDown(KeyCode.Semicolon)) {
-        //        DevEventHandler.CreateKeybindCard($"'HideUI' (H) {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}");
-        //    } else if (Input.GetKeyDown(KeyCode.Quote)) {
-        //        DevEventHandler.CreateSoundCard($"'HitTarget' {I18nTextTranslator.SetTranslatedText("eventsoundfired")}");
-        //    } else if (Input.GetKeyDown(KeyCode.Quote)) {
-        //        DevEventHandler.CreateNotificationCard($"'GamemodeError' {I18nTextTranslator.SetTranslatedText("eventnotificationcreated")}");
-        //    } else if (Input.GetKeyDown(KeyCode.C)) {
-        //        // print child count
-        //        DevEventHandler.PrintEventGroupCount();
-        //    } else if (Input.GetKeyDown(KeyCode.Backspace)) {
-        //        // delete top element
-        //        DevEventHandler.DestroyEventCard_Top();
-        //    }
-        //}
     }
 
     /// <summary>

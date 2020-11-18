@@ -14,13 +14,12 @@ public class Tooltip : MonoBehaviour {
         tooltipBackgroundRectTransform = transform.Find("TooltipBackground").GetComponent<RectTransform>();
         tooltipTextContent             = transform.Find("TooltipText").GetComponent<TMP_Text>();
 
-        //ShowTooltip("Stats of highscore run in gamemode 'Grid'.");
         gameObject.SetActive(false);
     }
 
     void Update() {
         if (tooltipShown) {
-            // Set tooltip localposition to mouse position every frame.
+            // Set tooltip localposition to mouse position every frame if tooltip shown.
             RectTransformUtility.ScreenPointToLocalPointInRectangle(transform.parent.GetComponent<RectTransform>(), Input.mousePosition, null, out localPoint);
             transform.localPosition = localPoint;
         }

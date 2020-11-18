@@ -40,8 +40,6 @@ public class GamemodeSelect : MonoBehaviour {
         if (quickStart) {
             gamemodeSelect.GamemodeSelectStart();
         } else {
-            //VideoClip selectedVideoClip = VideoManager.PopulateIndividualClip(gamemodeName, CosmeticsSettings.targetColor, CosmeticsSettings.skybox);
-
             switch (gamemodeName) {
                 case Gamemode.Scatter:
                     PopulateAllGamemodeInfo(gamemodeScatterClip_Loaded, "gamemodestartscatter", "gamemodecapsscatter", "gamemodetypespeed", InterfaceColors.gamemodeEasyColor, "gamemodescatterdescription");
@@ -126,16 +124,13 @@ gamemodeDescription) {
     public void GamemodeSelectStart() {
         if (SpawnTargets.gamemode != currentOpenGamemode) {
             if (currentOpenGamemode == Gamemode.Follow && CosmeticsSettings.targetColor == TargetColor.Red) {
-                NotificationHandler.ShowTimedNotification_Translated("followwarning", "", NotificationHandler.notificationColorRed);
+                NotificationHandler.ShowTimedNotification_Translated("followwarning", "", InterfaceColors.notificationColorRed);
                 return;
             }
-            //Debug.Log(currentOpenGamemode);
+
             //SettingsPanel.ToggleSettingsPanel();
-            //Debug.Log("before save");
             CosmeticsSettings.SaveGamemodeItem(currentOpenGamemode);
-            //Debug.Log("after save, before start new gamemode");
             SpawnTargets.StartNewGamemode(currentOpenGamemode);
-            //Debug.Log("after start new gamemode");
         } else {
             NotificationHandler.ShowTimedNotification_Translated($"gamemodecaps{GamemodeType.ReturnGamemodeType_StringShort(currentOpenGamemode).ToLower()}", $": {I18nTextTranslator.SetTranslatedText("selectedgamemodewarning")}", InterfaceColors.notificationColorYellow);
         }

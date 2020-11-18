@@ -3,8 +3,6 @@ using UnityEngine.EventSystems;
 
 public class TooltipHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public string translateTextID;
-    //private bool hovering = false;
-    //private float currentTime;
 
     /// <summary>
     /// Shows tooltip with corresponding difference text based on hovered item (pointerEnter).
@@ -48,7 +46,6 @@ public class TooltipHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     /// </summary>
     /// <param name="eventData"></param>
     public void OnPointerExit(PointerEventData eventData) {
-        //hovering = false;
         Tooltip.HideTooltip_Static();
     }
 }

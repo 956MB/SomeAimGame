@@ -153,7 +153,6 @@ public class DevEventHandler : MonoBehaviour {
     public static void NewSignalEvent(Image signalPrefabImage, Color signalColor) {
         signalPrefabImage.color = signalColor;
         eventCount++;
-        //devEvents.eventCountText.SetText($"{eventCount}");
     }
 
     /// <summary>

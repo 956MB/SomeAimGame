@@ -18,17 +18,12 @@ public class GunAction : MonoBehaviour {
             }
         } else {
             if (timerRunning) {
-                //reactionTimeText.SetText($"{(int)GameUI.reactionTimeList.Average()}ms");
-                //StatsManager.setAfterActionStats();
-
-                //GameUI.stopEverything();
                 timerRunning = false;
 
                 // Show 'AfterActionReport' if setting enabled.
                 if (ToggleHandler.ShowAAROn()) {
                     GameUI.HideWidgetsUI();
                     SettingsPanel.OpenAfterActionReport();
-                    //ConnectingLine2D.drawConnectingLine();
                 }
             }
         }
@@ -45,7 +40,6 @@ public class GunAction : MonoBehaviour {
                 case "Target":
                     GameUI.UpdateReactionTime();
                     if (ToggleHandler.TargetSoundOn()) { HitSound.PlayHitSound(); }
-                    //TriggerHitEffect(gunHit);
 
                     if (SpawnTargets.gamemode == Gamemode.Pairs) {
                         if (!SpawnTargets.pairStarterActive) {
@@ -72,7 +66,6 @@ public class GunAction : MonoBehaviour {
                     }
                     break;
                 default:
-                    //TriggerHitEffect(gunHit);
                     if (SpawnTargets.gamemode != Gamemode.Pairs) {
                         GameUI.DecreaseScore();
                         SpawnTargets.CheckTargetCount(gunHit, false);

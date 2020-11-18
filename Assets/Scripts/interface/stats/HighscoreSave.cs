@@ -8,8 +8,6 @@ public class HighscoreSave : MonoBehaviour {
     private static HighscoreSave highscore;
     void Awake() { highscore = this; }
 
-    //public void saveHighscoreStats(string gamemode) { HighscoreSaveSystem.saveHighscore(gamemode); }
-
     /// <summary>
     /// Save highscore values to 'HighscoreSave' object for reference.
     /// </summary>
@@ -35,9 +33,6 @@ public class HighscoreSave : MonoBehaviour {
 
         // Save 'HighscoreSave' object to highscore file.
         HighscoreSaveSystem.SaveHighscoreData(setGamemode);
-
-        //highscore.saveHighscoreStats("Grid");
-        //Debug.Log("AFTER saveHighscoreStats");
     }
 }
 

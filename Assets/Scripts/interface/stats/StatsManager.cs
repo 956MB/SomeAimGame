@@ -28,7 +28,6 @@ public class StatsManager : MonoBehaviour {
     void Awake() { stats = this; }
 
     private void Start() {
-        //loadHighscore();
         scoreTitleText.enabled         = true;
         newHighscoreEffectText.enabled = false;
         backgroundsSaves               = new Color32[8];
@@ -71,7 +70,6 @@ public class StatsManager : MonoBehaviour {
         targetHitStat    = SpawnTargets.shotsHit;
         targetMissesStat = SpawnTargets.shotMisses;
         kpsStat          = (double)targetHitStat / GameUI.timeStart;
-        //Debug.Log($"scoreStat?? :: {scoreStat}");
     }
 
     /// <summary>
@@ -97,7 +95,6 @@ public class StatsManager : MonoBehaviour {
                 EnableNewHighscoreText();
                 LoadOldHighscore();
             } else {
-                //Debug.Log($"{scoreStat} {previousGameStats.scoreValue} {bestGameStats.scoreValue}");
                 stats.highscoreLineTop.color    = StatsUtil.GetLineColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue);
                 stats.highscoreLineBottom.color = StatsUtil.GetLineColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue);
             }
@@ -120,10 +117,7 @@ public class StatsManager : MonoBehaviour {
         double kps = kpsStat;
 
         stats.titleText.SetText($"{I18nTextTranslator.SetTranslatedText("afteractionreporttitle")} - {I18nTextTranslator.SetTranslatedText(GamemodeType.ReturnGamemodeType_StringShort(CosmeticsSettings.gamemode))}");
-        //stats.showExtraGamemodeText.SetText($"({I18nTextTranslator.SetTranslatedText(CosmeticsSettings.gamemode.Split('-')[1])})");
-        //stats.scoreText.SetText($"{string.Format("{0:n0}", scoreStat)}");
         stats.scoreEffectText.SetText($"{string.Format("{0:n0}", scoreStat)}");
-        //stats.gamemodeText.SetText($"{CosmeticsSettings.gamemode.Split('-')[1]}");
         stats.accuracyText.SetText($"{accuracyStat}%");
         stats.ttkText.SetText($"{string.Format("{0:n0}", ttkStat)}ms");
         stats.kpsText.SetText(string.Format("{0:0.00}/s", kps));

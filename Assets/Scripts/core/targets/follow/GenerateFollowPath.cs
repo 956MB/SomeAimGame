@@ -18,7 +18,6 @@ public class GenerateFollowPath : MonoBehaviour {
     /// Generates random waypoints and creates path object for "Gamemode-Follow".
     /// </summary>
     public static void StartFollowGamemode() {
-        //Debug.Log("startFollowGamemode START::");
         waypoints                   = new List<Vector3>();
         followTargetSpawnAreaBounds = generateFollow.followTargetSpawnArea.GetComponent<BoxCollider>().bounds;
         GenerateRandomWaypoints();
@@ -33,7 +32,6 @@ public class GenerateFollowPath : MonoBehaviour {
         if (followTargetSpawnAreaBounds != null) {
             for (int i = 0; i < waypointCount; i++) {
                 waypoints.Add(RandomPointInBounds(followTargetSpawnAreaBounds));
-                //Instantiate(generateFollow.randomWaypointSphere, new Vector3(waypoints[i].x*2, waypoints[i].y*2, waypoints[i].z*2), Quaternion.identity);
             }
 
             // Make first waypoint location start right in front of player camera.

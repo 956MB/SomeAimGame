@@ -12,8 +12,7 @@ public class GameUI : MonoBehaviour {
     public static bool statsLoaded       = false;
     public static string timeFormatted;
     public GameObject UICanvas, widgetsUICanvas, newTimerCanvasImage;
-    Coroutine timerCoroutine;
-    Coroutine spawnScatterCoroutine;
+    Coroutine timerCoroutine, spawnScatterCoroutine;
 
     public int scoreUp, scoreDown, followScoreUp, followScoreDown;
     public static int timeCount, timeStart;
@@ -88,8 +87,6 @@ public class GameUI : MonoBehaviour {
             //if (DevEventHandler.eventsOn) { DevEventHandler.CreateGamemodeEvent($"{I18nTextTranslator.SetTranslatedText("eventgamemodescattertick")}"); }
 
             yield return scatterDelay;
-            //yield return new WaitForSeconds(UnityEngine.Random.Range(0.2f, 0.45f));
-            //yield return new WaitForSeconds(UnityEngine.Random.Range(0.6f, 0.85f));
         }
     }
 
@@ -112,13 +109,10 @@ public class GameUI : MonoBehaviour {
                 // Set timer color to red if time hits 10 seconds.
                 if (timeCount == 10) {
                     if (WidgetSettings.showTime) { gameUI.timeText.color = InterfaceColors.widgetsMissColor; }
-                    //gameUI.newTimerCanvasImage.GetComponent<Image>().color = new Color32(255, 0, 0, 20);
                 } else if (timeCount == 0) {
                     // Wiggle timer text, set all stats in 'AfterActionReport', then stop timer.
                     if (WidgetSettings.showTime) { TextEffects.WiggleText(gameUI.timeText, 0.5f, 55); }
                     StatsManager.CheckAndSetAllStats();
-                    //StatsManager.setAfterActionStats();
-                    //SettingsPanel.ToggleAfterActionReportPanel();
                     StopEverything();
                 }
             } else {
@@ -134,9 +128,6 @@ public class GameUI : MonoBehaviour {
 
             yield return timerDelay;
         }
-        //Debug.Log($"coroutine ended?? {timeCount}");
-        //triggerRestart = false;
-        //restartGame();
     }
 
     /// <summary>
@@ -257,7 +248,6 @@ public class GameUI : MonoBehaviour {
     /// <param name="shotsHit"></param>
     /// <param name="shotsTaken"></param>
     public static void UpdateAccuracy(int shotsHit, int shotsTaken) {
-        //Debug.Log($"hit:{shotsHit} taken:{shotsTaken}");
         accuracy = (100 * shotsHit) / shotsTaken;
         if (WidgetSettings.showAccuracy) {
             gameUI.accuracyText.SetText($"{accuracy}%");
@@ -273,7 +263,6 @@ public class GameUI : MonoBehaviour {
     public static void UpdateReactionTime() {
         float currentMs = Time.time * 1000;
         newTime = (int)currentMs - reactionTime;
-        //gameUI.reactionTimeText.SetText($"{newTime}ms");
 
         reactionTime = (int)currentMs;
         reactionTimeList.Add(newTime);
@@ -382,12 +371,9 @@ public class GameUI : MonoBehaviour {
         // reset targets and reload scene.
         SpawnTargets.ResetSpawnTargetsValues();
 
-        //Debug.Log($"new gamemode? {newGamemode}  current gamemode? {SpawnTargets.gamemode}");
         if (newGamemode != SpawnTargets.gamemode) {
-            //Debug.Log("here reload?");
             ReloadScene();
         } else {
-            //Debug.Log("here gamestart?");
             GameStartActions();
         }
     }
@@ -432,7 +418,6 @@ public class GameUI : MonoBehaviour {
     /// Reloads current scene to 'reset' game.
     /// </summary>
     public static void ReloadScene() {
-        // TODO: Maybe save mouse look position and load it on scene reload to reduce jolt back to the center.
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     }
@@ -457,7 +442,6 @@ public class GameUI : MonoBehaviour {
     /// Hides UI holding timer, score and accuracy etc. [EVENT]
     /// </summary>
     public static void HideWidgetsUI() {
-        //gameUI.UICanvas.layer = 1;
         gameUI.widgetsUICanvas.SetActive(false);
         UIHidden = true;
 
@@ -468,7 +452,6 @@ public class GameUI : MonoBehaviour {
     /// Shows UI holding timer, score and accuracy etc. [EVENT]
     /// </summary>
     public static void ShowWidgetsUI() {
-        //gameUI.UICanvas.layer = 15;
         gameUI.widgetsUICanvas.SetActive(true);
         UIHidden = false;
 

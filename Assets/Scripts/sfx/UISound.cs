@@ -37,10 +37,4 @@ public class UISound : MonoBehaviour {
             //DevEventHandler.CheckSoundEvent($"{I18nTextTranslator.SetTranslatedText("eventsoundfiredclick")}");
         }
     }
-
-    //public static void playUISoundExtra() {
-    //    // TODO: if playHitSound enabled
-    //    audioSrc.PlayOneShot(uiSound.uiSoundSrc);
-    //    //Debug.Log("inside PLAYHITSOUND");
-    //}
 }

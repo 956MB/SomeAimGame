@@ -31,7 +31,6 @@ public class MouseSensitivitySlider : MonoBehaviour {
     public static void SetMouseSensitivityValueText(float sens) {
         mouseSens.mouseSensitivityValueText.SetText($"{sens:0.00}");
         mouseSens.mouseSensitivityPlaceholderText.SetText($"{sens:0.00}");
-        //mouseSensInput.SetTextWithoutNotify($"{sens:0.00}");
     }
 
     /// <summary>

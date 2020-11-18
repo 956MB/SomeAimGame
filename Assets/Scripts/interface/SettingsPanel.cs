@@ -19,8 +19,6 @@ public class SettingsPanel : MonoBehaviour {
 
     private static VideoClip[] gamemodePreviewVideos;
     public VideoPlayer selectedVideoPlayer, scatterVideoPlayer, flickVideoPlayer, gridVideoPlayer, grid2VideoPlayer, pairsVideoPlayer, followVideoPlayer;
-    //private static Texture2D thumbnailTexture2D;
-    //private static Sprite thumbnailSprite;
 
     private static SettingsPanel settings;
     void Awake() { settings = this; }
@@ -29,7 +27,6 @@ public class SettingsPanel : MonoBehaviour {
         rt                   = (RectTransform)settingsPanel.transform;
         panelWidth           = rt.rect.width;
         afterActionReportSet = false;
-        //LeanTween.moveX(settings.settingsPanel, -280, 0f);
 
         // Load target color, skybox and gamemode previews.
         LoadGamemodePreviews();
@@ -46,9 +43,6 @@ public class SettingsPanel : MonoBehaviour {
         settings.settingsPanel.transform.localScale = new Vector3(0f, 0f, 1f);
         settings.afterPanel.transform.localScale    = new Vector3(0f, 0f, 1f);
         settings.steamDataContainer.SetActive(false);
-        
-        //CosmeticsSaveSystem.initSettingsDefaults();
-        //settingsPanel.SetActive(false);
     }
 
     /// <summary>
@@ -219,7 +213,6 @@ public class SettingsPanel : MonoBehaviour {
             settings.settingsPanel.transform.position = panelPos;
 
             return panelPos;
-            //CosmeticsSettings.saveSettingsPanelItem(settings.settingsPanel.transform.position.x);
         } else {
             return settings.settingsPanel.transform.position;
         }
@@ -237,7 +230,6 @@ public class SettingsPanel : MonoBehaviour {
             settings.settingsPanel.transform.position = panelPos;
 
             return panelPos;
-            //CosmeticsSettings.saveSettingsPanelItem(settings.settingsPanel.transform.position.x);
         } else {
             return settings.settingsPanel.transform.position;
         }
@@ -286,11 +278,6 @@ public class SettingsPanel : MonoBehaviour {
     /// Loads target color thumbnail sprites and sets them to corresponding buttons in settings panel (general sub-section).
     /// </summary>
     private static void LoadTargetColorThumbnails() {
-        // Load from asset preview (backup).
-        //thumbnailTexture2D = AssetPreview.GetAssetPreview(settings.targetColorRed);
-        //thumbnailSprite = Sprite.Create(thumbnailTexture2D, new Rect(0.0f, 0.0f, thumbnailTexture2D.width, thumbnailTexture2D.height), new Vector2(0.5f, 0.5f), 100.0f);
-        //settings.canvasOrange.transform.GetComponent<UnityEngine.UI.Image>().sprite = thumbnailSprite;
-
         // Red target
         settings.canvasRed.transform.GetComponent<UnityEngine.UI.Image>().sprite    = settings.targetColorRedThumbnail;
         // Green target

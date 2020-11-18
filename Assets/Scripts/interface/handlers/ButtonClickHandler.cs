@@ -20,7 +20,6 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     /// Closes 'AfterActionReport' panel then restarts the game with current gamemode.
     /// </summary>
     public void RestartCurrentGame() {
-        //SettingsPanel.CloseAfterActionReport();
         // EVENT:: for new gamemode start
         //DevEventHandler.CheckGamemodeEvent($"\"{gamemodeClickedName}\" {I18nTextTranslator.SetTranslatedText("eventgamemodestarted")}");
 
@@ -140,7 +139,6 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
         Skybox skyboxClickedName = SkyboxType.ReturnSkyboxType_Skybox(clickedButtonBorder.transform.parent.name);
 
         ClearSkyboxButtonBorders();
-        //Debug.Log("GHJGJHGHGGHJGHGHJG:: " + skyboxClickedName);
         ButtonHoverHandler.selectedSkybox               = skyboxClickedName;
         clickedButtonBorder.GetComponent<Image>().color = InterfaceColors.selectedColor;
         clickedButtonBorder.SetActive(true);
