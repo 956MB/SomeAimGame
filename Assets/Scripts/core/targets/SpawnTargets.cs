@@ -13,6 +13,7 @@ public class SpawnTargets : MonoBehaviour {
     private static Vector3 tinyTargetSize   = new Vector3(0.75f, 0.75f, 0.75f);
     private static Vector3 normalTargetSize = new Vector3(2.6f, 2.6f, 2.6f);
     public static bool targetAreasDestroyed = false;
+    public static bool cosmeticsLoaded      = false;
     //Coroutine scatterCoroutine;
     //IEnumerator spawnScatterCoroutine;
     public GameObject targetSpawnArea, secondaryTargetSpawnArea;
@@ -84,33 +85,41 @@ public class SpawnTargets : MonoBehaviour {
     /// </summary>
     public static void InitSpawnTargets() {
         // Init gamemode setting.
-        CosmeticsSaveSystem.InitSavedCosmeticsSettings();
+        if (!cosmeticsLoaded) {
+            CosmeticsSaveSystem.InitSavedCosmeticsSettings();
 
-        // Use secondary spawning area if gamemode is "Gamemode-Pairs".
-        if (gamemode == Gamemode.Pairs) {
-            targetSpawnAreaCenterY = ST.secondaryTargetSpawnArea.GetComponent<Renderer>().bounds.center.y;
-            targetSpawnAreaCenter  = ST.secondaryTargetSpawnArea.GetComponent<Renderer>().bounds.center;
-            targetSpawnAreaBox     = ST.secondaryTargetSpawnArea.GetComponent<BoxCollider>();
-            targetSpawnAreaBounds  = ST.secondaryTargetSpawnArea.GetComponent<BoxCollider>().bounds;
-            secondaryTargetRb      = secondaryTargetObject.GetComponent<Rigidbody>();
-            secondaryTargetRb.isKinematic = true;
-        } else {
-            targetSpawnAreaCenterY = ST.targetSpawnArea.GetComponent<Renderer>().bounds.center.y;
-            targetSpawnAreaCenter  = ST.targetSpawnArea.GetComponent<Renderer>().bounds.center;
-            targetSpawnAreaBox     = ST.targetSpawnArea.GetComponent<BoxCollider>();
-            targetSpawnAreaBounds  = ST.targetSpawnArea.GetComponent<BoxCollider>().bounds;
-            targetRb               = primaryTargetObject.GetComponent<Rigidbody>();
-            targetRb.isKinematic = true;
+            // Use secondary spawning area if gamemode is "Gamemode-Pairs".
+            try {
+                if (gamemode == Gamemode.Pairs) {
+                    targetSpawnAreaCenterY = ST.secondaryTargetSpawnArea.GetComponent<Renderer>().bounds.center.y;
+                    targetSpawnAreaCenter  = ST.secondaryTargetSpawnArea.GetComponent<Renderer>().bounds.center;
+                    targetSpawnAreaBox     = ST.secondaryTargetSpawnArea.GetComponent<BoxCollider>();
+                    targetSpawnAreaBounds  = ST.secondaryTargetSpawnArea.GetComponent<BoxCollider>().bounds;
+                    secondaryTargetRb      = secondaryTargetObject.GetComponent<Rigidbody>();
+                    secondaryTargetRb.isKinematic = true;
+                } else {
+                    targetSpawnAreaCenterY = ST.targetSpawnArea.GetComponent<Renderer>().bounds.center.y;
+                    targetSpawnAreaCenter  = ST.targetSpawnArea.GetComponent<Renderer>().bounds.center;
+                    targetSpawnAreaBox     = ST.targetSpawnArea.GetComponent<BoxCollider>();
+                    targetSpawnAreaBounds  = ST.targetSpawnArea.GetComponent<BoxCollider>().bounds;
+                    targetRb               = primaryTargetObject.GetComponent<Rigidbody>();
+                    targetRb.isKinematic = true;
+                }
+            } catch (MissingReferenceException mre) {
+                //Debug.Log("missing reference exception here: " + mre);
+            }
+
+            targetSize      = primaryTargetObject.transform.lossyScale.y;
+            cosmeticsLoaded = true;
         }
 
-        // Init targer spawns lists and size of target.
-        targetSize            = primaryTargetObject.transform.lossyScale.y;
+        // Init target spawns lists.
         targetSpawns          = new List<Vector3>();
         targetSpawnsPrimary   = new List<Vector3>();
         targetSpawnsSecondary = new List<Vector3>();
 
-        // Start game by selecting saved gamemode.
-        SelectGamemode();
+        // Clear any targets before starting game from saved gamemode.
+        RespawnTargets();
 
         // EVENT:: for saved gamemode load
         //DevEventHandler.CheckGamemodeEvent($"\"{gamemode}\" {I18nTextTranslator.SetTranslatedText("eventgamemodeloaded")}");
@@ -735,13 +744,14 @@ public class SpawnTargets : MonoBehaviour {
     /// <summary>
     /// Resets all target game values. [EVENT]
     /// </summary>
-    public static void ResetSpawnTargets() {
+    public static void ResetSpawnTargetsValues() {
         shotsHit               = 0;
         shotsTaken             = 0;
         count                  = 0;
         totalCount             = 0;
-        targetAreasDestroyed   = false;
+        //targetAreasDestroyed   = false;
         GunAction.timerRunning = true;
+        cosmeticsLoaded        = false;
 
         // EVENT:: for reset targets spawn values
         //DevEventHandler.CheckGamemodeEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsreset")}");
