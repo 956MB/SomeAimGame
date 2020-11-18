@@ -99,6 +99,7 @@ uisound=UI 사운드  .   .   .   .   .   .   .   .   .   .   .   .   .   .   . 
 movementlock=운동 잠금  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 fpscounter=FPS 카운터    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 afteractionreport='사후 보고서'표시     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+showmode=쇼 모드  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showfps=FPS 표시  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showtime=쇼 시간  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showscore=점수 표시  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
@@ -109,6 +110,7 @@ showkps=KPS 표시  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   
 #
 #
 # // general sections tooltips
+showmodetooltip=상단 게임 UI에서 모드 위젯을 토글합니다.
 showfpstooltip=상위 게임 UI에서 FPS 위젯을 토글합니다.
 showtimetooltip=상단 게임 UI에서 시간 위젯을 토글합니다.
 showscoretooltip=상위 게임 UI에서 점수 위젯을 토글합니다.
@@ -178,6 +180,7 @@ extrastatshighscore=높은 점수
 #
 #
 # // widgets
+modewidgetpre=방법:
 fpswidgetpre=FPS:
 timewidgetpre=시각:
 scorewidgetpre=점수:

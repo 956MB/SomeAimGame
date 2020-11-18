@@ -2,11 +2,11 @@
 using UnityEngine.UI;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using TMPro;
+//using TMPro;
 
 public class WidgetSaveSystem : MonoBehaviour {
-    public Toggle showFPSToggle, showTimeToggle, showScoreToggle, showAccuracyToggle, showStreakToggle, showTTKToggle, showKPSToggle;
-    public GameObject showFPSWidget, showTimeWidget, showScoreWidget, showAccuracyWidget, showStreakWidget, showTTKWidget, showKPSWidget;
+    public Toggle showModeToggle, showFPSToggle, showTimeToggle, showScoreToggle, showAccuracyToggle, showStreakToggle, showTTKToggle, showKPSToggle;
+    public GameObject showModeWidget, showFPSWidget, showTimeWidget, showScoreWidget, showAccuracyWidget, showStreakWidget, showTTKWidget, showKPSWidget;
 
     private static WidgetSaveSystem widgetSave;
     void Awake() { widgetSave = this; }
@@ -56,6 +56,7 @@ public class WidgetSaveSystem : MonoBehaviour {
         if (loadedWidgetData != null) {
             WidgetSettings.LoadWidgetSettings(loadedWidgetData);
 
+            SetWidget(widgetSave.showModeToggle, widgetSave.showModeWidget, loadedWidgetData.showMode);
             SetWidget(widgetSave.showFPSToggle, widgetSave.showFPSWidget, loadedWidgetData.showFPS);
             SetWidget(widgetSave.showTimeToggle, widgetSave.showTimeWidget, loadedWidgetData.showTime);
             SetWidget(widgetSave.showScoreToggle, widgetSave.showScoreWidget, loadedWidgetData.showScore);
@@ -73,6 +74,7 @@ public class WidgetSaveSystem : MonoBehaviour {
     /// Inits default widget settings values and saves to file on first launch.
     /// </summary>
     public static void InitWidgetSettingsDefaults() {
+        SetWidget(widgetSave.showModeToggle, widgetSave.showModeWidget, true);
         SetWidget(widgetSave.showFPSToggle, widgetSave.showFPSWidget, false);
         SetWidget(widgetSave.showTimeToggle, widgetSave.showTimeWidget, true);
         SetWidget(widgetSave.showScoreToggle, widgetSave.showScoreWidget, true);
@@ -81,7 +83,7 @@ public class WidgetSaveSystem : MonoBehaviour {
         SetWidget(widgetSave.showTTKToggle, widgetSave.showTTKWidget, false);
         SetWidget(widgetSave.showKPSToggle, widgetSave.showKPSWidget, false);
 
-        WidgetSettings.SaveAllWidgetSettingsDefaults(false, true, true, true, false, false, false);
+        WidgetSettings.SaveAllWidgetSettingsDefaults(true, false, true, true, true, false, false, false);
     }
 
     /// <summary>

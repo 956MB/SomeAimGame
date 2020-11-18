@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class ToggleHandler : MonoBehaviour {
     public Toggle checkToggle;
     private string clickedToggleName;
-    public GameObject fpsWidget, timeWidget, ScoreWidget, accuracyWidget, streakWidget, ttkWidget, kpsWidget;
+    public GameObject modeWidget, fpsWidget, timeWidget, ScoreWidget, accuracyWidget, streakWidget, ttkWidget, kpsWidget;
 
     public SimpleCrosshair simpleCrosshair;
 
@@ -105,6 +105,13 @@ public class ToggleHandler : MonoBehaviour {
 
                 CosmeticsSaveSystem.SetQuickStartGame(toggleClicked.isOn);
                 CosmeticsSettings.SaveQuickStartGameItem(toggleClicked.isOn);
+                break;
+
+            case "ShowModeToggle": // Toggles Mode widget.
+                if (UISoundOn()) { UISound.PlayUISound_Click(); }
+
+                modeWidget.SetActive(toggleClicked.isOn);
+                WidgetSettings.SaveShowModeItem(toggleClicked.isOn);
                 break;
 
             case "ShowFPSToggle": // Toggles FPS widget.

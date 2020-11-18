@@ -99,6 +99,7 @@ uisound=UI Sound  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . 
 movementlock=Movement Lock  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 fpscounter=FPS Counter    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 afteractionreport=Show 'After Action Report'     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+showmode=Show Mode  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showfps=Show FPS  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showtime=Show Time  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showscore=Show Score  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
@@ -109,6 +110,7 @@ showkps=Show KPS  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . 
 #
 #
 # // general sections tooltips
+showmodetooltip=Toggles Mode widget in top game UI.
 showfpstooltip=Toggles FPS widget in top game UI.
 showtimetooltip=Toggles Time widget in top game UI.
 showscoretooltip=Toggles Score widget in top game UI.
@@ -178,6 +180,7 @@ extrastatshighscore=Highscore
 #
 #
 # // widgets
+modewidgetpre=MODE:
 fpswidgetpre=FPS:
 timewidgetpre=TIME:
 scorewidgetpre=SCORE:

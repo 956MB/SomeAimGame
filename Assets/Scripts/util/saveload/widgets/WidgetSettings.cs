@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 public class WidgetSettings : MonoBehaviour {
+    public static bool showMode     = true;
     public static bool showFPS      = false;
     public static bool showTime     = true;
     public static bool showScore    = true;
@@ -12,6 +13,14 @@ public class WidgetSettings : MonoBehaviour {
     private static WidgetSettings widgetSettings;
     void Awake() { widgetSettings = this; }
 
+    /// <summary>
+    /// Saves supplied showMode bool (setShowMode) to widget settings object (WidgetSettings), then saves widget settings object.
+    /// </summary>
+    /// <param name="setShowMode"></param>
+    public static void SaveShowModeItem(bool setShowMode) {
+        showMode = setShowMode;
+        widgetSettings.SaveWidgetSettings();
+    }
     /// <summary>
     /// Saves supplied showFPS bool (setShowFPS) to widget settings object (WidgetSettings), then saves widget settings object.
     /// </summary>
@@ -77,6 +86,7 @@ public class WidgetSettings : MonoBehaviour {
     /// <summary>
     /// Saves default widget settings object (WidgetSettings).
     /// </summary>
+    /// <param name="setShowMode"></param>
     /// <param name="setShowFPS"></param>
     /// <param name="setShowTime"></param>
     /// <param name="setShowScore"></param>
@@ -84,7 +94,8 @@ public class WidgetSettings : MonoBehaviour {
     /// <param name="setShowStreak"></param>
     /// <param name="setShowTTK"></param>
     /// <param name="setShowKPS"></param>
-    public static void SaveAllWidgetSettingsDefaults(bool setShowFPS, bool setShowTime, bool setShowScore, bool setShowAccuracy, bool setShowStreak, bool setShowTTK, bool setShowKPS) {
+    public static void SaveAllWidgetSettingsDefaults(bool setShowMode, bool setShowFPS, bool setShowTime, bool setShowScore, bool setShowAccuracy, bool setShowStreak, bool setShowTTK, bool setShowKPS) {
+        showMode     = setShowMode;
         showFPS      = setShowFPS;
         showTime     = setShowTime;
         showScore    = setShowScore;
@@ -101,6 +112,7 @@ public class WidgetSettings : MonoBehaviour {
     /// </summary>
     /// <param name="widgetData"></param>
     public static void LoadWidgetSettings(WidgetSettingsDataSerial widgetData) {
+        showMode     = widgetData.showMode;
         showFPS      = widgetData.showFPS;
         showTime     = widgetData.showTime;
         showScore    = widgetData.showScore;

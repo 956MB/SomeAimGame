@@ -10,7 +10,7 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     public GameObject skyboxPinkBorder, skyboxGoldenBorder, skyboxNightBorder, skyboxGreyBorder, skyboxBlueBorder, skyboxSlateBorder;
     public GameObject gamemodeScatterBorder, gamemodeFlickBorder, gamemodeGridBorder, gamemodeGrid2Border, gamemodePairsBorder, gamemodeFollowBorder, gamemodePatrolBorder;
     public GameObject settingsPanel, afterActionReportPanel, extraStatsPanel;
-    public TMP_Text targetColorSelected, skyboxSelected;
+    public TMP_Text targetColorSelected, skyboxSelected, showModeText;
     public static string activeTargetColorText, activeSkyboxText;
     public Toggle quickStartToggle;
 
@@ -113,6 +113,9 @@ public class CosmeticsSaveSystem : MonoBehaviour {
         ButtonClickHandler.ClearGamemodeButtonBorders();
         SpawnTargets.gamemode = gamemode;
 
+        // Set showMode text to gamemode.
+        saveLoad.showModeText.SetText($"{GamemodeType.ReturnGamemodeType_StringShort(gamemode)}");
+
         // Populates gamemode select panel with saved gamemode.
         GamemodeSelect.PopulateGamemodeSelect(gamemode, quickStart);
 
@@ -128,6 +131,11 @@ public class CosmeticsSaveSystem : MonoBehaviour {
                 break;
             case Gamemode.Grid2:
                 SetGamemodeBorder(saveLoad.gamemodeGrid2Border);
+                saveLoad.showModeText.SetText($"GRID II");
+                break;
+            case Gamemode.Grid3:
+                SetGamemodeBorder(saveLoad.gamemodeGrid2Border);
+                saveLoad.showModeText.SetText($"GRID III");
                 break;
             case Gamemode.Pairs:
                 SetGamemodeBorder(saveLoad.gamemodePairsBorder);

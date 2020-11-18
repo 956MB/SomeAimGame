@@ -99,6 +99,7 @@ uisound=UIサウンド  .   .   .   .   .   .   .   .   .   .   .   .   .   .   
 movementlock=ムーブメントロック  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 fpscounter=FPSカウンター    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 afteractionreport=「アクション後のレポート」を表示する     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+showmode=表示モード  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showfps=FPSを表示  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showtime=ショータイム  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showscore=スコアを表示  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
@@ -109,6 +110,7 @@ showkps=KPSを表示  .   .   .   .   .   .   .   .   .   .   .   .   .   .   . 
 #
 #
 # // general sections tooltips
+showmodetooltip=トップゲームUIのモードウィジェットを切り替えます。
 showfpstooltip=トップゲームUIのFPSウィジェットを切り替えます。
 showtimetooltip=トップゲームUIの時間ウィジェットを切り替えます。
 showscoretooltip=トップゲームUIのスコアウィジェットを切り替えます。
@@ -178,6 +180,7 @@ extrastatshighscore=高得点
 #
 #
 # // widgets
+modewidgetpre=モード：
 fpswidgetpre=FPS:
 timewidgetpre=時間:
 scorewidgetpre=スコア:

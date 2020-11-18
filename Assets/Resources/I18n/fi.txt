@@ -99,6 +99,7 @@ uisound=Käyttöliittymän ääni  .   .   .   .   .   .   .   .   .   .   .   .
 movementlock=Liikelukko  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 fpscounter=FPS-laskuri    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 afteractionreport=Näytä toimintaraportti     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+showmode=Näytä tila  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showfps=Näytä FPS  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showtime=Esitysaika  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showscore=Näytä pisteet  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
@@ -109,6 +110,7 @@ showkps=Näytä KPS  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  
 #
 #
 # // general sections tooltips
+showmodetooltip=Vaihtaa Mode-widgetin huippupelien käyttöliittymässä.
 showfpstooltip=Vaihtaa FPS-widgetin huippupelien käyttöliittymässä.
 showtimetooltip=Vaihtaa Aika-widgetin huippupelien käyttöliittymässä.
 showscoretooltip=Vaihtaa Pisteet-widgetin huippupelien käyttöliittymässä.
@@ -178,6 +180,7 @@ extrastatshighscore=Ennätys
 #
 #
 # // widgets
+modewidgetpre=TILA:
 fpswidgetpre=FPS:
 timewidgetpre=AIKA:
 scorewidgetpre=PISTEET:

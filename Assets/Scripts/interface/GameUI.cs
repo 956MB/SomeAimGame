@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameUI : MonoBehaviour {
     public TMP_Text timeText, scoreText, scoreBonusText, accuracyText, streakText, ttkText, kpsText, preTipText, reactionTimeText;
     public static bool UIHidden, triggerRestart;
-    public GameObject UICanvas, newUICanvas, newTimerCanvasImage;
+    public GameObject UICanvas, widgetsUICanvas, newTimerCanvasImage;
     Coroutine timerCoroutine;
     Coroutine spawnScatterCoroutine;
 
@@ -429,7 +429,7 @@ public class GameUI : MonoBehaviour {
     /// </summary>
     public static void HideWidgetsUI() {
         //gameUI.UICanvas.layer = 1;
-        gameUI.newUICanvas.SetActive(false);
+        gameUI.widgetsUICanvas.SetActive(false);
         UIHidden = true;
 
         // EVENT:: for game ui hidden
@@ -440,7 +440,7 @@ public class GameUI : MonoBehaviour {
     /// </summary>
     public static void ShowWidgetsUI() {
         //gameUI.UICanvas.layer = 15;
-        gameUI.newUICanvas.SetActive(true);
+        gameUI.widgetsUICanvas.SetActive(true);
         UIHidden = false;
 
         // EVENT:: for game ui shown
