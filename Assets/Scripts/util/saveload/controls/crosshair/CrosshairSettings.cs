@@ -3,15 +3,15 @@
 public class CrosshairSettings : MonoBehaviour {
     public static bool  centerDot        = false;
     public static bool  TStyle           = false;
-    public static float size             = 9f;
-    public static float thickness        = 2f;
+    public static float size             = 6f;
+    public static float thickness        = 1f;
     public static float gap              = 5f;
-    public static bool  outlineEnabled   = false;
+    public static bool  outlineEnabled   = true;
     public static float red              = 255f;
     public static float green            = 255f;
     public static float blue             = 255f;
     public static float alpha            = 255f;
-    public static string crosshairString = "000902050255255255255";
+    public static string crosshairString = "000601050255255255255";
 
     private static CrosshairSettings crosshairSettings;
     void Awake() { crosshairSettings = this; }

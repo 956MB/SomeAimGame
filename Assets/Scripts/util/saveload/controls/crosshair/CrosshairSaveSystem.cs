@@ -93,18 +93,13 @@ public class CrosshairSaveSystem : MonoBehaviour {
     /// Inits default crosshair values and saves to file on first launch.
     /// </summary>
     public static void InitCrosshairSettingsDefaults() {
-        // Crosshair toggles.
-        crosshairSave.TStyleToggle.isOn         = false;
-        crosshairSave.centerDotToggle.isOn      = false;
-        crosshairSave.OutlineEnabledToggle.isOn = true;
-
         // All crosshair values.
         crosshairSave.simpleCrosshair.SetTStyle(false, false);
         crosshairSave.simpleCrosshair.SetCenterDot(false, false);
         crosshairSave.simpleCrosshair.SetOutlineEnabled(true, false);
         crosshairSave.simpleCrosshair.SetOutlineThickness(1, false);
-        crosshairSave.simpleCrosshair.SetSize(9, false);
-        crosshairSave.simpleCrosshair.SetThickness(2, false);
+        crosshairSave.simpleCrosshair.SetSize(6, false);
+        crosshairSave.simpleCrosshair.SetThickness(1, false);
         crosshairSave.simpleCrosshair.SetGap(5, false);
         crosshairSave.simpleCrosshair.SetColor(CrosshairColorChannel.RED, 255, false);
         crosshairSave.simpleCrosshair.SetColor(CrosshairColorChannel.GREEN, 255, false);
@@ -114,8 +109,8 @@ public class CrosshairSaveSystem : MonoBehaviour {
 
         // Sets all default crosshair values to their text placeholders.
         CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairOutlineValueText, crosshairSave.crosshairOutlineValueTextPlaceholder, 1f);
-        CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairSizeValueText, crosshairSave.crosshairSizeValueTextPlaceholder, 9f);
-        CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairThicknessValueText, crosshairSave.crosshairThicknessValueTextPlaceholder, 2f);
+        CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairSizeValueText, crosshairSave.crosshairSizeValueTextPlaceholder, 6f);
+        CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairThicknessValueText, crosshairSave.crosshairThicknessValueTextPlaceholder, 1f);
         CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairGapValueText, crosshairSave.crosshairGapValueTextPlaceholder, 5f);
         CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairRedValueText, crosshairSave.crosshairRedValueTextPlaceholder, 255f);
         CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairGreenValueText, crosshairSave.crosshairGreenValueTextPlaceholder, 255f);
@@ -123,11 +118,12 @@ public class CrosshairSaveSystem : MonoBehaviour {
         CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairAlphaValueText, crosshairSave.crosshairAlphaValueTextPlaceholder, 255f);
 
         // Sets all default crosshair values to their toggles/sliders.
+        CrosshairOptionsObject.SetCrosshairOptionToggle(crosshairSave.TStyleToggle, false);
         CrosshairOptionsObject.SetCrosshairOptionToggle(crosshairSave.centerDotToggle, false);
         CrosshairOptionsObject.SetCrosshairOptionToggle(crosshairSave.OutlineEnabledToggle, true);
         CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairOutlineSlider, 1f);
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairSizeSlider, 9f);
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairThicknessSlider, 2f);
+        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairSizeSlider, 6f);
+        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairThicknessSlider, 1f);
         CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairGapSlider, 5f);
         CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairRedSlider, 255f);
         CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairGreenSlider, 255f);
@@ -135,7 +131,7 @@ public class CrosshairSaveSystem : MonoBehaviour {
         CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairAlphaSlider, 255f);
 
         // Saves defaults to new 'crosshair.settings' file.
-        CrosshairSettings.SaveAllCrosshairDefaults(false, false, 9f, 2f, 5f, true, 255f, 255f, 255f, 255f, "000902050255255255255");
+        CrosshairSettings.SaveAllCrosshairDefaults(false, false, 6f, 1f, 5f, true, 255f, 255f, 255f, 255f, "000601050255255255255");
     }
 
     /// <summary>
