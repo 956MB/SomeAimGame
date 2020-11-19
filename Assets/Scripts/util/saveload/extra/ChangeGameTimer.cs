@@ -34,6 +34,8 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
             case "90Text (TMP)":       SetNewGameTimer(90, true);  break;
             case "120Text (TMP)":      SetNewGameTimer(120, true); break;
         }
+
+        NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("eventtimerchanged")} {ReturnGameTimerString(ExtraSettings.gameTimer)}", InterfaceColors.notificationColorGreen);
     }
 
     /// <summary>
@@ -101,5 +103,12 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public static void ClearHoveredTimeText_Color() {
         ClearTimerButtons();
         GameObject.Find(selectedTimeText).GetComponent<TMP_Text>().color = InterfaceColors.selectedColor;
+    }
+
+    private static string ReturnGameTimerString(int gameTimerValue) {
+        switch (gameTimerValue) {
+            case 0: return "∞";
+            default: return $"{gameTimerValue}";
+        }
     }
 }
