@@ -13,8 +13,8 @@ public class GunAction : MonoBehaviour {
     void LateUpdate() {
         // Shoot (KeyCode.Mouse0) if game timer still running and settings panel not open (game paused).
         if (GameUI.timeCount > -1) {
-            if (!MouseLook.settingsOpen && Input.GetKeyDown(KeyCode.Mouse0) && SpawnTargets.gamemode != Gamemode.Follow) {
-                Shoot();
+            if (!MouseLook.settingsOpen && Keybinds.keybindsLoaded && SpawnTargets.gamemode != Gamemode.Follow) {
+                if (Input.GetKeyDown(KeybindSettings.shoot)) { Shoot(); }
             }
         } else {
             if (timerRunning) {

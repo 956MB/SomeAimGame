@@ -28,7 +28,6 @@ public class ButtonHoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
             if (currentHoveredButton.Contains("Gamemode")) { SetHoverButtonColor(buttonName, GameObject.Find($"{buttonName}-Text (TMP)").GetComponent<TMP_Text>()); }
             //CursorHandler.setHoverCursorStatic();
             if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Hover(); }
-
         }
     }
 

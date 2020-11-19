@@ -1,21 +1,27 @@
 ﻿using UnityEngine;
 
 public class Keybinds : MonoBehaviour {
+    public static bool keybindsLoaded = false;
+
+    private void Start() {
+        KeybindSaveSystem.InitSavedKeybindSettings();
+    }
 
     void Update() {
-        // Used game keybinds
-        if (Input.GetKeyDown(KeyCode.H)) {
-            ToggleWidgetsUI_Keybind();
-        } else if (Input.GetKeyDown(KeyCode.R)) {
-            TriggerGameRestart_Keybind();
-        } else if (Input.GetKeyDown(KeyCode.Tab)) {
-            ToggleAARPanel_Keybind();
-        } else if (Input.GetKeyDown(KeyCode.Escape)) {
-            ToggleSettingsPanel_Keybind();
-        } else if (Input.GetKeyDown(KeyCode.RightArrow)) {
-            MoveSettingsPanelRight_Keybind();
-        } else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
-            MoveSettingsPanelLeft_Keybind();
+        if (keybindsLoaded) {
+            if (Input.GetKeyDown(KeybindSettings.toggleWidgets)) {
+                ToggleWidgetsUI_Keybind();
+            } else if (Input.GetKeyDown(KeybindSettings.gameRestart)) {
+                TriggerGameRestart_Keybind();
+            } else if (Input.GetKeyDown(KeybindSettings.toggleAAR)) {
+                ToggleAARPanel_Keybind();
+            } else if (Input.GetKeyDown(KeybindSettings.toggleSettings)) {
+                ToggleSettingsPanel_Keybind();
+            //} else if (Input.GetKeyDown(KeyCode.RightArrow)) {
+            //    MoveSettingsPanelRight_Keybind();
+            //} else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+            //    MoveSettingsPanelLeft_Keybind();
+            }
         }
     }
 
@@ -23,14 +29,14 @@ public class Keybinds : MonoBehaviour {
     /// Toggle WorldUI keybind function. [EVENT]
     /// </summary>
     private static void ToggleWidgetsUI_Keybind() {
-        GameUI.ToggleWidgetsUI();
+        if (!SettingsPanel.settingsOpen) { GameUI.ToggleWidgetsUI(); }
     }
 
     /// <summary>
     /// Trigger game restart keybind function.
     /// </summary>
     private static void TriggerGameRestart_Keybind() {
-        GameUI.RestartGame(CosmeticsSettings.gamemode);
+        if (!SettingsPanel.settingsOpen) { GameUI.RestartGame(CosmeticsSettings.gamemode); }
 
         // EVENT:: for game restart keybind pressed
         //DevEventHandler.CheckKeybindEvent($"'RestartGame' [R] {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}");
@@ -41,7 +47,7 @@ public class Keybinds : MonoBehaviour {
     /// </summary>
     private static void ToggleAARPanel_Keybind() {
         if (SettingsPanel.afterActionReportSet) {
-            if (!SettingsPanel.afterActionReportOpen) {
+            if (!SettingsPanel.afterActionReportOpen && !SettingsPanel.settingsOpen) {
                 SettingsPanel.CloseSettingsPanel();
                 SettingsPanel.OpenAfterActionReport();
                 GameUI.HideWidgetsUI();
@@ -58,11 +64,13 @@ public class Keybinds : MonoBehaviour {
     /// Toggle settings panel keybind function. [EVENT]
     /// </summary>
     private static void ToggleSettingsPanel_Keybind() {
-        if (SettingsPanel.settingsOpen) {
-            SettingsPanel.CloseSettingsPanel();
-        } else {
-            if (!SettingsPanel.afterActionReportOpen) {
-                SettingsPanel.OpenSettingsPanel();
+        if (KeybindsHandler.currentKey == null) {
+            if (SettingsPanel.settingsOpen) {
+                SettingsPanel.CloseSettingsPanel();
+            } else {
+                if (!SettingsPanel.afterActionReportOpen) {
+                    SettingsPanel.OpenSettingsPanel();
+                }
             }
         }
         
