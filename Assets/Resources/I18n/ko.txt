@@ -251,7 +251,7 @@ eventgamemodestarted=GAMEMODE STARTED
 eventgamemodescattertick=SCATTER GAMEMODE SPAWN TICK
 eventgamemodespawnsclear=SPAWNS CLEARED FOR GAMEMODE
 # -- time
-eventtimerchanged=GAME TIMER CHANGED TO
+eventtimerchanged=게임 타이머가 다음으로 변경되었습니다.
 eventtimerticknormal=NORMAL GAME TIMER TICK
 eventtimertickup=UP GAME TIMER TICK
 # -- crosshair

@@ -130,12 +130,12 @@ crosshairtitle=Crosshair
 #
 #
 # // keybinds
-keybindshoot='Shoot' keybind
-keybindtogglesettings='Toggle Settings' keybind
-keybindtoggleaar='Toggle AAR' keybind
-keybindtogglewidgets='Toggle Widgets' keybind
-keybindgamerestart='Game Restart' keybind
-keybindrebinded=has been rebinded to
+keybindshoot='Shoot' KEYBIND
+keybindtogglesettings='Toggle Settings' KEYBIND
+keybindtoggleaar='Toggle AAR' KEYBIND
+keybindtogglewidgets='Toggle Widgets' KEYBIND
+keybindgamerestart='Game Restart' KEYBIND
+keybindrebinded=HAS BEEN REBINDED TO
 #
 #
 # // controls section items
@@ -251,7 +251,7 @@ eventgamemodestarted=GAMEMODE STARTED
 eventgamemodescattertick=SCATTER GAMEMODE SPAWN TICK
 eventgamemodespawnsclear=SPAWNS CLEARED FOR GAMEMODE
 # -- time
-eventtimerchanged=GAME TIMER CHANGED TO
+eventtimerchanged=GAME TIMER CHANGED TO:
 eventtimerticknormal=NORMAL GAME TIMER TICK
 eventtimertickup=UP GAME TIMER TICK
 # -- crosshair

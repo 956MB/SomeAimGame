@@ -251,7 +251,7 @@ eventgamemodestarted=ゲームモード開始
 eventgamemodescattertick=スキャッターゲームモードスポーンティック
 eventgamemodespawnsclear=GAMEMODE用にクリアされたスポーン
 # -- time
-eventtimerchanged=ゲームタイマーがに変更されました
+eventtimerchanged=ゲームタイマーがに変更されました:
 eventtimerticknormal=通常のゲームタイマーティック
 eventtimertickup=アップゲームタイマーティック
 # -- crosshair
