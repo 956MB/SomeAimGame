@@ -60,14 +60,12 @@ public class CosmeticsSaveSystem : MonoBehaviour {
         CosmeticsDataSerial loadedCosmeticsData = LoadCosmeticsSettingsData();
 
         if (loadedCosmeticsData != null) {
-            CosmeticsSettings.LoadCosmeticsSettings(loadedCosmeticsData);
-
             SetQuickStartGame(loadedCosmeticsData.quickStartGame);
             SetGamemode(loadedCosmeticsData.gamemode, loadedCosmeticsData.quickStartGame);
             SetTargetColor(loadedCosmeticsData.targetColor, loadedCosmeticsData.gamemode);
             SetSkybox(loadedCosmeticsData.skybox);
             
-            CosmeticsSettings.SaveAllCosmeticsToggleDefaults(loadedCosmeticsData.gamemode, loadedCosmeticsData.targetColor, loadedCosmeticsData.skybox, loadedCosmeticsData.afterActionReportPanelX, loadedCosmeticsData.afterActionReportPanelY, loadedCosmeticsData.extraStatsPanelX, loadedCosmeticsData.extraStatsPanelY, loadedCosmeticsData.quickStartGame);
+            CosmeticsSettings.LoadCosmeticsSettings(loadedCosmeticsData);
         } else {
             InitCosmeticsSettingsDefaults();
         }

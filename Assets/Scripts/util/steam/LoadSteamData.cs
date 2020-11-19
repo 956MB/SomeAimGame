@@ -28,9 +28,6 @@ public class LoadSteamData : MonoBehaviour {
 
         FetchSteamUsername();
         StartCoroutine(FetchSteamAvatar());
-
-        //ButtonHoverHandler_EventTrigger.ToggleOptionsObject_Static();
-        //ButtonHoverHandler_EventTrigger.ToggleOptionsObject_Static();
     }
 
     /// <summary>
@@ -38,7 +35,6 @@ public class LoadSteamData : MonoBehaviour {
     /// </summary>
     public static void FetchSteamUsername() {
         string steamUsername = SteamFriends.GetPersonaName();
-        //string steamUsername = $"{I18nTextTranslator.SetTranslatedText("testuser")}";
 
         if (steamUsername.Length > usernameMaxLength) {
             steamData.steamUsernameText.SetText($"{ShortenSteamUsername(steamUsername)}");
@@ -87,9 +83,9 @@ public class LoadSteamData : MonoBehaviour {
     /// Sets default avatar and username text if users steam data not available, or steam manager not initialized.
     /// </summary>
     public static void SetSteamDataDefaults() {
-        string userName = Environment.UserName;
+        //string userName = Environment.UserName;
 
-        steamData.steamUsernameText.SetText($"{userName}");
+        steamData.steamUsernameText.SetText($"{I18nTextTranslator.SetTranslatedText("testuser")}");
         steamData.steamAvatarImage.sprite = steamData.placeholderAvatar;
 
         Util.RefreshRootLayoutGroup(steamData.rootGroup);
