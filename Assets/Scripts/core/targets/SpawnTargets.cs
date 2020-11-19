@@ -147,7 +147,7 @@ public class SpawnTargets : MonoBehaviour {
     /// </summary>
     /// <param name="newGamemode"></param>
     public static void StartNewGamemode(Gamemode newGamemode) {
-        GameUI.RestartGame(newGamemode);
+        GameUI.RestartGame(newGamemode, true);
     }
 
     /// <summary>

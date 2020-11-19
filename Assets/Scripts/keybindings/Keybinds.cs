@@ -36,7 +36,7 @@ public class Keybinds : MonoBehaviour {
     /// Trigger game restart keybind function.
     /// </summary>
     private static void TriggerGameRestart_Keybind() {
-        if (!SettingsPanel.settingsOpen) { GameUI.RestartGame(CosmeticsSettings.gamemode); }
+        if (!SettingsPanel.settingsOpen) { GameUI.RestartGame(CosmeticsSettings.gamemode, true); }
 
         // EVENT:: for game restart keybind pressed
         //DevEventHandler.CheckKeybindEvent($"'RestartGame' [R] {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}");

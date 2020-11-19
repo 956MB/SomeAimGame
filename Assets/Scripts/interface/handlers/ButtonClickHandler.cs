@@ -23,7 +23,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
         // EVENT:: for new gamemode start
         //DevEventHandler.CheckGamemodeEvent($"\"{gamemodeClickedName}\" {I18nTextTranslator.SetTranslatedText("eventgamemodestarted")}");
 
-        GameUI.RestartGame(CosmeticsSettings.gamemode);
+        GameUI.RestartGame(CosmeticsSettings.gamemode, true);
     }
 
     /// <summary>

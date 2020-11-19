@@ -3,8 +3,8 @@ using UnityEngine.EventSystems;
 using TMPro;
 
 public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
-    public TMP_Text text30, text60, text90, text120;
-    public static string selectedTimeText      = "60Text (TMP)";
+    public TMP_Text textInfinity, text30, text60, text90, text120;
+    public static string selectedTimeText = "60Text (TMP)";
 
     private static ChangeGameTimer gameTimer;
     void Awake() { gameTimer = this; }
@@ -28,10 +28,11 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
         clickedButtonText.color = InterfaceColors.selectedColor;
 
         switch (clickedButtonText.transform.name) {
-            case "30Text (TMP)":  SetNewGameTimer(30, true);  break;
-            case "60Text (TMP)":  SetNewGameTimer(60, true);  break;
-            case "90Text (TMP)":  SetNewGameTimer(90, true);  break;
-            case "120Text (TMP)": SetNewGameTimer(120, true); break;
+            case "InfinityText (TMP)": SetNewGameTimer(0, true);   break;
+            case "30Text (TMP)":       SetNewGameTimer(30, true);  break;
+            case "60Text (TMP)":       SetNewGameTimer(60, true);  break;
+            case "90Text (TMP)":       SetNewGameTimer(90, true);  break;
+            case "120Text (TMP)":      SetNewGameTimer(120, true); break;
         }
     }
 
@@ -45,7 +46,7 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
         ExtraSettings.SaveGameTimerItem(newGameTimer);
         SetGameTimerButton(newGameTimer);
 
-        if (restartGame) { GameUI.RestartGame(CosmeticsSettings.gamemode); }
+        if (restartGame) { GameUI.RestartGame(CosmeticsSettings.gamemode, false); }
     }
 
     /// <summary>
@@ -56,6 +57,10 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
         ClearTimerButtons();
 
         switch (setButton) {
+            case 0:
+                selectedTimeText             = "InfinityText (TMP)";
+                gameTimer.textInfinity.color = InterfaceColors.selectedColor;
+                break;
             case 30:
                 selectedTimeText       = "30Text (TMP)";
                 gameTimer.text30.color = InterfaceColors.selectedColor;
@@ -79,10 +84,11 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
     /// Clears all time buttons in settings panel (general sub-section) to unselected color.
     /// </summary>
     public static void ClearTimerButtons() {
-        gameTimer.text30.color  = InterfaceColors.unselectedColor;
-        gameTimer.text60.color  = InterfaceColors.unselectedColor;
-        gameTimer.text90.color  = InterfaceColors.unselectedColor;
-        gameTimer.text120.color = InterfaceColors.unselectedColor;
+        gameTimer.textInfinity.color = InterfaceColors.unselectedColor;
+        gameTimer.text30.color       = InterfaceColors.unselectedColor;
+        gameTimer.text60.color       = InterfaceColors.unselectedColor;
+        gameTimer.text90.color       = InterfaceColors.unselectedColor;
+        gameTimer.text120.color      = InterfaceColors.unselectedColor;
     }
 
     public static void SetHoveredTimeText_Color(GameObject hoveredTimeText) {
