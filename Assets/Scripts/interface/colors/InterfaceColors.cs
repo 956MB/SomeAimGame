@@ -7,6 +7,7 @@ public class InterfaceColors : MonoBehaviour {
     public static Color32 selectedColor           = new Color32(255, 255, 255, 255);
     public static Color32 hoveredColor            = new Color32(255, 255, 255, 190);
     public static Color32 unselectedColor         = new Color32(255, 255, 255, 120);
+    public static Color32 disabledColor           = new Color32(255, 255, 255, 80);
     public static Color32 widgetsHitColor         = new Color32(0, 255, 0, 255);
     public static Color32 widgetsMissColor        = new Color32(255, 0, 0, 255);
     public static Color32 widgetsBonusColor       = new Color32(255, 209, 0, 255);
