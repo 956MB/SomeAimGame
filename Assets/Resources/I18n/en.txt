@@ -129,6 +129,15 @@ keybindlegend=Keybind editing coming soon
 crosshairtitle=Crosshair
 #
 #
+# // keybinds
+keybindshoot='Shoot' keybind
+keybindtogglesettings='Toggle Settings' keybind
+keybindtoggleaar='Toggle AAR' keybind
+keybindtogglewidgets='Toggle Widgets' keybind
+keybindgamerestart='Game Restart' keybind
+keybindrebinded=has been rebinded to
+#
+#
 # // controls section items
 shoot=''Shoot'' .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showhidesettings=Show/Hide Settings  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .

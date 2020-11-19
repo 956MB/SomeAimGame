@@ -129,6 +129,15 @@ keybindlegend=Pедактирование привязки клавиш скор
 crosshairtitle=Перекрестие
 #
 #
+# // keybinds
+keybindshoot=Связка клавиш "Стрельба"
+keybindtogglesettings=Связка клавиш 'Toggle Settings'
+keybindtoggleaar=Привязка клавиш Toggle AAR
+keybindtogglewidgets=Связка клавиш Toggle Widgets
+keybindgamerestart=Связка клавиш "Перезапуск игры"
+keybindrebinded=был переименован в
+#
+#
 # // controls section items
 shoot=''Стрелять'' .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showhidesettings=Показать / скрыть настройки  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .

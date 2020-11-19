@@ -129,6 +129,15 @@ keybindlegend=Avaimensiirron muokkaus on tulossa pian
 crosshairtitle=Ristikko
 #
 #
+# // keybinds
+keybindshoot="Ammu" -näppäin
+keybindtogglesettings=Vaihda asetukset -näppäin
+keybindtoggleaar=Vaihda toimintaraportin jälkeen -näppäin
+keybindtogglewidgets='Vaihda widgetit' -näppäin
+keybindgamerestart='Peli käynnistetään uudelleen' -näppäin
+keybindrebinded=on uudelleen sidottu
+#
+#
 # // controls section items
 shoot=''Ampua'' .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showhidesettings=Näytä / piilota asetukset  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .

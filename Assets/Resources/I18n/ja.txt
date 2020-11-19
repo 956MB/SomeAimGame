@@ -129,6 +129,15 @@ keybindlegend=キーバインド編集は近日公開予定
 crosshairtitle=十字線
 #
 #
+# // keybinds
+keybindshoot=「シュート」キーバインド
+keybindtogglesettings=「設定の切り替え」キーバインド
+keybindtoggleaar=「ToggleAAR」キーバインド
+keybindtogglewidgets=「ウィジェットの切り替え」キーバインド
+keybindgamerestart=「ゲーム再起動」キーバインド
+keybindrebinded=に再バインドされました
+#
+#
 # // controls section items
 shoot=''シュート'' .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showhidesettings=設定の表示/非表示  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .

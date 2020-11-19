@@ -129,6 +129,15 @@ keybindlegend=곧 키 바인딩 편집
 crosshairtitle=십자선
 #
 #
+# // keybinds
+keybindshoot='촬영'키 바인드
+keybindtogglesettings='설정 전환'키 바인딩
+keybindtoggleaar='AAR 전환'키 바인딩
+keybindtogglewidgets='위젯 전환'키 바인드
+keybindgamerestart='게임 재시작'키 바인드
+keybindrebinded=리 바인딩되었습니다
+#
+#
 # // controls section items
 shoot=''사격'' .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 showhidesettings=설정 표시 / 숨기기  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
