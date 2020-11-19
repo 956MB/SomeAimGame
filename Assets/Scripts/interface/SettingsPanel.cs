@@ -4,7 +4,7 @@ using UnityEngine.Video;
 //using UnityEditor;
 
 public class SettingsPanel : MonoBehaviour {
-    public GameObject mainMenuCanvas, settingsPanel, afterPanel, extendedStatsPanel, steamDataContainer, devEventContainer;
+    public GameObject mainMenuCanvas, settingsPanel, afterPanel, extendedStatsPanel, steamDataContainer, devEventContainer, crosshairImage;
     public static bool settingsOpen          = false;
     public static bool afterActionReportOpen = false;
     public static bool afterActionReportSet;
@@ -13,7 +13,7 @@ public class SettingsPanel : MonoBehaviour {
     public GameObject canvasRed, canvasOrange, canvasYellow, canvasGreen, canvasBlue, canvasPurple, canvasPink, canvasWhite;
     public Sprite skyboxPinkThumbnail, skyboxGoldenThumbnail, skyboxNightThumbnail, skyboxGreyThumbnail, skyboxBlueThumbnail, skyboxSlateThumbnail;
     public GameObject skyboxCanvasPink, skyboxCanvasGolden, skyboxCanvasNight, skyboxCanvasGrey, skyboxCanvasStars, skyboxCanvasSlate;
-    public static float panelMoveSize = 88.6f;
+    public static float panelMoveSize = 75f;
     public static float panelWidth;
     RectTransform rt;
 
@@ -35,14 +35,16 @@ public class SettingsPanel : MonoBehaviour {
 
         // Init saved settings for settings panel.
         ExtraSaveSystem.InitSavedExtraSettings();
-        StatsManager.HideExtraStatsPanel();
         CrosshairSaveSystem.InitSavedCrosshairSettings();
         WidgetSaveSystem.InitSavedWidgetSettings();
+        StatsManager.HideExtraStatsPanel();
 
         // Close settings and 'AfterActionReport' panels at start.
         settings.settingsPanel.transform.localScale = new Vector3(0f, 0f, 1f);
         settings.afterPanel.transform.localScale    = new Vector3(0f, 0f, 1f);
         settings.steamDataContainer.SetActive(false);
+
+        //MovePanelCount_Left(7);
     }
 
     /// <summary>
@@ -85,8 +87,9 @@ public class SettingsPanel : MonoBehaviour {
 
         OpenAction();
         settingsOpen = true;
-        GameUI.HideWidgetsUI();
         SubMenuHandler.ResetAllScrollviewsTop();
+        GameUI.HideWidgetsUI();
+        GameUI.HideGameObject_Layer(settings.crosshairImage);
 
         // EVENT:: for settings panel being opened
         //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacesettingsopened")}");
@@ -106,6 +109,7 @@ public class SettingsPanel : MonoBehaviour {
         if (ExtraSettings.hideUI) { GameUI.ShowWidgetsUI(); }
         
         CrosshairOptionsObject.SaveCrosshairObject(false);
+        GameUI.ShowGameObject_Layer(settings.crosshairImage);
 
         CloseAction();
         settingsOpen = false;
@@ -128,6 +132,7 @@ public class SettingsPanel : MonoBehaviour {
 
         StatsManager.ResetAARScrollView();
         GameUI.HideWidgetsUI();
+        GameUI.HideGameObject_Layer(settings.crosshairImage);
 
         // EVENT:: for AAR panel being opened
         //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceaaropened")}");
@@ -146,6 +151,7 @@ public class SettingsPanel : MonoBehaviour {
         afterActionReportOpen                    = false;
 
         if (ExtraSettings.hideUI) { GameUI.ShowWidgetsUI(); }
+        GameUI.ShowGameObject_Layer(settings.crosshairImage);
 
         // EVENT:: for AAR panel being opened
         //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceaarclosed")}");
@@ -234,6 +240,17 @@ public class SettingsPanel : MonoBehaviour {
             return settings.settingsPanel.transform.position;
         }
     }
+
+    /// <summary>
+    /// Moves settings panel left supplied number of times (count).
+    /// </summary>
+    /// <param name="count"></param>
+    public static void MovePanelCount_Left(int count) { for (int i = 0; i < count; i++) { MoveSettingsPanelLeft(); } }
+    /// <summary>
+    /// Moves settings panel right supplied number of times (count).
+    /// </summary>
+    /// <param name="count"></param>
+    public static void MovePanelCount_Right(int count) { for (int i = 0; i < count; i++) { MoveSettingsPanelRight(); } }
 
     /// <summary>
     /// Loads then plays all gamemode preview videos in their repsective buttons from the current gamemode, target color and skybox.

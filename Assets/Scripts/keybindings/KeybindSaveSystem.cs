@@ -68,17 +68,22 @@ public class KeybindSaveSystem : MonoBehaviour {
 
     public static void SetShootKeybind(KeyCode setShootKeycode) {
         keybindSaveLoad.shootKeybindText.SetText(KeybindsHandler.ReturnKeybindShort(setShootKeycode));
+        keybindSaveLoad.shootKeybindText.color = InterfaceColors.selectedColor;
     }
     public static void SetToggleWidgetsKeybind(KeyCode setToggleWidgetsKeycode) {
         keybindSaveLoad.toggleWidgetsKeybindText.SetText(KeybindsHandler.ReturnKeybindShort(setToggleWidgetsKeycode));
+        keybindSaveLoad.toggleWidgetsKeybindText.color = InterfaceColors.selectedColor;
     }
     public static void SetGameRestartKeybind(KeyCode setGameRestartKeycode) {
         keybindSaveLoad.gameRestartKeybindText.SetText(KeybindsHandler.ReturnKeybindShort(setGameRestartKeycode));
+        keybindSaveLoad.gameRestartKeybindText.color = InterfaceColors.selectedColor;
     }
     public static void SetToggleAARKeybind(KeyCode setToggleAARKeycode) {
         keybindSaveLoad.toggleAARKeybindText.SetText(KeybindsHandler.ReturnKeybindShort(setToggleAARKeycode));
+        keybindSaveLoad.toggleAARKeybindText.color = InterfaceColors.selectedColor;
     }
     public static void SetToggleSettingsKeybind(KeyCode setToggleSettingsKeycode) {
         keybindSaveLoad.toggleSettingsKeybindText.SetText(KeybindsHandler.ReturnKeybindShort(setToggleSettingsKeycode));
+        keybindSaveLoad.toggleSettingsKeybindText.color = InterfaceColors.selectedColor;
     }
 }

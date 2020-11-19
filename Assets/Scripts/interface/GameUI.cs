@@ -458,4 +458,20 @@ public class GameUI : MonoBehaviour {
         // EVENT:: for game ui shown
         //if (DevEventHandler.eventsOn) { DevEventHandler.CreateInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceshowui")}"); }
     }
+
+    /// <summary>
+    /// Hides supplied GameObject (hideLayer) by setting active false.
+    /// </summary>
+    /// <param name="hideLayer"></param>
+    public static void HideGameObject_Layer(GameObject hideLayer) {
+        hideLayer.SetActive(false);
+    }
+
+    /// <summary>
+    /// Shows supplied GameObject (showLayer) by setting active true.
+    /// </summary>
+    /// <param name="showLayer"></param>
+    public static void ShowGameObject_Layer(GameObject showLayer) {
+        showLayer.SetActive(true);
+    }
 }

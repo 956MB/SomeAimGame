@@ -17,10 +17,10 @@ public class Keybinds : MonoBehaviour {
                 ToggleAARPanel_Keybind();
             } else if (Input.GetKeyDown(KeybindSettings.toggleSettings)) {
                 ToggleSettingsPanel_Keybind();
-            //} else if (Input.GetKeyDown(KeyCode.RightArrow)) {
-            //    MoveSettingsPanelRight_Keybind();
-            //} else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
-            //    MoveSettingsPanelLeft_Keybind();
+            } else if (Input.GetKeyDown(KeyCode.RightArrow)) {
+                MoveSettingsPanelRight_Keybind();
+            } else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+                MoveSettingsPanelLeft_Keybind();
             }
         }
     }

@@ -16,7 +16,8 @@ public class KeybindsHandler : MonoBehaviour, IPointerEnterHandler {
                 if (e.keyCode != clickedKeycode && e.keyCode != KeyCode.Escape) {
                     HandleNewKeybindSet(clickedKeycode, e.keyCode);
                 } else {
-                    currentKey.transform.GetChild(0).GetComponent<TMP_Text>().text = ReturnKeybindShort(clickedKeycode);
+                    currentKey.transform.GetChild(0).GetComponent<TMP_Text>().text  = ReturnKeybindShort(clickedKeycode);
+                    currentKey.transform.GetChild(0).GetComponent<TMP_Text>().color = InterfaceColors.selectedColor;
                 }
                 
                 currentKey = null;
@@ -29,9 +30,10 @@ public class KeybindsHandler : MonoBehaviour, IPointerEnterHandler {
     }
 
     public void ChangeKeybind(GameObject clickedButton) {
-        currentKey                                                     = clickedButton;
-        clickedKeycode                                                 = GetButtonKeybind(currentKey.name);
-        currentKey.transform.GetChild(0).GetComponent<TMP_Text>().text = "";
+        currentKey     = clickedButton;
+        clickedKeycode = GetButtonKeybind(currentKey.name);
+        currentKey.transform.GetChild(0).GetComponent<TMP_Text>().text = "-";
+        currentKey.transform.GetChild(0).GetComponent<TMP_Text>().color = InterfaceColors.unselectedColor;
     }
 
     private void HandleNewKeybindSet(KeyCode clickedKeycode, KeyCode newKeycode) {
