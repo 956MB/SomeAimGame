@@ -20,6 +20,9 @@ public class QuitGame : MonoBehaviour {
         Application.Quit();
     }
 
+    /// <summary>
+    /// Opens game quit confirmation if not open, otherwise quits game.
+    /// </summary>
     public void ConfirmGameQuit() {
         if (!gameQuitConfirmationOpen) {
             OpenQuitConfirmation();
@@ -28,6 +31,9 @@ public class QuitGame : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Shows quit button.
+    /// </summary>
     public static void OpenQuitButton() {
         //Debug.Log("OPEN QUIT");
         quit.quitButton.SetActive(true);
@@ -35,6 +41,10 @@ public class QuitGame : MonoBehaviour {
         //Util.RefreshRootLayoutGroup(quit.parentContainerObject);
         //Debug.Log("OPEN QUIT AFTER");
     }
+
+    /// <summary>
+    /// Hides quit button.
+    /// </summary>
     public static void CloseQuitButton() {
         //Debug.Log("CLOSE QUIT");
         quit.quitButton.SetActive(false);
@@ -42,6 +52,9 @@ public class QuitGame : MonoBehaviour {
         Util.RefreshRootLayoutGroup(quit.parentContainerObject);
     }
 
+    /// <summary>
+    /// Opens quit confirmation section with "Are you sure?" and "Cancel" buttons.
+    /// </summary>
     public static void OpenQuitConfirmation() {
         quit.confirmationContainer.SetActive(true);
         //quit.quitButton.SetActive(true);
@@ -51,6 +64,9 @@ public class QuitGame : MonoBehaviour {
         Util.RefreshRootLayoutGroup(quit.parentContainerObject);
     }
 
+    /// <summary>
+    /// Closes quit confirmation section.
+    /// </summary>
     public static void CloseQuitConfirmation() {
         quit.confirmationContainer.SetActive(false);
         //quit.quitButton.SetActive(false);
@@ -63,6 +79,9 @@ public class QuitGame : MonoBehaviour {
         Util.RefreshRootLayoutGroup(quit.parentContainerObject);
     }
 
+    /// <summary>
+    /// Cancels quit game if quit confirmation section open.
+    /// </summary>
     public void CancelQuitGame() {
        if (gameQuitConfirmationOpen) { CloseQuitConfirmation(); }
     }

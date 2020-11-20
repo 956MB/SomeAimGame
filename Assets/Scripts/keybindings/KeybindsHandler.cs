@@ -9,6 +9,9 @@ public class KeybindsHandler : MonoBehaviour, IPointerEnterHandler {
     private static KeybindsHandler keybindHandler;
     void Awake() { keybindHandler = this; }
 
+    /// <summary>
+    /// Sets new keybind to keybind being changed if current key is set.
+    /// </summary>
     void OnGUI() {
         if (currentKey != null) {
             Event e = Event.current;
@@ -29,6 +32,10 @@ public class KeybindsHandler : MonoBehaviour, IPointerEnterHandler {
         if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Hover(); }
     }
 
+    /// <summary>
+    /// Sets clicked keybind button as current keybind to be changed.
+    /// </summary>
+    /// <param name="clickedButton"></param>
     public void ChangeKeybind(GameObject clickedButton) {
         currentKey     = clickedButton;
         clickedKeycode = GetButtonKeybind(currentKey.name);
@@ -36,6 +43,11 @@ public class KeybindsHandler : MonoBehaviour, IPointerEnterHandler {
         currentKey.transform.GetChild(0).GetComponent<TMP_Text>().color = InterfaceColors.unselectedColor;
     }
 
+    /// <summary>
+    /// Sets all UI keybind values for supplied clicked keycode (clickedKeycode) to new keycode (newKeycode), saves new keycode to keybind settings object, then shows notification.
+    /// </summary>
+    /// <param name="clickedKeycode"></param>
+    /// <param name="newKeycode"></param>
     private void HandleNewKeybindSet(KeyCode clickedKeycode, KeyCode newKeycode) {
         if (clickedKeycode == KeybindSettings.shoot) {
             KeybindSaveSystem.SetShootKeybind(newKeycode);
@@ -65,6 +77,11 @@ public class KeybindsHandler : MonoBehaviour, IPointerEnterHandler {
         }
     }
 
+    /// <summary>
+    /// Returns saved keycode for supplied keybind button name (buttonName).
+    /// </summary>
+    /// <param name="buttonName"></param>
+    /// <returns></returns>
     private static KeyCode GetButtonKeybind(string buttonName) {
         switch (buttonName) {
             case "Shoot-Button":
@@ -78,10 +95,15 @@ public class KeybindsHandler : MonoBehaviour, IPointerEnterHandler {
             case "GameRestart-Button":
                 return KeybindSettings.gameRestart;
             default:
-                return KeybindSettings.shoot;
+                return KeyCode.None;
         }
     }
 
+    /// <summary>
+    /// Returns short string version of supplied keycode (fullKeycode).
+    /// </summary>
+    /// <param name="fullKeycode"></param>
+    /// <returns></returns>
     public static string ReturnKeybindShort(KeyCode fullKeycode) {
         switch (fullKeycode) {
             case KeyCode.Escape:

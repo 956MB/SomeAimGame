@@ -33,6 +33,10 @@ public class GameUI : MonoBehaviour {
         GameStartActions(true);
     }
 
+    /// <summary>
+    /// Resets all main game values, closes menus, and runs timer routines on start.
+    /// </summary>
+    /// <param name="closePanels"></param>
     public static void GameStartActions(bool closePanels) {
         reactionTime     = 0;
         reactionTimeList = new List<int>();

@@ -93,6 +93,10 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
         gameTimer.text120.color      = InterfaceColors.unselectedColor;
     }
 
+    /// <summary>
+    /// Sets supplied game timer button text (hoveredTimeText) to hoveredColor.
+    /// </summary>
+    /// <param name="hoveredTimeText"></param>
     public static void SetHoveredTimeText_Color(GameObject hoveredTimeText) {
         if (hoveredTimeText.name != selectedTimeText) {
             hoveredTimeText.GetComponent<TMP_Text>().color = InterfaceColors.hoveredColor;
@@ -100,11 +104,19 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
     }
 
+    /// <summary>
+    /// Calls ClearTimerButtons() to clear all game timer button text, then set selected timer text to selectedColor
+    /// </summary>
     public static void ClearHoveredTimeText_Color() {
         ClearTimerButtons();
         GameObject.Find(selectedTimeText).GetComponent<TMP_Text>().color = InterfaceColors.selectedColor;
     }
 
+    /// <summary>
+    /// Returns infinity symbol string for supplied timer value if 0 (gameTimerValue), or just returns supplied timer value (gameTimerValue) as string if not 0.
+    /// </summary>
+    /// <param name="gameTimerValue"></param>
+    /// <returns></returns>
     private static string ReturnGameTimerString(int gameTimerValue) {
         switch (gameTimerValue) {
             case 0: return "∞";

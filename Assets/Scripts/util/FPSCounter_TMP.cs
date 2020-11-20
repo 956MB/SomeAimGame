@@ -14,6 +14,9 @@ public class FPSCounter_TMP : MonoBehaviour {
         m_FpsNextPeriod = Time.realtimeSinceStartup + fpsMeasurePeriod;
     }
 
+    /// <summary>
+    /// Updates FPS count to widget in UI if 'showFPS' attribute true.
+    /// </summary>
     private void Update() {
         m_FpsAccumulator++;
         if (WidgetSettings.showFPS && Time.frameCount % interval == 0) {
