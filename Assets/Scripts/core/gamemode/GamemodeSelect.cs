@@ -123,10 +123,7 @@ gamemodeDescription) {
     /// </summary>
     public void GamemodeSelectStart() {
         if (SpawnTargets.gamemode != currentOpenGamemode) {
-            if (currentOpenGamemode == Gamemode.Follow && CosmeticsSettings.targetColor == TargetColor.Red) {
-                NotificationHandler.ShowTimedNotification_Translated("followwarning", "", InterfaceColors.notificationColorRed);
-                return;
-            }
+            if (!CheckFollowGamemode()) { return; }
 
             //SettingsPanel.ToggleSettingsPanel();
             CosmeticsSettings.SaveGamemodeItem(currentOpenGamemode);
@@ -134,6 +131,24 @@ gamemodeDescription) {
         } else {
             NotificationHandler.ShowTimedNotification_Translated($"gamemodecaps{GamemodeType.ReturnGamemodeType_StringShort(currentOpenGamemode).ToLower()}", $": {I18nTextTranslator.SetTranslatedText("selectedgamemodewarning")}", InterfaceColors.notificationColorYellow);
         }
+    }
+
+    /// <summary>
+    /// If new gamemode being started is 'Follow', target color must not be red, and game timer must not be 0 (infinity).
+    /// </summary>
+    /// <returns></returns>
+    private static bool CheckFollowGamemode() {
+        if (currentOpenGamemode == Gamemode.Follow) {
+            if (CosmeticsSettings.targetColor == TargetColor.Red) {
+                NotificationHandler.ShowTimedNotification_Translated("followcolorwarning", "", InterfaceColors.notificationColorRed);
+                return false;
+            } else if (ExtraSettings.gameTimer == 0) {
+                NotificationHandler.ShowTimedNotification_Translated("followtimerwarning", "", InterfaceColors.notificationColorRed);
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /// <summary>
