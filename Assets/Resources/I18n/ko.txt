@@ -211,7 +211,8 @@ skyboxdisable=Slate를 제외한 모든 Skybox 옵션은 일부 테스트를 위
 #
 #
 # // notifications
-followwarning=GAMEMODE를 '팔로우'하려면 다른 대상 색상을 선택하십시오!
+followcolorwarning=GAMEMODE를 '팔로우'하려면 다른 대상 색상을 선택하십시오!
+followtimerwarning='팔로우'GAMEMODE를 시작하려면 게임 타이머를 0 (무한대)으로 설정하면 안됩니다.
 selectedgamemodewarning=선택한 게임 모드가 이미 활성화되어 있습니다.
 languagerestartnotification=언어 선택은 다음에 다시 시작할 때 적용됩니다.
 languagetemporarilydisabled=언어 선택이 일시적으로 비활성화되었습니다.

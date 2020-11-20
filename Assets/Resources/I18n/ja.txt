@@ -211,7 +211,8 @@ skyboxdisable=Slateを除くすべてのSkyboxオプションは、いくつか�
 #
 #
 # // notifications
-followwarning=別のターゲットカラーを選択して「フォロー」ゲームモードを開始してください！
+followcolorwarning=別のターゲットカラーを選択して「フォロー」ゲームモードを開始してください！
+followtimerwarning=「フォロー」ゲームモードを開始するには、ゲームタイマーを0（無限大）に設定しないでください。
 selectedgamemodewarning=選択したゲームモードはすでにアクティブです。
 languagerestartnotification=言語の選択は、次回の再起動時に影響します。
 languagetemporarilydisabled=言語選択が一時的に無効になっています。

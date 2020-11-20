@@ -211,7 +211,8 @@ skyboxdisable=All Skybox options except Slate have been temporarily disabled to 
 #
 #
 # // notifications
-followwarning=CHOOSE ANOTHER TARGET COLOR TO START 'Follow' GAMEMODE!
+followcolorwarning=CHOOSE ANOTHER TARGET COLOR TO START 'Follow' GAMEMODE!
+followtimerwarning=GAME TIMER MUST NOT BE SET TO 0 (Infinity) TO START 'Follow' GAMEMODE
 selectedgamemodewarning=SELECTED GAMEMODE IS ALREADY ACTIVE.
 languagerestartnotification=LANGUAGE SELECTION WILL TAKE EFFECT ON NEXT RESTART.
 languagetemporarilydisabled=LANGUAGE SELECTION TEMPORARILY DISABLED.

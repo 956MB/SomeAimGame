@@ -211,7 +211,8 @@ skyboxdisable=Kaikki Skybox-vaihtoehdot paitsi Slate on tilapäisesti poistettu 
 #
 #
 # // notifications
-followwarning=VALITSE TOINEN KOHTEEN VÄRI ALOITTAMISEKSI 'Seuraa' pelitilaa!
+followcolorwarning=VALITSE TOINEN KOHTEEN VÄRI ALOITTAMISEKSI 'Seuraa' pelitilaa!
+followtimerwarning=PELIAJASTINA EI SAA ASETTAA 0 (ÄÄRETTÖMYYS) -ASETUKSEKSI, JOTTA PELITAAN SEURATA PELITILAA
 selectedgamemodewarning=VALITTU PELIMoodi on jo aktiivinen.
 languagerestartnotification=KIELEN VALINTA VAIKUTTAA SEURAAVAAN UUDELLEEN Käynnistykseen.
 languagetemporarilydisabled=KIELEN VALINTA TILAPÄISESTI POIS.
