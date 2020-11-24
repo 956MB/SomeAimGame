@@ -38,6 +38,9 @@ public class Crosshair
     [Tooltip("Specifies the color of the crosshair.")]
     public Color color = Color.green;
 
+    [Tooltip("Specifies the color of the crosshairs outline (if enabled).")]
+    public Color outlineColor = Color.black;
+
     public int SizeNeeded
     {
         private set { }
@@ -104,25 +107,52 @@ public class SimpleCrosshair : MonoBehaviour
 
     /// <summary>
     /// Parses given crosshair string (newCrosshairString), if all values valid SetAllCrosshairValues() called to set all values and redraw crosshair.
+    /// 
+    /// Crosshair String: 000601051255255255255255000000255
+    /// 
+    /// 0        0          06    01         05   1        255  255    255   255    255         000           000          255
+    /// T-Style  CenterDot  Size  Thickness  Gap  Outline  Red  Green  Blue  Alpha  RedOutline  GreenOutline  BlueOutline  AlphaOutline
+    /// 
     /// </summary>
     /// <param name="newCrosshairString"></param>
     /// <returns></returns>
     public bool ParseCrosshairString(string newCrosshairString, bool setValues) {
-        if (newCrosshairString.Length != 21 || !Util.DigitsOnly(newCrosshairString)) { return false; }
+        if (newCrosshairString.Length != 33 || !Util.DigitsOnly(newCrosshairString)) { return false; }
 
-        int tstyleValue, centerDotValue, outlineValue, sizeValueInt, thicknessValueInt, gapValueInt, redValueInt, greenValueInt, blueValueInt, alphaValueInt;
-        string sizeValue, thicknessValue, gapValue, redValue, greenValue, blueValue, alphaValue;
+        int tstyleValue, centerDotValue, outlineValue, sizeValueInt, thicknessValueInt, gapValueInt, redValueInt, greenValueInt, blueValueInt, alphaValueInt, redOutlineValueInt, greenOutlineValueInt, blueOutlineValueInt, alphaOutlineValueInt;
+        string sizeValue, thicknessValue, gapValue, redValue, greenValue, blueValue, alphaValue, redOutlineValue, greenOutlineValue, blueOutlineValue, alphaOutlineValue;
 
-        tstyleValue    = int.Parse(newCrosshairString[0].ToString());
-        centerDotValue = int.Parse(newCrosshairString[1].ToString());
-        sizeValue      = newCrosshairString.Substring(2, 2);
-        thicknessValue = newCrosshairString.Substring(4, 2);
-        gapValue       = newCrosshairString.Substring(6, 2);
-        outlineValue   = int.Parse(newCrosshairString[8].ToString());
-        redValue       = newCrosshairString.Substring(9, 3);
-        greenValue     = newCrosshairString.Substring(12, 3);
-        blueValue      = newCrosshairString.Substring(15, 3);
-        alphaValue     = newCrosshairString.Substring(18, 3);
+        tstyleValue = int.Parse(newCrosshairString[0].ToString());
+        centerDotValue    = int.Parse(newCrosshairString[1].ToString());
+        sizeValue         = newCrosshairString.Substring(2, 2);
+        thicknessValue    = newCrosshairString.Substring(4, 2);
+        gapValue          = newCrosshairString.Substring(6, 2);
+        outlineValue      = int.Parse(newCrosshairString[8].ToString());
+        redValue          = newCrosshairString.Substring(9, 3);
+        greenValue        = newCrosshairString.Substring(12, 3);
+        blueValue         = newCrosshairString.Substring(15, 3);
+        alphaValue        = newCrosshairString.Substring(18, 3);
+        redOutlineValue   = newCrosshairString.Substring(21, 3);
+        greenOutlineValue = newCrosshairString.Substring(24, 3);
+        blueOutlineValue  = newCrosshairString.Substring(27, 3);
+        alphaOutlineValue = newCrosshairString.Substring(30, 3);
+
+        #region logs
+        //Debug.Log($"TStyle Value:               {tstyleValue}");
+        //Debug.Log($"Center Dot Value:           {centerDotValue}");
+        //Debug.Log($"Size Value:                 {sizeValue}");
+        //Debug.Log($"Thickness Value:            {thicknessValue}");
+        //Debug.Log($"Gap Value:                  {gapValue}");
+        //Debug.Log($"Outline Value:              {outlineValue}");
+        //Debug.Log($"Red Value:                  {redValue}");
+        //Debug.Log($"Green Value:                {greenValue}");
+        //Debug.Log($"Blue Value:                 {blueValue}");
+        //Debug.Log($"Alpha Value:                {alphaValue}");
+        //Debug.Log($"Red Outline Value:          {redOutlineValue}");
+        //Debug.Log($"Green Outline Value:        {greenOutlineValue}");
+        //Debug.Log($"Blue Outline Value:         {blueOutlineValue}");
+        //Debug.Log($"Alpha Outline Value:        {alphaOutlineValue}");
+        #endregion
 
         if (sizeValue == "00") {      sizeValueInt      = 0; } else { sizeValueInt      = int.Parse(sizeValue.TrimStart(new char[] { '0' })); }
         if (thicknessValue != "00") { thicknessValueInt = int.Parse(thicknessValue.TrimStart(new char[] { '0' })); } else { return false; }
@@ -133,27 +163,19 @@ public class SimpleCrosshair : MonoBehaviour
         if (blueValue == "000") {  blueValueInt  = 0; } else { blueValueInt  = int.Parse(blueValue.TrimStart(new char[] { '0' })); }
         if (alphaValue == "000") { alphaValueInt = 0; } else { alphaValueInt = int.Parse(alphaValue.TrimStart(new char[] { '0' })); }
 
-        if (!ValidateCrosshairValues(tstyleValue, centerDotValue, sizeValueInt, thicknessValueInt, gapValueInt, outlineValue, redValueInt, greenValueInt, blueValueInt, alphaValueInt)) { return false; }
+        if (redOutlineValue == "000") {   redOutlineValueInt   = 0; } else { redOutlineValueInt   = int.Parse(redOutlineValue.TrimStart(new char[] { '0' })); }
+        if (greenOutlineValue == "000") { greenOutlineValueInt = 0; } else { greenOutlineValueInt = int.Parse(greenOutlineValue.TrimStart(new char[] { '0' })); }
+        if (blueOutlineValue == "000") {  blueOutlineValueInt  = 0; } else { blueOutlineValueInt  = int.Parse(blueOutlineValue.TrimStart(new char[] { '0' })); }
+        if (alphaOutlineValue == "000") { alphaOutlineValueInt = 0; } else { alphaOutlineValueInt = int.Parse(alphaOutlineValue.TrimStart(new char[] { '0' })); }
 
-        #region logs
-        //Debug.Log($"TStyle Value:       {tstyleValue}");
-        //Debug.Log($"Center Dot Value:   {centerDotValue}");
-        //Debug.Log($"Size Value:         {sizeValue}");
-        //Debug.Log($"Thickness Value:    {thicknessValue}");
-        //Debug.Log($"Gap Value:          {gapValue}");
-        //Debug.Log($"Outline Value:      {outlineValue}");
-        //Debug.Log($"Red Value:          {redValue}");
-        //Debug.Log($"Green Value:        {greenValue}");
-        //Debug.Log($"Blue Value:         {blueValue}");
-        //Debug.Log($"Alpha Value:        {alphaValue}");
-        #endregion
+        if (!ValidateCrosshairValues(tstyleValue, centerDotValue, sizeValueInt, thicknessValueInt, gapValueInt, outlineValue, redValueInt, greenValueInt, blueValueInt, alphaValueInt, redOutlineValueInt, greenOutlineValueInt, blueOutlineValueInt, alphaOutlineValueInt)) { return false; }
 
         bool tstyleValueBool    = tstyleValue    != 0;
         bool centerDotValueBool = centerDotValue != 0;
         bool outlineValueBool   = outlineValue   != 0;
 
         if (setValues) {
-            SetAllCrosshairValues(tstyleValueBool, centerDotValueBool, sizeValueInt, thicknessValueInt, gapValueInt, outlineValueBool, redValueInt, greenValueInt, blueValueInt, alphaValueInt, true);
+            SetAllCrosshairValues(tstyleValueBool, centerDotValueBool, sizeValueInt, thicknessValueInt, gapValueInt, outlineValueBool, redValueInt, greenValueInt, blueValueInt, alphaValueInt, redOutlineValueInt, greenOutlineValueInt, blueOutlineValueInt, alphaOutlineValueInt, true);
         }
 
         return true;
@@ -171,20 +193,25 @@ public class SimpleCrosshair : MonoBehaviour
         // 0 0 06 01 05 1 255 80 175 255
         // CORRECT: 0 0 06 01 05 1 255 080 175 255 = 000601051255080175255
         int tstyleInt, centerDotInt, outlineInt;
-        string sizeString, thicknessString, gapString, redFloat, greenFloat, blueFloat, alphaFloat;
+        string sizeString, thicknessString, gapString, redFloat, greenFloat, blueFloat, alphaFloat, redOutlineFloat, greenOutlineFloat, blueOutlineFloat, alphaOutlineFloat;
 
-        tstyleInt       = m_crosshair.tStyle ? 1 : 0;
-        centerDotInt    = m_crosshair.centerDot ? 1 : 0;
-        sizeString      = m_crosshair.size.ToString("00");
-        thicknessString = m_crosshair.thickness.ToString("00");
-        gapString       = m_crosshair.gap.ToString("00");
-        outlineInt      = m_crosshair.enableOutline ? 1 : 0;
-        redFloat        = (m_crosshair.color.r * 255.0f).ToString("000");
-        greenFloat      = (m_crosshair.color.g * 255.0f).ToString("000");
-        blueFloat       = (m_crosshair.color.b * 255.0f).ToString("000");
-        alphaFloat      = (m_crosshair.color.a * 255.0f).ToString("000");
+        tstyleInt         = m_crosshair.tStyle ? 1 : 0;
+        centerDotInt      = m_crosshair.centerDot ? 1 : 0;
+        sizeString        = m_crosshair.size.ToString("00");
+        thicknessString   = m_crosshair.thickness.ToString("00");
+        gapString         = m_crosshair.gap.ToString("00");
+        outlineInt        = m_crosshair.enableOutline ? 1 : 0;
+        redFloat          = (m_crosshair.color.r * 255.0f).ToString("000");
+        greenFloat        = (m_crosshair.color.g * 255.0f).ToString("000");
+        blueFloat         = (m_crosshair.color.b * 255.0f).ToString("000");
+        alphaFloat        = (m_crosshair.color.a * 255.0f).ToString("000");
+        redOutlineFloat   = (m_crosshair.outlineColor.r * 255.0f).ToString("000");
+        greenOutlineFloat = (m_crosshair.outlineColor.g * 255.0f).ToString("000");
+        blueOutlineFloat  = (m_crosshair.outlineColor.b * 255.0f).ToString("000");
+        alphaOutlineFloat = (m_crosshair.outlineColor.a * 255.0f).ToString("000");
 
-        return $"{tstyleInt}{centerDotInt}{sizeString}{thicknessString}{gapString}{outlineInt}{redFloat}{greenFloat}{blueFloat}{alphaFloat}";
+        //Debug.Log($"EXPORTED CROSSHAIR STRING: {tstyleInt}{centerDotInt}{sizeString}{thicknessString}{gapString}{outlineInt}{redFloat}{greenFloat}{blueFloat}{alphaFloat}{redOutlineFloat}{greenOutlineFloat}{blueOutlineFloat}{alphaOutlineFloat}");
+        return $"{tstyleInt}{centerDotInt}{sizeString}{thicknessString}{gapString}{outlineInt}{redFloat}{greenFloat}{blueFloat}{alphaFloat}{redOutlineFloat}{greenOutlineFloat}{blueOutlineFloat}{alphaOutlineFloat}";
     }
 
     /// <summary>
@@ -201,17 +228,21 @@ public class SimpleCrosshair : MonoBehaviour
     /// <param name="blue"></param>
     /// <param name="alpha"></param>
     /// <param name="redrawCrosshair"></param>
-    public void SetAllCrosshairValues(bool tstyle, bool centerDot, int size, int thickness, int gap, bool outlineEnable, int red, int green, int blue, int alpha, bool redrawCrosshair) {
-        m_crosshair.tStyle        = tstyle;
-        m_crosshair.centerDot     = centerDot;
-        m_crosshair.size          = size;
-        m_crosshair.thickness     = thickness;
-        m_crosshair.gap           = gap;
-        m_crosshair.enableOutline = outlineEnable;
-        m_crosshair.color.r       = red;
-        m_crosshair.color.g       = green;
-        m_crosshair.color.b       = blue;
-        m_crosshair.color.a       = alpha;
+    public void SetAllCrosshairValues(bool tstyle, bool centerDot, int size, int thickness, int gap, bool outlineEnable, int red, int green, int blue, int alpha, int redOutline, int greenOutline, int blueOutline, int alphaOutline, bool redrawCrosshair) {
+        m_crosshair.tStyle         = tstyle;
+        m_crosshair.centerDot      = centerDot;
+        m_crosshair.size           = size;
+        m_crosshair.thickness      = thickness;
+        m_crosshair.gap            = gap;
+        m_crosshair.enableOutline  = outlineEnable;
+        m_crosshair.color.r        = red;
+        m_crosshair.color.g        = green;
+        m_crosshair.color.b        = blue;
+        m_crosshair.color.a        = alpha;
+        m_crosshair.outlineColor.r = redOutline;
+        m_crosshair.outlineColor.g = greenOutline;
+        m_crosshair.outlineColor.b = blueOutline;
+        m_crosshair.outlineColor.a = alphaOutline;
 
         if (redrawCrosshair) { GenerateCrosshair(); }
     }
@@ -230,7 +261,7 @@ public class SimpleCrosshair : MonoBehaviour
     /// <param name="blue"></param>
     /// <param name="alpha"></param>
     /// <returns></returns>
-    public bool ValidateCrosshairValues(int tstyle, int centerDot, int size, int thickness, int gap, int outlineEnable, int red, int green, int blue, int alpha) {
+    public bool ValidateCrosshairValues(int tstyle, int centerDot, int size, int thickness, int gap, int outlineEnable, int red, int green, int blue, int alpha, int redOutline, int greenOutline, int blueOutline, int alphaOutline) {
         if (tstyle < 0 || tstyle > 1)               { return false; }
         if (centerDot < 0 || centerDot > 1)         { return false; }
         if (size < 0 || size > 45)                  { return false; }
@@ -241,6 +272,10 @@ public class SimpleCrosshair : MonoBehaviour
         if (green < 0 || green > 255)               { return false; }
         if (blue < 0 || blue > 255)                 { return false; }
         if (alpha < 0 || alpha > 255)               { return false; }
+        if (redOutline < 0 || redOutline > 255)     { return false; }
+        if (greenOutline < 0 || greenOutline > 255) { return false; }
+        if (blueOutline < 0 || blueOutline > 255)   { return false; }
+        if (alphaOutline < 0 || alphaOutline > 255) { return false; }
 
         return true;
     }
@@ -249,22 +284,26 @@ public class SimpleCrosshair : MonoBehaviour
     /// Generates random crosshair values, sets them to crosshair, then redraws.
     /// </summary>
     public void GenerateRandomCrosshair() {
-        int randomTstyleValue    = UnityEngine.Random.Range(0, 2);
-        int randomCenterDotValue = UnityEngine.Random.Range(0, 2);
-        int randomSizeValue      = UnityEngine.Random.Range(1, 46);
-        int randomThicknessValue = UnityEngine.Random.Range(1, 16);
-        int randomGapValue       = UnityEngine.Random.Range(1, 26);
-        int randomOutlineValue   = UnityEngine.Random.Range(0, 2);
-        int randomRedValue       = UnityEngine.Random.Range(1, 256);
-        int randomGreenValue     = UnityEngine.Random.Range(1, 256);
-        int randomBlueValue      = UnityEngine.Random.Range(1, 256);
-        int randomAlphaValue     = UnityEngine.Random.Range(1, 256);
+        int randomTstyleValue       = UnityEngine.Random.Range(0, 2);
+        int randomCenterDotValue    = UnityEngine.Random.Range(0, 2);
+        int randomSizeValue         = UnityEngine.Random.Range(1, 46);
+        int randomThicknessValue    = UnityEngine.Random.Range(1, 16);
+        int randomGapValue          = UnityEngine.Random.Range(1, 26);
+        int randomOutlineValue      = UnityEngine.Random.Range(0, 2);
+        int randomRedValue          = UnityEngine.Random.Range(0, 256);
+        int randomGreenValue        = UnityEngine.Random.Range(0, 256);
+        int randomBlueValue         = UnityEngine.Random.Range(0, 256);
+        int randomAlphaValue        = UnityEngine.Random.Range(0, 256);
+        int randomRedOutlineValue   = UnityEngine.Random.Range(0, 256);
+        int randomGreenOutlineValue = UnityEngine.Random.Range(0, 256);
+        int randomBlueOutlineValue  = UnityEngine.Random.Range(0, 256);
+        int randomAlphaOutlineValue = UnityEngine.Random.Range(0, 256);
 
         bool randomTstyleValueBool    = randomTstyleValue    != 0;
         bool randomCenterDotValueBool = randomCenterDotValue != 0;
         bool randomOutlineValueBool   = randomOutlineValue   != 0;
 
-        SetAllCrosshairValues(randomTstyleValueBool, randomCenterDotValueBool, randomSizeValue, randomThicknessValue, randomGapValue, randomOutlineValueBool, randomRedValue, randomGreenValue, randomBlueValue, randomAlphaValue, true);
+        SetAllCrosshairValues(randomTstyleValueBool, randomCenterDotValueBool, randomSizeValue, randomThicknessValue, randomGapValue, randomOutlineValueBool, randomRedValue, randomGreenValue, randomBlueValue, randomAlphaValue, randomRedOutlineValue, randomGreenOutlineValue, randomBlueOutlineValue, randomAlphaOutlineValue, true);
     }
 
     public void SetColor(CrosshairColorChannel channel, int value, bool redrawCrosshair)  // Set between 0 and 255
@@ -280,9 +319,28 @@ public class SimpleCrosshair : MonoBehaviour
         if (redrawCrosshair) { GenerateCrosshair(); }
     }
 
+    public void SetOutlineColor(CrosshairColorChannel channel, int value, bool redrawCrosshair)  // Set between 0 and 255
+    {
+        switch (channel)
+        {
+            case CrosshairColorChannel.RED:   m_crosshair.outlineColor.r = value / 255.0f; break;
+            case CrosshairColorChannel.GREEN: m_crosshair.outlineColor.g = value / 255.0f; break;
+            case CrosshairColorChannel.BLUE:  m_crosshair.outlineColor.b = value / 255.0f; break;
+            case CrosshairColorChannel.ALPHA: m_crosshair.outlineColor.a = value / 255.0f; break;
+        }
+
+        if (redrawCrosshair) { GenerateCrosshair(); }
+    }
+
     public void SetColor(Color color, bool redrawCrosshair)
     {
         m_crosshair.color = color;
+        if (redrawCrosshair) { GenerateCrosshair(); }
+    }
+
+    public void SetOutlineColor(Color color, bool redrawCrosshair)
+    {
+        m_crosshair.outlineColor = color;
         if (redrawCrosshair) { GenerateCrosshair(); }
     }
 
@@ -366,7 +424,7 @@ public class SimpleCrosshair : MonoBehaviour
                         crosshair.thickness + (m_crosshair.outlineThickness + 1),
                         crosshair.size + (m_crosshair.outlineThickness+1),
                         crosshairTexture,
-                        new Color(0f, 0f, 0f, 255f));
+                        crosshair.outlineColor);
                 }
             }
 
@@ -377,7 +435,7 @@ public class SimpleCrosshair : MonoBehaviour
                     crosshair.thickness + 2,
                     crosshair.thickness + 2,
                     crosshairTexture,
-                    new Color(0f, 0f, 0f, 255f));
+                    crosshair.outlineColor);
             }
 
             // Right outline
@@ -387,7 +445,7 @@ public class SimpleCrosshair : MonoBehaviour
                     crosshair.size + (m_crosshair.outlineThickness + 1),
                     crosshair.thickness + (m_crosshair.outlineThickness + 1),
                     crosshairTexture,
-                    new Color(0f, 0f, 0f, 255f));
+                    crosshair.outlineColor);
             }
 
 
@@ -399,7 +457,7 @@ public class SimpleCrosshair : MonoBehaviour
                         crosshair.size + (m_crosshair.outlineThickness + 1),
                         crosshair.thickness + (m_crosshair.outlineThickness + 1),
                         crosshairTexture,
-                        new Color(0f, 0f, 0f, 255f));
+                        crosshair.outlineColor);
                 }
 
                 // Bottom outline
@@ -409,7 +467,7 @@ public class SimpleCrosshair : MonoBehaviour
                         crosshair.thickness + (m_crosshair.outlineThickness + 1),
                         crosshair.size + (m_crosshair.outlineThickness + 1),
                         crosshairTexture,
-                        new Color(0f, 0f, 0f, 255f));
+                        crosshair.outlineColor);
                 }
 
             } else {
@@ -420,7 +478,7 @@ public class SimpleCrosshair : MonoBehaviour
                         crosshair.size + (m_crosshair.outlineThickness + 1),
                         crosshair.thickness + (m_crosshair.outlineThickness + 1),
                         crosshairTexture,
-                        new Color(0f, 0f, 0f, 255f));
+                        crosshair.outlineColor);
                 }
             
                 // Bottom outline
@@ -430,7 +488,7 @@ public class SimpleCrosshair : MonoBehaviour
                         crosshair.thickness + (m_crosshair.outlineThickness + 1),
                         crosshair.size + (m_crosshair.outlineThickness+1),
                         crosshairTexture,
-                        new Color(0f, 0f, 0f, 255f));
+                        crosshair.outlineColor);
                 }
             }
 

@@ -5,9 +5,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 using TMPro;
 
 public class CrosshairSaveSystem : MonoBehaviour {
-    public Slider crosshairSizeSlider, crosshairThicknessSlider, crosshairGapSlider, crosshairOutlineSlider, crosshairRedSlider, crosshairGreenSlider, crosshairBlueSlider, crosshairAlphaSlider;
-    public TMP_Text crosshairSizeValueText, crosshairThicknessValueText, crosshairGapValueText, crosshairOutlineValueText, crosshairRedValueText, crosshairGreenValueText, crosshairBlueValueText, crosshairAlphaValueText;
-    public TMP_Text crosshairSizeValueTextPlaceholder, crosshairThicknessValueTextPlaceholder, crosshairGapValueTextPlaceholder, crosshairOutlineValueTextPlaceholder, crosshairRedValueTextPlaceholder, crosshairGreenValueTextPlaceholder, crosshairBlueValueTextPlaceholder, crosshairAlphaValueTextPlaceholder;
+    public Slider crosshairSizeSlider, crosshairThicknessSlider, crosshairGapSlider, crosshairOutlineSlider, crosshairRedSlider, crosshairGreenSlider, crosshairBlueSlider, crosshairAlphaSlider, crosshairRedOutlineSlider, crosshairGreenOutlineSlider, crosshairBlueOutlineSlider, crosshairAlphaOutlineSlider;
+    public TMP_Text crosshairSizeValueText, crosshairThicknessValueText, crosshairGapValueText, crosshairOutlineValueText, crosshairRedValueText, crosshairGreenValueText, crosshairBlueValueText, crosshairAlphaValueText, crosshairRedOutlineValueText, crosshairGreenOutlineValueText, crosshairBlueOutlineValueText, crosshairAlphaOutlineValueText;
+    public TMP_Text crosshairSizeValueTextPlaceholder, crosshairThicknessValueTextPlaceholder, crosshairGapValueTextPlaceholder, crosshairOutlineValueTextPlaceholder, crosshairRedValueTextPlaceholder, crosshairGreenValueTextPlaceholder, crosshairBlueValueTextPlaceholder, crosshairAlphaValueTextPlaceholder, crosshairRedOutlineValueTextPlaceholder, crosshairGreenOutlineValueTextPlaceholder, crosshairBlueOutlineValueTextPlaceholder, crosshairAlphaOutlineValueTextPlaceholder;
     public Toggle TStyleToggle, centerDotToggle, OutlineEnabledToggle;
     public SimpleCrosshair simpleCrosshair;
 
@@ -74,10 +74,18 @@ public class CrosshairSaveSystem : MonoBehaviour {
                 SetCrosshairSizeSlider(loadedCrosshairData.size, true);
                 SetCrosshairThicknessSlider(loadedCrosshairData.thickness, true);
                 SetCrosshairGapSlider(loadedCrosshairData.gap, true);
+                // Crosshair color
                 SetCrosshairRedSlider(loadedCrosshairData.red, true);
                 SetCrosshairGreenSlider(loadedCrosshairData.green, true);
                 SetCrosshairBlueSlider(loadedCrosshairData.blue, true);
                 SetCrosshairAlphaSlider(loadedCrosshairData.alpha, true);
+                // Crosshair outline color
+                SetCrosshairRedOutlineSlider(loadedCrosshairData.outlineRed, true);
+                SetCrosshairGreenOutlineSlider(loadedCrosshairData.outlineGreen, true);
+                SetCrosshairBlueOutlineSlider(loadedCrosshairData.outlineBlue, true);
+                SetCrosshairAlphaOutlineSlider(loadedCrosshairData.outlineAlpha, true);
+
+                CrosshairOptionsObject.SetOutlineContainerState(loadedCrosshairData.outlineEnabled);
             }
 
             //CrosshairOptionsObject.LoadNewCrosshairString("100602051255200050255");
@@ -101,10 +109,17 @@ public class CrosshairSaveSystem : MonoBehaviour {
         crosshairSave.simpleCrosshair.SetSize(6, false);
         crosshairSave.simpleCrosshair.SetThickness(1, false);
         crosshairSave.simpleCrosshair.SetGap(5, false);
+        // Crosshair color
         crosshairSave.simpleCrosshair.SetColor(CrosshairColorChannel.RED, 255, false);
         crosshairSave.simpleCrosshair.SetColor(CrosshairColorChannel.GREEN, 255, false);
         crosshairSave.simpleCrosshair.SetColor(CrosshairColorChannel.BLUE, 255, false);
         crosshairSave.simpleCrosshair.SetColor(CrosshairColorChannel.ALPHA, 255, false);
+        // Crosshair outline color
+        crosshairSave.simpleCrosshair.SetOutlineColor(CrosshairColorChannel.RED, 0, false);
+        crosshairSave.simpleCrosshair.SetOutlineColor(CrosshairColorChannel.GREEN, 0, false);
+        crosshairSave.simpleCrosshair.SetOutlineColor(CrosshairColorChannel.BLUE, 0, false);
+        crosshairSave.simpleCrosshair.SetOutlineColor(CrosshairColorChannel.ALPHA, 255, false);
+
         crosshairSave.simpleCrosshair.GenerateCrosshair();
 
         // Sets all default crosshair values to their text placeholders.
@@ -112,10 +127,16 @@ public class CrosshairSaveSystem : MonoBehaviour {
         CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairSizeValueText, crosshairSave.crosshairSizeValueTextPlaceholder, 6f);
         CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairThicknessValueText, crosshairSave.crosshairThicknessValueTextPlaceholder, 1f);
         CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairGapValueText, crosshairSave.crosshairGapValueTextPlaceholder, 5f);
+        // Crosshair color
         CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairRedValueText, crosshairSave.crosshairRedValueTextPlaceholder, 255f);
         CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairGreenValueText, crosshairSave.crosshairGreenValueTextPlaceholder, 255f);
         CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairBlueValueText, crosshairSave.crosshairBlueValueTextPlaceholder, 255f);
         CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairAlphaValueText, crosshairSave.crosshairAlphaValueTextPlaceholder, 255f);
+        // Crosshair outline color
+        CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairRedOutlineValueText, crosshairSave.crosshairRedOutlineValueTextPlaceholder, 0f);
+        CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairGreenOutlineValueText, crosshairSave.crosshairGreenOutlineValueTextPlaceholder, 0f);
+        CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairBlueOutlineValueText, crosshairSave.crosshairBlueOutlineValueTextPlaceholder, 0f);
+        CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairAlphaOutlineValueText, crosshairSave.crosshairAlphaOutlineValueTextPlaceholder, 255f);
 
         // Sets all default crosshair values to their toggles/sliders.
         CrosshairOptionsObject.SetCrosshairOptionToggle(crosshairSave.TStyleToggle, false);
@@ -125,13 +146,21 @@ public class CrosshairSaveSystem : MonoBehaviour {
         CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairSizeSlider, 6f);
         CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairThicknessSlider, 1f);
         CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairGapSlider, 5f);
+        // Crosshair color
         CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairRedSlider, 255f);
         CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairGreenSlider, 255f);
         CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairBlueSlider, 255f);
         CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairAlphaSlider, 255f);
+        // Crosshair outline color
+        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairRedOutlineSlider, 0f);
+        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairGreenOutlineSlider, 0f);
+        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairBlueOutlineSlider, 0f);
+        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairAlphaOutlineSlider, 255f);
+
+        CrosshairOptionsObject.SetOutlineContainerState(true);
 
         // Saves defaults to new 'crosshair.settings' file.
-        CrosshairSettings.SaveAllCrosshairDefaults(false, false, 6f, 1f, 5f, true, 255f, 255f, 255f, 255f, "000601050255255255255");
+        CrosshairSettings.SaveAllCrosshairDefaults(false, false, 6f, 1f, 5f, true, 255f, 255f, 255f, 255f, 0f, 0f, 0f, 255f, "000601050255255255255000000000255");
     }
 
     /// <summary>
@@ -240,5 +269,49 @@ public class CrosshairSaveSystem : MonoBehaviour {
         crosshairSave.crosshairAlphaSlider.value = setAlpha;
         CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairAlphaValueText, crosshairSave.crosshairAlphaValueTextPlaceholder, setAlpha);
         CrosshairSettings.SaveAlpha(setAlpha);
+    }
+    /// <summary>
+    /// Sets crosshair red outline color value, slider and text to supplied float (setRed), and redraws crosshair if bool true (redraw).
+    /// </summary>
+    /// <param name="setRedOutline"></param>
+    /// <param name="redraw"></param>
+    public static void SetCrosshairRedOutlineSlider(float setRedOutline, bool redraw) {
+        crosshairSave.simpleCrosshair.SetOutlineColor(CrosshairColorChannel.RED, (int)setRedOutline, redraw);
+        crosshairSave.crosshairRedOutlineSlider.value = setRedOutline;
+        CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairRedOutlineValueText, crosshairSave.crosshairRedOutlineValueTextPlaceholder, setRedOutline);
+        CrosshairSettings.SaveRedOutline(setRedOutline);
+    }
+    /// <summary>
+    /// Sets crosshair green outline color value, slider and text to supplied float (setGreen), and redraws crosshair if bool true (redraw).
+    /// </summary>
+    /// <param name="setGreenOutline"></param>
+    /// <param name="redraw"></param>
+    public static void SetCrosshairGreenOutlineSlider(float setGreenOutline, bool redraw) {
+        crosshairSave.simpleCrosshair.SetOutlineColor(CrosshairColorChannel.GREEN, (int)setGreenOutline, redraw);
+        crosshairSave.crosshairGreenOutlineSlider.value = setGreenOutline;
+        CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairGreenOutlineValueText, crosshairSave.crosshairGreenOutlineValueTextPlaceholder, setGreenOutline);
+        CrosshairSettings.SaveGreenOutline(setGreenOutline);
+    }
+    /// <summary>
+    /// Sets crosshair blue outline color value, slider and text to supplied float (setBlue), and redraws crosshair if bool true (redraw).
+    /// </summary>
+    /// <param name="setBlueOutline"></param>
+    /// <param name="redraw"></param>
+    public static void SetCrosshairBlueOutlineSlider(float setBlueOutline, bool redraw) {
+        crosshairSave.simpleCrosshair.SetOutlineColor(CrosshairColorChannel.BLUE, (int)setBlueOutline, redraw);
+        crosshairSave.crosshairBlueOutlineSlider.value = setBlueOutline;
+        CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairBlueOutlineValueText, crosshairSave.crosshairBlueOutlineValueTextPlaceholder, setBlueOutline);
+        CrosshairSettings.SaveBlueOutline(setBlueOutline);
+    }
+    /// <summary>
+    /// Sets crosshair alpha outline value, slider and text to supplied float (setAlpha), and redraws crosshair if bool true (redraw).
+    /// </summary>
+    /// <param name="setAlphaOutline"></param>
+    /// <param name="redraw"></param>
+    public static void SetCrosshairAlphaOutlineSlider(float setAlphaOutline, bool redraw) {
+        crosshairSave.simpleCrosshair.SetOutlineColor(CrosshairColorChannel.ALPHA, (int)setAlphaOutline, redraw);
+        crosshairSave.crosshairAlphaOutlineSlider.value = setAlphaOutline;
+        CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairAlphaOutlineValueText, crosshairSave.crosshairAlphaOutlineValueTextPlaceholder, setAlphaOutline);
+        CrosshairSettings.SaveAlphaOutline(setAlphaOutline);
     }
 }

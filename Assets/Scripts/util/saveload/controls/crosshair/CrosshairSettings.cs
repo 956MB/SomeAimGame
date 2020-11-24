@@ -11,7 +11,11 @@ public class CrosshairSettings : MonoBehaviour {
     public static float green            = 255f;
     public static float blue             = 255f;
     public static float alpha            = 255f;
-    public static string crosshairString = "000601050255255255255";
+    public static float outlineRed       = 0f;
+    public static float outlineGreen     = 0f;
+    public static float outlineBlue      = 0f;
+    public static float outlineAlpha     = 255f;
+    public static string crosshairString = "000601050255255255255000000000255";
 
     private static CrosshairSettings crosshairSettings;
     void Awake() { crosshairSettings = this; }
@@ -20,76 +24,74 @@ public class CrosshairSettings : MonoBehaviour {
     /// Saves supplied center dot bool (setCenterDot) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
     /// </summary>
     /// <param name="setCenterDot"></param>
-    public static void SaveCenterDot(bool setCenterDot) {
-        centerDot = setCenterDot;
-    }
+    public static void SaveCenterDot(bool setCenterDot) { centerDot = setCenterDot; }
     /// <summary>
     /// Saves supplied t-style bool (setTStyle) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
     /// </summary>
     /// <param name="setTStyle"></param>
-    public static void SaveTStyle(bool setTStyle) {
-        TStyle = setTStyle;
-    }
+    public static void SaveTStyle(bool setTStyle) { TStyle = setTStyle; }
     /// <summary>
     /// Saves supplied size float (setSize) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
     /// </summary>
     /// <param name="setSize"></param>
-    public static void SaveSize(float setSize) {
-        size = setSize;
-    }
+    public static void SaveSize(float setSize) { size = setSize; }
     /// <summary>
     /// Saves supplied thickness float (setThickness) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
     /// </summary>
     /// <param name="setThickness"></param>
-    public static void SaveThickness(float setThickness) {
-        thickness = setThickness;
-    }
+    public static void SaveThickness(float setThickness) { thickness = setThickness; }
     /// <summary>
     /// Saves supplied gap float (setGap) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
     /// </summary>
     /// <param name="setGap"></param>
-    public static void SaveGap(float setGap) {
-        gap = setGap;
-    }
+    public static void SaveGap(float setGap) { gap = setGap; }
     /// <summary>
     /// Saves supplied outline enabled bool (setOutlineEnabled) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
     /// </summary>
     /// <param name="setOutlineEnabled"></param>
-    public static void SaveOutlineEnabled(bool setOutlineEnabled) {
-        outlineEnabled = setOutlineEnabled;
-    }
+    public static void SaveOutlineEnabled(bool setOutlineEnabled) { outlineEnabled = setOutlineEnabled; }
     /// <summary>
     /// Saves supplied red color float (setRed) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
     /// </summary>
     /// <param name="setRed"></param>
-    public static void SaveRed(float setRed) {
-        red = setRed;
-    }
+    public static void SaveRed(float setRed) { red = setRed; }
     /// <summary>
     /// Saves supplied green color float (setGreen) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
     /// </summary>
     /// <param name="setGreen"></param>
-    public static void SaveGreen(float setGreen) {
-        green = setGreen;
-    }
+    public static void SaveGreen(float setGreen) { green = setGreen; }
     /// <summary>
     /// Saves supplied blue color float (setBlue) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
     /// </summary>
     /// <param name="setBlue"></param>
-    public static void SaveBlue(float setBlue) {
-        blue = setBlue;
-    }
+    public static void SaveBlue(float setBlue) { blue = setBlue; }
     /// <summary>
     /// Saves supplied alpha float (setAlpha) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
     /// </summary>
     /// <param name="setAlpha"></param>
-    public static void SaveAlpha(float setAlpha) {
-        alpha = setAlpha;
-    }
+    public static void SaveAlpha(float setAlpha) { alpha = setAlpha; }
+    /// <summary>
+    /// Saves supplied red outline color float (setRedOutline) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
+    /// </summary>
+    /// <param name="setRedOutline"></param>
+    public static void SaveRedOutline(float setRedOutline) { outlineRed = setRedOutline; }
+    /// <summary>
+    /// Saves supplied green outline color float (setGreenOutline) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
+    /// </summary>
+    /// <param name="setGreenOutline"></param>
+    public static void SaveGreenOutline(float setGreenOutline) { outlineGreen = setGreenOutline; }
+    /// <summary>
+    /// Saves supplied blue outline color float (setBlueOutline) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
+    /// </summary>
+    /// <param name="setBlueOutline"></param>
+    public static void SaveBlueOutline(float setBlueOutline) { outlineBlue = setBlueOutline; }
+    /// <summary>
+    /// Saves supplied alpha outline float (setAlphaOutline) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
+    /// </summary>
+    /// <param name="setAlphaOutline"></param>
+    public static void SaveAlphaOutline(float setAlphaOutline) { outlineAlpha = setAlphaOutline; }
 
-    public static void SaveCrosshairString(string newCrosshairString) {
-        crosshairString = newCrosshairString;
-    }
+    public static void SaveCrosshairString(string newCrosshairString) { crosshairString = newCrosshairString; }
 
     /// <summary>
     /// Calls 'CrosshairSaveSystem.SaveCrosshairItem()' to save crosshair settings object (CrosshairSettings) to file.
@@ -111,7 +113,11 @@ public class CrosshairSettings : MonoBehaviour {
     /// <param name="setGreen"></param>
     /// <param name="setBlue"></param>
     /// <param name="setAlpha"></param>
-    public static void SaveAllCrosshairDefaults(bool setCenterDot, bool setTStyle, float setSize, float setThickness, float setGap, bool setOutlineEnabled, float setRed, float setGreen, float setBlue, float setAlpha, string setCrosshairString) {
+    /// <param name="setRedOutline"></param>
+    /// <param name="setGreenOutline"></param>
+    /// <param name="setBlueOutline"></param>
+    /// <param name="setAlphaOutline"></param>
+    public static void SaveAllCrosshairDefaults(bool setCenterDot, bool setTStyle, float setSize, float setThickness, float setGap, bool setOutlineEnabled, float setRed, float setGreen, float setBlue, float setAlpha, float setRedOutline, float setGreenOutline, float setBlueOutline, float setAlphaOutline, string setCrosshairString) {
         centerDot       = setCenterDot;
         TStyle          = setTStyle;
         size            = setSize;
@@ -122,6 +128,10 @@ public class CrosshairSettings : MonoBehaviour {
         green           = setGreen;
         blue            = setBlue;
         alpha           = setAlpha;
+        outlineRed      = setRedOutline;
+        outlineGreen    = setGreenOutline;
+        outlineBlue     = setBlueOutline;
+        outlineAlpha    = setAlphaOutline;
         crosshairString = setCrosshairString;
 
         crosshairSettings.SaveCrosshairSettings();
@@ -142,6 +152,10 @@ public class CrosshairSettings : MonoBehaviour {
         green           = crosshairData.green;
         blue            = crosshairData.blue;
         alpha           = crosshairData.alpha;
+        outlineRed      = crosshairData.outlineRed;
+        outlineGreen    = crosshairData.outlineGreen;
+        outlineBlue     = crosshairData.outlineBlue;
+        outlineAlpha    = crosshairData.outlineAlpha;
         crosshairString = crosshairData.crosshairString;
     }
 }

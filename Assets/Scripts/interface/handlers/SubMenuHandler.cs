@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class SubMenuHandler : MonoBehaviour {
     public TMP_Text gamemodeSubMenuText, generalSubMenuText, controlsSubMenuText, crosshairSubMenuText, extraSubMenuText;
     public GameObject gamemodeScrollView, generalScrollView, controlsScrollView, crosshairScrollView, extraScrollView;
+    public Image gamemodeBar, generalBar, controlsBar, crosshairBar, extraBar;
 
     public static Vector3 disabledSubMenuScrollView = new Vector3(0, 0, 0);
     public static Vector3 enabledSubMenuScrollView  = new Vector3(1, 1, 1);
@@ -28,26 +29,31 @@ public class SubMenuHandler : MonoBehaviour {
                 gamemodeSubMenuText.color               = InterfaceColors.selectedColor;
                 gamemodeScrollView.transform.localScale = enabledSubMenuScrollView;
                 ScrollRectExtension.ScrollToTop(gamemodeScrollView.GetComponent<ScrollRect>());
+                gamemodeBar.transform.gameObject.SetActive(true);
                 break;
             case "GeneralSubMenuButton":
                 generalSubMenuText.color               = InterfaceColors.selectedColor;
                 generalScrollView.transform.localScale = enabledSubMenuScrollView;
                 ScrollRectExtension.ScrollToTop(generalScrollView.GetComponent<ScrollRect>());
+                generalBar.transform.gameObject.SetActive(true);
                 break;
             case "ControlsSubMenuButton":
                 controlsSubMenuText.color               = InterfaceColors.selectedColor;
                 controlsScrollView.transform.localScale = enabledSubMenuScrollView;
                 ScrollRectExtension.ScrollToTop(controlsScrollView.GetComponent<ScrollRect>());
+                controlsBar.transform.gameObject.SetActive(true);
                 break;
             case "CrosshairSubMenuButton":
                 crosshairSubMenuText.color               = InterfaceColors.selectedColor;
                 crosshairScrollView.transform.localScale = enabledSubMenuScrollView;
                 ScrollRectExtension.ScrollToTop(crosshairScrollView.GetComponent<ScrollRect>());
+                crosshairBar.transform.gameObject.SetActive(true);
                 break;
             case "ExtraSubMenuButton":
                 extraSubMenuText.color               = InterfaceColors.selectedColor;
                 extraScrollView.transform.localScale = enabledSubMenuScrollView;
                 ScrollRectExtension.ScrollToTop(extraScrollView.GetComponent<ScrollRect>());
+                extraBar.transform.gameObject.SetActive(true);
                 break;
         }
 
@@ -89,6 +95,11 @@ public class SubMenuHandler : MonoBehaviour {
         controlsScrollView.transform.localScale  = disabledSubMenuScrollView;
         crosshairScrollView.transform.localScale = disabledSubMenuScrollView;
         extraScrollView.transform.localScale     = disabledSubMenuScrollView;
+        gamemodeBar.transform.gameObject.SetActive(false);
+        generalBar.transform.gameObject.SetActive(false);
+        controlsBar.transform.gameObject.SetActive(false);
+        crosshairBar.transform.gameObject.SetActive(false);
+        extraBar.transform.gameObject.SetActive(false);
     }
 
     /// <summary>

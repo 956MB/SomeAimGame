@@ -62,6 +62,7 @@ public class ToggleHandler : MonoBehaviour {
 
                 simpleCrosshair.SetOutlineEnabled(toggleClicked.isOn, true);
                 CrosshairSettings.SaveOutlineEnabled(toggleClicked.isOn);
+                CrosshairOptionsObject.SetOutlineContainerState(toggleClicked.isOn);
                 CrosshairOptionsObject.SaveCrosshairObject(true);
                 break;
 
