@@ -10,6 +10,10 @@ public class GunAction : MonoBehaviour {
     private static GunAction gunAction;
     void Awake() { gunAction = this; }
 
+    private void Start() {
+        //TempValues.SetTimerRunningTemp(true);
+    }
+
     void LateUpdate() {
         // Shoot (KeyCode.Mouse0) if game timer still running and settings panel not open (game paused).
         if (GameUI.timeCount > -1) {
@@ -19,6 +23,7 @@ public class GunAction : MonoBehaviour {
         } else {
             if (timerRunning) {
                 timerRunning = false;
+                //TempValues.SetTimerRunningTemp(false);
 
                 // Show 'AfterActionReport' if setting enabled.
                 if (ToggleHandler.ShowAAROn()) {

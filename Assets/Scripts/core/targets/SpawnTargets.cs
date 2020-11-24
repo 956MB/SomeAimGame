@@ -109,14 +109,14 @@ public class SpawnTargets : MonoBehaviour {
             DestroySpawnAreas();
             SpawnSingle(primaryTargetObject);
         } else if (gamemode == Gamemode.Grid || gamemode == Gamemode.Grid2) {
-            if (!targetAreasDestroyed) {
-                try {
-                    ST.targetSpawnArea.GetComponent<BoxCollider>().size = new Vector3(1f, 1f, 0.55f);
-                    targetSpawnAreaBounds = ST.targetSpawnArea.GetComponent<BoxCollider>().bounds;
-                } catch (MissingReferenceException mre) {
-                    Debug.Log("missing reference exception here: " + mre);
-                }
+            //if (!targetAreasDestroyed) {
+            try {
+                ST.targetSpawnArea.GetComponent<BoxCollider>().size = new Vector3(1f, 1f, 0.55f);
+                targetSpawnAreaBounds = ST.targetSpawnArea.GetComponent<BoxCollider>().bounds;
+            } catch (MissingReferenceException mre) {
+                //Debug.Log("missing reference exception here: " + mre);
             }
+            //}
             DestroySpawnAreas();
 
             // Spawn initial 3 targets for "Gamemode-Grid", or initial 8 for "Gamemode-Grid2".
@@ -442,11 +442,17 @@ public class SpawnTargets : MonoBehaviour {
                 }
 
                 for (int i = 0; i < targetSpawnsPrimary.Count; i++) {
-                    try { currentTargetObj = Instantiate(primaryTargetObject, targetSpawnsPrimary[i], Quaternion.identity);
-                    } catch (ArgumentOutOfRangeException AORE) { Debug.Log($"ArgumentOutOfRangeException I GUESS: {AORE}"); }
+                    try {
+                        currentTargetObj = Instantiate(primaryTargetObject, targetSpawnsPrimary[i], Quaternion.identity);
+                    } catch (ArgumentOutOfRangeException AORE) {
+                        Debug.Log($"ArgumentOutOfRangeException I GUESS: {AORE}");
+                    }
 
-                    try { currentTargetObj = Instantiate(secondaryTargetObject, targetSpawnsSecondary[i], Quaternion.identity);
-                    } catch (ArgumentOutOfRangeException AORE) { Debug.Log($"ArgumentOutOfRangeException I GUESS: {AORE}"); }
+                    try {
+                        currentTargetObj = Instantiate(secondaryTargetObject, targetSpawnsSecondary[i], Quaternion.identity);
+                    } catch (ArgumentOutOfRangeException AORE) {
+                        Debug.Log($"ArgumentOutOfRangeException I GUESS: {AORE}");
+                    }
                 }
             }
         } else {
@@ -620,7 +626,7 @@ public class SpawnTargets : MonoBehaviour {
                 Destroy(ST.secondaryTargetSpawnArea.gameObject);
                 targetAreasDestroyed = true;
             } catch (MissingReferenceException mre) {
-                Debug.Log("missing reference exception here, couldnt destroy spawn area: " + mre);
+                //Debug.Log("missing reference exception here, couldnt destroy spawn area: " + mre);
                 targetAreasDestroyed = true;
             }
 
@@ -640,7 +646,7 @@ public class SpawnTargets : MonoBehaviour {
                 Destroy(targetSpawnAreaGO);
             }
         } catch (MissingReferenceException mre) {
-            Debug.Log("missing reference exception here, couldnt destroy \"NEW\" spawn area: " + mre);
+            //Debug.Log("missing reference exception here, couldnt destroy \"NEW\" spawn area: " + mre);
         }
 
         // EVENT:: for destroy new spawn areas
@@ -678,7 +684,10 @@ public class SpawnTargets : MonoBehaviour {
         shotsTaken             = 0;
         count                  = 0;
         totalCount             = 0;
+
         GunAction.timerRunning = true;
+        //TempValues.SetTimerRunningTemp(true);
+
         cosmeticsLoaded        = false;
 
         // EVENT:: for reset targets spawn values

@@ -162,6 +162,8 @@ public class SettingsPanel : MonoBehaviour {
     /// </summary>
     private static void OpenAction() {
         MouseLook.settingsOpen = true;
+        //TempValues.SetSettingsOpenTemp(true);
+
         ManipulatePostProcess.EnableEffects();
         UnlockCursor();
     }
@@ -171,6 +173,8 @@ public class SettingsPanel : MonoBehaviour {
     /// </summary>
     private static void CloseAction() {
         MouseLook.settingsOpen = false;
+        //TempValues.SetSettingsOpenTemp(false);
+
         ManipulatePostProcess.DisableEffects();
         LockCursor();
     }

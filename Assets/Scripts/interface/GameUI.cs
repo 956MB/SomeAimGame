@@ -12,7 +12,8 @@ public class GameUI : MonoBehaviour {
     public static bool statsLoaded       = false;
     public static string timeFormatted;
     public GameObject UICanvas, widgetsUICanvas, newTimerCanvasImage;
-    Coroutine timerCoroutine, spawnScatterCoroutine;
+    private Coroutine timerCoroutine;
+    private Coroutine spawnScatterCoroutine;
 
     public int scoreUp, scoreDown, followScoreUp, followScoreDown;
     public static int timeCount, timeStart;
@@ -41,12 +42,10 @@ public class GameUI : MonoBehaviour {
         reactionTime     = 0;
         reactionTimeList = new List<int>();
 
-        if (closePanels) {
-            SettingsPanel.CloseAfterActionReport();
-            SettingsPanel.CloseSettingsPanel();
-            SettingsPanel.afterActionReportOpen = false;
-            SettingsPanel.settingsOpen          = false;
-        }
+        SettingsPanel.CloseAfterActionReport();
+        SettingsPanel.CloseSettingsPanel();
+        SettingsPanel.afterActionReportOpen = false;
+        SettingsPanel.settingsOpen          = false;
 
         SpawnTargets.InitSpawnTargets();
 
@@ -61,6 +60,8 @@ public class GameUI : MonoBehaviour {
 
         // Set game timer to saved 'ExtraSaveSystem' time, if exists.
         timeCount     = ExtraSaveSystem.InitGameTimer();
+        //TempValues.SetTimeCountTemp(timeCount);
+
         timeStart     = timeCount;
         timeFormatted = ReturnTimerString(timeCount);
 
@@ -68,7 +69,7 @@ public class GameUI : MonoBehaviour {
 
         if (!ExtraSettings.hideUI) { HideWidgetsUI(); }
 
-        StartGameCoroutines();
+        if (!coroutinesRunning) { StartGameCoroutines(); }
     }
 
     /// <summary>
@@ -110,9 +111,10 @@ public class GameUI : MonoBehaviour {
     public static IEnumerator StartGameTimerDown() {
         while (true) {
             // Only count timer down if settings panel not open (paused).
-            if (!MouseLook.settingsOpen) {
+            if (!MouseLook.settingsOpen && timeCount > -1) {
                 timeCount -= 1;
-            
+                //TempValues.SetTimeCountTemp(timeCount);
+
                 // Format time in seconds (120) to formatted time string (02:00)
                 timeFormatted = ReturnTimerString(timeCount);
             }
@@ -129,6 +131,7 @@ public class GameUI : MonoBehaviour {
                     StopEverything();
                 }
             } else {
+                //TempValues.SetTimeCountTemp(timeCount);
                 yield break;
             }
 
@@ -194,7 +197,7 @@ public class GameUI : MonoBehaviour {
     }
 
     public static void SetInitialWidgetValues() {
-        if (WidgetSettings.showTime) { gameUI.timeText.color = InterfaceColors.widgetsNeutralColor; }
+        if (WidgetSettings.showTime) { gameUI.timeText.SetText($"{timeCount}"); gameUI.timeText.color = InterfaceColors.widgetsNeutralColor; }
         if (WidgetSettings.showScore) { gameUI.scoreText.SetText("0"); gameUI.scoreText.color = InterfaceColors.widgetsNeutralColor; }
         if (WidgetSettings.showAccuracy) { gameUI.accuracyText.SetText("100%"); gameUI.accuracyText.color = InterfaceColors.widgetsNeutralColor; }
         if (WidgetSettings.showStreak) { gameUI.streakText.SetText("0 / 0"); gameUI.streakText.color = InterfaceColors.widgetsNeutralColor; }
@@ -323,6 +326,8 @@ public class GameUI : MonoBehaviour {
             gameUI.timeText.SetText($"{timeFormatted}");
         }
 
+        //TempValues.SetTimeCountTemp(timeCount);
+
         // EVENT:: for set streak widget text
         //if (DevEventHandler.eventsOn) { DevEventHandler.CreateInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacestreakset")} ({streakCurrent} / {streakBest})"); }
     }
@@ -376,13 +381,11 @@ public class GameUI : MonoBehaviour {
     /// Restarts game with current supplied gamemode and resets all game values like timer, score and accuracy. Then targets are reset and scene reloaded.
     /// </summary>
     /// <param name="newGamemode"></param>
-    public static void RestartGame(Gamemode newGamemode, bool closePanels=true) {
+    public static void RestartGame(Gamemode newGamemode, bool closePanels) {
         if (coroutinesRunning) {
             gameUI.StopCoroutine(gameUI.timerCoroutine);
 
-            if (SpawnTargets.gamemode == Gamemode.Scatter) {
-                gameUI.StopCoroutine(gameUI.spawnScatterCoroutine);
-            }
+            if (SpawnTargets.gamemode == Gamemode.Scatter) { gameUI.StopCoroutine(gameUI.spawnScatterCoroutine); }
 
             coroutinesRunning = false;
         }
@@ -393,11 +396,11 @@ public class GameUI : MonoBehaviour {
         // reset targets and reload scene.
         SpawnTargets.ResetSpawnTargetsValues();
 
-        if (newGamemode != SpawnTargets.gamemode) {
-            ReloadScene();
-        } else {
-            GameStartActions(closePanels);
-        }
+        //if (newGamemode != SpawnTargets.gamemode) {
+        ReloadScene();
+        //} else {
+        //    GameStartActions(closePanels);
+        //}
     }
 
     /// <summary>

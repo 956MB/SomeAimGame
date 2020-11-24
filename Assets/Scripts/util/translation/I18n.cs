@@ -85,7 +85,7 @@ public class I18n : MonoBehaviour {
             if (currentKey.Length > res.Length) { res = currentKey; }
         }
 
-        DevEventHandler.longestCardTypeText = res;
+        //DevEventHandler.longestCardTypeText = res;
     }
 
     /// <summary>

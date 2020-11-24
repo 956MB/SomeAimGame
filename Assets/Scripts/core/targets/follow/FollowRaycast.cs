@@ -30,7 +30,7 @@ public class FollowRaycast : MonoBehaviour {
                             currentTargetRendererMaterial.SetColor("_Color", followRaycast.followTargetAlbedo);
                             currentTargetRendererMaterial.SetColor("_EmissionColor", followRaycast.followTargetEmission);
                         } catch (MissingReferenceException mre) {
-                            Debug.Log("missing reference exception here: " + mre);
+                            //Debug.Log("missing reference exception here: " + mre);
                         }
                         targetPrimary = true;
                     }
@@ -45,7 +45,7 @@ public class FollowRaycast : MonoBehaviour {
                             currentTargetRendererMaterial.SetColor("_Color", TargetColors.RedAlbedo());
                             currentTargetRendererMaterial.SetColor("_EmissionColor", TargetColors.RedEmission());
                         } catch (MissingReferenceException mre) {
-                            Debug.Log("missing reference exception here: " + mre);
+                            //Debug.Log("missing reference exception here: " + mre);
                         }
 
                         targetPrimary = false;

@@ -41,16 +41,18 @@ public class LanguageSaveSystem : MonoBehaviour {
             LanguageSetting.LoadLanguageSetting(loadedLanguageData);
             I18n.LoadLanguage(loadedLanguageData.languageCode);
 
-            if (DevEventHandler.cardsOn) {
-                I18n.CalculateLongestKey();
-                DevEventHandler.PopulateExtraSpaces();
-            }
+            // DevEventHandler moved into editor folder.
+            //if (DevEventHandler.cardsOn) {
+            //    I18n.CalculateLongestKey();
+            //    DevEventHandler.PopulateExtraSpaces();
+            //}
 
             // EVENT:: for saved language file loaded
             //DevEventHandler.CheckLanguageEvent($"[{loadedLanguageData.languageCode}] {I18nTextTranslator.SetTranslatedText("eventlanguagefileload")}");
             // EVENT:: for game language set
             //DevEventHandler.CheckLanguageEvent($"{I18nTextTranslator.SetTranslatedText("eventlanguagegameset")} [{loadedLanguageData.languageCode}]");
-        } else {
+        }
+        else {
             InitLanguageSettingDefault();
 
             // EVENT:: for default language file loaded
@@ -64,10 +66,10 @@ public class LanguageSaveSystem : MonoBehaviour {
         string lang = I18n.Get2LetterISOCodeFromSystemLanguage();
         I18n.LoadLanguage(lang);
         
-        if (DevEventHandler.cardsOn) {
-            I18n.CalculateLongestKey();
-            DevEventHandler.PopulateExtraSpaces();
-        }
+        //if (DevEventHandler.cardsOn) {
+        //    I18n.CalculateLongestKey();
+        //    DevEventHandler.PopulateExtraSpaces();
+        //}
         
         LanguageSetting.SaveLanguageSettingDefault(lang);
     }
