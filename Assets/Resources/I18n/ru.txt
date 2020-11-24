@@ -127,6 +127,7 @@ mousesensitivity=Чувствительность мыши
 keybindstitle=Связки клавиш
 keybindlegend=Pедактирование привязки клавиш скоро
 crosshairtitle=Перекрестие
+outlinetitle=Контур
 #
 #
 # // keybinds
@@ -153,7 +154,7 @@ centerdot=Центральная точка   .   .   .   .   .   .   .   .   . 
 crosshairsize=Размер
 crosshairthickness=Толщина
 crosshairgap=Разрыв
-crosshairoutline=Контур   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+crosshairoutlineenabled=Включено   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 crosshairred=Красный
 crosshairgreen=Синий
 crosshairblue=Зеленый

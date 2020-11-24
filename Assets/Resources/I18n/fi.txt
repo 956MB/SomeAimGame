@@ -127,6 +127,7 @@ mousesensitivity=Hiiren herkkyys
 keybindstitle=Avaimenperät
 keybindlegend=Avaimensiirron muokkaus on tulossa pian
 crosshairtitle=Ristikko
+outlinetitle=Ääriviivat
 #
 #
 # // keybinds
@@ -153,7 +154,7 @@ centerdot=Keskipiste   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 crosshairsize=Koko
 crosshairthickness=Paksuus
 crosshairgap=Aukko
-crosshairoutline=Ääriviivat   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+crosshairoutlineenabled=Käytössä   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 crosshairred=Punainen
 crosshairgreen=Sininen
 crosshairblue=Vihreä

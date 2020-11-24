@@ -127,6 +127,7 @@ mousesensitivity=マウス感度
 keybindstitle=キーバインド
 keybindlegend=キーバインド編集は近日公開予定
 crosshairtitle=十字線
+outlinetitle=概要
 #
 #
 # // keybinds
@@ -153,7 +154,7 @@ centerdot=センタードット   .   .   .   .   .   .   .   .   .   .   .   . 
 crosshairsize=サイズ
 crosshairthickness=厚さ
 crosshairgap=ギャップ
-crosshairoutline=概要   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+crosshairoutlineenabled=有効   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 crosshairred=赤
 crosshairgreen=青
 crosshairblue=緑

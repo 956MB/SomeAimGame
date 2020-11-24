@@ -127,6 +127,7 @@ mousesensitivity=Mouse Sensitivity
 keybindstitle=Keybinds
 keybindlegend=Keybind editing coming soon
 crosshairtitle=Crosshair
+outlinetitle=Outline
 #
 #
 # // keybinds
@@ -153,7 +154,7 @@ centerdot=Center Dot   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 crosshairsize=Size
 crosshairthickness=Thickness
 crosshairgap=Gap
-crosshairoutline=Outline   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+crosshairoutlineenabled=Enabled   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 crosshairred=Red
 crosshairgreen=Blue
 crosshairblue=Green
