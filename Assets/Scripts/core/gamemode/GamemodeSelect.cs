@@ -41,22 +41,22 @@ public class GamemodeSelect : MonoBehaviour {
             gamemodeSelect.GamemodeSelectStart();
         } else {
             switch (gamemodeName) {
-                case Gamemode.Scatter:
+                case Gamemode.SCATTER:
                     PopulateAllGamemodeInfo(gamemodeScatterClip_Loaded, "gamemodestartscatter", "gamemodecapsscatter", "gamemodetypespeed", InterfaceColors.gamemodeEasyColor, "gamemodescatterdescription");
                     break;
-                case Gamemode.Flick:
+                case Gamemode.FLICK:
                     PopulateAllGamemodeInfo(gamemodeFlickClip_Loaded, "gamemodestartflick", "gamemodecapsflick", "gamemodetypecontrol", InterfaceColors.gamemodeEasyColor, "gamemodeflickdescription");
                     break;
-                case Gamemode.Grid:
+                case Gamemode.GRID:
                     PopulateAllGamemodeInfo(gamemodeGridClip_Loaded, "gamemodestartgrid", "gamemodecapsgrid", "gamemodetypespeed", InterfaceColors.gamemodeEasyColor, "gamemodegriddescription");
                     break;
-                case Gamemode.Grid2:
+                case Gamemode.GRID_2:
                     PopulateAllGamemodeInfo(gamemodeGrid2Clip_Loaded, "gamemodestartgrid2", "gamemodecapsgrid2", "gamemodetypecontrol", InterfaceColors.gamemodeHardColor, "gamemodegrid2description");
                     break;
-                case Gamemode.Pairs:
+                case Gamemode.PAIRS:
                     PopulateAllGamemodeInfo(gamemodePairsClip_Loaded, "gamemodestartpairs", "gamemodecapspairs", "gamemodetypecontrol", InterfaceColors.gamemodeMediumColor, "gamemodepairsdescription");
                     break;
-                case Gamemode.Follow:
+                case Gamemode.FOLLOW:
                     PopulateAllGamemodeInfo(gamemodeFollowClip_Loaded, "gamemodestartfollow", "gamemodecapsfollow", "gamemodetypetracking", InterfaceColors.gamemodeMediumColor, "gamemodefollowdescription");
                     break;
             }
@@ -138,8 +138,8 @@ gamemodeDescription) {
     /// </summary>
     /// <returns></returns>
     private static bool CheckFollowGamemode() {
-        if (currentOpenGamemode == Gamemode.Follow) {
-            if (CosmeticsSettings.targetColor == TargetColor.Red) {
+        if (currentOpenGamemode == Gamemode.FOLLOW) {
+            if (CosmeticsSettings.targetColor == TargetColor.RED) {
                 NotificationHandler.ShowTimedNotification_Translated("followcolorwarning", "", InterfaceColors.notificationColorRed);
                 return false;
             } else if (ExtraSettings.gameTimer == 0) {

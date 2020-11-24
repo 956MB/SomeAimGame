@@ -76,14 +76,14 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     /// </summary>
     public static void InitCosmeticsSettingsDefaults() {
         // Gamemode value.
-        SetGamemode(Gamemode.Grid, false);
+        SetGamemode(Gamemode.GRID, false);
 
         // Target color value.
-        SetTargetColor(TargetColor.Yellow, Gamemode.Grid);
+        SetTargetColor(TargetColor.YELLOW, Gamemode.GRID);
         saveLoad.targetColorSelected.SetText($"//    {I18nTextTranslator.SetTranslatedText("coloryellow")}");
         
         // Skybox value.
-        SetSkybox(Skybox.Slate);
+        SetSkybox(Skybox.SLATE);
         saveLoad.skyboxSelected.SetText($"//    {I18nTextTranslator.SetTranslatedText("skyboxslate")}");
         
         // Settings and extra stats panel values.
@@ -93,7 +93,7 @@ public class CosmeticsSaveSystem : MonoBehaviour {
         saveLoad.quickStartToggle.isOn = false;
 
         // Saves defaults to new 'cometics.settings' file.
-        CosmeticsSettings.SaveAllCosmeticsToggleDefaults(Gamemode.Grid, TargetColor.Yellow, Skybox.Slate, 960f, 540f, 1455.711f, 638.3904f, false);
+        CosmeticsSettings.SaveAllCosmeticsToggleDefaults(Gamemode.GRID, TargetColor.YELLOW, Skybox.SLATE, 960f, 540f, 1455.711f, 638.3904f, false);
     }
 
     /// <summary>
@@ -113,27 +113,27 @@ public class CosmeticsSaveSystem : MonoBehaviour {
         GamemodeSelect.ClearGamemodeButtonColors(GameObject.Find($"{GamemodeType.ReturnGamemodeType_StringFull(gamemode)}-Text (TMP)").GetComponent<TMP_Text>(), true, true);
 
         switch (gamemode) {
-            case Gamemode.Scatter:
+            case Gamemode.SCATTER:
                 SetGamemodeBorder(saveLoad.gamemodeScatterBorder);
                 break;
-            case Gamemode.Flick:
+            case Gamemode.FLICK:
                 SetGamemodeBorder(saveLoad.gamemodeFlickBorder);
                 break;
-            case Gamemode.Grid:
+            case Gamemode.GRID:
                 SetGamemodeBorder(saveLoad.gamemodeGridBorder);
                 break;
-            case Gamemode.Grid2:
+            case Gamemode.GRID_2:
                 SetGamemodeBorder(saveLoad.gamemodeGrid2Border);
                 saveLoad.showModeText.SetText($"GRID II");
                 break;
-            case Gamemode.Grid3:
+            case Gamemode.GRID_3:
                 SetGamemodeBorder(saveLoad.gamemodeGrid2Border);
                 saveLoad.showModeText.SetText($"GRID III");
                 break;
-            case Gamemode.Pairs:
+            case Gamemode.PAIRS:
                 SetGamemodeBorder(saveLoad.gamemodePairsBorder);
                 break;
-            case Gamemode.Follow:
+            case Gamemode.FOLLOW:
                 SetGamemodeBorder(saveLoad.gamemodeFollowBorder);
                 break;
         }
@@ -145,7 +145,7 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     /// <param name="targetColor"></param>
     /// <param name="gamemode"></param>
     private static void SetTargetColor(TargetColor targetColor, Gamemode gamemode) {
-        if (gamemode == Gamemode.Follow) {
+        if (gamemode == Gamemode.FOLLOW) {
             SpawnTargets.SetTargetColor(targetColor, true);
         } else {
             SpawnTargets.SetTargetColor(targetColor, false);
@@ -155,35 +155,35 @@ public class CosmeticsSaveSystem : MonoBehaviour {
         ButtonClickHandler.ClearTargetColorButtonBorders();
 
         switch (targetColor) {
-            case TargetColor.Red:
+            case TargetColor.RED:
                 SetCosmeticsItems(saveLoad.targetColorRedBorder, saveLoad.targetColorSelected, "colorred");
                 activeTargetColorText = $"//  {I18nTextTranslator.SetTranslatedText("colorred")}";
                 break;
-            case TargetColor.Orange:
+            case TargetColor.ORANGE:
                 SetCosmeticsItems(saveLoad.targetColorOrangeBorder, saveLoad.targetColorSelected, "colororange");
                 activeTargetColorText = $"//  {I18nTextTranslator.SetTranslatedText("colororange")}";
                 break;
-            case TargetColor.Yellow:
+            case TargetColor.YELLOW:
                 SetCosmeticsItems(saveLoad.targetColorYellowBorder, saveLoad.targetColorSelected, "coloryellow");
                 activeTargetColorText = $"//  {I18nTextTranslator.SetTranslatedText("coloryellow")}";
                 break;
-            case TargetColor.Green:
+            case TargetColor.GREEN:
                 SetCosmeticsItems(saveLoad.targetColorGreenBorder, saveLoad.targetColorSelected, "colorgreen");
                 activeTargetColorText = $"//  {I18nTextTranslator.SetTranslatedText("colorgreen")}";
                 break;
-            case TargetColor.Blue:
+            case TargetColor.BLUE:
                 SetCosmeticsItems(saveLoad.targetColorBlueBorder, saveLoad.targetColorSelected, "colorblue");
                 activeTargetColorText = $"//  {I18nTextTranslator.SetTranslatedText("colorblue")}";
                 break;
-            case TargetColor.Purple:
+            case TargetColor.PURPLE:
                 SetCosmeticsItems(saveLoad.targetColorPurpleBorder, saveLoad.targetColorSelected, "colorpurple");
                 activeTargetColorText = $"//  {I18nTextTranslator.SetTranslatedText("colorpurple")}";
                 break;
-            case TargetColor.Pink:
+            case TargetColor.PINK:
                 SetCosmeticsItems(saveLoad.targetColorPinkBorder, saveLoad.targetColorSelected, "colorpink");
                 activeTargetColorText = $"//  {I18nTextTranslator.SetTranslatedText("colorpink")}";
                 break;
-            case TargetColor.White:
+            case TargetColor.WHITE:
                 SetCosmeticsItems(saveLoad.targetColorWhiteBorder, saveLoad.targetColorSelected, "colorwhite");
                 activeTargetColorText = $"//  {I18nTextTranslator.SetTranslatedText("colorwhite")}";
                 break;
@@ -200,27 +200,27 @@ public class CosmeticsSaveSystem : MonoBehaviour {
         SkyboxHandler.SetNewSkybox(skybox);
 
         switch (skybox) {
-            case Skybox.Pink:
+            case Skybox.PINK:
                 SetCosmeticsItems(saveLoad.skyboxPinkBorder, saveLoad.skyboxSelected, "skyboxpink");
                 activeSkyboxText = $"//  {I18nTextTranslator.SetTranslatedText("skyboxpink")}";
                 break;
-            case Skybox.Golden:
+            case Skybox.GOLDEN:
                 SetCosmeticsItems(saveLoad.skyboxGoldenBorder, saveLoad.skyboxSelected, "skyboxgolden");
                 activeSkyboxText = $"//  {I18nTextTranslator.SetTranslatedText("skyboxgolden")}";
                 break;
-            case Skybox.Night:
+            case Skybox.NIGHT:
                 SetCosmeticsItems(saveLoad.skyboxNightBorder, saveLoad.skyboxSelected, "skyboxnight");
                 activeSkyboxText = $"//  {I18nTextTranslator.SetTranslatedText("skyboxnight")}";
                 break;
-            case Skybox.Grey:
+            case Skybox.GREY:
                 SetCosmeticsItems(saveLoad.skyboxGreyBorder, saveLoad.skyboxSelected, "skyboxgrey");
                 activeSkyboxText = $"//  {I18nTextTranslator.SetTranslatedText("skyboxgrey")}";
                 break;
-            case Skybox.Blue:
+            case Skybox.BLUE:
                 SetCosmeticsItems(saveLoad.skyboxBlueBorder, saveLoad.skyboxSelected, "skyboxblue");
                 activeSkyboxText = $"//  {I18nTextTranslator.SetTranslatedText("skyboxblue")}";
                 break;
-            case Skybox.Slate:
+            case Skybox.SLATE:
                 SetCosmeticsItems(saveLoad.skyboxSlateBorder, saveLoad.skyboxSelected, "skyboxslate");
                 activeSkyboxText = $"//  {I18nTextTranslator.SetTranslatedText("skyboxslate")}";
                 break;

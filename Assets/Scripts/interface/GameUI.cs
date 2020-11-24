@@ -76,7 +76,7 @@ public class GameUI : MonoBehaviour {
     /// Starts game timer Coroutine, and starts 'continuousScatterSpawn' if gamemode 'Gamemode-Scatter'.
     /// </summary>
     public static void StartGameCoroutines() {
-        if (SpawnTargets.gamemode == Gamemode.Scatter) {
+        if (SpawnTargets.gamemode == Gamemode.SCATTER) {
             gameUI.spawnScatterCoroutine = gameUI.StartCoroutine(ContinuousScatterSpawn());
         }
 
@@ -385,7 +385,7 @@ public class GameUI : MonoBehaviour {
         if (coroutinesRunning) {
             gameUI.StopCoroutine(gameUI.timerCoroutine);
 
-            if (SpawnTargets.gamemode == Gamemode.Scatter) { gameUI.StopCoroutine(gameUI.spawnScatterCoroutine); }
+            if (SpawnTargets.gamemode == Gamemode.SCATTER) { gameUI.StopCoroutine(gameUI.spawnScatterCoroutine); }
 
             coroutinesRunning = false;
         }
@@ -428,9 +428,9 @@ public class GameUI : MonoBehaviour {
     /// </summary>
     public static void StopEverything() {
         //gameUI.StopCoroutine(gameUI.timerCoroutine);
-        if (SpawnTargets.gamemode == Gamemode.Scatter) {
+        if (SpawnTargets.gamemode == Gamemode.SCATTER) {
             gameUI.StopCoroutine(gameUI.spawnScatterCoroutine);
-        } else if (SpawnTargets.gamemode == Gamemode.Follow) {
+        } else if (SpawnTargets.gamemode == Gamemode.FOLLOW) {
             PathFollower.DestroyPathObj();
         }
 

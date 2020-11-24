@@ -6,7 +6,7 @@ public class TargetGroundHit : MonoBehaviour {
     //private static SpawnTargets ST;
 
     void FixedUpdate() {
-        if (SpawnTargets.gamemode == Gamemode.Flick) {
+        if (SpawnTargets.gamemode == Gamemode.FLICK) {
             //Debug.Log("???????");
             targetObj = SpawnTargets.currentTargetObj;
             if (targetObj != null && IsGrounded(targetObj)) {

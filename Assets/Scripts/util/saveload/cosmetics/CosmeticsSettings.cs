@@ -2,9 +2,9 @@
 using UnityEngine;
 
 public class CosmeticsSettings : MonoBehaviour {
-    public static Gamemode    gamemode                = Gamemode.Scatter;
-    public static TargetColor targetColor             = TargetColor.Yellow;
-    public static Skybox      skybox                  = Skybox.Slate;
+    public static Gamemode    gamemode                = Gamemode.SCATTER;
+    public static TargetColor targetColor             = TargetColor.YELLOW;
+    public static Skybox      skybox                  = Skybox.SLATE;
     public static float       afterActionReportPanelX = 960f;
     public static float       afterActionReportPanelY = 540f;
     public static float       extraStatsPanelX        = 1455.711f;

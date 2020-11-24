@@ -77,7 +77,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
         TargetColor targetColorClickedName = TargetColorType.ReturnTargetColorType_TargetColor(clickedButtonBorder.transform.parent.name);
 
         // Primary target color cannot be red if gamemode is "Gamemode-Follow"
-        if (targetColorClickedName == TargetColor.Red && SpawnTargets.gamemode == Gamemode.Follow) { return; }
+        if (targetColorClickedName == TargetColor.RED && SpawnTargets.gamemode == Gamemode.FOLLOW) { return; }
         if (NotificationHandler.notificationOpen) { NotificationHandler.HideNotification(); }
 
         SpawnTargets.targetColorReset = true;
@@ -93,28 +93,28 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
 
         // Change selected target color text based on button clicked in general settings panel.
         switch (targetColorClickedName) {
-            case TargetColor.Red:
+            case TargetColor.RED:
                 targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colorred")}");
                 break;
-            case TargetColor.Orange:
+            case TargetColor.ORANGE:
                 targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colororange")}");
                 break;
-            case TargetColor.Yellow:
+            case TargetColor.YELLOW:
                 targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("coloryellow")}");
                 break;
-            case TargetColor.Green:
+            case TargetColor.GREEN:
                 targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colorgreen")}");
                 break;
-            case TargetColor.Blue:
+            case TargetColor.BLUE:
                 targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colorblue")}");
                 break;
-            case TargetColor.Purple:
+            case TargetColor.PURPLE:
                 targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colorpurple")}");
                 break;
-            case TargetColor.Pink:
+            case TargetColor.PINK:
                 targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colorpink")}");
                 break;
-            case TargetColor.White:
+            case TargetColor.WHITE:
                 targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colorwhite")}");
                 break;
         }
@@ -148,22 +148,22 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
 
         // Change selected skybox text based on button clicked in general settings panel.
         switch (skyboxClickedName) {
-            case Skybox.Pink:
+            case Skybox.PINK:
                 skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxpink")}");
                 break;
-            case Skybox.Golden:
+            case Skybox.GOLDEN:
                 skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxgolden")}");
                 break;
-            case Skybox.Night:
+            case Skybox.NIGHT:
                 skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxnight")}");
                 break;
-            case Skybox.Grey:
+            case Skybox.GREY:
                 skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxgrey")}");
                 break;
-            case Skybox.Blue:
+            case Skybox.BLUE:
                 skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxblue")}");
                 break;
-            case Skybox.Slate:
+            case Skybox.SLATE:
                 skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxslate")}");
                 break;
         }

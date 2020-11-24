@@ -13,27 +13,27 @@ public class SkyboxHandler : MonoBehaviour {
     /// <param name="setSkybox"></param>
     public static void SetNewSkybox(Skybox setSkybox) {
         switch (setSkybox) {
-            case Skybox.Pink:
+            case Skybox.PINK:
                 RenderSettings.skybox           = skyboxHandler.skyboxPink;
                 RenderSettings.customReflection = skyboxHandler.skyboxPinkLighting;
                 break;
-            case Skybox.Golden:
+            case Skybox.GOLDEN:
                 RenderSettings.skybox           = skyboxHandler.skyboxGolden;
                 RenderSettings.customReflection = skyboxHandler.skyboxGoldenLighting;
                 break;
-            case Skybox.Night:
+            case Skybox.NIGHT:
                 RenderSettings.skybox           = skyboxHandler.skyboxNight;
                 RenderSettings.customReflection = skyboxHandler.skyboxNightLighting;
                 break;
-            case Skybox.Grey:
+            case Skybox.GREY:
                 RenderSettings.skybox           = skyboxHandler.skyboxGrey;
                 RenderSettings.customReflection = skyboxHandler.skyboxGreyLighting;
                 break;
-            case Skybox.Blue:
+            case Skybox.BLUE:
                 RenderSettings.skybox           = skyboxHandler.skyboxBlue;
                 RenderSettings.customReflection = skyboxHandler.skyboxBlueLighting;
                 break;
-            case Skybox.Slate:
+            case Skybox.SLATE:
                 RenderSettings.skybox           = skyboxHandler.skyboxSlate;
                 RenderSettings.customReflection = skyboxHandler.skyboxSlateLighting;
                 break;

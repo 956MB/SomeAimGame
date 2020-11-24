@@ -17,7 +17,7 @@ public class GunAction : MonoBehaviour {
     void LateUpdate() {
         // Shoot (KeyCode.Mouse0) if game timer still running and settings panel not open (game paused).
         if (GameUI.timeCount > -1) {
-            if (!MouseLook.settingsOpen && Keybinds.keybindsLoaded && SpawnTargets.gamemode != Gamemode.Follow) {
+            if (!MouseLook.settingsOpen && Keybinds.keybindsLoaded && SpawnTargets.gamemode != Gamemode.FOLLOW) {
                 if (Input.GetKeyDown(KeybindSettings.shoot)) { Shoot(); }
             }
         } else {
@@ -46,7 +46,7 @@ public class GunAction : MonoBehaviour {
                     GameUI.UpdateReactionTime();
                     if (ToggleHandler.TargetSoundOn()) { HitSound.PlayHitSound(); }
 
-                    if (SpawnTargets.gamemode == Gamemode.Pairs) {
+                    if (SpawnTargets.gamemode == Gamemode.PAIRS) {
                         if (!SpawnTargets.pairStarterActive) {
                             bool correctTargetHit = SpawnTargets.CheckPairHit(gunHit.transform.position);
                             if (correctTargetHit) {
@@ -71,7 +71,7 @@ public class GunAction : MonoBehaviour {
                     }
                     break;
                 default:
-                    if (SpawnTargets.gamemode != Gamemode.Pairs) {
+                    if (SpawnTargets.gamemode != Gamemode.PAIRS) {
                         GameUI.DecreaseScore();
                         SpawnTargets.CheckTargetCount(gunHit, false);
 
