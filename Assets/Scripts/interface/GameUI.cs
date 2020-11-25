@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameUI : MonoBehaviour {
     public TMP_Text timeText, scoreText, scoreBonusText, accuracyText, streakText, ttkText, kpsText, preTipText, reactionTimeText;
@@ -16,6 +16,7 @@ public class GameUI : MonoBehaviour {
     private Coroutine spawnScatterCoroutine;
 
     // Core game score values
+    // TODO: Maybe add AimLab like score system. Score up/down amount increases/decreases with streaks.
     public static int scoreUp         = 1000;
     public static int scoreDown       = 300;
     public static int followScoreUp   = 7;

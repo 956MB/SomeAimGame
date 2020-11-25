@@ -19,7 +19,7 @@ public class KeybindsHandler : MonoBehaviour, IPointerEnterHandler {
                 if (e.keyCode != clickedKeycode && e.keyCode != KeyCode.Escape) {
                     HandleNewKeybindSet(clickedKeycode, e.keyCode);
                 } else {
-                    currentKey.transform.GetChild(0).GetComponent<TMP_Text>().text  = ReturnKeybindShort(clickedKeycode);
+                    currentKey.transform.GetChild(0).GetComponent<TMP_Text>().text  = ReturnKeybindString(clickedKeycode);
                     currentKey.transform.GetChild(0).GetComponent<TMP_Text>().color = InterfaceColors.selectedColor;
                 }
                 
@@ -84,18 +84,12 @@ public class KeybindsHandler : MonoBehaviour, IPointerEnterHandler {
     /// <returns></returns>
     private static KeyCode GetButtonKeybind(string buttonName) {
         switch (buttonName) {
-            case "Shoot-Button":
-                return KeybindSettings.shoot;
-            case "ToggleSettings-Button":
-                return KeybindSettings.toggleSettings;
-            case "ToggleAAR-Button":
-                return KeybindSettings.toggleAAR;
-            case "ToggleWidgets-Button":
-                return KeybindSettings.toggleWidgets;
-            case "GameRestart-Button":
-                return KeybindSettings.gameRestart;
-            default:
-                return KeyCode.None;
+            case "Shoot-Button":          return KeybindSettings.shoot;
+            case "ToggleSettings-Button": return KeybindSettings.toggleSettings;
+            case "ToggleAAR-Button":      return KeybindSettings.toggleAAR;
+            case "ToggleWidgets-Button":  return KeybindSettings.toggleWidgets;
+            case "GameRestart-Button":    return KeybindSettings.gameRestart;
+            default:                      return KeyCode.None;
         }
     }
 
@@ -104,26 +98,17 @@ public class KeybindsHandler : MonoBehaviour, IPointerEnterHandler {
     /// </summary>
     /// <param name="fullKeycode"></param>
     /// <returns></returns>
-    public static string ReturnKeybindShort(KeyCode fullKeycode) {
+    public static string ReturnKeybindString(KeyCode fullKeycode) {
         switch (fullKeycode) {
-            case KeyCode.Escape:
-                return "ESCAPE";
-            case KeyCode.Mouse0:
-                return "MOUSE 1";
-            case KeyCode.Mouse1:
-                return "MOUSE 2";
-            case KeyCode.Space:
-                return "SPACE";
-            case KeyCode.LeftBracket:
-                return "[";
-            case KeyCode.RightBracket:
-                return "]";
-            case KeyCode.LeftCurlyBracket:
-                return "}";
-            case KeyCode.RightCurlyBracket:
-                return "}";
-            default:
-                return fullKeycode.ToString();
+            case KeyCode.Escape:            return "ESCAPE";
+            case KeyCode.Mouse0:            return "MOUSE 1";
+            case KeyCode.Mouse1:            return "MOUSE 2";
+            case KeyCode.Space:             return "SPACE";
+            case KeyCode.LeftBracket:       return "[";
+            case KeyCode.RightBracket:      return "]";
+            case KeyCode.LeftCurlyBracket:  return "}";
+            case KeyCode.RightCurlyBracket: return "}";
+            default:                        return fullKeycode.ToString();
         }
     }
 }

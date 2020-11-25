@@ -26,7 +26,7 @@ public class LoadSteamData : MonoBehaviour {
         if (!SteamManager.Initialized) { return; }
         userSteamID = SteamUser.GetSteamID();
 
-        FetchSteamUsername();
+        //FetchSteamUsername();
         StartCoroutine(FetchSteamAvatar());
     }
 
