@@ -374,42 +374,42 @@ public class SpawnTargets : MonoBehaviour {
             case TargetColor.RED:
                 primaryTargetObject   = ST.redTarget;
                 secondaryTargetObject = ST.blueTarget;
-                if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.RedAlbedo(), TargetColors.RedEmission(), TargetColors.RedLight()); }
+                if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.RedAlbedo, TargetColors.RedEmission, TargetColors.RedLight); }
                 break;
             case TargetColor.ORANGE:
                 primaryTargetObject   = ST.orangeTarget;
                 secondaryTargetObject = ST.blueTarget;
-                if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.OrangeAlbedo(), TargetColors.OrangeEmission(), TargetColors.OrangeLight()); }
+                if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.OrangeAlbedo, TargetColors.OrangeEmission, TargetColors.OrangeLight); }
                 break;
             case TargetColor.YELLOW:
                 primaryTargetObject   = ST.yellowTarget;
                 secondaryTargetObject = ST.redTarget;
-                if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.YellowAlbedo(), TargetColors.YellowEmission(), TargetColors.YellowLight()); }
+                if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.YellowAlbedo, TargetColors.YellowEmission, TargetColors.YellowLight); }
                 break;
             case TargetColor.GREEN:
                 primaryTargetObject   = ST.greenTarget;
                 secondaryTargetObject = ST.redTarget;
-                if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.GreenAlbedo(), TargetColors.GreenEmission(), TargetColors.GreenLight()); }
+                if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.GreenAlbedo, TargetColors.GreenEmission, TargetColors.GreenLight); }
                 break;
             case TargetColor.BLUE:
                 primaryTargetObject   = ST.blueTarget;
                 secondaryTargetObject = ST.redTarget;
-                if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.BlueAlbedo(), TargetColors.BlueEmission(), TargetColors.BlueLight()); }
+                if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.BlueAlbedo, TargetColors.BlueEmission, TargetColors.BlueLight); }
                 break;
             case TargetColor.PURPLE:
                 primaryTargetObject   = ST.purpleTarget;
                 secondaryTargetObject = ST.yellowTarget;
-                if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.PurpleAlbedo(), TargetColors.PurpleEmission(), TargetColors.PurpleLight()); }
+                if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.PurpleAlbedo, TargetColors.PurpleEmission, TargetColors.PurpleLight); }
                 break;
             case TargetColor.PINK:
                 primaryTargetObject   = ST.pinkTarget;
                 secondaryTargetObject = ST.yellowTarget;
-                if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.PinkAlbedo(), TargetColors.PinkEmission(), TargetColors.PinkLight()); }
+                if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.PinkAlbedo, TargetColors.PinkEmission, TargetColors.PinkLight); }
                 break;
             case TargetColor.WHITE:
                 primaryTargetObject   = ST.whiteTarget;
                 secondaryTargetObject = ST.blueTarget;
-                if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.WhiteAlbedo(), TargetColors.WhiteEmission(), TargetColors.WhiteLight()); }
+                if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.WhiteAlbedo, TargetColors.WhiteEmission, TargetColors.WhiteLight); }
                 break;
         }
     }

@@ -42,8 +42,8 @@ public class FollowRaycast : MonoBehaviour {
                         try {
                             currentTargetRendererMaterial = GenerateFollowPath.pathFollowerTarget.GetComponent<Renderer>().material;
 
-                            currentTargetRendererMaterial.SetColor("_Color", TargetColors.RedAlbedo());
-                            currentTargetRendererMaterial.SetColor("_EmissionColor", TargetColors.RedEmission());
+                            currentTargetRendererMaterial.SetColor("_Color", TargetColors.RedAlbedo);
+                            currentTargetRendererMaterial.SetColor("_EmissionColor", TargetColors.RedEmission);
                         } catch (MissingReferenceException mre) {
                             //Debug.Log("missing reference exception here: " + mre);
                         }

@@ -7,7 +7,7 @@ public class StatsUtil : MonoBehaviour {
     public static string itemDown          = "▼";
     public static string itemNeutral       = "-";
 
-    public static Color32 newHighscoreBackgroundColor = new Color32(255, 209, 0, 55);
+    public static Color32 newHighscoreBackgroundColor = new Color32(255, 209, 0, 65);
     public static Color32 upBackgroundColor           = new Color32(0, 255, 0, 20);
     public static Color32 downBackgroundColor         = new Color32(255, 0, 0, 20);
     public static Color32 neutralBackgroundColor      = new Color32(255, 255, 255, 15);
