@@ -177,7 +177,8 @@ aarstatstitle=Stats
 aartargetstotal=Total   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 aartargetshit=Hits     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 aartargetsmisses=Misses    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aarrestart=[R] RESTART
+aarrestart=[R]  RESTART
+aarclose=[ESC]  CLOSE
 showextrastats=        Show Extra Stats
 showbackgrounds=Show Backgrounds
 #

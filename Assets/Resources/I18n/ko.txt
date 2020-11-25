@@ -177,7 +177,8 @@ aarstatstitle=통계
 aartargetstotal=합계   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 aartargetshit=조회수     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 aartargetsmisses=미스    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aarrestart=[R] 재시작
+aarrestart=[R]  재시작
+aarclose=[ESC]  닫기
 showextrastats=        추가 통계 표시
 showbackgrounds=배경 표시
 #

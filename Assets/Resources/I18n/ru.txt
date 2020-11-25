@@ -177,7 +177,8 @@ aarstatstitle=Статистика
 aartargetstotal=Общее   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 aartargetshit=Хиты     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 aartargetsmisses=Промахов    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aarrestart=[R] НАЧАТЬ СНАЧАЛА
+aarrestart=[R]  НАЧАТЬ СНАЧАЛА
+aarclose=[ESC]  БЛИЗКО
 showextrastats=        Показать дополнительную статистику
 showbackgrounds=Показать фон
 #

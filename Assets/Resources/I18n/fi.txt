@@ -177,7 +177,8 @@ aarstatstitle=Tilastot
 aartargetstotal=Kaikki yhteensä   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 aartargetshit=Osumat     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 aartargetsmisses=Neiti    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aarrestart=[R] UUDELLEENKÄYNNISTYS
+aarrestart=[R]  UUDELLEENKÄYNNISTYS
+aarclose=[ESC]  KIINNI
 showextrastats=        Näytä ylimääräiset tilastot
 showbackgrounds=Näytä taustat
 #
