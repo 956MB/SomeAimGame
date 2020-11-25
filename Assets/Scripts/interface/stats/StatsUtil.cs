@@ -25,39 +25,34 @@ public class StatsUtil : MonoBehaviour {
     public static string GetItemText(double newValue, double oldValue, double highscoreValue) {
         if (newValue < oldValue) return itemDown;
         else if (newValue > oldValue)
-            if (newValue > highscoreValue) return itemHighscore;
-            else return itemUp;
+            return (newValue > highscoreValue) ? itemHighscore : itemUp;
         else return itemNeutral;
     }
 
     public static string GetItemText_Flip(double newValue, double oldValue, double highscoreValue) {
         if (newValue > oldValue) return itemUp;
         else if (newValue < oldValue)
-            if (newValue < highscoreValue) return itemHighscoreFlip;
-            else return itemDown;
+            return (newValue < highscoreValue) ? itemHighscoreFlip : itemDown;
         else return itemNeutral;
     }
 
     public static Color32 GetItemColor(double newValue, double oldValue, double highscoreValue) {
         if (newValue < oldValue) return itemColorRed;
         else if (newValue > oldValue)
-            if (newValue > highscoreValue) return itemColorHighscore;
-            else return itemColorGreen;
+            return (newValue > highscoreValue) ? itemColorHighscore : itemColorGreen;
         else return itemColorGrey;
     }
 
     public static Color32 GetLineColor(double newValue, double oldValue, double highscoreValue) {
         if (newValue < oldValue) return downLineColor;
         else if (newValue > oldValue)
-            if (newValue > highscoreValue) return highscoreLineColor;
-            else return upLineColor;
+            return (newValue > highscoreValue) ? highscoreLineColor : upLineColor;
         else return neutralLineColor;
     }
 
     public static Color32 GetItemColor_Flip(double newValue, double oldValue, double highscoreValue) {
         if (newValue < oldValue)
-            if (newValue < highscoreValue) return itemColorHighscore;
-            else return itemColorGreen;
+            return (newValue < highscoreValue) ? itemColorHighscore : itemColorGreen;
         else if (newValue > oldValue) return itemColorRed;
         else return itemColorGrey;
     }
@@ -65,22 +60,19 @@ public class StatsUtil : MonoBehaviour {
     public static Color32 GetItemBackgroundColor(double newValue, double oldValue, double highscoreValue) {
         if (newValue < oldValue) return downBackgroundColor;
         else if (newValue > oldValue)
-            if (newValue > highscoreValue) return newHighscoreBackgroundColor;
-            else return upBackgroundColor;
+            return (newValue > highscoreValue) ? newHighscoreBackgroundColor : upBackgroundColor;
         else return neutralBackgroundColor;
     }
 
     public static Color32 GetItemBackgroundColor_Flip(int newValue, int oldValue, int highscoreValue) {
         if (newValue < oldValue)
-            if (newValue < highscoreValue) return newHighscoreBackgroundColor;
-            else return upBackgroundColor;
+            return (newValue < highscoreValue) ? newHighscoreBackgroundColor : upBackgroundColor;
         else if (newValue > oldValue) return downBackgroundColor;
         else return neutralBackgroundColor;
     }
 
     public static bool CheckHighestStatValue(double newValue, double highestValue) {
-        if (newValue > highestValue) return true;
-        else return false;
+        return (newValue > highestValue) ? true : false;
     }
 
     public static bool CheckHighestStatValue_Flip(int newValue, int highestValue) {
