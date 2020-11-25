@@ -177,8 +177,8 @@ aarstatstitle=統計
 aartargetstotal=合計   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 aartargetshit=ヒット     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
 aartargetsmisses=ミス    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aarrestart=[R]  再起動
-aarclose=[ESC]  閉じる
+aarrestart=再起動
+aarclose=閉じる
 showextrastats=        追加の統計を表示する
 showbackgrounds=背景を表示
 #
