@@ -34,6 +34,7 @@ public class LanguageSelect : MonoBehaviour {
             languageSelectOpen = !languageSelectOpen;
         } else {
             NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("languagetemporarilydisabled")}", InterfaceColors.notificationColorYellow);
+            if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Error(); }
         }
 
         //if (languageSelectOpen) {

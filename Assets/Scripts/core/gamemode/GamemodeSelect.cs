@@ -130,6 +130,8 @@ gamemodeDescription) {
             SpawnTargets.StartNewGamemode(currentOpenGamemode);
         } else {
             NotificationHandler.ShowTimedNotification_Translated($"gamemodecaps{GamemodeType.ReturnGamemodeType_StringShort(currentOpenGamemode).ToLower()}", $": {I18nTextTranslator.SetTranslatedText("selectedgamemodewarning")}", InterfaceColors.notificationColorYellow);
+
+            if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Error(); }
         }
     }
 
@@ -141,9 +143,11 @@ gamemodeDescription) {
         if (currentOpenGamemode == Gamemode.FOLLOW) {
             if (CosmeticsSettings.targetColor == TargetColor.RED) {
                 NotificationHandler.ShowTimedNotification_Translated("followcolorwarning", "", InterfaceColors.notificationColorRed);
+                if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Error(); }
                 return false;
             } else if (ExtraSettings.gameTimer == 0) {
                 NotificationHandler.ShowTimedNotification_Translated("followtimerwarning", "", InterfaceColors.notificationColorRed);
+                if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Error(); }
                 return false;
             }
         }

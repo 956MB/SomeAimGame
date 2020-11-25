@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 
 public class UISound : MonoBehaviour {
-    public AudioClip uiSoundSrc01;
-    public AudioClip uiSoundSrc02;
+    public AudioClip hoverSound;
+    public AudioClip clickSound;
+    public AudioClip errorSound;
+
     private static AudioSource audioSrc;
 
     private static UISound uiSound;
@@ -13,12 +15,12 @@ public class UISound : MonoBehaviour {
     // TODO: add error sound, like for when target color is red when starting follow gamemode and notification fires
 
     /// <summary>
-    /// Plays UI sound 01.
+    /// Plays hover sound.
     /// </summary>
     public static void PlayUISound_Hover() {
         // TODO: if playHitSound enabled
         if (audioSrc != null) {
-            audioSrc.PlayOneShot(uiSound.uiSoundSrc01);
+            audioSrc.PlayOneShot(uiSound.hoverSound);
 
             // EVENT:: for new hover sound triggered
             //DevEventHandler.CheckSoundEvent($"{I18nTextTranslator.SetTranslatedText("eventsoundfiredhover")}");
@@ -26,12 +28,25 @@ public class UISound : MonoBehaviour {
     }
 
     /// <summary>
-    /// Plays UI sounds 02.
+    /// Plays click sound.
     /// </summary>
     public static void PlayUISound_Click() {
         // TODO: if playHitSound enabled
         if (audioSrc != null) {
-            audioSrc.PlayOneShot(uiSound.uiSoundSrc02);
+            audioSrc.PlayOneShot(uiSound.clickSound);
+
+            // EVENT:: for new click sound triggered
+            //DevEventHandler.CheckSoundEvent($"{I18nTextTranslator.SetTranslatedText("eventsoundfiredclick")}");
+        }
+    }
+
+    /// <summary>
+    /// Plays error sound.
+    /// </summary>
+    public static void PlayUISound_Error() {
+        // TODO: if playHitSound enabled
+        if (audioSrc != null) {
+            audioSrc.PlayOneShot(uiSound.errorSound);
 
             // EVENT:: for new click sound triggered
             //DevEventHandler.CheckSoundEvent($"{I18nTextTranslator.SetTranslatedText("eventsoundfiredclick")}");
