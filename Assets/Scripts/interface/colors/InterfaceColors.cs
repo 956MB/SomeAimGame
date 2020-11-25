@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Class containing various colors used in UI.
+/// </summary>
 public class InterfaceColors {
     // Gamemode difficulties
     public static Color32 gamemodeEasyColor       = new Color32(0, 255, 0, 255);

@@ -15,7 +15,12 @@ public class GameUI : MonoBehaviour {
     private Coroutine timerCoroutine;
     private Coroutine spawnScatterCoroutine;
 
-    public int scoreUp, scoreDown, followScoreUp, followScoreDown;
+    // Core game score values
+    public static int scoreUp         = 1000;
+    public static int scoreDown       = 300;
+    public static int followScoreUp   = 7;
+    public static int followScoreDown = 3;
+    
     public static int timeCount, timeStart;
     public static int accuracy, streakCurrent, streakBest, scoreNum, reactionTime, newTime;
     public static List<int> reactionTimeList;
@@ -209,7 +214,7 @@ public class GameUI : MonoBehaviour {
     /// Increases score and sets score text/color, then checks against current best streak.
     /// </summary>
     public static void IncreaseScore() {
-        scoreNum += gameUI.scoreUp;
+        scoreNum += scoreUp;
         if (WidgetSettings.showScore) {
             gameUI.scoreText.SetText($"{string.Format("{0:n0}", scoreNum)}");
             gameUI.scoreText.color = InterfaceColors.widgetsHitColor;
@@ -221,7 +226,7 @@ public class GameUI : MonoBehaviour {
     /// Increases score with bonus value and sets score text/color, then checks against current best streak.
     /// </summary>
     public static void IncreaseScore_Bonus() {
-        scoreNum += gameUI.scoreUp * 5;
+        scoreNum += scoreUp * 5;
         if (WidgetSettings.showScore) {
             gameUI.scoreText.color = InterfaceColors.widgetsBonusColor;
         }
@@ -232,7 +237,7 @@ public class GameUI : MonoBehaviour {
     /// Decreases score and sets score text/color, then resets current streak.
     /// </summary>
     public static void DecreaseScore() {
-        scoreNum -= gameUI.scoreDown;
+        scoreNum -= scoreDown;
         if (WidgetSettings.showScore) {
             gameUI.scoreText.SetText($"{string.Format("{0:n0}", scoreNum)}");
             gameUI.scoreText.color = InterfaceColors.widgetsMissColor;
@@ -245,7 +250,7 @@ public class GameUI : MonoBehaviour {
     /// Increases score with follow value and sets score text/color, then checks against current best follow streak.
     /// </summary>
     public static void IncreaseScore_Follow() {
-        scoreNum += gameUI.followScoreUp;
+        scoreNum += followScoreUp;
         if (WidgetSettings.showScore) {
             gameUI.scoreText.SetText($"{string.Format("{0:n0}", scoreNum)}");
             gameUI.scoreText.color = InterfaceColors.widgetsHitColor;
@@ -257,7 +262,7 @@ public class GameUI : MonoBehaviour {
     /// Decreases follow score and sets score text/color, then resets current best streak.
     /// </summary>
     public static void DecreaseScore_Follow() {
-        scoreNum -= gameUI.followScoreDown;
+        scoreNum -= followScoreDown;
         if (WidgetSettings.showScore) {
             gameUI.scoreText.SetText($"{string.Format("{0:n0}", scoreNum)}");
             gameUI.scoreText.color = InterfaceColors.widgetsMissColor;

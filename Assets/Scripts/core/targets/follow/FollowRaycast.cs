@@ -34,8 +34,7 @@ public class FollowRaycast : MonoBehaviour {
                         }
                         targetPrimary = true;
                     }
-                }
-                else {
+                } else {
                     if (!MouseLook.settingsOpen) { GameUI.DecreaseScore_Follow(); }
 
                     if (targetPrimary) {
