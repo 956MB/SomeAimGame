@@ -159,6 +159,15 @@ crosshairred=빨간
 crosshairgreen=푸른
 crosshairblue=초록
 crosshairalpha=알파
+importexportcrosshair=수입 수출
+resetcrosshair=십자선 재설정
+resetcrosshairconfirm=확실합니까?
+importcrosshairtitle=십자선 가져 오기
+importcrosshairbutton=수입
+exportcrosshairbutton=크로스 헤어 수출
+crosshairsetsuccess=성공적으로 도입 된 새로운 십자선
+crosshairseterror=십자선 문자열이 잘못되었습니다.
+crosshairsetexported=클립 보드에 복사 된 십자선 문자열
 #
 #
 # // titles
@@ -228,7 +237,7 @@ patchnotesbutton=패치 노트
 quitconfirmbutton=확실합니까?
 quitgamebutton=게임 종료
 quitcancelbutton=취소
-testuser=Bloumbs
+testuser=알렉산더
 #
 #
 # // dev event cards

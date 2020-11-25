@@ -82,7 +82,7 @@ public class Keybinds : MonoBehaviour {
     /// Move settings panel right keybind function.
     /// </summary>
     private static void MoveSettingsPanelRight_Keybind() {
-        if (MouseLook.settingsOpen) {
+        if (MouseLook.settingsOpen && !CrosshairImportExport.importExportPanelOpen) {
             Vector3 settingsPanelPos_Right = SettingsPanel.MoveSettingsPanelRight();
             
             // EVENT:: for settings panel being moved right
@@ -97,7 +97,7 @@ public class Keybinds : MonoBehaviour {
     /// Move settings panel left keybind function.
     /// </summary>
     private static void MoveSettingsPanelLeft_Keybind() {
-        if (MouseLook.settingsOpen) {
+        if (MouseLook.settingsOpen && !CrosshairImportExport.importExportPanelOpen) {
             Vector3 settingsPanelPos_Left = SettingsPanel.MoveSettingsPanelLeft();
 
             // EVENT:: for settings panel being moved left

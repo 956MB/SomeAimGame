@@ -8,5 +8,10 @@ public class CloseLanguageSelect_Click : MonoBehaviour, IPointerClickHandler {
 
         // Closes quit game section if confirmation not open.
         if (!QuitGame.gameQuitConfirmationOpen && QuitGame.gameQuitButtonOpen) { QuitGame.CloseQuitConfirmation(); }
+
+        // Closes crosshair import/export panel if open.
+        if (CrosshairImportExport.importExportPanelOpen) { CrosshairImportExport.CloseImportExportPanel_Static(); }
+        // Disables crosshair reset confirmation if active.
+        if (CrosshairImportExport.resetConfirmActive) { CrosshairImportExport.SetResetDefault(); }
     }
 }

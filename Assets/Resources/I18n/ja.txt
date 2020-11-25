@@ -159,6 +159,15 @@ crosshairred=赤
 crosshairgreen=青
 crosshairblue=緑
 crosshairalpha=アルファ
+importexportcrosshair=インポート・エクスポート
+resetcrosshair=十字線をリセット
+resetcrosshairconfirm=本気ですか?
+importcrosshairtitle=十字線をインポート
+importcrosshairbutton=インポート
+exportcrosshairbutton=書き出す
+crosshairsetsuccess=新しいCROSSHAIRが正常にインポートされました
+crosshairseterror=CROSSHAIR文字列が無効です
+crosshairsetexported=クリップボードにコピーされたCROSSHAIRストリング
 #
 #
 # // titles

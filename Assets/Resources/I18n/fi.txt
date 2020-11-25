@@ -159,6 +159,15 @@ crosshairred=Punainen
 crosshairgreen=Sininen
 crosshairblue=Vihreä
 crosshairalpha=Alfa
+importexportcrosshair=Tuonti ja vienti
+resetcrosshair=Nollaa ristikko
+resetcrosshairconfirm=Oletko varma?
+importcrosshairtitle=Tuo hiusristikko
+importcrosshairbutton=TUONTI
+exportcrosshairbutton=VIENTI RISKI
+crosshairsetsuccess=UUSI RISKIEN TUONTI TUONTI
+crosshairseterror=RISTINIVOJEN JOUSET OVAT PÄTEMÄTTÖMIÄ
+crosshairsetexported=RISTINIVEKE KOPIOITU LEIKEPÖYDÄLLE
 #
 #
 # // titles
@@ -228,7 +237,7 @@ patchnotesbutton=PATCH-HUOMAUTUKSET
 quitconfirmbutton=OLETKO VARMA?
 quitgamebutton=LOPETA PELI
 quitcancelbutton=PERUUTTAA
-testuser=Bloumbs
+testuser=Käyttäjä
 #
 #
 # // dev event cards

@@ -21,16 +21,16 @@ public class Crosshair
     public bool tStyle = false;
 
     [Tooltip("Controls whether or not to draw crosshair outline.")]
-    public bool enableOutline = false;
+    public bool enableOutline = true;
 
     [Tooltip("Controls thickness of crosshair outline (if enabled).")]
     public int outlineThickness = 1;
 
     [Range(1, 150), Tooltip("Controls the length of each crosshair line.")]
-    public int size = 10;
+    public int size = 6;
 
     [Range(1, 100), Tooltip("Controls the width of each crosshair line.")]
-    public int thickness = 2;
+    public int thickness = 1;
 
     [Range(0, 350), Tooltip("Controls the distance between the center of the crosshair and the start of each crosshair line.")]
     public int gap = 5;
@@ -60,10 +60,15 @@ public class SimpleCrosshair : MonoBehaviour
     [Tooltip("Specifies the image to draw the crosshair to. If you leave this empty, this script generates a Canvas and an Image with the correct settings for you.")]
     public Image m_crosshairImage;
     public Image m_crosshairImageSettings;
+    private static string crosshairStringFull = "000601050255255255255000000000255";
+
+    private static SimpleCrosshair simpleCrosshair;
 
     private void Awake()
     {
-        if(m_crosshairImage == null)
+        simpleCrosshair = this;
+
+        if (m_crosshairImage == null)
         {
             InitialiseCrosshairImage();
         }
@@ -122,7 +127,7 @@ public class SimpleCrosshair : MonoBehaviour
         int tstyleValue, centerDotValue, outlineValue, sizeValueInt, thicknessValueInt, gapValueInt, redValueInt, greenValueInt, blueValueInt, alphaValueInt, redOutlineValueInt, greenOutlineValueInt, blueOutlineValueInt, alphaOutlineValueInt;
         string sizeValue, thicknessValue, gapValue, redValue, greenValue, blueValue, alphaValue, redOutlineValue, greenOutlineValue, blueOutlineValue, alphaOutlineValue;
 
-        tstyleValue = int.Parse(newCrosshairString[0].ToString());
+        tstyleValue       = int.Parse(newCrosshairString[0].ToString());
         centerDotValue    = int.Parse(newCrosshairString[1].ToString());
         sizeValue         = newCrosshairString.Substring(2, 2);
         thicknessValue    = newCrosshairString.Substring(4, 2);
@@ -136,6 +141,20 @@ public class SimpleCrosshair : MonoBehaviour
         greenOutlineValue = newCrosshairString.Substring(24, 3);
         blueOutlineValue  = newCrosshairString.Substring(27, 3);
         alphaOutlineValue = newCrosshairString.Substring(30, 3);
+
+        if (sizeValue == "00") {      sizeValueInt      = 0; } else { sizeValueInt      = int.Parse(sizeValue.TrimStart(new char[] { '0' })); }
+        if (thicknessValue != "00") { thicknessValueInt = int.Parse(thicknessValue.TrimStart(new char[] { '0' })); } else { return false; }
+        if (gapValue == "00") {       gapValueInt       = 0; } else { gapValueInt       = int.Parse(gapValue.TrimStart(new char[] { '0' })); }
+
+        if (redValue == "000") {   redValueInt   = 0; } else { redValueInt   = int.Parse(redValue.TrimStart(new char[] { '0' })); }
+        if (greenValue == "000") { greenValueInt = 0; } else { greenValueInt = int.Parse(greenValue.TrimStart(new char[] { '0' })); }
+        if (blueValue == "000") {  blueValueInt  = 0; } else { blueValueInt  = int.Parse(blueValue.TrimStart(new char[] { '0' })); }
+        if (alphaValue == "000") { alphaValueInt = 0; } else { alphaValueInt = int.Parse(alphaValue.TrimStart(new char[] { '0' })); }
+
+        if (redOutlineValue == "000") {   redOutlineValueInt   = 0; } else { redOutlineValueInt   = int.Parse(redOutlineValue.TrimStart(new char[] { '0' })); }
+        if (greenOutlineValue == "000") { greenOutlineValueInt = 0; } else { greenOutlineValueInt = int.Parse(greenOutlineValue.TrimStart(new char[] { '0' })); }
+        if (blueOutlineValue == "000") {  blueOutlineValueInt  = 0; } else { blueOutlineValueInt  = int.Parse(blueOutlineValue.TrimStart(new char[] { '0' })); }
+        if (alphaOutlineValue == "000") { alphaOutlineValueInt = 0; } else { alphaOutlineValueInt = int.Parse(alphaOutlineValue.TrimStart(new char[] { '0' })); }
 
         #region logs
         //Debug.Log($"TStyle Value:               {tstyleValue}");
@@ -154,20 +173,6 @@ public class SimpleCrosshair : MonoBehaviour
         //Debug.Log($"Alpha Outline Value:        {alphaOutlineValue}");
         #endregion
 
-        if (sizeValue == "00") {      sizeValueInt      = 0; } else { sizeValueInt      = int.Parse(sizeValue.TrimStart(new char[] { '0' })); }
-        if (thicknessValue != "00") { thicknessValueInt = int.Parse(thicknessValue.TrimStart(new char[] { '0' })); } else { return false; }
-        if (gapValue == "00") {       gapValueInt       = 0; } else { gapValueInt       = int.Parse(gapValue.TrimStart(new char[] { '0' })); }
-
-        if (redValue == "000") {   redValueInt   = 0; } else { redValueInt   = int.Parse(redValue.TrimStart(new char[] { '0' })); }
-        if (greenValue == "000") { greenValueInt = 0; } else { greenValueInt = int.Parse(greenValue.TrimStart(new char[] { '0' })); }
-        if (blueValue == "000") {  blueValueInt  = 0; } else { blueValueInt  = int.Parse(blueValue.TrimStart(new char[] { '0' })); }
-        if (alphaValue == "000") { alphaValueInt = 0; } else { alphaValueInt = int.Parse(alphaValue.TrimStart(new char[] { '0' })); }
-
-        if (redOutlineValue == "000") {   redOutlineValueInt   = 0; } else { redOutlineValueInt   = int.Parse(redOutlineValue.TrimStart(new char[] { '0' })); }
-        if (greenOutlineValue == "000") { greenOutlineValueInt = 0; } else { greenOutlineValueInt = int.Parse(greenOutlineValue.TrimStart(new char[] { '0' })); }
-        if (blueOutlineValue == "000") {  blueOutlineValueInt  = 0; } else { blueOutlineValueInt  = int.Parse(blueOutlineValue.TrimStart(new char[] { '0' })); }
-        if (alphaOutlineValue == "000") { alphaOutlineValueInt = 0; } else { alphaOutlineValueInt = int.Parse(alphaOutlineValue.TrimStart(new char[] { '0' })); }
-
         if (!ValidateCrosshairValues(tstyleValue, centerDotValue, sizeValueInt, thicknessValueInt, gapValueInt, outlineValue, redValueInt, greenValueInt, blueValueInt, alphaValueInt, redOutlineValueInt, greenOutlineValueInt, blueOutlineValueInt, alphaOutlineValueInt)) { return false; }
 
         bool tstyleValueBool    = tstyleValue    != 0;
@@ -175,23 +180,25 @@ public class SimpleCrosshair : MonoBehaviour
         bool outlineValueBool   = outlineValue   != 0;
 
         if (setValues) {
+            crosshairStringFull = $"{tstyleValue}{centerDotValue}{sizeValue}{thicknessValue}{gapValue}{outlineValue}{redValue}{greenValue}{blueValue}{alphaValue}{redOutlineValue}{greenOutlineValue}{blueOutlineValue}{alphaOutlineValue}";
+
             SetAllCrosshairValues(tstyleValueBool, centerDotValueBool, sizeValueInt, thicknessValueInt, gapValueInt, outlineValueBool, redValueInt, greenValueInt, blueValueInt, alphaValueInt, redOutlineValueInt, greenOutlineValueInt, blueOutlineValueInt, alphaOutlineValueInt, true);
         }
 
         return true;
     }
 
+    public static bool ValidateSetCrosshairString(string newCrosshairString, bool setString) {
+        if (simpleCrosshair.ParseCrosshairString(newCrosshairString, setString)) { return true; }
+        return false;
+    }
+
+    /*
     /// <summary>
     /// Exports full crosshair string with all current crosshair values.
     /// </summary>
     /// <returns></returns>
-    public string ExportCrosshairString() {
-        // 1 0 06 02 05 1 255 200 050 255
-        // 255/80/175/255
-        // 0 0 06 01 05 1 1 0 0 1
-        // 0 0 06 01 05 1 1 0.3137255 0.6862745 1
-        // 0 0 06 01 05 1 255 80 175 255
-        // CORRECT: 0 0 06 01 05 1 255 080 175 255 = 000601051255080175255
+    public string ExportCrosshairString_Temp() {
         int tstyleInt, centerDotInt, outlineInt;
         string sizeString, thicknessString, gapString, redFloat, greenFloat, blueFloat, alphaFloat, redOutlineFloat, greenOutlineFloat, blueOutlineFloat, alphaOutlineFloat;
 
@@ -212,6 +219,19 @@ public class SimpleCrosshair : MonoBehaviour
 
         //Debug.Log($"EXPORTED CROSSHAIR STRING: {tstyleInt}{centerDotInt}{sizeString}{thicknessString}{gapString}{outlineInt}{redFloat}{greenFloat}{blueFloat}{alphaFloat}{redOutlineFloat}{greenOutlineFloat}{blueOutlineFloat}{alphaOutlineFloat}");
         return $"{tstyleInt}{centerDotInt}{sizeString}{thicknessString}{gapString}{outlineInt}{redFloat}{greenFloat}{blueFloat}{alphaFloat}{redOutlineFloat}{greenOutlineFloat}{blueOutlineFloat}{alphaOutlineFloat}";
+    }
+    */
+
+    /// <summary>
+    /// Returns full crosshair string.
+    /// </summary>
+    /// <returns></returns>
+    public string ExportCrosshairString() {
+        return crosshairStringFull;
+    }
+
+    public static string ReturnExportedCrosshairString() {
+        return simpleCrosshair.ExportCrosshairString();
     }
 
     /// <summary>
@@ -245,6 +265,8 @@ public class SimpleCrosshair : MonoBehaviour
         m_crosshair.outlineColor.a = alphaOutline;
 
         if (redrawCrosshair) { GenerateCrosshair(); }
+
+        CrosshairSettings.SaveAllCrosshairDefaults(tstyle, centerDot, size, thickness, gap, outlineEnable, red, green, blue, alpha, redOutline, greenOutline, blueOutline, alphaOutline, crosshairStringFull);
     }
 
     /// <summary>

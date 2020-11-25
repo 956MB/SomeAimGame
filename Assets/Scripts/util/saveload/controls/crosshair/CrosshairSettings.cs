@@ -103,8 +103,8 @@ public class CrosshairSettings : MonoBehaviour {
     /// <summary>
     /// Saves default crosshair settings object (CrosshairSettings).
     /// </summary>
-    /// <param name="setCenterDot"></param>
     /// <param name="setTStyle"></param>
+    /// <param name="setCenterDot"></param>
     /// <param name="setSize"></param>
     /// <param name="setThickness"></param>
     /// <param name="setGap"></param>
@@ -117,9 +117,9 @@ public class CrosshairSettings : MonoBehaviour {
     /// <param name="setGreenOutline"></param>
     /// <param name="setBlueOutline"></param>
     /// <param name="setAlphaOutline"></param>
-    public static void SaveAllCrosshairDefaults(bool setCenterDot, bool setTStyle, float setSize, float setThickness, float setGap, bool setOutlineEnabled, float setRed, float setGreen, float setBlue, float setAlpha, float setRedOutline, float setGreenOutline, float setBlueOutline, float setAlphaOutline, string setCrosshairString) {
-        centerDot       = setCenterDot;
+    public static void SaveAllCrosshairDefaults(bool setTStyle, bool setCenterDot, float setSize, float setThickness, float setGap, bool setOutlineEnabled, float setRed, float setGreen, float setBlue, float setAlpha, float setRedOutline, float setGreenOutline, float setBlueOutline, float setAlphaOutline, string setCrosshairString) {
         TStyle          = setTStyle;
+        centerDot       = setCenterDot;
         size            = setSize;
         thickness       = setThickness;
         gap             = setGap;

@@ -66,6 +66,7 @@ public class CrosshairSaveSystem : MonoBehaviour {
         if (loadedCrosshairData != null) {
 
             if (!crosshairSave.simpleCrosshair.ParseCrosshairString(loadedCrosshairData.crosshairString, false)) {
+                Debug.Log("INVALID STRNG");
                 InitCrosshairSettingsDefaults();
             } else {
                 SetCrosshairTStyleToggle(loadedCrosshairData.TStyle, true);
@@ -90,11 +91,12 @@ public class CrosshairSaveSystem : MonoBehaviour {
 
             //CrosshairOptionsObject.LoadNewCrosshairString("100602051255200050255");
             //CrosshairOptionsObject.ExportCurrentCrosshairString();
-        }
-        else {
+        } else {
             //Debug.Log("failed to init cosmetics in 'initSettingsDefaults', cosmetics: " + loadedCosmeticsData);
             InitCrosshairSettingsDefaults();
         }
+
+        CrosshairImportExport.CloseImportExportPanel_Static();
     }
 
     /// <summary>

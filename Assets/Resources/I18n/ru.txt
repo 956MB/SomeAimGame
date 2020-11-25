@@ -159,6 +159,15 @@ crosshairred=Красный
 crosshairgreen=Синий
 crosshairblue=Зеленый
 crosshairalpha=Альфа
+importexportcrosshair=Импорт Экспорт
+resetcrosshair=Сбросить прицел
+resetcrosshairconfirm=Ты уверен?
+importcrosshairtitle=Импортировать перекрестие
+importcrosshairbutton=ИМПОРТИРОВАТЬ
+exportcrosshairbutton=ЭКСПОРТ ПЕРЕКРЕСТОК
+crosshairsetsuccess=УСПЕШНО ИМПОРТИРОВАН НОВАЯ КОРОБКА
+crosshairseterror=ПЕРЕКРЕСТОК НЕВЕРНО
+crosshairsetexported=ПЕРЕКРЕСТНАЯ СТРОКА СКОПИРОВАНА НА ДОСКУ ОБРЕЗКИ
 #
 #
 # // titles
@@ -228,7 +237,7 @@ patchnotesbutton=ЗАМЕТКИ О ПАТЧЕ
 quitconfirmbutton=ТЫ УВЕРЕН?
 quitgamebutton=ВЫЙТИ ИЗ ИГРЫ
 quitcancelbutton=ОТМЕНА
-testuser=Bloumbs
+testuser=Заливы
 #
 #
 # // dev event cards
