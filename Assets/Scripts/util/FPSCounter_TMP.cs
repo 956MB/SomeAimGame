@@ -19,7 +19,8 @@ public class FPSCounter_TMP : MonoBehaviour {
     /// </summary>
     private void Update() {
         m_FpsAccumulator++;
-        if (WidgetSettings.showFPS && Time.frameCount % interval == 0) {
+        //if (WidgetSettings.showFPS && Time.frameCount % interval == 0) {
+        if (WidgetSettings.showFPS) {
             if (Time.realtimeSinceStartup > m_FpsNextPeriod) {
                 m_CurrentFps     = (int)(m_FpsAccumulator / fpsMeasurePeriod);
                 m_FpsAccumulator = 0;
