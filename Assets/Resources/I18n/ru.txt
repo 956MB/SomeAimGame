@@ -16,7 +16,7 @@ gamemodeflick=Щелкнуть
 gamemodegrid=Сетка
 gamemodegrid2=Сетка II
 gamemodepairs=Пары
-gamemodefollow=следить
+gamemodefollow=Cледить
 gamemodepatrol=Патруль
 #
 #
@@ -59,12 +59,13 @@ Flick=Щелкнуть
 Grid=Сетка
 Grid2=Сетка II
 Pairs=Пары
-Follow=следить
+Follow=Cледить
 #
 #
 # // categories
 targetcolor=Целевой цвет
 skybox=skybox
+crosshairpresets=Пресеты
 #
 #
 # // target colors
@@ -93,20 +94,20 @@ widgetstitle=Виджеты
 #
 #
 # // general section items
-gametimer=Таймер (секунды)  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-targetsound=Целевой звук  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-uisound=Звук пользовательского интерфейса  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-movementlock=Блокировка движения  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-fpscounter=Счетчик FPS    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-afteractionreport=Показать отчет о действиях     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showmode=Показать режим  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showfps=Показать FPS  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showtime=Время для шоу  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showscore=Показать счет  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showaccuracy=Показать точность  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showstreak=Показать серию  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showttk=Показать ТТК  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showkps=Показать КПС  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+gametimer=Таймер (секунды)
+targetsound=Целевой звук
+uisound=Звук пользовательского интерфейса
+movementlock=Блокировка движения
+fpscounter=Счетчик FPS 
+afteractionreport=Показать отчет о действиях  
+showmode=Показать режим
+showfps=Показать FPS
+showtime=Время для шоу
+showscore=Показать счет
+showaccuracy=Показать точность
+showstreak=Показать серию
+showttk=Показать ТТК
+showkps=Показать КПС
 #
 #
 # // general sections tooltips
@@ -131,7 +132,7 @@ outlinetitle=Контур
 #
 #
 # // keybinds
-keybindshoot=Связка клавиш "Стрельба"
+keybindshoot=Связка клавиш ''Стрельба''
 keybindtogglesettings=Связка клавиш 'Toggle Settings'
 keybindtoggleaar=Привязка клавиш Toggle AAR
 keybindtogglewidgets=Связка клавиш Toggle Widgets
@@ -140,21 +141,21 @@ keybindrebinded=был переименован в
 #
 #
 # // controls section items
-shoot=''Стрелять'' .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showhidesettings=Показать / скрыть настройки  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showhideafteractionreport=Показать / скрыть отчет о действиях   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showhideworldui=Показать / скрыть интерфейс мира  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-quickstartgame=Быстрый старт игры   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-restart=Начать сначала   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+shoot=''Стрелять''
+showhidesettings=Показать / скрыть настройки
+showhideafteractionreport=Показать / скрыть отчет о действиях
+showhideworldui=Показать / скрыть интерфейс мира
+quickstartgame=Быстрый старт игры
+restart=Начать сначала
 #
 #
 # // crosshair section items
-tstyle=Т Стиль   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-centerdot=Центральная точка   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+tstyle=Т Стиль
+centerdot=Центральная точка
 crosshairsize=Размер
 crosshairthickness=Толщина
 crosshairgap=Разрыв
-crosshairoutlineenabled=Включено   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+crosshairoutlineenabled=Включено
 crosshairred=Красный
 crosshairgreen=Синий
 crosshairblue=Зеленый
@@ -178,15 +179,15 @@ aarnewhighscore=НОВЫЙ РЕКОРД!
 #
 #
 # // after action report section items
-aaraccuracy=Точность   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aartimetokill=Время убить (мс)    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  
-aarkillssec=Убийств в секунду   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aarbeststreak=Лучшая серия  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+aaraccuracy=Точность
+aartimetokill=Время убить (мс)   
+aarkillssec=Убийств в секунду
+aarbeststreak=Лучшая серия
 targetstitle=Цели
 aarstatstitle=Статистика
-aartargetstotal=Общее   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aartargetshit=Хиты     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aartargetsmisses=Промахов    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+aartargetstotal=Общее
+aartargetshit=Хиты  
+aartargetsmisses=Промахов 
 aarrestart=НАЧАТЬ СНАЧАЛА
 aarclose=БЛИЗКО
 showextrastats=        Показать дополнительную статистику

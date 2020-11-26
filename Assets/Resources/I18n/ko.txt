@@ -65,6 +65,7 @@ Follow=따르다
 # // categories
 targetcolor=대상 색상
 skybox=스카이 박스
+crosshairpresets=사전 설정
 #
 #
 # // target colors
@@ -93,20 +94,20 @@ widgetstitle=위젯
 #
 #
 # // general section items
-gametimer=타이머 (초)  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-targetsound=타겟 사운드  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-uisound=UI 사운드  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-movementlock=운동 잠금  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-fpscounter=FPS 카운터    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-afteractionreport='사후 보고서'표시     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showmode=쇼 모드  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showfps=FPS 표시  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showtime=쇼 시간  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showscore=점수 표시  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showaccuracy=정확성 표시  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showstreak=연속 표시  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showttk=TTK 표시  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showkps=KPS 표시  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+gametimer=타이머 (초)
+targetsound=타겟 사운드
+uisound=UI 사운드
+movementlock=운동 잠금
+fpscounter=FPS 카운터 
+afteractionreport='사후 보고서'표시  
+showmode=쇼 모드
+showfps=FPS 표시
+showtime=쇼 시간
+showscore=점수 표시
+showaccuracy=정확성 표시
+showstreak=연속 표시
+showttk=TTK 표시
+showkps=KPS 표시
 #
 #
 # // general sections tooltips
@@ -140,21 +141,21 @@ keybindrebinded=리 바인딩되었습니다
 #
 #
 # // controls section items
-shoot=''사격'' .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showhidesettings=설정 표시 / 숨기기  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showhideafteractionreport='작업 후 보고서'표시 / 숨기기   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showhideworldui=월드 UI 표시 / 숨기기  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-quickstartgame=빠른 시작 게임   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-restart=재시작   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+shoot=''사격'' .
+showhidesettings=설정 표시 / 숨기기
+showhideafteractionreport='작업 후 보고서'표시 / 숨기기
+showhideworldui=월드 UI 표시 / 숨기기
+quickstartgame=빠른 시작 게임
+restart=재시작
 #
 #
 # // crosshair section items
-tstyle=T 스타일   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-centerdot=센터 도트   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+tstyle=T 스타일
+centerdot=센터 도트
 crosshairsize=크기
 crosshairthickness=두께
 crosshairgap=갭
-crosshairoutlineenabled=활성화 됨   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+crosshairoutlineenabled=활성화 됨
 crosshairred=빨간
 crosshairgreen=푸른
 crosshairblue=초록
@@ -178,15 +179,15 @@ aarnewhighscore=새로운 최고 점수!
 #
 #
 # // after action report section items
-aaraccuracy=정확성   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aartimetokill=죽일 시간 (밀리 초)    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  
-aarkillssec=킬 / 초   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aarbeststreak=최고의 연승  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+aaraccuracy=정확성
+aartimetokill=죽일 시간 (밀리 초)   
+aarkillssec=킬 / 초
+aarbeststreak=최고의 연승
 targetstitle=목표
 aarstatstitle=통계
-aartargetstotal=합계   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aartargetshit=조회수     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aartargetsmisses=미스    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+aartargetstotal=합계
+aartargetshit=조회수  
+aartargetsmisses=미스 
 aarrestart=재시작
 aarclose=닫기
 showextrastats=        추가 통계 표시

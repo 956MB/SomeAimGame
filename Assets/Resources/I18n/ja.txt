@@ -65,6 +65,7 @@ Follow=フォローする
 # // categories
 targetcolor=ターゲットカラー
 skybox=スカイボックス
+crosshairpresets=プリセット
 #
 #
 # // target colors
@@ -93,20 +94,20 @@ widgetstitle=ウィジェット
 #
 #
 # // general section items
-gametimer=タイマー（秒）  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-targetsound=ターゲットサウンド  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-uisound=UIサウンド  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-movementlock=ムーブメントロック  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-fpscounter=FPSカウンター    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-afteractionreport=「アクション後のレポート」を表示する     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showmode=表示モード  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showfps=FPSを表示  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showtime=ショータイム  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showscore=スコアを表示  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showaccuracy=精度を表示  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showstreak=ストリークを表示  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showttk=TTKを表示  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showkps=KPSを表示  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+gametimer=タイマー（秒）
+targetsound=ターゲットサウンド
+uisound=UIサウンド
+movementlock=ムーブメントロック
+fpscounter=FPSカウンター 
+afteractionreport=「アクション後のレポート」を表示する  
+showmode=表示モード
+showfps=FPSを表示
+showtime=ショータイム
+showscore=スコアを表示
+showaccuracy=精度を表示
+showstreak=ストリークを表示
+showttk=TTKを表示
+showkps=KPSを表示
 #
 #
 # // general sections tooltips
@@ -140,21 +141,21 @@ keybindrebinded=に再バインドされました
 #
 #
 # // controls section items
-shoot=''シュート'' .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showhidesettings=設定の表示/非表示  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showhideafteractionreport=「アクション後レポート」の表示/非表示   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showhideworldui=ワールドUIの表示/非表示  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-quickstartgame=クイックスタートゲーム   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-restart=再起動   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+shoot=''シュート''
+showhidesettings=設定の表示/非表示
+showhideafteractionreport=「アクション後レポート」の表示/非表示
+showhideworldui=ワールドUIの表示/非表示
+quickstartgame=クイックスタートゲーム
+restart=再起動
 #
 #
 # // crosshair section items
-tstyle=Tスタイル   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-centerdot=センタードット   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+tstyle=Tスタイル
+centerdot=センタードット
 crosshairsize=サイズ
 crosshairthickness=厚さ
 crosshairgap=ギャップ
-crosshairoutlineenabled=有効   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+crosshairoutlineenabled=有効
 crosshairred=赤
 crosshairgreen=青
 crosshairblue=緑
@@ -178,15 +179,15 @@ aarnewhighscore=新ハイスコア！
 #
 #
 # // after action report section items
-aaraccuracy=正確さ   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aartimetokill=殺す時間（ms）    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  
-aarkillssec=キル/秒   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aarbeststreak=ベストストリーク  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+aaraccuracy=正確さ
+aartimetokill=殺す時間（ms）   
+aarkillssec=キル/秒
+aarbeststreak=ベストストリーク
 targetstitle=ターゲット
 aarstatstitle=統計
-aartargetstotal=合計   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aartargetshit=ヒット     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aartargetsmisses=ミス    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+aartargetstotal=合計
+aartargetshit=ヒット  
+aartargetsmisses=ミス 
 aarrestart=再起動
 aarclose=閉じる
 showextrastats=        追加の統計を表示する

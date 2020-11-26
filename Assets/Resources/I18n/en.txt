@@ -65,6 +65,7 @@ Follow=Follow
 # // categories
 targetcolor=Target Color
 skybox=Skybox
+crosshairpresets=Presets
 #
 #
 # // target colors
@@ -93,20 +94,20 @@ widgetstitle=Widgets
 #
 #
 # // general section items
-gametimer=Timer (Seconds)  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-targetsound=Target Sound  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-uisound=UI Sound  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-movementlock=Movement Lock  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-fpscounter=FPS Counter    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-afteractionreport=Show 'After Action Report'     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showmode=Show Mode  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showfps=Show FPS  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showtime=Show Time  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showscore=Show Score  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showaccuracy=Show Accuracy  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showstreak=Show Streak  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showttk=Show TTK  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showkps=Show KPS  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+gametimer=Timer (Seconds)
+targetsound=Target Sound
+uisound=UI Sound
+movementlock=Movement Lock
+fpscounter=FPS Counter 
+afteractionreport=Show 'After Action Report'  
+showmode=Show Mode
+showfps=Show FPS
+showtime=Show Time
+showscore=Show Score
+showaccuracy=Show Accuracy
+showstreak=Show Streak
+showttk=Show TTK
+showkps=Show KPS
 #
 #
 # // general sections tooltips
@@ -131,7 +132,7 @@ outlinetitle=Outline
 #
 #
 # // keybinds
-keybindshoot='Shoot' KEYBIND
+keybindshoot=''Shoot'' KEYBIND
 keybindtogglesettings='Toggle Settings' KEYBIND
 keybindtoggleaar='Toggle AAR' KEYBIND
 keybindtogglewidgets='Toggle Widgets' KEYBIND
@@ -140,24 +141,24 @@ keybindrebinded=HAS BEEN REBINDED TO
 #
 #
 # // controls section items
-shoot=''Shoot'' .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showhidesettings=Show/Hide Settings  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showhideafteractionreport=Show/Hide 'After Action Report'   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showhideworldui=Show/Hide World UI  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-quickstartgame=Quick Start Game   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-restart=Restart   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+shoot=''Shoot''
+showhidesettings=Show/Hide Settings
+showhideafteractionreport=Show/Hide 'After Action Report'
+showhideworldui=Show/Hide World UI
+quickstartgame=Quick Start Game
+restart=Restart
 #
 #
 # // crosshair section items
-tstyle=T Style   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-centerdot=Center Dot   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+tstyle=T Style
+centerdot=Center Dot
 crosshairsize=Size
 crosshairthickness=Thickness
 crosshairgap=Gap
-crosshairoutlineenabled=Enabled   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+crosshairoutlineenabled=Enabled
 crosshairred=Red
-crosshairgreen=Blue
-crosshairblue=Green
+crosshairgreen=Green
+crosshairblue=Blue
 crosshairalpha=Alpha
 importexportcrosshair=Import/Export
 resetcrosshair=Reset Crosshair
@@ -178,15 +179,15 @@ aarnewhighscore=NEW HIGHSCORE!
 #
 #
 # // after action report section items
-aaraccuracy=Accuracy   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aartimetokill=Time To Kill (ms)    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  
-aarkillssec=Kills/Sec   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aarbeststreak=Best Streak  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+aaraccuracy=Accuracy
+aartimetokill=Time To Kill (ms)   
+aarkillssec=Kills/Sec
+aarbeststreak=Best Streak
 targetstitle=Targets
 aarstatstitle=Stats
-aartargetstotal=Total   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aartargetshit=Hits     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aartargetsmisses=Misses    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+aartargetstotal=Total
+aartargetshit=Hits  
+aartargetsmisses=Misses 
 aarrestart=RESTART
 aarclose=CLOSE
 showextrastats=        Show Extra Stats

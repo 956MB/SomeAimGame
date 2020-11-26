@@ -65,6 +65,7 @@ Follow=Seuraa
 # // categories
 targetcolor=Kohteen väri
 skybox=Taivas
+crosshairpresets=Esiasetukset
 #
 #
 # // target colors
@@ -93,20 +94,20 @@ widgetstitle=Widgetit
 #
 #
 # // general section items
-gametimer=Ajastin (sekuntia)  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-targetsound=Kohdeääni  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-uisound=Käyttöliittymän ääni  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-movementlock=Liikelukko  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-fpscounter=FPS-laskuri    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-afteractionreport=Näytä toimintaraportti     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showmode=Näytä tila  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showfps=Näytä FPS  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showtime=Esitysaika  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showscore=Näytä pisteet  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showaccuracy=Näytä tarkkuus  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showstreak=Näytä putki  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showttk=Näytä TTK  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showkps=Näytä KPS  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+gametimer=Ajastin (sekuntia) 
+targetsound=Kohdeääni 
+uisound=Käyttöliittymän ääni 
+movementlock=Liikelukko 
+fpscounter=FPS-laskuri 
+afteractionreport=Näytä toimintaraportti  
+showmode=Näytä tila 
+showfps=Näytä FPS 
+showtime=Esitysaika 
+showscore=Näytä pisteet 
+showaccuracy=Näytä tarkkuus 
+showstreak=Näytä putki 
+showttk=Näytä TTK 
+showkps=Näytä KPS 
 #
 #
 # // general sections tooltips
@@ -131,7 +132,7 @@ outlinetitle=Ääriviivat
 #
 #
 # // keybinds
-keybindshoot="Ammu" -näppäin
+keybindshoot=''Ammu'' -näppäin
 keybindtogglesettings=Vaihda asetukset -näppäin
 keybindtoggleaar=Vaihda toimintaraportin jälkeen -näppäin
 keybindtogglewidgets='Vaihda widgetit' -näppäin
@@ -140,21 +141,21 @@ keybindrebinded=on uudelleen sidottu
 #
 #
 # // controls section items
-shoot=''Ampua'' .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showhidesettings=Näytä / piilota asetukset  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showhideafteractionreport=Näytä / piilota toimintaraportti   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-showhideworldui=Näytä / piilota maailman käyttöliittymä  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-quickstartgame=Pika-aloituspeli   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-restart=Uudelleenkäynnistää   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+shoot=''Ampua''
+showhidesettings=Näytä / piilota asetukset 
+showhideafteractionreport=Näytä / piilota toimintaraportti
+showhideworldui=Näytä / piilota maailman käyttöliittymä 
+quickstartgame=Pika-aloituspeli
+restart=Uudelleenkäynnistää
 #
 #
 # // crosshair section items
-tstyle=T-tyyli   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-centerdot=Keskipiste   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+tstyle=T-tyyli
+centerdot=Keskipiste
 crosshairsize=Koko
 crosshairthickness=Paksuus
 crosshairgap=Aukko
-crosshairoutlineenabled=Käytössä   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+crosshairoutlineenabled=Käytössä
 crosshairred=Punainen
 crosshairgreen=Sininen
 crosshairblue=Vihreä
@@ -178,15 +179,15 @@ aarnewhighscore=UUSI HUIPPUTULOS!
 #
 #
 # // after action report section items
-aaraccuracy=Tarkkuus   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aartimetokill=Aika tappaa (ms)    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  
-aarkillssec=Tappaa / sek   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aarbeststreak=Paras putki  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+aaraccuracy=Tarkkuus
+aartimetokill=Aika tappaa (ms)   
+aarkillssec=Tappaa / sek
+aarbeststreak=Paras putki 
 targetstitle=Tavoitteet
 aarstatstitle=Tilastot
-aartargetstotal=Kaikki yhteensä   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aartargetshit=Osumat     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-aartargetsmisses=Neiti    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+aartargetstotal=Kaikki yhteensä
+aartargetshit=Osumat  
+aartargetsmisses=Neiti 
 aarrestart=UUDELLEENKÄYNNISTYS
 aarclose=KIINNI
 showextrastats=        Näytä ylimääräiset tilastot
