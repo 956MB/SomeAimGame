@@ -69,6 +69,8 @@ public class CrosshairImportExport : MonoBehaviour {
         } else {
             CloseImportExportPanel_Static();
         }
+
+        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
     }
 
     /// <summary>
@@ -92,6 +94,7 @@ public class CrosshairImportExport : MonoBehaviour {
         //Util.RefreshRootLayoutGroup(crosshairImportExport.importExportPanel);
         Util.RefreshRootLayoutGroup(crosshairImportExport.parentCrosshairGroup);
         //Util.RefreshRootLayoutGroup(crosshairImportExport.importExportPanel);
+        crosshairImportExport.crosshairStringInputField.clear();
         ButtonHighlight_Hover.ResetImportExportButton_TextColor();
         importExportPanelOpen = false;
     }

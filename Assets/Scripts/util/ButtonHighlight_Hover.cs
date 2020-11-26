@@ -19,7 +19,7 @@ public class ButtonHighlight_Hover : MonoBehaviour, IPointerEnterHandler, IPoint
             if (!CrosshairImportExport.importExportPanelOpen) { highlightText.color = InterfaceColors.selectedColor; }
         }
 
-        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Hover(); }
+        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_HoverInner(); }
     }
 
     public void OnPointerExit(PointerEventData pointerEventData) {

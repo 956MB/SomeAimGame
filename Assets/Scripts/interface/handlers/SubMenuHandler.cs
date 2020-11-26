@@ -69,7 +69,7 @@ public class SubMenuHandler : MonoBehaviour {
     public void SetHoveredSubMenuColor(TMP_Text subMenuText) {
         if (subMenuText.name != activeSubMenuText) {
             subMenuText.color = InterfaceColors.hoveredColor;
-            if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Hover(); }
+            if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_HoverOuter(); }
         }
     }
 

@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 
 public class UISound : MonoBehaviour {
-    public AudioClip hoverSound;
-    public AudioClip clickSound;
-    public AudioClip errorSound;
+    public AudioClip hoverSoundOuter, hoverSoundInner, clickSound, errorSound;
 
     private static AudioSource audioSrc;
 
@@ -15,12 +13,25 @@ public class UISound : MonoBehaviour {
     // TODO: add error sound, like for when target color is red when starting follow gamemode and notification fires
 
     /// <summary>
-    /// Plays hover sound.
+    /// Plays hover outer sound.
     /// </summary>
-    public static void PlayUISound_Hover() {
+    public static void PlayUISound_HoverOuter() {
         // TODO: if playHitSound enabled
         if (audioSrc != null) {
-            audioSrc.PlayOneShot(uiSound.hoverSound);
+            audioSrc.PlayOneShot(uiSound.hoverSoundOuter);
+
+            // EVENT:: for new hover sound triggered
+            //DevEventHandler.CheckSoundEvent($"{I18nTextTranslator.SetTranslatedText("eventsoundfiredhover")}");
+        }
+    }
+
+    /// <summary>
+    /// Plays hover inner sound.
+    /// </summary>
+    public static void PlayUISound_HoverInner() {
+        // TODO: if playHitSound enabled
+        if (audioSrc != null) {
+            audioSrc.PlayOneShot(uiSound.hoverSoundInner);
 
             // EVENT:: for new hover sound triggered
             //DevEventHandler.CheckSoundEvent($"{I18nTextTranslator.SetTranslatedText("eventsoundfiredhover")}");

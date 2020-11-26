@@ -100,7 +100,7 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public static void SetHoveredTimeText_Color(GameObject hoveredTimeText) {
         if (hoveredTimeText.name != selectedTimeText) {
             hoveredTimeText.GetComponent<TMP_Text>().color = InterfaceColors.hoveredColor;
-            if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Hover(); }
+            if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_HoverInner(); }
         }
     }
 
