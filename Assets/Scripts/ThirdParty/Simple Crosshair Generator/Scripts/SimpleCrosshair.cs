@@ -188,12 +188,18 @@ public class SimpleCrosshair : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// Validates given crosshair string and returns true/false for valid, and sets values to current crosshair if supplied bool true (setString).
+    /// </summary>
+    /// <param name="newCrosshairString"></param>
+    /// <param name="setString"></param>
+    /// <returns></returns>
     public static bool ValidateSetCrosshairString(string newCrosshairString, bool setString) {
         if (simpleCrosshair.ParseCrosshairString(newCrosshairString, setString)) { return true; }
         return false;
     }
 
-    /*
+    /* No longer needed export crosshair string.
     /// <summary>
     /// Exports full crosshair string with all current crosshair values.
     /// </summary>
@@ -226,13 +232,13 @@ public class SimpleCrosshair : MonoBehaviour
     /// Returns full crosshair string.
     /// </summary>
     /// <returns></returns>
-    public string ExportCrosshairString() {
-        return crosshairStringFull;
-    }
+    public string ExportCrosshairString() { return crosshairStringFull; }
 
-    public static string ReturnExportedCrosshairString() {
-        return simpleCrosshair.ExportCrosshairString();
-    }
+    /// <summary>
+    /// Returns exported crosshair string.
+    /// </summary>
+    /// <returns></returns>
+    public static string ReturnExportedCrosshairString() { return simpleCrosshair.ExportCrosshairString(); }
 
     /// <summary>
     /// Sets all crosshair values and redraws.

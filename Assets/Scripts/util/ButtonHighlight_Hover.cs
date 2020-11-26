@@ -18,10 +18,11 @@ public class ButtonHighlight_Hover : MonoBehaviour, IPointerEnterHandler, IPoint
         } else {
             if (!CrosshairImportExport.importExportPanelOpen) { highlightText.color = InterfaceColors.selectedColor; }
         }
+
+        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Hover(); }
     }
 
     public void OnPointerExit(PointerEventData pointerEventData) {
-        //string buttonName = pointerEventData.pointerCurrentRaycast.gameObject.name;
         if (currentHoveredCrosshairButton == "ResetCrosshairButton") {
             if (!CrosshairImportExport.resetConfirmActive) { highlightText.color = InterfaceColors.unselectedColor; }
         } else {
@@ -29,5 +30,8 @@ public class ButtonHighlight_Hover : MonoBehaviour, IPointerEnterHandler, IPoint
         }
     }
 
+    /// <summary>
+    /// Sets import/export button text color back to normal (unselectedColor).
+    /// </summary>
     public static void ResetImportExportButton_TextColor() { buttonHighlight.importExportText.color = InterfaceColors.unselectedColor; }
 }

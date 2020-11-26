@@ -165,6 +165,10 @@ public class CrosshairOptionsObject : MonoBehaviour {
         if (!crossahairSaveReady) { crossahairSaveReady = true; }
     }
 
+    /// <summary>
+    /// Sets crosshair outline options container state to 'disabled' or 'enabled'.
+    /// </summary>
+    /// <param name="outlineContainerEnabled"></param>
     public static void SetOutlineContainerState(bool outlineContainerEnabled) {
         if (outlineContainerEnabled) {
             crosshairOptions.outlineContainerCanvasGroup.alpha = 1f;
@@ -174,19 +178,6 @@ public class CrosshairOptionsObject : MonoBehaviour {
         
         crosshairOptions.outlineContainerCanvasGroup.interactable   = outlineContainerEnabled;
         crosshairOptions.outlineContainerCanvasGroup.blocksRaycasts = outlineContainerEnabled;
-    }
-
-    public static void LoadNewCrosshairString(string crosshairString) {
-        bool validCrosshair = crosshairOptions.simpleCrosshair.ParseCrosshairString(crosshairString, true);
-        if (validCrosshair) {
-            Debug.Log("VALID CROSSHAIR");
-        } else {
-            Debug.Log("INVALID CROSSHAIR");
-        }
-    }
-
-    public static void ExportCurrentCrosshairString() {
-        Debug.Log($"Crosshair string: {CrosshairSettings.crosshairString}");
     }
 
     /// <summary>
