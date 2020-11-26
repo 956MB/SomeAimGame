@@ -168,6 +168,7 @@ exportcrosshairbutton=크로스 헤어 수출
 crosshairsetsuccess=성공적으로 도입 된 새로운 십자선
 crosshairseterror=십자선 문자열이 잘못되었습니다.
 crosshairsetexported=클립 보드에 복사 된 십자선 문자열
+crosshairresetdefault=CROSSHAIR가 성공적으로 기본값으로 재설정 됨
 #
 #
 # // titles

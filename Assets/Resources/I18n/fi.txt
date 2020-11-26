@@ -161,13 +161,14 @@ crosshairblue=Vihreä
 crosshairalpha=Alfa
 importexportcrosshair=Tuonti ja vienti
 resetcrosshair=Nollaa ristikko
-resetcrosshairconfirm=Oletko varma?
+resetcrosshairconfirm=OLETKO VARMA?
 importcrosshairtitle=Tuo hiusristikko
 importcrosshairbutton=TUONTI
 exportcrosshairbutton=VIENTI RISKI
 crosshairsetsuccess=UUSI RISKIEN TUONTI TUONTI
 crosshairseterror=RISTINIVOJEN JOUSET OVAT PÄTEMÄTTÖMIÄ
 crosshairsetexported=RISTINIVEKE KOPIOITU LEIKEPÖYDÄLLE
+crosshairresetdefault=RISTINHENKIEN PALAUTTAMINEN OLETUKSEEN
 #
 #
 # // titles

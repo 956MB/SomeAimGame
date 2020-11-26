@@ -168,6 +168,7 @@ exportcrosshairbutton=書き出す
 crosshairsetsuccess=新しいCROSSHAIRが正常にインポートされました
 crosshairseterror=CROSSHAIR文字列が無効です
 crosshairsetexported=クリップボードにコピーされたCROSSHAIRストリング
+crosshairresetdefault=CROSSHAIRがデフォルトに正常にリセットされました
 #
 #
 # // titles

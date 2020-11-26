@@ -161,13 +161,14 @@ crosshairblue=Green
 crosshairalpha=Alpha
 importexportcrosshair=Import/Export
 resetcrosshair=Reset Crosshair
-resetcrosshairconfirm=Are you sure?
+resetcrosshairconfirm=ARE YOU SURE?
 importcrosshairtitle=Import Crosshair
 importcrosshairbutton=IMPORT
 exportcrosshairbutton=EXPORT CROSSHAIR
 crosshairsetsuccess=NEW CROSSHAIR SUCCESSFULLY IMPORTED
 crosshairseterror=CROSSHAIR STRING INVALID
 crosshairsetexported=CROSSHAIR STRING COPIED TO CLIPBOARD
+crosshairresetdefault=CROSSHAIR SUCCESSFULLY RESET TO DEFAULT
 #
 #
 # // titles
