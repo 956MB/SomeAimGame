@@ -35,7 +35,8 @@ public class CrosshairImportExport : MonoBehaviour {
         if (!resetConfirmActive) {
             SetResetConfirm();
         } else {
-            //CrosshairSaveSystem.InitCrosshairSettingsDefaults();
+            CrosshairSaveSystem.InitCrosshairSettingsDefaults();
+            NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("crosshairresetdefault")}", InterfaceColors.notificationColorGreen);
             SetResetDefault();
         }
     }
@@ -107,12 +108,12 @@ public class CrosshairImportExport : MonoBehaviour {
         string importString = crosshairStringInputField.text.ToString();
 
         if (SimpleCrosshair.ValidateSetCrosshairString(importString, true)) {
-            SetCrosshairNotification_Success();
+            SetCrosshairNotification_Delay(I18nTextTranslator.SetTranslatedText("crosshairsetsuccess"), InterfaceColors.notificationColorGreen);
             crosshairStringInputField.clear();
 
             if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
         } else {
-            SetCrosshairNotification_Error();
+            SetCrosshairNotification_Delay(I18nTextTranslator.SetTranslatedText("crosshairseterror"), InterfaceColors.notificationColorRed);
             
             if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Error(); }
         }
@@ -123,7 +124,7 @@ public class CrosshairImportExport : MonoBehaviour {
     /// </summary>
     public void ExportCrosshairString() {
         Util.CopyToClipboard(SimpleCrosshair.ReturnExportedCrosshairString());
-        SetCrosshairNotification_Exported();
+        SetCrosshairNotification_Delay(I18nTextTranslator.SetTranslatedText("crosshairsetexported"), InterfaceColors.hoveredColor);
 
         if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
     }
@@ -131,27 +132,9 @@ public class CrosshairImportExport : MonoBehaviour {
     /// <summary>
     /// Sets import/export crosshair notification text to 'error'.
     /// </summary>
-    private void SetCrosshairNotification_Error() {
-        notificationText.SetText($"{I18nTextTranslator.SetTranslatedText("crosshairseterror")}");
-        notificationText.color = InterfaceColors.notificationColorRed;
-        Util.RefreshRootLayoutGroup(importExportPanel);
-        crosshairImportExport.StartCoroutine(HideCrosshairNotification_Delay());
-    }
-    /// <summary>
-    /// Sets import/export crosshair notification text to 'success'.
-    /// </summary>
-    private void SetCrosshairNotification_Success() {
-        notificationText.SetText($"{I18nTextTranslator.SetTranslatedText("crosshairsetsuccess")}");
-        notificationText.color = InterfaceColors.notificationColorGreen;
-        Util.RefreshRootLayoutGroup(importExportPanel);
-        crosshairImportExport.StartCoroutine(HideCrosshairNotification_Delay());
-    }
-    /// <summary>
-    /// Sets import/export crosshair notification text to 'exported'.
-    /// </summary>
-    private void SetCrosshairNotification_Exported() {
-        notificationText.SetText($"{I18nTextTranslator.SetTranslatedText("crosshairsetexported")}");
-        notificationText.color = InterfaceColors.hoveredColor;
+    private void SetCrosshairNotification_Delay(string translationMessage, Color32 notificationColor) {
+        notificationText.SetText($"{translationMessage}");
+        notificationText.color = notificationColor;
         Util.RefreshRootLayoutGroup(importExportPanel);
         crosshairImportExport.StartCoroutine(HideCrosshairNotification_Delay());
     }
