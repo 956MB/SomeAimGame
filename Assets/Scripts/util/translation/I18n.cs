@@ -31,6 +31,8 @@ public class I18n : MonoBehaviour {
     /// </summary>
     public static Dictionary<String, String> Fields { get; private set; }
     public static string lang;
+    private static bool randomLang   = true;
+    private static string[] langList = new string[] { "EN", "FI", "JA", "KO", "RU" };
 
     public static I18n i18n;
     private void Awake() {
@@ -50,7 +52,8 @@ public class I18n : MonoBehaviour {
         string allTexts, key, value;
 
         // Language testing
-        lang = "KO"; // "JA" "AR" "ZH" "KO" "RU" "EN" "FI"
+        lang = "RU"; // "JA" "AR" "ZH" "KO" "RU" "EN" "FI"
+        //if (randomLang) { lang = langList[UnityEngine.Random.Range(0, langList.Length)]; }
 
         LanguageSelect.SetLanguageCodeText(lang);
         var textAsset = Resources.Load(@"I18n/" + lang.ToLower()); //no .txt needed
