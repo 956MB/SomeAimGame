@@ -45,20 +45,28 @@ public class CrosshairImportExport : MonoBehaviour {
     /// Sets reset crosshair confirmation to active.
     /// </summary>
     public static void SetResetConfirm() {
-        crosshairImportExport.resetConfirmBox.material = crosshairImportExport.crosshairboxResetConfirm;
-        crosshairImportExport.resetCrosshairText.SetText($"{I18nTextTranslator.SetTranslatedText("resetcrosshairconfirm")}");
-        crosshairImportExport.resetCrosshairText.color = InterfaceColors.notificationColorRed;
-        resetConfirmActive = true;
+        SetResetButtonValues(crosshairImportExport.crosshairboxResetConfirm, I18nTextTranslator.SetTranslatedText("resetcrosshairconfirm"), InterfaceColors.notificationColorRed, true);
     }
 
     /// <summary>
     /// Sets reset crosshair confirmation to inactive (default).
     /// </summary>
     public static void SetResetDefault() {
-        crosshairImportExport.resetConfirmBox.material = crosshairImportExport.crosshairBoxDefault;
-        crosshairImportExport.resetCrosshairText.SetText($"{I18nTextTranslator.SetTranslatedText("resetcrosshair")}");
-        crosshairImportExport.resetCrosshairText.color = InterfaceColors.unselectedColor;
-        resetConfirmActive = false;
+        SetResetButtonValues(crosshairImportExport.crosshairBoxDefault, I18nTextTranslator.SetTranslatedText("resetcrosshair"), InterfaceColors.unselectedColor, false);
+    }
+
+    /// <summary>
+    /// Sets reset crosshair button values to supplied Material (boxMat), text string (resetText), text color (resetTextColor), and reset confirm active (resetConfirm).
+    /// </summary>
+    /// <param name="boxMat"></param>
+    /// <param name="resetText"></param>
+    /// <param name="resetTextColor"></param>
+    /// <param name="resetConfirm"></param>
+    public static void SetResetButtonValues(Material boxMat, string resetText, Color32 resetTextColor, bool resetConfirm) {
+        crosshairImportExport.resetCrosshairText.SetText($"{resetText}");
+        crosshairImportExport.resetConfirmBox.material = boxMat;
+        crosshairImportExport.resetCrosshairText.color = resetTextColor;
+        resetConfirmActive                             = resetConfirm;
     }
 
     /// <summary>
@@ -80,7 +88,6 @@ public class CrosshairImportExport : MonoBehaviour {
     public static void OpenImportExportPanel_Static() {
         if (!importExportPanelOpen) {
             crosshairImportExport.importExportPanel.SetActive(true);
-            //Util.RefreshRootLayoutGroup(crosshairImportExport.importExportPanel);
             Util.RefreshRootLayoutGroup(crosshairImportExport.parentCrosshairGroup);
             Util.RefreshRootLayoutGroup(crosshairImportExport.importExportPanel);
             importExportPanelOpen = true;
@@ -92,9 +99,7 @@ public class CrosshairImportExport : MonoBehaviour {
     /// </summary>
     public static void CloseImportExportPanel_Static() {
         crosshairImportExport.importExportPanel.SetActive(false);
-        //Util.RefreshRootLayoutGroup(crosshairImportExport.importExportPanel);
         Util.RefreshRootLayoutGroup(crosshairImportExport.parentCrosshairGroup);
-        //Util.RefreshRootLayoutGroup(crosshairImportExport.importExportPanel);
         crosshairImportExport.crosshairStringInputField.clear();
         ButtonHighlight_Hover.ResetImportExportButton_TextColor();
         importExportPanelOpen = false;
@@ -108,12 +113,12 @@ public class CrosshairImportExport : MonoBehaviour {
         string importString = crosshairStringInputField.text.ToString();
 
         if (SimpleCrosshair.ValidateSetCrosshairString(importString, true)) {
-            SetCrosshairNotification_Delay(I18nTextTranslator.SetTranslatedText("crosshairsetsuccess"), InterfaceColors.notificationColorGreen);
+            SetCrosshairNotification_Delay(I18nTextTranslator.SetTranslatedText("crosshairsetsuccess"), InterfaceColors.notificationColorGreen, true);
             crosshairStringInputField.clear();
 
             if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
         } else {
-            SetCrosshairNotification_Delay(I18nTextTranslator.SetTranslatedText("crosshairseterror"), InterfaceColors.notificationColorRed);
+            SetCrosshairNotification_Delay(I18nTextTranslator.SetTranslatedText("crosshairseterror"), InterfaceColors.notificationColorRed, true);
             
             if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Error(); }
         }
@@ -124,7 +129,7 @@ public class CrosshairImportExport : MonoBehaviour {
     /// </summary>
     public void ExportCrosshairString() {
         Util.CopyToClipboard(SimpleCrosshair.ReturnExportedCrosshairString());
-        SetCrosshairNotification_Delay(I18nTextTranslator.SetTranslatedText("crosshairsetexported"), InterfaceColors.hoveredColor);
+        SetCrosshairNotification_Delay(I18nTextTranslator.SetTranslatedText("crosshairsetexported"), InterfaceColors.hoveredColor, true);
 
         if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
     }
@@ -132,20 +137,12 @@ public class CrosshairImportExport : MonoBehaviour {
     /// <summary>
     /// Sets import/export crosshair notification text to 'error'.
     /// </summary>
-    private void SetCrosshairNotification_Delay(string translationMessage, Color32 notificationColor) {
+    private void SetCrosshairNotification_Delay(string translationMessage, Color32 notificationColor, bool show) {
         notificationText.SetText($"{translationMessage}");
         notificationText.color = notificationColor;
         Util.RefreshRootLayoutGroup(importExportPanel);
-        crosshairImportExport.StartCoroutine(HideCrosshairNotification_Delay());
-    }
 
-    /// <summary>
-    /// Sets active crosshair notification text to "", and resets color (hides).
-    /// </summary>
-    private void HideCrosshairNotification() {
-        notificationText.SetText("");
-        notificationText.color = InterfaceColors.unselectedColor;
-        Util.RefreshRootLayoutGroup(importExportPanel);
+        if (show) { crosshairImportExport.StartCoroutine(HideCrosshairNotification_Delay()); }
     }
 
     /// <summary>
@@ -154,7 +151,7 @@ public class CrosshairImportExport : MonoBehaviour {
     /// <returns></returns>
     public static IEnumerator HideCrosshairNotification_Delay() {
         yield return notificationDestroyDelay;
-        crosshairImportExport.HideCrosshairNotification();
+        crosshairImportExport.SetCrosshairNotification_Delay("", InterfaceColors.unselectedColor, false);
     }
 }
 
