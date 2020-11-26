@@ -153,5 +153,12 @@ public class CrosshairImportExport : MonoBehaviour {
         yield return notificationDestroyDelay;
         crosshairImportExport.SetCrosshairNotification_Delay("", InterfaceColors.unselectedColor, false);
     }
+
+    public static void CheckCloseCrosshairActions() {
+        // Closes crosshair import/export panel if open.
+        if (importExportPanelOpen) { CloseImportExportPanel_Static(); }
+        // Disables crosshair reset confirmation if active.
+        if (resetConfirmActive) { SetResetDefault(); }
+    }
 }
 

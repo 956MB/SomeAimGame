@@ -67,4 +67,9 @@ public class LanguageSelect : MonoBehaviour {
         // EVENT:: for language select panel closed
         //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacelanguageselectclosed")}");
     }
+
+    public static void CheckCloseLanguageSelect() {
+        // Closes language select if selection panel open.
+        if (languageSelectOpen) { CloseLanguageSelect_Static(); }
+    }
 }

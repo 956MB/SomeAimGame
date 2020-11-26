@@ -85,4 +85,9 @@ public class QuitGame : MonoBehaviour {
     public void CancelQuitGame() {
        if (gameQuitConfirmationOpen) { CloseQuitConfirmation(); }
     }
+
+    public static void CheckCloseQuitConfirmation() {
+        // Closes quit game section if confirmation not open.
+        if (!gameQuitConfirmationOpen && gameQuitButtonOpen) { CloseQuitConfirmation(); }
+    }
 }
