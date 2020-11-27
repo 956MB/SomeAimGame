@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 
 public class ButtonHighlight_Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
-    public TMP_Text highlightText, importExportText, resetCrosshairText;
+    public TMP_Text highlightText, importExportText, resetCrosshairText, crosshairPresetsText;
     private static string currentHoveredCrosshairButton;
 
     private static ButtonHighlight_Hover buttonHighlight;
@@ -15,6 +15,8 @@ public class ButtonHighlight_Hover : MonoBehaviour, IPointerEnterHandler, IPoint
 
         if (buttonName == "ResetCrosshairButton") {
             if (!CrosshairImportExport.resetConfirmActive) { highlightText.color = InterfaceColors.selectedColor; }
+        } else if (buttonName == "PresetsButton") {
+            if (!CrosshairPresets.crosshairPresetsPanelOpen) { highlightText.color = InterfaceColors.selectedColor; }
         } else {
             if (!CrosshairImportExport.importExportPanelOpen) { highlightText.color = InterfaceColors.selectedColor; }
         }
@@ -25,6 +27,8 @@ public class ButtonHighlight_Hover : MonoBehaviour, IPointerEnterHandler, IPoint
     public void OnPointerExit(PointerEventData pointerEventData) {
         if (currentHoveredCrosshairButton == "ResetCrosshairButton") {
             if (!CrosshairImportExport.resetConfirmActive) { highlightText.color = InterfaceColors.unselectedColor; }
+        } else if (currentHoveredCrosshairButton == "PresetsButton") {
+            if (!CrosshairPresets.crosshairPresetsPanelOpen) { highlightText.color = InterfaceColors.unselectedColor; }
         } else {
             if (!CrosshairImportExport.importExportPanelOpen) { highlightText.color = InterfaceColors.unselectedColor; }
         }
@@ -34,4 +38,6 @@ public class ButtonHighlight_Hover : MonoBehaviour, IPointerEnterHandler, IPoint
     /// Sets import/export button text color back to normal (unselectedColor).
     /// </summary>
     public static void ResetImportExportButton_TextColor() { buttonHighlight.importExportText.color = InterfaceColors.unselectedColor; }
+
+    public static void ResetPresetsButton_TextColor() { buttonHighlight.crosshairPresetsText.color = InterfaceColors.unselectedColor; }
 }
