@@ -4,13 +4,13 @@ using UnityEngine.UI;
 
 public class SubMenuHandler : MonoBehaviour {
     public TMP_Text gamemodeSubMenuText, generalSubMenuText, controlsSubMenuText, crosshairSubMenuText, extraSubMenuText;
-    public GameObject gamemodeScrollView, generalScrollView, controlsScrollView, crosshairScrollView, extraScrollView;
+    public GameObject gamemodeScrollView, generalScrollView, controlsScrollView, crosshairScrollView, extraScrollView, crosshairImageSettings;
     public Image gamemodeBar, generalBar, controlsBar, crosshairBar, extraBar;
 
     public static Vector3 disabledSubMenuScrollView = new Vector3(0, 0, 0);
     public static Vector3 enabledSubMenuScrollView  = new Vector3(1, 1, 1);
 
-    private static string activeSubMenuText = "GamemodeTitleText (TMP)";
+    public static string activeSubMenuText = "GamemodeTitleText (TMP)";
 
     private static SubMenuHandler subMenu;
     void Awake() { subMenu = this; }
@@ -26,40 +26,36 @@ public class SubMenuHandler : MonoBehaviour {
 
         switch (buttonClickedName) {
             case "GamemodeSubMenuButton":
-                gamemodeSubMenuText.color               = InterfaceColors.selectedColor;
-                gamemodeScrollView.transform.localScale = enabledSubMenuScrollView;
-                ScrollRectExtension.ScrollToTop(gamemodeScrollView.GetComponent<ScrollRect>());
-                gamemodeBar.transform.gameObject.SetActive(true);
-                break;
+                SetSubMenu(gamemodeSubMenuText, gamemodeScrollView, gamemodeBar); break;
             case "GeneralSubMenuButton":
-                generalSubMenuText.color               = InterfaceColors.selectedColor;
-                generalScrollView.transform.localScale = enabledSubMenuScrollView;
-                ScrollRectExtension.ScrollToTop(generalScrollView.GetComponent<ScrollRect>());
-                generalBar.transform.gameObject.SetActive(true);
-                break;
+                SetSubMenu(generalSubMenuText, generalScrollView, generalBar); break;
             case "ControlsSubMenuButton":
-                controlsSubMenuText.color               = InterfaceColors.selectedColor;
-                controlsScrollView.transform.localScale = enabledSubMenuScrollView;
-                ScrollRectExtension.ScrollToTop(controlsScrollView.GetComponent<ScrollRect>());
-                controlsBar.transform.gameObject.SetActive(true);
-                break;
+                SetSubMenu(controlsSubMenuText, controlsScrollView, controlsBar); break;
             case "CrosshairSubMenuButton":
-                crosshairSubMenuText.color               = InterfaceColors.selectedColor;
-                crosshairScrollView.transform.localScale = enabledSubMenuScrollView;
-                ScrollRectExtension.ScrollToTop(crosshairScrollView.GetComponent<ScrollRect>());
-                crosshairBar.transform.gameObject.SetActive(true);
-                break;
+                SetSubMenu(crosshairSubMenuText, crosshairScrollView, crosshairBar, true); break;
             case "ExtraSubMenuButton":
-                extraSubMenuText.color               = InterfaceColors.selectedColor;
-                extraScrollView.transform.localScale = enabledSubMenuScrollView;
-                ScrollRectExtension.ScrollToTop(extraScrollView.GetComponent<ScrollRect>());
-                extraBar.transform.gameObject.SetActive(true);
-                break;
+                SetSubMenu(extraSubMenuText, extraScrollView, extraBar); break;
         }
 
         CrosshairOptionsObject.SaveCrosshairObject(false);
 
         if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
+    }
+
+    /// <summary>
+    /// Sets active sub menu view with supplied menu text (subMenuText), sub menu scrollview (subMenuActive), and sub menu bar (subMenuBar).
+    /// </summary>
+    /// <param name="subMenuText"></param>
+    /// <param name="subMenuActive"></param>
+    /// <param name="subMenuBar"></param>
+    /// <param name="showCrosshair"></param>
+    public void SetSubMenu(TMP_Text subMenuText, GameObject subMenuActive, Image subMenuBar, bool showCrosshair = false) {
+        subMenuText.color                  = InterfaceColors.selectedColor;
+        subMenuActive.transform.localScale = enabledSubMenuScrollView;
+        ScrollRectExtension.ScrollToTop(subMenuActive.GetComponent<ScrollRect>());
+        subMenuBar.transform.gameObject.SetActive(true);
+
+        if (showCrosshair) { ShowSettingsCrosshair(); }
     }
 
     /// <summary>
@@ -100,6 +96,26 @@ public class SubMenuHandler : MonoBehaviour {
         controlsBar.transform.gameObject.SetActive(false);
         crosshairBar.transform.gameObject.SetActive(false);
         extraBar.transform.gameObject.SetActive(false);
+        
+        HideSettingsCrosshair();
+    }
+
+    /// <summary>
+    /// Hides crosshair image above crosshair settings panel.
+    /// </summary>
+    public static void HideSettingsCrosshair() {
+        GameUI.HideGameObject_Layer(subMenu.crosshairImageSettings);
+    }
+
+    /// <summary>
+    /// Shows crosshair image above crosshair settings panel.
+    /// </summary>
+    public static void ShowSettingsCrosshair() {
+        GameObject crosshairCanvasPos = GameObject.Find($"SettingsCrosshairCanvas");
+        GameUI.ShowGameObject_Layer(subMenu.crosshairImageSettings);
+        //subMenu.crosshairImageSettings.transform.parent = crosshairCanvasPos.transform;
+        subMenu.crosshairImageSettings.transform.position = crosshairCanvasPos.transform.position;
+        //Debug.Log($"{subMenu.crosshairImageSettings.GetComponent<RectTransform>().sizeDelta.x}, {subMenu.crosshairImageSettings.GetComponent<RectTransform>().sizeDelta.y}");
     }
 
     /// <summary>

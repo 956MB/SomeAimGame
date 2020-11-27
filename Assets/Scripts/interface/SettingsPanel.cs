@@ -38,6 +38,7 @@ public class SettingsPanel : MonoBehaviour {
         CrosshairSaveSystem.InitSavedCrosshairSettings();
         WidgetSaveSystem.InitSavedWidgetSettings();
         StatsManager.HideExtraStatsPanel();
+        SubMenuHandler.HideSettingsCrosshair();
 
         // Close settings and 'AfterActionReport' panels at start.
         settings.settingsPanel.transform.localScale = new Vector3(0f, 0f, 1f);
@@ -91,6 +92,7 @@ public class SettingsPanel : MonoBehaviour {
         GameUI.HideWidgetsUI();
         GameUI.HideGameObject_Layer(settings.crosshairImage);
 
+        if (SubMenuHandler.activeSubMenuText == "CrosshairTitleText (TMP)") { SubMenuHandler.ShowSettingsCrosshair(); }
         // EVENT:: for settings panel being opened
         //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacesettingsopened")}");
     }
@@ -110,6 +112,7 @@ public class SettingsPanel : MonoBehaviour {
         
         CrosshairOptionsObject.SaveCrosshairObject(false);
         GameUI.ShowGameObject_Layer(settings.crosshairImage);
+        SubMenuHandler.HideSettingsCrosshair();
 
         CloseAction();
         settingsOpen = false;
