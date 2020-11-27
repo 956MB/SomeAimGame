@@ -52,7 +52,7 @@ public class I18n : MonoBehaviour {
         string allTexts, key, value;
 
         // Language testing
-        lang = "RU"; // "JA" "AR" "ZH" "KO" "RU" "EN" "FI"
+        lang = "KO"; // "JA" "AR" "ZH" "KO" "RU" "EN" "FI"
         //if (randomLang) { lang = langList[UnityEngine.Random.Range(0, langList.Length)]; }
 
         LanguageSelect.SetLanguageCodeText(lang);

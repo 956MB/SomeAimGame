@@ -1,6 +1,6 @@
-Keybind editing
-
 crosshair preset colors/styles
+
+gamemode insights like previous stats in gamemode select
 
 score combo thing
 
@@ -23,8 +23,6 @@ console commands, like csgo
 bunch of spawn flying in one direction gamemode
 
 themes, light/dark/twitch/LoL etc
-
-finish language supports in resources
 
 target spawn size/rate/loation/target spawn area editing stuff
 
