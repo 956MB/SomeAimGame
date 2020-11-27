@@ -159,6 +159,8 @@ public class CrosshairImportExport : MonoBehaviour {
         if (importExportPanelOpen) { CloseImportExportPanel_Static(); }
         // Disables crosshair reset confirmation if active.
         if (resetConfirmActive) { SetResetDefault(); }
+        // Closes crosshair presets panel if open.
+        if (CrosshairPresets.crosshairPresetsPanelOpen) { CrosshairPresets.ClosePresetsPanel_Static(); }
     }
 }
 

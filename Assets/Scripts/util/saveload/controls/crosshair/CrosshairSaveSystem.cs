@@ -96,7 +96,10 @@ public class CrosshairSaveSystem : MonoBehaviour {
             InitCrosshairSettingsDefaults();
         }
 
+        // Close crosshair import/export and presets panels on start.
         CrosshairImportExport.CloseImportExportPanel_Static();
+        CrosshairPresets.ClosePresetsPanel_Static();
+        CrosshairPresets.HidePresetsButton();
     }
 
     /// <summary>
