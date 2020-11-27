@@ -429,7 +429,6 @@ public class SimpleCrosshair : MonoBehaviour
         //int outlineTemp = 1;
         int sizeNeeded = crosshair.SizeNeeded;
         int centerBias = sizeNeeded / 2;
-        int leftExtra  = 0;
 
         Texture2D crosshairTexture  = new Texture2D(sizeNeeded + (m_crosshair.outlineThickness + 1), sizeNeeded + (m_crosshair.outlineThickness + 1), TextureFormat.RGBA32, false);
         crosshairTexture.wrapMode   = TextureWrapMode.Clamp;
@@ -438,6 +437,51 @@ public class SimpleCrosshair : MonoBehaviour
         //DrawBox(0, 0, crosshairTexture.width, crosshairTexture.height, crosshairTexture, new Color(255, 0, 0, 50));
         DrawBox(0, 0, crosshairTexture.width, crosshairTexture.height, crosshairTexture, new Color(0, 0, 0, 0));
 
+        #region Original crosshair drawing
+
+        /*
+        int leftExtra  = 1;
+        int startGapShort = Mathf.CeilToInt(crosshair.thickness / 2.0f);
+
+        // Top
+        DrawBox(centerBias - startGapShort,
+            (centerBias + crosshair.gap) - extra,
+            crosshair.thickness,
+            crosshair.size,
+            crosshairTexture,
+            crosshair.color);
+
+        // Right
+        DrawBox((centerBias + crosshair.gap) - extra,
+            centerBias - startGapShort,
+            crosshair.size,
+            crosshair.thickness,
+            crosshairTexture,
+            crosshair.color);
+
+
+        // Bottom
+        DrawBox((centerBias - startGapShort),
+            (centerBias - crosshair.gap - crosshair.size),
+            crosshair.thickness,
+            crosshair.size,
+            crosshairTexture,
+            crosshair.color);
+
+        // Left
+        DrawBox((centerBias - crosshair.gap - crosshair.size),
+           (centerBias - startGapShort),
+           crosshair.size,
+           crosshair.thickness,
+           crosshairTexture,
+           crosshair.color);
+        */
+
+        #endregion
+
+        #region My current crosshair drawing
+
+        int leftExtra     = 0;
         int startGapShort = Mathf.CeilToInt(crosshair.thickness / 2.0f);
         if (crosshair.thickness % 2 == 0) {
             leftExtra = 1;
@@ -459,7 +503,7 @@ public class SimpleCrosshair : MonoBehaviour
             // Center dot outline
             if (m_crosshair.centerDot) {
                 DrawBox((centerBias - startGapShort),
-                    centerBias - (crosshair.thickness / 2),
+                    (centerBias - (crosshair.thickness / 2) - 1 ) + leftExtra,
                     crosshair.thickness + 2,
                     crosshair.thickness + 2,
                     crosshairTexture,
@@ -652,12 +696,14 @@ public class SimpleCrosshair : MonoBehaviour
         //int startGapShort = Mathf.CeilToInt(crosshair.thickness / 2.0f);
         if (m_crosshair.centerDot) {
             DrawBox((centerBias - startGapShort) + 1,
-                centerBias - (crosshair.thickness / 2) + 1,
+                (centerBias - (crosshair.thickness / 2)) + leftExtra,
                 crosshair.thickness,
                 crosshair.thickness,
                 crosshairTexture,
                 crosshair.color);
         }
+
+        #endregion
 
         crosshairTexture.Apply();
         return crosshairTexture;
