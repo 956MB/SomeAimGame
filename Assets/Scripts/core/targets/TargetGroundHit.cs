@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 
+using SomeAimGame.Gamemode;
+using SomeAimGame.Targets;
+
 public class TargetGroundHit : MonoBehaviour {
     private float distToGround;
     private GameObject targetObj;
     //private static SpawnTargets ST;
 
     void FixedUpdate() {
-        if (SpawnTargets.gamemode == Gamemode.FLICK) {
+        if (SpawnTargets.gamemode == GamemodeType.FLICK) {
             //Debug.Log("???????");
             targetObj = SpawnTargets.currentTargetObj;
             if (targetObj != null && IsGrounded(targetObj)) {

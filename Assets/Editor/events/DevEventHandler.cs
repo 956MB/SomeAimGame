@@ -2,7 +2,8 @@
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
-using UnityEditor;
+
+using SomeAimGame.Utilities;
 
 public class DevEventHandler : MonoBehaviour {
     public VerticalLayoutGroup eventLayoutGroup;

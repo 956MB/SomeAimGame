@@ -2,6 +2,8 @@
 using UnityEngine.EventSystems;
 using TMPro;
 
+using SomeAimGame.Utilities;
+
 public class ButtonHighlight_Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public TMP_Text highlightText, importExportText, resetCrosshairText, crosshairPresetsText;
     private static string currentHoveredCrosshairButton;

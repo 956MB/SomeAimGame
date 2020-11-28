@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using TMPro;
 
+using SomeAimGame.Utilities;
+
 public class TempValues : MonoBehaviour {
     public TMP_Text timerRunning, settingsOpen, timeCount;
 

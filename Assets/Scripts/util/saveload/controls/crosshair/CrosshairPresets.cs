@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
+using SomeAimGame.Utilities;
 
 public class CrosshairPresets : MonoBehaviour {
     public GameObject presetsPanel, parentCrosshairGroup;

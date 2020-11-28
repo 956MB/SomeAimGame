@@ -5,11 +5,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+using SomeAimGame.Gamemode;
+using SomeAimGame.Targets;
+using SomeAimGame.Utilities;
+
 public class GameUI : MonoBehaviour {
     public TMP_Text timeText, scoreText, scoreBonusText, accuracyText, streakText, ttkText, kpsText, preTipText, reactionTimeText;
     public static bool UIHidden;
     public static bool coroutinesRunning = false;
-    public static bool statsLoaded       = false;
     public static string timeFormatted;
     public GameObject UICanvas, widgetsUICanvas, newTimerCanvasImage;
     private Coroutine timerCoroutine;
@@ -56,13 +59,9 @@ public class GameUI : MonoBehaviour {
         SpawnTargets.InitSpawnTargets();
 
         // Load all stats objects at start.
-        if (!statsLoaded) {
-            StatsManager.LoadOldHighscore();
-            StatsManager.LoadPreviousGameStats();
-            StatsManager.LoadBestGameStats();
-
-            statsLoaded = true;
-        }
+        StatsManager.LoadOldHighscore();
+        StatsManager.LoadPreviousGameStats();
+        StatsManager.LoadBestGameStats();
 
         // Set game timer to saved 'ExtraSaveSystem' time, if exists.
         timeCount     = ExtraSaveSystem.InitGameTimer();
@@ -82,7 +81,7 @@ public class GameUI : MonoBehaviour {
     /// Starts game timer Coroutine, and starts 'continuousScatterSpawn' if gamemode 'Gamemode-Scatter'.
     /// </summary>
     public static void StartGameCoroutines() {
-        if (SpawnTargets.gamemode == Gamemode.SCATTER) {
+        if (SpawnTargets.gamemode == GamemodeType.SCATTER) {
             gameUI.spawnScatterCoroutine = gameUI.StartCoroutine(ContinuousScatterSpawn());
         }
 
@@ -387,11 +386,11 @@ public class GameUI : MonoBehaviour {
     /// Restarts game with current supplied gamemode and resets all game values like timer, score and accuracy. Then targets are reset and scene reloaded.
     /// </summary>
     /// <param name="newGamemode"></param>
-    public static void RestartGame(Gamemode newGamemode, bool closePanels) {
+    public static void RestartGame(GamemodeType newGamemode, bool closePanels) {
         if (coroutinesRunning) {
             gameUI.StopCoroutine(gameUI.timerCoroutine);
 
-            if (SpawnTargets.gamemode == Gamemode.SCATTER) { gameUI.StopCoroutine(gameUI.spawnScatterCoroutine); }
+            if (SpawnTargets.gamemode == GamemodeType.SCATTER) { gameUI.StopCoroutine(gameUI.spawnScatterCoroutine); }
 
             coroutinesRunning = false;
         }
@@ -434,9 +433,9 @@ public class GameUI : MonoBehaviour {
     /// </summary>
     public static void StopEverything() {
         //gameUI.StopCoroutine(gameUI.timerCoroutine);
-        if (SpawnTargets.gamemode == Gamemode.SCATTER) {
+        if (SpawnTargets.gamemode == GamemodeType.SCATTER) {
             gameUI.StopCoroutine(gameUI.spawnScatterCoroutine);
-        } else if (SpawnTargets.gamemode == Gamemode.FOLLOW) {
+        } else if (SpawnTargets.gamemode == GamemodeType.FOLLOW) {
             PathFollower.DestroyPathObj();
         }
 

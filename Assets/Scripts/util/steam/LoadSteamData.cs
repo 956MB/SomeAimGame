@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using Steamworks;
 using TMPro;
+
+using SomeAimGame.Utilities;
 
 public class LoadSteamData : MonoBehaviour {
     public static CSteamID userSteamID;

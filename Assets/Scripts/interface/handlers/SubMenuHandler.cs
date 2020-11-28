@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
+using TMPro;
+
+using SomeAimGame.Utilities;
 
 public class SubMenuHandler : MonoBehaviour {
     public TMP_Text gamemodeSubMenuText, generalSubMenuText, controlsSubMenuText, crosshairSubMenuText, extraSubMenuText;

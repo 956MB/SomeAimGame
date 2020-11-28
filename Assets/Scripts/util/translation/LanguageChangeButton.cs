@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
+using SomeAimGame.Utilities;
+
 public class LanguageChangeButton : MonoBehaviour, IPointerClickHandler {
     public void OnPointerClick(PointerEventData pointerEventData) {
         string buttonName = pointerEventData.pointerCurrentRaycast.gameObject.transform.name;
@@ -16,6 +18,7 @@ public class LanguageChangeButton : MonoBehaviour, IPointerClickHandler {
 
         if (newLangCode != LanguageSetting.activeLanguageCode) {
             LanguageSelect.SetLanguageCodeText(newLangCode);
+            LanguageSelect.CloseLanguageSelect_Static();
             NotificationHandler.ShowTimedNotification_String($"{newLangCode}: {I18nTextTranslator.SetTranslatedText("languagerestartnotification")}", InterfaceColors.notificationColorGreen);
             LanguageSetting.SaveLanguageCodeItem(newLangCode);
 

@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using PathCreation;
 
+using SomeAimGame.Gamemode;
+using SomeAimGame.Targets;
+
 public class PathFollower : MonoBehaviour {
     public PathCreator pathCreator;
     public EndOfPathInstruction endOfPathInstruction;
@@ -12,7 +15,7 @@ public class PathFollower : MonoBehaviour {
 
     void Update() {
         // Update target position along follow path if gamemode is "Gamemode-Follow" and 'pathCreator' not null.
-        if (pathCreator != null && SpawnTargets.gamemode == Gamemode.FOLLOW) {
+        if (pathCreator != null && SpawnTargets.gamemode == GamemodeType.FOLLOW) {
             distanceTravelled += speed * Time.deltaTime;
             GenerateFollowPath.pathFollowerTarget.transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
         }

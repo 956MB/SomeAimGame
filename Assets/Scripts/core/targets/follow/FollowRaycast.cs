@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+using SomeAimGame.Gamemode;
+using SomeAimGame.Targets;
+
 public class FollowRaycast : MonoBehaviour {
     public Camera playerCamera;
     private Ray ray;
@@ -15,7 +18,7 @@ public class FollowRaycast : MonoBehaviour {
 
     void Update() {
         // Only if game timer is running and gamemode is "Gamemode-Follow".
-        if (GunAction.timerRunning && SpawnTargets.gamemode == Gamemode.FOLLOW) {
+        if (GunAction.timerRunning && SpawnTargets.gamemode == GamemodeType.FOLLOW) {
             ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
 
             if (Physics.Raycast(ray, out raycastHit)) {

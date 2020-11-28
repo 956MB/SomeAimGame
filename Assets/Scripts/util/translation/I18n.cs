@@ -52,10 +52,9 @@ public class I18n : MonoBehaviour {
         string allTexts, key, value;
 
         // Language testing
-        lang = "KO"; // "JA" "AR" "ZH" "KO" "RU" "EN" "FI"
+        //lang = "KO"; // "JA" "AR" "ZH" "KO" "RU" "EN" "FI"
         //if (randomLang) { lang = langList[UnityEngine.Random.Range(0, langList.Length)]; }
 
-        LanguageSelect.SetLanguageCodeText(lang);
         var textAsset = Resources.Load(@"I18n/" + lang.ToLower()); //no .txt needed
 
         if (textAsset == null) { textAsset = Resources.Load(@"I18n/en") as TextAsset; } //no .txt needed

@@ -2,13 +2,18 @@
 using UnityEngine.EventSystems;
 using TMPro;
 
+using SomeAimGame.Skybox;
+using SomeAimGame.Gamemode;
+using SomeAimGame.Targets;
+using SomeAimGame.Utilities;
+
 public class ButtonHoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     //public Texture2D hoverBorder;
     public GameObject childBorder;
-    public static Gamemode selectedGamemode;
+    public static TargetType selectedTargetColor;
+    public static SkyboxType selectedSkybox;
+    public static GamemodeType selectedGamemode;
     public static string selectedGamemodeString;
-    public static TargetColor selectedTargetColor;
-    public static Skybox selectedSkybox;
 
     private static string currentHoveredButton;
 
@@ -20,9 +25,9 @@ public class ButtonHoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
     /// <param name="pointerEventData"></param>
     public void OnPointerEnter(PointerEventData pointerEventData) {
         string buttonName = pointerEventData.pointerCurrentRaycast.gameObject.name;
-        //string buttonNameGamemode = GamemodeType.ReturnGamemodeType_StringFull(buttonName);
         currentHoveredButton = buttonName;
-        if (buttonName != TargetColorType.ReturnTargetColorType_StringFull(selectedTargetColor) && buttonName != SkyboxType.ReturnSkyboxType_StringFull(selectedSkybox) && buttonName != GamemodeType.ReturnGamemodeType_StringFull(selectedGamemode)) {
+
+        if (buttonName != TargetUtil.ReturnTargetColorType_StringFull(selectedTargetColor) && buttonName != SkyboxUtil.ReturnSkyboxType_StringFull(selectedSkybox) && buttonName != GamemodeUtil.ReturnGamemodeType_StringFull(selectedGamemode)) {
             childBorder.SetActive(true);
             SetHoverButtonText(buttonName);
             if (currentHoveredButton.Contains("Gamemode")) { SetHoverButtonColor(buttonName, GameObject.Find($"{buttonName}-Text (TMP)").GetComponent<TMP_Text>()); }
@@ -36,7 +41,7 @@ public class ButtonHoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
     /// </summary>
     /// <param name="pointerEventData"></param>
     public void OnPointerExit(PointerEventData pointerEventData) {
-        if (currentHoveredButton != TargetColorType.ReturnTargetColorType_StringFull(selectedTargetColor) && currentHoveredButton != SkyboxType.ReturnSkyboxType_StringFull(selectedSkybox) && currentHoveredButton != selectedGamemodeString) {
+        if (currentHoveredButton != TargetUtil.ReturnTargetColorType_StringFull(selectedTargetColor) && currentHoveredButton != SkyboxUtil.ReturnSkyboxType_StringFull(selectedSkybox) && currentHoveredButton != selectedGamemodeString) {
             childBorder.SetActive(false);
             targetColorSelected.SetText(CosmeticsSaveSystem.activeTargetColorText);
             skyboxSelected.SetText(CosmeticsSaveSystem.activeSkyboxText);

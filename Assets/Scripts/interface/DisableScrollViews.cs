@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using TMPro;
 
+using SomeAimGame.Utilities;
+
 public class DisableScrollViews : MonoBehaviour {
     public TMP_Text generalSubMenuText, controlsSubMenuText, crosshairSubMenuText, extraSubMenuText;
     public GameObject generalScrollView, controlsScrollView, crosshairScrollView, extraScrollView;

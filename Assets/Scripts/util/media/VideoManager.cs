@@ -16,13 +16,13 @@ public class VideoManager : MonoBehaviour {
     /// <param name="targetColor"></param>
     /// <param name="skybox"></param>
     public static VideoClip[] PopulateGamemodePreviews(string currentGamemode, string targetColor, string skybox) {
-        videoManager.previewsObject[0] = LoopVideoClips("Gamemode-Scatter", targetColor, skybox);
-        videoManager.previewsObject[1] = LoopVideoClips("Gamemode-Flick", targetColor, skybox);
-        videoManager.previewsObject[2] = LoopVideoClips("Gamemode-Grid", targetColor, skybox);
-        videoManager.previewsObject[3] = LoopVideoClips("Gamemode-Grid2", targetColor, skybox);
-        videoManager.previewsObject[4] = LoopVideoClips("Gamemode-Pairs", targetColor, skybox);
-        videoManager.previewsObject[5] = LoopVideoClips("Gamemode-Follow", targetColor, skybox);
-        videoManager.previewsObject[6] = LoopVideoClips(currentGamemode, targetColor, skybox);
+        videoManager.previewsObject[0] = LoopVideoClips("Gamemode-Scatter", targetColor, "Skybox-Slate");
+        videoManager.previewsObject[1] = LoopVideoClips("Gamemode-Flick", targetColor, "Skybox-Slate");
+        videoManager.previewsObject[2] = LoopVideoClips("Gamemode-Grid", targetColor, "Skybox-Slate");
+        videoManager.previewsObject[3] = LoopVideoClips("Gamemode-Grid2", targetColor, "Skybox-Slate");
+        videoManager.previewsObject[4] = LoopVideoClips("Gamemode-Pairs", targetColor, "Skybox-Slate");
+        videoManager.previewsObject[5] = LoopVideoClips("Gamemode-Follow", targetColor, "Skybox-Slate");
+        videoManager.previewsObject[6] = LoopVideoClips(currentGamemode, targetColor, "Skybox-Slate");
 
         return videoManager.previewsObject;
     }

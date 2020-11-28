@@ -87,7 +87,7 @@ public class ExtraSaveSystem : MonoBehaviour {
         MouseLook.mouseSensitivity   = 2.0f;
         StatsManager.showBackgrounds = true;
 
-        ExtraSettings.SaveAllExtraSettingsDefaults(60, true, false, true, 2.0f, true, false, true);
+        ExtraSettings.SaveAllExtraSettingsDefaults(60, true, true, true, 2.0f, true, false, true);
         GameUI.ShowWidgetsUI();
     }
 

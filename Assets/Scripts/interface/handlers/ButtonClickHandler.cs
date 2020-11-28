@@ -3,10 +3,15 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
+using SomeAimGame.Skybox;
+using SomeAimGame.Gamemode;
+using SomeAimGame.Targets;
+using SomeAimGame.Utilities;
+
 public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     public TMP_Text targetColorSelected, skyboxSelected;
     GameObject buttonBorder;
-    Gamemode gamemodeClickedName;
+    GamemodeType gamemodeClickedName;
 
     /// <summary>
     /// Closes settings panel.
@@ -52,7 +57,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     /// </summary>
     /// <param name="clickedButtonBorder"></param>
     public void SelectNewGamemode(GameObject clickedButtonBorder) {
-        gamemodeClickedName = GamemodeType.ReturnGamemodeType_Gamemode(clickedButtonBorder.transform.parent.name);
+        gamemodeClickedName = GamemodeUtil.ReturnGamemodeType_Gamemode(clickedButtonBorder.transform.parent.name);
         ClearGamemodeButtonBorders();
         clickedButtonBorder.GetComponent<Image>().color = InterfaceColors.selectedColor;
         clickedButtonBorder.SetActive(true);
@@ -61,7 +66,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
 
         // Populate selected gamemode based on button clicked in gamemode settings panel.
         GamemodeSelect.PopulateGamemodeSelect(gamemodeClickedName, CosmeticsSettings.quickStartGame);
-        GamemodeSelect.ClearGamemodeButtonColors(GameObject.Find($"{GamemodeType.ReturnGamemodeType_StringFull(gamemodeClickedName)}-Text (TMP)").GetComponent<TMP_Text>(), true, true);
+        GamemodeSelect.ClearGamemodeButtonColors(GameObject.Find($"{GamemodeUtil.ReturnGamemodeType_StringFull(gamemodeClickedName)}-Text (TMP)").GetComponent<TMP_Text>(), true, true);
 
         // EVENT:: for new gamemode button clicked
         //DevEventHandler.CheckInterfaceEvent($"\"{gamemodeClickedName}\" {I18nTextTranslator.SetTranslatedText("eventinterfacegamemodebutton")}");
@@ -74,10 +79,10 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     /// </summary>
     /// <param name="clickedButtonBorder"></param>
     public void SetNewTargetColor(GameObject clickedButtonBorder) {
-        TargetColor targetColorClickedName = TargetColorType.ReturnTargetColorType_TargetColor(clickedButtonBorder.transform.parent.name);
+        TargetType targetColorClickedName = TargetUtil.ReturnTargetColorType_TargetColor(clickedButtonBorder.transform.parent.name);
 
         // Primary target color cannot be red if gamemode is "Gamemode-Follow"
-        if (targetColorClickedName == TargetColor.RED && SpawnTargets.gamemode == Gamemode.FOLLOW) { return; }
+        if (targetColorClickedName == TargetType.RED && SpawnTargets.gamemode == GamemodeType.FOLLOW) { return; }
         if (NotificationHandler.notificationOpen) { NotificationHandler.HideNotification(); }
 
         SpawnTargets.targetColorReset = true;
@@ -93,28 +98,28 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
 
         // Change selected target color text based on button clicked in general settings panel.
         switch (targetColorClickedName) {
-            case TargetColor.RED:
+            case TargetType.RED:
                 targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colorred")}");
                 break;
-            case TargetColor.ORANGE:
+            case TargetType.ORANGE:
                 targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colororange")}");
                 break;
-            case TargetColor.YELLOW:
+            case TargetType.YELLOW:
                 targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("coloryellow")}");
                 break;
-            case TargetColor.GREEN:
+            case TargetType.GREEN:
                 targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colorgreen")}");
                 break;
-            case TargetColor.BLUE:
+            case TargetType.BLUE:
                 targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colorblue")}");
                 break;
-            case TargetColor.PURPLE:
+            case TargetType.PURPLE:
                 targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colorpurple")}");
                 break;
-            case TargetColor.PINK:
+            case TargetType.PINK:
                 targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colorpink")}");
                 break;
-            case TargetColor.WHITE:
+            case TargetType.WHITE:
                 targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colorwhite")}");
                 break;
         }
@@ -136,34 +141,36 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     /// </summary>
     /// <param name="clickedButtonBorder"></param>
     public void SetNewSkyboxColor(GameObject clickedButtonBorder) {
-        Skybox skyboxClickedName = SkyboxType.ReturnSkyboxType_Skybox(clickedButtonBorder.transform.parent.name);
+        SkyboxType skyboxClickedName = SkyboxUtil.ReturnSkyboxType_Skybox(clickedButtonBorder.transform.parent.name);
 
         ClearSkyboxButtonBorders();
         ButtonHoverHandler.selectedSkybox               = skyboxClickedName;
         clickedButtonBorder.GetComponent<Image>().color = InterfaceColors.selectedColor;
         clickedButtonBorder.SetActive(true);
 
+        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
+
         // Set new skybox, then save currently selected skybox in cosmetics.
         SkyboxHandler.SetNewSkybox(skyboxClickedName);
 
         // Change selected skybox text based on button clicked in general settings panel.
         switch (skyboxClickedName) {
-            case Skybox.PINK:
+            case SkyboxType.PINK:
                 skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxpink")}");
                 break;
-            case Skybox.GOLDEN:
+            case SkyboxType.GOLDEN:
                 skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxgolden")}");
                 break;
-            case Skybox.NIGHT:
+            case SkyboxType.NIGHT:
                 skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxnight")}");
                 break;
-            case Skybox.GREY:
+            case SkyboxType.GREY:
                 skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxgrey")}");
                 break;
-            case Skybox.BLUE:
+            case SkyboxType.BLUE:
                 skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxblue")}");
                 break;
-            case Skybox.SLATE:
+            case SkyboxType.SLATE:
                 skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxslate")}");
                 break;
         }
@@ -175,6 +182,8 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
         
         // Saves new selected skybox
         CosmeticsSettings.SaveSkyboxItem(skyboxClickedName);
+
+        SettingsPanel.LoadGamemodePreviews();
     }
 
     /// <summary>

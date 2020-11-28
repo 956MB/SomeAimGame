@@ -3,6 +3,11 @@ using UnityEngine;
 using UnityEngine.Video;
 //using UnityEditor;
 
+using SomeAimGame.Skybox;
+using SomeAimGame.Gamemode;
+using SomeAimGame.Targets;
+using SomeAimGame.Utilities;
+
 public class SettingsPanel : MonoBehaviour {
     public GameObject mainMenuCanvas, settingsPanel, afterPanel, extendedStatsPanel, steamDataContainer, devEventContainer, crosshairImage;
     public static bool settingsOpen          = false;
@@ -263,7 +268,7 @@ public class SettingsPanel : MonoBehaviour {
     /// Loads then plays all gamemode preview videos in their repsective buttons from the current gamemode, target color and skybox.
     /// </summary>
     public static void LoadGamemodePreviews() {
-        gamemodePreviewVideos = VideoManager.PopulateGamemodePreviews(GamemodeType.ReturnGamemodeType_StringFull(CosmeticsSettings.gamemode), TargetColorType.ReturnTargetColorType_StringFull(CosmeticsSettings.targetColor), SkyboxType.ReturnSkyboxType_StringFull(CosmeticsSettings.skybox));
+        gamemodePreviewVideos = VideoManager.PopulateGamemodePreviews(GamemodeUtil.ReturnGamemodeType_StringFull(CosmeticsSettings.gamemode), TargetUtil.ReturnTargetColorType_StringFull(CosmeticsSettings.targetColor), SkyboxUtil.ReturnSkyboxType_StringFull(CosmeticsSettings.skybox));
 
         // Set clips for every gamemode preview button.
         settings.scatterVideoPlayer.clip  = gamemodePreviewVideos[0];

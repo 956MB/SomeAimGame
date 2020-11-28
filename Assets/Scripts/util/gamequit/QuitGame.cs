@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+using SomeAimGame.Utilities;
+
 public class QuitGame : MonoBehaviour {
     public GameObject parentContainerObject, confirmationContainer, quitButton, cancelButton;
     public static bool gameQuitConfirmationOpen = false;

@@ -3,6 +3,8 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using TMPro;
 
+using SomeAimGame.Utilities;
+
 public class KeybindSaveSystem : MonoBehaviour {
     public TMP_Text shootKeybindText, toggleWidgetsKeybindText, gameRestartKeybindText, toggleAARKeybindText, toggleSettingsKeybindText;
     public TMP_Text AARrestartButton, AARcloseButton;

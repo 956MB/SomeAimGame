@@ -1,14 +1,17 @@
-﻿
+﻿using SomeAimGame.Skybox;
+using SomeAimGame.Gamemode;
+using SomeAimGame.Targets;
+
 [System.Serializable]
 public class CosmeticsDataSerial {
-    public Gamemode    gamemode;
-    public TargetColor targetColor;
-    public Skybox      skybox;
-    public float       afterActionReportPanelX;
-    public float       afterActionReportPanelY;
-    public float       extraStatsPanelX;
-    public float       extraStatsPanelY;
-    public bool        quickStartGame;
+    public GamemodeType gamemode;
+    public TargetType   targetColor;
+    public SkyboxType   skybox;
+    public float        afterActionReportPanelX;
+    public float        afterActionReportPanelY;
+    public float        extraStatsPanelX;
+    public float        extraStatsPanelY;
+    public bool         quickStartGame;
 
     public CosmeticsDataSerial() {
         gamemode                = CosmeticsSettings.gamemode;

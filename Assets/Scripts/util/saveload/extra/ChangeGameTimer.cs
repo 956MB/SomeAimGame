@@ -2,6 +2,8 @@
 using UnityEngine.EventSystems;
 using TMPro;
 
+using SomeAimGame.Utilities;
+
 public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public TMP_Text textInfinity, text30, text60, text90, text120;
     public static string selectedTimeText = "60Text (TMP)";

@@ -1,7 +1,7 @@
-﻿using System;
-using System.ComponentModel.Design;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+
+using SomeAimGame.Utilities;
 
 public enum CrosshairColorChannel
 {

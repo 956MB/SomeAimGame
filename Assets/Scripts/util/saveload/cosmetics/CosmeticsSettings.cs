@@ -1,14 +1,17 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
+
+using SomeAimGame.Skybox;
+using SomeAimGame.Gamemode;
+using SomeAimGame.Targets;
 
 public class CosmeticsSettings : MonoBehaviour {
-    public static Gamemode    gamemode                = Gamemode.SCATTER;
-    public static TargetColor targetColor             = TargetColor.YELLOW;
-    public static Skybox      skybox                  = Skybox.SLATE;
-    public static float       afterActionReportPanelX = 960f;
-    public static float       afterActionReportPanelY = 540f;
-    public static float       extraStatsPanelX        = 1455.711f;
-    public static float       extraStatsPanelY        = 638.3904f;
+    public static GamemodeType gamemode                = GamemodeType.SCATTER;
+    public static TargetType   targetColor             = TargetType.YELLOW;
+    public static SkyboxType   skybox                  = SkyboxType.SLATE;
+    public static float        afterActionReportPanelX = 960f;
+    public static float        afterActionReportPanelY = 540f;
+    public static float        extraStatsPanelX        = 1455.711f;
+    public static float        extraStatsPanelY        = 638.3904f;
     
     public static bool quickStartGame = false;
 
@@ -19,7 +22,7 @@ public class CosmeticsSettings : MonoBehaviour {
     /// Saves supplied gamemode string (setGamemode) to cosmetics settings object (CosmeticsSettings), then saves cosmetics settings object.
     /// </summary>
     /// <param name="setGamemode"></param>
-    public static void SaveGamemodeItem(Gamemode setGamemode) {
+    public static void SaveGamemodeItem(GamemodeType setGamemode) {
         gamemode = setGamemode;
         cosmeticsSettings.SaveCosmeticsSettings();
     }
@@ -28,7 +31,7 @@ public class CosmeticsSettings : MonoBehaviour {
     /// Saves supplied target color string (setTargetColor) to cosmetics settings object (CosmeticsSettings), then saves cosmetics settings object.
     /// </summary>
     /// <param name="setTargetColor"></param>
-    public static void SaveTargetColorItem(TargetColor setTargetColor) {
+    public static void SaveTargetColorItem(TargetType setTargetColor) {
         //Debug.Log("save target color here????" + setTargetColor);
         targetColor = setTargetColor;
         cosmeticsSettings.SaveCosmeticsSettings();
@@ -38,7 +41,7 @@ public class CosmeticsSettings : MonoBehaviour {
     /// Saves supplied skybox string (setSkybox) to cosmetics settings object (CosmeticsSettings), then saves cosmetics settings object.
     /// </summary>
     /// <param name="setSkybox"></param>
-    public static void SaveSkyboxItem(Skybox setSkybox) {
+    public static void SaveSkyboxItem(SkyboxType setSkybox) {
         skybox = setSkybox;
         cosmeticsSettings.SaveCosmeticsSettings();
     }
@@ -87,7 +90,7 @@ public class CosmeticsSettings : MonoBehaviour {
     /// <param name="setPanelSettingsY"></param>
     /// <param name="setPanelExtraStatsX"></param>
     /// <param name="setPanelExtraStatsY"></param>
-    public static void SaveAllCosmeticsToggleDefaults(Gamemode setGamemode, TargetColor setTargetColor, Skybox setSkybox, float setPanelSettingsX, float setPanelSettingsY, float setPanelExtraStatsX, float setPanelExtraStatsY, bool setQuickStart) {
+    public static void SaveAllCosmeticsToggleDefaults(GamemodeType setGamemode, TargetType setTargetColor, SkyboxType setSkybox, float setPanelSettingsX, float setPanelSettingsY, float setPanelExtraStatsX, float setPanelExtraStatsY, bool setQuickStart) {
         gamemode                = setGamemode;
         targetColor             = setTargetColor;
         skybox                  = setSkybox;

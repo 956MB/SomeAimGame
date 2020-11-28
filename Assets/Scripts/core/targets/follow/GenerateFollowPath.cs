@@ -2,6 +2,8 @@
 using UnityEngine;
 using PathCreation;
 
+using SomeAimGame.Targets;
+
 public class GenerateFollowPath : MonoBehaviour {
     public static List<Vector3> waypoints;
     public static bool closedLoop   = true;

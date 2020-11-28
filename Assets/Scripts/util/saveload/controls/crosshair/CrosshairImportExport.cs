@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using System.Collections;
+using TMPro;
+
+using SomeAimGame.Utilities;
 
 /// <summary>
 /// Extension for TMP_InputField that clears text box.
@@ -82,6 +84,10 @@ public class CrosshairImportExport : MonoBehaviour {
         if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
     }
 
+    public void CancelCloseImportExport() {
+        CloseImportExportPanel_Static();
+    }
+
     /// <summary>
     /// Opens import/export crosshair panel.
     /// </summary>
@@ -156,7 +162,8 @@ public class CrosshairImportExport : MonoBehaviour {
 
     public static void CheckCloseCrosshairActions() {
         // Closes crosshair import/export panel if open.
-        if (importExportPanelOpen) { CloseImportExportPanel_Static(); }
+        //if (importExportPanelOpen) { CloseImportExportPanel_Static(); }
+
         // Disables crosshair reset confirmation if active.
         if (resetConfirmActive) { SetResetDefault(); }
         // Closes crosshair presets panel if open.

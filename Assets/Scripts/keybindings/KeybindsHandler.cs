@@ -2,6 +2,8 @@
 using UnityEngine.EventSystems;
 using TMPro;
 
+using SomeAimGame.Utilities;
+
 public class KeybindsHandler : MonoBehaviour, IPointerEnterHandler {
     private static KeyCode clickedKeycode;
     public static GameObject currentKey;
