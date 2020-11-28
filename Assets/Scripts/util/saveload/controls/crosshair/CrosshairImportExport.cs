@@ -121,6 +121,7 @@ public class CrosshairImportExport : MonoBehaviour {
         if (SimpleCrosshair.ValidateSetCrosshairString(importString, true)) {
             SetCrosshairNotification_Delay(I18nTextTranslator.SetTranslatedText("crosshairsetsuccess"), InterfaceColors.notificationColorGreen, true);
             crosshairStringInputField.clear();
+            CrosshairOptionsObject.crossahairSaveReady = true;
 
             if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
         } else {
@@ -134,6 +135,9 @@ public class CrosshairImportExport : MonoBehaviour {
     /// Exports (copies) current crosshair string to clipboard.
     /// </summary>
     public void ExportCrosshairString() {
+        // Save crosshair string if any changes made before export.
+        CrosshairOptionsObject.SaveCrosshairObject();
+        //Debug.Log($"updated string?? {SimpleCrosshair.SetCrosshairString_Static()}");
         Util.CopyToClipboard(SimpleCrosshair.ReturnExportedCrosshairString());
         SetCrosshairNotification_Delay(I18nTextTranslator.SetTranslatedText("crosshairsetexported"), InterfaceColors.hoveredColor, true);
 

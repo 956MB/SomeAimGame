@@ -183,10 +183,10 @@ public class CrosshairOptionsObject : MonoBehaviour {
     /// <summary>
     /// Saves entire crosshair object to crosshair.settings if 'crossahairSaveReady' set true.
     /// </summary>
-    public static void SaveCrosshairObject(bool overrideSave) {
+    public static void SaveCrosshairObject(bool overrideSave = false) {
         if (crossahairSaveReady || overrideSave) {
             //Debug.Log($"New string:               {crosshairOptions.simpleCrosshair.ExportCrosshairString()}");
-            //CrosshairSettings.SaveCrosshairString(crosshairOptions.simpleCrosshair.ExportCrosshairString());
+            SimpleCrosshair.SetCrosshairString_Static();
             CrosshairSettings.SaveCrosshairSettings_Static();
             crossahairSaveReady = false;
         }
