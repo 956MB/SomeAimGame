@@ -141,7 +141,7 @@ keybindrebinded=리 바인딩되었습니다
 #
 #
 # // controls section items
-shoot=''사격'' .
+shoot=''사격''
 showhidesettings=설정 표시 / 숨기기
 showhideafteractionreport='작업 후 보고서'표시 / 숨기기
 showhideworldui=월드 UI 표시 / 숨기기
@@ -215,7 +215,7 @@ kpswidgetpre=KPS:
 # // tooltips
 gametimertooltip=게임 타이머를 초 단위로 설정합니다.
 targetsoundtooltip=목표물이 맞았을 때 나는 소리를 켜거나 끕니다.
-uisoundtooltip=설정의 UI 요소를 마우스로 가리 키거나 클릭 할 때 나는 소리를 켜거나 끕니다.
+uisoundtooltip=설정의 UI 요소를 마우스로 가리 키거나 클릭 할 때 발생하는 소리를 켜거나 끕니다.
 fpscountertooltip=화면 왼쪽 상단에서 FPS 카운터를 켜거나 끕니다.
 showaartooltip=게임 종료시 'AfterActionReport'패널 표시를 켜거나 끕니다.
 quickstarttooltip=설정에서 '게임 모드 선택'하위 패널을 켜거나 끄고, 대신 클릭 한 새 게임 모드를 즉시 시작합니다.
@@ -234,6 +234,7 @@ languageactive=선택한 언어가 이미 활성화되어 있습니다.
 #
 # // steam data container items
 gamelanguage=언어
+gamelanguagelong=게임 UI 요소의 언어
 steamdataplaceholderusername=User0
 patchnotesbutton=패치 노트
 quitconfirmbutton=확실합니까?

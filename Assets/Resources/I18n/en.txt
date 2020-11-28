@@ -215,7 +215,7 @@ kpswidgetpre=KPS:
 # // tooltips
 gametimertooltip=Sets the game timer in seconds.
 targetsoundtooltip=Toggles on/off the sound made when targets are hit.
-uisoundtooltip=Toggles on/off the sound made when UI elements in settings are hovered/clicked.
+uisoundtooltip=Toggles on/off sound made when UI elements in settings are hovered/clicked.
 fpscountertooltip=Toggles FPS counter on/off in the top left of screen.
 showaartooltip=Toggles on/off showing the 'AfterActionReport' panel at the end of games.
 quickstarttooltip=Toggles on/off the 'gamemode select' sub panel in settings, and instead instantly launches new gamemodes that are clicked.
@@ -234,6 +234,7 @@ languageactive=LANGUAGE YOU SELECTED IS ALREADY ACTIVE.
 #
 # // steam data container items
 gamelanguage=Language
+gamelanguagelong=Language of game UI
 steamdataplaceholderusername=User0
 patchnotesbutton=PATCH NOTES
 quitconfirmbutton=ARE YOU SURE?

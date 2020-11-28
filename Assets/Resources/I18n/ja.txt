@@ -234,6 +234,7 @@ languageactive=選択した言語はすでにアクティブです。
 #
 # // steam data container items
 gamelanguage=言語
+gamelanguagelong=ゲームUI要素の言語
 steamdataplaceholderusername=User0
 patchnotesbutton=パッチノート
 quitconfirmbutton=本気ですか？

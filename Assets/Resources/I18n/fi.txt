@@ -215,7 +215,7 @@ kpswidgetpre=KPS:
 # // tooltips
 gametimertooltip=Asettaa peliajastimen sekunneissa.
 targetsoundtooltip=Vaihtaa päälle / pois äänen, joka kuuluu, kun kohteet osuvat.
-uisoundtooltip=Kytkee päälle / pois päältä äänen, joka kuuluu, kun asetusten käyttöliittymän elementtejä siirretään hiiren osoittimelle / napsautetaan.
+uisoundtooltip=Vaihtaa päälle / pois-äänen, joka kuuluu, kun asetuksissa olevia käyttöliittymän elementtejä siirretään hiiren osoittimelle / napsautetaan.
 fpscountertooltip=Vaihtaa FPS-laskurin päälle / pois ruudun vasemmassa yläkulmassa.
 showaartooltip=Vaihtaa päälle / pois, kun AfterActionReport-paneeli näkyy pelien lopussa.
 quickstarttooltip=Kytkee 'gamemode select' -alipaneelin päälle / pois asetuksista ja käynnistää sen sijaan uudet napsautetut pelitilat.
@@ -234,6 +234,7 @@ languageactive=VALITSEMASI KIELI ON JO AKTIIVINEN.
 #
 # // steam data container items
 gamelanguage=Kieli
+gamelanguagelong=Pelin käyttöliittymän kieli
 steamdataplaceholderusername=User0
 patchnotesbutton=PATCH-HUOMAUTUKSET
 quitconfirmbutton=OLETKO VARMA?

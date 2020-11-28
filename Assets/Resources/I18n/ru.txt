@@ -215,7 +215,7 @@ kpswidgetpre=KPS:
 # // tooltips
 gametimertooltip=Устанавливает игровой таймер в секундах.
 targetsoundtooltip=Включает / выключает звук, издаваемый при поражении цели.
-uisoundtooltip=Включает / выключает звук, издаваемый при наведении / нажатии элементов пользовательского интерфейса в настройках.
+uisoundtooltip=Включает / выключает звук при наведении / щелчке по элементам пользовательского интерфейса в настройках.
 fpscountertooltip=Включает / выключает счетчик FPS в верхнем левом углу экрана.
 showaartooltip=Включает / выключает отображение панели AfterActionReport в конце игры.
 quickstarttooltip=Включает / выключает субпанель «Выбор игрового режима» в настройках и вместо этого мгновенно запускает новые игровые режимы, по которым щелкают.
@@ -234,6 +234,7 @@ languageactive=ВЫБРАННЫЙ ЯЗЫК УЖЕ АКТИВЕН.
 #
 # // steam data container items
 gamelanguage=Язык
+gamelanguagelong=Язык элементов интерфейса игры
 steamdataplaceholderusername=User0
 patchnotesbutton=ЗАМЕТКИ О ПАТЧЕ
 quitconfirmbutton=ТЫ УВЕРЕН?
