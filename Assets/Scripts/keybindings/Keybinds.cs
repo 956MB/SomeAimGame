@@ -70,6 +70,8 @@ public class Keybinds : MonoBehaviour {
             } else {
                 if (!SettingsPanel.afterActionReportOpen) {
                     SettingsPanel.OpenSettingsPanel();
+                } else {
+                    SettingsPanel.CloseAfterActionReport();
                 }
             }
         }
