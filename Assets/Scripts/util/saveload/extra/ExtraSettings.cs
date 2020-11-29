@@ -8,7 +8,7 @@ public class ExtraSettings : MonoBehaviour {
     public static float mouseSensitivity          = 2.0f;
     public static bool  hideUI                    = false;
     public static bool  showExtraStats            = false;
-    public static bool  showExtraStatsBackgrounds = false;
+    public static bool  showExtraStatsBackgrounds = true;
 
     private static ExtraSettings extraSettings;
     void Awake() { extraSettings = this; }
