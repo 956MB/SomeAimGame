@@ -34,7 +34,6 @@ public class SettingsPanel : MonoBehaviour {
         afterActionReportSet = false;
 
         // Load target color, skybox and gamemode previews.
-        LoadGamemodePreviews();
         LoadTargetColorThumbnails();
         LoadSkyboxThumbnails();
 

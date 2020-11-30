@@ -74,6 +74,8 @@ public class CosmeticsSaveSystem : MonoBehaviour {
         } else {
             InitCosmeticsSettingsDefaults();
         }
+
+        SettingsPanel.LoadGamemodePreviews();
     }
 
     /// <summary>
@@ -150,6 +152,8 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     /// <param name="targetColor"></param>
     /// <param name="gamemode"></param>
     private static void SetTargetColor(TargetType targetColor, GamemodeType gamemode) {
+        Debug.Log($"saved targetColor: {targetColor}");
+
         if (gamemode == GamemodeType.FOLLOW) {
             SpawnTargets.SetTargetColor(targetColor, true);
         } else {
