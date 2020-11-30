@@ -130,4 +130,8 @@ public class SubMenuHandler : MonoBehaviour {
         ScrollRectExtension.ScrollToTop(subMenu.crosshairScrollView.GetComponent<ScrollRect>());
         ScrollRectExtension.ScrollToTop(subMenu.extraScrollView.GetComponent<ScrollRect>());
     }
+
+    public static void ResetCrosshairScrollview() {
+        ScrollRectExtension.ScrollToTop(subMenu.crosshairScrollView.GetComponent<ScrollRect>());
+    }
 }
