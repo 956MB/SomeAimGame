@@ -29,11 +29,16 @@ namespace SomeAimGame.Utilities {
         /// </summary>
         public static void DisableCA() { ca.enabled.value = false; }
 
+        /// <summary>
+        /// Enables both DepthOfField and ChromaticAberation post process effects.
+        /// </summary>
         public static void EnableEffects() {
             EnableDOF();
             EnableCA();
         }
-
+        /// <summary>
+        /// Disables both DepthOfField and ChromaticAberation post process effects.
+        /// </summary>
         public static void DisableEffects() {
             DisableDOF();
             DisableCA();
