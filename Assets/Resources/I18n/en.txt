@@ -66,6 +66,7 @@ Follow=Follow
 targetcolor=Target Color
 skybox=Skybox
 crosshairpresets=Presets
+settingsclose=CLOSE SETTINGS
 #
 #
 # // target colors
@@ -230,6 +231,7 @@ selectedgamemodewarning=SELECTED GAMEMODE IS ALREADY ACTIVE.
 languagerestartnotification=LANGUAGE SELECTION WILL TAKE EFFECT ON NEXT RESTART.
 languagetemporarilydisabled=LANGUAGE SELECTION TEMPORARILY DISABLED.
 languageactive=LANGUAGE YOU SELECTED IS ALREADY ACTIVE.
+presetcrosshairset=PRESET CROSSHAIR SUCCESSFULLY APPLIED.
 #
 #
 # // steam data container items

@@ -66,6 +66,7 @@ Follow=フォローする
 targetcolor=ターゲットカラー
 skybox=スカイボックス
 crosshairpresets=プリセット
+settingsclose=設定を閉じる
 #
 #
 # // target colors
@@ -230,6 +231,7 @@ selectedgamemodewarning=選択したゲームモードはすでにアクティ�
 languagerestartnotification=言語の選択は、次回の再起動時に影響します。
 languagetemporarilydisabled=言語選択が一時的に無効になっています。
 languageactive=選択した言語はすでにアクティブです。
+presetcrosshairset=プリセットクロスエアが正常に適用されました。
 #
 #
 # // steam data container items

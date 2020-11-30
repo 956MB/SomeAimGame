@@ -66,6 +66,7 @@ Follow=Seuraa
 targetcolor=Kohteen väri
 skybox=Taivas
 crosshairpresets=Esiasetukset
+settingsclose=SULJE ASETUKSET
 #
 #
 # // target colors
@@ -230,6 +231,7 @@ selectedgamemodewarning=VALITTU PELIMoodi on jo aktiivinen.
 languagerestartnotification=KIELEN VALINTA VAIKUTTAA SEURAAVAAN UUDELLEEN Käynnistykseen.
 languagetemporarilydisabled=KIELEN VALINTA TILAPÄISESTI POIS.
 languageactive=VALITSEMASI KIELI ON JO AKTIIVINEN.
+presetcrosshairset=ESIKÄYTETTY RISTIKOIDEN MENESTYMINEN TÄYDELLISESTI.
 #
 #
 # // steam data container items

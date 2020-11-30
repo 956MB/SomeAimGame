@@ -66,6 +66,7 @@ Follow=따르다
 targetcolor=대상 색상
 skybox=스카이 박스
 crosshairpresets=사전 설정
+settingsclose=설정 닫기
 #
 #
 # // target colors
@@ -230,6 +231,7 @@ selectedgamemodewarning=선택한 게임 모드가 이미 활성화되어 있습
 languagerestartnotification=언어 선택은 다음에 다시 시작할 때 적용됩니다.
 languagetemporarilydisabled=언어 선택이 일시적으로 비활성화되었습니다.
 languageactive=선택한 언어가 이미 활성화되어 있습니다.
+presetcrosshairset=PRESET CROSSHAIR가 성공적으로 적용되었습니다.
 #
 #
 # // steam data container items

@@ -66,6 +66,7 @@ Follow=Cледить
 targetcolor=Целевой цвет
 skybox=skybox
 crosshairpresets=Пресеты
+settingsclose=ЗАКРЫТЬ НАСТРОЙКИ
 #
 #
 # // target colors
@@ -230,6 +231,7 @@ selectedgamemodewarning=ВЫБРАННЫЙ ИГРОВОЙ РЕЖИМ УЖЕ АК
 languagerestartnotification=ВЫБОР ЯЗЫКА ПРИНИМАЕТ ЭФФЕКТИВНОСТЬ ПРИ СЛЕДУЮЩЕМ ПЕРЕЗАПУСКЕ.
 languagetemporarilydisabled=ВЫБОР ЯЗЫКА ВРЕМЕННО ОТКЛЮЧЕН.
 languageactive=ВЫБРАННЫЙ ЯЗЫК УЖЕ АКТИВЕН.
+presetcrosshairset=ПРЕДУСТАНОВЛЕННЫЙ ПЕРЕКРЕСТОК УСПЕШНО ПРИМЕНЕН.
 #
 #
 # // steam data container items
