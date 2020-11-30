@@ -96,6 +96,7 @@ public class CrosshairImportExport : MonoBehaviour {
             crosshairImportExport.importExportPanel.SetActive(true);
             Util.RefreshRootLayoutGroup(crosshairImportExport.parentCrosshairGroup);
             Util.RefreshRootLayoutGroup(crosshairImportExport.importExportPanel);
+            SubMenuHandler.ResetCrosshairScrollview();
             importExportPanelOpen = true;
         }
     }

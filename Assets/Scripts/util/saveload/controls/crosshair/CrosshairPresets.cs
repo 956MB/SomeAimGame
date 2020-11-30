@@ -9,6 +9,10 @@ public class CrosshairPresets : MonoBehaviour {
     private static CrosshairPresets crosshairPresets;
     void Awake() { crosshairPresets = this; }
 
+    public static void SetPresetCrosshair(string presetButtonName) {
+
+    }
+
     /// <summary>
     /// Toggles crosshair presets panel open/closed.
     /// </summary>
@@ -30,6 +34,7 @@ public class CrosshairPresets : MonoBehaviour {
             crosshairPresets.presetsPanel.SetActive(true);
             Util.RefreshRootLayoutGroup(crosshairPresets.parentCrosshairGroup);
             Util.RefreshRootLayoutGroup(crosshairPresets.presetsPanel);
+            SubMenuHandler.ResetCrosshairScrollview();
             crosshairPresetsPanelOpen = true;
         }
     }
