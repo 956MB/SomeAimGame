@@ -10,13 +10,12 @@ using SomeAimGame.Targets;
 using SomeAimGame.Utilities;
 
 public class GameUI : MonoBehaviour {
-    public TMP_Text timeText, scoreText, scoreBonusText, accuracyText, streakText, ttkText, kpsText, preTipText, reactionTimeText;
+    public TMP_Text timeText, scoreText, accuracyText, streakText, ttkText, kpsText;
     public static bool UIHidden;
     public static bool coroutinesRunning = false;
     public static string timeFormatted;
-    public GameObject UICanvas, widgetsUICanvas, newTimerCanvasImage;
-    private Coroutine timerCoroutine;
-    private Coroutine spawnScatterCoroutine;
+    public GameObject widgetsUICanvas;
+    private Coroutine timerCoroutine, spawnScatterCoroutine;
 
     // Core game score values
     // TODO: Maybe add AimLab like score system. Score up/down amount increases/decreases with streaks.
