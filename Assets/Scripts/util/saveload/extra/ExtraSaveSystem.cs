@@ -16,8 +16,8 @@ public class ExtraSaveSystem : MonoBehaviour {
     /// <param name="extraSettings"></param>
     public static void SaveExtraSettingsData(ExtraSettings extraSettings) {
         BinaryFormatter formatter = new BinaryFormatter();
-        string dirPath            = Application.persistentDataPath + "/settings";
-        string filePath           = dirPath + "/extra.settings";
+        string dirPath            = Application.persistentDataPath + "/prefs";
+        string filePath           = dirPath + "/sag_extra.prefs";
 
         DirectoryInfo dirInf = new DirectoryInfo(dirPath);
         if (!dirInf.Exists) { dirInf.Create(); }
@@ -33,7 +33,7 @@ public class ExtraSaveSystem : MonoBehaviour {
     /// </summary>
     /// <returns></returns>
     public static ExtraSettingsDataSerial LoadExtraSettingsData() {
-        string path = Application.persistentDataPath + "/settings/extra.settings";
+        string path = Application.persistentDataPath + "/prefs/sag_extra.prefs";
         if (File.Exists(path)) {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream         = new FileStream(path, FileMode.Open);

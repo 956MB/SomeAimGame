@@ -27,8 +27,8 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     /// <param name="cosmeticsSettings"></param>
     public static void SaveCosmeticsSettingsData(CosmeticsSettings cosmeticsSettings) {
         BinaryFormatter formatter = new BinaryFormatter();
-        string dirPath            = Application.persistentDataPath + "/settings";
-        string filePath           = dirPath + "/cosmetics.settings";
+        string dirPath            = Application.persistentDataPath + "/prefs";
+        string filePath           = dirPath + "/sag_cosmetics.prefs";
 
         DirectoryInfo dirInf = new DirectoryInfo(dirPath);
         if (!dirInf.Exists) { dirInf.Create(); }
@@ -44,7 +44,7 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     /// </summary>
     /// <returns></returns>
     public static CosmeticsDataSerial LoadCosmeticsSettingsData() {
-        string path = Application.persistentDataPath + "/settings/cosmetics.settings";
+        string path = Application.persistentDataPath + "/prefs/sag_cosmetics.prefs";
         if (File.Exists(path)) {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream         = new FileStream(path, FileMode.Open);
@@ -152,8 +152,6 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     /// <param name="targetColor"></param>
     /// <param name="gamemode"></param>
     private static void SetTargetColor(TargetType targetColor, GamemodeType gamemode) {
-        Debug.Log($"saved targetColor: {targetColor}");
-
         if (gamemode == GamemodeType.FOLLOW) {
             SpawnTargets.SetTargetColor(targetColor, true);
         } else {

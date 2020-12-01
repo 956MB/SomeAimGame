@@ -17,8 +17,8 @@ public class WidgetSaveSystem : MonoBehaviour {
     /// <param name="widgetSettings"></param>
     public static void SaveWidgetSettingsData(WidgetSettings widgetSettings) {
         BinaryFormatter formatter = new BinaryFormatter();
-        string dirPath            = Application.persistentDataPath + "/settings";
-        string filePath           = dirPath + "/widget.settings";
+        string dirPath            = Application.persistentDataPath + "/prefs";
+        string filePath           = dirPath + "/sag_widgets.prefs";
 
         DirectoryInfo dirInf = new DirectoryInfo(dirPath);
         if (!dirInf.Exists) { dirInf.Create(); }
@@ -34,7 +34,7 @@ public class WidgetSaveSystem : MonoBehaviour {
     /// </summary>
     /// <returns></returns>
     public static WidgetSettingsDataSerial LoadWidgetSettingsData() {
-        string path = Application.persistentDataPath + "/settings/widget.settings";
+        string path = Application.persistentDataPath + "/prefs/sag_widgets.prefs";
         if (File.Exists(path)) {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream         = new FileStream(path, FileMode.Open);

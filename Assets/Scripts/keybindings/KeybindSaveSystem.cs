@@ -18,8 +18,8 @@ public class KeybindSaveSystem : MonoBehaviour {
     /// <param name="keybindSettings"></param>
     public static void SaveKeybindSettingsData(KeybindSettings keybindSettings) {
         BinaryFormatter formatter = new BinaryFormatter();
-        string dirPath = Application.persistentDataPath + "/settings";
-        string filePath = dirPath + "/keybind.settings";
+        string dirPath = Application.persistentDataPath + "/prefs";
+        string filePath = dirPath + "/sag_keybinds.prefs";
 
         DirectoryInfo dirInf = new DirectoryInfo(dirPath);
         if (!dirInf.Exists) { dirInf.Create(); }
@@ -35,7 +35,7 @@ public class KeybindSaveSystem : MonoBehaviour {
     /// </summary>
     /// <returns></returns>
     public static KeybindDataSerial LoadKeybindSettingsData() {
-        string path = Application.persistentDataPath + "/settings/keybind.settings";
+        string path = Application.persistentDataPath + "/prefs/sag_keybinds.prefs";
         if (File.Exists(path)) {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);

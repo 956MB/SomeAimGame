@@ -27,8 +27,8 @@ public class CrosshairSaveSystem : MonoBehaviour {
     /// <param name="crosshairSettings"></param>
     public static void SaveCrosshairSettingsData(CrosshairSettings crosshairSettings) {
         BinaryFormatter formatter = new BinaryFormatter();
-        string dirPath            = Application.persistentDataPath + "/settings";
-        string filePath           = dirPath + "/crosshair.settings";
+        string dirPath            = Application.persistentDataPath + "/prefs";
+        string filePath           = dirPath + "/sag_crosshair.prefs";
 
         DirectoryInfo dirInf = new DirectoryInfo(dirPath);
         if (!dirInf.Exists) { dirInf.Create(); }
@@ -44,7 +44,7 @@ public class CrosshairSaveSystem : MonoBehaviour {
     /// </summary>
     /// <returns></returns>
     public static CrosshairDataSerial LoadCrosshairSettingsData() {
-        string path = Application.persistentDataPath + "/settings/crosshair.settings";
+        string path = Application.persistentDataPath + "/prefs/sag_crosshair.prefs";
         if (File.Exists(path)) {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream         = new FileStream(path, FileMode.Open);
@@ -88,9 +88,6 @@ public class CrosshairSaveSystem : MonoBehaviour {
 
                 CrosshairOptionsObject.SetOutlineContainerState(loadedCrosshairData.outlineEnabled);
             }
-
-            //CrosshairOptionsObject.LoadNewCrosshairString("100602051255200050255");
-            //CrosshairOptionsObject.ExportCurrentCrosshairString();
         } else {
             //Debug.Log("failed to init cosmetics in 'initSettingsDefaults', cosmetics: " + loadedCosmeticsData);
             InitCrosshairSettingsDefaults();
@@ -106,65 +103,33 @@ public class CrosshairSaveSystem : MonoBehaviour {
     /// Inits default crosshair values and saves to file on first launch.
     /// </summary>
     public static void InitCrosshairSettingsDefaults() {
-        // All crosshair values.
-        crosshairSave.simpleCrosshair.SetTStyle(false, false);
-        crosshairSave.simpleCrosshair.SetCenterDot(false, false);
-        crosshairSave.simpleCrosshair.SetOutlineEnabled(true, false);
-        crosshairSave.simpleCrosshair.SetOutlineThickness(1, false);
-        crosshairSave.simpleCrosshair.SetSize(6, false);
-        crosshairSave.simpleCrosshair.SetThickness(1, false);
-        crosshairSave.simpleCrosshair.SetGap(5, false);
+        // Default Crosshair:
+        //
+        // 0        0          06    01         05   1        255  255    255   255    255         000           000          255
+        // T-Style  CenterDot  Size  Thickness  Gap  Outline  Red  Green  Blue  Alpha  RedOutline  GreenOutline  BlueOutline  AlphaOutline
+
+        SetCrosshairTStyleToggle(false, false);
+        SetCrosshairCenterDotToggle(false, false);
+        SetCrosshairSizeSlider(6f, false);
+        SetCrosshairThicknessSlider(1f, false);
+        SetCrosshairGapSlider(5, false);
+        SetCrosshairOutlineToggle(true, false);
         // Crosshair color
-        crosshairSave.simpleCrosshair.SetColor(CrosshairColorChannel.RED, 255, false);
-        crosshairSave.simpleCrosshair.SetColor(CrosshairColorChannel.GREEN, 255, false);
-        crosshairSave.simpleCrosshair.SetColor(CrosshairColorChannel.BLUE, 255, false);
-        crosshairSave.simpleCrosshair.SetColor(CrosshairColorChannel.ALPHA, 255, false);
+        SetCrosshairRedSlider(255f, false);
+        SetCrosshairGreenSlider(255f, false);
+        SetCrosshairBlueSlider(255f, false);
+        SetCrosshairAlphaSlider(255f, false);
         // Crosshair outline color
-        crosshairSave.simpleCrosshair.SetOutlineColor(CrosshairColorChannel.RED, 0, false);
-        crosshairSave.simpleCrosshair.SetOutlineColor(CrosshairColorChannel.GREEN, 0, false);
-        crosshairSave.simpleCrosshair.SetOutlineColor(CrosshairColorChannel.BLUE, 0, false);
-        crosshairSave.simpleCrosshair.SetOutlineColor(CrosshairColorChannel.ALPHA, 255, false);
+        SetCrosshairRedOutlineSlider(0f, false);
+        SetCrosshairGreenOutlineSlider(0f, false);
+        SetCrosshairBlueOutlineSlider(0f, false);
+        SetCrosshairAlphaOutlineSlider(255f, false);
 
         crosshairSave.simpleCrosshair.GenerateCrosshair();
 
-        // Sets all default crosshair values to their text placeholders.
-        CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairOutlineValueText, crosshairSave.crosshairOutlineValueTextPlaceholder, 1f);
-        CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairSizeValueText, crosshairSave.crosshairSizeValueTextPlaceholder, 6f);
-        CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairThicknessValueText, crosshairSave.crosshairThicknessValueTextPlaceholder, 1f);
-        CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairGapValueText, crosshairSave.crosshairGapValueTextPlaceholder, 5f);
-        // Crosshair color
-        CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairRedValueText, crosshairSave.crosshairRedValueTextPlaceholder, 255f);
-        CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairGreenValueText, crosshairSave.crosshairGreenValueTextPlaceholder, 255f);
-        CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairBlueValueText, crosshairSave.crosshairBlueValueTextPlaceholder, 255f);
-        CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairAlphaValueText, crosshairSave.crosshairAlphaValueTextPlaceholder, 255f);
-        // Crosshair outline color
-        CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairRedOutlineValueText, crosshairSave.crosshairRedOutlineValueTextPlaceholder, 0f);
-        CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairGreenOutlineValueText, crosshairSave.crosshairGreenOutlineValueTextPlaceholder, 0f);
-        CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairBlueOutlineValueText, crosshairSave.crosshairBlueOutlineValueTextPlaceholder, 0f);
-        CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairAlphaOutlineValueText, crosshairSave.crosshairAlphaOutlineValueTextPlaceholder, 255f);
-
-        // Sets all default crosshair values to their toggles/sliders.
-        CrosshairOptionsObject.SetCrosshairOptionToggle(crosshairSave.TStyleToggle, false);
-        CrosshairOptionsObject.SetCrosshairOptionToggle(crosshairSave.centerDotToggle, false);
-        CrosshairOptionsObject.SetCrosshairOptionToggle(crosshairSave.OutlineEnabledToggle, true);
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairOutlineSlider, 1f);
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairSizeSlider, 6f);
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairThicknessSlider, 1f);
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairGapSlider, 5f);
-        // Crosshair color
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairRedSlider, 255f);
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairGreenSlider, 255f);
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairBlueSlider, 255f);
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairAlphaSlider, 255f);
-        // Crosshair outline color
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairRedOutlineSlider, 0f);
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairGreenOutlineSlider, 0f);
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairBlueOutlineSlider, 0f);
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairAlphaOutlineSlider, 255f);
-
         CrosshairOptionsObject.SetOutlineContainerState(true);
 
-        // Saves defaults to new 'crosshair.settings' file.
+        // Saves defaults to new 'sag_crosshair.settings' file.
         CrosshairSettings.SaveAllCrosshairDefaults(false, false, 6f, 1f, 5f, true, 255f, 255f, 255f, 255f, 0f, 0f, 0f, 255f, "000601050255255255255000000000255");
     }
 
