@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+using SomeAimGame.Stats;
+
 public class ToggleHandler : MonoBehaviour {
     public Toggle checkToggle;
     private string clickedToggleName;

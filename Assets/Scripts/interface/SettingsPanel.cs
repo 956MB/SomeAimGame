@@ -7,6 +7,7 @@ using SomeAimGame.Skybox;
 using SomeAimGame.Gamemode;
 using SomeAimGame.Targets;
 using SomeAimGame.Utilities;
+using SomeAimGame.Stats;
 
 public class SettingsPanel : MonoBehaviour {
     public GameObject mainMenuCanvas, settingsPanel, afterPanel, extendedStatsPanel, steamDataContainer, devEventContainer, crosshairImage;

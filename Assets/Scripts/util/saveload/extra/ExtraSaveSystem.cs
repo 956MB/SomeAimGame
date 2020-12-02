@@ -2,7 +2,8 @@
 using UnityEngine.UI;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using TMPro;
+
+using SomeAimGame.Stats;
 
 public class ExtraSaveSystem : MonoBehaviour {
     public Toggle targetSoundToggleObject, UISoundToggleObject, ShowAARToggleObject, ShowExtraStatsToggleObject, ShowExtraStatsBackgroundsToggleObject;

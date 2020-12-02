@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+using SomeAimGame.Stats;
+
 public class MouseLook : MonoBehaviour {
     [Range(0, 10f)]
     public static float mouseSensitivity;

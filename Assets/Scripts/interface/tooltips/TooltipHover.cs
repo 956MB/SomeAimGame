@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
+using SomeAimGame.Stats;
+
 public class TooltipHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public string translateTextID;
 
