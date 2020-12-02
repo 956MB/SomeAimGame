@@ -7,13 +7,27 @@ using SomeAimGame.Targets;
 using SomeAimGame.Utilities;
 
 public class StatsManager : MonoBehaviour {
-    public TMP_Text titleText, showExtraGamemodeText, scoreText, gamemodeText, accuracyText, ttkText, kpsText, bestStreakText, targetsTotalText, targetsHitsText, targetsMissesText, scoreTitleText;
+    public TMP_Text AARTitleText, scoreTitleText, newHighscoreTitleText;
+
+    public TMP_Text scoreStatText, gamemodeStatText, accuracyStatText, ttkStatText, kpsStatText, bestStreakStatText, targetsTotalStatText, targetsHitsStatText, targetsMissesStatText;
+
     public TMP_Text scoreItem, accuracyItem, ttkItem, kpsItem, bestStreakItem, targetsTotalItem, taretsHitItem, targetsMissesItem;
+
     public TMP_Text scoreTextBest, accuracyTextBest, ttkTextBest, kpsTextBest, bestStreakTextBest, targetsTotalTextBest, taretsHitTextBest, targetsMissesTextBest;
+
     public TMP_Text scoreTextPrevious, accuracyTextPrevious, ttkTextPrevious, kpsTextPrevious, bestStreakTextPrevious, targetsTotalTextPrevious, taretsHitTextPrevious, targetsMissesTextPrevious;
+
     public TMP_Text scoreTextHighscore, accuracyTextHighscore, ttkTextHighscore, kpsTextHighscore, bestStreakTextHighscore, targetsTotalTextHighscore, taretsHitTextHighscore, targetsMissesTextHighscore;
-    public TMP_Text scoreEffectText, newHighscoreEffectText;
+
+    public TMP_Text scoreExtraInner, accuracyExtraInner, ttkExtraInner, kpsExtraInner, bestStreakExtraInner, targetsTotalExtraInner, taretsHitExtraInner, targetsMissesExtraInner;
+
+    public GameObject scoreContainerBackground, accuracyContainerBackground, ttkContainerBackground, kpsContainerBackground, bestStreakContainerBackground, targetsTotalContainerBackground, taretsHitContainerBackground, targetsMissesContainerBackground;
+
+    public GameObject parentStatGroup, diffVertical, statsVertical, itemsVetical;
+    //public GameObject accuracyStatGroup, ttkStatGroup, kpsStatGroup, bestStreakStatGroup, targetsTotalStatGroup, taretsHitStatGroup, targetsMissesStatGroup;
+
     public GameObject extraStatsPanel, aarScrollView;
+
     public Image highscoreLineTop, highscoreLineBottom;
     public static bool showBackgrounds  = true;
     public static bool backgroundsSaved = false;
@@ -28,12 +42,12 @@ public class StatsManager : MonoBehaviour {
     private static int scoreStat, accuracyStat, ttkStat, bestStreakStat, targetTotalStat, targetHitStat, targetMissesStat;
     private static double kpsStat;
 
-    private static StatsManager stats;
-    void Awake() { stats = this; }
+    private static StatsManager statsManager;
+    void Awake() { statsManager = this; }
 
     private void Start() {
         scoreTitleText.enabled         = true;
-        newHighscoreEffectText.enabled = false;
+        newHighscoreTitleText.enabled = false;
         backgroundsSaves               = new Color32[8];
     }
 
@@ -99,14 +113,14 @@ public class StatsManager : MonoBehaviour {
                 EnableNewHighscoreText();
                 LoadOldHighscore();
             } else {
-                stats.highscoreLineTop.color    = StatsUtil.GetLineColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue);
-                stats.highscoreLineBottom.color = StatsUtil.GetLineColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue);
+                statsManager.highscoreLineTop.color    = StatsUtil.GetLineColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue);
+                statsManager.highscoreLineBottom.color = StatsUtil.GetLineColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue);
             }
         } else {
             // No saved highscore on first run, sets current games run as new highscore.
-            stats.highscoreLineTop.color    = StatsUtil.neutralLineColor;
-            stats.highscoreLineBottom.color = StatsUtil.neutralLineColor;
-            stats.newHighscoreEffectText.transform.parent.gameObject.GetComponent<Image>().color = StatsUtil.neutralBackgroundColor;
+            statsManager.highscoreLineTop.color    = StatsUtil.neutralLineColor;
+            statsManager.highscoreLineBottom.color = StatsUtil.neutralLineColor;
+            statsManager.newHighscoreTitleText.transform.parent.gameObject.GetComponent<Image>().color = StatsUtil.neutralBackgroundColor;
             HighscoreSave.SaveNewHighscoreStats(GamemodeUtil.ReturnGamemodeType_StringShort(CosmeticsSettings.gamemode), scoreStat, accuracyStat, ttkStat, kpsStat, bestStreakStat, targetTotalStat, targetHitStat, targetMissesStat);
         }
 
@@ -120,15 +134,15 @@ public class StatsManager : MonoBehaviour {
     public static void SetAfterActionStats() {
         double kps = kpsStat;
 
-        stats.titleText.SetText($"{I18nTextTranslator.SetTranslatedText("afteractionreporttitle")} - {I18nTextTranslator.SetTranslatedText(GamemodeUtil.ReturnGamemodeType_StringShort(CosmeticsSettings.gamemode))}");
-        stats.scoreEffectText.SetText($"{string.Format("{0:n0}", scoreStat)}");
-        stats.accuracyText.SetText($"{accuracyStat}%");
-        stats.ttkText.SetText($"{string.Format("{0:n0}", ttkStat)}ms");
-        stats.kpsText.SetText(string.Format("{0:0.00}/s", kps));
-        stats.bestStreakText.SetText($"{string.Format("{0:n0}", bestStreakStat)}");
-        stats.targetsTotalText.SetText($"{targetTotalStat}");
-        stats.targetsHitsText.SetText($"{targetHitStat}");
-        stats.targetsMissesText.SetText($"{targetMissesStat}");
+        statsManager.AARTitleText.SetText($"{I18nTextTranslator.SetTranslatedText("afteractionreporttitle")} - {I18nTextTranslator.SetTranslatedText(GamemodeUtil.ReturnGamemodeType_StringShort(CosmeticsSettings.gamemode))}");
+        statsManager.scoreStatText.SetText($"{string.Format("{0:n0}", scoreStat)}");
+        statsManager.accuracyStatText.SetText($"{accuracyStat}%");
+        statsManager.ttkStatText.SetText($"{string.Format("{0:n0}", ttkStat)}ms");
+        statsManager.kpsStatText.SetText(string.Format("{0:0.00}/s", kps));
+        statsManager.bestStreakStatText.SetText($"{string.Format("{0:n0}", bestStreakStat)}");
+        statsManager.targetsTotalStatText.SetText($"{targetTotalStat}");
+        statsManager.targetsHitsStatText.SetText($"{targetHitStat}");
+        statsManager.targetsMissesStatText.SetText($"{targetMissesStat}");
 
         CheckHighscore(scoreStat);
         SetStatItems();
@@ -138,13 +152,13 @@ public class StatsManager : MonoBehaviour {
     /// Enables "NEW HIGHSCORE!" text in 'AfterActionReport' UI;
     /// </summary>
     private static void EnableNewHighscoreText() {
-        stats.newHighscoreEffectText.enabled = true;
-        stats.scoreTitleText.enabled         = false;
+        statsManager.newHighscoreTitleText.enabled = true;
+        statsManager.scoreTitleText.enabled         = false;
 
-        stats.newHighscoreEffectText.transform.parent.gameObject.GetComponent<Image>().color = StatsUtil.newHighscoreBackgroundColor;
+        statsManager.newHighscoreTitleText.transform.parent.gameObject.GetComponent<Image>().color = StatsUtil.newHighscoreBackgroundColor;
 
-        stats.highscoreLineTop.color    = StatsUtil.highscoreLineColor;
-        stats.highscoreLineBottom.color = StatsUtil.highscoreLineColor;
+        statsManager.highscoreLineTop.color    = StatsUtil.highscoreLineColor;
+        statsManager.highscoreLineBottom.color = StatsUtil.highscoreLineColor;
     }
 
     /// <summary>
@@ -158,28 +172,30 @@ public class StatsManager : MonoBehaviour {
             SetStatsItemsUpDown();
 
             // Sets last game stats text in 'ExtraStats' panel.
-            stats.scoreTextPrevious.SetText($"{string.Format("{0:0,.0}K", previousGameStats.scoreValue)}");
-            stats.accuracyTextPrevious.SetText($"{previousGameStats.accuracyValue}%");
-            stats.ttkTextPrevious.SetText($"{string.Format("{0:n0}", previousGameStats.ttkValue)}ms");
-            stats.kpsTextPrevious.SetText(string.Format("{0:0.00}/s", previousGameStats.kpsValue));
-            stats.bestStreakTextPrevious.SetText($"{string.Format("{0:n0}", previousGameStats.bestStreakValue)}");
-            stats.targetsTotalTextPrevious.SetText($"{previousGameStats.targetsTotalValue}");
-            stats.taretsHitTextPrevious.SetText($"{previousGameStats.targetsHitValue}");
-            stats.targetsMissesTextPrevious.SetText($"{previousGameStats.targetsMissesValue}");
+            statsManager.scoreTextPrevious.SetText($"{string.Format("{0:0,.0}K", previousGameStats.scoreValue)}");
+            statsManager.accuracyTextPrevious.SetText($"{previousGameStats.accuracyValue}%");
+            statsManager.ttkTextPrevious.SetText($"{string.Format("{0:n0}", previousGameStats.ttkValue)}ms");
+            statsManager.kpsTextPrevious.SetText(string.Format("{0:0.00}/s", previousGameStats.kpsValue));
+            statsManager.bestStreakTextPrevious.SetText($"{string.Format("{0:n0}", previousGameStats.bestStreakValue)}");
+            statsManager.targetsTotalTextPrevious.SetText($"{previousGameStats.targetsTotalValue}");
+            statsManager.taretsHitTextPrevious.SetText($"{previousGameStats.targetsHitValue}");
+            statsManager.targetsMissesTextPrevious.SetText($"{previousGameStats.targetsMissesValue}");
  
-            SetStatItemDiffs();
+            SetStatDiffs();
+            SetStatDiffsText();
+            //RefreshDiffGroups();
         }
 
         if (highscoreData != null) {
             // Set highscore run stats text in 'ExtraStats' panel.
-            stats.scoreTextHighscore.SetText($"{string.Format("{0:0,.0}K", highscoreData.scoreValue)}");
-            stats.accuracyTextHighscore.SetText($"{highscoreData.accuracyValue}%");
-            stats.ttkTextHighscore.SetText($"{string.Format("{0:n0}", highscoreData.ttkValue)}ms");
-            stats.kpsTextHighscore.SetText(string.Format("{0:0.00}/s", highscoreData.kpsValue));
-            stats.bestStreakTextHighscore.SetText($"{string.Format("{0:n0}", highscoreData.bestStreakValue)}");
-            stats.targetsTotalTextHighscore.SetText($"{highscoreData.targetsTotalValue}");
-            stats.taretsHitTextHighscore.SetText($"{highscoreData.targetsHitValue}");
-            stats.targetsMissesTextHighscore.SetText($"{highscoreData.targetsMissesValue}");
+            statsManager.scoreTextHighscore.SetText($"{string.Format("{0:0,.0}K", highscoreData.scoreValue)}");
+            statsManager.accuracyTextHighscore.SetText($"{highscoreData.accuracyValue}%");
+            statsManager.ttkTextHighscore.SetText($"{string.Format("{0:n0}", highscoreData.ttkValue)}ms");
+            statsManager.kpsTextHighscore.SetText(string.Format("{0:0.00}/s", highscoreData.kpsValue));
+            statsManager.bestStreakTextHighscore.SetText($"{string.Format("{0:n0}", highscoreData.bestStreakValue)}");
+            statsManager.targetsTotalTextHighscore.SetText($"{highscoreData.targetsTotalValue}");
+            statsManager.taretsHitTextHighscore.SetText($"{highscoreData.targetsHitValue}");
+            statsManager.targetsMissesTextHighscore.SetText($"{highscoreData.targetsMissesValue}");
         }
 
 
@@ -189,7 +205,7 @@ public class StatsManager : MonoBehaviour {
     /// <summary>
     /// Compares current vs previous game stats, then sets stat differences in 'StatsDiff' object for respective tooltips.
     /// </summary>
-    private static void SetStatItemDiffs() {
+    private static void SetStatDiffs() {
         StatsDiff.scoreDiff         = StatsUtil.CheckDifference(scoreStat, previousGameStats.scoreValue);
         StatsDiff.accuracyDiff      = StatsUtil.CheckDifference(accuracyStat, previousGameStats.accuracyValue);
         StatsDiff.ttkDiff           = StatsUtil.CheckDifference(ttkStat, previousGameStats.ttkValue);
@@ -219,26 +235,56 @@ public class StatsManager : MonoBehaviour {
     }
 
     /// <summary>
+    /// Populates all stat text/item values in stat groups.
+    /// </summary>
+    private static void SetStatDiffsText() {
+        statsManager.accuracyExtraInner.SetText($"{StatsDiff.accuracyDiffSymbol}{StatsDiff.accuracyDiff}%");
+        statsManager.ttkExtraInner.SetText($"{StatsDiff.ttkDiffSymbol}{StatsDiff.ttkDiff}ms ({(int)StatsDiff.ttkDiffPercent}%)");
+        statsManager.kpsExtraInner.SetText($"{StatsDiff.kpsDiffSymbol}{string.Format("{0:0.00}/s", StatsDiff.kpsDiff)} ({(int)StatsDiff.kpsDiffPercent}%)");
+        statsManager.bestStreakExtraInner.SetText($"{StatsDiff.bestStreakDiffSymbol}{StatsDiff.bestStreakDiff} ({(int)StatsDiff.bestStreakDiffPercent}%)");
+        statsManager.targetsTotalExtraInner.SetText($"{StatsDiff.targetsTotalDiffSymbol}{StatsDiff.targetsTotalDiff} ({(int)StatsDiff.targetsTotalDiffPercent}%)");
+        statsManager.taretsHitExtraInner.SetText($"{StatsDiff.targetHitDiffSymbol}{StatsDiff.targetHitDiff} ({(int)StatsDiff.targetHitDiffPercent}%)");
+        statsManager.targetsMissesExtraInner.SetText($"{StatsDiff.targetsMissesDiffSymbol}{StatsDiff.targetsMissesDiff} ({(int)StatsDiff.targetsMissesDiffPercent}%)");
+    }
+
+    /// <summary>
+    /// Refreshes all stat groups after stat text/items are populated.
+    /// </summary>
+    private static void RefreshDiffGroups() {
+        Util.RefreshRootLayoutGroup(statsManager.parentStatGroup);
+        //Util.RefreshRootLayoutGroup(statsManager.diffVertical);
+        //Util.RefreshRootLayoutGroup(statsManager.statsVertical);
+        //Util.RefreshRootLayoutGroup(statsManager.itemsVetical);
+        //Util.RefreshRootLayoutGroup(statsManager.accuracyStatGroup);
+        //Util.RefreshRootLayoutGroup(statsManager.ttkStatGroup);
+        //Util.RefreshRootLayoutGroup(statsManager.kpsStatGroup);
+        //Util.RefreshRootLayoutGroup(statsManager.bestStreakStatGroup);
+        //Util.RefreshRootLayoutGroup(statsManager.targetsTotalStatGroup);
+        //Util.RefreshRootLayoutGroup(statsManager.taretsHitStatGroup);
+        //Util.RefreshRootLayoutGroup(statsManager.targetsMissesStatGroup);
+    }
+
+    /// <summary>
     /// Compares current vs previous game stats to determine item text, color and background color to be set in 'AfterActionReport', then sets everything.
     /// </summary>
     private static void SetStatsItemsUpDown() {
-        stats.scoreItem.SetText($"{StatsUtil.GetItemText(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue)}");
-        stats.accuracyItem.SetText($"{StatsUtil.GetItemText(accuracyStat, previousGameStats.accuracyValue, bestGameStats.accuracyValue)}");
-        stats.ttkItem.SetText($"{StatsUtil.GetItemText_Flip(ttkStat, previousGameStats.ttkValue, bestGameStats.ttkValue)}");
-        stats.kpsItem.SetText($"{StatsUtil.GetItemText(kpsStat, previousGameStats.kpsValue, bestGameStats.kpsValue)}");
-        stats.bestStreakItem.SetText($"{StatsUtil.GetItemText(bestStreakStat, previousGameStats.bestStreakValue, bestGameStats.bestStreakValue)}");
-        stats.targetsTotalItem.SetText($"{StatsUtil.GetItemText(targetTotalStat, previousGameStats.targetsTotalValue, bestGameStats.targetsTotalValue)}");
-        stats.taretsHitItem.SetText($"{StatsUtil.GetItemText(targetHitStat, previousGameStats.targetsHitValue, bestGameStats.targetsHitValue)}");
-        stats.targetsMissesItem.SetText($"{StatsUtil.GetItemText_Flip(targetMissesStat, previousGameStats.targetsMissesValue, bestGameStats.targetsMissesValue)}");
+        statsManager.scoreItem.SetText($"{StatsUtil.GetItemText(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue)}");
+        statsManager.accuracyItem.SetText($"{StatsUtil.GetItemText(accuracyStat, previousGameStats.accuracyValue, bestGameStats.accuracyValue)}");
+        statsManager.ttkItem.SetText($"{StatsUtil.GetItemText_Flip(ttkStat, previousGameStats.ttkValue, bestGameStats.ttkValue)}");
+        statsManager.kpsItem.SetText($"{StatsUtil.GetItemText(kpsStat, previousGameStats.kpsValue, bestGameStats.kpsValue)}");
+        statsManager.bestStreakItem.SetText($"{StatsUtil.GetItemText(bestStreakStat, previousGameStats.bestStreakValue, bestGameStats.bestStreakValue)}");
+        statsManager.targetsTotalItem.SetText($"{StatsUtil.GetItemText(targetTotalStat, previousGameStats.targetsTotalValue, bestGameStats.targetsTotalValue)}");
+        statsManager.taretsHitItem.SetText($"{StatsUtil.GetItemText(targetHitStat, previousGameStats.targetsHitValue, bestGameStats.targetsHitValue)}");
+        statsManager.targetsMissesItem.SetText($"{StatsUtil.GetItemText_Flip(targetMissesStat, previousGameStats.targetsMissesValue, bestGameStats.targetsMissesValue)}");
 
-        stats.scoreItem.color         = StatsUtil.GetItemColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue);
-        stats.accuracyItem.color      = StatsUtil.GetItemColor(accuracyStat, previousGameStats.accuracyValue, bestGameStats.accuracyValue);
-        stats.ttkItem.color           = StatsUtil.GetItemColor_Flip(ttkStat, previousGameStats.ttkValue, bestGameStats.ttkValue);
-        stats.kpsItem.color           = StatsUtil.GetItemColor(kpsStat, previousGameStats.kpsValue, bestGameStats.kpsValue);
-        stats.bestStreakItem.color    = StatsUtil.GetItemColor(bestStreakStat, previousGameStats.bestStreakValue, bestGameStats.bestStreakValue);
-        stats.targetsTotalItem.color  = StatsUtil.GetItemColor(targetTotalStat, previousGameStats.targetsTotalValue, bestGameStats.targetsTotalValue);
-        stats.taretsHitItem.color     = StatsUtil.GetItemColor(targetHitStat, previousGameStats.targetsHitValue, bestGameStats.targetsHitValue);
-        stats.targetsMissesItem.color = StatsUtil.GetItemColor_Flip(targetMissesStat, previousGameStats.targetsMissesValue, bestGameStats.targetsMissesValue);
+        statsManager.scoreItem.color         = StatsUtil.GetItemColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue);
+        statsManager.accuracyItem.color      = StatsUtil.GetItemColor(accuracyStat, previousGameStats.accuracyValue, bestGameStats.accuracyValue);
+        statsManager.ttkItem.color           = StatsUtil.GetItemColor_Flip(ttkStat, previousGameStats.ttkValue, bestGameStats.ttkValue);
+        statsManager.kpsItem.color           = StatsUtil.GetItemColor(kpsStat, previousGameStats.kpsValue, bestGameStats.kpsValue);
+        statsManager.bestStreakItem.color    = StatsUtil.GetItemColor(bestStreakStat, previousGameStats.bestStreakValue, bestGameStats.bestStreakValue);
+        statsManager.targetsTotalItem.color  = StatsUtil.GetItemColor(targetTotalStat, previousGameStats.targetsTotalValue, bestGameStats.targetsTotalValue);
+        statsManager.taretsHitItem.color     = StatsUtil.GetItemColor(targetHitStat, previousGameStats.targetsHitValue, bestGameStats.targetsHitValue);
+        statsManager.targetsMissesItem.color = StatsUtil.GetItemColor_Flip(targetMissesStat, previousGameStats.targetsMissesValue, bestGameStats.targetsMissesValue);
 
         SaveExtraStatsBackgrounds();
 
@@ -249,21 +295,21 @@ public class StatsManager : MonoBehaviour {
     /// Sets all items in 'AfterActionReport' neutral text and color.
     /// </summary>
     private static void SetStatsNeutralItems() {
-        stats.accuracyItem.SetText($"{StatsUtil.itemNeutral}");
-        stats.ttkItem.SetText($"{StatsUtil.itemNeutral}");
-        stats.kpsItem.SetText($"{StatsUtil.itemNeutral}");
-        stats.bestStreakItem.SetText($"{StatsUtil.itemNeutral}");
-        stats.targetsTotalItem.SetText($"{StatsUtil.itemNeutral}");
-        stats.taretsHitItem.SetText($"{StatsUtil.itemNeutral}");
-        stats.targetsMissesItem.SetText($"{StatsUtil.itemNeutral}");
+        statsManager.accuracyItem.SetText($"{StatsUtil.itemNeutral}");
+        statsManager.ttkItem.SetText($"{StatsUtil.itemNeutral}");
+        statsManager.kpsItem.SetText($"{StatsUtil.itemNeutral}");
+        statsManager.bestStreakItem.SetText($"{StatsUtil.itemNeutral}");
+        statsManager.targetsTotalItem.SetText($"{StatsUtil.itemNeutral}");
+        statsManager.taretsHitItem.SetText($"{StatsUtil.itemNeutral}");
+        statsManager.targetsMissesItem.SetText($"{StatsUtil.itemNeutral}");
 
-        stats.accuracyItem.color      = StatsUtil.itemColorGrey;
-        stats.ttkItem.color           = StatsUtil.itemColorGrey;
-        stats.kpsItem.color           = StatsUtil.itemColorGrey;
-        stats.bestStreakItem.color    = StatsUtil.itemColorGrey;
-        stats.targetsTotalItem.color  = StatsUtil.itemColorGrey;
-        stats.taretsHitItem.color     = StatsUtil.itemColorGrey;
-        stats.targetsMissesItem.color = StatsUtil.itemColorGrey;
+        statsManager.accuracyItem.color      = StatsUtil.itemColorGrey;
+        statsManager.ttkItem.color           = StatsUtil.itemColorGrey;
+        statsManager.kpsItem.color           = StatsUtil.itemColorGrey;
+        statsManager.bestStreakItem.color    = StatsUtil.itemColorGrey;
+        statsManager.targetsTotalItem.color  = StatsUtil.itemColorGrey;
+        statsManager.taretsHitItem.color     = StatsUtil.itemColorGrey;
+        statsManager.targetsMissesItem.color = StatsUtil.itemColorGrey;
     }
 
     /// <summary>
@@ -282,14 +328,14 @@ public class StatsManager : MonoBehaviour {
             if (StatsUtil.CheckHighestStatValue_Flip(targetMissesStat, bestGameStats.targetsMissesValue)) { bestGameStats.targetsMissesValue = targetMissesStat; }
 
             // Set best stats text.
-            stats.scoreTextBest.SetText($"{string.Format("{0:0,.0}K", bestGameStats.scoreValue)}");
-            stats.accuracyTextBest.SetText($"{bestGameStats.accuracyValue}%");
-            stats.ttkTextBest.SetText($"{string.Format("{0:n0}", bestGameStats.ttkValue)}ms");
-            stats.kpsTextBest.SetText(string.Format("{0:0.00}/s", bestGameStats.kpsValue));
-            stats.bestStreakTextBest.SetText($"{string.Format("{0:n0}", bestGameStats.bestStreakValue)}");
-            stats.targetsTotalTextBest.SetText($"{bestGameStats.targetsTotalValue}");
-            stats.taretsHitTextBest.SetText($"{bestGameStats.targetsHitValue}");
-            stats.targetsMissesTextBest.SetText($"{bestGameStats.targetsMissesValue}");
+            statsManager.scoreTextBest.SetText($"{string.Format("{0:0,.0}K", bestGameStats.scoreValue)}");
+            statsManager.accuracyTextBest.SetText($"{bestGameStats.accuracyValue}%");
+            statsManager.ttkTextBest.SetText($"{string.Format("{0:n0}", bestGameStats.ttkValue)}ms");
+            statsManager.kpsTextBest.SetText(string.Format("{0:0.00}/s", bestGameStats.kpsValue));
+            statsManager.bestStreakTextBest.SetText($"{string.Format("{0:n0}", bestGameStats.bestStreakValue)}");
+            statsManager.targetsTotalTextBest.SetText($"{bestGameStats.targetsTotalValue}");
+            statsManager.taretsHitTextBest.SetText($"{bestGameStats.targetsHitValue}");
+            statsManager.targetsMissesTextBest.SetText($"{bestGameStats.targetsMissesValue}");
 
             // Save all best stats back to file.
             StatsJsonSaveSystem.SaveBestGameStatsData(gamemodeStat, bestGameStats.scoreValue, bestGameStats.accuracyValue, bestGameStats.ttkValue, bestGameStats.kpsValue, bestGameStats.bestStreakValue, bestGameStats.targetsTotalValue, bestGameStats.targetsHitValue, bestGameStats.targetsMissesValue);
@@ -313,37 +359,37 @@ public class StatsManager : MonoBehaviour {
     }
 
     public static void SetExtraStatsBackgrounds() {
-        stats.newHighscoreEffectText.transform.parent.gameObject.GetComponent<Image>().color = backgroundsSaves[0];
-        stats.accuracyItem.transform.parent.gameObject.GetComponent<Image>().color           = backgroundsSaves[1];
-        stats.ttkItem.transform.parent.gameObject.GetComponent<Image>().color                = backgroundsSaves[2];
-        stats.kpsItem.transform.parent.gameObject.GetComponent<Image>().color                = backgroundsSaves[3];
-        stats.bestStreakItem.transform.parent.gameObject.GetComponent<Image>().color         = backgroundsSaves[4];
-        stats.targetsTotalItem.transform.parent.gameObject.GetComponent<Image>().color       = backgroundsSaves[5];
-        stats.taretsHitItem.transform.parent.gameObject.GetComponent<Image>().color          = backgroundsSaves[6];
-        stats.targetsMissesItem.transform.parent.gameObject.GetComponent<Image>().color      = backgroundsSaves[7];
+        statsManager.scoreContainerBackground.GetComponent<Image>().color         = backgroundsSaves[0];
+        statsManager.accuracyContainerBackground.GetComponent<Image>().color      = backgroundsSaves[1];
+        statsManager.ttkContainerBackground.GetComponent<Image>().color           = backgroundsSaves[2];
+        statsManager.kpsContainerBackground.GetComponent<Image>().color           = backgroundsSaves[3];
+        statsManager.bestStreakContainerBackground.GetComponent<Image>().color    = backgroundsSaves[4];
+        statsManager.targetsTotalContainerBackground.GetComponent<Image>().color  = backgroundsSaves[5];
+        statsManager.taretsHitContainerBackground.GetComponent<Image>().color     = backgroundsSaves[6];
+        statsManager.targetsMissesContainerBackground.GetComponent<Image>().color = backgroundsSaves[7];
     }
 
     public static void ClearExtraStatsBackgrounds() {
-        stats.newHighscoreEffectText.transform.parent.gameObject.GetComponent<Image>().color = StatsUtil.clearBackgroundLight;
-        stats.accuracyItem.transform.parent.gameObject.GetComponent<Image>().color           = StatsUtil.clearBackgroundLight;
-        stats.ttkItem.transform.parent.gameObject.GetComponent<Image>().color                = StatsUtil.clearBackgroundDark;
-        stats.kpsItem.transform.parent.gameObject.GetComponent<Image>().color                = StatsUtil.clearBackgroundLight;
-        stats.bestStreakItem.transform.parent.gameObject.GetComponent<Image>().color         = StatsUtil.clearBackgroundDark;
-        stats.targetsTotalItem.transform.parent.gameObject.GetComponent<Image>().color       = StatsUtil.clearBackgroundLight;
-        stats.taretsHitItem.transform.parent.gameObject.GetComponent<Image>().color          = StatsUtil.clearBackgroundDark;
-        stats.targetsMissesItem.transform.parent.gameObject.GetComponent<Image>().color      = StatsUtil.clearBackgroundLight;
+        statsManager.scoreContainerBackground.GetComponent<Image>().color         = StatsUtil.clearBackgroundLight;
+        statsManager.accuracyContainerBackground.GetComponent<Image>().color      = StatsUtil.clearBackgroundLight;
+        statsManager.ttkContainerBackground.GetComponent<Image>().color           = StatsUtil.clearBackgroundDark;
+        statsManager.kpsContainerBackground.GetComponent<Image>().color           = StatsUtil.clearBackgroundLight;
+        statsManager.bestStreakContainerBackground.GetComponent<Image>().color    = StatsUtil.clearBackgroundDark;
+        statsManager.targetsTotalContainerBackground.GetComponent<Image>().color  = StatsUtil.clearBackgroundLight;
+        statsManager.taretsHitContainerBackground.GetComponent<Image>().color     = StatsUtil.clearBackgroundDark;
+        statsManager.targetsMissesContainerBackground.GetComponent<Image>().color = StatsUtil.clearBackgroundLight;
     }
 
     /// <summary>
     /// Show 'ExtraStats' panel;
     /// </summary>
-    public static void ShowExtraStatsPanel() { stats.extraStatsPanel.SetActive(true); }
+    public static void ShowExtraStatsPanel() { statsManager.extraStatsPanel.SetActive(true); }
     /// <summary>
     /// Hides 'ExtraStats' panel;
     /// </summary>
-    public static void HideExtraStatsPanel() { stats.extraStatsPanel.SetActive(false); }
+    public static void HideExtraStatsPanel() { statsManager.extraStatsPanel.SetActive(false); }
     /// <summary>
     /// Resets AAR scrollview to top.
     /// </summary>
-    public static void ResetAARScrollView() { ScrollRectExtension.ScrollToTop(stats.aarScrollView.GetComponent<ScrollRect>()); }
+    public static void ResetAARScrollView() { ScrollRectExtension.ScrollToTop(statsManager.aarScrollView.GetComponent<ScrollRect>()); }
 }
