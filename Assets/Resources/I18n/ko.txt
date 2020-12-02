@@ -127,7 +127,7 @@ scrolltotop=
 mousetitle=쥐
 mousesensitivity=마우스 감도
 keybindstitle=키 바인드
-keybindlegend=곧 키 바인딩 편집
+keybindlegend=다양한 게임 키 바인딩 사용자 지정
 crosshairtitle=십자선
 outlinetitle=개요
 #
@@ -145,7 +145,7 @@ keybindrebinded=리 바인딩되었습니다
 shoot=''사격''
 showhidesettings=설정 표시 / 숨기기
 showhideafteractionreport='작업 후 보고서'표시 / 숨기기
-showhideworldui=월드 UI 표시 / 숨기기
+showhidewidgets=위젯 표시 / 숨기기
 quickstartgame=빠른 시작 게임
 restart=재시작
 #

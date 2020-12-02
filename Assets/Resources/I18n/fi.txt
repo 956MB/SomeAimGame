@@ -127,7 +127,7 @@ scrolltotop=
 mousetitle=Hiiri
 mousesensitivity=Hiiren herkkyys
 keybindstitle=Avaimenperät
-keybindlegend=Avaimensiirron muokkaus on tulossa pian
+keybindlegend=Mukauta erilaisia ​​pelinäppäimiä
 crosshairtitle=Ristikko
 outlinetitle=Ääriviivat
 #
@@ -145,7 +145,7 @@ keybindrebinded=on uudelleen sidottu
 shoot=''Ampua''
 showhidesettings=Näytä / piilota asetukset 
 showhideafteractionreport=Näytä / piilota toimintaraportti
-showhideworldui=Näytä / piilota maailman käyttöliittymä 
+showhidewidgets=Näytä / piilota widgetit
 quickstartgame=Pika-aloituspeli
 restart=Uudelleenkäynnistää
 #

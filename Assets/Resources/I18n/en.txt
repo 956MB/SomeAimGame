@@ -127,7 +127,7 @@ scrolltotop=
 mousetitle=Mouse
 mousesensitivity=Mouse Sensitivity
 keybindstitle=Keybinds
-keybindlegend=Keybind editing coming soon
+keybindlegend=Customize various game keybindings
 crosshairtitle=Crosshair
 outlinetitle=Outline
 #
@@ -145,7 +145,7 @@ keybindrebinded=HAS BEEN REBINDED TO
 shoot=''Shoot''
 showhidesettings=Show/Hide Settings
 showhideafteractionreport=Show/Hide 'After Action Report'
-showhideworldui=Show/Hide World UI
+showhidewidgets=Show/Hide Widgets
 quickstartgame=Quick Start Game
 restart=Restart
 #

@@ -127,7 +127,7 @@ scrolltotop=
 mousetitle=Мышь
 mousesensitivity=Чувствительность мыши
 keybindstitle=Связки клавиш
-keybindlegend=Pедактирование привязки клавиш скоро
+keybindlegend=Настроить различные игровые сочетания клавиш
 crosshairtitle=Перекрестие
 outlinetitle=Контур
 #
@@ -145,7 +145,7 @@ keybindrebinded=был переименован в
 shoot=''Стрелять''
 showhidesettings=Показать / скрыть настройки
 showhideafteractionreport=Показать / скрыть отчет о действиях
-showhideworldui=Показать / скрыть интерфейс мира
+showhidewidgets=Показать / скрыть виджеты
 quickstartgame=Быстрый старт игры
 restart=Начать сначала
 #
