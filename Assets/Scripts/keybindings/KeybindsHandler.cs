@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
 using TMPro;
 
 using SomeAimGame.Utilities;
 
-public class KeybindsHandler : MonoBehaviour, IPointerEnterHandler {
+public class KeybindsHandler : MonoBehaviour {
     private static KeyCode clickedKeycode;
     public static GameObject currentKey;
 
@@ -17,21 +16,10 @@ public class KeybindsHandler : MonoBehaviour, IPointerEnterHandler {
     void OnGUI() {
         if (currentKey != null) {
             Event e = Event.current;
-            if (e.isKey) {
-                if (e.keyCode != clickedKeycode && e.keyCode != KeyCode.Escape) {
-                    HandleNewKeybindSet(clickedKeycode, e.keyCode);
-                } else {
-                    currentKey.transform.GetChild(0).GetComponent<TMP_Text>().text  = ReturnKeybindString(clickedKeycode);
-                    currentKey.transform.GetChild(0).GetComponent<TMP_Text>().color = InterfaceColors.selectedColor;
-                }
-                
-                currentKey = null;
-            }
+            
+            if (e.isKey) { HandleKeyEvent(e); }
+            if (e.isMouse || e.isScrollWheel) { HandleMouseEvent(e); }
         }
-    }
-
-    public void OnPointerEnter(PointerEventData pointerEventData) {
-        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_HoverInner(); }
     }
 
     /// <summary>
@@ -43,6 +31,36 @@ public class KeybindsHandler : MonoBehaviour, IPointerEnterHandler {
         clickedKeycode = GetButtonKeybind(currentKey.name);
         currentKey.transform.GetChild(0).GetComponent<TMP_Text>().text = "-";
         currentKey.transform.GetChild(0).GetComponent<TMP_Text>().color = InterfaceColors.unselectedColor;
+    }
+
+    private void HandleKeyEvent(Event keyEvent) {
+        if (keyEvent.keyCode != KeyCode.None && keyEvent.keyCode != clickedKeycode && keyEvent.keyCode != KeyCode.Escape) {
+            Debug.Log($"new KeyCode: {keyEvent.keyCode}");
+            HandleNewKeybindSet(clickedKeycode, keyEvent.keyCode);
+            currentKey = null;
+        } else {
+            ResetKeybindText();
+        }
+    }
+
+    private void HandleMouseEvent(Event mouseEvent) {
+        if (mouseEvent.keyCode != clickedKeycode && mouseEvent.keyCode != KeyCode.Escape) {
+            if (Input.GetKeyDown(KeyCode.Mouse0)) {      HandleNewKeybindSet(clickedKeycode, KeyCode.Mouse0); currentKey = null; }
+            else if (Input.GetKeyDown(KeyCode.Mouse1)) { HandleNewKeybindSet(clickedKeycode, KeyCode.Mouse1); currentKey = null; }
+            else if (Input.GetKeyDown(KeyCode.Mouse2)) { HandleNewKeybindSet(clickedKeycode, KeyCode.Mouse2); currentKey = null; }
+            else if (Input.GetKeyDown(KeyCode.Mouse3)) { HandleNewKeybindSet(clickedKeycode, KeyCode.Mouse3); currentKey = null; }
+            else if (Input.GetKeyDown(KeyCode.Mouse4)) { HandleNewKeybindSet(clickedKeycode, KeyCode.Mouse4); currentKey = null; }
+            else if (Input.GetKeyDown(KeyCode.Escape)) { ResetKeybindText();                                  currentKey = null; }
+        } else {
+            Debug.Log("reset here");
+            ResetKeybindText();
+        }
+    }
+
+    private void ResetKeybindText() {
+        currentKey.transform.GetChild(0).GetComponent<TMP_Text>().text = ReturnKeybindString(clickedKeycode);
+        currentKey.transform.GetChild(0).GetComponent<TMP_Text>().color = InterfaceColors.selectedColor;
+        currentKey = null;
     }
 
     /// <summary>
@@ -105,6 +123,9 @@ public class KeybindsHandler : MonoBehaviour, IPointerEnterHandler {
             case KeyCode.Escape:            return "ESCAPE";
             case KeyCode.Mouse0:            return "MOUSE 1";
             case KeyCode.Mouse1:            return "MOUSE 2";
+            case KeyCode.Mouse2:            return "MOUSE 3";
+            case KeyCode.Mouse3:            return "MOUSE 4";
+            case KeyCode.Mouse4:            return "MOUSE 5";
             case KeyCode.Space:             return "SPACE";
             case KeyCode.LeftBracket:       return "[";
             case KeyCode.RightBracket:      return "]";
