@@ -9,17 +9,17 @@ public class Keybinds : MonoBehaviour {
 
     void Update() {
         if (keybindsLoaded) {
-            if (Input.GetKeyDown(KeybindSettings.toggleWidgets)) {
+            if (Input.GetKeyUp(KeybindSettings.toggleWidgets)) {
                 ToggleWidgetsUI_Keybind();
-            } else if (Input.GetKeyDown(KeybindSettings.gameRestart)) {
+            } else if (Input.GetKeyUp(KeybindSettings.gameRestart)) {
                 TriggerGameRestart_Keybind();
-            } else if (Input.GetKeyDown(KeybindSettings.toggleAAR)) {
+            } else if (Input.GetKeyUp(KeybindSettings.toggleAAR)) {
                 ToggleAARPanel_Keybind();
-            } else if (Input.GetKeyDown(KeybindSettings.toggleSettings)) {
+            } else if (Input.GetKeyUp(KeybindSettings.toggleSettings)) {
                 ToggleSettingsPanel_Keybind();
-            } else if (Input.GetKeyDown(KeyCode.RightArrow)) {
+            } else if (Input.GetKeyUp(KeyCode.RightArrow)) {
                 MoveSettingsPanelRight_Keybind();
-            } else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+            } else if (Input.GetKeyUp(KeyCode.LeftArrow)) {
                 MoveSettingsPanelLeft_Keybind();
             }
         }
