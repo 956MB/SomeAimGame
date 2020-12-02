@@ -107,8 +107,8 @@ public class StatsUtil : MonoBehaviour {
     }
 
     public static string CheckDifference_Symbol(double newValue, double oldValue) {
-        if (newValue > oldValue) return "+ ";
-        else if (newValue < oldValue) return "- ";
+        if (newValue > oldValue) return "+";
+        else if (newValue < oldValue) return "-";
         else return "";
     }
 }
