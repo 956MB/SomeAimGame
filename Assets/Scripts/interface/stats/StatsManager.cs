@@ -175,6 +175,7 @@ namespace SomeAimGame.Stats {
         private static void SetStatItems() {
             ClearExtraStatsBackgrounds();
             SetStatsNeutralItems();
+            ClearStatDiffs();
 
             if (previousGameStats != null) {
                 SetStatsItemsUpDown();
@@ -255,8 +256,6 @@ namespace SomeAimGame.Stats {
         /// Populates all stat diffs values in text/item groups.
         /// </summary>
         private static void SetStatDiffsText() {
-            ClearStatDiffs();
-
             // If current and previous stats match, dont set diff string.
             if (!StatsUtil.CheckMatchingStatValue(accuracyStat, previousGameStats.accuracyValue)) { statsManager.accuracyExtraInner.SetText($"{StatsDiff.accuracyDiffStringDisplay}"); }
             if (!StatsUtil.CheckMatchingStatValue(ttkStat, previousGameStats.ttkValue)) { statsManager.ttkExtraInner.SetText($"{StatsDiff.ttkDiffStringDisplay}"); }
@@ -361,7 +360,7 @@ namespace SomeAimGame.Stats {
         /// Sets all items in 'AfterActionReport' neutral text and color.
         /// </summary>
         private static void SetStatsNeutralItems() {
-            StatsUtil.SetNeutralItems(StatsUtil.itemNeutral, StatsUtil.itemColorGrey, statsManager.accuracyItem, statsManager.ttkItem, statsManager.kpsItem, statsManager.bestStreakItem, statsManager.targetsTotalItem, statsManager.taretsHitItem, statsManager.targetsMissesItem);
+            StatsUtil.SetNeutralItems(StatsUtil.itemNeutral, StatsUtil.itemColorGrey, statsManager.scoreItem, statsManager.accuracyItem, statsManager.ttkItem, statsManager.kpsItem, statsManager.bestStreakItem, statsManager.targetsTotalItem, statsManager.taretsHitItem, statsManager.targetsMissesItem);
         }
 
         /// <summary>
