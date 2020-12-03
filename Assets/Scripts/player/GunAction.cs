@@ -59,6 +59,7 @@ public class GunAction : MonoBehaviour {
                                 //DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetshitpairs")} ({gunHit.transform.position})");
                             } else {
                                 GameUI.DecreaseScore();
+                                SpawnTargets.GamemodePairsMiss();
 
                                 // EVENT:: for pair target miss, descrease score
                                 //DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsmisspairs")} ({gunHit.transform.position})");

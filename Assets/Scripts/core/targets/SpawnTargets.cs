@@ -279,11 +279,11 @@ namespace SomeAimGame.Targets {
 
             // Picks 0 or 1 randomly, spawns primary on right / secondary on left OR primary on left / secondary on right.
             if (randomPick == 0) {
-                pairPrimary   = PickRandomPairs(targetSpawnAreaBounds, "left");
-                pairSecondary = PickRandomPairs(targetSpawnAreaBounds, "right");
+                pairPrimary   = PickRandomPairs(targetSpawnAreaBounds, true);
+                pairSecondary = PickRandomPairs(targetSpawnAreaBounds, false);
             } else {
-                pairPrimary   = PickRandomPairs(targetSpawnAreaBounds, "right");
-                pairSecondary = PickRandomPairs(targetSpawnAreaBounds, "left");
+                pairPrimary   = PickRandomPairs(targetSpawnAreaBounds, false);
+                pairSecondary = PickRandomPairs(targetSpawnAreaBounds, true);
             }
 
             // Spawns both primary/secondary targets, then adds them to target spawns lists.
@@ -300,7 +300,7 @@ namespace SomeAimGame.Targets {
                 activePairLocation = pairPrimary;
             }
 
-            count += 2;
+            count      += 2;
             totalCount += 2;
         }
 
@@ -326,26 +326,30 @@ namespace SomeAimGame.Targets {
         }
 
         /// <summary>
+        /// Applies correct missed shot if gamemode is pairs.
+        /// </summary>
+        public static void GamemodePairsMiss() {
+            shotsHit   -= 1;
+            shotMisses += 1;
+        }
+
+        /// <summary>
         /// Picks random points (X/Y/Z) inside corresponding spawn area bounds for supplied side (left/right), returns spawn location Vector3.
         /// </summary>
         /// <param name="bounds"></param>
-        /// <param name="side"></param>
+        /// <param name="pairLeft"></param>
         /// <returns></returns>
-        public static Vector3 PickRandomPairs(Bounds bounds, string side) {
+        public static Vector3 PickRandomPairs(Bounds bounds, bool pairLeft) {
             float randomX, randomY, randomZ;
-            randomX = randomY = randomZ = 0;
 
-            switch (side) {
-                case "left":
-                    randomX = UnityEngine.Random.Range(bounds.min.x + targetSize, bounds.max.x - targetSize);
-                    randomY = UnityEngine.Random.Range(bounds.min.y + targetSize, bounds.max.y - targetSize);
-                    randomZ = UnityEngine.Random.Range(bounds.min.z, bounds.center.z);
-                    break;
-                case "right":
-                    randomX = UnityEngine.Random.Range(bounds.min.x + targetSize, bounds.max.x - targetSize);
-                    randomY = UnityEngine.Random.Range(bounds.min.y + targetSize, bounds.max.y - targetSize);
-                    randomZ = UnityEngine.Random.Range(bounds.center.z, bounds.max.z);
-                    break;
+            if (pairLeft) {
+                randomX = UnityEngine.Random.Range(bounds.min.x + targetSize, bounds.max.x - targetSize);
+                randomY = UnityEngine.Random.Range(bounds.min.y + targetSize, bounds.max.y - targetSize);
+                randomZ = UnityEngine.Random.Range(bounds.min.z, bounds.center.z);
+            } else {
+                randomX = UnityEngine.Random.Range(bounds.min.x + targetSize, bounds.max.x - targetSize);
+                randomY = UnityEngine.Random.Range(bounds.min.y + targetSize, bounds.max.y - targetSize);
+                randomZ = UnityEngine.Random.Range(bounds.center.z, bounds.max.z);
             }
 
             return new Vector3(

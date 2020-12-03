@@ -38,7 +38,8 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     public void OnPointerClick(PointerEventData pointerEventData) {
         string clickedButtonName = pointerEventData.pointerCurrentRaycast.gameObject.name;
 
-        try { buttonBorder = pointerEventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).transform.gameObject;
+        try {
+            buttonBorder = pointerEventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).transform.gameObject;
         } catch (UnityException) { }
 
         if (buttonBorder != null) {
