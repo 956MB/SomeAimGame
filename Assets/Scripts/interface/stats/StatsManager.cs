@@ -47,9 +47,9 @@ namespace SomeAimGame.Stats {
         void Awake() { statsManager = this; }
 
         private void Start() {
-            scoreTitleText.enabled         = true;
+            scoreTitleText.enabled        = true;
             newHighscoreTitleText.enabled = false;
-            backgroundsSaves               = new Color32[8];
+            backgroundsSaves              = new Color32[8];
         }
 
         /// <summary>
@@ -114,13 +114,11 @@ namespace SomeAimGame.Stats {
                     EnableNewHighscoreText();
                     LoadOldHighscore();
                 } else {
-                    statsManager.highscoreLineTop.color    = StatsUtil.GetLineColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue);
-                    statsManager.highscoreLineBottom.color = StatsUtil.GetLineColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue);
+                    SetScoreLine(StatsUtil.GetLineColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue));
                 }
             } else {
                 // No saved highscore on first run, sets current games run as new highscore.
-                statsManager.highscoreLineTop.color    = StatsUtil.neutralLineColor;
-                statsManager.highscoreLineBottom.color = StatsUtil.neutralLineColor;
+                SetScoreLine(StatsUtil.neutralLineColor);
                 statsManager.newHighscoreTitleText.transform.parent.gameObject.GetComponent<Image>().color = StatsUtil.neutralBackgroundColor;
                 HighscoreSave.SaveNewHighscoreStats(GamemodeUtil.ReturnGamemodeType_StringShort(CosmeticsSettings.gamemode), scoreStat, accuracyStat, ttkStat, kpsStat, bestStreakStat, targetTotalStat, targetHitStat, targetMissesStat);
             }
@@ -158,8 +156,16 @@ namespace SomeAimGame.Stats {
 
             statsManager.newHighscoreTitleText.transform.parent.gameObject.GetComponent<Image>().color = StatsUtil.newHighscoreBackgroundColor;
 
-            statsManager.highscoreLineTop.color    = StatsUtil.highscoreLineColor;
-            statsManager.highscoreLineBottom.color = StatsUtil.highscoreLineColor;
+            SetScoreLine(StatsUtil.highscoreLineColor);
+        }
+
+        /// <summary>
+        /// Sets color of top/bottom score lines.
+        /// </summary>
+        /// <param name="lineColor"></param>
+        private static void SetScoreLine(Color32 lineColor) {
+            statsManager.highscoreLineTop.color    = lineColor;
+            statsManager.highscoreLineBottom.color = lineColor;
         }
 
         /// <summary>
@@ -207,7 +213,7 @@ namespace SomeAimGame.Stats {
         /// Compares current vs previous game stats, then sets stat differences in 'StatsDiff' object for respective tooltips.
         /// </summary>
         private static void SetStatDiffs() {
-            // Actual stat diff number "+5".
+            // Actual stat diff number.
             StatsDiff.scoreDiff         = StatsUtil.CheckDifference(scoreStat, previousGameStats.scoreValue);
             StatsDiff.accuracyDiff      = StatsUtil.CheckDifference(accuracyStat, previousGameStats.accuracyValue);
             StatsDiff.ttkDiff           = StatsUtil.CheckDifference(ttkStat, previousGameStats.ttkValue);
@@ -248,14 +254,16 @@ namespace SomeAimGame.Stats {
         /// Populates all stat diffs values in text/item groups.
         /// </summary>
         private static void SetStatDiffsText() {
+            ClearStatDiffs();
+
             // If current and previous stats match, dont set diff string.
-            if (StatsUtil.CheckMatchingStatValue(accuracyStat, previousGameStats.accuracyValue)) { statsManager.accuracyExtraInner.SetText($""); } else { statsManager.accuracyExtraInner.SetText($"{StatsDiff.accuracyDiffStringDisplay}"); }
-            if (StatsUtil.CheckMatchingStatValue(ttkStat, previousGameStats.ttkValue)) { statsManager.ttkExtraInner.SetText($""); } else { statsManager.ttkExtraInner.SetText($"{StatsDiff.ttkDiffStringDisplay}"); }
-            if (StatsUtil.CheckMatchingStatValue(kpsStat, previousGameStats.kpsValue)) { statsManager.kpsExtraInner.SetText($""); } else { statsManager.kpsExtraInner.SetText($"{StatsDiff.kpsDiffStringDisplay}"); }
-            if (StatsUtil.CheckMatchingStatValue(bestStreakStat, previousGameStats.bestStreakValue)) { statsManager.bestStreakExtraInner.SetText($""); } else { statsManager.bestStreakExtraInner.SetText($"{StatsDiff.bestStreakDiffStringDisplay}"); }
-            if (StatsUtil.CheckMatchingStatValue(targetTotalStat, previousGameStats.targetsTotalValue)) { statsManager.targetsTotalExtraInner.SetText($""); } else { statsManager.targetsTotalExtraInner.SetText($"{StatsDiff.targetsTotalDiffStringDisplay}"); }
-            if (StatsUtil.CheckMatchingStatValue(targetHitStat, previousGameStats.targetsHitValue)) { statsManager.taretsHitExtraInner.SetText($""); } else { statsManager.taretsHitExtraInner.SetText($"{StatsDiff.targetHitDiffStringDisplay}"); }
-            if (StatsUtil.CheckMatchingStatValue(targetMissesStat, previousGameStats.targetsMissesValue)) { statsManager.targetsMissesExtraInner.SetText($""); } else { statsManager.targetsMissesExtraInner.SetText($"{StatsDiff.targetsMissesDiffStringDisplay}"); }
+            if (!StatsUtil.CheckMatchingStatValue(accuracyStat, previousGameStats.accuracyValue)) { statsManager.accuracyExtraInner.SetText($"{StatsDiff.accuracyDiffStringDisplay}"); }
+            if (!StatsUtil.CheckMatchingStatValue(ttkStat, previousGameStats.ttkValue)) { statsManager.ttkExtraInner.SetText($"{StatsDiff.ttkDiffStringDisplay}"); }
+            if (!StatsUtil.CheckMatchingStatValue(kpsStat, previousGameStats.kpsValue)) { statsManager.kpsExtraInner.SetText($"{StatsDiff.kpsDiffStringDisplay}"); }
+            if (!StatsUtil.CheckMatchingStatValue(bestStreakStat, previousGameStats.bestStreakValue)) { statsManager.bestStreakExtraInner.SetText($"{StatsDiff.bestStreakDiffStringDisplay}"); }
+            if (!StatsUtil.CheckMatchingStatValue(targetTotalStat, previousGameStats.targetsTotalValue)) { statsManager.targetsTotalExtraInner.SetText($"{StatsDiff.targetsTotalDiffStringDisplay}"); }
+            if (!StatsUtil.CheckMatchingStatValue(targetHitStat, previousGameStats.targetsHitValue)) { statsManager.taretsHitExtraInner.SetText($"{StatsDiff.targetHitDiffStringDisplay}"); }
+            if (!StatsUtil.CheckMatchingStatValue(targetMissesStat, previousGameStats.targetsMissesValue)) { statsManager.targetsMissesExtraInner.SetText($"{StatsDiff.targetsMissesDiffStringDisplay}"); }
         }
 
         /// <summary>
@@ -290,27 +298,6 @@ namespace SomeAimGame.Stats {
             SaveExtraStatsBackgrounds();
 
             if (showBackgrounds) { SetExtraStatsBackgrounds(); }
-        }
-
-        /// <summary>
-        /// Sets all items in 'AfterActionReport' neutral text and color.
-        /// </summary>
-        private static void SetStatsNeutralItems() {
-            statsManager.accuracyItem.SetText($"{StatsUtil.itemNeutral}");
-            statsManager.ttkItem.SetText($"{StatsUtil.itemNeutral}");
-            statsManager.kpsItem.SetText($"{StatsUtil.itemNeutral}");
-            statsManager.bestStreakItem.SetText($"{StatsUtil.itemNeutral}");
-            statsManager.targetsTotalItem.SetText($"{StatsUtil.itemNeutral}");
-            statsManager.taretsHitItem.SetText($"{StatsUtil.itemNeutral}");
-            statsManager.targetsMissesItem.SetText($"{StatsUtil.itemNeutral}");
-
-            statsManager.accuracyItem.color      = StatsUtil.itemColorGrey;
-            statsManager.ttkItem.color           = StatsUtil.itemColorGrey;
-            statsManager.kpsItem.color           = StatsUtil.itemColorGrey;
-            statsManager.bestStreakItem.color    = StatsUtil.itemColorGrey;
-            statsManager.targetsTotalItem.color  = StatsUtil.itemColorGrey;
-            statsManager.taretsHitItem.color     = StatsUtil.itemColorGrey;
-            statsManager.targetsMissesItem.color = StatsUtil.itemColorGrey;
         }
 
         /// <summary>
@@ -363,31 +350,31 @@ namespace SomeAimGame.Stats {
         }
 
         /// <summary>
+        /// Sets all stat diffs text to empty ("").
+        /// </summary>
+        private static void ClearStatDiffs() {
+            StatsUtil.ClearStatDiffsText("", statsManager.accuracyExtraInner, statsManager.ttkExtraInner, statsManager.kpsExtraInner, statsManager.bestStreakExtraInner, statsManager.targetsTotalExtraInner, statsManager.taretsHitExtraInner, statsManager.targetsMissesExtraInner);
+        }
+
+        /// <summary>
+        /// Sets all items in 'AfterActionReport' neutral text and color.
+        /// </summary>
+        private static void SetStatsNeutralItems() {
+            StatsUtil.SetNeutralItems(StatsUtil.itemNeutral, StatsUtil.itemColorGrey, statsManager.accuracyItem, statsManager.ttkItem, statsManager.kpsItem, statsManager.bestStreakItem, statsManager.targetsTotalItem, statsManager.taretsHitItem, statsManager.targetsMissesItem);
+        }
+
+        /// <summary>
         /// Sets all stat container background colors to corresponding backgroundsSaves item.
         /// </summary>
         public static void SetExtraStatsBackgrounds() {
-            statsManager.scoreContainerBackground.GetComponent<Image>().color         = backgroundsSaves[0];
-            statsManager.accuracyContainerBackground.GetComponent<Image>().color      = backgroundsSaves[1];
-            statsManager.ttkContainerBackground.GetComponent<Image>().color           = backgroundsSaves[2];
-            statsManager.kpsContainerBackground.GetComponent<Image>().color           = backgroundsSaves[3];
-            statsManager.bestStreakContainerBackground.GetComponent<Image>().color    = backgroundsSaves[4];
-            statsManager.targetsTotalContainerBackground.GetComponent<Image>().color  = backgroundsSaves[5];
-            statsManager.taretsHitContainerBackground.GetComponent<Image>().color     = backgroundsSaves[6];
-            statsManager.targetsMissesContainerBackground.GetComponent<Image>().color = backgroundsSaves[7];
+            StatsUtil.ClearStatBackgrounds(backgroundsSaves, statsManager.scoreContainerBackground, statsManager.accuracyContainerBackground, statsManager.ttkContainerBackground, statsManager.kpsContainerBackground, statsManager.bestStreakContainerBackground, statsManager.targetsTotalContainerBackground, statsManager.taretsHitContainerBackground, statsManager.targetsMissesContainerBackground);
         }
 
         /// <summary>
         /// Resets all stat container background colors to original background colors.
         /// </summary>
         public static void ClearExtraStatsBackgrounds() {
-            statsManager.scoreContainerBackground.GetComponent<Image>().color         = StatsUtil.clearBackgroundLight;
-            statsManager.accuracyContainerBackground.GetComponent<Image>().color      = StatsUtil.clearBackgroundLight;
-            statsManager.ttkContainerBackground.GetComponent<Image>().color           = StatsUtil.clearBackgroundDark;
-            statsManager.kpsContainerBackground.GetComponent<Image>().color           = StatsUtil.clearBackgroundLight;
-            statsManager.bestStreakContainerBackground.GetComponent<Image>().color    = StatsUtil.clearBackgroundDark;
-            statsManager.targetsTotalContainerBackground.GetComponent<Image>().color  = StatsUtil.clearBackgroundLight;
-            statsManager.taretsHitContainerBackground.GetComponent<Image>().color     = StatsUtil.clearBackgroundDark;
-            statsManager.targetsMissesContainerBackground.GetComponent<Image>().color = StatsUtil.clearBackgroundLight;
+            StatsUtil.ClearStatBackgrounds(StatsUtil.clearBackgroundLight, statsManager.scoreContainerBackground, statsManager.accuracyContainerBackground, statsManager.ttkContainerBackground, statsManager.kpsContainerBackground, statsManager.bestStreakContainerBackground, statsManager.targetsTotalContainerBackground, statsManager.taretsHitContainerBackground, statsManager.targetsMissesContainerBackground);
         }
 
         /// <summary>
