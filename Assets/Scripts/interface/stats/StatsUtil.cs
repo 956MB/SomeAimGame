@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 
 namespace SomeAimGame.Stats {
+
     public class StatsUtil : MonoBehaviour {
         public static string itemHighscore     = "▲▲";
         public static string itemHighscoreFlip = "▼▼";
@@ -25,25 +26,43 @@ namespace SomeAimGame.Stats {
         public static Color32 clearBackgroundLight        = new Color32(255, 255, 255, 15);
         public static Color32 clearBackgroundDark         = new Color32(0, 0, 0, 0);
 
+        /// <summary>
+        /// Sets all supplied TMP_Text stat text (statDiffs) text to supplied string (textValue).
+        /// </summary>
+        /// <param name="textValue"></param>
+        /// <param name="statDiffs"></param>
         public static void ClearStatDiffsText(string textValue, params TMP_Text[] statDiffs) {
             foreach (TMP_Text diff in statDiffs) {
                 diff.SetText(textValue);
             }
         }
-
-        public static void SetNeutralItems(string itemValue, Color32 itemColor, params TMP_Text[] items) {
-            foreach (TMP_Text item in items) {
+        /// <summary>
+        /// Sets all supplied TMP_Text items (items) text and color to supplied string (itemValue) and Color32 (itemColor).
+        /// </summary>
+        /// <param name="itemValue"></param>
+        /// <param name="itemColor"></param>
+        /// <param name="statItems"></param>
+        public static void SetNeutralItems(string itemValue, Color32 itemColor, params TMP_Text[] statItems) {
+            foreach (TMP_Text item in statItems) {
                 item.SetText(itemValue);
                 item.color = itemColor;
             }
         }
-
+        /// <summary>
+        /// Sets all supplied GameObject images (statBackgrounds) colors to supplied Color32 (colorValue).
+        /// </summary>
+        /// <param name="colorValue"></param>
+        /// <param name="statBackgrounds"></param>
         public static void ClearStatBackgrounds(Color32 colorValue, params GameObject[] statBackgrounds) {
             foreach (GameObject background in statBackgrounds) {
                 background.GetComponent<Image>().color = colorValue;
             }
         }
-
+        /// <summary>
+        /// Sets all supplied GameObject images (statBackgrounds) colors to supplied Color32 array items (colorArray).
+        /// </summary>
+        /// <param name="colorArray"></param>
+        /// <param name="statBackgrounds"></param>
         public static void ClearStatBackgrounds(Color32[] colorArray, params GameObject[] statBackgrounds) {
             int i = 0;
             foreach (GameObject background in statBackgrounds) {
