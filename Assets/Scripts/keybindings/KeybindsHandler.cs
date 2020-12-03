@@ -79,6 +79,7 @@ public class KeybindsHandler : MonoBehaviour {
             KeybindSettings.SaveToggleSettingsKeybindItem(newKeycode);
 
             NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("keybindtogglesettings")} \"{clickedKeycode}\" {I18nTextTranslator.SetTranslatedText("keybindrebinded")} \"{newKeycode}\".", InterfaceColors.notificationColorGreen);
+            KeybindSaveSystem.SetAARButtons(KeybindSettings.gameRestart, newKeycode);
         } else if (clickedKeycode == KeybindSettings.toggleAAR) {
             KeybindSaveSystem.SetToggleAARKeybind(newKeycode);
             KeybindSettings.SaveToggleAARKeybindItem(newKeycode);
@@ -94,6 +95,7 @@ public class KeybindsHandler : MonoBehaviour {
             KeybindSettings.SaveGameRestartKeybindItem(newKeycode);
 
             NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("keybindgamerestart")} \"{clickedKeycode}\" {I18nTextTranslator.SetTranslatedText("keybindrebinded")} \"{newKeycode}\".", InterfaceColors.notificationColorGreen);
+            KeybindSaveSystem.SetAARButtons(newKeycode, KeybindSettings.toggleSettings);
         }
     }
 
