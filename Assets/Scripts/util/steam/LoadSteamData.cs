@@ -5,6 +5,7 @@ using Steamworks;
 using TMPro;
 
 using SomeAimGame.Utilities;
+using System;
 
 public class LoadSteamData : MonoBehaviour {
     public static CSteamID userSteamID;
@@ -27,7 +28,7 @@ public class LoadSteamData : MonoBehaviour {
         if (!SteamManager.Initialized) { return; }
         userSteamID = SteamUser.GetSteamID();
 
-        //FetchSteamUsername();
+        FetchSteamUsername();
         StartCoroutine(FetchSteamAvatar());
     }
 
@@ -84,9 +85,9 @@ public class LoadSteamData : MonoBehaviour {
     /// Sets default avatar and username text if users steam data not available, or steam manager not initialized.
     /// </summary>
     public static void SetSteamDataDefaults() {
-        //string userName = Environment.UserName;
+        string userName = Environment.UserName;
 
-        steamData.steamUsernameText.SetText($"{I18nTextTranslator.SetTranslatedText("testuser")}");
+        steamData.steamUsernameText.SetText($"{userName}");
         steamData.steamAvatarImage.sprite = steamData.placeholderAvatar;
 
         Util.RefreshRootLayoutGroup(steamData.rootGroup);
