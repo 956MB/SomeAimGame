@@ -271,13 +271,7 @@ public class SettingsPanel : MonoBehaviour {
         gamemodePreviewVideos = VideoManager.PopulateGamemodePreviews(GamemodeUtil.ReturnGamemodeType_StringFull(CosmeticsSettings.gamemode), TargetUtil.ReturnTargetColorType_StringFull(CosmeticsSettings.targetColor), SkyboxUtil.ReturnSkyboxType_StringFull(CosmeticsSettings.skybox));
 
         // Set clips for every gamemode preview button.
-        settings.scatterVideoPlayer.clip  = gamemodePreviewVideos[0];
-        settings.flickVideoPlayer.clip    = gamemodePreviewVideos[1];
-        settings.gridVideoPlayer.clip     = gamemodePreviewVideos[2];
-        settings.grid2VideoPlayer.clip    = gamemodePreviewVideos[3];
-        settings.pairsVideoPlayer.clip    = gamemodePreviewVideos[4];
-        settings.followVideoPlayer.clip   = gamemodePreviewVideos[5];
-        settings.selectedVideoPlayer.clip = gamemodePreviewVideos[6];
+        Util.VideoLoops.Util_SetVideoPlayerClips(7, gamemodePreviewVideos, settings.scatterVideoPlayer, settings.flickVideoPlayer, settings.gridVideoPlayer, settings.grid2VideoPlayer, settings.pairsVideoPlayer, settings.followVideoPlayer, settings.selectedVideoPlayer);
         // Set gamemode select clips from loaded previews
         GamemodeSelect.gamemodeScatterClip_Loaded = gamemodePreviewVideos[0];
         GamemodeSelect.gamemodeFlickClip_Loaded   = gamemodePreviewVideos[1];
@@ -286,21 +280,9 @@ public class SettingsPanel : MonoBehaviour {
         GamemodeSelect.gamemodePairsClip_Loaded   = gamemodePreviewVideos[4];
         GamemodeSelect.gamemodeFollowClip_Loaded  = gamemodePreviewVideos[5];
         // Set video player aspect ratios.
-        settings.scatterVideoPlayer.aspectRatio  = VideoAspectRatio.NoScaling;
-        settings.flickVideoPlayer.aspectRatio    = VideoAspectRatio.NoScaling;
-        settings.gridVideoPlayer.aspectRatio     = VideoAspectRatio.NoScaling;
-        settings.grid2VideoPlayer.aspectRatio    = VideoAspectRatio.NoScaling;
-        settings.pairsVideoPlayer.aspectRatio    = VideoAspectRatio.NoScaling;
-        settings.followVideoPlayer.aspectRatio   = VideoAspectRatio.NoScaling;
-        settings.selectedVideoPlayer.aspectRatio = VideoAspectRatio.FitVertically;
+        Util.VideoLoops.Util_SetVideoPlayersAscpectRatio(VideoAspectRatio.FitVertically, settings.scatterVideoPlayer, settings.flickVideoPlayer, settings.gridVideoPlayer, settings.grid2VideoPlayer, settings.pairsVideoPlayer, settings.followVideoPlayer, settings.selectedVideoPlayer);
         // Play clips once set.
-        settings.scatterVideoPlayer.Play();
-        settings.flickVideoPlayer.Play();
-        settings.gridVideoPlayer.Play();
-        settings.grid2VideoPlayer.Play();
-        settings.pairsVideoPlayer.Play();
-        settings.followVideoPlayer.Play();
-        settings.selectedVideoPlayer.Play();
+        Util.VideoLoops.Util_PlayVideoPlayers(settings.scatterVideoPlayer, settings.flickVideoPlayer, settings.gridVideoPlayer, settings.grid2VideoPlayer, settings.pairsVideoPlayer, settings.followVideoPlayer, settings.selectedVideoPlayer);
     }
 
     /// <summary>

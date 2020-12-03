@@ -83,21 +83,11 @@ public class SubMenuHandler : MonoBehaviour {
     /// Clears all sub menu buttons to unselected color and resets all scroll view localscales.
     /// </summary>
     public void ClearSubMenus() {
-        gamemodeSubMenuText.color                = InterfaceColors.unselectedColor;
-        generalSubMenuText.color                 = InterfaceColors.unselectedColor;
-        controlsSubMenuText.color                = InterfaceColors.unselectedColor;
-        crosshairSubMenuText.color               = InterfaceColors.unselectedColor;
-        extraSubMenuText.color                   = InterfaceColors.unselectedColor;
-        gamemodeScrollView.transform.localScale  = disabledSubMenuScrollView;
-        generalScrollView.transform.localScale   = disabledSubMenuScrollView;
-        controlsScrollView.transform.localScale  = disabledSubMenuScrollView;
-        crosshairScrollView.transform.localScale = disabledSubMenuScrollView;
-        extraScrollView.transform.localScale     = disabledSubMenuScrollView;
-        gamemodeBar.transform.gameObject.SetActive(false);
-        generalBar.transform.gameObject.SetActive(false);
-        controlsBar.transform.gameObject.SetActive(false);
-        crosshairBar.transform.gameObject.SetActive(false);
-        extraBar.transform.gameObject.SetActive(false);
+        Util.GameObjectLoops.Util_ClearTMPTextColor(InterfaceColors.unselectedColor, gamemodeSubMenuText, generalSubMenuText, controlsSubMenuText, crosshairSubMenuText, extraSubMenuText);
+
+        Util.GameObjectLoops.Util_SetObjectsLocalScale(disabledSubMenuScrollView, gamemodeScrollView, generalScrollView, controlsScrollView, crosshairScrollView, extraScrollView);
+
+        Util.GameObjectLoops.Util_ImagesSetActive(false, gamemodeBar, generalBar, controlsBar, crosshairBar, extraBar);
         
         HideSettingsCrosshair();
     }
