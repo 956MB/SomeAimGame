@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 namespace SomeAimGame.Stats {
     public class StatsUtil : MonoBehaviour {
@@ -22,6 +24,33 @@ namespace SomeAimGame.Stats {
         public static Color32 highscoreLineColor          = new Color32(255, 209, 0, 255);
         public static Color32 clearBackgroundLight        = new Color32(255, 255, 255, 15);
         public static Color32 clearBackgroundDark         = new Color32(0, 0, 0, 0);
+
+        public static void ClearStatDiffsText(string textValue, params TMP_Text[] statDiffs) {
+            foreach (TMP_Text diff in statDiffs) {
+                diff.SetText(textValue);
+            }
+        }
+
+        public static void SetNeutralItems(string itemValue, Color32 itemColor, params TMP_Text[] items) {
+            foreach (TMP_Text item in items) {
+                item.SetText(itemValue);
+                item.color = itemColor;
+            }
+        }
+
+        public static void ClearStatBackgrounds(Color32 colorValue, params GameObject[] statBackgrounds) {
+            foreach (GameObject background in statBackgrounds) {
+                background.GetComponent<Image>().color = colorValue;
+            }
+        }
+
+        public static void ClearStatBackgrounds(Color32[] colorArray, params GameObject[] statBackgrounds) {
+            int i = 0;
+            foreach (GameObject background in statBackgrounds) {
+                background.GetComponent<Image>().color = colorArray[i];
+                i++;
+            }
+        }
 
         /// <summary>
         /// Returns appropriate stat item string (up/down/highscore) from supplied double values (newValue) (oldValue) (highscoreValue).
