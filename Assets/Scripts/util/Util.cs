@@ -46,8 +46,11 @@ namespace SomeAimGame.Utilities {
             GUIUtility.systemCopyBuffer = copyString;
         }
 
-        /// Looping utils ///
+        // Looping utils //
 
+        /// <summary>
+        /// Class holding various looping methods for setting things on TMP_Text/Image/GameObject.
+        /// </summary>
         public static class GameObjectLoops {
             /// <summary>
             /// Sets all supplied params TMP_Text elements (textElements) to supplied Colors32 (setColor).
@@ -55,9 +58,7 @@ namespace SomeAimGame.Utilities {
             /// <param name="setColor"></param>
             /// <param name="textElements"></param>
             public static void Util_ClearTMPTextColor(Color32 setColor, params TMP_Text[] textElements) {
-                foreach (TMP_Text text in textElements) {
-                    text.color = setColor;
-                }
+                foreach (TMP_Text text in textElements) { text.color = setColor; }
             }
             /// <summary>
             /// Sets all supplied params GameObjects transforms (transformObjects) to supplied Vector3 (setVector).
@@ -65,9 +66,7 @@ namespace SomeAimGame.Utilities {
             /// <param name="setVector"></param>
             /// <param name="transformObjects"></param>
             public static void Util_SetObjectsLocalScale(Vector3 setVector, params GameObject[] transformObjects) {
-                foreach (GameObject objTransform in transformObjects) {
-                    objTransform.transform.localScale = setVector;
-                }
+                foreach (GameObject objTransform in transformObjects) { objTransform.transform.localScale = setVector; }
             }
             /// <summary>
             /// Sets all supplied params Images gameobjects (imageObjects) to supplied bool (setActive).
@@ -75,9 +74,7 @@ namespace SomeAimGame.Utilities {
             /// <param name="setActive"></param>
             /// <param name="imageObjects"></param>
             public static void Util_ImagesSetActive(bool setActive, params Image[] imageObjects) {
-                foreach (Image imageObject in imageObjects) {
-                    imageObject.transform.gameObject.SetActive(setActive);
-                }
+                foreach (Image imageObject in imageObjects) { imageObject.transform.gameObject.SetActive(setActive); }
             }
         }
 
@@ -92,9 +89,7 @@ namespace SomeAimGame.Utilities {
             /// <param name="setVideoClips"></param>
             /// <param name="videoPlayers"></param>
             public static void Util_SetVideoPlayerClips(int specialLimit, VideoClip[] setVideoClips, params VideoPlayer[] videoPlayers) {
-                for (int i = 0; i < specialLimit; i++) {
-                    videoPlayers[i].clip = setVideoClips[i];
-                }
+                for (int i = 0; i < specialLimit; i++) { videoPlayers[i].clip = setVideoClips[i]; }
             }
             /// <summary>
             /// Sets supplied video clips in VideoClip array (videoClips) from VideoClip array clips (setVideoClips). (specialLimit) is how many VideoClip.
@@ -103,9 +98,7 @@ namespace SomeAimGame.Utilities {
             /// <param name="setVideoClips"></param>
             /// <param name="videoClips"></param>
             public static void Util_SetVideoClips(int specialLimit, VideoClip[] setVideoClips, params VideoClip[] videoClips) {
-                for (int i = 0; i < specialLimit; i++) {
-                    videoClips[i] = setVideoClips[i];
-                }
+                for (int i = 0; i < specialLimit; i++) { videoClips[i] = setVideoClips[i]; }
             }
             /// <summary>
             /// Sets supplied video players aspect ratio in VideoPlayer array (videoPlayers) to supplied VideoAspectRatio (setRatio).
@@ -113,20 +106,15 @@ namespace SomeAimGame.Utilities {
             /// <param name="setRatio"></param>
             /// <param name="videoPlayers"></param>
             public static void Util_SetVideoPlayersAscpectRatio(VideoAspectRatio setRatio, params VideoPlayer[] videoPlayers) {
-                foreach (VideoPlayer player in videoPlayers) {
-                    player.aspectRatio = setRatio;
-                }
+                foreach (VideoPlayer player in videoPlayers) { player.aspectRatio = setRatio; }
             }
             /// <summary>
             /// Plays all supplied video players in VideoPlayer array (videoPlayers).
             /// </summary>
             /// <param name="videoPlayers"></param>
             public static void Util_PlayVideoPlayers(params VideoPlayer[] videoPlayers) {
-                foreach (VideoPlayer player in videoPlayers) {
-                    player.Play();
-                }
+                foreach (VideoPlayer player in videoPlayers) { player.Play(); }
             }
-
         }
     }
 }
