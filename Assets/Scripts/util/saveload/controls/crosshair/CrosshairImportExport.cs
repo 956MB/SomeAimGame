@@ -122,7 +122,7 @@ public class CrosshairImportExport : MonoBehaviour {
         if (SimpleCrosshair.ValidateSetCrosshairString(importString, true)) {
             SetCrosshairNotification_Delay(I18nTextTranslator.SetTranslatedText("crosshairsetsuccess"), InterfaceColors.notificationColorGreen, true);
             crosshairStringInputField.clear();
-            CrosshairOptionsObject.crossahairSaveReady = true;
+            CrosshairOptionsObject.SaveCrosshairObject(true);
 
             if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
         } else {
