@@ -88,7 +88,7 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
     /// Clears all time buttons in settings panel (general sub-section) to unselected color.
     /// </summary>
     public static void ClearTimerButtons() {
-        Util.GameObjectLoops.Util_ClearTMPTextColor(InterfaceColors.unselectedColor, gameTimer.textInfinity, gameTimer.text30, gameTimer.text60, gameTimer.text90, gameTimer.text120);
+        Util.GameObjectLoops.Util_ClearTMPTextColor(InterfaceColors.unselectedColor, gameTimer.text30, gameTimer.text60, gameTimer.text90, gameTimer.text120);
     }
 
     /// <summary>
