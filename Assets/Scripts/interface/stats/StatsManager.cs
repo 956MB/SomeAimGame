@@ -374,7 +374,18 @@ namespace SomeAimGame.Stats {
         /// Resets all stat container background colors to original background colors.
         /// </summary>
         public static void ClearExtraStatsBackgrounds() {
-            StatsUtil.ClearStatBackgrounds(StatsUtil.clearBackgroundLight, statsManager.scoreContainerBackground, statsManager.accuracyContainerBackground, statsManager.ttkContainerBackground, statsManager.kpsContainerBackground, statsManager.bestStreakContainerBackground, statsManager.targetsTotalContainerBackground, statsManager.taretsHitContainerBackground, statsManager.targetsMissesContainerBackground);
+            // Alternating grey stat backgrounds
+            statsManager.scoreContainerBackground.GetComponent<Image>().color         = StatsUtil.clearBackgroundLight;
+            statsManager.accuracyContainerBackground.GetComponent<Image>().color      = StatsUtil.clearBackgroundLight;
+            statsManager.ttkContainerBackground.GetComponent<Image>().color           = StatsUtil.clearBackgroundDark;
+            statsManager.kpsContainerBackground.GetComponent<Image>().color           = StatsUtil.clearBackgroundLight;
+            statsManager.bestStreakContainerBackground.GetComponent<Image>().color    = StatsUtil.clearBackgroundDark;
+            statsManager.targetsTotalContainerBackground.GetComponent<Image>().color  = StatsUtil.clearBackgroundLight;
+            statsManager.taretsHitContainerBackground.GetComponent<Image>().color     = StatsUtil.clearBackgroundDark;
+            statsManager.targetsMissesContainerBackground.GetComponent<Image>().color = StatsUtil.clearBackgroundLight;
+
+            // Solid grey stat backgrounds
+            //StatsUtil.ClearStatBackgrounds(StatsUtil.clearBackgroundLight, statsManager.scoreContainerBackground, statsManager.accuracyContainerBackground, statsManager.ttkContainerBackground, statsManager.kpsContainerBackground, statsManager.bestStreakContainerBackground, statsManager.targetsTotalContainerBackground, statsManager.taretsHitContainerBackground, statsManager.targetsMissesContainerBackground);
         }
 
         /// <summary>
