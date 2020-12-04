@@ -23,8 +23,12 @@ public class FollowRaycast : MonoBehaviour {
 
             if (Physics.Raycast(ray, out raycastHit)) {
                 if (raycastHit.transform.CompareTag("Target")) {
-                    if (!MouseLook.settingsOpen) { GameUI.IncreaseScore_Follow(); }
-                    shotsHit += 1;
+                    if (!MouseLook.settingsOpen) {
+                        shotsHit += 1;
+                        SpawnTargets.shotsHit += 1;
+                        GameUI.IncreaseScore_Follow();
+                        GameUI.UpdateReactionTime();
+                    }
 
                     if (!targetPrimary) {
                         try {
@@ -38,7 +42,10 @@ public class FollowRaycast : MonoBehaviour {
                         targetPrimary = true;
                     }
                 } else {
-                    if (!MouseLook.settingsOpen) { GameUI.DecreaseScore_Follow(); }
+                    if (!MouseLook.settingsOpen) {
+                        SpawnTargets.shotMisses += 1;
+                        GameUI.DecreaseScore_Follow();
+                    }
 
                     if (targetPrimary) {
                         try {
@@ -55,7 +62,11 @@ public class FollowRaycast : MonoBehaviour {
                 }
             }
 
-            shotsTaken += 1;
+            if (!MouseLook.settingsOpen) {
+                shotsTaken += 1;
+                SpawnTargets.totalCount += 1;
+            }
+
             GameUI.UpdateAccuracy(shotsHit, shotsTaken);
         }
     }
