@@ -94,10 +94,14 @@ public class SettingsPanel : MonoBehaviour {
         OpenAction();
         settingsOpen = true;
         SubMenuHandler.ResetAllScrollviewsTop();
+        SubMenuHandler.HideSettingsCrosshair();
         GameUI.HideWidgetsUI();
         GameUI.HideGameObject_Layer(settings.crosshairImage);
 
+        GameTime.PauseGameTime();
+
         if (SubMenuHandler.activeSubMenuText == "CrosshairTitleText (TMP)") { SubMenuHandler.ShowSettingsCrosshair(); }
+
         // EVENT:: for settings panel being opened
         //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacesettingsopened")}");
     }
@@ -122,6 +126,7 @@ public class SettingsPanel : MonoBehaviour {
         CloseAction();
         settingsOpen = false;
 
+        GameTime.ContinueGameTime();
 
         // EVENT:: for settings panel being closed
         //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacesettingsclosed")}");
@@ -141,6 +146,7 @@ public class SettingsPanel : MonoBehaviour {
         StatsManager.ResetAARScrollView();
         GameUI.HideWidgetsUI();
         GameUI.HideGameObject_Layer(settings.crosshairImage);
+        SubMenuHandler.HideSettingsCrosshair();
 
         // EVENT:: for AAR panel being opened
         //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceaaropened")}");
@@ -160,6 +166,7 @@ public class SettingsPanel : MonoBehaviour {
 
         if (ExtraSettings.hideUI) { GameUI.ShowWidgetsUI(); }
         GameUI.ShowGameObject_Layer(settings.crosshairImage);
+        SubMenuHandler.HideSettingsCrosshair();
 
         // EVENT:: for AAR panel being opened
         //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceaarclosed")}");
