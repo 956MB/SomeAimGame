@@ -6,7 +6,8 @@ using SomeAimGame.Utilities;
 
 public class SubMenuHandler : MonoBehaviour {
     public TMP_Text gamemodeSubMenuText, generalSubMenuText, controlsSubMenuText, crosshairSubMenuText, extraSubMenuText;
-    public GameObject gamemodeScrollView, generalScrollView, controlsScrollView, crosshairScrollView, extraScrollView, crosshairImageSettings;
+    public GameObject gamemodeContainer, generalContainer, controlsContainer, crosshairContainer, extraContainer, crosshairImageSettings;
+    public GameObject gamemodeScrollView, generalScrollView, controlsScrollView, crosshairScrollView, extraScrollView;
     public Image gamemodeBar, generalBar, controlsBar, crosshairBar, extraBar;
 
     public static Vector3 disabledSubMenuScrollView = new Vector3(0, 0, 0);
@@ -28,15 +29,15 @@ public class SubMenuHandler : MonoBehaviour {
 
         switch (buttonClickedName) {
             case "GamemodeSubMenuButton":
-                SetSubMenu(gamemodeSubMenuText, gamemodeScrollView, gamemodeBar); break;
+                SetSubMenu(gamemodeSubMenuText, gamemodeContainer, gamemodeBar); break;
             case "GeneralSubMenuButton":
-                SetSubMenu(generalSubMenuText, generalScrollView, generalBar); break;
+                SetSubMenu(generalSubMenuText, generalContainer, generalBar); break;
             case "ControlsSubMenuButton":
-                SetSubMenu(controlsSubMenuText, controlsScrollView, controlsBar); break;
+                SetSubMenu(controlsSubMenuText, controlsContainer, controlsBar); break;
             case "CrosshairSubMenuButton":
-                SetSubMenu(crosshairSubMenuText, crosshairScrollView, crosshairBar, true); break;
+                SetSubMenu(crosshairSubMenuText, crosshairContainer, crosshairBar, true); break;
             case "ExtraSubMenuButton":
-                SetSubMenu(extraSubMenuText, extraScrollView, extraBar); break;
+                SetSubMenu(extraSubMenuText, extraContainer, extraBar); break;
         }
 
         CrosshairOptionsObject.SaveCrosshairObject(false);
@@ -54,7 +55,7 @@ public class SubMenuHandler : MonoBehaviour {
     public void SetSubMenu(TMP_Text subMenuText, GameObject subMenuActive, Image subMenuBar, bool showCrosshair = false) {
         subMenuText.color                  = InterfaceColors.selectedColor;
         subMenuActive.transform.localScale = enabledSubMenuScrollView;
-        ScrollRectExtension.ScrollToTop(subMenuActive.GetComponent<ScrollRect>());
+        //ScrollRectExtension.ScrollToTop(subMenuActive.GetComponent<ScrollRect>());
         subMenuBar.transform.gameObject.SetActive(true);
 
         if (showCrosshair) { ShowSettingsCrosshair(); }
@@ -83,11 +84,11 @@ public class SubMenuHandler : MonoBehaviour {
     /// Clears all sub menu buttons to unselected color and resets all scroll view localscales.
     /// </summary>
     public void ClearSubMenus() {
-        Util.GameObjectLoops.Util_ClearTMPTextColor(InterfaceColors.unselectedColor, gamemodeSubMenuText, generalSubMenuText, controlsSubMenuText, crosshairSubMenuText, extraSubMenuText);
+        Util.GameObjectLoops.Util_ClearTMPTextColor(InterfaceColors.unselectedColor, gamemodeSubMenuText, generalSubMenuText, controlsSubMenuText, crosshairSubMenuText);
 
-        Util.GameObjectLoops.Util_SetObjectsLocalScale(disabledSubMenuScrollView, gamemodeScrollView, generalScrollView, controlsScrollView, crosshairScrollView, extraScrollView);
+        Util.GameObjectLoops.Util_SetObjectsLocalScale(disabledSubMenuScrollView, gamemodeContainer, generalContainer, controlsContainer, crosshairContainer);
 
-        Util.GameObjectLoops.Util_ImagesSetActive(false, gamemodeBar, generalBar, controlsBar, crosshairBar, extraBar);
+        Util.GameObjectLoops.Util_ImagesSetActive(false, gamemodeBar, generalBar, controlsBar, crosshairBar);
         
         HideSettingsCrosshair();
     }
@@ -118,10 +119,10 @@ public class SubMenuHandler : MonoBehaviour {
         ScrollRectExtension.ScrollToTop(subMenu.generalScrollView.GetComponent<ScrollRect>());
         ScrollRectExtension.ScrollToTop(subMenu.controlsScrollView.GetComponent<ScrollRect>());
         ScrollRectExtension.ScrollToTop(subMenu.crosshairScrollView.GetComponent<ScrollRect>());
-        ScrollRectExtension.ScrollToTop(subMenu.extraScrollView.GetComponent<ScrollRect>());
+        //ScrollRectExtension.ScrollToTop(subMenu.extraScrollView.GetComponent<ScrollRect>());
     }
 
     public static void ResetCrosshairScrollview() {
-        ScrollRectExtension.ScrollToTop(subMenu.crosshairScrollView.GetComponent<ScrollRect>());
+        ScrollRectExtension.ScrollToTop(subMenu.crosshairContainer.GetComponent<ScrollRect>());
     }
 }
