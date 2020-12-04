@@ -9,6 +9,7 @@ public class SubMenuHandler : MonoBehaviour {
     public GameObject gamemodeContainer, generalContainer, controlsContainer, crosshairContainer, extraContainer, crosshairImageSettings;
     public GameObject gamemodeScrollView, generalScrollView, controlsScrollView, crosshairScrollView, extraScrollView;
     public Image gamemodeBar, generalBar, controlsBar, crosshairBar, extraBar;
+    //public ;
 
     public static Vector3 disabledSubMenuScrollView = new Vector3(0, 0, 0);
     public static Vector3 enabledSubMenuScrollView  = new Vector3(1, 1, 1);
@@ -104,7 +105,7 @@ public class SubMenuHandler : MonoBehaviour {
     /// Shows crosshair image above crosshair settings panel.
     /// </summary>
     public static void ShowSettingsCrosshair() {
-        GameObject crosshairCanvasPos = GameObject.Find($"SettingsCrosshairCanvas");
+        GameObject crosshairCanvasPos = GameObject.Find($"CrosshairSettingsCanvas");
         GameUI.ShowGameObject_Layer(subMenu.crosshairImageSettings);
         //subMenu.crosshairImageSettings.transform.parent = crosshairCanvasPos.transform;
         subMenu.crosshairImageSettings.transform.position = crosshairCanvasPos.transform.position;
