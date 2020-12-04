@@ -23,6 +23,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+using SomeAimGame.Gamemode;
+
 public class I18n : MonoBehaviour {
     /// <summary>
     /// Text Fields

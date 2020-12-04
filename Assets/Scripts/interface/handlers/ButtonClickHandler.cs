@@ -63,11 +63,11 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
         clickedButtonBorder.GetComponent<Image>().color = InterfaceColors.selectedColor;
         clickedButtonBorder.SetActive(true);
 
-        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
-
         // Populate selected gamemode based on button clicked in gamemode settings panel.
         GamemodeSelect.PopulateGamemodeSelect(gamemodeClickedName, CosmeticsSettings.quickStartGame);
         GamemodeSelect.ClearGamemodeButtonColors(GameObject.Find($"{GamemodeUtil.ReturnGamemodeType_StringFull(gamemodeClickedName)}-Text (TMP)").GetComponent<TMP_Text>(), true, true);
+
+        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
 
         // EVENT:: for new gamemode button clicked
         //DevEventHandler.CheckInterfaceEvent($"\"{gamemodeClickedName}\" {I18nTextTranslator.SetTranslatedText("eventinterfacegamemodebutton")}");
