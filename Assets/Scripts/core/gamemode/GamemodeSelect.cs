@@ -8,7 +8,7 @@ using SomeAimGame.Utilities;
 namespace SomeAimGame.Gamemode {
 
     public class GamemodeSelect : MonoBehaviour {
-        public GameObject gamemodeSelectObject;
+        public GameObject gamemodeSelectObject, testContainerObject;
         public TMP_Text gamemodeNameText, gamemodeTypeText, gamemodeDescriptionText, gamemodeStartButtonText;
         public TMP_Text gamemodeScatterText, gamemodeFlickText, gamemodeGridText, gamemodeGrid2Text, gamemodePairsText, gamemodeFollowText;
         public static TMP_Text selectedGamemodeText;
