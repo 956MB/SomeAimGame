@@ -8,6 +8,7 @@ using TMPro;
 using SomeAimGame.Gamemode;
 using SomeAimGame.Targets;
 using SomeAimGame.Utilities;
+using SomeAimGame.Stats;
 
 public class GameUI : MonoBehaviour {
     public TMP_Text timeText, scoreText, accuracyText, streakText, ttkText, kpsText;
@@ -21,7 +22,7 @@ public class GameUI : MonoBehaviour {
     // TODO: Maybe add AimLab like score system. Score up/down amount increases/decreases with streaks.
     public static int scoreUp         = 1000;
     public static int scoreDown       = 300;
-    public static int followScoreUp   = 7;
+    public static int followScoreUp   = 10;
     public static int followScoreDown = 3;
     
     public static int timeCount, timeStart;
@@ -63,7 +64,7 @@ public class GameUI : MonoBehaviour {
         StatsManager.LoadBestGameStats();
 
         // Set game timer to saved 'ExtraSaveSystem' time, if exists.
-        timeCount     = ExtraSaveSystem.InitGameTimer();
+        timeCount = ExtraSaveSystem.InitGameTimer();
         //TempValues.SetTimeCountTemp(timeCount);
 
         timeStart     = timeCount;
