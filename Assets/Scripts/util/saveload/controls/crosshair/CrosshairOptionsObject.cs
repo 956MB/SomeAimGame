@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 using TMPro;
 
+using SomeAimGame.Utilities;
+
 public class CrosshairOptionsObject : MonoBehaviour {
     public Slider crosshairSizeSlider, crosshairThicknessSlider, crosshairGapSlider, crosshairOutlineSlider, crosshairRedSlider, crosshairGreenSlider, crosshairBlueSlider, crosshairAlphaSlider, crosshairRedOutlineSlider, crosshairGreenOutlineSlider, crosshairBlueOutlineSlider, crosshairAlphaOutlineSlider;
 
@@ -170,14 +172,7 @@ public class CrosshairOptionsObject : MonoBehaviour {
     /// </summary>
     /// <param name="outlineContainerEnabled"></param>
     public static void SetOutlineContainerState(bool outlineContainerEnabled) {
-        if (outlineContainerEnabled) {
-            crosshairOptions.outlineContainerCanvasGroup.alpha = 1f;
-        } else {
-            crosshairOptions.outlineContainerCanvasGroup.alpha = 0.35f;
-        }
-        
-        crosshairOptions.outlineContainerCanvasGroup.interactable   = outlineContainerEnabled;
-        crosshairOptions.outlineContainerCanvasGroup.blocksRaycasts = outlineContainerEnabled;
+        Util.CanvasGroupState(crosshairOptions.outlineContainerCanvasGroup, outlineContainerEnabled);
     }
 
     /// <summary>
