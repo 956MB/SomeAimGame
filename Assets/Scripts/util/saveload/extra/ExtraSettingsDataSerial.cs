@@ -2,8 +2,6 @@
 [System.Serializable]
 public class ExtraSettingsDataSerial {
     public int gameTimer;
-    public bool targetSound;
-    public bool uiSound;
     public bool showAAR;
     public float mouseSensitivity;
     public bool hideUI;
@@ -12,8 +10,6 @@ public class ExtraSettingsDataSerial {
 
     public ExtraSettingsDataSerial() {
         gameTimer                 = ExtraSettings.gameTimer;
-        targetSound               = ExtraSettings.targetSound;
-        uiSound                   = ExtraSettings.uiSound;
         showAAR                   = ExtraSettings.showAAR;
         mouseSensitivity          = ExtraSettings.mouseSensitivity;
         hideUI                    = ExtraSettings.hideUI;

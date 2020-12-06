@@ -57,8 +57,6 @@ public class ExtraSaveSystem : MonoBehaviour {
             ExtraSettings.LoadExtraSettings(loadedExtraData);
 
             SetGameTimerButtons(loadedExtraData.gameTimer);
-            SetTargetSoundToggle(loadedExtraData.targetSound);
-            SetUISoundToggle(loadedExtraData.uiSound);
             SetShowAARToggle(loadedExtraData.showAAR);
             SetMouseSensitivity(loadedExtraData.mouseSensitivity);
             SetHideUI(loadedExtraData.hideUI);
@@ -76,8 +74,6 @@ public class ExtraSaveSystem : MonoBehaviour {
     public static void InitExtraSettingsDefaults() {
         SetGameTimerButtons(60);
 
-        extraSave.targetSoundToggleObject.isOn               = true;
-        extraSave.UISoundToggleObject.isOn                   = true;
         extraSave.ShowAARToggleObject.isOn                   = true;
         extraSave.ShowExtraStatsToggleObject.isOn            = false;
         extraSave.ShowExtraStatsBackgroundsToggleObject.isOn = true;
@@ -88,7 +84,7 @@ public class ExtraSaveSystem : MonoBehaviour {
         MouseLook.mouseSensitivity   = 2.0f;
         StatsManager.showBackgrounds = true;
 
-        ExtraSettings.SaveAllExtraSettingsDefaults(60, true, true, true, 2.0f, true, false, true);
+        ExtraSettings.SaveAllExtraSettingsDefaults(60, true, 2.0f, true, false, true);
         GameUI.ShowWidgetsUI();
     }
 

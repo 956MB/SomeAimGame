@@ -2,8 +2,6 @@
 
 public class ExtraSettings : MonoBehaviour {
     public static int   gameTimer                 = 60;
-    public static bool  targetSound               = true;
-    public static bool  uiSound                   = true;
     public static bool  showAAR                   = true;
     public static float mouseSensitivity          = 2.0f;
     public static bool  hideUI                    = false;
@@ -19,22 +17,6 @@ public class ExtraSettings : MonoBehaviour {
     /// <param name="setGameTimer"></param>
     public static void SaveGameTimerItem(int setGameTimer) {
         gameTimer = setGameTimer;
-        extraSettings.SaveExtraSettings();
-    }
-    /// <summary>
-    /// Saves supplied target sound bool (setTargetSound) to extra settings object (ExtraSettings), then saves extra settings object.
-    /// </summary>
-    /// <param name="setTargetSound"></param>
-    public static void SaveTargetSoundItem(bool setTargetSound) {
-        targetSound = setTargetSound;
-        extraSettings.SaveExtraSettings();
-    }
-    /// <summary>
-    /// Saves supplied UI sound bool (setUISound) to extra settings object (ExtraSettings), then saves extra settings object.
-    /// </summary>
-    /// <param name="setUISound"></param>
-    public static void SaveUISoundItem(bool setUISound) {
-        uiSound = setUISound;
         extraSettings.SaveExtraSettings();
     }
     /// <summary>
@@ -90,11 +72,8 @@ public class ExtraSettings : MonoBehaviour {
     /// <param name="setMouseSens"></param>
     /// <param name="setHideUI"></param>
     /// <param name="setShowExtraStats"></param>
-    public static void SaveAllExtraSettingsDefaults(int setGameTimer, bool setTargetSound, bool setUISound,
-    bool setShowAAR, float setMouseSens, bool setHideUI, bool setShowExtraStats, bool setShowExtraStatsBackgrounds) {
+    public static void SaveAllExtraSettingsDefaults(int setGameTimer, bool setShowAAR, float setMouseSens, bool setHideUI, bool setShowExtraStats, bool setShowExtraStatsBackgrounds) {
         gameTimer                 = setGameTimer;
-        targetSound               = setTargetSound;
-        uiSound                   = setUISound;
         showAAR                   = setShowAAR;
         mouseSensitivity          = setMouseSens;
         hideUI                    = setHideUI;
@@ -109,8 +88,6 @@ public class ExtraSettings : MonoBehaviour {
     /// <param name="extraData"></param>
     public static void LoadExtraSettings(ExtraSettingsDataSerial extraData) {
         gameTimer                 = extraData.gameTimer;
-        targetSound               = extraData.targetSound;
-        uiSound                   = extraData.uiSound;
         showAAR                   = extraData.showAAR;
         mouseSensitivity          = extraData.mouseSensitivity;
         hideUI                    = extraData.hideUI;
