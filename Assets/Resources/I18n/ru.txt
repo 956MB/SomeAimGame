@@ -94,6 +94,10 @@ misctitle=Разное
 widgetstitle=Виджеты
 #
 #
+# // general buttons
+testtargetsoundbutton=ТЕСТ
+#
+#
 # // general section items
 gametimer=Таймер (секунды)
 targetsound=Целевой звук
@@ -177,6 +181,15 @@ crosshairresetdefault=ПЕРЕКРЕСТОК УСПЕШНО СБРОСИТЬ В 
 afteractionreporttitle=ОТЧЕТ ПО ДЕЙСТВИЯМ
 aarscore=Гол
 aarnewhighscore=НОВЫЙ РЕКОРД!
+#
+#
+# // target sound
+targetmisssound=Цель Промахнулась Звук
+targethitsoundeffect=Звуковой эффект попадания в цель
+targethitsoundeffecttooltip=Звуковой эффект воспроизводится при попадании в цель.
+targetmisssoundeffect=Звуковой эффект промаха цели
+targetmisssoundeffecttooltip=Шумовой эффект играл, когда цель не попал.
+targetmisssoundtooltip=Включает / выключает звук, издаваемый при промахе.
 #
 #
 # // after action report section items

@@ -94,6 +94,10 @@ misctitle=Muut
 widgetstitle=Widgetit
 #
 #
+# // general buttons
+testtargetsoundbutton=TESTATA
+#
+#
 # // general section items
 gametimer=Ajastin (sekuntia) 
 targetsound=Kohdeääni 
@@ -177,6 +181,15 @@ crosshairresetdefault=RISTINHENKIEN PALAUTTAMINEN OLETUKSEEN
 afteractionreporttitle=TOIMINTARAPORTIN JÄLKEEN
 aarscore=Pisteet
 aarnewhighscore=UUSI HUIPPUTULOS!
+#
+#
+# // target sound
+targetmisssound=Kohdista Miss Sound
+targethitsoundeffect=Target Hit Äänitehoste
+targethitsoundeffecttooltip=Äänitehoste, kun kohde osui.
+targetmisssoundeffect=Kohde Miss Äänitehoste
+targetmisssoundeffecttooltip=Äänitehosteen soitettavat tavoite jäi.
+targetmisssoundtooltip=Vaihtaa päälle / pois ääni tehdään, kun laukaus on jäänyt.
 #
 #
 # // after action report section items

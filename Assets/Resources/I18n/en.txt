@@ -94,6 +94,10 @@ misctitle=Misc
 widgetstitle=Widgets
 #
 #
+# // general buttons
+testtargetsoundbutton=TEST
+#
+#
 # // general section items
 gametimer=Timer (Seconds)
 targetsound=Target Sound
@@ -177,6 +181,15 @@ crosshairresetdefault=CROSSHAIR SUCCESSFULLY RESET TO DEFAULT
 afteractionreporttitle=AFTER ACTION REPORT
 aarscore=Score
 aarnewhighscore=NEW HIGHSCORE!
+#
+#
+# // target sound
+targetmisssound=Target Miss Sound
+targethitsoundeffect=Target Hit Sound Effect
+targethitsoundeffecttooltip=Sound effect played when target hit.
+targetmisssoundeffect=Target Miss Sound Effect
+targetmisssoundeffecttooltip=Sound effect played when target missed.
+targetmisssoundtooltip=Toggles on/off sound made when shot is missed.
 #
 #
 # // after action report section items

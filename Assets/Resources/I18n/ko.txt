@@ -94,6 +94,10 @@ misctitle=기타
 widgetstitle=위젯
 #
 #
+# // general buttons
+testtargetsoundbutton=테스트
+#
+#
 # // general section items
 gametimer=타이머 (초)
 targetsound=타겟 사운드
@@ -177,6 +181,15 @@ crosshairresetdefault=CROSSHAIR가 성공적으로 기본값으로 재설정 됨
 afteractionreporttitle=조치보고 후
 aarscore=점수
 aarnewhighscore=새로운 최고 점수!
+#
+#
+# // target sound
+targetmisssound=타겟 미스 사운드
+targethitsoundeffect=표적 명중 음향 효과
+targethitsoundeffecttooltip=목표물이 맞았을 때 재생되는 음향 효과.
+targetmisssoundeffect=타겟 미스 사운드 효과
+targetmisssoundeffecttooltip=목표를 놓쳤을 때 재생되는 음향 효과.
+targetmisssoundtooltip=샷을 놓쳤을 때 나는 소리를 켜거나 끕니다.
 #
 #
 # // after action report section items

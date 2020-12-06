@@ -94,6 +94,10 @@ misctitle=その他
 widgetstitle=ウィジェット
 #
 #
+# // general buttons
+testtargetsoundbutton=テスト
+#
+#
 # // general section items
 gametimer=タイマー（秒）
 targetsound=ターゲットサウンド
@@ -177,6 +181,15 @@ crosshairresetdefault=CROSSHAIRがデフォルトに正常にリセットされ�
 afteractionreporttitle=アクションレポート後
 aarscore=スコア
 aarnewhighscore=新ハイスコア！
+#
+#
+# // target sound
+targetmisssound=ターゲットミスサウンド
+targethitsoundeffect=ターゲットヒット効果音
+targethitsoundeffecttooltip=ターゲットがヒットしたときに再生される効果音。
+targetmisssoundeffect=ターゲットミスサウンドエフェクト
+targetmisssoundeffecttooltip=ターゲットを逃したときに再生される効果音。
+targetmisssoundtooltip=ショットを逃したときに鳴る音のオン/オフを切り替えます。
 #
 #
 # // after action report section items
