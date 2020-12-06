@@ -4,8 +4,9 @@ using UnityEngine.UI;
 using TMPro;
 
 using SomeAimGame.Utilities;
+using SomeAimGame.SFX;
 
-public class ButtonLanguageHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+public class DropdownButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public Image buttonImage;
     public TMP_Text buttonText;
 
@@ -13,7 +14,7 @@ public class ButtonLanguageHover : MonoBehaviour, IPointerEnterHandler, IPointer
         buttonImage.color = InterfaceColors.buttonBackgroundLight_hovered;
         buttonText.color  = InterfaceColors.selectedColor;
 
-        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_HoverInner(); }
+        SFXManager.CheckPlayHover_Regular();
     }
 
     public void OnPointerExit(PointerEventData pointerEventData) {
