@@ -58,7 +58,7 @@ public class QuitGame : MonoBehaviour {
     /// Opens quit confirmation section with "Are you sure?" and "Cancel" buttons.
     /// </summary>
     public static void OpenQuitConfirmation() {
-        quit.confirmationContainer.SetActive(true);
+        //quit.confirmationContainer.SetActive(true);
         quit.quitButton.SetActive(true);
         quit.cancelButton.SetActive(true);
         gameQuitConfirmationOpen = true;
@@ -70,7 +70,7 @@ public class QuitGame : MonoBehaviour {
     /// Closes quit confirmation section.
     /// </summary>
     public static void CloseQuitConfirmation() {
-        quit.confirmationContainer.SetActive(false);
+        //quit.confirmationContainer.SetActive(false);
         quit.quitButton.SetActive(false);
         quit.cancelButton.SetActive(false);
 
