@@ -11,7 +11,7 @@ namespace SomeAimGame.Stats {
         public static string itemDown          = "▼";
         public static string itemNeutral       = "-";
     
-        public static Color32 newHighscoreBackgroundColor = new Color32(255, 255, 0, 100);
+        public static Color32 newHighscoreBackgroundColor = new Color32(255, 255, 0, 120);
         public static Color32 upBackgroundColor           = new Color32(0, 255, 0, 70);
         public static Color32 downBackgroundColor         = new Color32(255, 0, 0, 70);
         public static Color32 neutralBackgroundColor      = new Color32(255, 255, 255, 15);
