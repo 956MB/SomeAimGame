@@ -46,6 +46,17 @@ namespace SomeAimGame.Utilities {
             GUIUtility.systemCopyBuffer = copyString;
         }
 
+        public static void CanvasGroupState(CanvasGroup setCanvasGroup, bool isEnabled) {
+            if (isEnabled) {
+                setCanvasGroup.alpha = 1f;
+            } else {
+                setCanvasGroup.alpha = 0.35f;
+            }
+
+            setCanvasGroup.interactable   = isEnabled;
+            setCanvasGroup.blocksRaycasts = isEnabled;
+        }
+
         // Looping utils //
 
         /// <summary>
