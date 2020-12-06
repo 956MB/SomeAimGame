@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 
 using SomeAimGame.Stats;
+using SomeAimGame.SFX;
 
 public class ToggleHandler : MonoBehaviour {
     public Toggle checkToggle;
@@ -25,26 +26,34 @@ public class ToggleHandler : MonoBehaviour {
         clickedToggleName = toggleClicked.name;
 
         switch (clickedToggleName) {
-            case "TargetSoundToggle": // Toggles target sound.
-                if (UISoundOn()) { UISound.PlayUISound_Click(); }
+            case "TargetSoundToggle": // Toggles target hit sound.
+                SFXManager.CheckPlayClick_Toggle();
+                //TargetSoundSelect.ToggleTargetSoundSelectionContainer_Static();
+                TargetSoundSelect.SetSoundSelectionContainerContainerState(toggleClicked.isOn);
 
-                ExtraSettings.SaveTargetSoundItem(toggleClicked.isOn);
+                SFXSettings.SaveTargetSoundOn(toggleClicked.isOn);
+                break;
+
+            case "TargetMissSoundToggle": // Toggles target miss sound.
+                SFXManager.CheckPlayClick_Toggle();
+
+                SFXSettings.SaveTargetMissSoundOn(toggleClicked.isOn);
                 break;
 
             case "UISoundToggle": // Toggles UI sound.
-                if (UISoundOn()) { UISound.PlayUISound_Click(); }
+                SFXManager.CheckPlayClick_Toggle();
 
-                ExtraSettings.SaveUISoundItem(toggleClicked.isOn);
+                SFXSettings.SaveUISoundOn(toggleClicked.isOn);
                 break;
 
             case "AARToggle": // Toggles showing 'AfterActionReport'.
-                if (UISoundOn()) { UISound.PlayUISound_Click(); }
+                SFXManager.CheckPlayClick_Toggle();
 
                 ExtraSettings.SaveShowAAR(toggleClicked.isOn);
                 break;
 
             case "CenterDotToggle": // Toggles center dot for crosshair.
-                if (UISoundOn()) { UISound.PlayUISound_Click(); }
+                SFXManager.CheckPlayClick_Toggle();
 
                 simpleCrosshair.SetCenterDot(toggleClicked.isOn, true);
                 CrosshairSettings.SaveCenterDot(toggleClicked.isOn);
@@ -52,7 +61,7 @@ public class ToggleHandler : MonoBehaviour {
                 break;
 
             case "TStyleToggle": // Toggles TStyle for crosshair.
-                if (UISoundOn()) { UISound.PlayUISound_Click(); }
+                SFXManager.CheckPlayClick_Toggle();
 
                 simpleCrosshair.SetTStyle(toggleClicked.isOn, true);
                 CrosshairSettings.SaveTStyle(toggleClicked.isOn);
@@ -60,7 +69,7 @@ public class ToggleHandler : MonoBehaviour {
                 break;
 
             case "OutlineEnableToggle": // Toggles outline for crosshair.
-                if (UISoundOn()) { UISound.PlayUISound_Click(); }
+                SFXManager.CheckPlayClick_Toggle();
 
                 simpleCrosshair.SetOutlineEnabled(toggleClicked.isOn, true);
                 CrosshairSettings.SaveOutlineEnabled(toggleClicked.isOn);
@@ -69,7 +78,7 @@ public class ToggleHandler : MonoBehaviour {
                 break;
 
             case "ShowExtraStatsToggle": // Toggles 'ExtraStats' panel in 'AfterActionReport'.
-                if (UISoundOn()) { UISound.PlayUISound_Click(); }
+                SFXManager.CheckPlayClick_Toggle();
                 if (toggleClicked.isOn) {
                     StatsManager.ShowExtraStatsPanel();
                     ExtraSettings.SaveShowExtraStats(true);
@@ -80,7 +89,7 @@ public class ToggleHandler : MonoBehaviour {
                 break;
 
             case "ShowExtraStatsBackgroundsToggle": // Toggles 'ExtraStats' backgrounds panel in 'AfterActionReport'.
-                if (UISoundOn()) { UISound.PlayUISound_Click(); }
+                SFXManager.CheckPlayClick_Toggle();
                 if (toggleClicked.isOn) {
                     StatsManager.SetExtraStatsBackgrounds();
                     ExtraSettings.SaveShowExtraStatsBackgrounds(true);
@@ -91,63 +100,63 @@ public class ToggleHandler : MonoBehaviour {
                 break;
 
             case "QuickStartToggle": // Toggles quick start game in gamemode panel.
-                if (UISoundOn()) { UISound.PlayUISound_Click(); }
+                SFXManager.CheckPlayClick_Toggle();
 
                 CosmeticsSaveSystem.SetQuickStartGame(toggleClicked.isOn);
                 CosmeticsSettings.SaveQuickStartGameItem(toggleClicked.isOn);
                 break;
 
             case "ShowModeToggle": // Toggles Mode widget.
-                if (UISoundOn()) { UISound.PlayUISound_Click(); }
+                SFXManager.CheckPlayClick_Toggle();
 
                 modeWidget.SetActive(toggleClicked.isOn);
                 WidgetSettings.SaveShowModeItem(toggleClicked.isOn);
                 break;
 
             case "ShowFPSToggle": // Toggles FPS widget.
-                if (UISoundOn()) { UISound.PlayUISound_Click(); }
+                SFXManager.CheckPlayClick_Toggle();
 
                 fpsWidget.SetActive(toggleClicked.isOn);
                 WidgetSettings.SaveShowFPSItem(toggleClicked.isOn);
                 break;
 
             case "ShowTimeToggle": // Toggles time widget.
-                if (UISoundOn()) { UISound.PlayUISound_Click(); }
+                SFXManager.CheckPlayClick_Toggle();
 
                 timeWidget.SetActive(toggleClicked.isOn);
                 WidgetSettings.SaveShowTimeItem(toggleClicked.isOn);
                 break;
 
             case "ShowScoreToggle": // Toggles score widget.
-                if (UISoundOn()) { UISound.PlayUISound_Click(); }
+                SFXManager.CheckPlayClick_Toggle();
 
                 ScoreWidget.SetActive(toggleClicked.isOn);
                 WidgetSettings.SaveShowScoreItem(toggleClicked.isOn);
                 break;
 
             case "ShowAccuracyToggle": // Toggles accuracy widget.
-                if (UISoundOn()) { UISound.PlayUISound_Click(); }
+                SFXManager.CheckPlayClick_Toggle();
 
                 accuracyWidget.SetActive(toggleClicked.isOn);
                 WidgetSettings.SaveShowAccuracyItem(toggleClicked.isOn);
                 break;
 
             case "ShowStreakToggle": // Toggles streak widget.
-                if (UISoundOn()) { UISound.PlayUISound_Click(); }
+                SFXManager.CheckPlayClick_Toggle();
 
                 streakWidget.SetActive(toggleClicked.isOn);
                 WidgetSettings.SaveShowStreakItem(toggleClicked.isOn);
                 break;
 
             case "ShowTTKToggle": // Toggles ttk widget.
-                if (UISoundOn()) { UISound.PlayUISound_Click(); }
+                SFXManager.CheckPlayClick_Toggle();
 
                 ttkWidget.SetActive(toggleClicked.isOn);
                 WidgetSettings.SaveShowTTKItem(toggleClicked.isOn);
                 break;
 
             case "ShowKPSToggle": // Toggles kps widget.
-                if (UISoundOn()) { UISound.PlayUISound_Click(); }
+                SFXManager.CheckPlayClick_Toggle();
 
                 kpsWidget.SetActive(toggleClicked.isOn);
                 WidgetSettings.SaveShowKPSItem(toggleClicked.isOn);
@@ -168,12 +177,12 @@ public class ToggleHandler : MonoBehaviour {
     /// Returns ExtraSettings.targetSound value.
     /// </summary>
     /// <returns></returns>
-    public static bool TargetSoundOn() { return ExtraSettings.targetSound; }
+    public static bool TargetSoundOn() { return true; }
     /// <summary>
     /// Returns ExtraSettings.uiSound value.
     /// </summary>
     /// <returns></returns>
-    public static bool UISoundOn() { return ExtraSettings.uiSound; }
+    public static bool UISoundOn() { return true; }
     /// <summary>
     /// Returns WidgetSettings.showFPS value.
     /// </summary>
