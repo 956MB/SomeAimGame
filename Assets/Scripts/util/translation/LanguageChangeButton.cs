@@ -2,11 +2,13 @@
 using UnityEngine.EventSystems;
 
 using SomeAimGame.Utilities;
+using SomeAimGame.SFX;
 
 public class LanguageChangeButton : MonoBehaviour, IPointerClickHandler {
     public void OnPointerClick(PointerEventData pointerEventData) {
         string buttonName = pointerEventData.pointerCurrentRaycast.gameObject.transform.name;
         SetNewGameLanguage(buttonName);
+        LanguageSelect.CheckCloseLanguageSelect();
     }
 
     /// <summary>
@@ -26,7 +28,7 @@ public class LanguageChangeButton : MonoBehaviour, IPointerClickHandler {
             //DevEventHandler.CheckLanguageEvent($"{I18nTextTranslator.SetTranslatedText("eventlanguagegameset")} [{newLangCode}]");
         } else {
             NotificationHandler.ShowTimedNotification_String($"{newLangCode}: {I18nTextTranslator.SetTranslatedText("languageactive")}", InterfaceColors.notificationColorRed);
-            if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Error(); }
+            SFXManager.CheckPlayError();
         }
     }
 }

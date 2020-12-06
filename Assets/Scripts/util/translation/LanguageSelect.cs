@@ -2,15 +2,13 @@
 using TMPro;
 
 using SomeAimGame.Utilities;
+using SomeAimGame.SFX;
 
 public class LanguageSelect : MonoBehaviour {
     public TMP_Text langText, arrowText;
     public GameObject languageCodeSelectObject;
     public static bool languageSelectOpen     = false;
     public static bool languageSelectDisabled = false;
-
-    private static Vector3 arrowDownScale = new Vector3(1f, 1f, 1f);
-    private static Vector3 arrowupScale   = new Vector3(1f, -1f, 1f);
 
     public static LanguageSelect langSelect;
     private void Awake() { langSelect = this; }
@@ -39,6 +37,7 @@ public class LanguageSelect : MonoBehaviour {
     public static void ToggleLanguageSelect_Static() {
         if (!languageSelectOpen) {
             OpenLanguageSelect_Static();
+            SFXManager.CheckPlayClick_Button();
         } else {
             CloseLanguageSelect_Static();
         }
@@ -57,9 +56,9 @@ public class LanguageSelect : MonoBehaviour {
     /// </summary>
     public static void OpenLanguageSelect_Static() {
         //langSelect.languageCodeSelectObject.SetActive(true);
-        langSelect.languageCodeSelectObject.transform.localScale = new Vector3(1f, 1f, 1f);
+        langSelect.languageCodeSelectObject.transform.localScale = DropdownUtils.dropdownBodyOpenScale;
         Util.RefreshRootLayoutGroup(langSelect.languageCodeSelectObject);
-        langSelect.arrowText.transform.localScale = arrowupScale;
+        langSelect.arrowText.transform.localScale = DropdownUtils.arrowupScale;
         languageSelectOpen = true;
 
         // EVENT:: for language select panel opened
@@ -71,8 +70,8 @@ public class LanguageSelect : MonoBehaviour {
     /// </summary>
     public static void CloseLanguageSelect_Static() {
         //langSelect.languageCodeSelectObject.SetActive(false);
-        langSelect.languageCodeSelectObject.transform.localScale = new Vector3(1f, 0f, 1f);
-        langSelect.arrowText.transform.localScale = arrowDownScale;
+        langSelect.languageCodeSelectObject.transform.localScale = DropdownUtils.dropdownBodyClosedScale;
+        langSelect.arrowText.transform.localScale = DropdownUtils.arrowDownScale;
         languageSelectOpen = false;
 
         // EVENT:: for language select panel closed

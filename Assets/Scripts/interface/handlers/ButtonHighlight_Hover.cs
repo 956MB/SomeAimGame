@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 
 using SomeAimGame.Utilities;
+using SomeAimGame.SFX;
 
 public class ButtonHighlight_Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public TMP_Text highlightText, importExportText, resetCrosshairText, crosshairPresetsText;
@@ -23,7 +24,7 @@ public class ButtonHighlight_Hover : MonoBehaviour, IPointerEnterHandler, IPoint
             if (!CrosshairImportExport.importExportPanelOpen) { highlightText.color = InterfaceColors.selectedColor; }
         }
 
-        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_HoverInner(); }
+        SFXManager.CheckPlayHover_Regular();
     }
 
     public void OnPointerExit(PointerEventData pointerEventData) {

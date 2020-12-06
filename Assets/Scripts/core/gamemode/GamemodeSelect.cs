@@ -5,6 +5,7 @@ using TMPro;
 using SomeAimGame.Targets;
 using SomeAimGame.Utilities;
 using UnityEngine.UI;
+using SomeAimGame.SFX;
 
 namespace SomeAimGame.Gamemode {
 
@@ -47,7 +48,7 @@ namespace SomeAimGame.Gamemode {
             currentOpenGamemode                       = gamemodeName;
             ButtonHoverHandler.selectedGamemode       = gamemodeName;
             ButtonHoverHandler.selectedGamemodeString = GamemodeUtil.ReturnGamemodeType_StringFull(gamemodeName);
-            if (NotificationHandler.notificationOpen) { NotificationHandler.HideNotification(); }
+            NotificationHandler.CheckHideNotificationObject();
 
             if (quickStart) {
                 gamemodeSelect.GamemodeSelectStart();
@@ -164,7 +165,7 @@ namespace SomeAimGame.Gamemode {
             } else {
                 NotificationHandler.ShowTimedNotification_Translated($"gamemodecaps{GamemodeUtil.ReturnGamemodeType_StringShort(currentOpenGamemode).ToLower()}", $": {I18nTextTranslator.SetTranslatedText("selectedgamemodewarning")}", InterfaceColors.notificationColorYellow);
 
-                if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Error(); }
+                SFXManager.CheckPlayError();
             }
         }
 
@@ -176,11 +177,11 @@ namespace SomeAimGame.Gamemode {
             if (currentOpenGamemode == GamemodeType.FOLLOW) {
                 if (CosmeticsSettings.targetColor == TargetType.RED) {
                     NotificationHandler.ShowTimedNotification_Translated("followcolorwarning", "", InterfaceColors.notificationColorRed);
-                    if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Error(); }
+                    SFXManager.CheckPlayError();
                     return false;
                 } else if (ExtraSettings.gameTimer == 0) {
                     NotificationHandler.ShowTimedNotification_Translated("followtimerwarning", "", InterfaceColors.notificationColorRed);
-                    if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Error(); }
+                    SFXManager.CheckPlayError();
                     return false;
                 }
             }

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 
 using SomeAimGame.Utilities;
+using SomeAimGame.SFX;
 
 public class SubMenuHandler : MonoBehaviour {
     public TMP_Text gamemodeSubMenuText, generalSubMenuText, controlsSubMenuText, crosshairSubMenuText, extraSubMenuText;
@@ -42,8 +43,10 @@ public class SubMenuHandler : MonoBehaviour {
         }
 
         CrosshairOptionsObject.SaveCrosshairObject(false);
+        TargetSoundSelect.CheckSaveTargetSoundSelection();
+        NotificationHandler.CheckHideNotificationObject();
 
-        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
+        SFXManager.CheckPlayClick_Regular();
     }
 
     /// <summary>
@@ -69,7 +72,7 @@ public class SubMenuHandler : MonoBehaviour {
     public void SetHoveredSubMenuColor(TMP_Text subMenuText) {
         if (subMenuText.name != activeSubMenuText) {
             subMenuText.color = InterfaceColors.hoveredColor;
-            if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_HoverOuter(); }
+            SFXManager.CheckPlayHover_Title();
         }
     }
 

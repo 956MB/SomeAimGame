@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 //using System.Linq;
 //using System.Runtime.InteropServices;
 
+using SomeAimGame.SFX;
+
 public class CursorHandler : MonoBehaviour {
     public Texture2D defaultCursorTexture;
     public Texture2D hoverCursorTexture;
@@ -33,8 +35,7 @@ public class CursorHandler : MonoBehaviour {
 
     public void setHoverCursor() {
         //Cursor.SetCursor(cursor.hoverCursorTexture, cursor.hotSpot, cursor.cursorMode);
-        if (ToggleHandler.UISoundOn())
-            UISound.PlayUISound_HoverInner();
+        SFXManager.CheckPlayHover_Regular();
     }
 
     //public static void ChangeCursor(WindowsCursor cursor) {

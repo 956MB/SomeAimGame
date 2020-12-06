@@ -8,6 +8,7 @@ using SomeAimGame.Gamemode;
 using SomeAimGame.Targets;
 using SomeAimGame.Utilities;
 using SomeAimGame.Stats;
+using SomeAimGame.SFX;
 
 public class SettingsPanel : MonoBehaviour {
     public GameObject mainMenuCanvas, settingsPanel, afterPanel, extendedStatsPanel, steamDataContainer, devEventContainer, crosshairImage;
@@ -116,10 +117,11 @@ public class SettingsPanel : MonoBehaviour {
 
         // If language select/notification object active, hide
         if (LanguageSelect.languageSelectOpen) { LanguageSelect.CloseLanguageSelect_Static(); }
-        if (NotificationHandler.notificationOpen) { NotificationHandler.HideNotification(); }
+        NotificationHandler.CheckHideNotificationObject();
         if (ExtraSettings.hideUI) { GameUI.ShowWidgetsUI(); }
         
         CrosshairOptionsObject.SaveCrosshairObject(false);
+        TargetSoundSelect.CheckSaveTargetSoundSelection();
         GameUI.ShowGameObject_Layer(settings.crosshairImage);
         SubMenuHandler.HideSettingsCrosshair();
 

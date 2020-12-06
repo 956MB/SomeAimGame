@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 
 using SomeAimGame.Utilities;
+using SomeAimGame.SFX;
 
 public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public TMP_Text textInfinity, text30, text60, text90, text120;
@@ -98,7 +99,7 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public static void SetHoveredTimeText_Color(GameObject hoveredTimeText) {
         if (hoveredTimeText.name != selectedTimeText) {
             hoveredTimeText.GetComponent<TMP_Text>().color = InterfaceColors.hoveredColor;
-            if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_HoverInner(); }
+            SFXManager.CheckPlayHover_Regular();
         }
     }
 

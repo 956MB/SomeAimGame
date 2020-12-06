@@ -57,6 +57,10 @@ public class NotificationHandler : MonoBehaviour {
         //DevEventHandler.CheckNotificationEvent($"{I18nTextTranslator.SetTranslatedText("eventnotificationcreatedtranslation")} \"{notificationContent}\"");
     }
 
+    public static void CheckHideNotificationObject() {
+        if (notificationOpen) { HideNotification(); }
+    }
+
     /// <summary>
     /// Hides notification container gameObject.
     /// </summary>

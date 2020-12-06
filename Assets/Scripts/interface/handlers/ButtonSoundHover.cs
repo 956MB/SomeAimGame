@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
+using SomeAimGame.SFX;
+
 public class ButtonSoundHover : MonoBehaviour, IPointerEnterHandler {
     public void OnPointerEnter(PointerEventData pointerEventData) {
-        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_HoverInner(); }
+        SFXManager.CheckPlayHover_Button();
     }
 }

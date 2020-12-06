@@ -6,6 +6,7 @@ using SomeAimGame.Skybox;
 using SomeAimGame.Gamemode;
 using SomeAimGame.Targets;
 using SomeAimGame.Utilities;
+using SomeAimGame.SFX;
 
 public class ButtonHoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     //public Texture2D hoverBorder;
@@ -32,7 +33,7 @@ public class ButtonHoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
             SetHoverButtonText(buttonName);
             if (currentHoveredButton.Contains("Gamemode")) { SetHoverButtonColor(buttonName, GameObject.Find($"{buttonName}-Text (TMP)").GetComponent<TMP_Text>()); }
             //CursorHandler.setHoverCursorStatic();
-            if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_HoverInner(); }
+            SFXManager.CheckPlayHover_Regular();
         }
     }
 

@@ -4,6 +4,7 @@ using System.Collections;
 using TMPro;
 
 using SomeAimGame.Utilities;
+using SomeAimGame.SFX;
 
 /// <summary>
 /// Extension for TMP_InputField that clears text box.
@@ -81,7 +82,7 @@ public class CrosshairImportExport : MonoBehaviour {
             CloseImportExportPanel_Static();
         }
 
-        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
+        SFXManager.CheckPlayClick_Button();
     }
 
     public void CancelCloseImportExport() {
@@ -124,11 +125,11 @@ public class CrosshairImportExport : MonoBehaviour {
             crosshairStringInputField.clear();
             CrosshairOptionsObject.SaveCrosshairObject(true);
 
-            if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
+            SFXManager.CheckPlayClick_Button();
         } else {
             SetCrosshairNotification_Delay(I18nTextTranslator.SetTranslatedText("crosshairseterror"), InterfaceColors.notificationColorRed, true);
-            
-            if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Error(); }
+
+            SFXManager.CheckPlayError();
         }
     }
 
@@ -142,7 +143,7 @@ public class CrosshairImportExport : MonoBehaviour {
         Util.CopyToClipboard(SimpleCrosshair.ReturnExportedCrosshairString());
         SetCrosshairNotification_Delay(I18nTextTranslator.SetTranslatedText("crosshairsetexported"), InterfaceColors.hoveredColor, true);
 
-        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
+        SFXManager.CheckPlayClick_Button();
     }
 
     /// <summary>

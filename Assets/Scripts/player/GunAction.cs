@@ -3,6 +3,7 @@ using TMPro;
 
 using SomeAimGame.Gamemode;
 using SomeAimGame.Targets;
+using SomeAimGame.SFX;
 
 public class GunAction : MonoBehaviour {
     public Camera playerCamera;
@@ -47,7 +48,7 @@ public class GunAction : MonoBehaviour {
             switch (gunHit.transform.gameObject.tag) {
                 case "Target":
                     GameUI.UpdateReactionTime();
-                    if (ToggleHandler.TargetSoundOn()) { HitSound.PlayHitSound(); }
+                    SFXManager.CheckPlayTargetHit();
 
                     if (SpawnTargets.gamemode == GamemodeType.PAIRS) {
                         if (!SpawnTargets.pairStarterActive) {
@@ -78,6 +79,7 @@ public class GunAction : MonoBehaviour {
                     if (SpawnTargets.gamemode != GamemodeType.PAIRS) {
                         GameUI.DecreaseScore();
                         SpawnTargets.CheckTargetCount(gunHit, false);
+                        SFXManager.CheckPlayTargetMiss();
 
                         // EVENT:: for target miss, descrease score
                         //DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsmiss")} ({gunHit.transform.position})");

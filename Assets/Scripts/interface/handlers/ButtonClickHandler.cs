@@ -7,6 +7,7 @@ using SomeAimGame.Skybox;
 using SomeAimGame.Gamemode;
 using SomeAimGame.Targets;
 using SomeAimGame.Utilities;
+using SomeAimGame.SFX;
 
 public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     public TMP_Text targetColorSelected, skyboxSelected;
@@ -67,7 +68,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
         GamemodeSelect.PopulateGamemodeSelect(gamemodeClickedName, CosmeticsSettings.quickStartGame);
         GamemodeSelect.ClearGamemodeButtonColors(GameObject.Find($"{GamemodeUtil.ReturnGamemodeType_StringFull(gamemodeClickedName)}-Text (TMP)").GetComponent<TMP_Text>(), true, true);
 
-        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
+        SFXManager.CheckPlayClick_Regular();
 
         // EVENT:: for new gamemode button clicked
         //DevEventHandler.CheckInterfaceEvent($"\"{gamemodeClickedName}\" {I18nTextTranslator.SetTranslatedText("eventinterfacegamemodebutton")}");
@@ -84,7 +85,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
 
         // Primary target color cannot be red if gamemode is "Gamemode-Follow"
         if (targetColorClickedName == TargetType.RED && SpawnTargets.gamemode == GamemodeType.FOLLOW) { return; }
-        if (NotificationHandler.notificationOpen) { NotificationHandler.HideNotification(); }
+        NotificationHandler.CheckHideNotificationObject();
 
         SpawnTargets.targetColorReset = true;
         ClearTargetColorButtonBorders();
@@ -92,7 +93,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
         clickedButtonBorder.GetComponent<Image>().color = InterfaceColors.selectedColor;
         clickedButtonBorder.SetActive(true);
 
-        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
+        SFXManager.CheckPlayClick_Regular();
 
         // Replace all currently spawned targets colors.
         SpawnTargets.ReplaceCurrentTargetColors(targetColorClickedName);
@@ -149,7 +150,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
         clickedButtonBorder.GetComponent<Image>().color = InterfaceColors.selectedColor;
         clickedButtonBorder.SetActive(true);
 
-        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
+        SFXManager.CheckPlayClick_Regular();
 
         // Set new skybox, then save currently selected skybox in cosmetics.
         SkyboxHandler.SetNewSkybox(skyboxClickedName);

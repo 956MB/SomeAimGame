@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 using SomeAimGame.Utilities;
+using SomeAimGame.SFX;
 
 public class CrosshairPresets : MonoBehaviour {
     public GameObject presetsPanel, parentCrosshairGroup;
@@ -23,7 +24,7 @@ public class CrosshairPresets : MonoBehaviour {
             ClosePresetsPanel_Static();
         }
 
-        if (ToggleHandler.UISoundOn()) { UISound.PlayUISound_Click(); }
+        SFXManager.CheckPlayClick_Button();
     }
 
     /// <summary>
