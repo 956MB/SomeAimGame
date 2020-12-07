@@ -1,5 +1,4 @@
 ﻿namespace SomeAimGame.Gamemode {
-
     /// <summary>
     /// Enum holding all gamemode types.
     /// </summary>

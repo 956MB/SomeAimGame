@@ -46,13 +46,13 @@ namespace SomeAimGame.Utilities {
             GUIUtility.systemCopyBuffer = copyString;
         }
 
+        /// <summary>
+        /// Sets supplied CanvasGroup (setCanvasGroup) state (enabled/disabled) from supplied bool (isEnabled).
+        /// </summary>
+        /// <param name="setCanvasGroup"></param>
+        /// <param name="isEnabled"></param>
         public static void CanvasGroupState(CanvasGroup setCanvasGroup, bool isEnabled) {
-            if (isEnabled) {
-                setCanvasGroup.alpha = 1f;
-            } else {
-                setCanvasGroup.alpha = 0.35f;
-            }
-
+            setCanvasGroup.alpha          = isEnabled ? 1f : 0.35f;
             setCanvasGroup.interactable   = isEnabled;
             setCanvasGroup.blocksRaycasts = isEnabled;
         }
@@ -86,6 +86,20 @@ namespace SomeAimGame.Utilities {
             /// <param name="imageObjects"></param>
             public static void Util_ImagesSetActive(bool setActive, params Image[] imageObjects) {
                 foreach (Image imageObject in imageObjects) { imageObject.transform.gameObject.SetActive(setActive); }
+            }
+            /// <summary>
+            /// Calls ScrollRectExtension.ScrollToTop() with all supplied GameObjects (scrollViewObjects).
+            /// </summary>
+            /// <param name="scrollViewObjects"></param>
+            public static void Util_ResetScrollViews_Top(params GameObject[] scrollViewObjects) {
+                foreach (GameObject scrollView in scrollViewObjects) { ScrollRectExtension.ScrollToTop(scrollView.GetComponent<ScrollRect>()); ; }
+            }
+            /// <summary>
+            /// Calls ScrollRectExtension.ScrollToBottom() with all supplied GameObjects (scrollViewObjects).
+            /// </summary>
+            /// <param name="scrollViewObjects"></param>
+            public static void Util_ResetScrollViews_Bottom(params GameObject[] scrollViewObjects) {
+                foreach (GameObject scrollView in scrollViewObjects) { ScrollRectExtension.ScrollToBottom(scrollView.GetComponent<ScrollRect>()); ; }
             }
         }
 

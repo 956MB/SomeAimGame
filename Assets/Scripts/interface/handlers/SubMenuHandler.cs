@@ -30,16 +30,11 @@ public class SubMenuHandler : MonoBehaviour {
         ClearSubMenus();
 
         switch (buttonClickedName) {
-            case "GamemodeSubMenuButton":
-                SetSubMenu(gamemodeSubMenuText, gamemodeContainer, gamemodeBar); break;
-            case "GeneralSubMenuButton":
-                SetSubMenu(generalSubMenuText, generalContainer, generalBar); break;
-            case "ControlsSubMenuButton":
-                SetSubMenu(controlsSubMenuText, controlsContainer, controlsBar); break;
-            case "CrosshairSubMenuButton":
-                SetSubMenu(crosshairSubMenuText, crosshairContainer, crosshairBar, true); break;
-            case "ExtraSubMenuButton":
-                SetSubMenu(extraSubMenuText, extraContainer, extraBar); break;
+            case "GamemodeSubMenuButton":  SetSubMenu(gamemodeSubMenuText, gamemodeContainer, gamemodeBar);          break;
+            case "GeneralSubMenuButton":   SetSubMenu(generalSubMenuText, generalContainer, generalBar);             break;
+            case "ControlsSubMenuButton":  SetSubMenu(controlsSubMenuText, controlsContainer, controlsBar);          break;
+            case "CrosshairSubMenuButton": SetSubMenu(crosshairSubMenuText, crosshairContainer, crosshairBar, true); break;
+            case "ExtraSubMenuButton":     SetSubMenu(extraSubMenuText, extraContainer, extraBar);                   break;
         }
 
         CrosshairOptionsObject.SaveCrosshairObject(false);
@@ -118,12 +113,8 @@ public class SubMenuHandler : MonoBehaviour {
     /// <summary>
     /// Resets all sub menu scrollviews to the top.
     /// </summary>
-    public static void ResetAllScrollviewsTop() {
-        ScrollRectExtension.ScrollToTop(subMenu.gamemodeScrollView.GetComponent<ScrollRect>());
-        ScrollRectExtension.ScrollToTop(subMenu.generalScrollView.GetComponent<ScrollRect>());
-        ScrollRectExtension.ScrollToTop(subMenu.controlsScrollView.GetComponent<ScrollRect>());
-        ScrollRectExtension.ScrollToTop(subMenu.crosshairScrollView.GetComponent<ScrollRect>());
-        //ScrollRectExtension.ScrollToTop(subMenu.extraScrollView.GetComponent<ScrollRect>());
+    public static void ResetAllSubMenuScrollviewsTop() {
+        Util.GameObjectLoops.Util_ResetScrollViews_Top(subMenu.gamemodeScrollView, subMenu.generalScrollView, subMenu.controlsScrollView, subMenu.crosshairScrollView);
     }
 
     public static void ResetCrosshairScrollview() {

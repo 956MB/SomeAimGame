@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using SomeAimGame.Gamemode;
+using SomeAimGame.Utilities;
 
 namespace SomeAimGame.Targets {
-
     public class SpawnTargets : MonoBehaviour {
         public GameObject redTarget, orangeTarget, yellowTarget, greenTarget, blueTarget, purpleTarget, pinkTarget, whiteTarget;
         public static GameObject primaryTargetObject, currentTargetObj;
@@ -158,14 +158,7 @@ namespace SomeAimGame.Targets {
         /// Sets targets size to tiny if current gamemode "Gamemode-Grid2".
         /// </summary>
         public static void SetTinyTargets() {
-            ST.redTarget.transform.localScale    = tinyTargetSize;
-            ST.orangeTarget.transform.localScale = tinyTargetSize;
-            ST.yellowTarget.transform.localScale = tinyTargetSize;
-            ST.greenTarget.transform.localScale  = tinyTargetSize;
-            ST.blueTarget.transform.localScale   = tinyTargetSize;
-            ST.purpleTarget.transform.localScale = tinyTargetSize;
-            ST.pinkTarget.transform.localScale   = tinyTargetSize;
-            ST.whiteTarget.transform.localScale  = tinyTargetSize;
+            Util.GameObjectLoops.Util_SetObjectsLocalScale(tinyTargetSize, ST.redTarget, ST.orangeTarget, ST.yellowTarget, ST.greenTarget, ST.blueTarget, ST.purpleTarget, ST.pinkTarget, ST.whiteTarget);
             targetSize = primaryTargetObject.transform.lossyScale.y;
         }
 
@@ -173,14 +166,7 @@ namespace SomeAimGame.Targets {
         /// Sets targets size to normal if current gamemode is anything but "Gamemode-Grid2".
         /// </summary>
         public static void SetNormalTargets() {
-            ST.redTarget.transform.localScale    = normalTargetSize;
-            ST.orangeTarget.transform.localScale = normalTargetSize;
-            ST.yellowTarget.transform.localScale = normalTargetSize;
-            ST.greenTarget.transform.localScale  = normalTargetSize;
-            ST.blueTarget.transform.localScale   = normalTargetSize;
-            ST.purpleTarget.transform.localScale = normalTargetSize;
-            ST.pinkTarget.transform.localScale   = normalTargetSize;
-            ST.whiteTarget.transform.localScale  = normalTargetSize;
+            Util.GameObjectLoops.Util_SetObjectsLocalScale(normalTargetSize, ST.redTarget, ST.orangeTarget, ST.yellowTarget, ST.greenTarget, ST.blueTarget, ST.purpleTarget, ST.pinkTarget, ST.whiteTarget);
             targetSize = primaryTargetObject.transform.lossyScale.y;
         }
 
@@ -188,7 +174,7 @@ namespace SomeAimGame.Targets {
         /// Spawns single target at random point in spawn area bounds, then increases counts.
         /// </summary>
         public static void SpawnSingle(GameObject targetType) {
-            targetInArea     = CheckTargetSpawn(RandomPointInBounds(targetSpawnAreaBounds));
+            targetInArea     = CheckTargetSpawn(TargetUtil.RandomPointInBounds(targetSpawnAreaBounds, gamemode, targetSize, stepCount));
             currentTargetObj = Instantiate(targetType, targetInArea, Quaternion.identity);
 
             preFallTargetSpawn = currentTargetObj.transform.position;
@@ -279,11 +265,11 @@ namespace SomeAimGame.Targets {
 
             // Picks 0 or 1 randomly, spawns primary on right / secondary on left OR primary on left / secondary on right.
             if (randomPick == 0) {
-                pairPrimary   = PickRandomPairs(targetSpawnAreaBounds, true);
-                pairSecondary = PickRandomPairs(targetSpawnAreaBounds, false);
+                pairPrimary   = TargetUtil.PickRandomPairs(targetSpawnAreaBounds, true, targetSize);
+                pairSecondary = TargetUtil.PickRandomPairs(targetSpawnAreaBounds, false, targetSize);
             } else {
-                pairPrimary   = PickRandomPairs(targetSpawnAreaBounds, false);
-                pairSecondary = PickRandomPairs(targetSpawnAreaBounds, true);
+                pairPrimary   = TargetUtil.PickRandomPairs(targetSpawnAreaBounds, false, targetSize);
+                pairSecondary = TargetUtil.PickRandomPairs(targetSpawnAreaBounds, true, targetSize);
             }
 
             // Spawns both primary/secondary targets, then adds them to target spawns lists.
@@ -305,19 +291,6 @@ namespace SomeAimGame.Targets {
         }
 
         /// <summary>
-        /// Returns whether or not correct active pair target hit.
-        /// </summary>
-        /// <param name="hitTarget"></param>
-        /// <returns></returns>
-        public static bool CheckPairHit(Vector3 hitTarget) {
-            if (Vector3.Distance(hitTarget, activePairLocation) == 0) {
-                return true;
-            }
-
-            return false;
-        }
-
-        /// <summary>
         /// Sets active pair starters to false and destroys all targets.
         /// </summary>
         public static void ClearPairs() {
@@ -331,32 +304,6 @@ namespace SomeAimGame.Targets {
         public static void GamemodePairsMiss() {
             shotsHit   -= 1;
             shotMisses += 1;
-        }
-
-        /// <summary>
-        /// Picks random points (X/Y/Z) inside corresponding spawn area bounds for supplied side (left/right), returns spawn location Vector3.
-        /// </summary>
-        /// <param name="bounds"></param>
-        /// <param name="pairLeft"></param>
-        /// <returns></returns>
-        public static Vector3 PickRandomPairs(Bounds bounds, bool pairLeft) {
-            float randomX, randomY, randomZ;
-
-            if (pairLeft) {
-                randomX = UnityEngine.Random.Range(bounds.min.x + targetSize, bounds.max.x - targetSize);
-                randomY = UnityEngine.Random.Range(bounds.min.y + targetSize, bounds.max.y - targetSize);
-                randomZ = UnityEngine.Random.Range(bounds.min.z, bounds.center.z);
-            } else {
-                randomX = UnityEngine.Random.Range(bounds.min.x + targetSize, bounds.max.x - targetSize);
-                randomY = UnityEngine.Random.Range(bounds.min.y + targetSize, bounds.max.y - targetSize);
-                randomZ = UnityEngine.Random.Range(bounds.center.z, bounds.max.z);
-            }
-
-            return new Vector3(
-                randomX,
-                randomY,
-                randomZ
-            );
         }
 
         /// <summary>
@@ -379,46 +326,14 @@ namespace SomeAimGame.Targets {
         /// <param name="gamemodeFollow"></param>
         public static void SetTargetColor(TargetType setColor, bool gamemodeFollow) {
             switch (setColor) {
-                case TargetType.RED:
-                    primaryTargetObject   = ST.redTarget;
-                    secondaryTargetObject = ST.blueTarget;
-                    if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.RedAlbedo, TargetColors.RedEmission, TargetColors.RedLight); }
-                    break;
-                case TargetType.ORANGE:
-                    primaryTargetObject   = ST.orangeTarget;
-                    secondaryTargetObject = ST.blueTarget;
-                    if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.OrangeAlbedo, TargetColors.OrangeEmission, TargetColors.OrangeLight); }
-                    break;
-                case TargetType.YELLOW:
-                    primaryTargetObject   = ST.yellowTarget;
-                    secondaryTargetObject = ST.redTarget;
-                    if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.YellowAlbedo, TargetColors.YellowEmission, TargetColors.YellowLight); }
-                    break;
-                case TargetType.GREEN:
-                    primaryTargetObject   = ST.greenTarget;
-                    secondaryTargetObject = ST.redTarget;
-                    if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.GreenAlbedo, TargetColors.GreenEmission, TargetColors.GreenLight); }
-                    break;
-                case TargetType.BLUE:
-                    primaryTargetObject   = ST.blueTarget;
-                    secondaryTargetObject = ST.redTarget;
-                    if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.BlueAlbedo, TargetColors.BlueEmission, TargetColors.BlueLight); }
-                    break;
-                case TargetType.PURPLE:
-                    primaryTargetObject   = ST.purpleTarget;
-                    secondaryTargetObject = ST.yellowTarget;
-                    if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.PurpleAlbedo, TargetColors.PurpleEmission, TargetColors.PurpleLight); }
-                    break;
-                case TargetType.PINK:
-                    primaryTargetObject   = ST.pinkTarget;
-                    secondaryTargetObject = ST.yellowTarget;
-                    if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.PinkAlbedo, TargetColors.PinkEmission, TargetColors.PinkLight); }
-                    break;
-                case TargetType.WHITE:
-                    primaryTargetObject   = ST.whiteTarget;
-                    secondaryTargetObject = ST.blueTarget;
-                    if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(TargetColors.WhiteAlbedo, TargetColors.WhiteEmission, TargetColors.WhiteLight); }
-                    break;
+                case TargetType.RED:    SetTargetObjects(ST.redTarget, ST.blueTarget, gamemodeFollow, TargetColors.RedAlbedo, TargetColors.RedEmission, TargetColors.RedLight);               break;
+                case TargetType.ORANGE: SetTargetObjects(ST.orangeTarget, ST.blueTarget, gamemodeFollow, TargetColors.OrangeAlbedo, TargetColors.OrangeEmission, TargetColors.OrangeLight);   break;
+                case TargetType.YELLOW: SetTargetObjects(ST.yellowTarget, ST.redTarget, gamemodeFollow, TargetColors.YellowAlbedo, TargetColors.YellowEmission, TargetColors.YellowLight);    break;
+                case TargetType.GREEN:  SetTargetObjects(ST.greenTarget, ST.redTarget, gamemodeFollow, TargetColors.GreenAlbedo, TargetColors.GreenEmission, TargetColors.GreenLight);        break;
+                case TargetType.BLUE:   SetTargetObjects(ST.blueTarget, ST.redTarget, gamemodeFollow, TargetColors.BlueAlbedo, TargetColors.BlueEmission, TargetColors.BlueLight);            break;
+                case TargetType.PURPLE: SetTargetObjects(ST.purpleTarget, ST.yellowTarget, gamemodeFollow, TargetColors.PurpleAlbedo, TargetColors.PurpleEmission, TargetColors.PurpleLight); break;
+                case TargetType.PINK:   SetTargetObjects(ST.pinkTarget, ST.yellowTarget, gamemodeFollow, TargetColors.PinkAlbedo, TargetColors.PinkEmission, TargetColors.PinkLight);         break;
+                case TargetType.WHITE:  SetTargetObjects(ST.whiteTarget, ST.blueTarget, gamemodeFollow, TargetColors.WhiteAlbedo, TargetColors.WhiteEmission, TargetColors.WhiteLight);       break;
             }
         }
 
@@ -512,38 +427,6 @@ namespace SomeAimGame.Targets {
         }
 
         /// <summary>
-        /// Returns random spawn point (X/Y/Z) inside spawn area bounds based on current gamemode.
-        /// </summary>
-        /// <param name="bounds"></param>
-        /// <returns></returns>
-        public static Vector3 RandomPointInBounds(Bounds bounds) {
-            float randomX = UnityEngine.Random.Range(bounds.min.x + targetSize, bounds.max.x - targetSize);
-            float randomY = UnityEngine.Random.Range(bounds.min.y + targetSize, bounds.max.y - targetSize);
-            float randomZ = UnityEngine.Random.Range(bounds.min.z + targetSize, bounds.max.z - targetSize);
-
-            if (gamemode == GamemodeType.GRID || gamemode == GamemodeType.GRID_2) {
-                randomX = (float)(bounds.size.x * 1.75) - targetSize * 3;
-                randomY = Mathf.Floor(randomY / stepCount);
-                randomZ = Mathf.Floor(randomZ / stepCount);
-                randomY = randomY * stepCount;
-                randomZ = randomZ * stepCount;
-            } else if (gamemode == GamemodeType.SCATTER) {
-                randomX = Mathf.Floor(randomX / stepCount);
-                randomY = Mathf.Floor(randomY / stepCount);
-                randomZ = Mathf.Floor(randomZ / stepCount);
-                randomX = randomX * stepCount;
-                randomY = randomY * stepCount;
-                randomZ = randomZ * stepCount;
-            }
-
-            return new Vector3(
-                randomX,
-                randomY,
-                randomZ
-            );
-        }
-
-        /// <summary>
         /// Checks supplied spawn point (targetSpawn) to see if targetSpawns list already contains it (target location already used), then returns valid spawn point after while loop. [EVENT //TODO]
         /// </summary>
         /// <param name="targetSpawn"></param>
@@ -554,7 +437,7 @@ namespace SomeAimGame.Targets {
             // Loops until valid spawn point selected from random supplied spawn (targetSpawn).
             while (true) {
                 if (targetSpawns.Contains(newSpawn)) {
-                    newSpawn = RandomPointInBounds(targetSpawnAreaBounds);
+                    newSpawn = TargetUtil.RandomPointInBounds(targetSpawnAreaBounds, gamemode, targetSize, stepCount);
                 } else {
                     break;
                 }
@@ -572,7 +455,7 @@ namespace SomeAimGame.Targets {
             Vector3 newSpawn;
 
             while (true) {
-                newSpawn = RandomPointInBounds(targetSpawnAreaBounds);
+                newSpawn = TargetUtil.RandomPointInBounds(targetSpawnAreaBounds, gamemode, targetSize, stepCount);
                 if (!scatterTargetSpawns.Contains(newSpawn)) {
                     scatterTargetSpawns.Add(newSpawn);
                 }
@@ -641,6 +524,22 @@ namespace SomeAimGame.Targets {
                 // EVENT:: for destroy spawn areas
                 //DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsdestroyspawnarea")} \"{gamemode}\"");
             }
+        }
+
+        /// <summary>
+        /// Sets new primary/secondary targets and follow target colors from supplied GameObject (setPrimaryTarget, setSecondaryTarget) and Color (setAlbedo, setEmission, setLight).
+        /// </summary>
+        /// <param name="setPrimaryTarget"></param>
+        /// <param name="setSecondaryTarget"></param>
+        /// <param name="gamemodeFollow"></param>
+        /// <param name="setAlbedo"></param>
+        /// <param name="setEmission"></param>
+        /// <param name="setLight"></param>
+        private static void SetTargetObjects(GameObject setPrimaryTarget, GameObject setSecondaryTarget, bool gamemodeFollow, Color setAlbedo, Color setEmission, Color setLight) {
+            primaryTargetObject   = setPrimaryTarget;
+            secondaryTargetObject = setSecondaryTarget;
+
+            if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(setAlbedo, setEmission, setLight); }
         }
 
         /// <summary>

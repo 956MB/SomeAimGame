@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+
+using SomeAimGame.Utilities;
 
 namespace SomeAimGame.Gamemode {
-
     public class GamemodeUtil : MonoBehaviour {
         /// <summary>
         /// Returns corresponding gamemode type (Gamemode) from supplied string (gamemodeTypeString).
@@ -54,6 +56,18 @@ namespace SomeAimGame.Gamemode {
                 case GamemodeType.PAIRS:   return "Pairs";
                 case GamemodeType.FOLLOW:  return "Follow";
                 default:                   return "Scatter";
+            }
+        }
+
+        /// <summary>
+        /// Clears all gamemode button borders in settings panel (gamemode sub-section).
+        /// </summary>
+        public static void ClearGamemodeButtonBorders() {
+            foreach (GameObject buttonBorder in GameObject.FindGameObjectsWithTag("ButtonBorderGamemode")) {
+                if (buttonBorder != null) {
+                    buttonBorder.GetComponent<Image>().color = InterfaceColors.unselectedColor;
+                    buttonBorder.SetActive(false);
+                }
             }
         }
     }

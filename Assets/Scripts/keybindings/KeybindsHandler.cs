@@ -33,6 +33,10 @@ public class KeybindsHandler : MonoBehaviour {
         currentKey.transform.GetChild(0).GetComponent<TMP_Text>().color = InterfaceColors.unselectedColor;
     }
 
+    /// <summary>
+    /// Handles setting new keybind if event isKey.
+    /// </summary>
+    /// <param name="keyEvent"></param>
     private void HandleKeyEvent(Event keyEvent) {
         if (keyEvent.keyCode != KeyCode.None && keyEvent.keyCode != clickedKeycode && keyEvent.keyCode != KeyCode.Escape) {
             Debug.Log($"new KeyCode: {keyEvent.keyCode}");
@@ -43,6 +47,10 @@ public class KeybindsHandler : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Handles setting new keybind if event isMouse or isScrollWheel.
+    /// </summary>
+    /// <param name="mouseEvent"></param>
     private void HandleMouseEvent(Event mouseEvent) {
         if (mouseEvent.keyCode != clickedKeycode && mouseEvent.keyCode != KeyCode.Escape) {
             if (Input.GetKeyDown(KeyCode.Mouse0)) {      HandleNewKeybindSet(clickedKeycode, KeyCode.Mouse0); currentKey = null; }

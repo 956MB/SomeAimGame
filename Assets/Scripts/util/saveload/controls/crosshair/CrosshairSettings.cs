@@ -90,7 +90,10 @@ public class CrosshairSettings : MonoBehaviour {
     /// </summary>
     /// <param name="setAlphaOutline"></param>
     public static void SaveAlphaOutline(float setAlphaOutline) { outlineAlpha = setAlphaOutline; }
-
+    /// <summary>
+    /// Saves supplied crosshair string (newCrosshairString) to crosshair settings object (CrosshairSettings), then saves crosshair settings object.
+    /// </summary>
+    /// <param name="newCrosshairString"></param>
     public static void SaveCrosshairString(string newCrosshairString) { crosshairString = newCrosshairString; }
 
     /// <summary>

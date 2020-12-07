@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine.UI;
 
 namespace SomeAimGame.Stats {
-
     public class StatsUtil : MonoBehaviour {
         public static string itemHighscore     = "▲▲";
         public static string itemHighscoreFlip = "▼▼";

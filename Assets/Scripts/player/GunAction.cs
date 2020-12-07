@@ -11,12 +11,10 @@ public class GunAction : MonoBehaviour {
     public static bool timerRunning = true;
     public GameObject hitEffect;
 
+    private RaycastHit gunHit;
+
     private static GunAction gunAction;
     void Awake() { gunAction = this; }
-
-    private void Start() {
-        //TempValues.SetTimerRunningTemp(true);
-    }
 
     void LateUpdate() {
         // Shoot (KeyCode.Mouse0) if game timer still running and settings panel not open (game paused).
@@ -27,7 +25,6 @@ public class GunAction : MonoBehaviour {
         } else {
             if (timerRunning) {
                 timerRunning = false;
-                //TempValues.SetTimerRunningTemp(false);
 
                 // Show 'AfterActionReport' if setting enabled.
                 if (ToggleHandler.ShowAAROn()) {
@@ -42,8 +39,6 @@ public class GunAction : MonoBehaviour {
     /// Fires raycast from center screen to "shoot" and hit targets in game. [EVENT]
     /// </summary>
     private void Shoot() {
-        RaycastHit gunHit;
-
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out gunHit)) {
             switch (gunHit.transform.gameObject.tag) {
                 case "Target":
@@ -52,37 +47,26 @@ public class GunAction : MonoBehaviour {
 
                     if (SpawnTargets.gamemode == GamemodeType.PAIRS) {
                         if (!SpawnTargets.pairStarterActive) {
-                            bool correctTargetHit = SpawnTargets.CheckPairHit(gunHit.transform.position);
+                            bool correctTargetHit = TargetUtil.CheckPairHit(gunHit.transform.position);
                             if (correctTargetHit) {
                                 GameUI.IncreaseScore();
-
-                                // EVENT:: for pair target hit, update score
-                                //DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetshitpairs")} ({gunHit.transform.position})");
                             } else {
                                 GameUI.DecreaseScore();
                                 SpawnTargets.GamemodePairsMiss();
-
-                                // EVENT:: for pair target miss, descrease score
-                                //DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsmisspairs")} ({gunHit.transform.position})");
                             }
                         }
                         SpawnTargets.CheckTargetCount(gunHit, true);
                     } else {
                         GameUI.IncreaseScore();
                         SpawnTargets.CheckTargetCount(gunHit, true);
-
-                        // EVENT:: for target hit, update score
-                        //DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetshit")} ({gunHit.transform.position})");
                     }
                     break;
+
                 default:
                     if (SpawnTargets.gamemode != GamemodeType.PAIRS) {
                         GameUI.DecreaseScore();
                         SpawnTargets.CheckTargetCount(gunHit, false);
                         SFXManager.CheckPlayTargetMiss();
-
-                        // EVENT:: for target miss, descrease score
-                        //DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsmiss")} ({gunHit.transform.position})");
                     }
                     break;
             }

@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+
+using SomeAimGame.Utilities;
 
 namespace SomeAimGame.Skybox {
-
     public class SkyboxUtil : MonoBehaviour {
         /// <summary>
         /// Returns corresponding skybox type (Skybox) from supplied string (skyboxTypeString).
@@ -21,7 +23,7 @@ namespace SomeAimGame.Skybox {
         }
 
         /// <summary>
-        /// Returns corresponding full skybox type string from supplied Skybox (typeSkybox).
+        /// Returns corresponding full skybox type string from supplied SkyboxType (typeSkybox).
         /// </summary>
         /// <param name="typeSkybox"></param>
         /// <returns></returns>
@@ -38,7 +40,7 @@ namespace SomeAimGame.Skybox {
         }
 
         /// <summary>
-        /// Returns corresponding short skybox type string from supplied Skybox (typeSkybox).
+        /// Returns corresponding short skybox type string from supplied SkyboxType (typeSkybox).
         /// </summary>
         /// <param name="typeSkybox"></param>
         /// <returns></returns>
@@ -51,6 +53,35 @@ namespace SomeAimGame.Skybox {
                 case SkyboxType.BLUE:   return "Blue";
                 case SkyboxType.SLATE:  return "Slate";
                 default:                return "Slate";
+            }
+        }
+
+        /// <summary>
+        /// Returns corresponding I18n translated skybox type string from supplied SkyboxType (typeSkybox).
+        /// </summary>
+        /// <param name="typeSkybox"></param>
+        /// <returns></returns>
+        public static string ReturnSkyboxType_StringTranslated(SkyboxType typeSkybox) {
+            switch (typeSkybox) {
+                case SkyboxType.PINK:   return I18nTextTranslator.SetTranslatedText("skyboxpink");
+                case SkyboxType.GOLDEN: return I18nTextTranslator.SetTranslatedText("skyboxgolden");
+                case SkyboxType.NIGHT:  return I18nTextTranslator.SetTranslatedText("skyboxnight");
+                case SkyboxType.GREY:   return I18nTextTranslator.SetTranslatedText("skyboxgrey");
+                case SkyboxType.BLUE:   return I18nTextTranslator.SetTranslatedText("skyboxblue");
+                case SkyboxType.SLATE:  return I18nTextTranslator.SetTranslatedText("skyboxslate");
+                default:                return I18nTextTranslator.SetTranslatedText("skyboxslate");
+            }
+        }
+
+        /// <summary>
+        /// Clears all skybox button borders in settings panel (general sub-section).
+        /// </summary>
+        public static void ClearSkyboxButtonBorders() {
+            foreach (GameObject buttonBorder in GameObject.FindGameObjectsWithTag("ButtonBorderSkybox")) {
+                if (buttonBorder != null) {
+                    buttonBorder.GetComponent<Image>().color = InterfaceColors.unselectedColor;
+                    buttonBorder.SetActive(false);
+                }
             }
         }
     }

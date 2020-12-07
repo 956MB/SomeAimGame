@@ -94,7 +94,7 @@ public class SettingsPanel : MonoBehaviour {
 
         OpenAction();
         settingsOpen = true;
-        SubMenuHandler.ResetAllScrollviewsTop();
+        SubMenuHandler.ResetAllSubMenuScrollviewsTop();
         SubMenuHandler.HideSettingsCrosshair();
         GameUI.HideWidgetsUI();
         GameUI.HideGameObject_Layer(settings.crosshairImage);

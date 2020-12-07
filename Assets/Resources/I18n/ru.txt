@@ -95,7 +95,7 @@ widgetstitle=Виджеты
 #
 #
 # // general buttons
-testtargetsoundbutton=ТЕСТ
+testtargetsoundbutton=тестировать
 #
 #
 # // general section items

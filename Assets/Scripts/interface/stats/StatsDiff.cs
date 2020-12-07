@@ -8,6 +8,6 @@ namespace SomeAimGame.Stats {
         public static string scoreDiffSymbol, accuracyDiffSymbol, ttkDiffSymbol, kpsDiffSymbol, bestStreakDiffSymbol, targetsTotalDiffSymbol, targetHitDiffSymbol, targetsMissesDiffSymbol;
         public static double scoreDiffPercent, accuracyDiffPercent, ttkDiffPercent, kpsDiffPercent, bestStreakDiffPercent, targetsTotalDiffPercent, targetHitDiffPercent, targetsMissesDiffPercent;
 
-        public static string accuracyDiffStringDisplay, ttkDiffStringDisplay, kpsDiffStringDisplay, bestStreakDiffStringDisplay, targetsTotalDiffStringDisplay, targetHitDiffStringDisplay, targetsMissesDiffStringDisplay;
+        public static string scoreDiffStringDisplay, accuracyDiffStringDisplay, ttkDiffStringDisplay, kpsDiffStringDisplay, bestStreakDiffStringDisplay, targetsTotalDiffStringDisplay, targetHitDiffStringDisplay, targetsMissesDiffStringDisplay;
     }
 }

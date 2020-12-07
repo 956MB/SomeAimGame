@@ -38,7 +38,7 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
             case "120Text (TMP)":      SetNewGameTimer(120, true); break;
         }
 
-        NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("eventtimerchanged")} {ReturnGameTimerString(ExtraSettings.gameTimer)}", InterfaceColors.notificationColorGreen);
+        NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("eventtimerchanged")} {ReturnGameTimerString_Notification(ExtraSettings.gameTimer)}", InterfaceColors.notificationColorGreen);
     }
 
     /// <summary>
@@ -62,27 +62,17 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
         ClearTimerButtons();
 
         switch (setButton) {
-            case 0:
-                selectedTimeText             = "InfinityText (TMP)";
-                gameTimer.textInfinity.color = InterfaceColors.selectedColor;
-                break;
-            case 30:
-                selectedTimeText       = "30Text (TMP)";
-                gameTimer.text30.color = InterfaceColors.selectedColor;
-                break;
-            case 60:
-                selectedTimeText       = "60Text (TMP)";
-                gameTimer.text60.color = InterfaceColors.selectedColor;
-                break;
-            case 90:
-                selectedTimeText       = "90Text (TMP)";
-                gameTimer.text90.color = InterfaceColors.selectedColor;
-                break;
-            case 120:
-                selectedTimeText        = "120Text (TMP)";
-                gameTimer.text120.color = InterfaceColors.selectedColor;
-                break;
+            case 0:   SetGameTimerTextValues(0, gameTimer.textInfinity); break;
+            case 30:  SetGameTimerTextValues(30, gameTimer.text30);      break;
+            case 60:  SetGameTimerTextValues(60, gameTimer.text60);      break;
+            case 90:  SetGameTimerTextValues(90, gameTimer.text90);      break;
+            case 120: SetGameTimerTextValues(120, gameTimer.text120);    break;
         }
+    }
+
+    private static void SetGameTimerTextValues(int timer, TMP_Text timerText) {
+        selectedTimeText = ReturnGameTimerString_Selected(timer);
+        timerText.color  = InterfaceColors.selectedColor;
     }
 
     /// <summary>
@@ -116,10 +106,21 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
     /// </summary>
     /// <param name="gameTimerValue"></param>
     /// <returns></returns>
-    private static string ReturnGameTimerString(int gameTimerValue) {
+    private static string ReturnGameTimerString_Notification(int gameTimerValue) {
         switch (gameTimerValue) {
-            case 0: return "∞";
+            case 0:  return "∞";
             default: return $"{gameTimerValue}";
+        }
+    }
+
+    private static string ReturnGameTimerString_Selected(int gameTimerValue) {
+        switch (gameTimerValue) {
+            case 0:   return "InfinityText (TMP)";
+            case 30:  return "30Text (TMP)";
+            case 60:  return "60Text (TMP)";
+            case 90:  return "90Text (TMP)";
+            case 120: return "120Text (TMP)";
+            default:  return "60Text (TMP)";
         }
     }
 }

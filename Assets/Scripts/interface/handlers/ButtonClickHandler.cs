@@ -60,7 +60,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     /// <param name="clickedButtonBorder"></param>
     public void SelectNewGamemode(GameObject clickedButtonBorder) {
         gamemodeClickedName = GamemodeUtil.ReturnGamemodeType_Gamemode(clickedButtonBorder.transform.parent.name);
-        ClearGamemodeButtonBorders();
+        GamemodeUtil.ClearGamemodeButtonBorders();
         clickedButtonBorder.GetComponent<Image>().color = InterfaceColors.selectedColor;
         clickedButtonBorder.SetActive(true);
 
@@ -88,7 +88,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
         NotificationHandler.CheckHideNotificationObject();
 
         SpawnTargets.targetColorReset = true;
-        ClearTargetColorButtonBorders();
+        TargetUtil.ClearTargetColorButtonBorders();
         ButtonHoverHandler.selectedTargetColor = targetColorClickedName;
         clickedButtonBorder.GetComponent<Image>().color = InterfaceColors.selectedColor;
         clickedButtonBorder.SetActive(true);
@@ -99,32 +99,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
         SpawnTargets.ReplaceCurrentTargetColors(targetColorClickedName);
 
         // Change selected target color text based on button clicked in general settings panel.
-        switch (targetColorClickedName) {
-            case TargetType.RED:
-                targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colorred")}");
-                break;
-            case TargetType.ORANGE:
-                targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colororange")}");
-                break;
-            case TargetType.YELLOW:
-                targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("coloryellow")}");
-                break;
-            case TargetType.GREEN:
-                targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colorgreen")}");
-                break;
-            case TargetType.BLUE:
-                targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colorblue")}");
-                break;
-            case TargetType.PURPLE:
-                targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colorpurple")}");
-                break;
-            case TargetType.PINK:
-                targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colorpink")}");
-                break;
-            case TargetType.WHITE:
-                targetColorSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("colorwhite")}");
-                break;
-        }
+        targetColorSelected.SetText($"//  {TargetUtil.ReturnTargetColorType_StringTranslated(targetColorClickedName)}");
 
         // Saves new selected target color
         CosmeticsSettings.SaveTargetColorItem(targetColorClickedName);
@@ -145,7 +120,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     public void SetNewSkyboxColor(GameObject clickedButtonBorder) {
         SkyboxType skyboxClickedName = SkyboxUtil.ReturnSkyboxType_Skybox(clickedButtonBorder.transform.parent.name);
 
-        ClearSkyboxButtonBorders();
+        SkyboxUtil.ClearSkyboxButtonBorders();
         ButtonHoverHandler.selectedSkybox               = skyboxClickedName;
         clickedButtonBorder.GetComponent<Image>().color = InterfaceColors.selectedColor;
         clickedButtonBorder.SetActive(true);
@@ -156,69 +131,16 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
         SkyboxHandler.SetNewSkybox(skyboxClickedName);
 
         // Change selected skybox text based on button clicked in general settings panel.
-        switch (skyboxClickedName) {
-            case SkyboxType.PINK:
-                skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxpink")}");
-                break;
-            case SkyboxType.GOLDEN:
-                skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxgolden")}");
-                break;
-            case SkyboxType.NIGHT:
-                skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxnight")}");
-                break;
-            case SkyboxType.GREY:
-                skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxgrey")}");
-                break;
-            case SkyboxType.BLUE:
-                skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxblue")}");
-                break;
-            case SkyboxType.SLATE:
-                skyboxSelected.SetText($"//  {I18nTextTranslator.SetTranslatedText("skyboxslate")}");
-                break;
-        }
-
-        // EVENT:: for new skybox button clicked
-        //DevEventHandler.CheckInterfaceEvent($"\"{skyboxClickedName}\" {I18nTextTranslator.SetTranslatedText("eventinterfaceskyboxbutton")}");
-        // EVENT:: for new skybox selected
-        //DevEventHandler.CheckSkyboxEvent($"{I18nTextTranslator.SetTranslatedText("eventskyboxchange")} \"{skyboxClickedName}\"");
+        skyboxSelected.SetText($"//  {SkyboxUtil.ReturnSkyboxType_StringTranslated(skyboxClickedName)}");
         
         // Saves new selected skybox
         CosmeticsSettings.SaveSkyboxItem(skyboxClickedName);
 
         SettingsPanel.LoadGamemodePreviews();
-    }
-
-    /// <summary>
-    /// Clears all gamemode button borders in settings panel (gamemode sub-section).
-    /// </summary>
-    public static void ClearGamemodeButtonBorders() {
-        foreach (GameObject buttonBorder in GameObject.FindGameObjectsWithTag("ButtonBorderGamemode")) {
-            if (buttonBorder != null) {
-                buttonBorder.GetComponent<Image>().color = InterfaceColors.unselectedColor;
-                buttonBorder.SetActive(false);
-            }
-        }
-    }
-    /// <summary>
-    /// Clears all target color button borders in settings panel (general sub-section).
-    /// </summary>
-    public static void ClearTargetColorButtonBorders() {
-        foreach (GameObject buttonBorder in GameObject.FindGameObjectsWithTag("ButtonBorderTargetColor")) {
-            if (buttonBorder != null) {
-                buttonBorder.GetComponent<Image>().color = InterfaceColors.unselectedColor;
-                buttonBorder.SetActive(false);
-            }
-        }
-    }
-    /// <summary>
-    /// Clears all skybox button borders in settings panel (general sub-section).
-    /// </summary>
-    public static void ClearSkyboxButtonBorders() {
-        foreach (GameObject buttonBorder in GameObject.FindGameObjectsWithTag("ButtonBorderSkybox")) {
-            if (buttonBorder != null) {
-                buttonBorder.GetComponent<Image>().color = InterfaceColors.unselectedColor;
-                buttonBorder.SetActive(false);
-            }
-        }
+        
+        // EVENT:: for new skybox button clicked
+        //DevEventHandler.CheckInterfaceEvent($"\"{skyboxClickedName}\" {I18nTextTranslator.SetTranslatedText("eventinterfaceskyboxbutton")}");
+        // EVENT:: for new skybox selected
+        //DevEventHandler.CheckSkyboxEvent($"{I18nTextTranslator.SetTranslatedText("eventskyboxchange")} \"{skyboxClickedName}\"");
     }
 }

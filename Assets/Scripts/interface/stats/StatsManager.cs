@@ -7,7 +7,6 @@ using SomeAimGame.Targets;
 using SomeAimGame.Utilities;
 
 namespace SomeAimGame.Stats {
-
     public class StatsManager : MonoBehaviour {
         public TMP_Text AARTitleText, scoreTitleText, newHighscoreTitleText;
 

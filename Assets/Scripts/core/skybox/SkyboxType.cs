@@ -1,5 +1,4 @@
 ﻿namespace SomeAimGame.Skybox {
-
     /// <summary>
     /// Enum holding all skybox types.
     /// </summary>

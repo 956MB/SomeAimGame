@@ -32,7 +32,6 @@ public class CosmeticsSettings : MonoBehaviour {
     /// </summary>
     /// <param name="setTargetColor"></param>
     public static void SaveTargetColorItem(TargetType setTargetColor) {
-        //Debug.Log("save target color here????" + setTargetColor);
         targetColor = setTargetColor;
         cosmeticsSettings.SaveCosmeticsSettings();
     }

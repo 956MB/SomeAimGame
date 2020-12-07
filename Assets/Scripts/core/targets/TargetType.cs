@@ -1,5 +1,4 @@
 ﻿namespace SomeAimGame.Targets {
-
     /// <summary>
     /// Enum holding all target color types.
     /// </summary>

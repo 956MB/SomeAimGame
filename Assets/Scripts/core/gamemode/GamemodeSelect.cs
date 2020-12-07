@@ -8,7 +8,6 @@ using UnityEngine.UI;
 using SomeAimGame.SFX;
 
 namespace SomeAimGame.Gamemode {
-
     public class GamemodeSelect : MonoBehaviour {
         public GameObject gamemodeSelectObject, testContainerObject;
         public TMP_Text gamemodeNameText, gamemodeTypeText, gamemodeDescriptionText_TMP_Text, gamemodeStartButtonText;
@@ -54,24 +53,12 @@ namespace SomeAimGame.Gamemode {
                 gamemodeSelect.GamemodeSelectStart();
             } else {
                 switch (gamemodeName) {
-                    case GamemodeType.SCATTER:
-                        PopulateAllGamemodeInfo(gamemodeScatterClip_Loaded, "gamemodestartscatter", "gamemodecapsscatter", "gamemodetypespeed", InterfaceColors.gamemodeEasyColor, gamemodeSelect.scatterDescription);
-                        break;
-                    case GamemodeType.FLICK:
-                        PopulateAllGamemodeInfo(gamemodeFlickClip_Loaded, "gamemodestartflick", "gamemodecapsflick", "gamemodetypecontrol", InterfaceColors.gamemodeEasyColor, gamemodeSelect.flickDescription);
-                        break;
-                    case GamemodeType.GRID:
-                        PopulateAllGamemodeInfo(gamemodeGridClip_Loaded, "gamemodestartgrid", "gamemodecapsgrid", "gamemodetypespeed", InterfaceColors.gamemodeEasyColor, gamemodeSelect.gridDescription);
-                        break;
-                    case GamemodeType.GRID_2:
-                        PopulateAllGamemodeInfo(gamemodeGrid2Clip_Loaded, "gamemodestartgrid2", "gamemodecapsgrid2", "gamemodetypecontrol", InterfaceColors.gamemodeHardColor, gamemodeSelect.grid2Description);
-                        break;
-                    case GamemodeType.PAIRS:
-                        PopulateAllGamemodeInfo(gamemodePairsClip_Loaded, "gamemodestartpairs", "gamemodecapspairs", "gamemodetypecontrol", InterfaceColors.gamemodeMediumColor, gamemodeSelect.pairsDescription);
-                        break;
-                    case GamemodeType.FOLLOW:
-                        PopulateAllGamemodeInfo(gamemodeFollowClip_Loaded, "gamemodestartfollow", "gamemodecapsfollow", "gamemodetypetracking", InterfaceColors.gamemodeMediumColor, gamemodeSelect.followDescription);
-                        break;
+                    case GamemodeType.SCATTER: PopulateAllGamemodeInfo(gamemodeScatterClip_Loaded, "gamemodestartscatter", "gamemodecapsscatter", "gamemodetypespeed", InterfaceColors.gamemodeEasyColor, gamemodeSelect.scatterDescription);  break;
+                    case GamemodeType.FLICK:   PopulateAllGamemodeInfo(gamemodeFlickClip_Loaded, "gamemodestartflick", "gamemodecapsflick", "gamemodetypecontrol", InterfaceColors.gamemodeEasyColor, gamemodeSelect.flickDescription);        break;
+                    case GamemodeType.GRID:    PopulateAllGamemodeInfo(gamemodeGridClip_Loaded, "gamemodestartgrid", "gamemodecapsgrid", "gamemodetypespeed", InterfaceColors.gamemodeEasyColor, gamemodeSelect.gridDescription);              break;
+                    case GamemodeType.GRID_2:  PopulateAllGamemodeInfo(gamemodeGrid2Clip_Loaded, "gamemodestartgrid2", "gamemodecapsgrid2", "gamemodetypecontrol", InterfaceColors.gamemodeHardColor, gamemodeSelect.grid2Description);        break;
+                    case GamemodeType.PAIRS:   PopulateAllGamemodeInfo(gamemodePairsClip_Loaded, "gamemodestartpairs", "gamemodecapspairs", "gamemodetypecontrol", InterfaceColors.gamemodeMediumColor, gamemodeSelect.pairsDescription);      break;
+                    case GamemodeType.FOLLOW:  PopulateAllGamemodeInfo(gamemodeFollowClip_Loaded, "gamemodestartfollow", "gamemodecapsfollow", "gamemodetypetracking", InterfaceColors.gamemodeMediumColor, gamemodeSelect.followDescription); break;
                 }
             }
         }

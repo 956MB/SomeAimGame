@@ -10,10 +10,10 @@ namespace SomeAimGame.SFX {
         public GameObject targetHitSoundDropdownBody, targetMissSoundDropdownBody, targetSoundSelectionContainer;
         public CanvasGroup soundSelectionCanvasGroup;
         public Image uiSoundBackground;
-        public static bool targetHitSoundSelectOpen  = false;
-        public static bool targetMissSoundSelectOpen = false;
+        public static bool targetHitSoundSelectOpen          = false;
+        public static bool targetMissSoundSelectOpen         = false;
         public static bool targetSoundSelectionContainerOpen = false;
-        public static bool targetSoundsSaveReady     = false;
+        public static bool targetSoundsSaveReady             = false;
 
         public static TargetSoundSelect targetSoundSelect;
         private void Awake() { targetSoundSelect = this; }
@@ -92,12 +92,12 @@ namespace SomeAimGame.SFX {
             TargetSound_CloseAction(targetSoundSelect.targetMissSoundDropdownBody, targetSoundSelect.arrowTextMiss, ref targetMissSoundSelectOpen);
         }
 
-        private void SaveNewTargetHitSound(AudioClip newAudioClip, SFXType newAudioClipType) {
+        private static void SaveNewTargetHitSound(AudioClip newAudioClip, SFXType newAudioClipType) {
             SFXManager.targetHitSound   = newAudioClip;
             SFXSettings.targetSoundClip = newAudioClipType;
             targetSoundsSaveReady       = true;
         }
-        private void SaveNewTargetMissSound(AudioClip newAudioClip, SFXType newAudioClipType) {
+        private static void SaveNewTargetMissSound(AudioClip newAudioClip, SFXType newAudioClipType) {
             SFXManager.targetMissSound      = newAudioClip;
             SFXSettings.targetMissSoundClip = newAudioClipType;
             targetSoundsSaveReady           = true;
@@ -107,9 +107,9 @@ namespace SomeAimGame.SFX {
             SetTargetHitSoundText(hitName);
             
             switch (hitName) {
-                case "00": targetSoundSelect.SaveNewTargetHitSound(SFXManager.ReturnTargetSFXClip(SFXType.TARGET_HIT_SFX_0), SFXType.TARGET_HIT_SFX_0); break;
-                case "01": targetSoundSelect.SaveNewTargetHitSound(SFXManager.ReturnTargetSFXClip(SFXType.TARGET_HIT_SFX_1), SFXType.TARGET_HIT_SFX_1); break;
-                case "02": targetSoundSelect.SaveNewTargetHitSound(SFXManager.ReturnTargetSFXClip(SFXType.TARGET_HIT_SFX_2), SFXType.TARGET_HIT_SFX_2); break;
+                case "00": SaveNewTargetHitSound(SFXManager.ReturnTargetSFXClip(SFXType.TARGET_HIT_SFX_0), SFXType.TARGET_HIT_SFX_0); break;
+                case "01": SaveNewTargetHitSound(SFXManager.ReturnTargetSFXClip(SFXType.TARGET_HIT_SFX_1), SFXType.TARGET_HIT_SFX_1); break;
+                case "02": SaveNewTargetHitSound(SFXManager.ReturnTargetSFXClip(SFXType.TARGET_HIT_SFX_2), SFXType.TARGET_HIT_SFX_2); break;
             }
         }
 
@@ -117,21 +117,9 @@ namespace SomeAimGame.SFX {
             SetTargetMissSoundText(hitName);
             
             switch (hitName) {
-                case "00": targetSoundSelect.SaveNewTargetMissSound(SFXManager.ReturnTargetSFXClip(SFXType.TARGET_MISS_SFX_0), SFXType.TARGET_MISS_SFX_0); break;
-                case "01": targetSoundSelect.SaveNewTargetMissSound(SFXManager.ReturnTargetSFXClip(SFXType.TARGET_MISS_SFX_1), SFXType.TARGET_MISS_SFX_1); break;
-                case "02": targetSoundSelect.SaveNewTargetMissSound(SFXManager.ReturnTargetSFXClip(SFXType.TARGET_MISS_SFX_2), SFXType.TARGET_MISS_SFX_2); break;
-            }
-        }
-
-        public static string ReturnTargetSoundStrings(SFXType sfxType) {
-            switch (sfxType) {
-                case SFXType.TARGET_HIT_SFX_0:  return "00";
-                case SFXType.TARGET_HIT_SFX_1:  return "01";
-                case SFXType.TARGET_HIT_SFX_2:  return "02";
-                case SFXType.TARGET_MISS_SFX_0: return "00";
-                case SFXType.TARGET_MISS_SFX_1: return "01";
-                case SFXType.TARGET_MISS_SFX_2: return "02";
-                default:                        return "00";
+                case "00": SaveNewTargetMissSound(SFXManager.ReturnTargetSFXClip(SFXType.TARGET_MISS_SFX_0), SFXType.TARGET_MISS_SFX_0); break;
+                case "01": SaveNewTargetMissSound(SFXManager.ReturnTargetSFXClip(SFXType.TARGET_MISS_SFX_1), SFXType.TARGET_MISS_SFX_1); break;
+                case "02": SaveNewTargetMissSound(SFXManager.ReturnTargetSFXClip(SFXType.TARGET_MISS_SFX_2), SFXType.TARGET_MISS_SFX_2); break;
             }
         }
     }

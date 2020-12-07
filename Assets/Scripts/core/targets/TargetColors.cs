@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
 namespace SomeAimGame.Targets {
-
     /// <summary>
     /// Class containing preset albedo, emission and light for all target color options.
     /// </summary>
