@@ -342,7 +342,7 @@ public class GameUI : MonoBehaviour {
     /// </summary>
     private static void SetStreakText() {
         if (WidgetSettings.showStreak) {
-            gameUI.streakText.SetText($"{streakCurrent} / {streakBest}");
+            gameUI.streakText.SetText($"{string.Format("{0:n0}", streakCurrent)} / {string.Format("{0:n0}", streakBest)}");
         }
 
         // EVENT:: for set streak widget text
