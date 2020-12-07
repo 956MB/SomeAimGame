@@ -188,14 +188,9 @@ public class GameUI : MonoBehaviour {
 
         // If timespan not in the hours
         if (timerTimespan.Hours == 0) {
-            formatted = string.Format("{0:D2}:{1:D2}",
-                timerTimespan.Minutes,
-                timerTimespan.Seconds);
+            formatted = string.Format("{0:D2}:{1:D2}", timerTimespan.Minutes, timerTimespan.Seconds);
         } else {
-            formatted = string.Format("{0:D2}:{1:D2}:{2:D2}",
-                timerTimespan.Hours,
-                timerTimespan.Minutes,
-                timerTimespan.Seconds);
+            formatted = string.Format("{0:D2}:{1:D2}:{2:D2}", timerTimespan.Hours, timerTimespan.Minutes, timerTimespan.Seconds);
         }
 
         return formatted;

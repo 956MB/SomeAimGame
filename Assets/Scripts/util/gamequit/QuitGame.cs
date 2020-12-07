@@ -10,10 +10,6 @@ public class QuitGame : MonoBehaviour {
     private static QuitGame quit;
     private void Awake() { quit = this; }
 
-    //private void Start() {
-    //    CloseQuitConfirmation();
-    //}
-
     /// <summary>
     /// Quits current game.
     /// </summary>

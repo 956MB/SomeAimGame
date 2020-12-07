@@ -52,6 +52,19 @@ namespace SomeAimGame.Targets {
         }
 
         /// <summary>
+        /// Returns randomly selected point in bounds Vectors3 from supplied Bounds (bounds).
+        /// </summary>
+        /// <param name="bounds"></param>
+        /// <returns></returns>
+        public static Vector3 RandomPointInBounds_Follow(Bounds bounds) {
+            float randomX = Random.Range(bounds.min.x, bounds.max.x);
+            float randomY = Random.Range(bounds.min.y, bounds.max.y);
+            float randomZ = Random.Range(bounds.min.z, bounds.max.z);
+
+            return new Vector3(randomX / 2, randomY / 2, randomZ / 3 );
+        }
+
+        /// <summary>
         /// Picks random points (X/Y/Z) inside corresponding spawn area bounds for supplied side (left/right), returns spawn location Vector3.
         /// </summary>
         /// <param name="bounds"></param>

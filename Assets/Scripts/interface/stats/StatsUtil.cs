@@ -24,15 +24,18 @@ namespace SomeAimGame.Stats {
         public static Color32 highscoreLineColor          = new Color32(255, 209, 0, 255);
         public static Color32 clearBackgroundLight        = new Color32(255, 255, 255, 15);
         public static Color32 clearBackgroundDark         = new Color32(0, 0, 0, 0);
+        public static Color32 statDiffEnabled             = new Color32(0, 0, 0, 10);
+        public static Color32 statDiffDisabled            = new Color32(0, 0, 0, 0);
 
         /// <summary>
         /// Sets all supplied TMP_Text stat text (statDiffs) text to supplied string (textValue).
         /// </summary>
         /// <param name="textValue"></param>
         /// <param name="statDiffs"></param>
-        public static void ClearStatDiffsText(string textValue, params TMP_Text[] statDiffs) {
+        public static void ClearStatDiffs(string textValue, params TMP_Text[] statDiffs) {
             foreach (TMP_Text diff in statDiffs) {
                 diff.SetText(textValue);
+                diff.transform.parent.gameObject.GetComponent<Image>().color = statDiffDisabled;
             }
         }
         /// <summary>

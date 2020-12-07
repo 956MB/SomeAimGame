@@ -256,13 +256,13 @@ namespace SomeAimGame.Stats {
         /// </summary>
         private static void SetStatDiffsText() {
             // If current and previous stats match, dont set diff string.
-            if (!StatsUtil.CheckMatchingStatValue(accuracyStat, previousGameStats.accuracyValue)) { statsManager.accuracyExtraInner.SetText($"{StatsDiff.accuracyDiffStringDisplay}"); }
-            if (!StatsUtil.CheckMatchingStatValue(ttkStat, previousGameStats.ttkValue)) { statsManager.ttkExtraInner.SetText($"{StatsDiff.ttkDiffStringDisplay}"); }
-            if (!StatsUtil.CheckMatchingStatValue(kpsStat, previousGameStats.kpsValue)) { statsManager.kpsExtraInner.SetText($"{StatsDiff.kpsDiffStringDisplay}"); }
-            if (!StatsUtil.CheckMatchingStatValue(bestStreakStat, previousGameStats.bestStreakValue)) { statsManager.bestStreakExtraInner.SetText($"{StatsDiff.bestStreakDiffStringDisplay}"); }
-            if (!StatsUtil.CheckMatchingStatValue(targetTotalStat, previousGameStats.targetsTotalValue)) { statsManager.targetsTotalExtraInner.SetText($"{StatsDiff.targetsTotalDiffStringDisplay}"); }
-            if (!StatsUtil.CheckMatchingStatValue(targetHitStat, previousGameStats.targetsHitValue)) { statsManager.taretsHitExtraInner.SetText($"{StatsDiff.targetHitDiffStringDisplay}"); }
-            if (!StatsUtil.CheckMatchingStatValue(targetMissesStat, previousGameStats.targetsMissesValue)) { statsManager.targetsMissesExtraInner.SetText($"{StatsDiff.targetsMissesDiffStringDisplay}"); }
+            if (!StatsUtil.CheckMatchingStatValue(accuracyStat, previousGameStats.accuracyValue)) {          SetIndivivualStatDiff(statsManager.accuracyExtraInner, StatsDiff.accuracyDiffStringDisplay); }
+            if (!StatsUtil.CheckMatchingStatValue(ttkStat, previousGameStats.ttkValue)) {                    SetIndivivualStatDiff(statsManager.ttkExtraInner, StatsDiff.ttkDiffStringDisplay); }
+            if (!StatsUtil.CheckMatchingStatValue(kpsStat, previousGameStats.kpsValue)) {                    SetIndivivualStatDiff(statsManager.kpsExtraInner, StatsDiff.kpsDiffStringDisplay); }
+            if (!StatsUtil.CheckMatchingStatValue(bestStreakStat, previousGameStats.bestStreakValue)) {      SetIndivivualStatDiff(statsManager.bestStreakExtraInner, StatsDiff.bestStreakDiffStringDisplay); }
+            if (!StatsUtil.CheckMatchingStatValue(targetTotalStat, previousGameStats.targetsTotalValue)) {   SetIndivivualStatDiff(statsManager.targetsTotalExtraInner, StatsDiff.targetsTotalDiffStringDisplay); }
+            if (!StatsUtil.CheckMatchingStatValue(targetHitStat, previousGameStats.targetsHitValue)) {       SetIndivivualStatDiff(statsManager.taretsHitExtraInner, StatsDiff.targetHitDiffStringDisplay); }
+            if (!StatsUtil.CheckMatchingStatValue(targetMissesStat, previousGameStats.targetsMissesValue)) { SetIndivivualStatDiff(statsManager.targetsMissesExtraInner, StatsDiff.targetsMissesDiffStringDisplay); }
         }
 
         /// <summary>
@@ -348,11 +348,16 @@ namespace SomeAimGame.Stats {
             backgroundsSaved = true;
         }
 
+        private static void SetIndivivualStatDiff(TMP_Text statDiffText, string statDiffDisplay) {
+            statDiffText.SetText($"{statDiffDisplay}");
+            statDiffText.transform.parent.gameObject.GetComponent<Image>().color = StatsUtil.statDiffEnabled;
+        }
+
         /// <summary>
         /// Sets all stat diffs text to empty ("").
         /// </summary>
         private static void ClearStatDiffs() {
-            StatsUtil.ClearStatDiffsText("", statsManager.accuracyExtraInner, statsManager.ttkExtraInner, statsManager.kpsExtraInner, statsManager.bestStreakExtraInner, statsManager.targetsTotalExtraInner, statsManager.taretsHitExtraInner, statsManager.targetsMissesExtraInner);
+            StatsUtil.ClearStatDiffs("", statsManager.accuracyExtraInner, statsManager.ttkExtraInner, statsManager.kpsExtraInner, statsManager.bestStreakExtraInner, statsManager.targetsTotalExtraInner, statsManager.taretsHitExtraInner, statsManager.targetsMissesExtraInner);
         }
 
         /// <summary>
@@ -387,6 +392,8 @@ namespace SomeAimGame.Stats {
             //StatsUtil.ClearStatBackgrounds(StatsUtil.clearBackgroundLight, statsManager.scoreContainerBackground, statsManager.accuracyContainerBackground, statsManager.ttkContainerBackground, statsManager.kpsContainerBackground, statsManager.bestStreakContainerBackground, statsManager.targetsTotalContainerBackground, statsManager.taretsHitContainerBackground, statsManager.targetsMissesContainerBackground);
         }
 
+        public static void SetExtraStatsState(bool enabled) { if (enabled) { ShowExtraStatsPanel(); } else { HideExtraStatsPanel(); } }
+        public static void SetExtraStatsBackgroundsState(bool enabled) { if (enabled) { SetExtraStatsBackgrounds(); } else { ClearExtraStatsBackgrounds(); } }
         /// <summary>
         /// Show 'ExtraStats' panel;
         /// </summary>

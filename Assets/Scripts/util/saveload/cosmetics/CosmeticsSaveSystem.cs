@@ -142,11 +142,7 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     /// <param name="targetColor"></param>
     /// <param name="gamemode"></param>
     private static void SetTargetColor(TargetType targetColor, GamemodeType gamemode) {
-        if (gamemode == GamemodeType.FOLLOW) {
-            SpawnTargets.SetTargetColor(targetColor, true);
-        } else {
-            SpawnTargets.SetTargetColor(targetColor, false);
-        }
+        SpawnTargets.SetTargetColor(targetColor, gamemode == GamemodeType.FOLLOW);
 
         ButtonHoverHandler.selectedTargetColor = targetColor;
         TargetUtil.ClearTargetColorButtonBorders();

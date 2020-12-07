@@ -79,24 +79,14 @@ public class ToggleHandler : MonoBehaviour {
 
             case "ShowExtraStatsToggle": // Toggles 'ExtraStats' panel in 'AfterActionReport'.
                 SFXManager.CheckPlayClick_Toggle();
-                if (toggleClicked.isOn) {
-                    StatsManager.ShowExtraStatsPanel();
-                    ExtraSettings.SaveShowExtraStats(true);
-                } else {
-                    StatsManager.HideExtraStatsPanel();
-                    ExtraSettings.SaveShowExtraStats(false);
-                }
+                StatsManager.SetExtraStatsState(toggleClicked.isOn);
+                ExtraSettings.SaveShowExtraStats(toggleClicked.isOn);
                 break;
 
             case "ShowExtraStatsBackgroundsToggle": // Toggles 'ExtraStats' backgrounds panel in 'AfterActionReport'.
                 SFXManager.CheckPlayClick_Toggle();
-                if (toggleClicked.isOn) {
-                    StatsManager.SetExtraStatsBackgrounds();
-                    ExtraSettings.SaveShowExtraStatsBackgrounds(true);
-                } else {
-                    StatsManager.ClearExtraStatsBackgrounds();
-                    ExtraSettings.SaveShowExtraStatsBackgrounds(false);
-                }
+                StatsManager.SetExtraStatsBackgroundsState(toggleClicked.isOn);
+                ExtraSettings.SaveShowExtraStatsBackgrounds(toggleClicked.isOn);
                 break;
 
             case "QuickStartToggle": // Toggles quick start game in gamemode panel.

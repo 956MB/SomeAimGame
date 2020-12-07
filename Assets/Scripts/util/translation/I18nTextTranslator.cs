@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using TMPro;
 
 public class I18nTextTranslator : MonoBehaviour {
@@ -21,5 +22,12 @@ public class I18nTextTranslator : MonoBehaviour {
     /// </summary>
     /// <param name="textId"></param>
     /// <returns></returns>
-    public static string SetTranslatedText(string textId) { return I18n.Fields[textId]; }
+    public static string SetTranslatedText(string textId) {
+        try {
+            return I18n.Fields[textId];
+        } catch (KeyNotFoundException KNFE) {
+            Debug.Log($"KNFE: KEY '{textId}' NOT FOUND;");
+            return $"{textId}";
+        }
+    }
 }

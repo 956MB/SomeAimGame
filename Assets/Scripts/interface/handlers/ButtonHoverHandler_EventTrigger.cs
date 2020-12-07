@@ -8,13 +8,6 @@ public class ButtonHoverHandler_EventTrigger : MonoBehaviour {
     private static ButtonHoverHandler_EventTrigger hoverHandle;
     private void Awake() { hoverHandle = this; }
 
-    //private void Start() {
-        //foreach (Transform child in parentOptionsObject.transform) {
-        //    if (child.CompareTag("OptionObjectItem")) { child.gameObject.SetActive(false); }
-        //}
-        //QuitGame.CloseQuitConfirmation();
-    //}
-
     public void EnableBorder() { childBorder.SetActive(true); }
 
     public void DisableBorder() { childBorder.SetActive(false); }
@@ -32,10 +25,6 @@ public class ButtonHoverHandler_EventTrigger : MonoBehaviour {
     }
 
     public void LoopToggleOptions() {
-        //foreach (Transform child in parentOptionsObject.transform) {
-        //    if (child.CompareTag("OptionObjectItem")) { child.gameObject.SetActive(!optionsObjectOpen); }
-        //}
-
         if (optionsObjectOpen) {
             QuitGame.CloseQuitButton();
         } else {

@@ -27,6 +27,9 @@ public class SettingsPanel : MonoBehaviour {
     private static VideoClip[] gamemodePreviewVideos;
     public VideoPlayer selectedVideoPlayer, scatterVideoPlayer, flickVideoPlayer, gridVideoPlayer, grid2VideoPlayer, pairsVideoPlayer, followVideoPlayer;
 
+    private static Vector3 openVector = new Vector3(1f, 1f, 1f);
+    private static Vector3 closedVector = new Vector3(0f, 0f, 1f);
+
     private static SettingsPanel settings;
     void Awake() { settings = this; }
 
@@ -47,8 +50,8 @@ public class SettingsPanel : MonoBehaviour {
         SubMenuHandler.HideSettingsCrosshair();
 
         // Close settings and 'AfterActionReport' panels at start.
-        settings.settingsPanel.transform.localScale = new Vector3(0f, 0f, 1f);
-        settings.afterPanel.transform.localScale    = new Vector3(0f, 0f, 1f);
+        settings.settingsPanel.transform.localScale = closedVector;
+        settings.afterPanel.transform.localScale    = closedVector;
         settings.steamDataContainer.SetActive(false);
 
         //MovePanelCount_Left(7);
@@ -86,7 +89,7 @@ public class SettingsPanel : MonoBehaviour {
     /// Opens settings panel. [EVENT]
     /// </summary>
     public static void OpenSettingsPanel() {
-        settings.settingsPanel.transform.localScale = new Vector3(1f, 1f, 1f);
+        settings.settingsPanel.transform.localScale = openVector;
         settings.steamDataContainer.SetActive(true);
         settings.mainMenuCanvas.SetActive(true);
 
@@ -111,7 +114,7 @@ public class SettingsPanel : MonoBehaviour {
     /// Closes settings panel. [EVENT]
     /// </summary>
     public static void CloseSettingsPanel() {
-        settings.settingsPanel.transform.localScale = new Vector3(0f, 0f, 1f);
+        settings.settingsPanel.transform.localScale = closedVector;
         settings.steamDataContainer.SetActive(false);
         settings.mainMenuCanvas.SetActive(false);
 
@@ -142,7 +145,7 @@ public class SettingsPanel : MonoBehaviour {
         if (ExtraSettings.showExtraStats) { settings.extendedStatsPanel.SetActive(true); }
         OpenAction();
 
-        settings.afterPanel.transform.localScale = new Vector3(1f, 1f, 1f);
+        settings.afterPanel.transform.localScale = openVector;
         afterActionReportOpen                    = true;
 
         StatsManager.ResetAARScrollView();
@@ -163,7 +166,7 @@ public class SettingsPanel : MonoBehaviour {
         settings.extendedStatsPanel.SetActive(false);
         CloseAction();
 
-        settings.afterPanel.transform.localScale = new Vector3(0f, 0f, 1f);
+        settings.afterPanel.transform.localScale = closedVector;
         afterActionReportOpen                    = false;
 
         if (ExtraSettings.hideUI) { GameUI.ShowWidgetsUI(); }

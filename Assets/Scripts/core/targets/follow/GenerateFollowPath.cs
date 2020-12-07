@@ -33,7 +33,7 @@ public class GenerateFollowPath : MonoBehaviour {
     public static void GenerateRandomWaypoints() {
         if (followTargetSpawnAreaBounds != null) {
             for (int i = 0; i < waypointCount; i++) {
-                waypoints.Add(RandomPointInBounds(followTargetSpawnAreaBounds));
+                waypoints.Add(TargetUtil.RandomPointInBounds_Follow(followTargetSpawnAreaBounds));
             }
 
             // Make first waypoint location start right in front of player camera.
@@ -47,23 +47,5 @@ public class GenerateFollowPath : MonoBehaviour {
     public static void CreatePathObj() {
         BezierPath bezierPath = new BezierPath(waypoints, closedLoop, PathSpace.xyz);
         generateFollow.GetComponent<PathCreator>().bezierPath = bezierPath;
-    }
-
-    /// <summary>
-    /// Randomly selects points in supplied 'targetSpawnAre' bounds to return new random waypoint (Vector3).
-    /// </summary>
-    /// <param name="bounds"></param>
-    /// <returns></returns>
-    public static Vector3 RandomPointInBounds(Bounds bounds) {
-        // Random X/Y/Z points inside bounds.
-        float randomX = Random.Range(bounds.min.x, bounds.max.x);
-        float randomY = Random.Range(bounds.min.y, bounds.max.y);
-        float randomZ = Random.Range(bounds.min.z, bounds.max.z);
-
-        return new Vector3(
-            randomX/2,
-            randomY/2,
-            randomZ/3
-        );
     }
 }

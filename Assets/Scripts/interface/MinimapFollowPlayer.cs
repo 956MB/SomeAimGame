@@ -9,8 +9,7 @@ public class MinimapFollowPlayer : MonoBehaviour {
     Vector3 newMinimapCameraPosition;
 
     void FixedUpdate() {
-        if (projectionOrtho) { minimapCamera.orthographic = true;
-        } else { minimapCamera.orthographic = false; }
+        minimapCamera.orthographic = projectionOrtho;
 
         if (followPlayer) {
             minimapCamera.orthographicSize = 7.5f;
