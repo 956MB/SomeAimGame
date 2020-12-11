@@ -7,7 +7,7 @@ gamemodetitle=ИГРОВОЙ РЕЖИМ
 generaltitle=ГЕНЕРАЛЬНАЯ
 controlstitle=КОНТРОЛЬ
 crosshairpaneltitle=ПЕРЕКРЕСТОК
-extratitle=EXTRA
+videotitle=ВИДЕО
 #
 #
 # // gamemode button titles
@@ -129,6 +129,7 @@ scrolltotop=
 #
 # // titles
 mousetitle=Мышь
+displaytitle=Дисплей
 mousesensitivity=Чувствительность мыши
 keybindstitle=Связки клавиш
 keybindlegend=Настроить различные игровые сочетания клавиш

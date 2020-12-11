@@ -7,7 +7,7 @@ gamemodetitle=GAMEMODE
 generaltitle=GENERAL
 controlstitle=CONTROLS
 crosshairpaneltitle=CROSSHAIR
-extratitle=0.4.1
+videotitle=VIDEO
 #
 #
 # // gamemode button titles
@@ -129,6 +129,7 @@ scrolltotop=
 #
 # // titles
 mousetitle=Mouse
+displaytitle=Display
 mousesensitivity=Mouse Sensitivity
 keybindstitle=Keybinds
 keybindlegend=Customize various game keybindings

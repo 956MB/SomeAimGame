@@ -7,7 +7,7 @@ gamemodetitle=게임 모드
 generaltitle=일반
 controlstitle=통제 수단
 crosshairpaneltitle=십자선
-extratitle=특별한
+videotitle=비디오
 #
 #
 # // gamemode button titles
@@ -129,6 +129,7 @@ scrolltotop=
 #
 # // titles
 mousetitle=쥐
+displaytitle=디스플레이
 mousesensitivity=마우스 감도
 keybindstitle=키 바인드
 keybindlegend=다양한 게임 키 바인딩 사용자 지정

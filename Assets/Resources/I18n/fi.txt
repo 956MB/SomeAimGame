@@ -7,7 +7,7 @@ gamemodetitle=PELITILA
 generaltitle=YLEISTÄ
 controlstitle=VALVONTA
 crosshairpaneltitle=RISKI
-extratitle=YLIMÄÄRÄINEN
+videotitle=VIDEO
 #
 #
 # // gamemode button titles
@@ -129,6 +129,7 @@ scrolltotop=
 #
 # // titles
 mousetitle=Hiiri
+displaytitle=Näyttö
 mousesensitivity=Hiiren herkkyys
 keybindstitle=Avaimenperät
 keybindlegend=Mukauta erilaisia ​​pelinäppäimiä

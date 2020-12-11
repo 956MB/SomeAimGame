@@ -7,7 +7,7 @@ gamemodetitle=ゲームモード
 generaltitle=一般
 controlstitle=コントロール
 crosshairpaneltitle=十字線
-extratitle=追加
+videotitle=ビデオ
 #
 #
 # // gamemode button titles
@@ -129,6 +129,7 @@ scrolltotop=
 #
 # // titles
 mousetitle=マウス
+displaytitle=表示
 mousesensitivity=マウス感度
 keybindstitle=キーバインド
 keybindlegend=さまざまなゲームのキーバインドをカスタマイズする
