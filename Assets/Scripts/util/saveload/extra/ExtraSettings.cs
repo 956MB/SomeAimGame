@@ -79,6 +79,7 @@ public class ExtraSettings : MonoBehaviour {
         hideUI                    = setHideUI;
         showExtraStats            = setShowExtraStats;
         showExtraStatsBackgrounds = setShowExtraStatsBackgrounds;
+
         extraSettings.SaveExtraSettings();
     }
 

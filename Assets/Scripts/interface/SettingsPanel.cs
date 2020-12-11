@@ -11,7 +11,7 @@ using SomeAimGame.Stats;
 using SomeAimGame.SFX;
 
 public class SettingsPanel : MonoBehaviour {
-    public GameObject mainMenuCanvas, settingsPanel, afterPanel, extendedStatsPanel, steamDataContainer, devEventContainer, crosshairImage;
+    public GameObject mainMenuCanvas, settingsPanel, afterPanel, extendedStatsPanel, steamDataContainer, devEventContainer, crosshairImage, videoContainer;
     public static bool settingsOpen          = false;
     public static bool afterActionReportOpen = false;
     public static bool afterActionReportSet;
@@ -49,12 +49,16 @@ public class SettingsPanel : MonoBehaviour {
         StatsManager.HideExtraStatsPanel();
         SubMenuHandler.HideSettingsCrosshair();
 
-        // Close settings and 'AfterActionReport' panels at start.
-        settings.settingsPanel.transform.localScale = closedVector;
-        settings.afterPanel.transform.localScale    = closedVector;
+        // Close settings, 'AfterActionReport' and video containers at start.
+        Util.GameObjectLoops.Util_SetObjectsLocalScale(closedVector, settings.settingsPanel, settings.afterPanel, settings.videoContainer);
         settings.steamDataContainer.SetActive(false);
 
         //MovePanelCount_Left(7);
+        //Debug.Log($"Fullscreen: {Screen.fullScreen}");
+        //Debug.Log($"Current resolution: {Screen.currentResolution}");
+
+        //foreach (Display dis in Display.displays) { Debug.Log($"Display: {dis}"); }
+        //foreach (Resolution res in Screen.resolutions) { Debug.Log($"Resolutions: {res}"); }
     }
 
     /// <summary>
@@ -117,6 +121,7 @@ public class SettingsPanel : MonoBehaviour {
         settings.settingsPanel.transform.localScale = closedVector;
         settings.steamDataContainer.SetActive(false);
         settings.mainMenuCanvas.SetActive(false);
+        //Util.CanvasGroupState(settings.mainMenuCanvas.GetComponent<CanvasGroup>(), false);
 
         // If language select/notification object active, hide
         if (LanguageSelect.languageSelectOpen) { LanguageSelect.CloseLanguageSelect_Static(); }
@@ -142,6 +147,7 @@ public class SettingsPanel : MonoBehaviour {
     /// </summary>
     public static void OpenAfterActionReport() {
         settings.mainMenuCanvas.SetActive(true);
+        //Util.CanvasGroupState(settings.mainMenuCanvas.GetComponent<CanvasGroup>(), true);
         if (ExtraSettings.showExtraStats) { settings.extendedStatsPanel.SetActive(true); }
         OpenAction();
 
@@ -280,7 +286,7 @@ public class SettingsPanel : MonoBehaviour {
     /// Loads then plays all gamemode preview videos in their repsective buttons from the current gamemode, target color and skybox.
     /// </summary>
     public static void LoadGamemodePreviews() {
-        gamemodePreviewVideos = VideoManager.PopulateGamemodePreviews(GamemodeUtil.ReturnGamemodeType_StringFull(CosmeticsSettings.gamemode), TargetUtil.ReturnTargetColorType_StringFull(CosmeticsSettings.targetColor), SkyboxUtil.ReturnSkyboxType_StringFull(CosmeticsSettings.skybox));
+        gamemodePreviewVideos = PreviewManager.PopulateGamemodePreviews(GamemodeUtil.ReturnGamemodeType_StringFull(CosmeticsSettings.gamemode), TargetUtil.ReturnTargetColorType_StringFull(CosmeticsSettings.targetColor), SkyboxUtil.ReturnSkyboxType_StringFull(CosmeticsSettings.skybox));
 
         // Set clips for every gamemode preview button.
         Util.VideoLoops.Util_SetVideoPlayerClips(7, gamemodePreviewVideos, settings.scatterVideoPlayer, settings.flickVideoPlayer, settings.gridVideoPlayer, settings.grid2VideoPlayer, settings.pairsVideoPlayer, settings.followVideoPlayer, settings.selectedVideoPlayer);
