@@ -6,10 +6,9 @@ namespace SomeAimGame.SFX {
         public void OnPointerClick(PointerEventData pointerEventData) {
             GameObject changeButton = pointerEventData.pointerCurrentRaycast.gameObject;
             
-            if (changeButton.CompareTag("TargetHitSoundButton")) {
-                TargetSoundSelect.SetTargetHitSound($"{changeButton.transform.name}");
-            } else if (changeButton.CompareTag("TargetMissSoundButton")) {
-                TargetSoundSelect.SetTargetMissSound($"{changeButton.transform.name}");
+            switch (changeButton.tag) {
+                case "TargetHitSoundButton":  TargetSoundSelect.SetTargetHitSound($"{changeButton.transform.name}");  break;
+                case "TargetMissSoundButton": TargetSoundSelect.SetTargetMissSound($"{changeButton.transform.name}"); break;
             }
 
             TargetSoundSelect.CheckCloseTargetSoundDropdowns();

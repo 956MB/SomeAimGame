@@ -19,8 +19,8 @@ namespace SomeAimGame.SFX {
         private void Awake() { targetSoundSelect = this; }
 
         private void Start() {
-            CloseTargetHitSoundSelect();
-            CloseTargetMissSoundSelect();
+            SetTargetHitSelect(false);
+            SetTargetMissSelect(false);
         }
 
         public static void CheckSaveTargetSoundSelection() {
@@ -31,65 +31,29 @@ namespace SomeAimGame.SFX {
         }
 
         public static void CheckCloseTargetSoundDropdowns() {
-            if (targetHitSoundSelectOpen) { CloseTargetHitSoundSelect(); }
-            if (targetMissSoundSelectOpen) { CloseTargetMissSoundSelect(); }
+            if (targetHitSoundSelectOpen) {  SetTargetHitSelect(false); }
+            if (targetMissSoundSelectOpen) { SetTargetMissSelect(false); }
         }
 
-        public static void SetTargetHitSoundText(string soundName) { targetSoundSelect.targetHitSoundText.SetText($"{soundName}"); }
+        public static void SetTargetHitSoundText(string soundName) {  targetSoundSelect.targetHitSoundText.SetText($"{soundName}"); }
         public static void SetTargetMissSoundText(string soundName) { targetSoundSelect.targetMissSoundText.SetText($"{soundName}"); }
 
-        public static void TestTargetHitSound() { SFXManager.PlaySFXTargetHit(); }
+        public static void TestTargetHitSound() {  SFXManager.PlaySFXTargetHit(); }
         public static void TestTargetMissSound() { SFXManager.PlaySFXTargetMiss(); }
 
-        public static void ToggleTargetHitSoundSelect_Static() {
-            if (!targetHitSoundSelectOpen) {
-                OpenTargetHitSoundSelect();
-                SFXManager.CheckPlayClick_Button();
-            } else {
-                CloseTargetHitSoundSelect();
-            }
+        public static void ToggleTargetHitSoundSelect_Static() {  SetTargetHitSelect(!targetHitSoundSelectOpen); }
+        public static void ToggleTargetMissSoundSelect_Static() { SetTargetMissSelect(!targetMissSoundSelectOpen); }
+
+        public static void SetTargetHitSelect(bool state) {
+            DropdownUtils.SetDropdownState(state, targetSoundSelect.targetHitSoundDropdownBody, targetSoundSelect.arrowTextHit, ref targetHitSoundSelectOpen);
         }
 
-        public static void ToggleTargetMissSoundSelect_Static() {
-            if (!targetMissSoundSelectOpen) {
-                OpenTargetMissSoundSelect();
-                SFXManager.CheckPlayClick_Button();
-            } else {
-                CloseTargetMissSoundSelect();
-            }
+        public static void SetTargetMissSelect(bool state) {
+            DropdownUtils.SetDropdownState(state, targetSoundSelect.targetMissSoundDropdownBody, targetSoundSelect.arrowTextMiss, ref targetMissSoundSelectOpen);
         }
 
         public static void SetSoundSelectionContainerContainerState(bool soundSelectionState) {
             Util.CanvasGroupState(targetSoundSelect.soundSelectionCanvasGroup, soundSelectionState);
-        }
-
-        public static void TargetSound_OpenAction(GameObject dropdownBody, TMP_Text arrowText, ref bool targetSoundSelectBool) {
-            dropdownBody.transform.localScale = DropdownUtils.dropdownBodyOpenScale;
-            Util.RefreshRootLayoutGroup(dropdownBody);
-            arrowText.transform.localScale = DropdownUtils.arrowupScale;
-            targetSoundSelectBool          = true;
-        }
-
-        public static void TargetSound_CloseAction(GameObject dropdownBody, TMP_Text arrowText, ref bool targetSoundSelectBool) {
-            dropdownBody.transform.localScale = DropdownUtils.dropdownBodyClosedScale;
-            arrowText.transform.localScale    = DropdownUtils.arrowDownScale;
-            targetSoundSelectBool             = false;
-        }
-
-        public static void OpenTargetHitSoundSelect() {
-            TargetSound_OpenAction(targetSoundSelect.targetHitSoundDropdownBody, targetSoundSelect.arrowTextHit, ref targetHitSoundSelectOpen);
-        }
-
-        public static void CloseTargetHitSoundSelect() {
-            TargetSound_CloseAction(targetSoundSelect.targetHitSoundDropdownBody, targetSoundSelect.arrowTextHit, ref targetHitSoundSelectOpen);
-        }
-
-        public static void OpenTargetMissSoundSelect() {
-            TargetSound_OpenAction(targetSoundSelect.targetMissSoundDropdownBody, targetSoundSelect.arrowTextMiss, ref targetMissSoundSelectOpen);
-        }
-
-        public static void CloseTargetMissSoundSelect() {
-            TargetSound_CloseAction(targetSoundSelect.targetMissSoundDropdownBody, targetSoundSelect.arrowTextMiss, ref targetMissSoundSelectOpen);
         }
 
         private static void SaveNewTargetHitSound(AudioClip newAudioClip, SFXType newAudioClipType) {
