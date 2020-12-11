@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.Video;
 
-public class VideoManager : MonoBehaviour {
+public class PreviewManager : MonoBehaviour {
     public VideoClip[] allVideoClips;
     public static VideoClip[] gamemodeVideoClips = new VideoClip[7];
     VideoClip[] previewsObject                   = new VideoClip[7];
 
-    public static VideoManager videoManager;
-    private void Awake() { videoManager = this; }
+    public static PreviewManager previewManager;
+    private void Awake() { previewManager = this; }
 
     /// <summary>
     /// Populates all gamemode preview gameobjects with videoclips and plays.
@@ -16,15 +16,15 @@ public class VideoManager : MonoBehaviour {
     /// <param name="targetColor"></param>
     /// <param name="skybox"></param>
     public static VideoClip[] PopulateGamemodePreviews(string currentGamemode, string targetColor, string skybox) {
-        videoManager.previewsObject[0] = LoopVideoClips("Gamemode-Scatter", targetColor, "Skybox-Slate");
-        videoManager.previewsObject[1] = LoopVideoClips("Gamemode-Flick", targetColor, "Skybox-Slate");
-        videoManager.previewsObject[2] = LoopVideoClips("Gamemode-Grid", targetColor, "Skybox-Slate");
-        videoManager.previewsObject[3] = LoopVideoClips("Gamemode-Grid2", targetColor, "Skybox-Slate");
-        videoManager.previewsObject[4] = LoopVideoClips("Gamemode-Pairs", targetColor, "Skybox-Slate");
-        videoManager.previewsObject[5] = LoopVideoClips("Gamemode-Follow", targetColor, "Skybox-Slate");
-        videoManager.previewsObject[6] = LoopVideoClips(currentGamemode, targetColor, "Skybox-Slate");
+        previewManager.previewsObject[0] = LoopVideoClips("Gamemode-Scatter", targetColor, "Skybox-Slate");
+        previewManager.previewsObject[1] = LoopVideoClips("Gamemode-Flick", targetColor, "Skybox-Slate");
+        previewManager.previewsObject[2] = LoopVideoClips("Gamemode-Grid", targetColor, "Skybox-Slate");
+        previewManager.previewsObject[3] = LoopVideoClips("Gamemode-Grid2", targetColor, "Skybox-Slate");
+        previewManager.previewsObject[4] = LoopVideoClips("Gamemode-Pairs", targetColor, "Skybox-Slate");
+        previewManager.previewsObject[5] = LoopVideoClips("Gamemode-Follow", targetColor, "Skybox-Slate");
+        previewManager.previewsObject[6] = LoopVideoClips(currentGamemode, targetColor, "Skybox-Slate");
 
-        return videoManager.previewsObject;
+        return previewManager.previewsObject;
     }
 
     /// <summary>
@@ -48,7 +48,7 @@ public class VideoManager : MonoBehaviour {
     public static VideoClip LoopVideoClips(string gamemode, string targetColor, string skybox) {
         string clipString = GetClipString(gamemode, targetColor, skybox);
 
-        foreach (VideoClip clip in videoManager.allVideoClips) {
+        foreach (VideoClip clip in previewManager.allVideoClips) {
             if (clip.name == clipString) { return clip; }
         }
 
