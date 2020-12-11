@@ -8,7 +8,7 @@ using System.Collections;
 public class NotificationHandler : MonoBehaviour {
     public static TMP_Text notificationTextContent;
     public static bool notificationOpen                    = false;
-    private static WaitForSeconds notificationDestroyDelay = new WaitForSeconds(3.5f);
+    private static WaitForSecondsRealtime notificationDestroyDelay = new WaitForSecondsRealtime(3.5f);
 
     public static NotificationHandler notification;
     private void Awake() {
@@ -28,12 +28,7 @@ public class NotificationHandler : MonoBehaviour {
     /// <param name="notificationText"></param>
     /// <param name="notificationColor"></param>
     public static void ShowTimedNotification_String(string notificationText, Color32 notificationColor) {
-        notificationTextContent.SetText($"{notificationText}");
-        notificationTextContent.color = notificationColor;
-        notification.gameObject.SetActive(true);
-        notificationOpen = true;
-
-        notification.StartCoroutine(HideNotification_Delay());
+        SetShowNotification(notificationText, notificationColor);
 
         // EVENT:: for new string notification
         //DevEventHandler.CheckNotificationEvent($"{I18nTextTranslator.SetTranslatedText("eventnotificationcreatedstring")} \"{notificationText}\"");
@@ -46,17 +41,24 @@ public class NotificationHandler : MonoBehaviour {
     /// <param name="notificationColor"></param>
     public static void ShowTimedNotification_Translated(string translateTextID, string extraText, Color32 notificationColor) {
         string notificationContent = $"{I18nTextTranslator.SetTranslatedText(translateTextID)}{extraText}";
-        notificationTextContent.SetText(notificationContent);
-        notificationTextContent.color = notificationColor;
-        notification.gameObject.SetActive(true);
-        notificationOpen = true;
-
-        notification.StartCoroutine(HideNotification_Delay());
+        SetShowNotification(notificationContent, notificationColor);
 
         // EVENT:: for new translated notification
         //DevEventHandler.CheckNotificationEvent($"{I18nTextTranslator.SetTranslatedText("eventnotificationcreatedtranslation")} \"{notificationContent}\"");
     }
 
+    public static void SetShowNotification(string setText, Color32 notificationColor) {
+        notificationTextContent.SetText(setText);
+        notificationTextContent.color = notificationColor;
+        notification.gameObject.SetActive(true);
+        notificationOpen = true;
+
+        notification.StartCoroutine(HideNotification_Delay());
+    }
+
+    /// <summary>
+    /// Hides notification object if one currently active.
+    /// </summary>
     public static void CheckHideNotificationObject() {
         if (notificationOpen) { HideNotification(); }
     }
