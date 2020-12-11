@@ -52,7 +52,7 @@ namespace SomeAimGame.SFX {
         public static void CheckPlayClick_Button() {  if (SFXSettings.uiSoundOn) { PlaySFXClick_Button(); } }
         public static void CheckPlayClick_Toggle() {  if (SFXSettings.uiSoundOn) { PlaySFXClick_Toggle(); } }
         public static void CheckPlayError() {         if (SFXSettings.uiSoundOn) { PlaySFXError_0(); } }
-        public static void CheckPlayTargetHit() {     if (SFXSettings.targetSoundOn) { PlaySFXTargetHit(); } }
+        public static void CheckPlayTargetHit() {     if (SFXSettings.targetSoundOn) {                                  PlaySFXTargetHit(); } }
         public static void CheckPlayTargetMiss() {    if (SFXSettings.targetSoundOn && SFXSettings.targetMissSoundOn) { PlaySFXTargetMiss(); } }
 
         #endregion

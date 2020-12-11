@@ -1,5 +1,13 @@
 ﻿namespace SomeAimGame.SFX {
     /// <summary>
+    /// Enum holding all target sound dropdowns.
+    /// </summary>
+    public enum TargetSoundDropdowns {
+        TARGET_HIT,
+        TARGET_MISS
+    }
+
+    /// <summary>
     /// Enum holding all SFX types.
     /// </summary>
     public enum SFXType {
