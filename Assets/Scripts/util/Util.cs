@@ -7,6 +7,20 @@ using TMPro;
 namespace SomeAimGame.Utilities {
     public class Util : MonoBehaviour {
         /// <summary>
+        /// Returns if two supplied RectTransform (rectTrans1, rectTrans2) overlap.
+        /// </summary>
+        /// <param name="rectTrans1"></param>
+        /// <param name="rectTrans2"></param>
+        /// <returns></returns>
+        public static bool IfRectOverlaps(RectTransform rectTrans1, RectTransform rectTrans2) {
+            Rect rect1 = new Rect(rectTrans1.localPosition.x, rectTrans1.localPosition.y, rectTrans1.rect.width, rectTrans1.rect.height);
+            Rect rect2 = new Rect(rectTrans2.localPosition.x, rectTrans2.localPosition.y, rectTrans2.rect.width, rectTrans2.rect.height);
+
+            return rect1.Overlaps(rect2, true);
+            //return rect2.Overlaps(rect1);
+        }
+
+        /// <summary>
         /// Prints all Vector3 list (list) elements in string.
         /// </summary>
         /// <param name="list"></param>
@@ -16,6 +30,17 @@ namespace SomeAimGame.Utilities {
                 targetList += $" {list[i]}";
             }
             Debug.Log($"Vector3 List: {targetList}");
+        }
+        /// <summary>
+        /// Prints all string list (list) elements in string.
+        /// </summary>
+        /// <param name="list"></param>
+        public static void PrintStringList(List<string> list) {
+            string targetList = "";
+            for (int i = 0; i < list.Count; i++) {
+                targetList += $" {list[i]}";
+            }
+            Debug.Log($"String List: {targetList}");
         }
 
         /// <summary>
