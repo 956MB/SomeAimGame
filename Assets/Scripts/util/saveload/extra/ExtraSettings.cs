@@ -51,8 +51,11 @@ public class ExtraSettings : MonoBehaviour {
         showExtraStats = setShowExtraStats;
         extraSettings.SaveExtraSettings();
     }
-
-    public static void SaveShowExtraStatsBackgrounds(bool setShowExtraStatsBackgrounds) {
+    /// <summary>
+    /// Saves supplied show stats backgrounds bool (setShowExtraStatsBackgrounds) to extra settings object (ExtraSettings), then saves extra settings object.
+    /// </summary>
+    /// <param name="setShowExtraStatsBackgrounds"></param>
+    public static void SaveShowStatsBackgrounds(bool setShowExtraStatsBackgrounds) {
         showExtraStatsBackgrounds = setShowExtraStatsBackgrounds;
         extraSettings.SaveExtraSettings();
     }
