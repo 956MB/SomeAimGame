@@ -228,31 +228,10 @@ public class SimpleCrosshair : MonoBehaviour
     }
     */
 
-    public static void SetCrosshairString_Static() { simpleCrosshair.SetCrosshairString(); }
-
-    public void SetCrosshairString() {
-        int tstyleInt, centerDotInt, outlineInt;
-        string sizeString, thicknessString, gapString, redFloat, greenFloat, blueFloat, alphaFloat, redOutlineFloat, greenOutlineFloat, blueOutlineFloat, alphaOutlineFloat;
-
-        tstyleInt           = m_crosshair.tStyle ? 1 : 0;
-        centerDotInt        = m_crosshair.centerDot ? 1 : 0;
-        sizeString          = m_crosshair.size.ToString("00");
-        thicknessString     = m_crosshair.thickness.ToString("00");
-        gapString           = m_crosshair.gap.ToString("00");
-        outlineInt          = m_crosshair.enableOutline ? 1 : 0;
-        redFloat            = (m_crosshair.color.r * 255.0f).ToString("000");
-        greenFloat          = (m_crosshair.color.g * 255.0f).ToString("000");
-        blueFloat           = (m_crosshair.color.b * 255.0f).ToString("000");
-        alphaFloat          = (m_crosshair.color.a * 255.0f).ToString("000");
-        redOutlineFloat     = (m_crosshair.outlineColor.r * 255.0f).ToString("000");
-        greenOutlineFloat   = (m_crosshair.outlineColor.g * 255.0f).ToString("000");
-        blueOutlineFloat    = (m_crosshair.outlineColor.b * 255.0f).ToString("000");
-        alphaOutlineFloat   = (m_crosshair.outlineColor.a * 255.0f).ToString("000");
-
-        //Debug.Log($"EXPORTED CROSSHAIR STRING: {tstyleInt}{centerDotInt}{sizeString}{thicknessString}{gapString}{outlineInt}{redFloat}{greenFloat}{blueFloat}{alphaFloat}{redOutlineFloat}{greenOutlineFloat}{blueOutlineFloat}{alphaOutlineFloat}");
-        crosshairStringFull = $"{tstyleInt}{centerDotInt}{sizeString}{thicknessString}{gapString}{outlineInt}{redFloat}{greenFloat}{blueFloat}{alphaFloat}{redOutlineFloat}{greenOutlineFloat}{blueOutlineFloat}{alphaOutlineFloat}";
-        CrosshairSettings.SaveCrosshairString(crosshairStringFull);
-    }
+    /// <summary>
+    /// Saves current crosshair string to CrosshairSettings object.
+    /// </summary>
+    public static void SetCrosshairString_Static() { CrosshairSettings.SaveCrosshairString(crosshairStringFull); }
 
     /// <summary>
     /// Returns full crosshair string.

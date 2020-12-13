@@ -65,8 +65,8 @@ public class CrosshairSaveSystem : MonoBehaviour {
         CrosshairDataSerial loadedCrosshairData = LoadCrosshairSettingsData();
         if (loadedCrosshairData != null) {
 
-            if (!crosshairSave.simpleCrosshair.ParseCrosshairString(loadedCrosshairData.crosshairString, false)) {
-                Debug.Log("INVALID STRNG");
+            if (!crosshairSave.simpleCrosshair.ParseCrosshairString(loadedCrosshairData.crosshairString, true)) {
+                //Debug.Log($"INVALID CROSSHAIR STRNG: {loadedCrosshairData.crosshairString}");
                 InitCrosshairSettingsDefaults();
             } else {
                 SetCrosshairTStyleToggle(loadedCrosshairData.TStyle, true);
