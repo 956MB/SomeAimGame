@@ -42,7 +42,7 @@ public class Tooltip : MonoBehaviour {
         }
     }
 
-    public static string SpliceText(string inputText, int lineLength) {
+    private static string SpliceText(string inputText, int lineLength) {
         string[] stringSplit = inputText.Split(' ');
         int charCounter = 0;
         string finalString = "";
