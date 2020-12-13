@@ -277,6 +277,7 @@ public class SimpleCrosshair : MonoBehaviour
 
         if (redrawCrosshair) { GenerateCrosshair(); }
 
+        CrosshairSaveSystem.SetAllCrosshairControls(tstyle, centerDot, size, thickness, gap, outlineEnable, red, green, blue, alpha, redOutline, greenOutline, blueOutline, alphaOutline);
         CrosshairSettings.SaveAllCrosshairDefaults(tstyle, centerDot, size, thickness, gap, outlineEnable, red, green, blue, alpha, redOutline, greenOutline, blueOutline, alphaOutline, crosshairStringFull);
     }
 

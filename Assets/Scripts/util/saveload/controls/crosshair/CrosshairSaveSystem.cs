@@ -284,4 +284,22 @@ public class CrosshairSaveSystem : MonoBehaviour {
         CrosshairOptionsObject.SetCrosshairOptionText(crosshairSave.crosshairAlphaOutlineValueText, crosshairSave.crosshairAlphaOutlineValueTextPlaceholder, setAlphaOutline);
         CrosshairSettings.SaveAlphaOutline(setAlphaOutline);
     }
+
+    public static void SetAllCrosshairControls(bool setTStyle, bool setCenterDot, float setSize, float setThickness, float setGap, bool setOutline, float setRed, float setGreen, float setBlue, float setAlpha, float setRedOutline, float setGreenOutline, float setBlueOutline, float setAlphaOutline) {
+        crosshairSave.TStyleToggle.isOn                 = setTStyle;
+        crosshairSave.centerDotToggle.isOn              = setCenterDot;
+        crosshairSave.OutlineEnabledToggle.isOn         = setOutline;
+        crosshairSave.crosshairSizeSlider.value         = setSize;
+        crosshairSave.crosshairThicknessSlider.value    = setThickness;
+        crosshairSave.crosshairGapSlider.value          = setGap;
+        crosshairSave.crosshairRedSlider.value          = setRed;
+        crosshairSave.crosshairGreenSlider.value        = setGreen;
+        crosshairSave.crosshairBlueSlider.value         = setBlue;
+        crosshairSave.crosshairAlphaSlider.value        = setAlpha;
+        crosshairSave.crosshairRedOutlineSlider.value   = setRedOutline;
+        crosshairSave.crosshairGreenOutlineSlider.value = setGreenOutline;
+        crosshairSave.crosshairBlueOutlineSlider.value  = setBlueOutline;
+        crosshairSave.crosshairAlphaOutlineSlider.value = setAlphaOutline;
+        CrosshairOptionsObject.SetOutlineContainerState(setOutline);
+    }
 }
