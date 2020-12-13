@@ -26,7 +26,7 @@ public class CrosshairImportExport : MonoBehaviour {
 
     public static bool importExportPanelOpen               = false;
     public static bool resetConfirmActive                  = false;
-    private static WaitForSeconds notificationDestroyDelay = new WaitForSeconds(3.5f);
+    private static WaitForSecondsRealtime notificationDestroyDelay = new WaitForSecondsRealtime(3.5f);
 
     private static CrosshairImportExport crosshairImportExport;
     void Awake() { crosshairImportExport = this; }
