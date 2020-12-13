@@ -118,7 +118,6 @@ public class GameUI : MonoBehaviour {
             // Only count timer down if settings panel not open (paused).
             if (!MouseLook.settingsOpen && timeCount > -1) {
                 timeCount -= 1;
-                //TempValues.SetTimeCountTemp(timeCount);
 
                 // Format time in seconds (120) to formatted time string (02:00)
                 timeFormatted = ReturnTimerString(timeCount);
@@ -132,11 +131,12 @@ public class GameUI : MonoBehaviour {
                 } else if (timeCount == 0) {
                     // Wiggle timer text, set all stats in 'AfterActionReport', then stop timer.
                     if (WidgetSettings.showTime) { TextEffects.WiggleText(gameUI.timeText, 0.5f, 55); }
-                    StatsManager.CheckAndSetAllStats();
                     StopEverything();
+                    HideWidgetsUI();
+                    StatsManager.CheckAndSetAllStats();
+                    timeCount -= 1;
                 }
             } else {
-                //TempValues.SetTimeCountTemp(timeCount);
                 yield break;
             }
 

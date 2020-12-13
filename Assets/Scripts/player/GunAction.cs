@@ -27,8 +27,8 @@ public class GunAction : MonoBehaviour {
                 timerRunning = false;
 
                 // Show 'AfterActionReport' if setting enabled.
-                GameUI.HideWidgetsUI();
-                SettingsPanel.OpenAfterActionReport();
+                //GameUI.HideWidgetsUI();
+                //SettingsPanel.OpenAfterActionReport();
             }
         }
     }
