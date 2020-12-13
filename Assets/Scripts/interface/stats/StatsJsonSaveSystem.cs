@@ -92,7 +92,7 @@ namespace SomeAimGame.Stats {
         /// <param name="setTargetsMisses"></param>
         public static void SaveBestGameStatsData(string setGamemode, int setScore, int setAccuracy, int setTTK, double setKPS, int setBestStreak, int setTargetsTotal, int setTargetsHit, int setTargetsMisses) {
             BestGameStats bestGameStatsLoaded = new BestGameStats();
-            bestGameStatsLoaded               = SetBestGameStats(bestGameStatsLoaded, setScore, setAccuracy, setTTK, setKPS, setBestStreak, setTargetsTotal, setTargetsHit, setTargetsMisses);
+            bestGameStatsLoaded               = SetBestGameStats(bestGameStatsLoaded, setGamemode, setScore, setAccuracy, setTTK, setKPS, setBestStreak, setTargetsTotal, setTargetsHit, setTargetsMisses);
 
             string dirPath       = Application.persistentDataPath + "/stats/best";
             DirectoryInfo dirInf = new DirectoryInfo(dirPath);
@@ -143,7 +143,8 @@ namespace SomeAimGame.Stats {
         /// <param name="setTargetsHit"></param>
         /// <param name="setTargetsMisses"></param>
         /// <returns></returns>
-        private static BestGameStats SetBestGameStats(BestGameStats bestGameStatsObj, int setScore, int setAccuracy, int setTTK, double setKPS, int setBestStreak, int setTargetsTotal, int setTargetsHit, int setTargetsMisses) {
+        private static BestGameStats SetBestGameStats(BestGameStats bestGameStatsObj, string setGamemode, int setScore, int setAccuracy, int setTTK, double setKPS, int setBestStreak, int setTargetsTotal, int setTargetsHit, int setTargetsMisses) {
+            bestGameStatsObj.gamemodeName       = setGamemode;
             bestGameStatsObj.scoreValue         = setScore;
             bestGameStatsObj.accuracyValue      = setAccuracy;
             bestGameStatsObj.ttkValue           = setTTK;

@@ -32,7 +32,17 @@ namespace SomeAimGame.Stats {
         /// </summary>
         /// <param name="textValue"></param>
         /// <param name="statDiffs"></param>
-        public static void ClearStatDiffs(string textValue, params TMP_Text[] statDiffs) {
+        public static void ClearTMPText(string textValue, params TMP_Text[] statDiffs) {
+            foreach (TMP_Text diff in statDiffs) {
+                diff.SetText(textValue);
+            }
+        }
+        /// <summary>
+        /// Sets all supplied TMP_Text stat text (statDiffs) text to supplied string (textValue), and clears background color.
+        /// </summary>
+        /// <param name="textValue"></param>
+        /// <param name="statDiffs"></param>
+        public static void ClearTMPTextAndColor(string textValue, params TMP_Text[] statDiffs) {
             foreach (TMP_Text diff in statDiffs) {
                 diff.SetText(textValue);
                 diff.transform.parent.gameObject.GetComponent<Image>().color = statDiffDisabled;
@@ -72,6 +82,16 @@ namespace SomeAimGame.Stats {
                 i++;
             }
         }
+        /// <summary>
+        /// Sets all items in supplied Color32[] backgroundsArray to supplied Color32 backgroundsColor.
+        /// </summary>
+        /// <param name="backgroundsArray"></param>
+        /// <param name="backgroundsColor"></param>
+        public static void FillStatBackgrounds(Color32[] backgroundsArray, Color32 backgroundsColor) {
+            for (int i = 0; i < backgroundsArray.Length; i++) {
+                backgroundsArray[i] = backgroundsColor;
+            }
+        }
 
         /// <summary>
         /// Returns appropriate stat item string (up/down/highscore) from supplied double values (newValue) (oldValue) (highscoreValue).
@@ -95,10 +115,10 @@ namespace SomeAimGame.Stats {
         /// <param name="highscoreValue"></param>
         /// <returns></returns>
         public static string GetItemText_Flip(double newValue, double oldValue, double highscoreValue) {
-            if (newValue > oldValue) return itemUp;
-            else if (newValue < oldValue)
+            if (newValue < oldValue)
                 if (newValue < highscoreValue) return itemHighscoreFlip;
-                else return itemDown;
+                else return itemUp;
+            else if (newValue > oldValue) return itemDown;
             else return itemNeutral;
         }
         /// <summary>
@@ -164,7 +184,7 @@ namespace SomeAimGame.Stats {
         /// <param name="oldValue"></param>
         /// <param name="highscoreValue"></param>
         /// <returns></returns>
-        public static Color32 GetItemBackgroundColor_Flip(int newValue, int oldValue, int highscoreValue) {
+        public static Color32 GetItemBackgroundColor_Flip(double newValue, double oldValue, double highscoreValue) {
             if (newValue < oldValue)
                 if (newValue < highscoreValue) return newHighscoreBackgroundColor;
                 else return upBackgroundColor;
