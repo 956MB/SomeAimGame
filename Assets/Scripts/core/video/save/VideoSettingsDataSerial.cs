@@ -4,11 +4,11 @@ namespace SomeAimGame.Core {
     namespace Video {
         [System.Serializable]
         public class VideoSettingsDataSerial {
-            public FullScreenMode displayMode  = FullScreenMode.FullScreenWindow;
+            public DisplayModes displayMode    = DisplayModes.FULLSCREEN;
             public int resolutionHeight        = 1920;
             public int resolutionWidth         = 1080;
             public int resolutionRefreshRate   = 60;
-            public int monitorMain             = 1;
+            public int monitorMain             = 0;
             public bool VSync                  = false;
             public int fpsLimit                = 0;
             public AntiAliasType antiAliasType = AntiAliasType.SMAA;

@@ -2,17 +2,19 @@
 using UnityEngine.UI;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using WindowsDisplayAPI;
 
-using SomeAimGame.Stats;
+using SomeAimGame.Utilities;
 
 namespace SomeAimGame.Core {
     namespace Video {
         public class VideoSettingsSaveSystem : MonoBehaviour {
+            public Toggle vSyncToggle, vignetteToggle, chromaticAberrationToggle;
 
             private static VideoSettingsSaveSystem videoSave;
             void Awake() { videoSave = this; }
 
-            public static void SaveVideoSettingsData(VideoSettings videoSettings) {
+            public static void SaveVideoSettingsData(VideoSettings _) {
                 BinaryFormatter formatter = new BinaryFormatter();
                 string dirPath            = Application.persistentDataPath + "/prefs";
                 string filePath           = dirPath + "/sag_video.prefs";
@@ -32,10 +34,10 @@ namespace SomeAimGame.Core {
                     BinaryFormatter formatter = new BinaryFormatter();
                     FileStream stream         = new FileStream(path, FileMode.Open);
 
-                    VideoSettingsDataSerial videodata = formatter.Deserialize(stream) as VideoSettingsDataSerial;
+                    VideoSettingsDataSerial videoData = formatter.Deserialize(stream) as VideoSettingsDataSerial;
                     stream.Close();
 
-                    return videodata;
+                    return videoData;
                 } else {
                     return null;
                 }
@@ -44,6 +46,15 @@ namespace SomeAimGame.Core {
             public static void InitSavedVideoSettings() {
                 VideoSettingsDataSerial loadedVideoSettingsData = LoadVideoSettingsData();
                 if (loadedVideoSettingsData != null) {
+                    SetDisplayMode(loadedVideoSettingsData.displayMode);
+                    SetResolution(loadedVideoSettingsData.resolutionWidth, loadedVideoSettingsData.resolutionHeight, loadedVideoSettingsData.resolutionRefreshRate);
+                    SetMonitor(loadedVideoSettingsData.monitorMain);
+                    SetVSyncToggle(loadedVideoSettingsData.VSync);
+                    SetFPSLimit(loadedVideoSettingsData.fpsLimit);
+                    SetAntiAlias(loadedVideoSettingsData.antiAliasType);
+                    SetVignetteToggle(loadedVideoSettingsData.vignette);
+                    SetChromaticAberrationToggle(loadedVideoSettingsData.chromaticAberration);
+
                     VideoSettings.LoadVideoSettings(loadedVideoSettingsData);
                 } else {
                     //Debug.Log("failed to init extra in 'initSavedSettings', extra: " + loadedExtraData);
@@ -52,8 +63,57 @@ namespace SomeAimGame.Core {
             }
 
             public static void InitVideoSettingsDefaults() {
-            
+                // Get users default monitor res/refresh on init
+                Resolution currentRes = VideoSettingUtil.ReturnCurrentScreenValues();
+
+                SetDisplayMode(DisplayModes.FULLSCREEN);
+                SetResolution(currentRes.width, currentRes.height, currentRes.refreshRate);
+                SetMonitor(0);
+                SetVSyncToggle(false);
+                SetFPSLimit(0);
+                SetAntiAlias(AntiAliasType.SMAA);
+                SetVignetteToggle(false);
+                SetChromaticAberrationToggle(false);
+
+                VideoSettings.SaveAllExtraSettingsDefaults(DisplayModes.FULLSCREEN, 1920, 1080, 60, 0, false, 0, AntiAliasType.SMAA, false, false);
             }
+
+
+            #region sets
+            private static void SetDisplayMode(DisplayModes displayMode) {
+                string displayModeString = VideoSettingUtil.ReturnTypeString(displayMode);
+                VideoSettingSelect.SetDisplayModeText(displayModeString);
+                ApplyVideoSettings.SetDisplayModeCurrent(displayModeString);
+            }
+            private static void SetResolution(int w, int h, int refresh) {
+                string resolutionFormatted = $"{w} x {h} {Util.ReturnAspectRatio_string(w, h)} ({refresh}Hz)";
+                VideoSettingSelect.SetResolutionText(resolutionFormatted);
+                ApplyVideoSettings.SetResolutionCurrent(resolutionFormatted);
+            }
+            private static void SetMonitor(int setMonitor) {
+                WindowsDisplayAPI.DisplayConfig.PathDisplayTarget[] connectedDisplays = VideoSettingUtil.ReturnConnectedMonitors_WindowsDisplayAPI();
+                string monitorString = $"Display {setMonitor+1}: {connectedDisplays[setMonitor].FriendlyName}";
+                VideoSettingSelect.SetMonitorText(monitorString);
+                ApplyVideoSettings.SetMonitorCurrent(monitorString);
+            }
+            private static void SetFPSLimit(int setFPSLimit) {
+
+            }
+            private static void SetAntiAlias(AntiAliasType setAntiAlias) {
+                string antiAliasString = VideoSettingUtil.ReturnTypeString(setAntiAlias);
+                VideoSettingSelect.SetAntiAliasingText(antiAliasString);
+            }
+            private static void SetVSyncToggle(bool vSyncToggle) {
+                videoSave.vSyncToggle.isOn = vSyncToggle;
+            }
+            private static void SetVignetteToggle(bool vignetteToggle) {
+                videoSave.vignetteToggle.isOn = vignetteToggle;
+            }
+            private static void SetChromaticAberrationToggle(bool chromaticAberrationToggle) {
+                videoSave.chromaticAberrationToggle.isOn = chromaticAberrationToggle;
+            }
+
+            #endregion
         }
     }
 }

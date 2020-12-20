@@ -17,7 +17,7 @@ namespace SomeAimGame.Core {
         public enum DisplayModes {
             FULLSCREEN,
             FULLSCREEN_EXCLUSIVE,
-            WINDOWED_FULLSCREEN,
+            FULLSCREEN_WINDOWED,
             WINDOWED
         }
 
