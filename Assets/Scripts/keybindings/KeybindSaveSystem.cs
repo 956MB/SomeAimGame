@@ -89,7 +89,7 @@ public class KeybindSaveSystem : MonoBehaviour {
     /// </summary>
     /// <param name="setShootKeycode"></param>
     public static void SetShootKeybind(KeyCode setShootKeycode) {
-        keybindSaveLoad.shootKeybindText.SetText(KeybindsHandler.ReturnKeybindString(setShootKeycode));
+        keybindSaveLoad.shootKeybindText.SetText(KeybindsUtil.ReturnKeybindString(setShootKeycode));
         keybindSaveLoad.shootKeybindText.color = InterfaceColors.selectedColor;
     }
     /// <summary>
@@ -97,7 +97,7 @@ public class KeybindSaveSystem : MonoBehaviour {
     /// </summary>
     /// <param name="setToggleWidgetsKeycode"></param>
     public static void SetToggleWidgetsKeybind(KeyCode setToggleWidgetsKeycode) {
-        keybindSaveLoad.toggleWidgetsKeybindText.SetText(KeybindsHandler.ReturnKeybindString(setToggleWidgetsKeycode));
+        keybindSaveLoad.toggleWidgetsKeybindText.SetText(KeybindsUtil.ReturnKeybindString(setToggleWidgetsKeycode));
         keybindSaveLoad.toggleWidgetsKeybindText.color = InterfaceColors.selectedColor;
     }
     /// <summary>
@@ -105,7 +105,7 @@ public class KeybindSaveSystem : MonoBehaviour {
     /// </summary>
     /// <param name="setGameRestartKeycode"></param>
     public static void SetGameRestartKeybind(KeyCode setGameRestartKeycode) {
-        keybindSaveLoad.gameRestartKeybindText.SetText(KeybindsHandler.ReturnKeybindString(setGameRestartKeycode));
+        keybindSaveLoad.gameRestartKeybindText.SetText(KeybindsUtil.ReturnKeybindString(setGameRestartKeycode));
         keybindSaveLoad.gameRestartKeybindText.color = InterfaceColors.selectedColor;
     }
     /// <summary>
@@ -113,7 +113,7 @@ public class KeybindSaveSystem : MonoBehaviour {
     /// </summary>
     /// <param name="setToggleAARKeycode"></param>
     public static void SetToggleAARKeybind(KeyCode setToggleAARKeycode) {
-        keybindSaveLoad.toggleAARKeybindText.SetText(KeybindsHandler.ReturnKeybindString(setToggleAARKeycode));
+        keybindSaveLoad.toggleAARKeybindText.SetText(KeybindsUtil.ReturnKeybindString(setToggleAARKeycode));
         keybindSaveLoad.toggleAARKeybindText.color = InterfaceColors.selectedColor;
     }
     /// <summary>
@@ -121,7 +121,7 @@ public class KeybindSaveSystem : MonoBehaviour {
     /// </summary>
     /// <param name="setToggleSettingsKeycode"></param>
     public static void SetToggleSettingsKeybind(KeyCode setToggleSettingsKeycode) {
-        keybindSaveLoad.toggleSettingsKeybindText.SetText(KeybindsHandler.ReturnKeybindString(setToggleSettingsKeycode));
+        keybindSaveLoad.toggleSettingsKeybindText.SetText(KeybindsUtil.ReturnKeybindString(setToggleSettingsKeycode));
         keybindSaveLoad.toggleSettingsKeybindText.color = InterfaceColors.selectedColor;
     }
     /// <summary>
@@ -130,7 +130,7 @@ public class KeybindSaveSystem : MonoBehaviour {
     /// <param name="restartKeyCode"></param>
     /// <param name="escapeKeyCode"></param>
     public static void SetAARButtons(KeyCode restartKeyCode, KeyCode escapeKeyCode) {
-        keybindSaveLoad.AARrestartButton.SetText($"[{KeybindsHandler.ReturnKeybindString(restartKeyCode)}]  {I18nTextTranslator.SetTranslatedText("aarrestart")}");
-        keybindSaveLoad.AARcloseButton.SetText($"[{KeybindsHandler.ReturnKeybindString(escapeKeyCode)}]  {I18nTextTranslator.SetTranslatedText("aarclose")}");
+        keybindSaveLoad.AARrestartButton.SetText($"[{KeybindsUtil.ReturnKeybindString(restartKeyCode)}]  {I18nTextTranslator.SetTranslatedText("aarrestart")}");
+        keybindSaveLoad.AARcloseButton.SetText($"[{KeybindsUtil.ReturnKeybindString(escapeKeyCode)}]  {I18nTextTranslator.SetTranslatedText("aarclose")}");
     }
 }

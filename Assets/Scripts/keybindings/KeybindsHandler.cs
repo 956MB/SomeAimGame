@@ -28,7 +28,7 @@ public class KeybindsHandler : MonoBehaviour {
     /// <param name="clickedButton"></param>
     public void ChangeKeybind(GameObject clickedButton) {
         currentKey     = clickedButton;
-        clickedKeycode = GetButtonKeybind(currentKey.name);
+        clickedKeycode = KeybindsUtil.GetButtonKeybind(currentKey.name);
         currentKey.transform.GetChild(0).GetComponent<TMP_Text>().text = "-";
         currentKey.transform.GetChild(0).GetComponent<TMP_Text>().color = InterfaceColors.unselectedColor;
     }
@@ -66,7 +66,7 @@ public class KeybindsHandler : MonoBehaviour {
     }
 
     private void ResetKeybindText() {
-        currentKey.transform.GetChild(0).GetComponent<TMP_Text>().text = ReturnKeybindString(clickedKeycode);
+        currentKey.transform.GetChild(0).GetComponent<TMP_Text>().text  = KeybindsUtil.ReturnKeybindString(clickedKeycode);
         currentKey.transform.GetChild(0).GetComponent<TMP_Text>().color = InterfaceColors.selectedColor;
         currentKey = null;
     }
@@ -104,44 +104,6 @@ public class KeybindsHandler : MonoBehaviour {
 
             NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("keybindgamerestart")} \"{clickedKeycode}\" {I18nTextTranslator.SetTranslatedText("keybindrebinded")} \"{newKeycode}\".", InterfaceColors.notificationColorGreen);
             KeybindSaveSystem.SetAARButtons(newKeycode, KeybindSettings.toggleSettings);
-        }
-    }
-
-    /// <summary>
-    /// Returns saved keycode for supplied keybind button name (buttonName).
-    /// </summary>
-    /// <param name="buttonName"></param>
-    /// <returns></returns>
-    private static KeyCode GetButtonKeybind(string buttonName) {
-        switch (buttonName) {
-            case "Shoot-Button":          return KeybindSettings.shoot;
-            case "ToggleSettings-Button": return KeybindSettings.toggleSettings;
-            case "ToggleAAR-Button":      return KeybindSettings.toggleAAR;
-            case "ToggleWidgets-Button":  return KeybindSettings.toggleWidgets;
-            case "GameRestart-Button":    return KeybindSettings.gameRestart;
-            default:                      return KeyCode.None;
-        }
-    }
-
-    /// <summary>
-    /// Returns short string version of supplied keycode (fullKeycode).
-    /// </summary>
-    /// <param name="fullKeycode"></param>
-    /// <returns></returns>
-    public static string ReturnKeybindString(KeyCode fullKeycode) {
-        switch (fullKeycode) {
-            case KeyCode.Escape:            return "ESCAPE";
-            case KeyCode.Mouse0:            return "MOUSE 1";
-            case KeyCode.Mouse1:            return "MOUSE 2";
-            case KeyCode.Mouse2:            return "MOUSE 3";
-            case KeyCode.Mouse3:            return "MOUSE 4";
-            case KeyCode.Mouse4:            return "MOUSE 5";
-            case KeyCode.Space:             return "SPACE";
-            case KeyCode.LeftBracket:       return "[";
-            case KeyCode.RightBracket:      return "]";
-            case KeyCode.LeftCurlyBracket:  return "}";
-            case KeyCode.RightCurlyBracket: return "}";
-            default:                        return fullKeycode.ToString();
         }
     }
 }
