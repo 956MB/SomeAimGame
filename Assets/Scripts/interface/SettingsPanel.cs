@@ -12,16 +12,16 @@ using SomeAimGame.SFX;
 
 public class SettingsPanel : MonoBehaviour {
     public GameObject mainMenuCanvas, settingsPanel, afterPanel, extendedStatsPanel, steamDataContainer, devEventContainer, crosshairImage, videoContainer;
+    public GameObject[] targetThumbnailObjects, skyboxThumbnailObjects;
+    public Sprite[] targetThumbnailSprites, skyboxThumbnailSprites;
+
     public static bool settingsOpen          = false;
     public static bool afterActionReportOpen = false;
     public static bool afterActionReportSet;
-    public GameObject targetColorOrange, targetColorPurple;
-    public Sprite targetColorRedThumbnail, targetColorOrangeThumbnail, targetColorYellowThumbnail, targetColorGreenThumbnail, targetColorBlueThumbnail, targetColorPurpleThumbnail, targetColorPinkThumbnail, targetColorWhiteThumbnail;
-    public GameObject canvasRed, canvasOrange, canvasYellow, canvasGreen, canvasBlue, canvasPurple, canvasPink, canvasWhite;
-    public Sprite skyboxPinkThumbnail, skyboxGoldenThumbnail, skyboxNightThumbnail, skyboxGreyThumbnail, skyboxBlueThumbnail, skyboxSlateThumbnail;
-    public GameObject skyboxCanvasPink, skyboxCanvasGolden, skyboxCanvasNight, skyboxCanvasGrey, skyboxCanvasStars, skyboxCanvasSlate;
+
     public static float panelMoveSize = 75f;
     public static float panelWidth;
+
     RectTransform rt;
 
     private static VideoClip[] gamemodePreviewVideos;
@@ -38,9 +38,9 @@ public class SettingsPanel : MonoBehaviour {
         panelWidth           = rt.rect.width;
         afterActionReportSet = false;
 
-        // Load target color, skybox and gamemode previews.
-        LoadTargetColorThumbnails();
-        LoadSkyboxThumbnails();
+        // Load target color and skybox thumbnails.
+        SettingsPanelUtil.LoadThumbnails(targetThumbnailObjects, targetThumbnailSprites);
+        SettingsPanelUtil.LoadThumbnails(skyboxThumbnailObjects, skyboxThumbnailSprites);
 
         // Init saved settings for settings panel.
         ExtraSaveSystem.InitSavedExtraSettings();
@@ -190,8 +190,8 @@ public class SettingsPanel : MonoBehaviour {
         MouseLook.settingsOpen = true;
         //TempValues.SetSettingsOpenTemp(true);
 
-        ManipulatePostProcess.EnableEffects();
-        UnlockCursor();
+        ManipulatePostProcess.SetPanelEffects(true);
+        Util.UnlockCursor();
     }
 
     /// <summary>
@@ -201,23 +201,8 @@ public class SettingsPanel : MonoBehaviour {
         MouseLook.settingsOpen = false;
         //TempValues.SetSettingsOpenTemp(false);
 
-        ManipulatePostProcess.DisableEffects();
-        LockCursor();
-    }
-
-    /// <summary>
-    /// Locks cursor if settings panel closed and game active.
-    /// </summary>
-    public static void LockCursor() {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible   = false;
-    }
-    /// <summary>
-    /// Unlocks cursor if settings panel open and game inactive.
-    /// </summary>
-    public static void UnlockCursor() {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible   = true;
+        ManipulatePostProcess.SetPanelEffects(false);
+        Util.LockCursor();
     }
 
     /// <summary>
@@ -301,45 +286,5 @@ public class SettingsPanel : MonoBehaviour {
         Util.VideoLoops.Util_SetVideoPlayersAscpectRatio(VideoAspectRatio.FitVertically, settings.scatterVideoPlayer, settings.flickVideoPlayer, settings.gridVideoPlayer, settings.grid2VideoPlayer, settings.pairsVideoPlayer, settings.followVideoPlayer, settings.selectedVideoPlayer);
         // Play clips once set.
         Util.VideoLoops.Util_PlayVideoPlayers(settings.scatterVideoPlayer, settings.flickVideoPlayer, settings.gridVideoPlayer, settings.grid2VideoPlayer, settings.pairsVideoPlayer, settings.followVideoPlayer, settings.selectedVideoPlayer);
-    }
-
-    /// <summary>
-    /// Loads target color thumbnail sprites and sets them to corresponding buttons in settings panel (general sub-section).
-    /// </summary>
-    private static void LoadTargetColorThumbnails() {
-        // Red target
-        settings.canvasRed.transform.GetComponent<UnityEngine.UI.Image>().sprite    = settings.targetColorRedThumbnail;
-        // Green target
-        settings.canvasGreen.transform.GetComponent<UnityEngine.UI.Image>().sprite  = settings.targetColorGreenThumbnail;
-        // Blue target
-        settings.canvasBlue.transform.GetComponent<UnityEngine.UI.Image>().sprite   = settings.targetColorBlueThumbnail;
-        // Yellow target
-        settings.canvasYellow.transform.GetComponent<UnityEngine.UI.Image>().sprite = settings.targetColorYellowThumbnail;
-        // Pink target
-        settings.canvasPink.transform.GetComponent<UnityEngine.UI.Image>().sprite   = settings.targetColorPinkThumbnail;
-        // White target
-        settings.canvasWhite.transform.GetComponent<UnityEngine.UI.Image>().sprite  = settings.targetColorWhiteThumbnail;
-        // Orange target
-        settings.canvasOrange.transform.GetComponent<UnityEngine.UI.Image>().sprite = settings.targetColorOrangeThumbnail;
-        // Purple target
-        settings.canvasPurple.transform.GetComponent<UnityEngine.UI.Image>().sprite = settings.targetColorPurpleThumbnail;
-    }
-
-    /// <summary>
-    /// Loads skybox thumbnail sprites and sets them to corresponding buttons in settings panel (general sub-section).
-    /// </summary>
-    private static void LoadSkyboxThumbnails() {
-        // Pink skybox
-        settings.skyboxCanvasPink.transform.GetComponent<UnityEngine.UI.Image>().sprite   = settings.skyboxPinkThumbnail;
-        // Golden skybox
-        settings.skyboxCanvasGolden.transform.GetComponent<UnityEngine.UI.Image>().sprite = settings.skyboxGoldenThumbnail;
-        // Night skybox
-        settings.skyboxCanvasNight.transform.GetComponent<UnityEngine.UI.Image>().sprite  = settings.skyboxNightThumbnail;
-        // Grey skybox
-        settings.skyboxCanvasGrey.transform.GetComponent<UnityEngine.UI.Image>().sprite   = settings.skyboxGreyThumbnail;
-        // Blue skybox
-        settings.skyboxCanvasStars.transform.GetComponent<UnityEngine.UI.Image>().sprite  = settings.skyboxBlueThumbnail;
-        // Slate skybox
-        settings.skyboxCanvasSlate.transform.GetComponent<UnityEngine.UI.Image>().sprite  = settings.skyboxSlateThumbnail;
     }
 }
