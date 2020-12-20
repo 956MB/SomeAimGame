@@ -66,7 +66,7 @@ Follow=따르다
 targetcolor=대상 색상
 skybox=스카이 박스
 crosshairpresets=사전 설정
-settingsclose=설정 닫기
+settingsclose=닫기
 #
 #
 # // target colors
@@ -130,6 +130,7 @@ scrolltotop=
 # // titles
 mousetitle=쥐
 displaytitle=디스플레이
+graphicstitle=제도법
 mousesensitivity=마우스 감도
 keybindstitle=키 바인드
 keybindlegend=다양한 게임 키 바인딩 사용자 지정
@@ -176,6 +177,19 @@ crosshairsetsuccess=성공적으로 도입 된 새로운 십자선
 crosshairseterror=십자선 문자열이 잘못되었습니다.
 crosshairsetexported=클립 보드에 복사 된 십자선 문자열
 crosshairresetdefault=CROSSHAIR가 성공적으로 기본값으로 재설정 됨
+#
+#
+# // video section items
+applybutton=대다
+revertbutton=돌아가는 것
+displaymodetitle=디스플레이 모드
+resolutiontitle=해결
+monitortitle=감시 장치
+vsynctitle=수직 동기
+fpslimittitle=FPS 제한
+antialiastitle=안티 앨리어싱
+vignettetitle=삽화
+chromaticaberrationtitle=색수차
 #
 #
 # // titles

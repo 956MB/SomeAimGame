@@ -66,7 +66,7 @@ Follow=Follow
 targetcolor=Target Color
 skybox=Skybox
 crosshairpresets=Presets
-settingsclose=CLOSE SETTINGS
+settingsclose=CLOSE
 #
 #
 # // target colors
@@ -130,6 +130,7 @@ scrolltotop=
 # // titles
 mousetitle=Mouse
 displaytitle=Display
+graphicstitle=Graphics
 mousesensitivity=Mouse Sensitivity
 keybindstitle=Keybinds
 keybindlegend=Customize various game keybindings
@@ -176,6 +177,19 @@ crosshairsetsuccess=NEW CROSSHAIR SUCCESSFULLY IMPORTED
 crosshairseterror=CROSSHAIR STRING INVALID
 crosshairsetexported=CROSSHAIR STRING COPIED TO CLIPBOARD
 crosshairresetdefault=CROSSHAIR SUCCESSFULLY RESET TO DEFAULT
+#
+#
+# // video section items
+applybutton=APPLY
+revertbutton=REVERT
+displaymodetitle=Display Mode
+resolutiontitle=Resolution
+monitortitle=Monitor
+vsynctitle=VSync
+fpslimittitle=Limit FPS
+antialiastitle=Anti-Aliasing
+vignettetitle=Vignette
+chromaticaberrationtitle=Chromatic Aberration
 #
 #
 # // titles

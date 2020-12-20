@@ -66,7 +66,7 @@ Follow=Seuraa
 targetcolor=Kohteen väri
 skybox=Taivas
 crosshairpresets=Esiasetukset
-settingsclose=SULJE ASETUKSET
+settingsclose=KIINNI
 #
 #
 # // target colors
@@ -130,6 +130,7 @@ scrolltotop=
 # // titles
 mousetitle=Hiiri
 displaytitle=Näyttö
+graphicstitle=Grafiikka
 mousesensitivity=Hiiren herkkyys
 keybindstitle=Avaimenperät
 keybindlegend=Mukauta erilaisia ​​pelinäppäimiä
@@ -176,6 +177,19 @@ crosshairsetsuccess=UUSI RISKIEN TUONTI TUONTI
 crosshairseterror=RISTINIVOJEN JOUSET OVAT PÄTEMÄTTÖMIÄ
 crosshairsetexported=RISTINIVEKE KOPIOITU LEIKEPÖYDÄLLE
 crosshairresetdefault=RISTINHENKIEN PALAUTTAMINEN OLETUKSEEN
+#
+#
+# // video section items
+applybutton=KÄYTÄ
+revertbutton=PALAUTA
+displaymodetitle=Näyttötila
+resolutiontitle=Resoluutio
+monitortitle=Monitori
+vsynctitle=Pystytahdistus
+fpslimittitle=Rajoita FPS
+antialiastitle=Anti Aliasing
+vignettetitle=Vinjetti
+chromaticaberrationtitle=Kromaattinen poikkeama
 #
 #
 # // titles

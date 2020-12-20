@@ -66,7 +66,7 @@ Follow=Cледить
 targetcolor=Целевой цвет
 skybox=skybox
 crosshairpresets=Пресеты
-settingsclose=ЗАКРЫТЬ НАСТРОЙКИ
+settingsclose=ЗАКРЫТЬ
 #
 #
 # // target colors
@@ -130,6 +130,7 @@ scrolltotop=
 # // titles
 mousetitle=Мышь
 displaytitle=Дисплей
+graphicstitle=Графика
 mousesensitivity=Чувствительность мыши
 keybindstitle=Связки клавиш
 keybindlegend=Настроить различные игровые сочетания клавиш
@@ -176,6 +177,19 @@ crosshairsetsuccess=УСПЕШНО ИМПОРТИРОВАН НОВАЯ КОРО�
 crosshairseterror=ПЕРЕКРЕСТОК НЕВЕРНО
 crosshairsetexported=ПЕРЕКРЕСТНАЯ СТРОКА СКОПИРОВАНА НА ДОСКУ ОБРЕЗКИ
 crosshairresetdefault=ПЕРЕКРЕСТОК УСПЕШНО СБРОСИТЬ В ПО УМОЛЧАНИЮ
+#
+#
+# // video section items
+applybutton=ПРИМЕНЯТЬ
+revertbutton=ВОЗВРАЩАТЬСЯ
+displaymodetitle=Режим отображения
+resolutiontitle=Pазрешение
+monitortitle=Монитор
+vsynctitle=Вертикальная синхронизация
+fpslimittitle=Ограничить FPS
+antialiastitle=Сглаживание
+vignettetitle=Виньетка
+chromaticaberrationtitle=Хроматическая аберрация
 #
 #
 # // titles

@@ -66,7 +66,7 @@ Follow=フォローする
 targetcolor=ターゲットカラー
 skybox=スカイボックス
 crosshairpresets=プリセット
-settingsclose=設定を閉じる
+settingsclose=閉じる
 #
 #
 # // target colors
@@ -130,6 +130,7 @@ scrolltotop=
 # // titles
 mousetitle=マウス
 displaytitle=表示
+graphicstitle=グラフィックス
 mousesensitivity=マウス感度
 keybindstitle=キーバインド
 keybindlegend=さまざまなゲームのキーバインドをカスタマイズする
@@ -176,6 +177,19 @@ crosshairsetsuccess=新しいCROSSHAIRが正常にインポートされました
 crosshairseterror=CROSSHAIR文字列が無効です
 crosshairsetexported=クリップボードにコピーされたCROSSHAIRストリング
 crosshairresetdefault=CROSSHAIRがデフォルトに正常にリセットされました
+#
+#
+# // video section items
+applybutton=適用する
+revertbutton=リバート
+displaymodetitle=ディスプレイモード
+resolutiontitle=解決
+monitortitle=モニター
+vsynctitle=垂直同期
+fpslimittitle=FPSを制限する
+antialiastitle=アンチエイリアシング
+vignettetitle=ビネット
+chromaticaberrationtitle=色収差
 #
 #
 # // titles
