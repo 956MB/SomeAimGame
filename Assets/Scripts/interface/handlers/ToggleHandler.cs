@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 using SomeAimGame.Stats;
 using SomeAimGame.SFX;
+using SomeAimGame.Core.Video;
 
 public class ToggleHandler : MonoBehaviour {
     public Toggle checkToggle;
@@ -30,7 +31,7 @@ public class ToggleHandler : MonoBehaviour {
             // SFX //
 
             case "TargetSoundToggle": // Toggles target hit sound.
-                TargetSoundSelect.SetSoundSelectionContainerContainerState(toggleClicked.isOn);
+                TargetSoundSelect.SetSoundSelectionContainerState(toggleClicked.isOn);
                 SFXSettings.SaveTargetSoundOn(toggleClicked.isOn);
                 break;
 
@@ -127,12 +128,15 @@ public class ToggleHandler : MonoBehaviour {
             // Video //
 
             case "VSyncToggle": // Toggles VSync in video settings.
+                ApplyVideoSettings.ApplyVSync(toggleClicked.isOn);
                 break;
 
             case "VignetteToggle": // Toggles vignette in video settings.
+                ApplyVideoSettings.ApplyVignette(toggleClicked.isOn);
                 break;
 
             case "ChromaticAberrationToggle": // Toggles cromatic aberration in video settings.
+                ApplyVideoSettings.ApplyChromaticAberration(toggleClicked.isOn);
                 break;
         }
     }

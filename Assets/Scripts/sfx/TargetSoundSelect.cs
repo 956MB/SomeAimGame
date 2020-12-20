@@ -52,8 +52,8 @@ namespace SomeAimGame.SFX {
             DropdownUtils.SetDropdownState(state, targetSoundSelect.targetMissSoundDropdownBody, targetSoundSelect.arrowTextMiss, ref targetMissSoundSelectOpen);
         }
 
-        public static void SetSoundSelectionContainerContainerState(bool soundSelectionState) {
-            Util.CanvasGroupState(targetSoundSelect.soundSelectionCanvasGroup, soundSelectionState);
+        public static void SetSoundSelectionContainerState(bool soundSelectionState) {
+            Util.SetCanvasGroupState(targetSoundSelect.soundSelectionCanvasGroup, soundSelectionState);
         }
 
         private static void SaveNewTargetHitSound(AudioClip newAudioClip, SFXType newAudioClipType) {

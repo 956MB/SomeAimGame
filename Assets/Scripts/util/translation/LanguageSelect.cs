@@ -35,6 +35,8 @@ public class LanguageSelect : MonoBehaviour {
     /// Toggles language select scrollview.
     /// </summary>
     public static void ToggleLanguageSelect_Static() {
+        TargetSoundSelect.CheckCloseTargetSoundDropdowns();
+
         if (!languageSelectOpen) {
             OpenLanguageSelect_Static();
             SFXManager.CheckPlayClick_Button();

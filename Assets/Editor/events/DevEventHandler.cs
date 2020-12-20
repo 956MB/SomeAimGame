@@ -188,7 +188,6 @@ public class DevEventHandler : MonoBehaviour {
         yield return cardDestroyDelay;
         DestroySingleCard(cardToDestroy);
     }
-
     /// <summary>
     /// Creates new dev event card with supplied card prefab (cardPrefab) and sets text content (textContent).
     /// </summary>

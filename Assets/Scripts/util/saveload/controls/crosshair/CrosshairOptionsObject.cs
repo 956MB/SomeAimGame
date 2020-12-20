@@ -172,7 +172,7 @@ public class CrosshairOptionsObject : MonoBehaviour {
     /// </summary>
     /// <param name="outlineContainerEnabled"></param>
     public static void SetOutlineContainerState(bool outlineContainerEnabled) {
-        Util.CanvasGroupState(crosshairOptions.outlineContainerCanvasGroup, outlineContainerEnabled);
+        Util.SetCanvasGroupState(crosshairOptions.outlineContainerCanvasGroup, outlineContainerEnabled);
     }
 
     /// <summary>
