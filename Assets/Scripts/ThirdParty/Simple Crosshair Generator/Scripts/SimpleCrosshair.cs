@@ -100,7 +100,7 @@ public class SimpleCrosshair : MonoBehaviour
 
     public void GenerateCrosshair()
     {
-        Texture2D crosshairTexture =  DrawCrosshair(m_crosshair);
+        Texture2D crosshairTexture = DrawCrosshair(m_crosshair);
 
         m_crosshairImage.rectTransform.sizeDelta         = new Vector2(m_crosshair.SizeNeeded, m_crosshair.SizeNeeded);
         m_crosshairImageSettings.rectTransform.sizeDelta = new Vector2(m_crosshair.SizeNeeded, m_crosshair.SizeNeeded);
@@ -109,6 +109,8 @@ public class SimpleCrosshair : MonoBehaviour
         m_crosshairImage.sprite         = crosshairSprite;
         m_crosshairImageSettings.sprite = crosshairSprite;
     }
+    
+    // 0 0 08 02 00 0 255 000 000 255 000 000 000 255
 
     /// <summary>
     /// Parses given crosshair string (newCrosshairString), if all values valid SetAllCrosshairValues() called to set all values and redraw crosshair.
@@ -199,39 +201,43 @@ public class SimpleCrosshair : MonoBehaviour
         return false;
     }
 
-    /* No longer needed export crosshair string.
     /// <summary>
     /// Exports full crosshair string with all current crosshair values.
     /// </summary>
     /// <returns></returns>
-    public string ExportCrosshairString_Temp() {
+    public static string ExportCrosshairString_Temp() {
         int tstyleInt, centerDotInt, outlineInt;
         string sizeString, thicknessString, gapString, redFloat, greenFloat, blueFloat, alphaFloat, redOutlineFloat, greenOutlineFloat, blueOutlineFloat, alphaOutlineFloat;
 
-        tstyleInt         = m_crosshair.tStyle ? 1 : 0;
-        centerDotInt      = m_crosshair.centerDot ? 1 : 0;
-        sizeString        = m_crosshair.size.ToString("00");
-        thicknessString   = m_crosshair.thickness.ToString("00");
-        gapString         = m_crosshair.gap.ToString("00");
-        outlineInt        = m_crosshair.enableOutline ? 1 : 0;
-        redFloat          = (m_crosshair.color.r * 255.0f).ToString("000");
-        greenFloat        = (m_crosshair.color.g * 255.0f).ToString("000");
-        blueFloat         = (m_crosshair.color.b * 255.0f).ToString("000");
-        alphaFloat        = (m_crosshair.color.a * 255.0f).ToString("000");
-        redOutlineFloat   = (m_crosshair.outlineColor.r * 255.0f).ToString("000");
-        greenOutlineFloat = (m_crosshair.outlineColor.g * 255.0f).ToString("000");
-        blueOutlineFloat  = (m_crosshair.outlineColor.b * 255.0f).ToString("000");
-        alphaOutlineFloat = (m_crosshair.outlineColor.a * 255.0f).ToString("000");
+        tstyleInt         = simpleCrosshair.m_crosshair.tStyle ? 1 : 0;
+        centerDotInt      = simpleCrosshair.m_crosshair.centerDot ? 1 : 0;
+        sizeString        = simpleCrosshair.m_crosshair.size.ToString("00");
+        thicknessString   = simpleCrosshair.m_crosshair.thickness.ToString("00");
+        gapString         = simpleCrosshair.m_crosshair.gap.ToString("00");
+        outlineInt        = simpleCrosshair.m_crosshair.enableOutline ? 1 : 0;
+        redFloat          = (simpleCrosshair.m_crosshair.color.r * 255.0f).ToString("000");
+        greenFloat        = (simpleCrosshair.m_crosshair.color.g * 255.0f).ToString("000");
+        blueFloat         = (simpleCrosshair.m_crosshair.color.b * 255.0f).ToString("000");
+        alphaFloat        = (simpleCrosshair.m_crosshair.color.a * 255.0f).ToString("000");
+        redOutlineFloat   = (simpleCrosshair.m_crosshair.outlineColor.r * 255.0f).ToString("000");
+        greenOutlineFloat = (simpleCrosshair.m_crosshair.outlineColor.g * 255.0f).ToString("000");
+        blueOutlineFloat  = (simpleCrosshair.m_crosshair.outlineColor.b * 255.0f).ToString("000");
+        alphaOutlineFloat = (simpleCrosshair.m_crosshair.outlineColor.a * 255.0f).ToString("000");
 
         //Debug.Log($"EXPORTED CROSSHAIR STRING: {tstyleInt}{centerDotInt}{sizeString}{thicknessString}{gapString}{outlineInt}{redFloat}{greenFloat}{blueFloat}{alphaFloat}{redOutlineFloat}{greenOutlineFloat}{blueOutlineFloat}{alphaOutlineFloat}");
-        return $"{tstyleInt}{centerDotInt}{sizeString}{thicknessString}{gapString}{outlineInt}{redFloat}{greenFloat}{blueFloat}{alphaFloat}{redOutlineFloat}{greenOutlineFloat}{blueOutlineFloat}{alphaOutlineFloat}";
+        string exportedString =  $"{tstyleInt}{centerDotInt}{sizeString}{thicknessString}{gapString}{outlineInt}{redFloat}{greenFloat}{blueFloat}{alphaFloat}{redOutlineFloat}{greenOutlineFloat}{blueOutlineFloat}{alphaOutlineFloat}";
+        crosshairStringFull   = exportedString;
+        return exportedString;
     }
-    */
 
     /// <summary>
     /// Saves current crosshair string to CrosshairSettings object.
     /// </summary>
-    public static void SetCrosshairString_Static() { CrosshairSettings.SaveCrosshairString(crosshairStringFull); }
+    public static void SetCrosshairString_Static() {
+        //Debug.Log($"Crosshair string before save: {crosshairStringFull}");
+        //CrosshairSettings.SaveCrosshairString(crosshairStringFull);
+        CrosshairSettings.SaveCrosshairString(ExportCrosshairString_Temp());
+    }
 
     /// <summary>
     /// Returns full crosshair string.

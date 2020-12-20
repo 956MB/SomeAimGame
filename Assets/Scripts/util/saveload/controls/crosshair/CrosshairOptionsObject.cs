@@ -180,6 +180,7 @@ public class CrosshairOptionsObject : MonoBehaviour {
     /// </summary>
     public static void SaveCrosshairObject(bool overrideSave = false) {
         if (crossahairSaveReady || overrideSave) {
+            //Debug.Log(SimpleCrosshair.ExportCrosshairString_Temp());
             SimpleCrosshair.SetCrosshairString_Static();
             CrosshairSettings.SaveCrosshairSettings_Static();
             crossahairSaveReady = false;
