@@ -7,7 +7,7 @@ using SomeAimGame.SFX;
 
 public class SubMenuHandler : MonoBehaviour {
     public TMP_Text gamemodeSubMenuText, generalSubMenuText, controlsSubMenuText, crosshairSubMenuText, videoSubMenuText;
-    public GameObject gamemodeContainer, generalContainer, controlsContainer, crosshairContainer, videoContainer, crosshairImageSettings;
+    public GameObject gamemodeContainer, generalContainer, controlsContainer, crosshairContainer, videoContainer, crosshairImageMain, crosshairImageSettings;
     public GameObject gamemodeScrollView, generalScrollView, controlsScrollView, crosshairScrollView, videoScrollView;
     public Image gamemodeBar, generalBar, controlsBar, crosshairBar, videoBar;
     //public ;
@@ -57,7 +57,11 @@ public class SubMenuHandler : MonoBehaviour {
         //ScrollRectExtension.ScrollToTop(subMenuActive.GetComponent<ScrollRect>());
         subMenuBar.transform.gameObject.SetActive(true);
 
-        if (showCrosshair) { ShowSettingsCrosshair(); }
+        if (showCrosshair) { CrosshairHide.ShowSettingsCrosshair(); }
+    }
+
+    public static void SetStartingSubMenu() {
+        subMenu.SetSubMenu(subMenu.gamemodeSubMenuText, subMenu.gamemodeContainer, subMenu.gamemodeBar);
     }
 
     /// <summary>
@@ -89,25 +93,7 @@ public class SubMenuHandler : MonoBehaviour {
 
         Util.GameObjectLoops.Util_ImagesSetActive(false, gamemodeBar, generalBar, controlsBar, crosshairBar, videoBar);
         
-        HideSettingsCrosshair();
-    }
-
-    /// <summary>
-    /// Hides crosshair image above crosshair settings panel.
-    /// </summary>
-    public static void HideSettingsCrosshair() {
-        GameUI.HideGameObject_Layer(subMenu.crosshairImageSettings);
-    }
-
-    /// <summary>
-    /// Shows crosshair image above crosshair settings panel.
-    /// </summary>
-    public static void ShowSettingsCrosshair() {
-        GameObject crosshairCanvasPos = GameObject.Find($"CrosshairSettingsCanvas");
-        GameUI.ShowGameObject_Layer(subMenu.crosshairImageSettings);
-        //subMenu.crosshairImageSettings.transform.parent = crosshairCanvasPos.transform;
-        subMenu.crosshairImageSettings.transform.position = crosshairCanvasPos.transform.position;
-        //Debug.Log($"{subMenu.crosshairImageSettings.GetComponent<RectTransform>().sizeDelta.x}, {subMenu.crosshairImageSettings.GetComponent<RectTransform>().sizeDelta.y}");
+        CrosshairHide.HideCrosshairs();
     }
 
     /// <summary>

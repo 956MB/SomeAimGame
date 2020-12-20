@@ -123,7 +123,7 @@ public class CrosshairImportExport : MonoBehaviour {
         if (SimpleCrosshair.ValidateSetCrosshairString(importString, true)) {
             SetCrosshairNotification_Delay(I18nTextTranslator.SetTranslatedText("crosshairsetsuccess"), InterfaceColors.notificationColorGreen, true);
             crosshairStringInputField.clear();
-            CrosshairOptionsObject.SaveCrosshairObject(true);
+            CrosshairOptionsObject.SaveCrosshairObject(true, true);
 
             SFXManager.CheckPlayClick_Button();
         } else {

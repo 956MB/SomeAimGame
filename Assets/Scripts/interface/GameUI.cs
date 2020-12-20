@@ -52,6 +52,7 @@ public class GameUI : MonoBehaviour {
         reactionTimeList = new List<int>();
 
         SettingsPanel.CloseAfterActionReport();
+        SubMenuHandler.SetStartingSubMenu();
         SettingsPanel.CloseSettingsPanel();
         SettingsPanel.afterActionReportOpen = false;
         SettingsPanel.settingsOpen          = false;
@@ -490,6 +491,7 @@ public class GameUI : MonoBehaviour {
     /// <param name="hideLayer"></param>
     public static void HideGameObject_Layer(GameObject hideLayer) {
         hideLayer.SetActive(false);
+        Util.SetCanvasGroupState(hideLayer.GetComponent<CanvasGroup>(), false);
     }
 
     /// <summary>
@@ -498,5 +500,6 @@ public class GameUI : MonoBehaviour {
     /// <param name="showLayer"></param>
     public static void ShowGameObject_Layer(GameObject showLayer) {
         showLayer.SetActive(true);
+        Util.SetCanvasGroupState(showLayer.GetComponent<CanvasGroup>(), true);
     }
 }

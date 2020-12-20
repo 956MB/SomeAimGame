@@ -178,10 +178,10 @@ public class CrosshairOptionsObject : MonoBehaviour {
     /// <summary>
     /// Saves entire crosshair object to crosshair.settings if 'crossahairSaveReady' set true.
     /// </summary>
-    public static void SaveCrosshairObject(bool overrideSave = false) {
+    public static void SaveCrosshairObject(bool overrideSave = false, bool useString = false) {
         if (crossahairSaveReady || overrideSave) {
             //Debug.Log(SimpleCrosshair.ExportCrosshairString_Temp());
-            SimpleCrosshair.SetCrosshairString_Static();
+            SimpleCrosshair.SetCrosshairString_Static(useString);
             CrosshairSettings.SaveCrosshairSettings_Static();
             crossahairSaveReady = false;
         }
@@ -206,6 +206,11 @@ public class CrosshairOptionsObject : MonoBehaviour {
     /// <param name="valueTextPlaceholder"></param>
     /// <param name="value"></param>
     public static void SetCrosshairOptionText(TMP_Text valueText, TMP_Text valueTextPlaceholder, float value) {
+        valueText.SetText($"{value}");
+        valueTextPlaceholder.SetText($"{value}");
+    }
+    public static void SetCrosshairOptionSlider(Slider optionSlider, TMP_Text valueText, TMP_Text valueTextPlaceholder, float value) {
+        optionSlider.value = value;
         valueText.SetText($"{value}");
         valueTextPlaceholder.SetText($"{value}");
     }

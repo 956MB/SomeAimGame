@@ -11,7 +11,7 @@ using SomeAimGame.Stats;
 using SomeAimGame.SFX;
 
 public class SettingsPanel : MonoBehaviour {
-    public GameObject mainMenuCanvas, settingsPanel, afterPanel, extendedStatsPanel, steamDataContainer, devEventContainer, crosshairImage, videoContainer;
+    public GameObject mainMenuCanvas, settingsPanel, afterPanel, extendedStatsPanel, steamDataContainer, devEventContainer, videoContainer;
     public GameObject[] targetThumbnailObjects, skyboxThumbnailObjects;
     public Sprite[] targetThumbnailSprites, skyboxThumbnailSprites;
 
@@ -47,7 +47,7 @@ public class SettingsPanel : MonoBehaviour {
         CrosshairSaveSystem.InitSavedCrosshairSettings();
         WidgetSaveSystem.InitSavedWidgetSettings();
         StatsManager.HideExtraStatsPanel();
-        SubMenuHandler.HideSettingsCrosshair();
+        CrosshairHide.HideCrosshairs();
 
         // Close settings, 'AfterActionReport' and video containers at start.
         Util.GameObjectLoops.Util_SetObjectsLocalScale(closedVector, settings.settingsPanel, settings.afterPanel, settings.videoContainer);
@@ -93,6 +93,8 @@ public class SettingsPanel : MonoBehaviour {
     /// Opens settings panel. [EVENT]
     /// </summary>
     public static void OpenSettingsPanel() {
+        CrosshairHide.HideCrosshairs();
+
         settings.settingsPanel.transform.localScale = openVector;
         settings.steamDataContainer.SetActive(true);
         settings.mainMenuCanvas.SetActive(true);
@@ -102,13 +104,11 @@ public class SettingsPanel : MonoBehaviour {
         OpenAction();
         settingsOpen = true;
         SubMenuHandler.ResetAllSubMenuScrollviewsTop();
-        SubMenuHandler.HideSettingsCrosshair();
         GameUI.HideWidgetsUI();
-        GameUI.HideGameObject_Layer(settings.crosshairImage);
 
         GameTime.PauseGameTime();
 
-        if (SubMenuHandler.activeSubMenuText == "CrosshairTitleText (TMP)") { SubMenuHandler.ShowSettingsCrosshair(); }
+        if (SubMenuHandler.activeSubMenuText == "CrosshairTitleText (TMP)") { CrosshairHide.ShowSettingsCrosshair(); }
 
         // EVENT:: for settings panel being opened
         //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacesettingsopened")}");
@@ -130,8 +130,8 @@ public class SettingsPanel : MonoBehaviour {
         
         CrosshairOptionsObject.SaveCrosshairObject(false);
         TargetSoundSelect.CheckSaveTargetSoundSelection();
-        GameUI.ShowGameObject_Layer(settings.crosshairImage);
-        SubMenuHandler.HideSettingsCrosshair();
+        CrosshairHide.HideCrosshairs();
+        CrosshairHide.ShowMainCrosshair();
 
         CloseAction();
         settingsOpen = false;
@@ -146,6 +146,8 @@ public class SettingsPanel : MonoBehaviour {
     /// Opens 'AfterActionReport' panel. [EVENT]
     /// </summary>
     public static void OpenAfterActionReport() {
+        CrosshairHide.HideCrosshairs();
+
         settings.mainMenuCanvas.SetActive(true);
         //Util.CanvasGroupState(settings.mainMenuCanvas.GetComponent<CanvasGroup>(), true);
         if (ExtraSettings.showExtraStats) { settings.extendedStatsPanel.SetActive(true); }
@@ -156,8 +158,6 @@ public class SettingsPanel : MonoBehaviour {
 
         StatsManager.ResetAARScrollView();
         GameUI.HideWidgetsUI();
-        GameUI.HideGameObject_Layer(settings.crosshairImage);
-        SubMenuHandler.HideSettingsCrosshair();
 
         // EVENT:: for AAR panel being opened
         //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceaaropened")}");
@@ -176,8 +176,9 @@ public class SettingsPanel : MonoBehaviour {
         afterActionReportOpen                    = false;
 
         if (ExtraSettings.hideUI) { GameUI.ShowWidgetsUI(); }
-        GameUI.ShowGameObject_Layer(settings.crosshairImage);
-        SubMenuHandler.HideSettingsCrosshair();
+
+        CrosshairHide.HideCrosshairs();
+        CrosshairHide.ShowMainCrosshair();
 
         // EVENT:: for AAR panel being opened
         //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceaarclosed")}");
