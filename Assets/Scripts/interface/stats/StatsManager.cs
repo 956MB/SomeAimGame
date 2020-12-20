@@ -144,7 +144,7 @@ namespace SomeAimGame.Stats {
                     EnableNewHighscoreText();
                     LoadOldHighscore();
                 } else {
-                    SetScoreLine(StatsUtil.GetLineColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue));
+                    if (showBackgrounds) { SetScoreLine(StatsUtil.GetLineColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue)); }
                 }
             } else {
                 // No saved highscore on first run, sets current games run as new highscore.
@@ -235,23 +235,32 @@ namespace SomeAimGame.Stats {
         /// </summary>
         private static void SetScoreRow() {
             statsManager.scoreStatText.SetText($"{string.Format("{0:n0}", scoreStat)}");
-            SetIndivivualStatItem(statsManager.scoreItem, StatsUtil.GetItemText(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue), StatsUtil.GetItemColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue), statsManager.scoreContainerBackground, 0);
+            if (PreviousBestNotNull()) {
+                SetIndivivualStat(StatsUtil.GetTitleColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue), statsManager.scoreTitleText, statsManager.scoreStatText, $"{string.Format("{0:n0}", scoreStat)}");
+                SetIndivivualStatItem(statsManager.scoreItem, StatsUtil.GetItemText(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue), StatsUtil.GetItemColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue), statsManager.scoreContainerBackground, 0);
+            }
         }
         /// <summary>
         /// Sets entire accuracy stat row (diff/stat/item/background).
         /// </summary>
         private static void SetAccuracyRow() {
             statsManager.accuracyStatText.SetText($"{accuracyStat}%");
-            CheckStatMatch(accuracyStat, previousGameStats.accuracyValue, statsManager.accuracyExtraInner, StatsDiff.accuracyDiffStringDisplay);
-            SetIndivivualStatItem(statsManager.accuracyItem, StatsUtil.GetItemText(accuracyStat, previousGameStats.accuracyValue, bestGameStats.accuracyValue), StatsUtil.GetItemColor(accuracyStat, previousGameStats.accuracyValue, bestGameStats.accuracyValue), statsManager.accuracyContainerBackground, 1);
+            if (PreviousBestNotNull()) {
+                SetIndivivualStat(StatsUtil.GetTitleColor(accuracyStat, previousGameStats.accuracyValue, bestGameStats.accuracyValue), statsManager.accuracyTitleText, statsManager.accuracyStatText, $"{accuracyStat}%");
+                CheckStatMatch(accuracyStat, previousGameStats.accuracyValue, bestGameStats.accuracyValue, statsManager.accuracyExtraInner, StatsDiff.accuracyDiffStringDisplay);
+                SetIndivivualStatItem(statsManager.accuracyItem, StatsUtil.GetItemText(accuracyStat, previousGameStats.accuracyValue, bestGameStats.accuracyValue), StatsUtil.GetItemColor(accuracyStat, previousGameStats.accuracyValue, bestGameStats.accuracyValue), statsManager.accuracyContainerBackground, 1);
+            }
         }
         /// <summary>
         /// Sets entire TTK stat row (diff/stat/item/background).
         /// </summary>
         private static void SetTTKRow() {
             statsManager.ttkStatText.SetText($"{string.Format("{0:n0}", ttkStat)}ms");
-            CheckStatMatch(ttkStat, previousGameStats.ttkValue, statsManager.ttkExtraInner, StatsDiff.ttkDiffStringDisplay);
-            SetIndivivualStatItem(statsManager.ttkItem, StatsUtil.GetItemText_Flip(ttkStat, previousGameStats.ttkValue, bestGameStats.ttkValue), StatsUtil.GetItemColor_Flip(ttkStat, previousGameStats.ttkValue, bestGameStats.ttkValue), statsManager.ttkContainerBackground, 2);
+            if (PreviousBestNotNull()) {
+                SetIndivivualStat(StatsUtil.GetTitleColor_Flip(ttkStat, previousGameStats.ttkValue, bestGameStats.ttkValue), statsManager.ttkTitleText, statsManager.ttkStatText, $"{string.Format("{0:n0}", ttkStat)}ms");
+                CheckStatMatch_Flip(ttkStat, previousGameStats.ttkValue, bestGameStats.ttkValue, statsManager.ttkExtraInner, StatsDiff.ttkDiffStringDisplay);
+                SetIndivivualStatItem(statsManager.ttkItem, StatsUtil.GetItemText_Flip(ttkStat, previousGameStats.ttkValue, bestGameStats.ttkValue), StatsUtil.GetItemColor_Flip(ttkStat, previousGameStats.ttkValue, bestGameStats.ttkValue), statsManager.ttkContainerBackground, 2);
+            }
         }
         /// <summary>
         /// Sets entire KPS stat row (diff/stat/item/background).
@@ -259,40 +268,55 @@ namespace SomeAimGame.Stats {
         private static void SetKPSRow() {
             double kps = kpsStat;
             statsManager.kpsStatText.SetText(string.Format("{0:0.00}/s", kps));
-            CheckStatMatch(kpsStat, previousGameStats.kpsValue, statsManager.kpsExtraInner, StatsDiff.kpsDiffStringDisplay);
-            SetIndivivualStatItem(statsManager.kpsItem, StatsUtil.GetItemText(kpsStat, previousGameStats.kpsValue, bestGameStats.kpsValue), StatsUtil.GetItemColor(kpsStat, previousGameStats.kpsValue, bestGameStats.kpsValue), statsManager.kpsContainerBackground, 3);
+            if (PreviousBestNotNull()) {
+                SetIndivivualStat(StatsUtil.GetTitleColor(kpsStat, previousGameStats.kpsValue, bestGameStats.kpsValue), statsManager.kpsTitleText, statsManager.kpsStatText, string.Format("{0:0.00}/s", kps));
+                CheckStatMatch(kpsStat, previousGameStats.kpsValue, bestGameStats.kpsValue, statsManager.kpsExtraInner, StatsDiff.kpsDiffStringDisplay);
+                SetIndivivualStatItem(statsManager.kpsItem, StatsUtil.GetItemText(kpsStat, previousGameStats.kpsValue, bestGameStats.kpsValue), StatsUtil.GetItemColor(kpsStat, previousGameStats.kpsValue, bestGameStats.kpsValue), statsManager.kpsContainerBackground, 3);
+            }
         }
         /// <summary>
         /// Sets entire best streak stat row (diff/stat/item/background).
         /// </summary>
         private static void SetStreakRow() {
             statsManager.bestStreakStatText.SetText($"{string.Format("{0:n0}", bestStreakStat)}");
-            CheckStatMatch(bestStreakStat, previousGameStats.bestStreakValue, statsManager.bestStreakExtraInner, StatsDiff.bestStreakDiffStringDisplay);
-            SetIndivivualStatItem(statsManager.bestStreakItem, StatsUtil.GetItemText(bestStreakStat, previousGameStats.bestStreakValue, bestGameStats.bestStreakValue), StatsUtil.GetItemColor(bestStreakStat, previousGameStats.bestStreakValue, bestGameStats.bestStreakValue), statsManager.bestStreakContainerBackground, 4);
+            if (PreviousBestNotNull()) {
+                SetIndivivualStat(StatsUtil.GetTitleColor(bestStreakStat, previousGameStats.bestStreakValue, bestGameStats.bestStreakValue), statsManager.bestStreakTitleText, statsManager.bestStreakStatText, $"{string.Format("{0:n0}", bestStreakStat)}");
+                CheckStatMatch(bestStreakStat, previousGameStats.bestStreakValue, bestGameStats.bestStreakValue, statsManager.bestStreakExtraInner, StatsDiff.bestStreakDiffStringDisplay);
+                SetIndivivualStatItem(statsManager.bestStreakItem, StatsUtil.GetItemText(bestStreakStat, previousGameStats.bestStreakValue, bestGameStats.bestStreakValue), StatsUtil.GetItemColor(bestStreakStat, previousGameStats.bestStreakValue, bestGameStats.bestStreakValue), statsManager.bestStreakContainerBackground, 4);
+            }
         }
         /// <summary>
         /// Sets entire targets total stat row (diff/stat/item/background).
         /// </summary>
         private static void SetTargetsTotalRow() {
             statsManager.targetsTotalStatText.SetText($"{targetTotalStat}");
-            CheckStatMatch(targetTotalStat, previousGameStats.targetsTotalValue, statsManager.targetsTotalExtraInner, StatsDiff.targetsTotalDiffStringDisplay);
-            SetIndivivualStatItem(statsManager.targetsTotalItem, StatsUtil.GetItemText(targetTotalStat, previousGameStats.targetsTotalValue, bestGameStats.targetsTotalValue), StatsUtil.GetItemColor(targetTotalStat, previousGameStats.targetsTotalValue, bestGameStats.targetsTotalValue), statsManager.targetsTotalContainerBackground, 5);
+            if (PreviousBestNotNull()) {
+                SetIndivivualStat(StatsUtil.GetTitleColor(targetTotalStat, previousGameStats.targetsTotalValue, bestGameStats.targetsTotalValue), statsManager.targetsTotalTitleText, statsManager.targetsTotalStatText, $"{targetTotalStat}");
+                CheckStatMatch(targetTotalStat, previousGameStats.targetsTotalValue, bestGameStats.targetsTotalValue, statsManager.targetsTotalExtraInner, StatsDiff.targetsTotalDiffStringDisplay);
+                SetIndivivualStatItem(statsManager.targetsTotalItem, StatsUtil.GetItemText(targetTotalStat, previousGameStats.targetsTotalValue, bestGameStats.targetsTotalValue), StatsUtil.GetItemColor(targetTotalStat, previousGameStats.targetsTotalValue, bestGameStats.targetsTotalValue), statsManager.targetsTotalContainerBackground, 5);
+            }
         }
         /// <summary>
         /// Sets entire targets hit stat row (diff/stat/item/background).
         /// </summary>
         private static void SetTargetsHitRow() {
             statsManager.targetsHitsStatText.SetText($"{targetHitStat}");
-            CheckStatMatch(targetHitStat, previousGameStats.targetsHitValue, statsManager.taretsHitExtraInner, StatsDiff.targetHitDiffStringDisplay);
-            SetIndivivualStatItem(statsManager.taretsHitItem, StatsUtil.GetItemText(targetHitStat, previousGameStats.targetsHitValue, bestGameStats.targetsHitValue), StatsUtil.GetItemColor(targetHitStat, previousGameStats.targetsHitValue, bestGameStats.targetsHitValue), statsManager.taretsHitContainerBackground, 6);
+            if (PreviousBestNotNull()) {
+                SetIndivivualStat(StatsUtil.GetTitleColor(targetHitStat, previousGameStats.targetsHitValue, bestGameStats.targetsHitValue), statsManager.targetsHitsTitleText, statsManager.targetsHitsStatText, $"{targetHitStat}");
+                CheckStatMatch(targetHitStat, previousGameStats.targetsHitValue, bestGameStats.targetsHitValue, statsManager.taretsHitExtraInner, StatsDiff.targetHitDiffStringDisplay);
+                SetIndivivualStatItem(statsManager.taretsHitItem, StatsUtil.GetItemText(targetHitStat, previousGameStats.targetsHitValue, bestGameStats.targetsHitValue), StatsUtil.GetItemColor(targetHitStat, previousGameStats.targetsHitValue, bestGameStats.targetsHitValue), statsManager.taretsHitContainerBackground, 6);
+            }
         }
         /// <summary>
         /// Sets entire targets missed stat row (diff/stat/item/background).
         /// </summary>
         private static void SetTargetsMissesRow() {
             statsManager.targetsMissesStatText.SetText($"{targetMissesStat}");
-            CheckStatMatch(targetMissesStat, previousGameStats.targetsMissesValue, statsManager.targetsMissesExtraInner, StatsDiff.targetsMissesDiffStringDisplay);
-            SetIndivivualStatItem(statsManager.targetsMissesItem, StatsUtil.GetItemText_Flip(targetMissesStat, previousGameStats.targetsMissesValue, bestGameStats.targetsMissesValue), StatsUtil.GetItemColor_Flip(targetMissesStat, previousGameStats.targetsMissesValue, bestGameStats.targetsMissesValue), statsManager.targetsMissesContainerBackground, 7);
+            if (PreviousBestNotNull()) {
+                SetIndivivualStat(StatsUtil.GetTitleColor_Flip(targetMissesStat, previousGameStats.targetsMissesValue, bestGameStats.targetsMissesValue), statsManager.targetsMissesTitleText, statsManager.targetsMissesStatText, $"{targetMissesStat}");
+                CheckStatMatch_Flip(targetMissesStat, previousGameStats.targetsMissesValue, bestGameStats.targetsMissesValue, statsManager.targetsMissesExtraInner, StatsDiff.targetsMissesDiffStringDisplay);
+                SetIndivivualStatItem(statsManager.targetsMissesItem, StatsUtil.GetItemText_Flip(targetMissesStat, previousGameStats.targetsMissesValue, bestGameStats.targetsMissesValue), StatsUtil.GetItemColor_Flip(targetMissesStat, previousGameStats.targetsMissesValue, bestGameStats.targetsMissesValue), statsManager.targetsMissesContainerBackground, 7);
+            }
         }
 
         #endregion
@@ -375,9 +399,25 @@ namespace SomeAimGame.Stats {
         /// <param name="previousStat"></param>
         /// <param name="diffText"></param>
         /// <param name="setDiff"></param>
-        private static void CheckStatMatch(double currentStat, double previousStat, TMP_Text diffText, string setDiff) {
+        private static void CheckStatMatch(double currentStat, double previousStat, double highscoreStat, TMP_Text diffText, string setDiff) {
             if (previousGameStats != null) {
-                if (!StatsUtil.CheckMatchingStatValue(currentStat, previousStat)) { SetIndivivualStatDiff(diffText, setDiff); }
+                if (!StatsUtil.CheckMatchingStatValue(currentStat, previousStat)) {
+                    SetIndivivualStatDiff(diffText, setDiff, StatsUtil.GetTitleColor(currentStat, previousStat, highscoreStat));
+                }
+            }
+        }
+        private static void CheckStatMatch_Flip(double currentStat, double previousStat, double highscoreStat, TMP_Text diffText, string setDiff) {
+            if (previousGameStats != null) {
+                if (!StatsUtil.CheckMatchingStatValue(currentStat, previousStat)) {
+                    SetIndivivualStatDiff(diffText, setDiff, StatsUtil.GetTitleColor_Flip(currentStat, previousStat, highscoreStat));
+                }
+            }
+        }
+
+        private static void SetIndivivualStat(Color32 setColor, TMP_Text titleText, TMP_Text statText, string statString) {
+            if (previousGameStats != null) {
+                titleText.color = setColor;
+                statText.color  = setColor;
             }
         }
         /// <summary>
@@ -385,9 +425,10 @@ namespace SomeAimGame.Stats {
         /// </summary>
         /// <param name="statDiffText"></param>
         /// <param name="statDiffDisplay"></param>
-        private static void SetIndivivualStatDiff(TMP_Text statDiffText, string statDiffDisplay) {
+        private static void SetIndivivualStatDiff(TMP_Text statDiffText, string statDiffDisplay, Color32 diffColor) {
             if (previousGameStats != null) {
                 statDiffText.SetText($"{statDiffDisplay}");
+                statDiffText.color = diffColor;
                 statDiffText.transform.parent.gameObject.GetComponent<Image>().color = StatsUtil.statDiffEnabled;
             }
         }
@@ -403,7 +444,7 @@ namespace SomeAimGame.Stats {
             if (previousGameStats != null) {
                 statItemText.SetText($"{statItem}");
                 statItemText.color = setItemColor;
-                if (showBackgrounds) containerObject.GetComponent<Image>().color = backgroundsSaves[backgroundIdx];
+                if (showBackgrounds) { containerObject.GetComponent<Image>().color = backgroundsSaves[backgroundIdx]; }
             }
         }
 
@@ -441,6 +482,7 @@ namespace SomeAimGame.Stats {
         /// Sets all stat container background colors to corresponding backgroundsSaves item.
         /// </summary>
         public static void SetStatBackgrounds() {
+            SetScoreLine(StatsUtil.GetLineColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue));
             StatsUtil.ClearStatBackgrounds(backgroundsSaves, statsManager.scoreContainerBackground, statsManager.accuracyContainerBackground, statsManager.ttkContainerBackground, statsManager.kpsContainerBackground, statsManager.bestStreakContainerBackground, statsManager.targetsTotalContainerBackground, statsManager.taretsHitContainerBackground, statsManager.targetsMissesContainerBackground);
         }
 
@@ -448,6 +490,7 @@ namespace SomeAimGame.Stats {
         /// Resets all stat container background colors to original background colors.
         /// </summary>
         public static void ClearStatBackgrounds() {
+            SetScoreLine(StatsUtil.neutralLineColor);
             // Alternating grey stat backgrounds
             statsManager.scoreContainerBackground.GetComponent<Image>().color         = StatsUtil.clearBackgroundLight;
             statsManager.accuracyContainerBackground.GetComponent<Image>().color      = StatsUtil.clearBackgroundLight;
@@ -484,6 +527,8 @@ namespace SomeAimGame.Stats {
         /// Resets AAR scrollview to top.
         /// </summary>
         public static void ResetAARScrollView() { ScrollRectExtension.ScrollToTop(statsManager.aarScrollView.GetComponent<ScrollRect>()); }
+
+        private static bool PreviousBestNotNull() { return previousGameStats != null && bestGameStats != null; }
 
         #endregion
     }

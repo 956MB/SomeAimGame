@@ -10,14 +10,16 @@ namespace SomeAimGame.Stats {
         public static string itemDown          = "▼";
         public static string itemNeutral       = "-";
     
-        public static Color32 newHighscoreBackgroundColor = new Color32(255, 255, 0, 120);
-        public static Color32 upBackgroundColor           = new Color32(0, 255, 0, 70);
-        public static Color32 downBackgroundColor         = new Color32(255, 0, 0, 70);
+        public static Color32 newHighscoreBackgroundColor = new Color32(255, 255, 0, 160);
+        public static Color32 upBackgroundColor           = new Color32(0, 255, 0, 80);
+        public static Color32 downBackgroundColor         = new Color32(255, 0, 0, 80);
         public static Color32 neutralBackgroundColor      = new Color32(255, 255, 255, 15);
         public static Color32 itemColorRed                = new Color32(255, 0, 0, 255);
         public static Color32 itemColorGreen              = new Color32(0, 255, 0, 255);
         public static Color32 itemColorGrey               = new Color32(255, 255, 255, 85);
-        public static Color32 itemColorHighscore          = new Color32(255, 209, 0, 255);
+        public static Color32 itemColorHighscore          = new Color32(0, 0, 0, 255); // yellow: 255, 209, 0, 255 || 255, 189, 0, 255
+        public static Color32 titleColorNormal            = new Color32(255, 255, 255, 255);
+        public static Color32 titleColorHighscore         = new Color32(0, 0, 0, 255);
         public static Color32 upLineColor                 = new Color32(0, 255, 0, 150);
         public static Color32 downLineColor               = new Color32(255, 0, 0, 150);
         public static Color32 neutralLineColor            = new Color32(255, 255, 255, 35);
@@ -94,6 +96,26 @@ namespace SomeAimGame.Stats {
         }
 
         /// <summary>
+        /// Returns appropriate title string color (white/black) from supplied double values (newValue) (oldValue) (highscoreValue).
+        /// </summary>
+        /// <param name="newValue"></param>
+        /// <param name="oldValue"></param>
+        /// <param name="highscoreValue"></param>
+        /// <returns></returns>
+        public static Color32 GetTitleColor(double newValue, double oldValue, double highscoreValue) {
+            return CheckScores(newValue, oldValue, highscoreValue, titleColorNormal, titleColorNormal, titleColorHighscore, titleColorNormal);
+        }
+        /// <summary>
+        /// Returns appropriate title string color (white/black) from supplied double values (newValue) (oldValue) (highscoreValue).
+        /// </summary>
+        /// <param name="newValue"></param>
+        /// <param name="oldValue"></param>
+        /// <param name="highscoreValue"></param>
+        /// <returns></returns>
+        public static Color32 GetTitleColor_Flip(double newValue, double oldValue, double highscoreValue) {
+            return CheckScores_Flip(newValue, oldValue, highscoreValue, titleColorNormal, titleColorNormal, titleColorHighscore, titleColorNormal);
+        }
+        /// <summary>
         /// Returns appropriate stat item string (up/down/highscore) from supplied double values (newValue) (oldValue) (highscoreValue).
         /// </summary>
         /// <param name="newValue"></param>
@@ -101,11 +123,7 @@ namespace SomeAimGame.Stats {
         /// <param name="highscoreValue"></param>
         /// <returns></returns>
         public static string GetItemText(double newValue, double oldValue, double highscoreValue) {
-            if (newValue < oldValue) return itemDown;
-            else if (newValue > oldValue)
-                if (newValue > highscoreValue) return itemHighscore;
-                else return itemUp;
-            else return itemNeutral;
+            return CheckScores(newValue, oldValue, highscoreValue);
         }
         /// <summary>
         /// Returns appropriate flipped stat item string (up/down/highscore) from supplied double values (newValue) (oldValue) (highscoreValue).
@@ -115,11 +133,7 @@ namespace SomeAimGame.Stats {
         /// <param name="highscoreValue"></param>
         /// <returns></returns>
         public static string GetItemText_Flip(double newValue, double oldValue, double highscoreValue) {
-            if (newValue < oldValue)
-                if (newValue < highscoreValue) return itemHighscoreFlip;
-                else return itemUp;
-            else if (newValue > oldValue) return itemDown;
-            else return itemNeutral;
+            return CheckScores_Flip(newValue, oldValue, highscoreValue);
         }
         /// <summary>
         /// Returns appropriate item string color (green/red/yellow) from supplied double values (newValue) (oldValue) (highscoreValue).
@@ -129,11 +143,7 @@ namespace SomeAimGame.Stats {
         /// <param name="highscoreValue"></param>
         /// <returns></returns>
         public static Color32 GetItemColor(double newValue, double oldValue, double highscoreValue) {
-            if (newValue < oldValue) return itemColorRed;
-            else if (newValue > oldValue)
-                if (newValue > highscoreValue) return itemColorHighscore;
-                else return itemColorGreen;
-            else return itemColorGrey;
+            return CheckScores(newValue, oldValue, highscoreValue, itemColorGreen, itemColorRed, itemColorHighscore, itemColorGrey);
         }
         /// <summary>
         /// Returns appropriate score line image color (green/red/yellow) from supplied double values (newValue) (oldValue) (highscoreValue).
@@ -143,11 +153,7 @@ namespace SomeAimGame.Stats {
         /// <param name="highscoreValue"></param>
         /// <returns></returns>
         public static Color32 GetLineColor(double newValue, double oldValue, double highscoreValue) {
-            if (newValue < oldValue) return downLineColor;
-            else if (newValue > oldValue)
-                if (newValue > highscoreValue) return highscoreLineColor;
-                else return upLineColor;
-            else return neutralLineColor;
+            return CheckScores(newValue, oldValue, highscoreValue, upLineColor, downLineColor, highscoreLineColor, neutralLineColor);
         }
         /// <summary>
         /// Returns appropriate flipped item string color (green/red/yellow) from supplied double values (newValue) (oldValue) (highscoreValue).
@@ -157,11 +163,7 @@ namespace SomeAimGame.Stats {
         /// <param name="highscoreValue"></param>
         /// <returns></returns>
         public static Color32 GetItemColor_Flip(double newValue, double oldValue, double highscoreValue) {
-            if (newValue < oldValue)
-                if (newValue < highscoreValue) return itemColorHighscore;
-                else return itemColorGreen;
-            else if (newValue > oldValue) return itemColorRed;
-            else return itemColorGrey;
+            return CheckScores_Flip(newValue, oldValue, highscoreValue, itemColorGreen, itemColorRed, itemColorHighscore, itemColorGrey);
         }
         /// <summary>
         /// Returns appropriate stat container background color (green/red/yellow) from supplied double values (newValue) (oldValue) (highscoreValue).
@@ -171,11 +173,7 @@ namespace SomeAimGame.Stats {
         /// <param name="highscoreValue"></param>
         /// <returns></returns>
         public static Color32 GetItemBackgroundColor(double newValue, double oldValue, double highscoreValue) {
-            if (newValue < oldValue) return downBackgroundColor;
-            else if (newValue > oldValue)
-                if (newValue > highscoreValue) return newHighscoreBackgroundColor;
-                else return upBackgroundColor;
-            else return neutralBackgroundColor;
+            return CheckScores(newValue, oldValue, highscoreValue, upBackgroundColor, downBackgroundColor, newHighscoreBackgroundColor, neutralBackgroundColor);
         }
         /// <summary>
         /// Returns appropriate flipped stat container background color (green/red/yellow) from supplied double values (newValue) (oldValue) (highscoreValue).
@@ -185,12 +183,74 @@ namespace SomeAimGame.Stats {
         /// <param name="highscoreValue"></param>
         /// <returns></returns>
         public static Color32 GetItemBackgroundColor_Flip(double newValue, double oldValue, double highscoreValue) {
-            if (newValue < oldValue)
-                if (newValue < highscoreValue) return newHighscoreBackgroundColor;
-                else return upBackgroundColor;
-            else if (newValue > oldValue) return downBackgroundColor;
-            else return neutralBackgroundColor;
+            return CheckScores_Flip(newValue, oldValue, highscoreValue, upBackgroundColor, downBackgroundColor, newHighscoreBackgroundColor, neutralBackgroundColor);
         }
+
+        /// <summary>
+        /// Checks scores and returns appropriate item string (itemUp/itemDown/itemHighscore/itemNeutral).
+        /// </summary>
+        /// <param name="newValue"></param>
+        /// <param name="oldValue"></param>
+        /// <param name="highscoreValue"></param>
+        /// <returns></returns>
+        public static string CheckScores(double newValue, double oldValue, double highscoreValue) {
+            if (newValue < oldValue) return itemDown;
+            else if (newValue > oldValue)
+                if (newValue > highscoreValue) return itemHighscore;
+                else return itemUp;
+            else return itemNeutral;
+        }
+        /// <summary>
+        /// Checks scores and returns appropriate item string flipped (itemUp/itemDown/itemHighscoreFlip/itemNeutral).
+        /// </summary>
+        /// <param name="newValue"></param>
+        /// <param name="oldValue"></param>
+        /// <param name="highscoreValue"></param>
+        /// <returns></returns>
+        public static string CheckScores_Flip(double newValue, double oldValue, double highscoreValue) {
+            if (newValue < oldValue)
+                if (newValue < highscoreValue) return itemHighscoreFlip;
+                else return itemDown;
+            else if (newValue > oldValue) return itemUp;
+            else return itemNeutral;
+        }
+        /// <summary>
+        /// Checks scores and returns appropriate supplied Color32 (upColor/downColor/highscoreColor/neutralColor).
+        /// </summary>
+        /// <param name="newValue"></param>
+        /// <param name="oldValue"></param>
+        /// <param name="highscoreValue"></param>
+        /// <param name="upColor"></param>
+        /// <param name="downColor"></param>
+        /// <param name="highscoreColor"></param>
+        /// <param name="neutralColor"></param>
+        /// <returns></returns>
+        public static Color32 CheckScores(double newValue, double oldValue, double highscoreValue, Color32 upColor, Color32 downColor, Color32 highscoreColor, Color32 neutralColor) {
+            if (newValue < oldValue) return downColor;
+            else if (newValue > oldValue)
+                if (newValue > highscoreValue) return highscoreColor;
+                else return upColor;
+            else return neutralColor;
+        }
+        /// <summary>
+        /// Checks scores and returns appropriate supplied Color32 (upColor/downColor/highscoreColor/neutralColor).
+        /// </summary>
+        /// <param name="newValue"></param>
+        /// <param name="oldValue"></param>
+        /// <param name="highscoreValue"></param>
+        /// <param name="upColor"></param>
+        /// <param name="downColor"></param>
+        /// <param name="highscoreColor"></param>
+        /// <param name="neutralColor"></param>
+        /// <returns></returns>
+        public static Color32 CheckScores_Flip(double newValue, double oldValue, double highscoreValue, Color32 upColor, Color32 downColor, Color32 highscoreColor, Color32 neutralColor) {
+            if (newValue < oldValue)
+                if (newValue < highscoreValue) return highscoreColor;
+                else return upColor;
+            else if (newValue > oldValue) return downColor;
+            else return neutralColor;
+        }
+
         /// <summary>
         /// Checks if supplied first double (first) is higher than second double (second).
         /// </summary>
