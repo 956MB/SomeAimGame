@@ -6,42 +6,30 @@ namespace SomeAimGame.Utilities {
         public PostProcessVolume postProcessVolume;
         public static DepthOfField dof;
         public static ChromaticAberration ca;
+        public static Vignette vig;
 
         void Awake() {
             postProcessVolume.profile.TryGetSettings(out dof);
             postProcessVolume.profile.TryGetSettings(out ca);
+            //postProcessVolume.profile.TryGetSettings(out vig);
         }
 
         /// <summary>
         /// Enables DepthOfField effect in post process volume (postProcessVolume).
         /// </summary>
-        public static void EnableDOF() { dof.enabled.value = true; }
-        /// <summary>
-        /// Disables DepthOfField effect in post process volume (postProcessVolume).
-        /// </summary>
-        public static void DisableDOF() { dof.enabled.value = false; }
+        public static void SetDOF(bool enabled) { dof.enabled.value = enabled; }
         /// <summary>
         /// Enables ChromaticAberation effect in post process volume (postProcessVolume).
         /// </summary>
-        public static void EnableCA() { ca.enabled.value = true; }
+        public static void SetCA(bool enabled) { ca.enabled.value = enabled; }
         /// <summary>
-        /// Disables ChromaticAberation effect in post process volume (postProcessVolume).
+        /// Enables vignette effect in post process volume (postProcessVolume).
         /// </summary>
-        public static void DisableCA() { ca.enabled.value = false; }
+        public static void SetVIG(bool enabled) { vig.enabled.value = enabled; }
 
-        /// <summary>
-        /// Enables both DepthOfField and ChromaticAberation post process effects.
-        /// </summary>
-        public static void EnableEffects() {
-            EnableDOF();
-            EnableCA();
-        }
-        /// <summary>
-        /// Disables both DepthOfField and ChromaticAberation post process effects.
-        /// </summary>
-        public static void DisableEffects() {
-            DisableDOF();
-            DisableCA();
+        public static void SetPanelEffects(bool enabled) {
+            SetDOF(enabled);
+            SetCA(enabled);
         }
     }
 }
