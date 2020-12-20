@@ -89,3 +89,9 @@ crashlytics-build.properties
 /Assets/InspectM4A1.controller
 /.vscode
 /.idea
+/Packages/System.CodeDom.4.7.0
+/Packages/System.Management.4.7.0
+/Packages/WindowsDisplayAPI.1.3.0.13
+Assets/Plugins/System.CodeDom.dll
+Assets/Plugins/System.Management.dll
+Assets/Plugins/WindowsDisplayAPI.dll
