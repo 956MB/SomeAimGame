@@ -3,10 +3,8 @@
 Some aim game, made by some guy, for some reason. Unity C#.
 
 <img src="https://github.com/Bloumbs/SomeAimGame/blob/main/Assets/misc/screenshots/someaimgameNEW.gif" width="900">
-<img src="https://github.com/Bloumbs/SomeAimGame/blob/main/Assets/misc/screenshots/gamemodeNEW.png" width="900">
-<img src="https://github.com/Bloumbs/SomeAimGame/blob/main/Assets/misc/screenshots/generalNEW.png" width="900">
-<img src="https://github.com/Bloumbs/SomeAimGame/blob/main/Assets/misc/screenshots/controlsNEW.png" width="900">
-<img src="https://github.com/Bloumbs/SomeAimGame/blob/main/Assets/misc/screenshots/crosshairNEW.png" width="900">
+<img src="https://github.com/Bloumbs/SomeAimGame/blob/main/Assets/misc/screenshots/video.PNG" width="900">
+<img src="https://github.com/Bloumbs/SomeAimGame/blob/main/Assets/misc/screenshots/aarHighscore.PNG" width="900">
 <img src="https://github.com/Bloumbs/SomeAimGame/blob/main/Assets/misc/screenshots/widgetsNEW.png" width="900">
 
 <img src="https://github.com/Bloumbs/SomeAimGame/blob/main/Assets/misc/screenshots/gamemode.png" width="900">
