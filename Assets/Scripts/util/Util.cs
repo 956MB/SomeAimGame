@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.UI;
 using TMPro;
+using System.Globalization;
 
 namespace SomeAimGame.Utilities {
     public class Util : MonoBehaviour {
@@ -44,6 +45,29 @@ namespace SomeAimGame.Utilities {
         }
 
         /// <summary>
+        /// Returns Color from supplied hex string representaion.
+        /// </summary>
+        /// <param name="hexString"></param>
+        /// <returns></returns>
+        public static Color HexToColor(string hexString) {
+            if (hexString.IndexOf('#') != -1) { hexString = hexString.Replace("#", ""); }
+
+            int r = int.Parse(hexString.Substring(0, 2), NumberStyles.AllowHexSpecifier);
+            int g = int.Parse(hexString.Substring(2, 2), NumberStyles.AllowHexSpecifier);
+            int b = int.Parse(hexString.Substring(4, 2), NumberStyles.AllowHexSpecifier);
+
+            return new Color(r, g, b);
+        }
+        /// <summary>
+        /// Returns hex string representation of supplied Color (color). 
+        /// </summary>
+        /// <param name="color"></param>
+        /// <returns></returns>
+        public static string ColorToHex(Color color) {
+            return string.Format("{0:X2}{1:X2}{2:X2}", color.r, color.g, color.b);
+        }
+
+        /// <summary>
         /// Performs forced refresh on supplied scrollview group (rootGroup).
         /// </summary>
         /// <param name="rootGroup"></param>
@@ -64,6 +88,33 @@ namespace SomeAimGame.Utilities {
         }
 
         /// <summary>
+        /// Returns greatest common denominator from supplied ints (x/y)(width/height).
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static int GCD(int x, int y) {
+            int rem;
+            while( y != 0 ) {
+                rem = x % y;
+                x = y;
+                y = rem;
+            }
+
+            return x;
+        }
+
+        /// <summary>
+        /// Returns aspect ratio string from supplied ints (x/y)(width/height).
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static string ReturnAspectRatio_string(int x, int y) {
+            return string.Format("{0}:{1}",x/GCD(x,y), y/GCD(x,y));
+        }
+
+        /// <summary>
         /// Copies supplied string (copyString) to clipboard.
         /// </summary>
         /// <param name="copyString"></param>
@@ -76,10 +127,25 @@ namespace SomeAimGame.Utilities {
         /// </summary>
         /// <param name="setCanvasGroup"></param>
         /// <param name="isEnabled"></param>
-        public static void CanvasGroupState(CanvasGroup setCanvasGroup, bool isEnabled) {
+        public static void SetCanvasGroupState(CanvasGroup setCanvasGroup, bool isEnabled) {
             setCanvasGroup.alpha          = isEnabled ? 1f : 0.35f;
             setCanvasGroup.interactable   = isEnabled;
             setCanvasGroup.blocksRaycasts = isEnabled;
+        }
+
+        /// <summary>
+        /// Locks cursor if settings panel closed and game active.
+        /// </summary>
+        public static void LockCursor() {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible   = false;
+        }
+        /// <summary>
+        /// Unlocks cursor if settings panel open and game inactive.
+        /// </summary>
+        public static void UnlockCursor() {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible   = true;
         }
 
         // Looping utils //
