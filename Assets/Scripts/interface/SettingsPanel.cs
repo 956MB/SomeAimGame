@@ -9,6 +9,7 @@ using SomeAimGame.Targets;
 using SomeAimGame.Utilities;
 using SomeAimGame.Stats;
 using SomeAimGame.SFX;
+using SomeAimGame.Core.Video;
 
 public class SettingsPanel : MonoBehaviour {
     public GameObject mainMenuCanvas, settingsPanel, afterPanel, extendedStatsPanel, steamDataContainer, devEventContainer, videoContainer;
@@ -27,7 +28,7 @@ public class SettingsPanel : MonoBehaviour {
     private static VideoClip[] gamemodePreviewVideos;
     public VideoPlayer selectedVideoPlayer, scatterVideoPlayer, flickVideoPlayer, gridVideoPlayer, grid2VideoPlayer, pairsVideoPlayer, followVideoPlayer;
 
-    private static Vector3 openVector = new Vector3(1f, 1f, 1f);
+    private static Vector3 openVector   = new Vector3(1f, 1f, 1f);
     private static Vector3 closedVector = new Vector3(0f, 0f, 1f);
 
     private static SettingsPanel settings;
@@ -130,6 +131,7 @@ public class SettingsPanel : MonoBehaviour {
         
         CrosshairOptionsObject.SaveCrosshairObject(false);
         TargetSoundSelect.CheckSaveTargetSoundSelection();
+        FPSLimitSlider.CheckSaveFPSLimit();
         CrosshairHide.HideCrosshairs();
         CrosshairHide.ShowMainCrosshair();
 

@@ -4,6 +4,7 @@ using TMPro;
 
 using SomeAimGame.Utilities;
 using SomeAimGame.SFX;
+using SomeAimGame.Core.Video;
 
 public class SubMenuHandler : MonoBehaviour {
     public TMP_Text gamemodeSubMenuText, generalSubMenuText, controlsSubMenuText, crosshairSubMenuText, videoSubMenuText;
@@ -40,6 +41,7 @@ public class SubMenuHandler : MonoBehaviour {
         CrosshairOptionsObject.SaveCrosshairObject(false);
         TargetSoundSelect.CheckSaveTargetSoundSelection();
         NotificationHandler.CheckHideNotificationObject();
+        FPSLimitSlider.CheckSaveFPSLimit();
 
         SFXManager.CheckPlayClick_Regular();
     }

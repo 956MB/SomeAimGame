@@ -162,6 +162,9 @@ namespace SomeAimGame.Utilities {
             public static void Util_ClearTMPTextColor(Color32 setColor, params TMP_Text[] textElements) {
                 foreach (TMP_Text text in textElements) { text.color = setColor; }
             }
+            public static void Util_ClearButtonBackgrounds(Color32 setColor, params TMP_Text[] textElements) {
+                foreach (TMP_Text text in textElements) { text.transform.parent.gameObject.GetComponent<Image>().color = setColor; }
+            }
             /// <summary>
             /// Sets all supplied params GameObjects transforms (transformObjects) to supplied Vector3 (setVector).
             /// </summary>

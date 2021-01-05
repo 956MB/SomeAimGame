@@ -11,7 +11,7 @@ namespace SomeAimGame.Utilities {
         void Awake() {
             postProcessVolume.profile.TryGetSettings(out dof);
             postProcessVolume.profile.TryGetSettings(out ca);
-            //postProcessVolume.profile.TryGetSettings(out vig);
+            postProcessVolume.profile.TryGetSettings(out vig);
         }
 
         /// <summary>

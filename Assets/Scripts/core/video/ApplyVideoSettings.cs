@@ -8,7 +8,7 @@ namespace SomeAimGame.Core {
             private static string displayModeStringCurrent, resolutionStringCurrent, monitorStringCurrent, displayModeStringPlaceholder, resolutionStringPlaceholder, monitorStringPlaceholder;
 
             private static int widthPlaceholder, heightPlaceholder, refreshPlaceholder;
-            private static DisplayModes displayModePlaceholder;
+            private static FullScreenMode displayModePlaceholder;
             private static int monitorPlaceholder;
 
             private static bool videoSettingsSaveReady = false;
@@ -23,7 +23,7 @@ namespace SomeAimGame.Core {
             /// </summary>
             /// <param name="setText"></param>
             /// <param name="newDisplayMode"></param>
-            public static void SetDisplayModePlaceholder(string setText, DisplayModes newDisplayMode) {
+            public static void SetDisplayModePlaceholder(string setText, FullScreenMode newDisplayMode) {
                 VideoSettingSelect.SetDisplayModeText(setText);
                 VideoSettingUtil.SettingChange(ref displayModePlaceholder, ref displayModeStringPlaceholder, ref displayModeChangeReady, newDisplayMode, setText);
                 ToggleSettingsSaveContainer(displayModeStringPlaceholder, displayModeStringCurrent, ref displayModeChangeReady);
@@ -66,16 +66,15 @@ namespace SomeAimGame.Core {
             /// </summary>
             public static void ApplyDisplayMode() {
                 if (!VideoSettingUtil.CheckMatch(displayModeStringPlaceholder, displayModeStringCurrent)) {
-                    // set display mode
                     VideoSettings.SaveDisplayModeItem(displayModePlaceholder);
                 }
             }
             /// <summary>
             /// Applies new Resolution setting.
             /// </summary>
-            public static void ApplyResolution() {
+            public static void ApplyResolution(int w, int h, FullScreenMode displayMode, int refresh) {
                 if (!VideoSettingUtil.CheckMatch(resolutionStringPlaceholder, resolutionStringCurrent)) {
-                    // set resolution
+                    if (!Application.isEditor) { Screen.SetResolution(w, h, displayMode, refresh); }
                     VideoSettings.SaveResoltionWidthItem(widthPlaceholder);
                     VideoSettings.SaveResolutionHeightItem(heightPlaceholder);
                     VideoSettings.SaveResoltionRefreshRateItem(refreshPlaceholder);
@@ -84,11 +83,15 @@ namespace SomeAimGame.Core {
             /// <summary>
             /// Applies new Monitor setting.
             /// </summary>
-            public static void ApplyMonitor() {
+            public static void ApplyMonitor(int setMonitor) {
                 if (!VideoSettingUtil.CheckMatch(monitorStringPlaceholder, monitorStringCurrent)) {
-                    // set monitor
+                    if (!Application.isEditor && Display.displays.Length >= 1) { Display.displays[setMonitor].Activate(); }
                     VideoSettings.SaveMonitorMainItem(monitorPlaceholder);
                 }
+            }
+            public static void ApplyFPSLimit(int newFPSTarget) {
+                QualitySettings.vSyncCount  = 0;
+                Application.targetFrameRate = newFPSTarget;
             }
             /// <summary>
             /// Applies new Anti Aliasing setting.
@@ -105,27 +108,28 @@ namespace SomeAimGame.Core {
             /// Applies new VSync setting.
             /// </summary>
             /// <param name="enabled"></param>
-            public static void ApplyVSync(bool enabled) {
-                // set vsync
-                VideoSettings.SaveVSyncItem(enabled);
+            public static void ApplyVSync(bool vSyncEnabled) {
+                QualitySettings.vSyncCount = vSyncEnabled ? 1 : 0;
+                VideoSettings.SaveVSyncItem(vSyncEnabled);
                 VideoSettings.SaveVideoSettings_Static();
             }
             /// <summary>
             /// Applies new Vignette setting.
             /// </summary>
             /// <param name="enabled"></param>
-            public static void ApplyVignette(bool enabled) {
-                //ManipulatePostProcess.SetVIG(enabled);
-                VideoSettings.SaveVignetteItem(enabled);
+            public static void ApplyVignette(bool vignetteEnabled) {
+                ManipulatePostProcess.SetVIG(vignetteEnabled);
+                VideoSettings.SaveVignetteItem(vignetteEnabled);
                 VideoSettings.SaveVideoSettings_Static();
             }
             /// <summary>
             /// Applies new Chromatic Aberration setting.
             /// </summary>
             /// <param name="enabled"></param>
-            public static void ApplyChromaticAberration(bool enabled) {
+            public static void ApplyChromaticAberration(bool CAEnabled) {
+                // set CA
                 //ManipulatePostProcess.SetCA(enabled);
-                VideoSettings.SaveChromaticAberrationItem(enabled);
+                VideoSettings.SaveChromaticAberrationItem(CAEnabled);
                 VideoSettings.SaveVideoSettings_Static();
             }
 
@@ -137,8 +141,10 @@ namespace SomeAimGame.Core {
             public static void ApplyAllVideoSettings() {
                 if (videoSettingsSaveReady) {
                     ApplyDisplayMode();
-                    ApplyResolution();
-                    ApplyMonitor();
+                    ApplyResolution(widthPlaceholder, heightPlaceholder, displayModePlaceholder, refreshPlaceholder);
+                    ApplyMonitor(monitorPlaceholder);
+
+                    //VideoSettings.SaveFPSLimitItem((int)FPSLimitSlider.limitFPSValue);
 
                     videoSettingsSaveReady = displayModeChangeReady = resolutionChangeReady = monitorChangeReady = false;
                     VideoSettingSelect.SetVideoSettingsSaveContainerState(false);
@@ -158,6 +164,10 @@ namespace SomeAimGame.Core {
                     SetDisplayModeCurrent(displayModeStringCurrent);
                     SetResolutionCurrent(resolutionStringCurrent);
                     SetMonitorCurrent(monitorStringCurrent);
+
+                    // Revert fps limit text/slider to previous unsaved values.
+                    //FPSLimitSlider.SetFPSLimitValueText(VideoSettings.fpsLimit);
+                    //FPSLimitSlider.SetFPSLimitSlider(VideoSettings.fpsLimit);
 
                     videoSettingsSaveReady = displayModeChangeReady = resolutionChangeReady = monitorChangeReady = false;
                     VideoSettingSelect.SetVideoSettingsSaveContainerState(false);

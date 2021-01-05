@@ -8,7 +8,7 @@ namespace SomeAimGame.SFX {
     public class TargetSoundSelect : MonoBehaviour {
         public TMP_Text targetHitSoundText, targetMissSoundText, arrowTextHit, arrowTextMiss;
         public GameObject targetHitSoundDropdownBody, targetMissSoundDropdownBody, targetSoundSelectionContainer;
-        public CanvasGroup soundSelectionCanvasGroup;
+        public CanvasGroup soundSelectionCanvasGroup, targetMissContainerCanvasGroup;
         public Image uiSoundBackground;
         public static bool targetHitSoundSelectOpen          = false;
         public static bool targetMissSoundSelectOpen         = false;
@@ -54,6 +54,10 @@ namespace SomeAimGame.SFX {
 
         public static void SetSoundSelectionContainerState(bool soundSelectionState) {
             Util.SetCanvasGroupState(targetSoundSelect.soundSelectionCanvasGroup, soundSelectionState);
+        }
+
+        public static void SetTargetMissSoundContainerState(bool targetMissSoundState) {
+            Util.SetCanvasGroupState(targetSoundSelect.targetMissContainerCanvasGroup, targetMissSoundState);
         }
 
         private static void SaveNewTargetHitSound(AudioClip newAudioClip, SFXType newAudioClipType) {

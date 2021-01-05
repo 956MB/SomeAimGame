@@ -70,8 +70,8 @@ namespace SomeAimGame.Utilities {
         /// <param name="dropdownItemPrefab"></param>
         /// <param name="parentDropdownPrefab"></param>
         /// <param name="enumsArray"></param>
-        public static void CreateDropdownItems_Loop(VideoDropdowns videoSettingType, GameObject dropdownItemPrefab, GameObject parentDropdownPrefab, params DisplayModes[] enumsArray) {
-            foreach (DisplayModes itemType in enumsArray) { CreateDropdownItem((int)videoSettingType, (int)itemType, dropdownItemPrefab, parentDropdownPrefab); }
+        public static void CreateDropdownItems_Loop(VideoDropdowns videoSettingType, GameObject dropdownItemPrefab, GameObject parentDropdownPrefab, params FullScreenMode[] enumsArray) {
+            foreach (FullScreenMode itemType in enumsArray) { CreateDropdownItem((int)videoSettingType, (int)itemType, dropdownItemPrefab, parentDropdownPrefab); }
         }
         /// <summary>
         /// Calls 'CreateDropdownItem' in loop to create dropdown items with supplied dropdown item prefab (dropdownItemPrefab).
@@ -97,7 +97,7 @@ namespace SomeAimGame.Utilities {
 
             TMP_Text itemText = dropdownItem.GetComponentsInChildren<TMP_Text>()[0];
 
-            if ((VideoDropdowns)setDropdownInt == VideoDropdowns.DISPLAY_MODE) { itemText.SetText($"{VideoSettingUtil.ReturnTypeString((DisplayModes)setSettingInt)}"); }
+            if ((VideoDropdowns)setDropdownInt == VideoDropdowns.DISPLAY_MODE) { itemText.SetText($"{VideoSettingUtil.ReturnTypeString((FullScreenMode)setSettingInt)}"); }
             if ((VideoDropdowns)setDropdownInt == VideoDropdowns.ANTI_ALIASING) { itemText.SetText($"{VideoSettingUtil.ReturnTypeString((AntiAliasType)setSettingInt)}"); }
 
             dropdownItem.transform.SetParent(parentDropdownPrefab.transform);

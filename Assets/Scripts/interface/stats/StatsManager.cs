@@ -492,17 +492,17 @@ namespace SomeAimGame.Stats {
         public static void ClearStatBackgrounds() {
             SetScoreLine(StatsUtil.neutralLineColor);
             // Alternating grey stat backgrounds
-            statsManager.scoreContainerBackground.GetComponent<Image>().color         = StatsUtil.clearBackgroundLight;
-            statsManager.accuracyContainerBackground.GetComponent<Image>().color      = StatsUtil.clearBackgroundLight;
-            statsManager.ttkContainerBackground.GetComponent<Image>().color           = StatsUtil.clearBackgroundDark;
-            statsManager.kpsContainerBackground.GetComponent<Image>().color           = StatsUtil.clearBackgroundLight;
-            statsManager.bestStreakContainerBackground.GetComponent<Image>().color    = StatsUtil.clearBackgroundDark;
-            statsManager.targetsTotalContainerBackground.GetComponent<Image>().color  = StatsUtil.clearBackgroundLight;
-            statsManager.taretsHitContainerBackground.GetComponent<Image>().color     = StatsUtil.clearBackgroundDark;
-            statsManager.targetsMissesContainerBackground.GetComponent<Image>().color = StatsUtil.clearBackgroundLight;
+            //statsManager.scoreContainerBackground.GetComponent<Image>().color         = StatsUtil.clearBackgroundLight;
+            //statsManager.accuracyContainerBackground.GetComponent<Image>().color      = StatsUtil.clearBackgroundLight;
+            //statsManager.ttkContainerBackground.GetComponent<Image>().color           = StatsUtil.clearBackgroundDark;
+            //statsManager.kpsContainerBackground.GetComponent<Image>().color           = StatsUtil.clearBackgroundLight;
+            //statsManager.bestStreakContainerBackground.GetComponent<Image>().color    = StatsUtil.clearBackgroundDark;
+            //statsManager.targetsTotalContainerBackground.GetComponent<Image>().color  = StatsUtil.clearBackgroundLight;
+            //statsManager.taretsHitContainerBackground.GetComponent<Image>().color     = StatsUtil.clearBackgroundDark;
+            //statsManager.targetsMissesContainerBackground.GetComponent<Image>().color = StatsUtil.clearBackgroundLight;
 
             // Solid grey stat backgrounds
-            //StatsUtil.ClearStatBackgrounds(StatsUtil.clearBackgroundLight, statsManager.scoreContainerBackground, statsManager.accuracyContainerBackground, statsManager.ttkContainerBackground, statsManager.kpsContainerBackground, statsManager.bestStreakContainerBackground, statsManager.targetsTotalContainerBackground, statsManager.taretsHitContainerBackground, statsManager.targetsMissesContainerBackground);
+            StatsUtil.ClearStatBackgrounds(StatsUtil.clearBackgroundLight, statsManager.scoreContainerBackground, statsManager.accuracyContainerBackground, statsManager.ttkContainerBackground, statsManager.kpsContainerBackground, statsManager.bestStreakContainerBackground, statsManager.targetsTotalContainerBackground, statsManager.taretsHitContainerBackground, statsManager.targetsMissesContainerBackground);
         }
 
         /// <summary>

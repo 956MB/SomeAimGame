@@ -21,6 +21,7 @@ namespace SomeAimGame.SFX {
 
         private static void TargetSoundInit() {
             TargetSoundSelect.SetSoundSelectionContainerState(SFXSettings.targetSoundOn);
+            TargetSoundSelect.SetTargetMissSoundContainerState(SFXSettings.targetMissSoundOn);
         }
 
         /// Plays SFX clips.

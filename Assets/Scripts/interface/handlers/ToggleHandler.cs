@@ -36,6 +36,7 @@ public class ToggleHandler : MonoBehaviour {
                 break;
 
             case "TargetMissSoundToggle": // Toggles target miss sound.
+                TargetSoundSelect.SetTargetMissSoundContainerState(toggleClicked.isOn);
                 SFXSettings.SaveTargetMissSoundOn(toggleClicked.isOn);
                 break;
 

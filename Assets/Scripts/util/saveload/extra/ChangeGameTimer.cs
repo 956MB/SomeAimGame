@@ -4,6 +4,7 @@ using TMPro;
 
 using SomeAimGame.Utilities;
 using SomeAimGame.SFX;
+using UnityEngine.UI;
 
 public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public TMP_Text textInfinity, text30, text60, text90, text120;
@@ -73,6 +74,7 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private static void SetGameTimerTextValues(int timer, TMP_Text timerText) {
         selectedTimeText = ReturnGameTimerString_Selected(timer);
         timerText.color  = InterfaceColors.selectedColor;
+        timerText.transform.parent.gameObject.GetComponent<Image>().color = InterfaceColors.buttonBackgroundLight_GameTimer;
     }
 
     /// <summary>
@@ -80,6 +82,7 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
     /// </summary>
     public static void ClearTimerButtons() {
         Util.GameObjectLoops.Util_ClearTMPTextColor(InterfaceColors.unselectedColor, gameTimer.text30, gameTimer.text60, gameTimer.text90, gameTimer.text120);
+        Util.GameObjectLoops.Util_ClearButtonBackgrounds(InterfaceColors.buttonBackgroundDisabled, gameTimer.text30, gameTimer.text60, gameTimer.text90, gameTimer.text120);
     }
 
     /// <summary>
@@ -89,6 +92,7 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public static void SetHoveredTimeText_Color(GameObject hoveredTimeText) {
         if (hoveredTimeText.name != selectedTimeText) {
             hoveredTimeText.GetComponent<TMP_Text>().color = InterfaceColors.hoveredColor;
+            hoveredTimeText.transform.parent.gameObject.GetComponent<Image>().color = InterfaceColors.buttonBackgroundLight_GameTimer;
             SFXManager.CheckPlayHover_Regular();
         }
     }
@@ -99,6 +103,7 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public static void ClearHoveredTimeText_Color() {
         ClearTimerButtons();
         GameObject.Find(selectedTimeText).GetComponent<TMP_Text>().color = InterfaceColors.selectedColor;
+        GameObject.Find(selectedTimeText).transform.parent.gameObject.GetComponent<Image>().color = InterfaceColors.buttonBackgroundLight_GameTimer;
     }
 
     /// <summary>
