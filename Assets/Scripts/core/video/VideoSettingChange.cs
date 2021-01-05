@@ -12,7 +12,7 @@ namespace SomeAimGame.Core {
                 string clickedText = GetComponentsInChildren<TMP_Text>()[0].text;
 
                 if (dropdownOptionClick == VideoDropdowns.DISPLAY_MODE) {
-                    ApplyVideoSettings.SetDisplayModePlaceholder(VideoSettingUtil.ReturnTypeString((DisplayModes)settingInt), (DisplayModes)settingInt);
+                    ApplyVideoSettings.SetDisplayModePlaceholder(VideoSettingUtil.ReturnTypeString((FullScreenMode)settingInt), (FullScreenMode)settingInt);
                 }
                 if (dropdownOptionClick == VideoDropdowns.RESOLUTION) {
                     ApplyVideoSettings.SetResolutionPlaceholder(clickedText);

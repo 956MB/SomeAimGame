@@ -13,13 +13,13 @@ namespace SomeAimGame.Core {
             /// </summary>
             /// <param name="typeSkybox"></param>
             /// <returns></returns>
-            public static string ReturnTypeString(DisplayModes displayModesType) {
+            public static string ReturnTypeString(FullScreenMode displayModesType) {
                 switch (displayModesType) {
-                    case DisplayModes.FULLSCREEN:           return "Fullscreen";
-                    case DisplayModes.FULLSCREEN_EXCLUSIVE: return "Fullscreen Exclusive";
-                    case DisplayModes.FULLSCREEN_WINDOWED:  return "Fullscreen Winodwed";
-                    case DisplayModes.WINDOWED:             return "Windowed";
-                    default:                                return "Fullscreen";
+                    case FullScreenMode.FullScreenWindow:    return "Fullscreen";
+                    case FullScreenMode.ExclusiveFullScreen: return "Fullscreen Exclusive";
+                    case FullScreenMode.MaximizedWindow:     return "Fullscreen Winodwed";
+                    case FullScreenMode.Windowed:            return "Windowed";
+                    default:                                 return "Fullscreen";
                 }
             }
 
@@ -38,7 +38,7 @@ namespace SomeAimGame.Core {
                 }
             }
 
-            public static void SettingChange(ref DisplayModes refDiplayMode, ref string refPlaceholderString, ref bool refChangeReady, DisplayModes setDiplayMode, string setPlaceholderString) {
+            public static void SettingChange(ref FullScreenMode refDiplayMode, ref string refPlaceholderString, ref bool refChangeReady, FullScreenMode setDiplayMode, string setPlaceholderString) {
                 refDiplayMode        = setDiplayMode;
                 refPlaceholderString = setPlaceholderString;
                 refChangeReady       = true;

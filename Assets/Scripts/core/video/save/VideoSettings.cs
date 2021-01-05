@@ -7,9 +7,9 @@ using SomeAimGame.Utilities;
 namespace SomeAimGame.Core {
     namespace Video {
         public class VideoSettings : MonoBehaviour {
-            public static DisplayModes displayMode    = DisplayModes.FULLSCREEN;
-            public static int resolutionHeight        = 1920;
-            public static int resolutionWidth         = 1080;
+            public static FullScreenMode displayMode  = FullScreenMode.FullScreenWindow;
+            public static int resolutionWidth         = 1920;
+            public static int resolutionHeight        = 1080;
             public static int resolutionRefreshRate   = 60;
             public static int monitorMain             = 0;
             public static bool VSync                  = false;
@@ -21,7 +21,7 @@ namespace SomeAimGame.Core {
             private static VideoSettings videoSettings;
             void Awake() { videoSettings = this; }
 
-            public static void SaveDisplayModeItem(DisplayModes setDisplayMode) {           displayMode           = setDisplayMode; }
+            public static void SaveDisplayModeItem(FullScreenMode setDisplayMode) {         displayMode           = setDisplayMode; }
             public static void SaveResolutionHeightItem(int setResolutionHeight) {          resolutionHeight      = setResolutionHeight; }
             public static void SaveResoltionWidthItem(int setResolutionWidth) {             resolutionWidth       = setResolutionWidth; }
             public static void SaveResoltionRefreshRateItem(int setResolutionRefreshRate) { resolutionRefreshRate = setResolutionRefreshRate; }
@@ -35,7 +35,7 @@ namespace SomeAimGame.Core {
             public void SaveVideoSettings() { VideoSettingsSaveSystem.SaveVideoSettingsData(this); }
             public static void SaveVideoSettings_Static() { videoSettings.SaveVideoSettings(); }
 
-            public static void SaveAllExtraSettingsDefaults(DisplayModes setDisplayMode, int setResolutionWidth, int setResolutionHeight, int setResolutionRefreshRate, int setMonitorMain, bool setVSync, int setFpsLimit, AntiAliasType setAntiAliasType, bool setVignette, bool setCromaticAberration) {
+            public static void SaveAllExtraSettingsDefaults(FullScreenMode setDisplayMode, int setResolutionWidth, int setResolutionHeight, int setResolutionRefreshRate, int setMonitorMain, bool setVSync, int setFpsLimit, AntiAliasType setAntiAliasType, bool setVignette, bool setCromaticAberration) {
                 displayMode           = setDisplayMode;
                 resolutionWidth       = setResolutionWidth;
                 resolutionHeight      = setResolutionHeight;
@@ -52,8 +52,8 @@ namespace SomeAimGame.Core {
 
             public static void LoadVideoSettings(VideoSettingsDataSerial videoData) {
                 displayMode           = videoData.displayMode;
-                resolutionHeight      = videoData.resolutionHeight;
                 resolutionWidth       = videoData.resolutionWidth;
+                resolutionHeight      = videoData.resolutionHeight;
                 resolutionRefreshRate = videoData.resolutionRefreshRate;
                 monitorMain           = videoData.monitorMain;
                 VSync                 = videoData.VSync;

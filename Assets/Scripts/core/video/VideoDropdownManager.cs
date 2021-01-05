@@ -28,7 +28,7 @@ namespace SomeAimGame.Core {
             /// Loads all available display mode options into display modes dropdown from DisplayModes enum.
             /// </summary>
             public static void InitDisplayModesDropdownItems() {
-                DropdownUtils.CreateDropdownItems_Loop(VideoDropdowns.DISPLAY_MODE, videoDropdownManager.dropdownItemPrefab, videoDropdownManager.displayModesDropdownBody, DisplayModes.FULLSCREEN, DisplayModes.FULLSCREEN_EXCLUSIVE, DisplayModes.FULLSCREEN_WINDOWED, DisplayModes.WINDOWED);
+                DropdownUtils.CreateDropdownItems_Loop(VideoDropdowns.DISPLAY_MODE, videoDropdownManager.dropdownItemPrefab, videoDropdownManager.displayModesDropdownBody, FullScreenMode.FullScreenWindow, FullScreenMode.ExclusiveFullScreen, FullScreenMode.MaximizedWindow, FullScreenMode.Windowed);
             }
             /// <summary>
             /// Loads all available resolution options into resolution dropdown from available monitor resolutions.
