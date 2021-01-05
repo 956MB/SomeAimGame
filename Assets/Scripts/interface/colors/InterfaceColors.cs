@@ -26,7 +26,9 @@ namespace SomeAimGame.Utilities {
         public static Color32 notificationColorWhite  = new Color32(255, 255, 255, 255);
 
         // Backgrounds
-        public static Color32 buttonBackgroundLight         = new Color32(49, 49, 49, 160);
-        public static Color32 buttonBackgroundLight_hovered = new Color32(100, 100, 100, 160);
+        public static Color32 buttonBackgroundDisabled        = new Color32(255, 255, 255, 0);
+        public static Color32 buttonBackgroundLight           = new Color32(49, 49, 49, 160);
+        public static Color32 buttonBackgroundLight_hovered   = new Color32(100, 100, 100, 160);
+        public static Color32 buttonBackgroundLight_GameTimer = new Color32(255, 255, 255, 10);
     }
 }
