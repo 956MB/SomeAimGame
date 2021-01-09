@@ -26,7 +26,7 @@ public class SettingsPanel : MonoBehaviour {
     RectTransform rt;
 
     private static VideoClip[] gamemodePreviewVideos;
-    public VideoPlayer selectedVideoPlayer, scatterVideoPlayer, flickVideoPlayer, gridVideoPlayer, grid2VideoPlayer, pairsVideoPlayer, followVideoPlayer;
+    public VideoPlayer selectedVideoPlayer, scatterVideoPlayer, flickVideoPlayer, gridVideoPlayer, grid2VideoPlayer, pairsVideoPlayer, followVideoPlayer, globVideoPlayer;
 
     private static Vector3 openVector   = new Vector3(1f, 1f, 1f);
     private static Vector3 closedVector = new Vector3(0f, 0f, 1f);
@@ -44,11 +44,11 @@ public class SettingsPanel : MonoBehaviour {
         SettingsPanelUtil.LoadThumbnails(skyboxThumbnailObjects, skyboxThumbnailSprites);
 
         // Init saved settings for settings panel.
-        ExtraSaveSystem.InitSavedExtraSettings();
+        ExtraSaveSystem    .InitSavedExtraSettings();
         CrosshairSaveSystem.InitSavedCrosshairSettings();
-        WidgetSaveSystem.InitSavedWidgetSettings();
-        StatsManager.HideExtraStatsPanel();
-        CrosshairHide.HideCrosshairs();
+        WidgetSaveSystem   .InitSavedWidgetSettings();
+        StatsManager       .HideExtraStatsPanel();
+        CrosshairHide      .HideCrosshairs();
 
         // Close settings, 'AfterActionReport' and video containers at start.
         Util.GameObjectLoops.Util_SetObjectsLocalScale(closedVector, settings.settingsPanel, settings.afterPanel, settings.videoContainer);
@@ -104,15 +104,12 @@ public class SettingsPanel : MonoBehaviour {
 
         OpenAction();
         settingsOpen = true;
-        SubMenuHandler.ResetAllSubMenuScrollviewsTop();
-        GameUI.HideWidgetsUI();
 
-        GameTime.PauseGameTime();
+        SubMenuHandler.ResetAllSubMenuScrollviewsTop();
+        GameUI        .HideWidgetsUI();
+        GameTime      .PauseGameTime();
 
         if (SubMenuHandler.activeSubMenuText == "CrosshairTitleText (TMP)") { CrosshairHide.ShowSettingsCrosshair(); }
-
-        // EVENT:: for settings panel being opened
-        //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacesettingsopened")}");
     }
 
     /// <summary>
@@ -126,12 +123,9 @@ public class SettingsPanel : MonoBehaviour {
 
         // If language select/notification object active, hide
         if (LanguageSelect.languageSelectOpen) { LanguageSelect.CloseLanguageSelect_Static(); }
-        NotificationHandler.CheckHideNotificationObject();
         if (ExtraSettings.hideUI) { GameUI.ShowWidgetsUI(); }
         
-        CrosshairOptionsObject.SaveCrosshairObject(false);
-        TargetSoundSelect.CheckSaveTargetSoundSelection();
-        FPSLimitSlider.CheckSaveFPSLimit();
+        CheckSaveSettings();
         CrosshairHide.HideCrosshairs();
         CrosshairHide.ShowMainCrosshair();
 
@@ -139,9 +133,6 @@ public class SettingsPanel : MonoBehaviour {
         settingsOpen = false;
 
         GameTime.ContinueGameTime();
-
-        // EVENT:: for settings panel being closed
-        //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacesettingsclosed")}");
     }
 
     /// <summary>
@@ -160,16 +151,12 @@ public class SettingsPanel : MonoBehaviour {
 
         StatsManager.ResetAARScrollView();
         GameUI.HideWidgetsUI();
-
-        // EVENT:: for AAR panel being opened
-        //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceaaropened")}");
     }
 
     /// <summary>
     /// Closes 'AfterActionReport' panel. [EVENT]
     /// </summary>
     public static void CloseAfterActionReport() {
-        //settings.darkenBackground.SetActive(false);
         settings.mainMenuCanvas.SetActive(false);
         settings.extendedStatsPanel.SetActive(false);
         CloseAction();
@@ -181,9 +168,6 @@ public class SettingsPanel : MonoBehaviour {
 
         CrosshairHide.HideCrosshairs();
         CrosshairHide.ShowMainCrosshair();
-
-        // EVENT:: for AAR panel being opened
-        //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceaarclosed")}");
     }
 
     /// <summary>
@@ -277,7 +261,7 @@ public class SettingsPanel : MonoBehaviour {
         gamemodePreviewVideos = PreviewManager.PopulateGamemodePreviews(GamemodeUtil.ReturnGamemodeType_StringFull(CosmeticsSettings.gamemode), TargetUtil.ReturnTargetColorType_StringFull(CosmeticsSettings.targetColor), SkyboxUtil.ReturnSkyboxType_StringFull(CosmeticsSettings.skybox));
 
         // Set clips for every gamemode preview button.
-        Util.VideoLoops.Util_SetVideoPlayerClips(7, gamemodePreviewVideos, settings.scatterVideoPlayer, settings.flickVideoPlayer, settings.gridVideoPlayer, settings.grid2VideoPlayer, settings.pairsVideoPlayer, settings.followVideoPlayer, settings.selectedVideoPlayer);
+        Util.VideoLoops.Util_SetVideoPlayerClips(8, gamemodePreviewVideos, settings.scatterVideoPlayer, settings.flickVideoPlayer, settings.gridVideoPlayer, settings.grid2VideoPlayer, settings.pairsVideoPlayer, settings.followVideoPlayer, settings.globVideoPlayer, settings.selectedVideoPlayer);
         // Set gamemode select clips from loaded previews
         GamemodeSelect.gamemodeScatterClip_Loaded = gamemodePreviewVideos[0];
         GamemodeSelect.gamemodeFlickClip_Loaded   = gamemodePreviewVideos[1];
@@ -285,9 +269,26 @@ public class SettingsPanel : MonoBehaviour {
         GamemodeSelect.gamemodeGrid2Clip_Loaded   = gamemodePreviewVideos[3];
         GamemodeSelect.gamemodePairsClip_Loaded   = gamemodePreviewVideos[4];
         GamemodeSelect.gamemodeFollowClip_Loaded  = gamemodePreviewVideos[5];
+        GamemodeSelect.gamemodeGlobClip_Loaded    = gamemodePreviewVideos[6];
         // Set video player aspect ratios.
-        Util.VideoLoops.Util_SetVideoPlayersAscpectRatio(VideoAspectRatio.FitVertically, settings.scatterVideoPlayer, settings.flickVideoPlayer, settings.gridVideoPlayer, settings.grid2VideoPlayer, settings.pairsVideoPlayer, settings.followVideoPlayer, settings.selectedVideoPlayer);
+        Util.VideoLoops.Util_SetVideoPlayersAscpectRatio(VideoAspectRatio.FitHorizontally, settings.scatterVideoPlayer, settings.flickVideoPlayer, settings.gridVideoPlayer, settings.grid2VideoPlayer, settings.pairsVideoPlayer, settings.followVideoPlayer, settings.globVideoPlayer);
         // Play clips once set.
-        Util.VideoLoops.Util_PlayVideoPlayers(settings.scatterVideoPlayer, settings.flickVideoPlayer, settings.gridVideoPlayer, settings.grid2VideoPlayer, settings.pairsVideoPlayer, settings.followVideoPlayer, settings.selectedVideoPlayer);
+        Util.VideoLoops.Util_PlayVideoPlayers(settings.scatterVideoPlayer, settings.flickVideoPlayer, settings.gridVideoPlayer, settings.grid2VideoPlayer, settings.pairsVideoPlayer, settings.followVideoPlayer, settings.globVideoPlayer, settings.selectedVideoPlayer);
+        settings.selectedVideoPlayer.Play();
+    }
+
+    /// <summary>
+    /// Calls all 'CheckSave' methods to save ready settings.
+    /// </summary>
+    public static void CheckSaveSettings() {
+        CrosshairOptionsObject.SaveCrosshairObject(false);
+        CosmeticsSettings     .CheckSaveCosmeticsSettings();
+        ExtraSettings         .CheckSaveExtraSettings();
+        WidgetSettings        .CheckSaveWidgetSettings();
+        SFXSettings           .CheckSaveSFXSettings();
+        KeybindSettings       .CheckSaveKeybindSettings();
+        TargetSoundSelect     .CheckSaveTargetSoundSelection();
+        FPSLimitSlider        .CheckSaveFPSLimit();
+        NotificationHandler   .CheckHideNotificationObject();
     }
 }

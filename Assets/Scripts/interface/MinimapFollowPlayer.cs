@@ -18,7 +18,7 @@ public class MinimapFollowPlayer : MonoBehaviour {
             transform.position             = newMinimapCameraPosition;
         } else {
             minimapCamera.orthographicSize = 49f;
-            transform.position             = new Vector3(14f, 22f, -2f);
+            //transform.position             = new Vector3(14f, 22f, -2f);
         }
         
         if (rotateMinimap) {

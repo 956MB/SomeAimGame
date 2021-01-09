@@ -9,4 +9,5 @@ public class GamemodePreviews : MonoBehaviour {
     public VideoClip gamemodeGrid2Preview;
     public VideoClip gamemodePairsPreview;
     public VideoClip gamemodeFollowPreview;
+    public VideoClip gamemodeGlobPreview;
 }

@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
 
+using SomeAimGame.Utilities;
+
 namespace SomeAimGame.SFX {
     public class SFXSettings : MonoBehaviour {
         public static SFXType targetSoundClip     = SFXType.TARGET_HIT_SFX_0;
         public static SFXType targetMissSoundClip = SFXType.TARGET_MISS_SFX_0;
-        public static bool targetSoundOn          = true;
-        public static bool targetMissSoundOn      = false;
-        public static bool uiSoundOn              = true;
+        public static bool    targetSoundOn       = true;
+        public static bool    targetMissSoundOn   = false;
+        public static bool    uiSoundOn           = true;
+
+        static bool SFXSettingsChangeReady = false;
 
         private static SFXSettings sfxSettings;
         void Awake() { sfxSettings = this; }
@@ -15,34 +19,22 @@ namespace SomeAimGame.SFX {
         /// Saves supplied target sound clip SFXType (setTargetSoundClip) to SFX settings object (SFXSettings), then saves SFX settings object.
         /// </summary>
         /// <param name="setTargetSoundClip"></param>
-        public static void SaveTargetSoundClip(SFXType setTargetSoundClip) {
-            targetSoundClip = setTargetSoundClip;
-            sfxSettings.SaveSFXSettings();
-        }
+        public static void SaveTargetSoundClip(SFXType setTargetSoundClip) { Util.RefSetSettingChange(ref SFXSettingsChangeReady, ref targetSoundClip, setTargetSoundClip); }
         /// <summary>
         /// Saves supplied target sound on bool (setTargetSoundOn) to SFX settings object (SFXSettings), then saves SFX settings object.
         /// </summary>
         /// <param name="setTargetSoundOn"></param>
-        public static void SaveTargetSoundOn(bool setTargetSoundOn) {
-            targetSoundOn = setTargetSoundOn;
-            sfxSettings.SaveSFXSettings();
-        }
+        public static void SaveTargetSoundOn(bool setTargetSoundOn) { Util.RefSetSettingChange(ref SFXSettingsChangeReady, ref targetSoundOn, setTargetSoundOn); }
         /// <summary>
         /// Saves supplied target miss sound on bool (setTargetMissSoundOn) to SFX settings object (SFXSettings), then saves SFX settings object.
         /// </summary>
         /// <param name="setTargetMissSoundOn"></param>
-        public static void SaveTargetMissSoundOn(bool setTargetMissSoundOn) {
-            targetMissSoundOn = setTargetMissSoundOn;
-            sfxSettings.SaveSFXSettings();
-        }
+        public static void SaveTargetMissSoundOn(bool setTargetMissSoundOn) { Util.RefSetSettingChange(ref SFXSettingsChangeReady, ref targetMissSoundOn, setTargetMissSoundOn); }
         /// <summary>
         /// Saves supplied UI sound bool (setUISoundOn) to SFX settings object (SFXSettings), then saves SFX settings object.
         /// </summary>
         /// <param name="setUISoundOn"></param>
-        public static void SaveUISoundOn(bool setUISoundOn) {
-            uiSoundOn = setUISoundOn;
-            sfxSettings.SaveSFXSettings();
-        }
+        public static void SaveUISoundOn(bool setUISoundOn) { Util.RefSetSettingChange(ref SFXSettingsChangeReady, ref uiSoundOn, setUISoundOn); }
 
         /// <summary>
         /// Calls 'SFXSaveSystem.SaveSFXSettingsData()' to save SFX settings object (SFXSettings) to file.
@@ -78,6 +70,13 @@ namespace SomeAimGame.SFX {
             targetSoundOn       = SFXData.targetSoundOn;
             targetMissSoundOn   = SFXData.targetMissSoundOn;
             uiSoundOn           = SFXData.uiSoundOn;
+        }
+
+        public static void CheckSaveSFXSettings() {
+            if (SFXSettingsChangeReady) {
+                sfxSettings.SaveSFXSettings();
+                SFXSettingsChangeReady = false;
+            }
         }
     }
 }

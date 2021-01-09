@@ -62,3 +62,11 @@ Classic tracking target gamemode. Try to keep your crosshair on the target as it
 
 
 ui drag system for someaimgame. certain elements of the ui will be dragable, like the settings/afteractionreport/extrastats panel etc, and when the elements are being dragged, available locations will be highlighted in different spots, when dragging is done, if cursor holding ui element is inside available move spot, that ui will be placed in the new spot, and location saved.
+
+
+
+NEW STUFF (1/5/2021):
+
+- Click to expand on AAR stat rows. Possibly opens up graph or more extended stats. Saves opened/closed?
+
+- Write new robust system for new gamemodes? Like config files for gamemodes and what happens on target clicks and stuff. Or at least system for adding new gamemode button, rather than manually going through the files and adding to enums and etc.

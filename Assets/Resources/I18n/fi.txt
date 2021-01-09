@@ -17,6 +17,7 @@ gamemodegrid=Ruudukko
 gamemodegrid2=Ruudukko II
 gamemodepairs=Parit
 gamemodefollow=Seuraa
+gamemodeglob=Loraus
 gamemodepatrol=Partio
 #
 #
@@ -27,15 +28,17 @@ gamemodecapsgrid=RUUDUKKO
 gamemodecapsgrid2=RUUDUKKO II
 gamemodecapspairs=PARIT
 gamemodecapsfollow=SEURAA
+gamemodecapsglob=LORAUS
 #
 #
 # // gamemode start button text
 gamemodestartscatter=ALOITA SCATTER
-gamemodestartflick=KÄYNNISTÄ
+gamemodestartflick=ALOITA PYYHKÄISY
 gamemodestartgrid=ALOITA RUUDUKKO
 gamemodestartgrid2=ALOITA RUUDUKKO II
 gamemodestartpairs=ALOITA PARIT
 gamemodestartfollow=ALOITA SEURAA
+gamemodestartglob=ALOITA LORAUS
 #
 #
 # // gamemode types
@@ -51,6 +54,7 @@ gamemodegriddescription=Vanha uskollinen. FPS-pelaajien paras ystävä. Täydell
 gamemodegrid2description=Ruudukko 2., hieman haastavampi. Sama käsite kuin 'Ruudukko', mutta siinä on enemmän alkuperäisiä tavoitteita ja PALJON pienempi tavoitekoko. Ota aikaa tähän.
 gamemodepairsdescription=Peli on yksinkertainen. Yhdistä kutettu kohde sen sopivaan värikaveriin. Kohteet vaihtavat värejä satunnaisesti, joten pysy keskittyneenä.
 gamemodefollowdescription=Klassinen seurantakohdepelimoodi. Yritä pitää tähtäin tavoitteen päällä, kun se kelluu olemattoman kehosi ympärillä. Se on melko helppoa, vain tee se mies. Kristus.
+gamemodeglobdescription=None of your beeswax slave, just get to globing that mud. GLOB!!
 #
 #
 # // gamemode names
@@ -60,6 +64,7 @@ Grid=Ruudukko
 Grid2=Ruudukko II
 Pairs=Parit
 Follow=Seuraa
+Glob=Glob
 #
 #
 # // categories
@@ -164,8 +169,8 @@ crosshairthickness=Paksuus
 crosshairgap=Aukko
 crosshairoutlineenabled=Käytössä
 crosshairred=Punainen
-crosshairgreen=Sininen
-crosshairblue=Vihreä
+crosshairgreen=Vihreä
+crosshairblue=Sininen
 crosshairalpha=Alfa
 importexportcrosshair=Tuonti ja vienti
 resetcrosshair=Nollaa ristikko

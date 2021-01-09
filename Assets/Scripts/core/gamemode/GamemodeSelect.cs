@@ -12,21 +12,21 @@ namespace SomeAimGame.Gamemode {
         public GameObject gamemodeSelectObject, testContainerObject;
         public TMP_Text gamemodeNameText, gamemodeTypeText, gamemodeDescriptionText_TMP_Text, gamemodeStartButtonText;
         public Text gamemodeDescriptionText_Text;
-        public TMP_Text gamemodeScatterText, gamemodeFlickText, gamemodeGridText, gamemodeGrid2Text, gamemodePairsText, gamemodeFollowText;
-        private string scatterDescription, flickDescription, gridDescription, grid2Description, pairsDescription, followDescription;
+        public TMP_Text gamemodeScatterText, gamemodeFlickText, gamemodeGridText, gamemodeGrid2Text, gamemodePairsText, gamemodeFollowText, gamemodeGlobText;
+        private string scatterDescription, flickDescription, gridDescription, grid2Description, pairsDescription, followDescription, globDescription;
         public static TMP_Text selectedGamemodeText;
         public VideoPlayer gamemodePreviewVideoRT;
 
         private static GamemodeType currentOpenGamemode;
 
-        public VideoClip gamemodeScatterClip, gamemodeFlickClip, gamemodeGridClip, gamemodeGrid2Clip, gamemodePairsClip, gamemodeFollowClip;
-        public static VideoClip gamemodeScatterClip_Loaded, gamemodeFlickClip_Loaded, gamemodeGridClip_Loaded, gamemodeGrid2Clip_Loaded, gamemodePairsClip_Loaded, gamemodeFollowClip_Loaded;
+        public VideoClip gamemodeScatterClip, gamemodeFlickClip, gamemodeGridClip, gamemodeGrid2Clip, gamemodePairsClip, gamemodeFollowClip, gamemodeGlobClip;
+        public static VideoClip gamemodeScatterClip_Loaded, gamemodeFlickClip_Loaded, gamemodeGridClip_Loaded, gamemodeGrid2Clip_Loaded, gamemodePairsClip_Loaded, gamemodeFollowClip_Loaded, gamemodeGlobClip_Loaded;
 
         public static GamemodeSelect gamemodeSelect;
         private void Awake() { gamemodeSelect = this; }
 
         private void Start() {
-            LoadTranslatedDescriptions(I18nTextTranslator.SetTranslatedText("gamemodescatterdescription"), I18nTextTranslator.SetTranslatedText("gamemodeflickdescription"), I18nTextTranslator.SetTranslatedText("gamemodegriddescription"), I18nTextTranslator.SetTranslatedText("gamemodegrid2description"), I18nTextTranslator.SetTranslatedText("gamemodepairsdescription"), I18nTextTranslator.SetTranslatedText("gamemodefollowdescription"));
+            LoadTranslatedDescriptions(I18nTextTranslator.SetTranslatedText("gamemodescatterdescription"), I18nTextTranslator.SetTranslatedText("gamemodeflickdescription"), I18nTextTranslator.SetTranslatedText("gamemodegriddescription"), I18nTextTranslator.SetTranslatedText("gamemodegrid2description"), I18nTextTranslator.SetTranslatedText("gamemodepairsdescription"), I18nTextTranslator.SetTranslatedText("gamemodefollowdescription"), I18nTextTranslator.SetTranslatedText("gamemodeglobdescription"));
         }
 
         /// <summary>
@@ -59,6 +59,7 @@ namespace SomeAimGame.Gamemode {
                     case GamemodeType.GRID_2:  PopulateAllGamemodeInfo(gamemodeGrid2Clip_Loaded, "gamemodestartgrid2", "gamemodecapsgrid2", "gamemodetypecontrol", InterfaceColors.gamemodeHardColor, gamemodeSelect.grid2Description);        break;
                     case GamemodeType.PAIRS:   PopulateAllGamemodeInfo(gamemodePairsClip_Loaded, "gamemodestartpairs", "gamemodecapspairs", "gamemodetypecontrol", InterfaceColors.gamemodeMediumColor, gamemodeSelect.pairsDescription);      break;
                     case GamemodeType.FOLLOW:  PopulateAllGamemodeInfo(gamemodeFollowClip_Loaded, "gamemodestartfollow", "gamemodecapsfollow", "gamemodetypetracking", InterfaceColors.gamemodeMediumColor, gamemodeSelect.followDescription); break;
+                    case GamemodeType.GLOB:    PopulateAllGamemodeInfo(gamemodeGlobClip_Loaded, "gamemodestartglob", "gamemodecapsglob", "gamemodetypetracking", InterfaceColors.gamemodeMediumColor, gamemodeSelect.globDescription);         break;
                 }
             }
         }
@@ -130,13 +131,14 @@ namespace SomeAimGame.Gamemode {
             PopulateGamemodeVideoClip(gamemodeVideoClip);
         }
 
-        public static void LoadTranslatedDescriptions(string setScatterDescription, string setFlickDescription, string setGridDescription, string setGrid2Description, string setPairsDescription, string setFollowDescription) {
+        public static void LoadTranslatedDescriptions(string setScatterDescription, string setFlickDescription, string setGridDescription, string setGrid2Description, string setPairsDescription, string setFollowDescription, string setGlobDescription) {
             gamemodeSelect.scatterDescription = setScatterDescription;
             gamemodeSelect.flickDescription   = setFlickDescription;
             gamemodeSelect.gridDescription    = setGridDescription;
             gamemodeSelect.grid2Description   = setGrid2Description;
             gamemodeSelect.pairsDescription   = setPairsDescription;
             gamemodeSelect.followDescription  = setFollowDescription;
+            gamemodeSelect.globDescription    = setGlobDescription;
         }
 
         /// <summary>
@@ -184,7 +186,7 @@ namespace SomeAimGame.Gamemode {
         /// <param name="clearColors"></param>
         public static void ClearGamemodeButtonColors(TMP_Text buttonText, bool selected, bool clearColors) {
             if (clearColors) {
-                Util.GameObjectLoops.Util_ClearTMPTextColor(InterfaceColors.hoveredColor, gamemodeSelect.gamemodeScatterText, gamemodeSelect.gamemodeFlickText, gamemodeSelect.gamemodeGridText, gamemodeSelect.gamemodeGrid2Text, gamemodeSelect.gamemodePairsText, gamemodeSelect.gamemodeFollowText);
+                Util.GameObjectLoops.Util_ClearTMPTextColor(InterfaceColors.hoveredColor, gamemodeSelect.gamemodeScatterText, gamemodeSelect.gamemodeFlickText, gamemodeSelect.gamemodeGridText, gamemodeSelect.gamemodeGrid2Text, gamemodeSelect.gamemodePairsText, gamemodeSelect.gamemodeFollowText, gamemodeSelect.gamemodeGlobText);
             }
 
             if (selected) { buttonText.color = InterfaceColors.selectedColor; } else { buttonText.color = InterfaceColors.hoveredColor; }

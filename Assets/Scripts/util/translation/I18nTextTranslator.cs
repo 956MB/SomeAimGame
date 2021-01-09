@@ -25,8 +25,8 @@ public class I18nTextTranslator : MonoBehaviour {
     public static string SetTranslatedText(string textId) {
         try {
             return I18n.Fields[textId];
-        } catch (KeyNotFoundException KNFE) {
-            Debug.LogError($"KNFE: KEY '{textId}' NOT FOUND;");
+        } catch (KeyNotFoundException) {
+            //Debug.LogError($"KNFE: KEY '{textId}' NOT FOUND;");
             return $"{textId}";
         }
     }

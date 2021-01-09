@@ -9,6 +9,7 @@
         GRID_2,
         GRID_3,
         PAIRS,
-        FOLLOW
+        FOLLOW,
+        GLOB
     }
 }

@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+using SomeAimGame.Utilities;
+
 public class ExtraSettings : MonoBehaviour {
     public static int   gameTimer                 = 60;
     public static bool  showAAR                   = true;
@@ -8,6 +10,8 @@ public class ExtraSettings : MonoBehaviour {
     public static bool  showExtraStats            = false;
     public static bool  showExtraStatsBackgrounds = true;
 
+    static bool extraSettingsChangeReady = false;
+
     private static ExtraSettings extraSettings;
     void Awake() { extraSettings = this; }
 
@@ -15,50 +19,32 @@ public class ExtraSettings : MonoBehaviour {
     /// Saves supplied game timer int (setGameTimer) to extra settings object (ExtraSettings), then saves extra settings object.
     /// </summary>
     /// <param name="setGameTimer"></param>
-    public static void SaveGameTimerItem(int setGameTimer) {
-        gameTimer = setGameTimer;
-        extraSettings.SaveExtraSettings();
-    }
+    public static void SaveGameTimerItem(int setGameTimer) { Util.RefSetSettingChange(ref extraSettingsChangeReady, ref gameTimer, setGameTimer); }
     /// <summary>
     /// Saves supplied show 'AfterActionReport' bool (setShowAAR) to extra settings object (ExtraSettings), then saves extra settings object.
     /// </summary>
     /// <param name="setShowAAR"></param>
-    public static void SaveShowAAR(bool setShowAAR) {
-        showAAR = setShowAAR;
-        extraSettings.SaveExtraSettings();
-    }
+    public static void SaveShowAAR(bool setShowAAR) { Util.RefSetSettingChange(ref extraSettingsChangeReady, ref showAAR, setShowAAR); }
     /// <summary>
     /// Saves supplied mouse sensitivity float (setMouseSens) to extra settings object (ExtraSettings), then saves extra settings object.
     /// </summary>
     /// <param name="setMouseSens"></param>
-    public static void SaveMouseSensItem(float setMouseSens) {
-        mouseSensitivity = setMouseSens;
-        extraSettings.SaveExtraSettings();
-    }
+    public static void SaveMouseSensItem(float setMouseSens) { Util.RefSetSettingChange(ref extraSettingsChangeReady, ref mouseSensitivity, setMouseSens); }
     /// <summary>
     /// Saves supplied hide UI bool (setHideUI) to extra settings object (ExtraSettings), then saves extra settings object.
     /// </summary>
     /// <param name="setHideUI"></param>
-    public static void SaveHideUI(bool setHideUI) {
-        hideUI = setHideUI;
-        extraSettings.SaveExtraSettings();
-    }
+    public static void SaveHideUI(bool setHideUI) { Util.RefSetSettingChange(ref extraSettingsChangeReady, ref hideUI, setHideUI); }
     /// <summary>
     /// Saves supplied show 'ExtraStats' bool (setShowExtraStats) to extra settings object (ExtraSettings), then saves extra settings object.
     /// </summary>
     /// <param name="setShowExtraStats"></param>
-    public static void SaveShowExtraStats(bool setShowExtraStats) {
-        showExtraStats = setShowExtraStats;
-        extraSettings.SaveExtraSettings();
-    }
+    public static void SaveShowExtraStats(bool setShowExtraStats) { Util.RefSetSettingChange(ref extraSettingsChangeReady, ref showExtraStats, setShowExtraStats); }
     /// <summary>
     /// Saves supplied show stats backgrounds bool (setShowExtraStatsBackgrounds) to extra settings object (ExtraSettings), then saves extra settings object.
     /// </summary>
     /// <param name="setShowExtraStatsBackgrounds"></param>
-    public static void SaveShowStatsBackgrounds(bool setShowExtraStatsBackgrounds) {
-        showExtraStatsBackgrounds = setShowExtraStatsBackgrounds;
-        extraSettings.SaveExtraSettings();
-    }
+    public static void SaveShowStatsBackgrounds(bool setShowExtraStatsBackgrounds) { Util.RefSetSettingChange(ref extraSettingsChangeReady, ref showExtraStatsBackgrounds, setShowExtraStatsBackgrounds); }
 
     /// <summary>
     /// Calls 'ExtraSaveSystem.SaveExtraSettingsData()' to save extra settings object (ExtraSettings) to file.
@@ -97,5 +83,12 @@ public class ExtraSettings : MonoBehaviour {
         hideUI                    = extraData.hideUI;
         showExtraStats            = extraData.showExtraStats;
         showExtraStatsBackgrounds = extraData.showExtraStatsBackgrounds;
+    }
+
+    public static void CheckSaveExtraSettings() {
+        if (extraSettingsChangeReady) {
+            extraSettings.SaveExtraSettings();
+            extraSettingsChangeReady = false;
+        }
     }
 }

@@ -32,7 +32,7 @@ public class FollowRaycast : MonoBehaviour {
 
                     if (!targetPrimary) {
                         try {
-                            currentTargetRendererMaterial = GenerateFollowPath.pathFollowerTarget.GetComponent<Renderer>().material;
+                            currentTargetRendererMaterial = TargetPathing.pathFollowerTarget.GetComponent<Renderer>().material;
 
                             currentTargetRendererMaterial.SetColor("_Color", followRaycast.followTargetAlbedo);
                             currentTargetRendererMaterial.SetColor("_EmissionColor", followRaycast.followTargetEmission);
@@ -49,7 +49,7 @@ public class FollowRaycast : MonoBehaviour {
 
                     if (targetPrimary) {
                         try {
-                            currentTargetRendererMaterial = GenerateFollowPath.pathFollowerTarget.GetComponent<Renderer>().material;
+                            currentTargetRendererMaterial = TargetPathing.pathFollowerTarget.GetComponent<Renderer>().material;
 
                             currentTargetRendererMaterial.SetColor("_Color", TargetColors.RedAlbedo);
                             currentTargetRendererMaterial.SetColor("_EmissionColor", TargetColors.RedEmission);

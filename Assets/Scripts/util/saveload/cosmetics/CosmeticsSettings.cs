@@ -3,6 +3,7 @@
 using SomeAimGame.Skybox;
 using SomeAimGame.Gamemode;
 using SomeAimGame.Targets;
+using SomeAimGame.Utilities;
 
 public class CosmeticsSettings : MonoBehaviour {
     public static GamemodeType gamemode                = GamemodeType.SCATTER;
@@ -12,8 +13,9 @@ public class CosmeticsSettings : MonoBehaviour {
     public static float        afterActionReportPanelY = 540f;
     public static float        extraStatsPanelX        = 1455.711f;
     public static float        extraStatsPanelY        = 638.3904f;
-    
-    public static bool quickStartGame = false;
+    public static bool         quickStartGame          = false;
+
+    static bool cosmeticsSettingsChangeReady = false;
 
     private static CosmeticsSettings cosmeticsSettings;
     void Awake() { cosmeticsSettings = this; }
@@ -22,29 +24,17 @@ public class CosmeticsSettings : MonoBehaviour {
     /// Saves supplied gamemode string (setGamemode) to cosmetics settings object (CosmeticsSettings), then saves cosmetics settings object.
     /// </summary>
     /// <param name="setGamemode"></param>
-    public static void SaveGamemodeItem(GamemodeType setGamemode) {
-        gamemode = setGamemode;
-        cosmeticsSettings.SaveCosmeticsSettings();
-    }
-
+    public static void SaveGamemodeItem(GamemodeType setGamemode) { Util.RefSetSettingChange(ref cosmeticsSettingsChangeReady, ref gamemode, setGamemode); }
     /// <summary>
     /// Saves supplied target color string (setTargetColor) to cosmetics settings object (CosmeticsSettings), then saves cosmetics settings object.
     /// </summary>
     /// <param name="setTargetColor"></param>
-    public static void SaveTargetColorItem(TargetType setTargetColor) {
-        targetColor = setTargetColor;
-        cosmeticsSettings.SaveCosmeticsSettings();
-    }
-
+    public static void SaveTargetColorItem(TargetType setTargetColor) { Util.RefSetSettingChange(ref cosmeticsSettingsChangeReady, ref targetColor, setTargetColor); }
     /// <summary>
     /// Saves supplied skybox string (setSkybox) to cosmetics settings object (CosmeticsSettings), then saves cosmetics settings object.
     /// </summary>
     /// <param name="setSkybox"></param>
-    public static void SaveSkyboxItem(SkyboxType setSkybox) {
-        skybox = setSkybox;
-        cosmeticsSettings.SaveCosmeticsSettings();
-    }
-
+    public static void SaveSkyboxItem(SkyboxType setSkybox) { Util.RefSetSettingChange(ref cosmeticsSettingsChangeReady, ref skybox, setSkybox); }
     /// <summary>
     /// Saves supplied settings panel location floats (setPanelX)/(setPanelY) to cosmetics settings object (CosmeticsSettings), then saves cosmetics settings object.
     /// </summary>
@@ -53,16 +43,14 @@ public class CosmeticsSettings : MonoBehaviour {
     public static void SavePanelLocationXY(string panelName, float setPanelX, float setPanelY) {
         switch (panelName) {
             case "AfterActionReport":
-                afterActionReportPanelX = setPanelX;
-                afterActionReportPanelY = setPanelY;
+                Util.RefSetSettingChange(ref cosmeticsSettingsChangeReady, ref afterActionReportPanelX, setPanelX);
+                Util.RefSetSettingChange(ref cosmeticsSettingsChangeReady, ref afterActionReportPanelY, setPanelY);
                 break;
             case "ExtraStats":
-                extraStatsPanelX = setPanelX;
-                extraStatsPanelY = setPanelY;
+                Util.RefSetSettingChange(ref cosmeticsSettingsChangeReady, ref extraStatsPanelX, setPanelX);
+                Util.RefSetSettingChange(ref cosmeticsSettingsChangeReady, ref extraStatsPanelY, setPanelY);
                 break;
         }
-
-        cosmeticsSettings.SaveCosmeticsSettings();
     }
 
     /// <summary>
@@ -70,8 +58,7 @@ public class CosmeticsSettings : MonoBehaviour {
     /// </summary>
     /// <param name="setQuickStart"></param>
     public static void SaveQuickStartGameItem(bool setQuickStart) {
-        quickStartGame = setQuickStart;
-        cosmeticsSettings.SaveCosmeticsSettings();
+        Util.RefSetSettingChange(ref cosmeticsSettingsChangeReady, ref quickStartGame, setQuickStart);
     }
 
     /// <summary>
@@ -115,6 +102,13 @@ public class CosmeticsSettings : MonoBehaviour {
         extraStatsPanelX        = cometicsData.extraStatsPanelX;
         extraStatsPanelX        = cometicsData.extraStatsPanelY;
         quickStartGame          = cometicsData.quickStartGame;
+    }
+
+    public static void CheckSaveCosmeticsSettings() {
+        if (cosmeticsSettingsChangeReady) {
+            cosmeticsSettings.SaveCosmeticsSettings();
+            cosmeticsSettingsChangeReady = false;
+        }
     }
 
     /// <summary>

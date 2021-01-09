@@ -75,9 +75,9 @@ namespace SomeAimGame.Core {
             public static void ApplyResolution(int w, int h, FullScreenMode displayMode, int refresh) {
                 if (!VideoSettingUtil.CheckMatch(resolutionStringPlaceholder, resolutionStringCurrent)) {
                     if (!Application.isEditor) { Screen.SetResolution(w, h, displayMode, refresh); }
-                    VideoSettings.SaveResoltionWidthItem(widthPlaceholder);
-                    VideoSettings.SaveResolutionHeightItem(heightPlaceholder);
-                    VideoSettings.SaveResoltionRefreshRateItem(refreshPlaceholder);
+                    VideoSettings.SaveResoltionWidthItem(w);
+                    VideoSettings.SaveResolutionHeightItem(h);
+                    VideoSettings.SaveResoltionRefreshRateItem(refresh);
                 }
             }
             /// <summary>

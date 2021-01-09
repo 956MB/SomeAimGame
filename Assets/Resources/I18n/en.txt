@@ -17,6 +17,7 @@ gamemodegrid=Grid
 gamemodegrid2=Grid II
 gamemodepairs=Pairs
 gamemodefollow=Follow
+gamemodeglob=Glob
 gamemodepatrol=Patrol
 #
 #
@@ -27,6 +28,7 @@ gamemodecapsgrid=GRID
 gamemodecapsgrid2=GRID II
 gamemodecapspairs=PAIRS
 gamemodecapsfollow=FOLLOW
+gamemodecapsglob=GLOB
 #
 #
 # // gamemode start button text
@@ -36,6 +38,7 @@ gamemodestartgrid=START GRID
 gamemodestartgrid2=START GRID II
 gamemodestartpairs=START PAIRS
 gamemodestartfollow=START FOLLOW
+gamemodestartglob=START GLOB
 #
 #
 # // gamemode types
@@ -51,6 +54,7 @@ gamemodegriddescription=Old faithful. An FPS players' best friend. The perfect c
 gamemodegrid2description=Grid the 2nd, a bit more challenging. Same concept as 'Grid', but with more inital targets and a MUCH smaller target size. Take you time on this one.
 gamemodepairsdescription=The game is simple. Match the spawned target to its appropriately matched color buddy. The targets switch colors at random, so stay focused.
 gamemodefollowdescription=Classic tracking target gamemode. Try to keep your crosshair on the target as it floats around your non existant body. It's pretty easy, just do it man. Christ.
+gamemodeglobdescription=None of your beeswax slave, just get to globing that mud. GLOB!!
 #
 #
 # // gamemode names
@@ -60,6 +64,7 @@ Grid=Grid
 Grid2=Grid II
 Pairs=Pairs
 Follow=Follow
+Glob=Glob
 #
 #
 # // categories

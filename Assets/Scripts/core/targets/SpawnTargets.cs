@@ -33,7 +33,7 @@ namespace SomeAimGame.Targets {
         public static bool gamemodeRestart, targetColorReset;
 
         // Pairs
-        public static bool pairStarterPrimaryActive, pairStarterSecondaryActive, pairStarterActive;
+        public static bool pairStarterPrimaryActive, pairStarterSecondaryActive, pairStarterActive, globStarterActive;
         public static GameObject secondaryTargetObject;
         public static Vector3 activePairLocation, starterTargetCords, targetSpawnAreaCenter;
         public static float targetSpawnAreaCenterY;
@@ -69,7 +69,7 @@ namespace SomeAimGame.Targets {
                         targetSpawnAreaBox     = ST.targetSpawnArea.GetComponent<BoxCollider>();
                         targetSpawnAreaBounds  = ST.targetSpawnArea.GetComponent<BoxCollider>().bounds;
                         targetRb               = primaryTargetObject.GetComponent<Rigidbody>();
-                        targetRb.isKinematic = true;
+                        targetRb.isKinematic   = true;
                     }
                 } catch (MissingReferenceException mre) {
                     //Debug.Log("missing reference exception here: " + mre);
@@ -86,9 +86,6 @@ namespace SomeAimGame.Targets {
 
             // Clear any targets before starting game from saved gamemode.
             RespawnTargets();
-
-            // EVENT:: for saved gamemode load
-            //DevEventHandler.CheckGamemodeEvent($"\"{gamemode}\" {I18nTextTranslator.SetTranslatedText("eventgamemodeloaded")}");
         }
 
         /// <summary>
@@ -112,7 +109,7 @@ namespace SomeAimGame.Targets {
                 targetRb.isKinematic = !ST.targetFall ? true : false;
                 DestroySpawnAreas();
                 SpawnSingle(primaryTargetObject);
-            } else if (gamemode == GamemodeType.GRID || gamemode == GamemodeType.GRID_2) {
+            } else if (gamemode == GamemodeType.GRID || gamemode == GamemodeType.GRID_2 || gamemode == GamemodeType.GRID_3) {
                 //if (!targetAreasDestroyed) {
                 try {
                     ST.targetSpawnArea.GetComponent<BoxCollider>().size = new Vector3(1f, 1f, 0.55f);
@@ -122,65 +119,25 @@ namespace SomeAimGame.Targets {
                 }
                 //}
                 DestroySpawnAreas();
-
-                // Spawn initial 3 targets for "Gamemode-Grid", or initial 8 for "Gamemode-Grid2".
-                if (gamemode == GamemodeType.GRID) {
-                    for (int i = 0; i < 3; i++) { SpawnSingle(primaryTargetObject); }
-                } else if (gamemode == GamemodeType.GRID_2) {
-                    for (int i = 0; i < 8; i++) { SpawnSingle(primaryTargetObject); }
-                } else if (gamemode == GamemodeType.GRID_3) {
-                    for (int i = 0; i < 2; i++) { SpawnSingle(secondaryTargetObject); }
-                    for (int i = 0; i < 1; i++) { SpawnSingle(primaryTargetObject); }
-                }
-
+                SpawnInitialGrid();
             } else if (gamemode == GamemodeType.PAIRS) {
                 // Destroy spawn areas and spawn starter target for "Gamemode-Pairs".
                 DestroySpawnAreas();
                 SpawnPairsStarter();
             } else if (gamemode == GamemodeType.FOLLOW) {
                 // Generate path for "Gamemode-Follow" and start.
-                GenerateFollowPath.StartFollowGamemode();
+                TargetPathing.StartFollowGamemode();
+            } else if (gamemode == GamemodeType.GLOB) {
+                TargetPathing.InitSpawnAreaBounds_Glob();
+                SpawnGlobCenter();
             }
 
             // TODO: potential bug, dont know if spawn area is somehow not being destroyed, or copy is being created.
             DestroyNewSpawnAreas();
         }
 
-        /// <summary>
-        /// Start new game (restart) with supplied new gamemode string (newGamemode).
-        /// </summary>
-        /// <param name="newGamemode"></param>
-        public static void StartNewGamemode(GamemodeType newGamemode) {
-            GameUI.RestartGame(newGamemode, true);
-        }
 
-        /// <summary>
-        /// Sets targets size to tiny if current gamemode "Gamemode-Grid2".
-        /// </summary>
-        public static void SetTinyTargets() {
-            Util.GameObjectLoops.Util_SetObjectsLocalScale(tinyTargetSize, ST.redTarget, ST.orangeTarget, ST.yellowTarget, ST.greenTarget, ST.blueTarget, ST.purpleTarget, ST.pinkTarget, ST.whiteTarget);
-            targetSize = primaryTargetObject.transform.lossyScale.y;
-        }
-
-        /// <summary>
-        /// Sets targets size to normal if current gamemode is anything but "Gamemode-Grid2".
-        /// </summary>
-        public static void SetNormalTargets() {
-            Util.GameObjectLoops.Util_SetObjectsLocalScale(normalTargetSize, ST.redTarget, ST.orangeTarget, ST.yellowTarget, ST.greenTarget, ST.blueTarget, ST.purpleTarget, ST.pinkTarget, ST.whiteTarget);
-            targetSize = primaryTargetObject.transform.lossyScale.y;
-        }
-
-        /// <summary>
-        /// Spawns single target at random point in spawn area bounds, then increases counts.
-        /// </summary>
-        public static void SpawnSingle(GameObject targetType) {
-            targetInArea     = CheckTargetSpawn(TargetUtil.RandomPointInBounds(targetSpawnAreaBounds, gamemode, targetSize, stepCount));
-            currentTargetObj = Instantiate(targetType, targetInArea, Quaternion.identity);
-
-            preFallTargetSpawn = currentTargetObj.transform.position;
-            count              += 1;
-            totalCount         += 1;
-        }
+        #region Scatter
 
         /// <summary>
         /// Spawns single scatter target if count in scatter spawns list >= 1.
@@ -226,6 +183,76 @@ namespace SomeAimGame.Targets {
                 totalCount         += 1;
             }
         }
+
+        /// <summary>
+        /// Returns initial list of available scatter spawns (Vector3). [EVENT]
+        /// </summary>
+        /// <returns></returns>
+        private static List<Vector3> GetScatterTargetSpawns() {
+            Vector3 newSpawn;
+
+            while (true) {
+                newSpawn = TargetUtil.RandomPointInBounds(targetSpawnAreaBounds, gamemode, targetSize, stepCount);
+                if (!scatterTargetSpawns.Contains(newSpawn)) {
+                    scatterTargetSpawns.Add(newSpawn);
+                }
+
+                if (scatterTargetSpawns.Count >= 72) {
+                    return scatterTargetSpawns;
+                }
+            }
+        }
+
+        private static void HandleScatterHit(RaycastHit hitTarget) {
+            count -= 1;
+            if (count <= 0) {
+                scatterTargetSpawns.Remove(hitTarget.transform.position);
+                ClearResetScatterSpawns();
+                SpawnScatter();
+                GameUI.IncreaseScore_Bonus();
+            }
+        }
+
+        #endregion
+
+
+        #region Glob
+
+        public static void SpawnGlobCenter() {
+            //globStarterActive  = true;
+            starterTargetCords = targetSpawnAreaCenter;
+
+            // spawn center
+            currentTargetObj = Instantiate(primaryTargetObject, starterTargetCords, Quaternion.identity);
+            targetSpawns.Add(starterTargetCords);
+            count      += 1;
+            totalCount += 1;
+        }
+
+        public static void SpawnNewGlobPath() {
+            TargetPathing.CreateGlobPath(targetSpawnAreaBounds, starterTargetCords);
+        }
+
+        private static void HandleGlobHit() {
+            if (globStarterActive) {
+                globStarterActive = false;
+                shotsHit += 1;
+                // spawn glob path target
+                SpawnNewGlobPath();
+            } else {
+                globStarterActive = true;
+                // path target hit
+                PathFollower.DestroyPathObj();
+                ClearTargetLists();
+                //DestroyTargetObjects();
+                SpawnGlobCenter();
+            }
+        }
+
+        #endregion
+
+
+        #region Pairs
 
         /// <summary>
         /// Spawns inital target as pairs starter (if gamemode "Gamemode-Pairs"). Increases counts.
@@ -304,6 +331,75 @@ namespace SomeAimGame.Targets {
         public static void GamemodePairsMiss() {
             shotsHit   -= 1;
             shotMisses += 1;
+        }
+
+        private static void HandlePairsHit() {
+            if (pairStarterActive) {
+                shotsHit += 1;
+                SpawnPairs();
+            } else {
+                ClearTargetLists();
+                ClearPairs();
+                SpawnPairsStarter();
+            }
+        }
+
+        #endregion
+
+
+        #region Grid
+
+        private static void SpawnInitialGrid() {
+            // Spawn initial 3 targets for "Gamemode-Grid", or initial 8 for "Gamemode-Grid2".
+            if (gamemode == GamemodeType.GRID) {
+                for (int i = 0; i < 3; i++) { SpawnSingle(primaryTargetObject); }
+            } else if (gamemode == GamemodeType.GRID_2) {
+                for (int i = 0; i < 8; i++) { SpawnSingle(primaryTargetObject); }
+            } else if (gamemode == GamemodeType.GRID_3) {
+                for (int i = 0; i < 2; i++) { SpawnSingle(secondaryTargetObject); }
+                for (int i = 0; i < 1; i++) { SpawnSingle(primaryTargetObject); }
+            }
+        }
+
+        #endregion
+
+
+        #region Util
+
+        /// <summary>
+        /// Start new game (restart) with supplied new gamemode string (newGamemode).
+        /// </summary>
+        /// <param name="newGamemode"></param>
+        public static void StartNewGamemode(GamemodeType newGamemode) {
+            GameUI.RestartGame(newGamemode, true);
+        }
+
+        /// <summary>
+        /// Sets targets size to tiny if current gamemode "Gamemode-Grid2".
+        /// </summary>
+        public static void SetTinyTargets() {
+            Util.GameObjectLoops.Util_SetObjectsLocalScale(tinyTargetSize, ST.redTarget, ST.orangeTarget, ST.yellowTarget, ST.greenTarget, ST.blueTarget, ST.purpleTarget, ST.pinkTarget, ST.whiteTarget);
+            targetSize = primaryTargetObject.transform.lossyScale.y;
+        }
+
+        /// <summary>
+        /// Sets targets size to normal if current gamemode is anything but "Gamemode-Grid2".
+        /// </summary>
+        public static void SetNormalTargets() {
+            Util.GameObjectLoops.Util_SetObjectsLocalScale(normalTargetSize, ST.redTarget, ST.orangeTarget, ST.yellowTarget, ST.greenTarget, ST.blueTarget, ST.purpleTarget, ST.pinkTarget, ST.whiteTarget);
+            targetSize = primaryTargetObject.transform.lossyScale.y;
+        }
+
+        /// <summary>
+        /// Spawns single target at random point in spawn area bounds, then increases counts.
+        /// </summary>
+        public static void SpawnSingle(GameObject targetType) {
+            targetInArea     = CheckTargetSpawn(TargetUtil.RandomPointInBounds(targetSpawnAreaBounds, gamemode, targetSize, stepCount));
+            currentTargetObj = Instantiate(targetType, targetInArea, Quaternion.identity);
+
+            preFallTargetSpawn = currentTargetObj.transform.position;
+            count              += 1;
+            totalCount         += 1;
         }
 
         /// <summary>
@@ -388,32 +484,18 @@ namespace SomeAimGame.Targets {
         /// </summary>
         /// <param name="hitTarget"></param>
         /// <param name="hit"></param>
-        public static void CheckTargetCount(RaycastHit hitTarget, bool hit) {
+        public static void CheckTargetHit(RaycastHit hitTarget, bool hit) {
             if (hit) {
-                if (!pairStarterActive) {
-                    shotsHit += 1;
-                }
+                if (!pairStarterActive || !globStarterActive) { shotsHit += 1; }
 
                 if (gamemode == GamemodeType.SCATTER) {
-                    count -= 1;
-                    if (count <= 0) {
-                        scatterTargetSpawns.Remove(hitTarget.transform.position);
-                        ClearResetScatterSpawns();
-                        SpawnScatter();
-                        GameUI.IncreaseScore_Bonus();
-                    }
+                    HandleScatterHit(hitTarget);
                 } else if (gamemode == GamemodeType.FLICK || gamemode == GamemodeType.GRID || gamemode == GamemodeType.GRID_2) {
                     SpawnSingle(primaryTargetObject);
                 } else if (gamemode == GamemodeType.PAIRS) {
-                    if (pairStarterActive) {
-                        shotsHit += 1;
-                        SpawnPairs();
-                    }
-                    else {
-                        ClearTargetLists();
-                        ClearPairs();
-                        SpawnPairsStarter();
-                    }
+                    HandlePairsHit();
+                } else if (gamemode == GamemodeType.GLOB) {
+                    HandleGlobHit();
                 }
 
                 FindAndRemoveTargetFromList(hitTarget.transform.position);
@@ -448,30 +530,6 @@ namespace SomeAimGame.Targets {
         }
 
         /// <summary>
-        /// Returns initial list of available scatter spawns (Vector3). [EVENT]
-        /// </summary>
-        /// <returns></returns>
-        private static List<Vector3> GetScatterTargetSpawns() {
-            Vector3 newSpawn;
-
-            while (true) {
-                newSpawn = TargetUtil.RandomPointInBounds(targetSpawnAreaBounds, gamemode, targetSize, stepCount);
-                if (!scatterTargetSpawns.Contains(newSpawn)) {
-                    scatterTargetSpawns.Add(newSpawn);
-                }
-
-                if (scatterTargetSpawns.Count >= 72) {
-                    // EVENT:: for initial scatter spawns list
-                    //DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsscatterinitial")} ({scatterTargetSpawns.Count})");
-
-                    return scatterTargetSpawns;
-                }
-            }
-
-            //return scatterTargetSpawns;
-        }
-
-        /// <summary>
         /// Finds and removes supplied target position (targetPos) from target spawns list. [EVENT]
         /// </summary>
         /// <param name="targetPos"></param>
@@ -490,9 +548,6 @@ namespace SomeAimGame.Targets {
                     targetSpawnsSecondary.Remove(targetPos);
                 }
             }
-
-            // EVENT:: for remove target from spawn list
-            //DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsremove")} ({pos})");
         }
 
         /// <summary>
@@ -502,9 +557,6 @@ namespace SomeAimGame.Targets {
             targetSpawns.Clear();
             targetSpawnsPrimary.Clear();
             targetSpawnsSecondary.Clear();
-
-            // EVENT:: for clear target lists
-            //DevEventHandler.CheckGamemodeEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfaceelementsreset")} \"{gamemode}\"");
         }
 
         /// <summary>
@@ -520,9 +572,6 @@ namespace SomeAimGame.Targets {
                     //Debug.Log("missing reference exception here, couldnt destroy spawn area: " + mre);
                     targetAreasDestroyed = true;
                 }
-
-                // EVENT:: for destroy spawn areas
-                //DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsdestroyspawnarea")} \"{gamemode}\"");
             }
         }
 
@@ -555,9 +604,6 @@ namespace SomeAimGame.Targets {
             } catch (MissingReferenceException mre) {
                 //Debug.Log("missing reference exception here, couldnt destroy \"NEW\" spawn area: " + mre);
             }
-
-            // EVENT:: for destroy new spawn areas
-            //DevEventHandler.CheckTargetsEvent($"*NEW* {I18nTextTranslator.SetTranslatedText("eventtargetsdestroyspawnarea")} \"{gamemode}\"");
         }
 
         /// <summary>
@@ -566,9 +612,6 @@ namespace SomeAimGame.Targets {
         public static void DestroyTargetObjects() {
             targetObjects = GameObject.FindGameObjectsWithTag("Target");
             for (int i = 0; i < targetObjects.Length; i++) { Destroy(targetObjects[i]); }
-
-            // EVENT:: for destroy new spawn areas
-            //DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsalldestroyed")} \"{gamemode}\"");
         }
 
         /// <summary>
@@ -576,10 +619,6 @@ namespace SomeAimGame.Targets {
         /// </summary>
         public static void RespawnTargets() {
             DestroyTargetObjects();
-
-            // EVENT:: for respawn targets
-            //DevEventHandler.CheckTargetsEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsrespawn")} \"{gamemode}\"");
-
             SelectGamemode();
         }
 
@@ -594,11 +633,9 @@ namespace SomeAimGame.Targets {
 
             GunAction.timerRunning = true;
             //TempValues.SetTimerRunningTemp(true);
-
             cosmeticsLoaded        = false;
-
-            // EVENT:: for reset targets spawn values
-            //DevEventHandler.CheckGamemodeEvent($"{I18nTextTranslator.SetTranslatedText("eventtargetsreset")}");
         }
+
+        #endregion
     }
 }

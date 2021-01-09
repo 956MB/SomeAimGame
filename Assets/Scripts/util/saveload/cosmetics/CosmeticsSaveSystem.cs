@@ -12,7 +12,7 @@ using SomeAimGame.Utilities;
 public class CosmeticsSaveSystem : MonoBehaviour {
     public GameObject targetColorRedBorder, targetColorOrangeBorder, targetColorYellowBorder, targetColorGreenBorder, targetColorBlueBorder, targetColorPurpleBorder, targetColorPinkBorder, targetColorWhiteBorder;
     public GameObject skyboxPinkBorder, skyboxGoldenBorder, skyboxNightBorder, skyboxGreyBorder, skyboxBlueBorder, skyboxSlateBorder;
-    public GameObject gamemodeScatterBorder, gamemodeFlickBorder, gamemodeGridBorder, gamemodeGrid2Border, gamemodePairsBorder, gamemodeFollowBorder, gamemodePatrolBorder;
+    public GameObject gamemodeScatterBorder, gamemodeFlickBorder, gamemodeGridBorder, gamemodeGrid2Border, gamemodePairsBorder, gamemodeFollowBorder, gamemodeGlobBorder, gamemodePatrolBorder;
     public GameObject settingsPanel, afterActionReportPanel, extraStatsPanel;
     public TMP_Text targetColorSelected, skyboxSelected, showModeText;
     public static string activeTargetColorText, activeSkyboxText;
@@ -133,6 +133,7 @@ public class CosmeticsSaveSystem : MonoBehaviour {
                 break;
             case GamemodeType.PAIRS:  SetGamemodeBorder(saveLoad.gamemodePairsBorder);  break;
             case GamemodeType.FOLLOW: SetGamemodeBorder(saveLoad.gamemodeFollowBorder); break;
+            case GamemodeType.GLOB:   SetGamemodeBorder(saveLoad.gamemodeGlobBorder);   break;
         }
     }
 

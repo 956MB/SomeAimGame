@@ -5,6 +5,14 @@ using UnityEngine.UI;
 using TMPro;
 using System.Globalization;
 
+using SomeAimGame.Skybox;
+using SomeAimGame.Gamemode;
+using SomeAimGame.Targets;
+using SomeAimGame.Utilities;
+using SomeAimGame.Stats;
+using SomeAimGame.SFX;
+using SomeAimGame.Core.Video;
+
 namespace SomeAimGame.Utilities {
     public class Util : MonoBehaviour {
         /// <summary>
@@ -132,6 +140,11 @@ namespace SomeAimGame.Utilities {
             setCanvasGroup.interactable   = isEnabled;
             setCanvasGroup.blocksRaycasts = isEnabled;
         }
+        public static void SetCanvasGroupStateDisabled_AllowHover(CanvasGroup setCanvasGroup) {
+            setCanvasGroup.alpha          = 0.35f;
+            setCanvasGroup.interactable   = false;
+            setCanvasGroup.blocksRaycasts = true;
+        }
 
         /// <summary>
         /// Locks cursor if settings panel closed and game active.
@@ -148,7 +161,44 @@ namespace SomeAimGame.Utilities {
             Cursor.visible   = true;
         }
 
-        // Looping utils //
+        public static void RefSetSettingChange(ref bool changeReady, ref KeyCode setting, KeyCode setKeycode) {
+            setting = setKeycode;
+            if (!changeReady) { changeReady = true; }
+        }
+        public static void RefSetSettingChange(ref bool changeReady, ref SFXType setting, SFXType setSFX) {
+            setting = setSFX;
+            if (!changeReady) { changeReady = true; }
+        }
+        public static void RefSetSettingChange(ref bool changeReady, ref GamemodeType setting, GamemodeType setGamemode) {
+            setting = setGamemode;
+            if (!changeReady) { changeReady = true; }
+        }
+        public static void RefSetSettingChange(ref bool changeReady, ref TargetType setting, TargetType setTarget) {
+            setting = setTarget;
+            if (!changeReady) { changeReady = true; }
+        }
+        public static void RefSetSettingChange(ref bool changeReady, ref SkyboxType setting, SkyboxType setSkybox) {
+            setting = setSkybox;
+            if (!changeReady) { changeReady = true; }
+        }
+        public static void RefSetSettingChange(ref bool changeReady, ref int setting, int setInt) {
+            setting = setInt;
+            if (!changeReady) { changeReady = true; }
+        }
+        public static void RefSetSettingChange(ref bool changeReady, ref float setting, float setFloat) {
+            setting = setFloat;
+            if (!changeReady) { changeReady = true; }
+        }
+        public static void RefSetSettingChange(ref bool changeReady, ref string setting, string setString) {
+            setting = setString;
+            if (!changeReady) { changeReady = true; }
+        }
+        public static void RefSetSettingChange(ref bool changeReady, ref bool setting, bool setBool) {
+            setting = setBool;
+            if (!changeReady) { changeReady = true; }
+        }
+
+        #region looping utils
 
         /// <summary>
         /// Class holding various looping methods for setting things on TMP_Text/Image/GameObject.
@@ -235,5 +285,7 @@ namespace SomeAimGame.Utilities {
                 foreach (VideoPlayer player in videoPlayers) { player.Play(); }
             }
         }
+
+        #endregion
     }
 }

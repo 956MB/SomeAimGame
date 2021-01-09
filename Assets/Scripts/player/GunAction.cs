@@ -53,17 +53,17 @@ public class GunAction : MonoBehaviour {
                                 SpawnTargets.GamemodePairsMiss();
                             }
                         }
-                        SpawnTargets.CheckTargetCount(gunHit, true);
+                        SpawnTargets.CheckTargetHit(gunHit, true);
                     } else {
                         GameUI.IncreaseScore();
-                        SpawnTargets.CheckTargetCount(gunHit, true);
+                        SpawnTargets.CheckTargetHit(gunHit, true);
                     }
                     break;
 
                 default:
                     if (SpawnTargets.gamemode != GamemodeType.PAIRS) {
                         GameUI.DecreaseScore();
-                        SpawnTargets.CheckTargetCount(gunHit, false);
+                        SpawnTargets.CheckTargetHit(gunHit, false);
                         SFXManager.CheckPlayTargetMiss();
                     }
                     break;

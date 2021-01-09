@@ -5,6 +5,9 @@ using SomeAimGame.Utilities;
 
 namespace SomeAimGame.Gamemode {
     public class GamemodeUtil : MonoBehaviour {
+        private static string[] gamemodeLongStrings  = { "Gamemode-Scatter", "Gamemode-Flick", "Gamemode-Grid", "Gamemode-Grid2", "Gamemode-Grid3", "Gamemode-Pairs", "Gamemode-Follow", "Gamemode-Glob" };
+        private static string[] gamemodeShortStrings = { "Scatter", "Flick", "Grid", "Grid2", "Grid3", "Pairs", "Follow", "Glob" };
+
         /// <summary>
         /// Returns corresponding gamemode type (Gamemode) from supplied string (gamemodeTypeString).
         /// </summary>
@@ -19,6 +22,7 @@ namespace SomeAimGame.Gamemode {
                 case "Gamemode-Grid3":   return GamemodeType.GRID_3;
                 case "Gamemode-Pairs":   return GamemodeType.PAIRS;
                 case "Gamemode-Follow":  return GamemodeType.FOLLOW;
+                case "Gamemode-Glob":    return GamemodeType.GLOB;
                 default:                 return GamemodeType.GRID;
             }
         }
@@ -29,16 +33,7 @@ namespace SomeAimGame.Gamemode {
         /// <param name="typeGamemode"></param>
         /// <returns></returns>
         public static string ReturnGamemodeType_StringFull(GamemodeType typeGamemode) {
-            switch (typeGamemode) {
-                case GamemodeType.SCATTER: return "Gamemode-Scatter";
-                case GamemodeType.FLICK:   return "Gamemode-Flick";
-                case GamemodeType.GRID:    return "Gamemode-Grid";
-                case GamemodeType.GRID_2:  return "Gamemode-Grid2";
-                case GamemodeType.GRID_3:  return "Gamemode-Grid3";
-                case GamemodeType.PAIRS:   return "Gamemode-Pairs";
-                case GamemodeType.FOLLOW:  return "Gamemode-Follow";
-                default:                   return "Gamemode-Scatter";
-            }
+            return gamemodeLongStrings[(int)typeGamemode];
         }
 
         /// <summary>
@@ -47,16 +42,7 @@ namespace SomeAimGame.Gamemode {
         /// <param name="typeGamemode"></param>
         /// <returns></returns>
         public static string ReturnGamemodeType_StringShort(GamemodeType typeGamemode) {
-            switch (typeGamemode) {
-                case GamemodeType.SCATTER: return "Scatter";
-                case GamemodeType.FLICK:   return "Flick";
-                case GamemodeType.GRID:    return "Grid";
-                case GamemodeType.GRID_2:  return "Grid2";
-                case GamemodeType.GRID_3:  return "Grid3";
-                case GamemodeType.PAIRS:   return "Pairs";
-                case GamemodeType.FOLLOW:  return "Follow";
-                default:                   return "Scatter";
-            }
+            return gamemodeShortStrings[(int)typeGamemode];
         }
 
         /// <summary>

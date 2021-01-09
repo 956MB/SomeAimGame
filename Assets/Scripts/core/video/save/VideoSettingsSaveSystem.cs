@@ -65,6 +65,7 @@ namespace SomeAimGame.Core {
             public static void InitVideoSettingsDefaults() {
                 // Get users default monitor res/refresh on init
                 Resolution currentRes = VideoSettingUtil.ReturnCurrentScreenValues();
+                //Debug.Log($"current res: {currentRes.refreshRate}");
 
                 SetDisplayMode(FullScreenMode.FullScreenWindow);
                 SetResolution(currentRes.width, currentRes.height, FullScreenMode.FullScreenWindow, currentRes.refreshRate);

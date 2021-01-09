@@ -25,7 +25,7 @@ namespace SomeAimGame.Utilities {
         /// <returns></returns>
         public static string ReturnKeybindString(KeyCode fullKeycode) {
             switch (fullKeycode) {
-                case KeyCode.Escape:            return "ESCAPE";
+                case KeyCode.Escape:            return "ESC";
                 case KeyCode.Mouse0:            return "MOUSE 1";
                 case KeyCode.Mouse1:            return "MOUSE 2";
                 case KeyCode.Mouse2:            return "MOUSE 3";

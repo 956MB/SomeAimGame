@@ -3,8 +3,8 @@ using UnityEngine.Video;
 
 public class PreviewManager : MonoBehaviour {
     public VideoClip[] allVideoClips;
-    public static VideoClip[] gamemodeVideoClips = new VideoClip[7];
-    VideoClip[] previewsObject                   = new VideoClip[7];
+    public static VideoClip[] gamemodeVideoClips = new VideoClip[8];
+    VideoClip[] previewsObject                   = new VideoClip[8];
 
     public static PreviewManager previewManager;
     private void Awake() { previewManager = this; }
@@ -22,7 +22,8 @@ public class PreviewManager : MonoBehaviour {
         previewManager.previewsObject[3] = LoopVideoClips("Gamemode-Grid2", targetColor, "Skybox-Slate");
         previewManager.previewsObject[4] = LoopVideoClips("Gamemode-Pairs", targetColor, "Skybox-Slate");
         previewManager.previewsObject[5] = LoopVideoClips("Gamemode-Follow", targetColor, "Skybox-Slate");
-        previewManager.previewsObject[6] = LoopVideoClips(currentGamemode, targetColor, "Skybox-Slate");
+        previewManager.previewsObject[6] = LoopVideoClips("Gamemode-Follow", targetColor, "Skybox-Slate"); // TODO: Create glob gamemode clip when ready
+        previewManager.previewsObject[7] = LoopVideoClips("Gamemode-Follow", targetColor, "Skybox-Slate");
 
         return previewManager.previewsObject;
     }

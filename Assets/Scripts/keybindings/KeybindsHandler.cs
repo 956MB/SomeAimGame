@@ -39,7 +39,7 @@ public class KeybindsHandler : MonoBehaviour {
     /// <param name="keyEvent"></param>
     private void HandleKeyEvent(Event keyEvent) {
         if (keyEvent.keyCode != KeyCode.None && keyEvent.keyCode != clickedKeycode && keyEvent.keyCode != KeyCode.Escape) {
-            Debug.Log($"new KeyCode: {keyEvent.keyCode}");
+            //Debug.Log($"new KeyCode: {keyEvent.keyCode}");
             HandleNewKeybindSet(clickedKeycode, keyEvent.keyCode);
             currentKey = null;
         } else {
@@ -60,7 +60,7 @@ public class KeybindsHandler : MonoBehaviour {
             else if (Input.GetKeyDown(KeyCode.Mouse4)) { HandleNewKeybindSet(clickedKeycode, KeyCode.Mouse4); currentKey = null; }
             else if (Input.GetKeyDown(KeyCode.Escape)) { ResetKeybindText();                                  currentKey = null; }
         } else {
-            Debug.Log("reset here");
+            //Debug.Log("reset here");
             ResetKeybindText();
         }
     }

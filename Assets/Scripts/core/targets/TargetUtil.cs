@@ -6,6 +6,9 @@ using SomeAimGame.Utilities;
 
 namespace SomeAimGame.Targets {
     public class TargetUtil : MonoBehaviour {
+        private static string[] targetsLongStrings  = { "TargetColor-Red", "TargetColor-Orange", "TargetColor-Yellow", "TargetColor-Green", "TargetColor-Blue", "TargetColor-Purple", "TargetColor-Pink", "TargetColor-White" };
+        private static string[] targetsShortStrings = { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "White" };
+        private static string[] targetsi18nsStrings = { "colorred", "colororange", "coloryellow", "colorgreen", "colorblue", "colorpurple", "colorpink", "colorwhite" };
 
         #region Targets utils
 
@@ -65,6 +68,32 @@ namespace SomeAimGame.Targets {
         }
 
         /// <summary>
+        /// Returns randomly selected point in bounds Vector3 from supplied Bounds (bounds) on supplied side int (side).
+        /// </summary>
+        /// <param name="bounds"></param>
+        /// <param name="side"></param>
+        /// <returns></returns>
+        public static Vector3 RandomPointInBounds_Glob(Bounds bounds, int side) {
+            float randomX, randomY, randomZ;
+
+            if (side == 0) {
+                randomX = bounds.min.x;
+                randomY = Random.Range(bounds.min.y, bounds.max.y);
+                randomZ = bounds.min.z;
+                //randomZ = Random.Range(bounds.min.z, bounds.max.z);
+            } else {
+                randomX = bounds.min.x;
+                randomY = Random.Range(bounds.min.y, bounds.max.y);
+                randomZ = bounds.max.z;
+                //randomZ = Random.Range(bounds.min.z, bounds.max.z);
+            }
+
+            //Debug.Log($"Side: {side}, X: {randomX}");
+
+            return new Vector3(randomX / 2, randomY / 2, randomZ / 3 );
+        }
+
+        /// <summary>
         /// Picks random points (X/Y/Z) inside corresponding spawn area bounds for supplied side (left/right), returns spawn location Vector3.
         /// </summary>
         /// <param name="bounds"></param>
@@ -98,6 +127,7 @@ namespace SomeAimGame.Targets {
         /// <param name="targetColorTypeString"></param>
         /// <returns></returns>
         public static TargetType ReturnTargetColorType_TargetColor(string targetColorTypeString) {
+            //return targetsLong[]
             switch (targetColorTypeString) {
                 case "TargetColor-Red":    return TargetType.RED;
                 case "TargetColor-Orange": return TargetType.ORANGE;
@@ -117,17 +147,7 @@ namespace SomeAimGame.Targets {
         /// <param name="typeTargetColor"></param>
         /// <returns></returns>
         public static string ReturnTargetColorType_StringFull(TargetType typeTargetColor) {
-            switch (typeTargetColor) {
-                case TargetType.RED:    return "TargetColor-Red";
-                case TargetType.ORANGE: return "TargetColor-Orange";
-                case TargetType.YELLOW: return "TargetColor-Yellow";
-                case TargetType.GREEN:  return "TargetColor-Green";
-                case TargetType.BLUE:   return "TargetColor-Blue";
-                case TargetType.PURPLE: return "TargetColor-Purple";
-                case TargetType.PINK:   return "TargetColor-Pink";
-                case TargetType.WHITE:  return "TargetColor-White";
-                default:                return "TargetColor-Yellow";
-            }
+            return targetsLongStrings[(int)typeTargetColor];
         }
 
         /// <summary>
@@ -136,17 +156,7 @@ namespace SomeAimGame.Targets {
         /// <param name="typeTargetColor"></param>
         /// <returns></returns>
         public static string ReturnTargetColorType_StringShort(TargetType typeTargetColor) {
-            switch (typeTargetColor) {
-                case TargetType.RED:    return "Red";
-                case TargetType.ORANGE: return "Orange";
-                case TargetType.YELLOW: return "Yellow";
-                case TargetType.GREEN:  return "Green";
-                case TargetType.BLUE:   return "Blue";
-                case TargetType.PURPLE: return "Purple";
-                case TargetType.PINK:   return "Pink";
-                case TargetType.WHITE:  return "White";
-                default:                return "Yellow";
-            }
+            return targetsShortStrings[(int)typeTargetColor];
         }
 
         /// <summary>
@@ -155,17 +165,7 @@ namespace SomeAimGame.Targets {
         /// <param name="typeTargetColor"></param>
         /// <returns></returns>
         public static string ReturnTargetColorType_StringTranslated(TargetType typeTargetColor) {
-            switch (typeTargetColor) {
-                case TargetType.RED:    return I18nTextTranslator.SetTranslatedText("colorred");
-                case TargetType.ORANGE: return I18nTextTranslator.SetTranslatedText("colororange");
-                case TargetType.YELLOW: return I18nTextTranslator.SetTranslatedText("coloryellow");
-                case TargetType.GREEN:  return I18nTextTranslator.SetTranslatedText("colorgreen");
-                case TargetType.BLUE:   return I18nTextTranslator.SetTranslatedText("colorblue");
-                case TargetType.PURPLE: return I18nTextTranslator.SetTranslatedText("colorpurple");
-                case TargetType.PINK:   return I18nTextTranslator.SetTranslatedText("colorpink");
-                case TargetType.WHITE:  return I18nTextTranslator.SetTranslatedText("colorwhite");
-                default:                return I18nTextTranslator.SetTranslatedText("coloryellow");
-            }
+            return I18nTextTranslator.SetTranslatedText(targetsi18nsStrings[(int)typeTargetColor]);
         }
 
         #endregion

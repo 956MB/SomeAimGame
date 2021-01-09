@@ -7,7 +7,7 @@ using System.Collections;
 /// </summary>
 public class NotificationHandler : MonoBehaviour {
     public static TMP_Text notificationTextContent;
-    public static bool notificationOpen                    = false;
+    public static bool notificationOpen                            = false;
     private static WaitForSecondsRealtime notificationDestroyDelay = new WaitForSecondsRealtime(3.5f);
 
     public static NotificationHandler notification;

@@ -38,10 +38,7 @@ public class SubMenuHandler : MonoBehaviour {
             case "VideoSubMenuButton":     SetSubMenu(videoSubMenuText, videoContainer, videoBar);                   break;
         }
 
-        CrosshairOptionsObject.SaveCrosshairObject(false);
-        TargetSoundSelect.CheckSaveTargetSoundSelection();
-        NotificationHandler.CheckHideNotificationObject();
-        FPSLimitSlider.CheckSaveFPSLimit();
+        SettingsPanel.CheckSaveSettings();
 
         SFXManager.CheckPlayClick_Regular();
     }
@@ -90,9 +87,7 @@ public class SubMenuHandler : MonoBehaviour {
     /// </summary>
     public void ClearSubMenus() {
         Util.GameObjectLoops.Util_ClearTMPTextColor(InterfaceColors.unselectedColor, gamemodeSubMenuText, generalSubMenuText, controlsSubMenuText, crosshairSubMenuText, videoSubMenuText);
-
         Util.GameObjectLoops.Util_SetObjectsLocalScale(disabledSubMenuScrollView, gamemodeContainer, generalContainer, controlsContainer, crosshairContainer, videoContainer);
-
         Util.GameObjectLoops.Util_ImagesSetActive(false, gamemodeBar, generalBar, controlsBar, crosshairBar, videoBar);
         
         CrosshairHide.HideCrosshairs();

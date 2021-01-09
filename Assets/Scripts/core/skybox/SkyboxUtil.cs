@@ -5,6 +5,10 @@ using SomeAimGame.Utilities;
 
 namespace SomeAimGame.Skybox {
     public class SkyboxUtil : MonoBehaviour {
+        private static string[] skyboxLongStrings  = { "Skybox-Pink", "Skybox-Golden", "Skybox-Night", "Skybox-Grey", "Skybox-Blue", "Skybox-Slate" };
+        private static string[] skyboxShortStrings = { "Pink", "Golden", "Night", "Grey", "Blue", "Slate" };
+        private static string[] skyboxi18nsStrings = { "skyboxpink", "skyboxgolden", "skyboxnight", "skyboxgrey", "skyboxblue", "skyboxslate" };
+
         /// <summary>
         /// Returns corresponding skybox type (Skybox) from supplied string (skyboxTypeString).
         /// </summary>
@@ -28,15 +32,7 @@ namespace SomeAimGame.Skybox {
         /// <param name="typeSkybox"></param>
         /// <returns></returns>
         public static string ReturnSkyboxType_StringFull(SkyboxType typeSkybox) {
-            switch (typeSkybox) {
-                case SkyboxType.PINK:   return "Skybox-Pink";
-                case SkyboxType.GOLDEN: return "Skybox-Golden";
-                case SkyboxType.NIGHT:  return "Skybox-Night";
-                case SkyboxType.GREY:   return "Skybox-Grey";
-                case SkyboxType.BLUE:   return "Skybox-Blue";
-                case SkyboxType.SLATE:  return "Skybox-Slate";
-                default:                return "Skybox-Slate";
-            }
+            return skyboxLongStrings[(int)typeSkybox];
         }
 
         /// <summary>
@@ -45,15 +41,7 @@ namespace SomeAimGame.Skybox {
         /// <param name="typeSkybox"></param>
         /// <returns></returns>
         public static string ReturnSkyboxType_StringShort(SkyboxType typeSkybox) {
-            switch (typeSkybox) {
-                case SkyboxType.PINK:   return "Pink";
-                case SkyboxType.GOLDEN: return "Golden";
-                case SkyboxType.NIGHT:  return "Night";
-                case SkyboxType.GREY:   return "Grey";
-                case SkyboxType.BLUE:   return "Blue";
-                case SkyboxType.SLATE:  return "Slate";
-                default:                return "Slate";
-            }
+            return skyboxShortStrings[(int)typeSkybox];
         }
 
         /// <summary>
@@ -62,15 +50,7 @@ namespace SomeAimGame.Skybox {
         /// <param name="typeSkybox"></param>
         /// <returns></returns>
         public static string ReturnSkyboxType_StringTranslated(SkyboxType typeSkybox) {
-            switch (typeSkybox) {
-                case SkyboxType.PINK:   return I18nTextTranslator.SetTranslatedText("skyboxpink");
-                case SkyboxType.GOLDEN: return I18nTextTranslator.SetTranslatedText("skyboxgolden");
-                case SkyboxType.NIGHT:  return I18nTextTranslator.SetTranslatedText("skyboxnight");
-                case SkyboxType.GREY:   return I18nTextTranslator.SetTranslatedText("skyboxgrey");
-                case SkyboxType.BLUE:   return I18nTextTranslator.SetTranslatedText("skyboxblue");
-                case SkyboxType.SLATE:  return I18nTextTranslator.SetTranslatedText("skyboxslate");
-                default:                return I18nTextTranslator.SetTranslatedText("skyboxslate");
-            }
+            return I18nTextTranslator.SetTranslatedText(skyboxi18nsStrings[(int)typeSkybox]);
         }
 
         /// <summary>
