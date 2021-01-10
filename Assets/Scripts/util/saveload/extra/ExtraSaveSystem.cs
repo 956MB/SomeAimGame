@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 
 using SomeAimGame.Stats;
+using SomeAimGame.Utilities;
 
 public class ExtraSaveSystem : MonoBehaviour {
     public Toggle targetSoundToggleObject, UISoundToggleObject, ShowAARToggleObject, ShowExtraStatsToggleObject, ShowExtraStatsBackgroundsToggleObject;
@@ -15,18 +14,9 @@ public class ExtraSaveSystem : MonoBehaviour {
     /// Saves supplied extra settings object (ExtraSettings) to file.
     /// </summary>
     /// <param name="extraSettings"></param>
-    public static void SaveExtraSettingsData(ExtraSettings extraSettings) {
-        BinaryFormatter formatter = new BinaryFormatter();
-        string dirPath            = Application.persistentDataPath + "/prefs";
-        string filePath           = dirPath + "/sag_extra.prefs";
-
-        DirectoryInfo dirInf = new DirectoryInfo(dirPath);
-        if (!dirInf.Exists) { dirInf.Create(); }
-
-        FileStream stream                 = new FileStream(filePath, FileMode.Create);
+    public static void SaveExtraSettingsData() {
         ExtraSettingsDataSerial extraData = new ExtraSettingsDataSerial();
-        formatter.Serialize(stream, extraData);
-        stream.Close();
+        SaveLoadUtil.SaveDataSerial("/prefs", "/sag_extra.prefs", extraData);
     }
 
     /// <summary>
@@ -34,18 +24,8 @@ public class ExtraSaveSystem : MonoBehaviour {
     /// </summary>
     /// <returns></returns>
     public static ExtraSettingsDataSerial LoadExtraSettingsData() {
-        string path = Application.persistentDataPath + "/prefs/sag_extra.prefs";
-        if (File.Exists(path)) {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream         = new FileStream(path, FileMode.Open);
-
-            ExtraSettingsDataSerial extraData = formatter.Deserialize(stream) as ExtraSettingsDataSerial;
-            stream.Close();
-
-            return extraData;
-        } else {
-            return null;
-        }
+        ExtraSettingsDataSerial extraData = (ExtraSettingsDataSerial)SaveLoadUtil.LoadDataSerial("/prefs/sag_extra.prefs", SaveType.EXTRA);
+        return extraData;
     }
 
     /// <summary>

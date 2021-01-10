@@ -42,7 +42,7 @@ public class KeybindSettings : MonoBehaviour {
     /// <summary>
     /// Calls 'KeybindSaveSystem.SaveKeybindSettingsData()' to save keybind settings object (KeybindSettings) to file.
     /// </summary>
-    public void SaveKeybindSettings() { KeybindSaveSystem.SaveKeybindSettingsData(this); }
+    public void SaveKeybindSettings() { KeybindSaveSystem.SaveKeybindSettingsData(); }
     
     /// <summary>
     /// Saves default keybind settings object (KeybindSettings).

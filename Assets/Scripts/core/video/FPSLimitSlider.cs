@@ -10,7 +10,7 @@ namespace SomeAimGame.Core {
             public TMP_Text limitFPSPlaceholderText;
 
             public static float limitFPSValue;
-            private static bool FPSLimitChangeReady = false;
+            //private static bool FPSLimitChangeReady = false;
 
             private static FPSLimitSlider FPSLimit;
             void Awake() { FPSLimit = this; }
@@ -24,8 +24,7 @@ namespace SomeAimGame.Core {
             public static void SetFPSLimit() {
                 limitFPSValue = FPSLimit.limitFPSSlider.value;
                 SetFPSLimitValueText(limitFPSValue);
-                // set fps limit
-                if (!FPSLimitChangeReady) { FPSLimitChangeReady = true; }
+                //if (!FPSLimitChangeReady) { FPSLimitChangeReady = true; }
             }
 
             /// <summary>
@@ -47,12 +46,11 @@ namespace SomeAimGame.Core {
             /// Checks if FPS Limit value changed, then saves value to VideoSettings.
             /// </summary>
             public static void CheckSaveFPSLimit() {
-                if (FPSLimitChangeReady) {
-                    ApplyVideoSettings.ApplyFPSLimit((int)limitFPSValue);
-                    VideoSettings.SaveFPSLimitItem((int)limitFPSValue);
-                    VideoSettings.SaveVideoSettings_Static();
-                    FPSLimitChangeReady = false;
-                }
+                // BUG: When checking if save is ready, sometimes value of fps is not saved? it saves instead null value of 0 every other time? IDK. Forcing save everytime keeps fps limit set.
+                ApplyVideoSettings.ApplyFPSLimit((int)limitFPSValue);
+                VideoSettings.SaveFPSLimitItem((int)limitFPSValue);
+                VideoSettings.SaveVideoSettings_Static();
+                //FPSLimitChangeReady = false;
             }
         }
     }

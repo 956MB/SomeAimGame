@@ -39,7 +39,7 @@ namespace SomeAimGame.SFX {
         /// <summary>
         /// Calls 'SFXSaveSystem.SaveSFXSettingsData()' to save SFX settings object (SFXSettings) to file.
         /// </summary>
-        public void SaveSFXSettings() { SFXSaveSystem.SaveSFXSettingsData(this); }
+        public void SaveSFXSettings() { SFXSaveSystem.SaveSFXSettingsData(); }
         public static void SaveSFXSettings_Static() { sfxSettings.SaveSFXSettings(); }
 
         /// <summary>

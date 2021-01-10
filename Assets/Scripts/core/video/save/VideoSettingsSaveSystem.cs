@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using WindowsDisplayAPI;
 
 using SomeAimGame.Utilities;
@@ -14,33 +12,14 @@ namespace SomeAimGame.Core {
             private static VideoSettingsSaveSystem videoSave;
             void Awake() { videoSave = this; }
 
-            public static void SaveVideoSettingsData(VideoSettings _) {
-                BinaryFormatter formatter = new BinaryFormatter();
-                string dirPath            = Application.persistentDataPath + "/prefs";
-                string filePath           = dirPath + "/sag_video.prefs";
-
-                DirectoryInfo dirInf = new DirectoryInfo(dirPath);
-                if (!dirInf.Exists) { dirInf.Create(); }
-
-                FileStream stream                 = new FileStream(filePath, FileMode.Create);
+            public static void SaveVideoSettingsData() {
                 VideoSettingsDataSerial videoData = new VideoSettingsDataSerial();
-                formatter.Serialize(stream, videoData);
-                stream.Close();
+                SaveLoadUtil.SaveDataSerial("/prefs", "/sag_video.prefs", videoData);
             }
 
             public static VideoSettingsDataSerial LoadVideoSettingsData() {
-                string path = Application.persistentDataPath + "/prefs/sag_video.prefs";
-                if (File.Exists(path)) {
-                    BinaryFormatter formatter = new BinaryFormatter();
-                    FileStream stream         = new FileStream(path, FileMode.Open);
-
-                    VideoSettingsDataSerial videoData = formatter.Deserialize(stream) as VideoSettingsDataSerial;
-                    stream.Close();
-
-                    return videoData;
-                } else {
-                    return null;
-                }
+                VideoSettingsDataSerial videoData = (VideoSettingsDataSerial)SaveLoadUtil.LoadDataSerial("/prefs/sag_video.prefs", SaveType.VIDEO);
+                return videoData;
             }
 
             public static void InitSavedVideoSettings() {
@@ -54,10 +33,11 @@ namespace SomeAimGame.Core {
                     SetAntiAlias(loadedVideoSettingsData.antiAliasType);
                     SetVignetteToggle(loadedVideoSettingsData.vignette);
                     SetChromaticAberrationToggle(loadedVideoSettingsData.chromaticAberration);
+                    //Debug.Log("SAVED FPS LIMIT: " + loadedVideoSettingsData.fpsLimit);
 
                     VideoSettings.LoadVideoSettings(loadedVideoSettingsData);
                 } else {
-                    //Debug.Log("failed to init extra in 'initSavedSettings', extra: " + loadedExtraData);
+                    //Debug.Log("failed to init extra in 'initSavedSettings', extra: " + loadedVideoSettingsData);
                     InitVideoSettingsDefaults();
                 }
             }
@@ -101,6 +81,7 @@ namespace SomeAimGame.Core {
                 ApplyVideoSettings.SetMonitorCurrent(monitorString);
             }
             private static void SetFPSLimit(int setFPSLimit) {
+                FPSLimitSlider.limitFPSValue = setFPSLimit;
                 ApplyVideoSettings.ApplyFPSLimit(setFPSLimit);
                 FPSLimitSlider.SetFPSLimitValueText(setFPSLimit);
                 FPSLimitSlider.SetFPSLimitSlider(setFPSLimit);

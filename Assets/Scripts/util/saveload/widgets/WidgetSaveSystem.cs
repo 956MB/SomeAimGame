@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-//using TMPro;
+
+using SomeAimGame.Utilities;
 
 public class WidgetSaveSystem : MonoBehaviour {
     public Toggle showModeToggle, showFPSToggle, showTimeToggle, showScoreToggle, showAccuracyToggle, showStreakToggle, showTTKToggle, showKPSToggle;
@@ -15,18 +14,9 @@ public class WidgetSaveSystem : MonoBehaviour {
     /// Saves supplied widget settings object (WidgetSettings) to file.
     /// </summary>
     /// <param name="widgetSettings"></param>
-    public static void SaveWidgetSettingsData(WidgetSettings widgetSettings) {
-        BinaryFormatter formatter = new BinaryFormatter();
-        string dirPath            = Application.persistentDataPath + "/prefs";
-        string filePath           = dirPath + "/sag_widgets.prefs";
-
-        DirectoryInfo dirInf = new DirectoryInfo(dirPath);
-        if (!dirInf.Exists) { dirInf.Create(); }
-
-        FileStream stream                   = new FileStream(filePath, FileMode.Create);
+    public static void SaveWidgetSettingsData() {
         WidgetSettingsDataSerial widgetData = new WidgetSettingsDataSerial();
-        formatter.Serialize(stream, widgetData);
-        stream.Close();
+        SaveLoadUtil.SaveDataSerial("/prefs", "/sag_widgets.prefs", widgetData);
     }
 
     /// <summary>
@@ -34,18 +24,8 @@ public class WidgetSaveSystem : MonoBehaviour {
     /// </summary>
     /// <returns></returns>
     public static WidgetSettingsDataSerial LoadWidgetSettingsData() {
-        string path = Application.persistentDataPath + "/prefs/sag_widgets.prefs";
-        if (File.Exists(path)) {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream         = new FileStream(path, FileMode.Open);
-
-            WidgetSettingsDataSerial widgetData = formatter.Deserialize(stream) as WidgetSettingsDataSerial;
-            stream.Close();
-
-            return widgetData;
-        } else {
-            return null;
-        }
+        WidgetSettingsDataSerial widgetData = (WidgetSettingsDataSerial)SaveLoadUtil.LoadDataSerial("/prefs/sag_widgets.prefs", SaveType.WIDGET);
+        return widgetData;
     }
 
     /// <summary>

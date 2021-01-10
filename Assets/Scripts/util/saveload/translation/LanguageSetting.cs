@@ -18,7 +18,7 @@ public class LanguageSetting : MonoBehaviour {
     /// <summary>
     /// Calls 'LanguageSaveSystem.SaveLanguageSettingData()' to save language setting object (LanguageSetting) to file.
     /// </summary>
-    public void SaveLanguageSetting() { LanguageSaveSystem.SaveLanguageSettingData(this); }
+    public void SaveLanguageSetting() { LanguageSaveSystem.SaveLanguageSettingData(); }
 
     /// <summary>
     /// Saves default language setting in object (LanguageSetting).

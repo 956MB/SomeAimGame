@@ -30,7 +30,7 @@ namespace SomeAimGame.Core {
             public static void SaveVignetteItem(bool setVignette) {                         vignette              = setVignette; }
             public static void SaveChromaticAberrationItem(bool setCromaticAberration) {    chromaticAberration   = setCromaticAberration; }
 
-            public void SaveVideoSettings() { VideoSettingsSaveSystem.SaveVideoSettingsData(this); }
+            public void SaveVideoSettings() { VideoSettingsSaveSystem.SaveVideoSettingsData(); }
             public static void SaveVideoSettings_Static() { videoSettings.SaveVideoSettings(); }
 
             /// <summary>

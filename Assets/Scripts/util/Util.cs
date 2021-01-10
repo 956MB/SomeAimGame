@@ -161,42 +161,19 @@ namespace SomeAimGame.Utilities {
             Cursor.visible   = true;
         }
 
-        public static void RefSetSettingChange(ref bool changeReady, ref KeyCode setting, KeyCode setKeycode) {
-            setting = setKeycode;
-            if (!changeReady) { changeReady = true; }
-        }
-        public static void RefSetSettingChange(ref bool changeReady, ref SFXType setting, SFXType setSFX) {
-            setting = setSFX;
-            if (!changeReady) { changeReady = true; }
-        }
-        public static void RefSetSettingChange(ref bool changeReady, ref GamemodeType setting, GamemodeType setGamemode) {
-            setting = setGamemode;
-            if (!changeReady) { changeReady = true; }
-        }
-        public static void RefSetSettingChange(ref bool changeReady, ref TargetType setting, TargetType setTarget) {
-            setting = setTarget;
-            if (!changeReady) { changeReady = true; }
-        }
-        public static void RefSetSettingChange(ref bool changeReady, ref SkyboxType setting, SkyboxType setSkybox) {
-            setting = setSkybox;
-            if (!changeReady) { changeReady = true; }
-        }
-        public static void RefSetSettingChange(ref bool changeReady, ref int setting, int setInt) {
-            setting = setInt;
-            if (!changeReady) { changeReady = true; }
-        }
-        public static void RefSetSettingChange(ref bool changeReady, ref float setting, float setFloat) {
-            setting = setFloat;
-            if (!changeReady) { changeReady = true; }
-        }
-        public static void RefSetSettingChange(ref bool changeReady, ref string setting, string setString) {
-            setting = setString;
-            if (!changeReady) { changeReady = true; }
-        }
-        public static void RefSetSettingChange(ref bool changeReady, ref bool setting, bool setBool) {
-            setting = setBool;
-            if (!changeReady) { changeReady = true; }
-        }
+        #region setting change overloads
+
+        public static void RefSetSettingChange(ref bool changeReady, ref KeyCode setting, KeyCode setKeycode) {            setting = setKeycode;  changeReady = true; }
+        public static void RefSetSettingChange(ref bool changeReady, ref SFXType setting, SFXType setSFX) {                setting = setSFX;      changeReady = true; }
+        public static void RefSetSettingChange(ref bool changeReady, ref GamemodeType setting, GamemodeType setGamemode) { setting = setGamemode; changeReady = true; }
+        public static void RefSetSettingChange(ref bool changeReady, ref TargetType setting, TargetType setTarget) {       setting = setTarget;   changeReady = true; }
+        public static void RefSetSettingChange(ref bool changeReady, ref SkyboxType setting, SkyboxType setSkybox) {       setting = setSkybox;   changeReady = true; }
+        public static void RefSetSettingChange(ref bool changeReady, ref int setting, int setInt) {                        setting = setInt;      changeReady = true; }
+        public static void RefSetSettingChange(ref bool changeReady, ref float setting, float setFloat) {                  setting = setFloat;    changeReady = true; }
+        public static void RefSetSettingChange(ref bool changeReady, ref string setting, string setString) {               setting = setString;   changeReady = true; }
+        public static void RefSetSettingChange(ref bool changeReady, ref bool setting, bool setBool) {                     setting = setBool;     changeReady = true; }
+
+        #endregion
 
         #region looping utils
 

@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using TMPro;
+
+using SomeAimGame.Utilities;
 
 public class CrosshairSaveSystem : MonoBehaviour {
     public Slider crosshairSizeSlider, crosshairThicknessSlider, crosshairGapSlider, crosshairOutlineSlider, crosshairRedSlider, crosshairGreenSlider, crosshairBlueSlider, crosshairAlphaSlider, crosshairRedOutlineSlider, crosshairGreenOutlineSlider, crosshairBlueOutlineSlider, crosshairAlphaOutlineSlider;
@@ -25,18 +25,9 @@ public class CrosshairSaveSystem : MonoBehaviour {
     /// Saves supplied crosshair object (CrosshairSettings) to file.
     /// </summary>
     /// <param name="crosshairSettings"></param>
-    public static void SaveCrosshairSettingsData(CrosshairSettings crosshairSettings) {
-        BinaryFormatter formatter = new BinaryFormatter();
-        string dirPath            = Application.persistentDataPath + "/prefs";
-        string filePath           = dirPath + "/sag_crosshair.prefs";
-
-        DirectoryInfo dirInf = new DirectoryInfo(dirPath);
-        if (!dirInf.Exists) { dirInf.Create(); }
-
-        FileStream stream                 = new FileStream(filePath, FileMode.Create);
+    public static void SaveCrosshairSettingsData() {
         CrosshairDataSerial crosshairData = new CrosshairDataSerial();
-        formatter.Serialize(stream, crosshairData);
-        stream.Close();
+        SaveLoadUtil.SaveDataSerial("/prefs", "/sag_crosshair.prefs", crosshairData);
     }
 
     /// <summary>
@@ -44,18 +35,8 @@ public class CrosshairSaveSystem : MonoBehaviour {
     /// </summary>
     /// <returns></returns>
     public static CrosshairDataSerial LoadCrosshairSettingsData() {
-        string path = Application.persistentDataPath + "/prefs/sag_crosshair.prefs";
-        if (File.Exists(path)) {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream         = new FileStream(path, FileMode.Open);
-
-            CrosshairDataSerial crosshairData = formatter.Deserialize(stream) as CrosshairDataSerial;
-            stream.Close();
-
-            return crosshairData;
-        } else {
-            return null;
-        }
+        CrosshairDataSerial crosshairData = (CrosshairDataSerial)SaveLoadUtil.LoadDataSerial("/prefs/sag_crosshair.prefs", SaveType.CROSSHAIR);
+        return crosshairData;
     }
 
     /// <summary>

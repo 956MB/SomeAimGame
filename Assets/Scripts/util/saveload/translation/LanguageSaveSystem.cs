@@ -1,38 +1,19 @@
 ﻿using UnityEngine;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+
+using SomeAimGame.Utilities;
 
 public class LanguageSaveSystem : MonoBehaviour {
     private static LanguageSaveSystem languageSave;
     void Awake() { languageSave = this; }
 
-    public static void SaveLanguageSettingData(LanguageSetting languageSetting) {
-        BinaryFormatter formatter = new BinaryFormatter();
-        string dirPath            = Application.persistentDataPath + "/prefs";
-        string filePath           = dirPath + "/sag_language.prefs";
-
-        DirectoryInfo dirInf = new DirectoryInfo(dirPath);
-        if (!dirInf.Exists) { dirInf.Create(); }
-
-        FileStream stream                      = new FileStream(filePath, FileMode.Create);
+    public static void SaveLanguageSettingData() {
         LanguageSettingDataSerial languageData = new LanguageSettingDataSerial();
-        formatter.Serialize(stream, languageData);
-        stream.Close();
+        SaveLoadUtil.SaveDataSerial("/prefs", "/sag_language.prefs", languageData);
     }
 
     public static LanguageSettingDataSerial LoadLanguageSettingData() {
-        string path = Application.persistentDataPath + "/prefs/sag_language.prefs";
-        if (File.Exists(path)) {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream         = new FileStream(path, FileMode.Open);
-
-            LanguageSettingDataSerial languageData = formatter.Deserialize(stream) as LanguageSettingDataSerial;
-            stream.Close();
-
-            return languageData;
-        } else {
-            return null;
-        }
+        LanguageSettingDataSerial languageData = (LanguageSettingDataSerial)SaveLoadUtil.LoadDataSerial("/prefs/sag_language.prefs", SaveType.LANGUAGE);
+        return languageData;
     }
 
     public static void InitSavedLanguageSetting() {

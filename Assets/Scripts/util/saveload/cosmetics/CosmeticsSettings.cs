@@ -64,7 +64,7 @@ public class CosmeticsSettings : MonoBehaviour {
     /// <summary>
     /// Calls 'CosmeticsSaveSystem.SaveCosmeticsItem()' to save cosmetics settings object (CosmeticsSettings) to file.
     /// </summary>
-    public void SaveCosmeticsSettings() { CosmeticsSaveSystem.SaveCosmeticsSettingsData(this); }
+    public void SaveCosmeticsSettings() { CosmeticsSaveSystem.SaveCosmeticsSettingsData(); }
 
     /// <summary>
     /// Saves default cosmetics settings object (CosmeticsSettings).

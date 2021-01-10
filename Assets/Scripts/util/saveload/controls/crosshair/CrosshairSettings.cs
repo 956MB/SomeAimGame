@@ -99,7 +99,7 @@ public class CrosshairSettings : MonoBehaviour {
     /// <summary>
     /// Calls 'CrosshairSaveSystem.SaveCrosshairItem()' to save crosshair settings object (CrosshairSettings) to file.
     /// </summary>
-    public void SaveCrosshairSettings() { CrosshairSaveSystem.SaveCrosshairSettingsData(this); }
+    public void SaveCrosshairSettings() { CrosshairSaveSystem.SaveCrosshairSettingsData(); }
     public static void SaveCrosshairSettings_Static() { crosshairSettings.SaveCrosshairSettings(); }
 
     /// <summary>

@@ -61,7 +61,7 @@ public class WidgetSettings : MonoBehaviour {
     /// <summary>
     /// Calls 'WidgetSaveSystem.SaveWidgetSettingsData()' to save widget settings object (WidgetSettings) to file.
     /// </summary>
-    public void SaveWidgetSettings() { WidgetSaveSystem.SaveWidgetSettingsData(this); }
+    public void SaveWidgetSettings() { WidgetSaveSystem.SaveWidgetSettingsData(); }
 
     /// <summary>
     /// Saves default widget settings object (WidgetSettings).

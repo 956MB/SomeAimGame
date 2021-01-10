@@ -49,7 +49,7 @@ public class ExtraSettings : MonoBehaviour {
     /// <summary>
     /// Calls 'ExtraSaveSystem.SaveExtraSettingsData()' to save extra settings object (ExtraSettings) to file.
     /// </summary>
-    public void SaveExtraSettings() { ExtraSaveSystem.SaveExtraSettingsData(this); }
+    public void SaveExtraSettings() { ExtraSaveSystem.SaveExtraSettingsData(); }
 
     /// <summary>
     /// Saves default extra settings object (ExtraSettings).

@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using TMPro;
 
 using SomeAimGame.Skybox;
@@ -25,18 +23,9 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     /// Saves supplied cosmetics object (CosmeticsSettings) to file.
     /// </summary>
     /// <param name="cosmeticsSettings"></param>
-    public static void SaveCosmeticsSettingsData(CosmeticsSettings cosmeticsSettings) {
-        BinaryFormatter formatter = new BinaryFormatter();
-        string dirPath            = Application.persistentDataPath + "/prefs";
-        string filePath           = dirPath + "/sag_cosmetics.prefs";
-
-        DirectoryInfo dirInf = new DirectoryInfo(dirPath);
-        if (!dirInf.Exists) { dirInf.Create(); }
-
-        FileStream stream                 = new FileStream(filePath, FileMode.Create);
+    public static void SaveCosmeticsSettingsData() {
         CosmeticsDataSerial cosmeticsData = new CosmeticsDataSerial();
-        formatter.Serialize(stream, cosmeticsData);
-        stream.Close();
+        SaveLoadUtil.SaveDataSerial("/prefs", "/sag_cosmetics.prefs", cosmeticsData);
     }
 
     /// <summary>
@@ -44,18 +33,8 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     /// </summary>
     /// <returns></returns>
     public static CosmeticsDataSerial LoadCosmeticsSettingsData() {
-        string path = Application.persistentDataPath + "/prefs/sag_cosmetics.prefs";
-        if (File.Exists(path)) {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream         = new FileStream(path, FileMode.Open);
-
-            CosmeticsDataSerial cosmeticsData = formatter.Deserialize(stream) as CosmeticsDataSerial;
-            stream.Close();
-
-            return cosmeticsData;
-        } else {
-            return null;
-        }
+        CosmeticsDataSerial cosmeticsData = (CosmeticsDataSerial)SaveLoadUtil.LoadDataSerial("/prefs/sag_cosmetics.prefs", SaveType.COSMETICS);
+        return cosmeticsData;
     }
 
     /// <summary>

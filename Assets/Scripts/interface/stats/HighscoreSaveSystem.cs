@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+
+using SomeAimGame.Utilities;
 
 public class HighscoreSaveSystem : MonoBehaviour {
 
@@ -9,18 +9,8 @@ public class HighscoreSaveSystem : MonoBehaviour {
     /// </summary>
     /// <param name="category"></param>
     public static void SaveHighscoreData(string category) {
-        BinaryFormatter formatter = new BinaryFormatter();
-        string dirPath            = Application.persistentDataPath + "/stats/highscores";
-        string filePath           = dirPath + $"/{category}.highscore";
-
-        DirectoryInfo dirInf = new DirectoryInfo(dirPath);
-        if (!dirInf.Exists) { dirInf.Create(); }
-
-        FileStream stream = new FileStream(filePath, FileMode.Create);
-
         HighscoreDataSerial highscoreData = new HighscoreDataSerial();
-        formatter.Serialize(stream, highscoreData);
-        stream.Close();
+        SaveLoadUtil.SaveDataSerial("/stats/highscores", $"/{category}.highscore", highscoreData);
     }
 
     /// <summary>
@@ -29,17 +19,7 @@ public class HighscoreSaveSystem : MonoBehaviour {
     /// <param name="category"></param>
     /// <returns></returns>
     public static HighscoreDataSerial LoadHighscoreData(string category) {
-        string path = Application.persistentDataPath + $"/stats/highscores/{category}.highscore";
-        if (File.Exists(path)) {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream         = new FileStream(path, FileMode.Open);
-
-            HighscoreDataSerial highscoreData = formatter.Deserialize(stream) as HighscoreDataSerial;
-            stream.Close();
-
-            return highscoreData;
-        } else {
-            return null;
-        }
+        HighscoreDataSerial highscoreData = (HighscoreDataSerial)SaveLoadUtil.LoadDataSerial($"/stats/highscores/{category}.highscore", SaveType.KEYBINDS);
+        return highscoreData;
     }
 }
