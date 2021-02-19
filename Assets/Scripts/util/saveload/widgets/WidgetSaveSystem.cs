@@ -34,16 +34,9 @@ public class WidgetSaveSystem : MonoBehaviour {
     public static void InitSavedWidgetSettings() {
         WidgetSettingsDataSerial loadedWidgetData = LoadWidgetSettingsData();
         if (loadedWidgetData != null) {
-            WidgetSettings.LoadWidgetSettings(loadedWidgetData);
+            SetAllWidgets(loadedWidgetData.showMode, loadedWidgetData.showFPS, loadedWidgetData.showTime, loadedWidgetData.showScore, loadedWidgetData.showAccuracy, loadedWidgetData.showStreak, loadedWidgetData.showTTK, loadedWidgetData.showKPS);
 
-            SetWidget(widgetSave.showModeToggle, widgetSave.showModeWidget, loadedWidgetData.showMode);
-            SetWidget(widgetSave.showFPSToggle, widgetSave.showFPSWidget, loadedWidgetData.showFPS);
-            SetWidget(widgetSave.showTimeToggle, widgetSave.showTimeWidget, loadedWidgetData.showTime);
-            SetWidget(widgetSave.showScoreToggle, widgetSave.showScoreWidget, loadedWidgetData.showScore);
-            SetWidget(widgetSave.showAccuracyToggle, widgetSave.showAccuracyWidget, loadedWidgetData.showAccuracy);
-            SetWidget(widgetSave.showStreakToggle, widgetSave.showStreakWidget, loadedWidgetData.showStreak);
-            SetWidget(widgetSave.showTTKToggle, widgetSave.showTTKWidget, loadedWidgetData.showTTK);
-            SetWidget(widgetSave.showKPSToggle, widgetSave.showKPSWidget, loadedWidgetData.showKPS);
+            WidgetSettings.LoadWidgetSettings(loadedWidgetData);
         } else {
             //Debug.Log("failed to init extra in 'initSavedSettings', extra: " + loadedExtraData);
             InitWidgetSettingsDefaults();
@@ -54,14 +47,7 @@ public class WidgetSaveSystem : MonoBehaviour {
     /// Inits default widget settings values and saves to file on first launch.
     /// </summary>
     public static void InitWidgetSettingsDefaults() {
-        SetWidget(widgetSave.showModeToggle, widgetSave.showModeWidget, true);
-        SetWidget(widgetSave.showFPSToggle, widgetSave.showFPSWidget, false);
-        SetWidget(widgetSave.showTimeToggle, widgetSave.showTimeWidget, true);
-        SetWidget(widgetSave.showScoreToggle, widgetSave.showScoreWidget, true);
-        SetWidget(widgetSave.showAccuracyToggle, widgetSave.showAccuracyWidget, true);
-        SetWidget(widgetSave.showStreakToggle, widgetSave.showStreakWidget, false);
-        SetWidget(widgetSave.showTTKToggle, widgetSave.showTTKWidget, false);
-        SetWidget(widgetSave.showKPSToggle, widgetSave.showKPSWidget, false);
+        SetAllWidgets(true, false, true, true, true, false, false, false);
 
         WidgetSettings.SaveAllWidgetSettingsDefaults(true, false, true, true, true, false, false, false);
     }
@@ -75,5 +61,27 @@ public class WidgetSaveSystem : MonoBehaviour {
     private static void SetWidget(Toggle showItemToggle, GameObject showItemObject, bool setShowValue) {
         showItemToggle.isOn = setShowValue;
         showItemObject.SetActive(setShowValue);
+    }
+
+    /// <summary>
+    /// Sets all widgets to supplied bool values.
+    /// </summary>
+    /// <param name="setShowMode"></param>
+    /// <param name="setShowFPS"></param>
+    /// <param name="setShowTime"></param>
+    /// <param name="setShowScore"></param>
+    /// <param name="setShowAccuracy"></param>
+    /// <param name="setShowStreak"></param>
+    /// <param name="setShowTTK"></param>
+    /// <param name="setShowKPS"></param>
+    private static void SetAllWidgets(bool setShowMode, bool setShowFPS, bool setShowTime, bool setShowScore, bool setShowAccuracy, bool setShowStreak, bool setShowTTK, bool setShowKPS) {
+        SetWidget(widgetSave.showModeToggle, widgetSave.showModeWidget, setShowMode);
+        SetWidget(widgetSave.showFPSToggle, widgetSave.showFPSWidget, setShowFPS);
+        SetWidget(widgetSave.showTimeToggle, widgetSave.showTimeWidget, setShowTime);
+        SetWidget(widgetSave.showScoreToggle, widgetSave.showScoreWidget, setShowScore);
+        SetWidget(widgetSave.showAccuracyToggle, widgetSave.showAccuracyWidget, setShowAccuracy);
+        SetWidget(widgetSave.showStreakToggle, widgetSave.showStreakWidget, setShowStreak);
+        SetWidget(widgetSave.showTTKToggle, widgetSave.showTTKWidget, setShowTTK);
+        SetWidget(widgetSave.showKPSToggle, widgetSave.showKPSWidget, setShowKPS);
     }
 }

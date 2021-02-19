@@ -4,6 +4,7 @@ using TMPro;
 using SomeAimGame.Gamemode;
 using SomeAimGame.Targets;
 using SomeAimGame.SFX;
+using SomeAimGame.Console;
 
 public class GunAction : MonoBehaviour {
     public Camera playerCamera;
@@ -19,7 +20,7 @@ public class GunAction : MonoBehaviour {
     void LateUpdate() {
         // Shoot (KeyCode.Mouse0) if game timer still running and settings panel not open (game paused).
         if (GameUI.timeCount > -1) {
-            if (!MouseLook.settingsOpen && Keybinds.keybindsLoaded && SpawnTargets.gamemode != GamemodeType.FOLLOW) {
+            if (!MouseLook.settingsOpen && Keybinds.keybindsLoaded && SpawnTargets.gamemode != GamemodeType.FOLLOW && !GameUI.countdownShown && !SAGConsole.consoleActive) {
                 if (Input.GetKeyDown(KeybindSettings.shoot)) { Shoot(); }
             }
         } else {

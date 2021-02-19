@@ -1,20 +1,22 @@
 ﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.UI;
 using TMPro;
-using System.Globalization;
 
 using SomeAimGame.Skybox;
 using SomeAimGame.Gamemode;
 using SomeAimGame.Targets;
-using SomeAimGame.Utilities;
-using SomeAimGame.Stats;
 using SomeAimGame.SFX;
-using SomeAimGame.Core.Video;
 
 namespace SomeAimGame.Utilities {
     public class Util : MonoBehaviour {
+
+        private static Util util;
+        void Awake() { util = this; }
+
         /// <summary>
         /// Returns if two supplied RectTransform (rectTrans1, rectTrans2) overlap.
         /// </summary>
@@ -52,6 +54,28 @@ namespace SomeAimGame.Utilities {
             Debug.Log($"String List: {targetList}");
         }
 
+        public static string[] SplitString(string splitString) {
+            if (splitString != "") {
+                if (splitString.Contains(",")) { return splitString.Split(','); }
+                return new string[] {splitString};
+            } else {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Appends supplied gameobject (appendObj) to supplied grid layout group (appendGroup).
+        /// </summary>
+        /// <param name="appendObj"></param>
+        /// <param name="appendGroup"></param>
+        /// <param name="setToIndex"></param>
+        public static void AppendToGridLayoutGroup(GameObject appendObj, GridLayoutGroup appendGroup, bool setToIndex = false) {
+            appendObj.transform.SetParent(appendGroup.transform);
+            appendObj.transform.localScale    = new Vector3( 1.0f, 1.0f, 1.0f );
+            appendObj.transform.localPosition = Vector3.zero;
+            if (setToIndex) { appendObj.transform.SetSiblingIndex(appendGroup.transform.childCount - 2); }
+        }
+
         /// <summary>
         /// Returns Color from supplied hex string representaion.
         /// </summary>
@@ -72,7 +96,7 @@ namespace SomeAimGame.Utilities {
         /// <param name="color"></param>
         /// <returns></returns>
         public static string ColorToHex(Color color) {
-            return string.Format("{0:X2}{1:X2}{2:X2}", color.r, color.g, color.b);
+            return ColorUtility.ToHtmlStringRGBA(color);
         }
 
         /// <summary>
@@ -118,47 +142,54 @@ namespace SomeAimGame.Utilities {
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public static string ReturnAspectRatio_string(int x, int y) {
-            return string.Format("{0}:{1}",x/GCD(x,y), y/GCD(x,y));
-        }
+        public static string ReturnAspectRatio_string(int x, int y) { return string.Format("{0}:{1}",x/GCD(x,y), y/GCD(x,y)); }
 
         /// <summary>
         /// Copies supplied string (copyString) to clipboard.
         /// </summary>
         /// <param name="copyString"></param>
-        public static void CopyToClipboard(string copyString) {
-            GUIUtility.systemCopyBuffer = copyString;
-        }
+        public static void CopyToClipboard(string copyString) { GUIUtility.systemCopyBuffer = copyString; }
 
         /// <summary>
         /// Sets supplied CanvasGroup (setCanvasGroup) state (enabled/disabled) from supplied bool (isEnabled).
         /// </summary>
         /// <param name="setCanvasGroup"></param>
         /// <param name="isEnabled"></param>
-        public static void SetCanvasGroupState(CanvasGroup setCanvasGroup, bool isEnabled) {
+        public static void SetCanvasGroupState_DisableHover(CanvasGroup setCanvasGroup, bool isEnabled) {
             setCanvasGroup.alpha          = isEnabled ? 1f : 0.35f;
             setCanvasGroup.interactable   = isEnabled;
             setCanvasGroup.blocksRaycasts = isEnabled;
         }
-        public static void SetCanvasGroupStateDisabled_AllowHover(CanvasGroup setCanvasGroup) {
+        /// <summary>
+        ///  Sets supplied CanvasGroup (setCanvasGroup) state (enabled/disabled) and allows hover.
+        /// </summary>
+        /// <param name="setCanvasGroup"></param>
+        public static void SetCanvasGroupState_EnableHover(CanvasGroup setCanvasGroup) { util.SetCanvasGroupState(setCanvasGroup, 0.35f, false, true); }
+
+        private void SetCanvasGroupState(CanvasGroup setCanvasGroup, float setAlpha, bool setInteract, bool setBlocksRaycast) {
             setCanvasGroup.alpha          = 0.35f;
             setCanvasGroup.interactable   = false;
             setCanvasGroup.blocksRaycasts = true;
         }
 
-        /// <summary>
-        /// Locks cursor if settings panel closed and game active.
-        /// </summary>
-        public static void LockCursor() {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible   = false;
+        public static void SetSliderOptionText(TMP_Text valueText, TMP_Text valueTextPlaceholder, float value) {
+            valueText.SetText($"{value}");
+            valueTextPlaceholder.SetText($"{value}");
         }
+
         /// <summary>
-        /// Unlocks cursor if settings panel open and game inactive.
+        /// Sets state of cursor to supplied CursorLockMode (setCursorMode) and visibility bool (setVisibility).
         /// </summary>
-        public static void UnlockCursor() {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible   = true;
+        /// <param name="setCursorMode"></param>
+        /// <param name="setVisibility"></param>
+        public static void SetCursorState(CursorLockMode setCursorMode, bool setVisibility) {
+            Cursor.lockState = setCursorMode;
+            Cursor.visible   = setVisibility;
+        }
+
+        public static bool ReturnRegexMatch(string value, string matchString) {
+            Regex regex = new Regex(matchString);
+            return regex.Match(value).Success;
         }
 
         #region setting change overloads
@@ -166,7 +197,7 @@ namespace SomeAimGame.Utilities {
         public static void RefSetSettingChange(ref bool changeReady, ref KeyCode setting, KeyCode setKeycode) {            setting = setKeycode;  changeReady = true; }
         public static void RefSetSettingChange(ref bool changeReady, ref SFXType setting, SFXType setSFX) {                setting = setSFX;      changeReady = true; }
         public static void RefSetSettingChange(ref bool changeReady, ref GamemodeType setting, GamemodeType setGamemode) { setting = setGamemode; changeReady = true; }
-        public static void RefSetSettingChange(ref bool changeReady, ref TargetType setting, TargetType setTarget) {       setting = setTarget;   changeReady = true; }
+        public static void RefSetSettingChange(ref bool changeReady, ref TargetType setting, TargetType setTarget, ref int colorSetting, int setColor) { setting = setTarget; colorSetting = setColor; changeReady = true; }
         public static void RefSetSettingChange(ref bool changeReady, ref SkyboxType setting, SkyboxType setSkybox) {       setting = setSkybox;   changeReady = true; }
         public static void RefSetSettingChange(ref bool changeReady, ref int setting, int setInt) {                        setting = setInt;      changeReady = true; }
         public static void RefSetSettingChange(ref bool changeReady, ref float setting, float setFloat) {                  setting = setFloat;    changeReady = true; }
@@ -186,10 +217,10 @@ namespace SomeAimGame.Utilities {
             /// </summary>
             /// <param name="setColor"></param>
             /// <param name="textElements"></param>
-            public static void Util_ClearTMPTextColor(Color32 setColor, params TMP_Text[] textElements) {
+            public static void ClearTMPTextColor(Color32 setColor, params TMP_Text[] textElements) {
                 foreach (TMP_Text text in textElements) { text.color = setColor; }
             }
-            public static void Util_ClearButtonBackgrounds(Color32 setColor, params TMP_Text[] textElements) {
+            public static void ClearButtonBackgrounds(Color32 setColor, params TMP_Text[] textElements) {
                 foreach (TMP_Text text in textElements) { text.transform.parent.gameObject.GetComponent<Image>().color = setColor; }
             }
             /// <summary>
@@ -197,7 +228,7 @@ namespace SomeAimGame.Utilities {
             /// </summary>
             /// <param name="setVector"></param>
             /// <param name="transformObjects"></param>
-            public static void Util_SetObjectsLocalScale(Vector3 setVector, params GameObject[] transformObjects) {
+            public static void SetObjectsLocalScale(Vector3 setVector, params GameObject[] transformObjects) {
                 foreach (GameObject objTransform in transformObjects) { objTransform.transform.localScale = setVector; }
             }
             /// <summary>
@@ -205,21 +236,21 @@ namespace SomeAimGame.Utilities {
             /// </summary>
             /// <param name="setActive"></param>
             /// <param name="imageObjects"></param>
-            public static void Util_ImagesSetActive(bool setActive, params Image[] imageObjects) {
+            public static void ImagesSetActive(bool setActive, params Image[] imageObjects) {
                 foreach (Image imageObject in imageObjects) { imageObject.transform.gameObject.SetActive(setActive); }
             }
             /// <summary>
             /// Calls ScrollRectExtension.ScrollToTop() with all supplied GameObjects (scrollViewObjects).
             /// </summary>
             /// <param name="scrollViewObjects"></param>
-            public static void Util_ResetScrollViews_Top(params GameObject[] scrollViewObjects) {
+            public static void ResetScrollViews_Top(params GameObject[] scrollViewObjects) {
                 foreach (GameObject scrollView in scrollViewObjects) { ScrollRectExtension.ScrollToTop(scrollView.GetComponent<ScrollRect>()); ; }
             }
             /// <summary>
             /// Calls ScrollRectExtension.ScrollToBottom() with all supplied GameObjects (scrollViewObjects).
             /// </summary>
             /// <param name="scrollViewObjects"></param>
-            public static void Util_ResetScrollViews_Bottom(params GameObject[] scrollViewObjects) {
+            public static void ResetScrollViews_Bottom(params GameObject[] scrollViewObjects) {
                 foreach (GameObject scrollView in scrollViewObjects) { ScrollRectExtension.ScrollToBottom(scrollView.GetComponent<ScrollRect>()); ; }
             }
         }
@@ -234,7 +265,7 @@ namespace SomeAimGame.Utilities {
             /// <param name="specialLimit"></param>
             /// <param name="setVideoClips"></param>
             /// <param name="videoPlayers"></param>
-            public static void Util_SetVideoPlayerClips(int specialLimit, VideoClip[] setVideoClips, params VideoPlayer[] videoPlayers) {
+            public static void SetVideoPlayerClips(int specialLimit, VideoClip[] setVideoClips, params VideoPlayer[] videoPlayers) {
                 for (int i = 0; i < specialLimit; i++) { videoPlayers[i].clip = setVideoClips[i]; }
             }
             /// <summary>
@@ -243,7 +274,7 @@ namespace SomeAimGame.Utilities {
             /// <param name="specialLimit"></param>
             /// <param name="setVideoClips"></param>
             /// <param name="videoClips"></param>
-            public static void Util_SetVideoClips(int specialLimit, VideoClip[] setVideoClips, params VideoClip[] videoClips) {
+            public static void SetVideoClips(int specialLimit, VideoClip[] setVideoClips, params VideoClip[] videoClips) {
                 for (int i = 0; i < specialLimit; i++) { videoClips[i] = setVideoClips[i]; }
             }
             /// <summary>
@@ -251,14 +282,14 @@ namespace SomeAimGame.Utilities {
             /// </summary>
             /// <param name="setRatio"></param>
             /// <param name="videoPlayers"></param>
-            public static void Util_SetVideoPlayersAscpectRatio(VideoAspectRatio setRatio, params VideoPlayer[] videoPlayers) {
+            public static void SetVideoPlayersAscpectRatio(VideoAspectRatio setRatio, params VideoPlayer[] videoPlayers) {
                 foreach (VideoPlayer player in videoPlayers) { player.aspectRatio = setRatio; }
             }
             /// <summary>
             /// Plays all supplied video players in VideoPlayer array (videoPlayers).
             /// </summary>
             /// <param name="videoPlayers"></param>
-            public static void Util_PlayVideoPlayers(params VideoPlayer[] videoPlayers) {
+            public static void PlayVideoPlayers(params VideoPlayer[] videoPlayers) {
                 foreach (VideoPlayer player in videoPlayers) { player.Play(); }
             }
         }

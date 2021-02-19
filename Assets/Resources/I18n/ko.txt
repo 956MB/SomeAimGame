@@ -17,6 +17,7 @@ gamemodegrid=그리드
 gamemodegrid2=그리드 II
 gamemodepairs=한 쌍
 gamemodefollow=따르다
+gamemodeglob=지구
 gamemodepatrol=순찰
 #
 #
@@ -78,6 +79,8 @@ colorblue=푸른
 colorpurple=보라색
 colorpink=분홍
 colorwhite=하얀
+customtargetcolor=맞춤 색상 추가
+savecustomcolor=저장
 #
 #
 # // skyboxes
@@ -99,8 +102,8 @@ testtargetsoundbutton=테스트
 #
 #
 # // general section items
-gametimer=타이머 (초)
-targetsound=타겟 사운드
+gametimer=타이머
+targetsound=타겟 히트 사운드
 uisound=UI 사운드
 movementlock=운동 잠금
 fpscounter=FPS 카운터 
@@ -113,6 +116,13 @@ showaccuracy=정확성 표시
 showstreak=연속 표시
 showttk=TTK 표시
 showkps=KPS 표시
+#
+#
+# // timer dropdowns text
+30timertext=30 초
+60timertext=60 초
+90timertext=90 초
+120timertext=120 초
 #
 #
 # // general sections tooltips
@@ -150,6 +160,7 @@ keybindrebinded=리 바인딩되었습니다
 # // controls section items
 shoot=''사격''
 showhidesettings=설정 표시 / 숨기기
+showhideconsole=콘솔 표시 / 숨기기
 showhideafteractionreport='작업 후 보고서'표시 / 숨기기
 showhidewidgets=위젯 표시 / 숨기기
 quickstartgame=빠른 시작 게임
@@ -168,13 +179,16 @@ crosshairgreen=푸른
 crosshairblue=초록
 crosshairalpha=알파
 importexportcrosshair=수입 수출
+randomizecrosshair=십자선 무작위 화
 resetcrosshair=십자선 재설정
 resetcrosshairconfirm=확실합니까?
 importcrosshairtitle=십자선 가져 오기
 importcrosshairbutton=수입
-exportcrosshairbutton=크로스 헤어 수출
-crosshairsetsuccess=성공적으로 도입 된 새로운 십자선
-crosshairseterror=십자선 문자열이 잘못되었습니다.
+exportcrosshairbutton=수출
+crosshairimportsuccess=성공적으로 도입 된 새로운 십자선
+crosshairimportsuccesscsgo=CSGO 십자선이 성공적으로 가져옴
+crosshairimporterror=십자선 문자열이 잘못되었습니다.
+crosshairimporterrorcsgo=CSGO 크로스 헤어를 가져 오는 동안 오류가 발생했습니다.
 crosshairsetexported=클립 보드에 복사 된 십자선 문자열
 crosshairresetdefault=CROSSHAIR가 성공적으로 기본값으로 재설정 됨
 #

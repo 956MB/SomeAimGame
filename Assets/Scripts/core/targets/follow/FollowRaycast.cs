@@ -64,7 +64,7 @@ public class FollowRaycast : MonoBehaviour {
 
             if (!MouseLook.settingsOpen) {
                 shotsTaken += 1;
-                SpawnTargets.totalCount += 1;
+                SpawnTargets.shotsTotal += 1;
             }
 
             GameUI.UpdateAccuracy(shotsHit, shotsTaken);

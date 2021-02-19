@@ -16,6 +16,9 @@ public class PreviewManager : MonoBehaviour {
     /// <param name="targetColor"></param>
     /// <param name="skybox"></param>
     public static VideoClip[] PopulateGamemodePreviews(string currentGamemode, string targetColor, string skybox) {
+        string useTargetColor = targetColor;
+        if (useTargetColor == "TargetColor-Custom") { useTargetColor = "TargetColor-White"; }
+
         previewManager.previewsObject[0] = LoopVideoClips("Gamemode-Scatter", targetColor, "Skybox-Slate");
         previewManager.previewsObject[1] = LoopVideoClips("Gamemode-Flick", targetColor, "Skybox-Slate");
         previewManager.previewsObject[2] = LoopVideoClips("Gamemode-Grid", targetColor, "Skybox-Slate");

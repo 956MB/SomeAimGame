@@ -39,7 +39,7 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
             case "120Text (TMP)":      SetNewGameTimer(120, true); break;
         }
 
-        NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("eventtimerchanged")} {ReturnGameTimerString_Notification(ExtraSettings.gameTimer)}", InterfaceColors.notificationColorGreen);
+        //NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("eventtimerchanged")} {ReturnGameTimerString_Notification(ExtraSettings.gameTimer)}", InterfaceColors.notificationColorGreen);
     }
 
     /// <summary>
@@ -50,6 +50,7 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public static void SetNewGameTimer(int newGameTimer, bool restartGame) {
         //GameUI.timeCount = newGameTimer;
         ExtraSettings.SaveGameTimerItem(newGameTimer);
+        ExtraSettings.CheckSaveExtraSettings();
         SetGameTimerButton(newGameTimer);
 
         if (restartGame) { GameUI.RestartGame(CosmeticsSettings.gamemode, false); }
@@ -81,8 +82,8 @@ public class ChangeGameTimer : MonoBehaviour, IPointerEnterHandler, IPointerExit
     /// Clears all time buttons in settings panel (general sub-section) to unselected color.
     /// </summary>
     public static void ClearTimerButtons() {
-        Util.GameObjectLoops.Util_ClearTMPTextColor(InterfaceColors.unselectedColor, gameTimer.text30, gameTimer.text60, gameTimer.text90, gameTimer.text120);
-        Util.GameObjectLoops.Util_ClearButtonBackgrounds(InterfaceColors.buttonBackgroundDisabled, gameTimer.text30, gameTimer.text60, gameTimer.text90, gameTimer.text120);
+        Util.GameObjectLoops.ClearTMPTextColor(InterfaceColors.unselectedColor, gameTimer.text30, gameTimer.text60, gameTimer.text90, gameTimer.text120);
+        Util.GameObjectLoops.ClearButtonBackgrounds(InterfaceColors.buttonBackgroundDisabled, gameTimer.text30, gameTimer.text60, gameTimer.text90, gameTimer.text120);
     }
 
     /// <summary>

@@ -14,6 +14,7 @@ namespace SomeAimGame.Utilities {
                 case "ToggleAAR-Button":      return KeybindSettings.toggleAAR;
                 case "ToggleWidgets-Button":  return KeybindSettings.toggleWidgets;
                 case "GameRestart-Button":    return KeybindSettings.gameRestart;
+                case "ToggleConsole-Button":  return KeybindSettings.toggleConsole;
                 default:                      return KeyCode.None;
             }
         }
@@ -26,16 +27,18 @@ namespace SomeAimGame.Utilities {
         public static string ReturnKeybindString(KeyCode fullKeycode) {
             switch (fullKeycode) {
                 case KeyCode.Escape:            return "ESC";
-                case KeyCode.Mouse0:            return "MOUSE 1";
-                case KeyCode.Mouse1:            return "MOUSE 2";
-                case KeyCode.Mouse2:            return "MOUSE 3";
-                case KeyCode.Mouse3:            return "MOUSE 4";
-                case KeyCode.Mouse4:            return "MOUSE 5";
+                case KeyCode.Mouse0:            return "MB1";
+                case KeyCode.Mouse1:            return "MB2";
+                case KeyCode.Mouse2:            return "MB3";
+                case KeyCode.Mouse3:            return "MB4";
+                case KeyCode.Mouse4:            return "MB5";
                 case KeyCode.Space:             return "SPACE";
                 case KeyCode.LeftBracket:       return "[";
                 case KeyCode.RightBracket:      return "]";
                 case KeyCode.LeftCurlyBracket:  return "}";
                 case KeyCode.RightCurlyBracket: return "}";
+                case KeyCode.Tilde:             return "~";
+                case KeyCode.BackQuote:         return "`";
                 default:                        return fullKeycode.ToString();
             }
         }

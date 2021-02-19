@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 using SomeAimGame.Stats;
 using SomeAimGame.Utilities;
+using SomeAimGame.Core;
 
 public class ExtraSaveSystem : MonoBehaviour {
     public Toggle targetSoundToggleObject, UISoundToggleObject, ShowAARToggleObject, ShowExtraStatsToggleObject, ShowExtraStatsBackgroundsToggleObject;
@@ -34,14 +35,14 @@ public class ExtraSaveSystem : MonoBehaviour {
     public static void InitSavedExtraSettings() {
         ExtraSettingsDataSerial loadedExtraData = LoadExtraSettingsData();
         if (loadedExtraData != null) {
-            ExtraSettings.LoadExtraSettings(loadedExtraData);
-
-            SetGameTimerButtons(loadedExtraData.gameTimer);
+            SetGameTimerDropdown(loadedExtraData.gameTimer);
             SetShowAARToggle(loadedExtraData.showAAR);
             SetMouseSensitivity(loadedExtraData.mouseSensitivity);
-            SetHideUI(loadedExtraData.hideUI);
+            SetShowWidgets(loadedExtraData.showWidgets);
             SetShowExtraStatsToggle(loadedExtraData.showExtraStats);
             SetShowExtraStatsBackgroundsToggle(loadedExtraData.showExtraStatsBackgrounds);
+
+            ExtraSettings.LoadExtraSettings(loadedExtraData);
         } else {
             //Debug.Log("failed to init extra in 'initSavedSettings', extra: " + loadedExtraData);
             InitExtraSettingsDefaults();
@@ -52,7 +53,7 @@ public class ExtraSaveSystem : MonoBehaviour {
     /// Inits default extra settings values and saves to file on first launch.
     /// </summary>
     public static void InitExtraSettingsDefaults() {
-        SetGameTimerButtons(60);
+        SetGameTimerDropdown(60);
 
         extraSave.ShowAARToggleObject.isOn                   = true;
         extraSave.ShowExtraStatsToggleObject.isOn            = false;
@@ -64,7 +65,7 @@ public class ExtraSaveSystem : MonoBehaviour {
         MouseLook.mouseSensitivity   = 2.0f;
         StatsManager.showBackgrounds = true;
 
-        ExtraSettings.SaveAllExtraSettingsDefaults(60, true, 2.0f, true, false, true);
+        ExtraSettings.SaveAllExtraSettingsDefaults(60, true, true, 2.0f, true, false, true);
         GameUI.ShowWidgetsUI();
     }
 
@@ -80,44 +81,38 @@ public class ExtraSaveSystem : MonoBehaviour {
             return 61;
         }
     }
+    /// <summary>
+    /// Inits show countdown timer from saved extra settings file (if exists), or sets default true.
+    /// </summary>
+    /// <returns></returns>
+    public static bool InitShowCountdown() {
+        ExtraSettingsDataSerial loadedExtraData = LoadExtraSettingsData();
+        if (loadedExtraData != null) {
+            return loadedExtraData.showCountdown;
+        } else {
+            return true;
+        }
+    }
 
     /// <summary>
     /// Sets game timer value and button to supplied int (gameTimerValue).
     /// </summary>
     /// <param name="gameTimerValue"></param>
-    private static void SetGameTimerButtons(int gameTimerValue) {
-        ChangeGameTimer.SetNewGameTimer(gameTimerValue, false);
-        ChangeGameTimer.SetGameTimerButton(gameTimerValue);
-    }
-    /// <summary>
-    /// Sets target sound toggle to supplied bool (targetSoundToggle), and saves in 'ExtraSettings' object.
-    /// </summary>
-    /// <param name="targetSoundToggle"></param>
-    private static void SetTargetSoundToggle(bool targetSoundToggle) {
-        extraSave.targetSoundToggleObject.isOn = targetSoundToggle;
-    }
-    /// <summary>
-    /// Sets UI sound toggle to supplied bool (UISoundToggle), and saves in 'ExtraSettings' object.
-    /// </summary>
-    /// <param name="UISoundToggle"></param>
-    private static void SetUISoundToggle(bool UISoundToggle) {
-        extraSave.UISoundToggleObject.isOn = UISoundToggle;
-    }
+    private static void SetGameTimerDropdown(int gameTimerValue) {           TimerSelect.SetTimerDropdownText(gameTimerValue); }
     /// <summary>
     /// Sets show 'AfterActionReport' panel toggle to supplied bool (showAARToggle), and saves in 'ExtraSettings' object.
     /// </summary>
     /// <param name="showAARToggle"></param>
-    private static void SetShowAARToggle(bool showAARToggle) {
-        extraSave.ShowAARToggleObject.isOn = showAARToggle;
-    }
+    private static void SetShowAARToggle(bool showAARToggle) {               extraSave.ShowAARToggleObject.isOn = showAARToggle; }
     /// <summary>
     /// Sets show 'ExtraStats' panel toggle to supplied bool (showExtraStatsToggle), and saves in 'ExtraSettings' object.
     /// </summary>
     /// <param name="showExtraStatsToggle"></param>
-    private static void SetShowExtraStatsToggle(bool showExtraStatsToggle) {
-        extraSave.ShowExtraStatsToggleObject.isOn = showExtraStatsToggle;
-    }
-
+    private static void SetShowExtraStatsToggle(bool showExtraStatsToggle) { extraSave.ShowExtraStatsToggleObject.isOn = showExtraStatsToggle; }
+    /// <summary>
+    /// Sets state of extra stats panel to supplied bool (showExtraStatsBackgroundsToggle).
+    /// </summary>
+    /// <param name="showExtraStatsBackgroundsToggle"></param>
     private static void SetShowExtraStatsBackgroundsToggle(bool showExtraStatsBackgroundsToggle) {
         StatsManager.showBackgrounds                         = showExtraStatsBackgroundsToggle;
         extraSave.ShowExtraStatsBackgroundsToggleObject.isOn = showExtraStatsBackgroundsToggle;
@@ -136,8 +131,8 @@ public class ExtraSaveSystem : MonoBehaviour {
     /// Sets hideUI value to supplied bool (setHideUIValue), and saves in 'ExtraSettings' object.
     /// </summary>
     /// <param name="setHideUIValue"></param>
-    private static void SetHideUI(bool setHideUIValue) {
-        if (setHideUIValue) {
+    private static void SetShowWidgets(bool setShowWidgets) {
+        if (setShowWidgets) {
             GameUI.ShowWidgetsUI();
             ExtraSettings.SaveHideUI(true);
         } else {

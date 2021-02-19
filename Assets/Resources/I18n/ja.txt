@@ -17,6 +17,7 @@ gamemodegrid=グリッド
 gamemodegrid2=グリッドII
 gamemodepairs=ペア
 gamemodefollow=フォローする
+gamemodeglob=グローブ
 gamemodepatrol=パトロール
 #
 #
@@ -78,6 +79,8 @@ colorblue=青
 colorpurple=紫の
 colorpink=ピンク
 colorwhite=白い
+customtargetcolor=カスタムカラーを追加
+savecustomcolor=保存する
 #
 #
 # // skyboxes
@@ -99,8 +102,8 @@ testtargetsoundbutton=テスト
 #
 #
 # // general section items
-gametimer=タイマー（秒）
-targetsound=ターゲットサウンド
+gametimer=タイマー
+targetsound=ターゲットヒットサウンド
 uisound=UIサウンド
 movementlock=ムーブメントロック
 fpscounter=FPSカウンター 
@@ -113,6 +116,13 @@ showaccuracy=精度を表示
 showstreak=ストリークを表示
 showttk=TTKを表示
 showkps=KPSを表示
+#
+#
+# // timer dropdowns text
+30timertext=30秒
+60timertext=60秒
+90timertext=90秒
+120timertext=120秒
 #
 #
 # // general sections tooltips
@@ -150,6 +160,7 @@ keybindrebinded=に再バインドされました
 # // controls section items
 shoot=''シュート''
 showhidesettings=設定の表示/非表示
+showhideconsole=コンソールの表示/非表示
 showhideafteractionreport=「アクション後レポート」の表示/非表示
 showhidewidgets=ウィジェットの表示/非表示
 quickstartgame=クイックスタートゲーム
@@ -168,13 +179,16 @@ crosshairgreen=青
 crosshairblue=緑
 crosshairalpha=アルファ
 importexportcrosshair=インポート・エクスポート
+randomizecrosshair=十字線をランダム化
 resetcrosshair=十字線をリセット
 resetcrosshairconfirm=本気ですか?
 importcrosshairtitle=十字線をインポート
 importcrosshairbutton=インポート
 exportcrosshairbutton=書き出す
-crosshairsetsuccess=新しいCROSSHAIRが正常にインポートされました
-crosshairseterror=CROSSHAIR文字列が無効です
+crosshairimportsuccess=新しいCROSSHAIRが正常にインポートされました
+crosshairimportsuccesscsgo=CSGOCROSSHAIRが正常にインポートされました
+crosshairimporterror=CROSSHAIR文字列が無効です
+crosshairimporterrorcsgo=CSGOCROSSHAIRのインポートエラー
 crosshairsetexported=クリップボードにコピーされたCROSSHAIRストリング
 crosshairresetdefault=CROSSHAIRがデフォルトに正常にリセットされました
 #

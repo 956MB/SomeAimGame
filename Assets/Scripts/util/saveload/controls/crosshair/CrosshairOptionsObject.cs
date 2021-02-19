@@ -22,6 +22,7 @@ public class CrosshairOptionsObject : MonoBehaviour {
     void Awake() { crosshairOptions = this; }
 
     void Start() {
+        // TODO: add undo/redo actions for crosshair changes
         if (simpleCrosshair == null) {
             Debug.LogError("You have not set the target SimpleCrosshair. Disabling.");
             enabled = false;
@@ -172,7 +173,7 @@ public class CrosshairOptionsObject : MonoBehaviour {
     /// </summary>
     /// <param name="outlineContainerEnabled"></param>
     public static void SetOutlineContainerState(bool outlineContainerEnabled) {
-        Util.SetCanvasGroupState(crosshairOptions.outlineContainerCanvasGroup, outlineContainerEnabled);
+        Util.SetCanvasGroupState_DisableHover(crosshairOptions.outlineContainerCanvasGroup, outlineContainerEnabled);
     }
 
     /// <summary>

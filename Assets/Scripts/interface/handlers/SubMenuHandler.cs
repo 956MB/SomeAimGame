@@ -86,18 +86,20 @@ public class SubMenuHandler : MonoBehaviour {
     /// Clears all sub menu buttons to unselected color and resets all scroll view localscales.
     /// </summary>
     public void ClearSubMenus() {
-        Util.GameObjectLoops.Util_ClearTMPTextColor(InterfaceColors.unselectedColor, gamemodeSubMenuText, generalSubMenuText, controlsSubMenuText, crosshairSubMenuText, videoSubMenuText);
-        Util.GameObjectLoops.Util_SetObjectsLocalScale(disabledSubMenuScrollView, gamemodeContainer, generalContainer, controlsContainer, crosshairContainer, videoContainer);
-        Util.GameObjectLoops.Util_ImagesSetActive(false, gamemodeBar, generalBar, controlsBar, crosshairBar, videoBar);
+        Util.GameObjectLoops.ClearTMPTextColor(InterfaceColors.unselectedColor, gamemodeSubMenuText, generalSubMenuText, controlsSubMenuText, crosshairSubMenuText, videoSubMenuText);
+        Util.GameObjectLoops.SetObjectsLocalScale(disabledSubMenuScrollView, gamemodeContainer, generalContainer, controlsContainer, crosshairContainer, videoContainer);
+        Util.GameObjectLoops.ImagesSetActive(false, gamemodeBar, generalBar, controlsBar, crosshairBar, videoBar);
         
         CrosshairHide.HideCrosshairs();
+        CrosshairImportExport.CheckCloseCrosshairActions();
+        CrosshairImportExport.CloseImportExportPanel_Static();
     }
 
     /// <summary>
     /// Resets all sub menu scrollviews to the top.
     /// </summary>
     public static void ResetAllSubMenuScrollviewsTop() {
-        Util.GameObjectLoops.Util_ResetScrollViews_Top(subMenu.gamemodeScrollView, subMenu.generalScrollView, subMenu.controlsScrollView, subMenu.crosshairScrollView, subMenu.videoScrollView);
+        Util.GameObjectLoops.ResetScrollViews_Top(subMenu.gamemodeScrollView, subMenu.generalScrollView, subMenu.controlsScrollView, subMenu.crosshairScrollView, subMenu.videoScrollView);
     }
 
     public static void ResetCrosshairScrollview() {

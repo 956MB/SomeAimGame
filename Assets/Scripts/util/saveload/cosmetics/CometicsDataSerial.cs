@@ -6,6 +6,9 @@ using SomeAimGame.Targets;
 public class CosmeticsDataSerial {
     public GamemodeType gamemode;
     public TargetType   targetColor;
+    public string       customColorNameStrings;
+    public int          customColorIndex;
+    public string       customColorStrings;
     public SkyboxType   skybox;
     public float        afterActionReportPanelX;
     public float        afterActionReportPanelY;
@@ -16,6 +19,9 @@ public class CosmeticsDataSerial {
     public CosmeticsDataSerial() {
         gamemode                = CosmeticsSettings.gamemode;
         targetColor             = CosmeticsSettings.targetColor;
+        customColorNameStrings  = CosmeticsSettings.customColorNameStrings;
+        customColorIndex        = CosmeticsSettings.customColorIndex;
+        customColorStrings      = CosmeticsSettings.customColorStrings;
         skybox                  = CosmeticsSettings.skybox;
         afterActionReportPanelX = CosmeticsSettings.afterActionReportPanelX;
         afterActionReportPanelY = CosmeticsSettings.afterActionReportPanelY;

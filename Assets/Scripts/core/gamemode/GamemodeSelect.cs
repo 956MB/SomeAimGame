@@ -186,7 +186,7 @@ namespace SomeAimGame.Gamemode {
         /// <param name="clearColors"></param>
         public static void ClearGamemodeButtonColors(TMP_Text buttonText, bool selected, bool clearColors) {
             if (clearColors) {
-                Util.GameObjectLoops.Util_ClearTMPTextColor(InterfaceColors.hoveredColor, gamemodeSelect.gamemodeScatterText, gamemodeSelect.gamemodeFlickText, gamemodeSelect.gamemodeGridText, gamemodeSelect.gamemodeGrid2Text, gamemodeSelect.gamemodePairsText, gamemodeSelect.gamemodeFollowText, gamemodeSelect.gamemodeGlobText);
+                Util.GameObjectLoops.ClearTMPTextColor(InterfaceColors.hoveredColor, gamemodeSelect.gamemodeScatterText, gamemodeSelect.gamemodeFlickText, gamemodeSelect.gamemodeGridText, gamemodeSelect.gamemodeGrid2Text, gamemodeSelect.gamemodePairsText, gamemodeSelect.gamemodeFollowText, gamemodeSelect.gamemodeGlobText);
             }
 
             if (selected) { buttonText.color = InterfaceColors.selectedColor; } else { buttonText.color = InterfaceColors.hoveredColor; }

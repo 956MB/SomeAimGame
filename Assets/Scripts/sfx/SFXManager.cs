@@ -19,6 +19,9 @@ namespace SomeAimGame.SFX {
             TargetSoundSelect.SetTargetMissSoundText($"{SFXUtil.ReturnTargetSoundStrings(SFXSettings.targetMissSoundClip)}");
         }
 
+        /// <summary>
+        /// Inits states of sound selection containers.
+        /// </summary>
         private static void TargetSoundInit() {
             TargetSoundSelect.SetSoundSelectionContainerState(SFXSettings.targetSoundOn);
             TargetSoundSelect.SetTargetMissSoundContainerState(SFXSettings.targetMissSoundOn);
@@ -53,6 +56,7 @@ namespace SomeAimGame.SFX {
         public static void CheckPlayClick_Button() {  if (SFXSettings.uiSoundOn) { PlaySFXClick_Button(); } }
         public static void CheckPlayClick_Toggle() {  if (SFXSettings.uiSoundOn) { PlaySFXClick_Toggle(); } }
         public static void CheckPlayError() {         if (SFXSettings.uiSoundOn) { PlaySFXError_0(); } }
+        // TODO: add CheckPlaySuccess
         public static void CheckPlayTargetHit() {     if (SFXSettings.targetSoundOn) {                                  PlaySFXTargetHit(); } }
         public static void CheckPlayTargetMiss() {    if (SFXSettings.targetSoundOn && SFXSettings.targetMissSoundOn) { PlaySFXTargetMiss(); } }
 

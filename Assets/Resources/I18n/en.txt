@@ -83,6 +83,8 @@ colorblue=Blue
 colorpurple=Purple
 colorpink=Pink
 colorwhite=White
+customtargetcolor=Add custom color
+savecustomcolor=SAVE
 #
 #
 # // skyboxes
@@ -104,8 +106,8 @@ testtargetsoundbutton=TEST
 #
 #
 # // general section items
-gametimer=Timer (Seconds)
-targetsound=Target Sound
+gametimer=Timer
+targetsound=Target Hit Sound
 uisound=UI Sound
 movementlock=Movement Lock
 fpscounter=FPS Counter 
@@ -118,6 +120,13 @@ showaccuracy=Show Accuracy
 showstreak=Show Streak
 showttk=Show TTK
 showkps=Show KPS
+#
+#
+# // timer dropdowns text
+30timertext=30 Seconds
+60timertext=60 Seconds
+90timertext=90 Seconds
+120timertext=120 Seconds
 #
 #
 # // general sections tooltips
@@ -155,6 +164,7 @@ keybindrebinded=HAS BEEN REBINDED TO
 # // controls section items
 shoot=''Shoot''
 showhidesettings=Show/Hide Settings
+showhideconsole=Show/Hide Console
 showhideafteractionreport=Show/Hide 'After Action Report'
 showhidewidgets=Show/Hide Widgets
 quickstartgame=Quick Start Game
@@ -173,13 +183,16 @@ crosshairgreen=Green
 crosshairblue=Blue
 crosshairalpha=Alpha
 importexportcrosshair=Import/Export
+randomizecrosshair=Randomize Crosshair
 resetcrosshair=Reset Crosshair
 resetcrosshairconfirm=ARE YOU SURE?
 importcrosshairtitle=Import Crosshair
 importcrosshairbutton=IMPORT
-exportcrosshairbutton=EXPORT CROSSHAIR
-crosshairsetsuccess=NEW CROSSHAIR SUCCESSFULLY IMPORTED
-crosshairseterror=CROSSHAIR STRING INVALID
+exportcrosshairbutton=EXPORT
+crosshairimportsuccess=NEW CROSSHAIR SUCCESSFULLY IMPORTED
+crosshairimportsuccesscsgo=CSGO CROSSHAIR SUCCESSFULLY IMPORTED
+crosshairimporterror=CROSSHAIR STRING INVALID
+crosshairimporterrorcsgo=ERROR IMPORTING CSGO CROSSHAIR
 crosshairsetexported=CROSSHAIR STRING COPIED TO CLIPBOARD
 crosshairresetdefault=CROSSHAIR SUCCESSFULLY RESET TO DEFAULT
 #

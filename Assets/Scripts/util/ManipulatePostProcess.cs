@@ -27,9 +27,9 @@ namespace SomeAimGame.Utilities {
         /// </summary>
         public static void SetVIG(bool enabled) { vig.enabled.value = enabled; }
 
-        public static void SetPanelEffects(bool enabled) {
-            SetDOF(enabled);
-            SetCA(enabled);
+        public static void SetPanelEffects(bool DOFenabled, bool CAenabled) {
+            SetDOF(DOFenabled);
+            SetCA(CAenabled);
         }
     }
 }

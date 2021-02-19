@@ -30,7 +30,7 @@ public class ButtonHoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
 
         if (buttonName != TargetUtil.ReturnTargetColorType_StringFull(selectedTargetColor) && buttonName != SkyboxUtil.ReturnSkyboxType_StringFull(selectedSkybox) && buttonName != GamemodeUtil.ReturnGamemodeType_StringFull(selectedGamemode)) {
             childBorder.SetActive(true);
-            SetHoverButtonText(buttonName);
+            //SetHoverButtonText(buttonName);
             if (currentHoveredButton.Contains("Gamemode")) { SetHoverButtonColor(buttonName, GameObject.Find($"{buttonName}-Text (TMP)").GetComponent<TMP_Text>()); }
             //CursorHandler.setHoverCursorStatic();
             SFXManager.CheckPlayHover_Regular();
@@ -42,10 +42,11 @@ public class ButtonHoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
     /// </summary>
     /// <param name="pointerEventData"></param>
     public void OnPointerExit(PointerEventData pointerEventData) {
+        //Debug.Log($"currentHoveredButton: {currentHoveredButton} selectedTargetColor: {TargetUtil.ReturnTargetColorType_StringFull(selectedTargetColor)}");
         if (currentHoveredButton != TargetUtil.ReturnTargetColorType_StringFull(selectedTargetColor) && currentHoveredButton != SkyboxUtil.ReturnSkyboxType_StringFull(selectedSkybox) && currentHoveredButton != selectedGamemodeString) {
             childBorder.SetActive(false);
-            targetColorSelected.SetText(CosmeticsSaveSystem.activeTargetColorText);
-            skyboxSelected.SetText(CosmeticsSaveSystem.activeSkyboxText);
+            //targetColorSelected.SetText(CosmeticsSaveSystem.activeTargetColorText);
+            //skyboxSelected.SetText(CosmeticsSaveSystem.activeSkyboxText);
 
             if (currentHoveredButton.Contains("Gamemode")) { GamemodeSelect.ClearGamemodeButtonColors(GameObject.Find($"{currentHoveredButton}-Text (TMP)").GetComponent<TMP_Text>(), false, true); }
             if (currentHoveredButton.Contains("Gamemode")) { GamemodeSelect.ClearGamemodeButtonColors(GameObject.Find($"{selectedGamemodeString}-Text (TMP)").GetComponent<TMP_Text>(), true, false); }

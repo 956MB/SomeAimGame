@@ -53,11 +53,11 @@ namespace SomeAimGame.SFX {
         }
 
         public static void SetSoundSelectionContainerState(bool soundSelectionState) {
-            Util.SetCanvasGroupState(targetSoundSelect.soundSelectionCanvasGroup, soundSelectionState);
+            Util.SetCanvasGroupState_DisableHover(targetSoundSelect.soundSelectionCanvasGroup, soundSelectionState);
         }
 
         public static void SetTargetMissSoundContainerState(bool targetMissSoundState) {
-            Util.SetCanvasGroupState(targetSoundSelect.targetMissContainerCanvasGroup, targetMissSoundState);
+            Util.SetCanvasGroupState_DisableHover(targetSoundSelect.targetMissContainerCanvasGroup, targetMissSoundState);
         }
 
         private static void SaveNewTargetHitSound(AudioClip newAudioClip, SFXType newAudioClipType) {

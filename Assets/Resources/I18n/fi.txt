@@ -83,6 +83,8 @@ colorblue=Sininen
 colorpurple=Violetti
 colorpink=Vaaleanpunainen
 colorwhite=Valkoinen
+customtargetcolor=Lisää mukautettu väri
+savecustomcolor=TALLENTAA
 #
 #
 # // skyboxes
@@ -104,8 +106,8 @@ testtargetsoundbutton=TESTATA
 #
 #
 # // general section items
-gametimer=Ajastin (sekuntia) 
-targetsound=Kohdeääni 
+gametimer=Ajastin
+targetsound=Kohde-ääni
 uisound=Käyttöliittymän ääni 
 movementlock=Liikelukko 
 fpscounter=FPS-laskuri 
@@ -118,6 +120,13 @@ showaccuracy=Näytä tarkkuus
 showstreak=Näytä putki 
 showttk=Näytä TTK 
 showkps=Näytä KPS 
+#
+#
+# // timer dropdowns text
+30timertext=30 sekuntia
+60timertext=60 sekuntia
+90timertext=90 sekuntia
+120timertext=120 sekuntia
 #
 #
 # // general sections tooltips
@@ -155,6 +164,7 @@ keybindrebinded=on uudelleen sidottu
 # // controls section items
 shoot=''Ampua''
 showhidesettings=Näytä / piilota asetukset 
+showhideconsole=Näytä / piilota konsoli
 showhideafteractionreport=Näytä / piilota toimintaraportti
 showhidewidgets=Näytä / piilota widgetit
 quickstartgame=Pika-aloituspeli
@@ -173,13 +183,16 @@ crosshairgreen=Vihreä
 crosshairblue=Sininen
 crosshairalpha=Alfa
 importexportcrosshair=Tuonti ja vienti
+randomizecrosshair=Satunnaista ristikko
 resetcrosshair=Nollaa ristikko
 resetcrosshairconfirm=OLETKO VARMA?
 importcrosshairtitle=Tuo hiusristikko
 importcrosshairbutton=TUONTI
-exportcrosshairbutton=VIENTI RISKI
-crosshairsetsuccess=UUSI RISKIEN TUONTI TUONTI
-crosshairseterror=RISTINIVOJEN JOUSET OVAT PÄTEMÄTTÖMIÄ
+exportcrosshairbutton=VIEDÄ
+crosshairimportsuccess=UUSI RISKIEN TUONTI TUONTI
+crosshairimportsuccesscsgo=CSGO RISTIKOIDEN TUONTI TUONNA
+crosshairimporterror=RISTINIVOJEN JOUSET OVAT PÄTEMÄTTÖMIÄ
+crosshairimporterrorcsgo=CSGO CROSSHAIRIN TUOVA VIRHE
 crosshairsetexported=RISTINIVEKE KOPIOITU LEIKEPÖYDÄLLE
 crosshairresetdefault=RISTINHENKIEN PALAUTTAMINEN OLETUKSEEN
 #

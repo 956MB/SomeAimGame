@@ -19,7 +19,7 @@ public class HighscoreSaveSystem : MonoBehaviour {
     /// <param name="category"></param>
     /// <returns></returns>
     public static HighscoreDataSerial LoadHighscoreData(string category) {
-        HighscoreDataSerial highscoreData = (HighscoreDataSerial)SaveLoadUtil.LoadDataSerial($"/stats/highscores/{category}.highscore", SaveType.KEYBINDS);
+        HighscoreDataSerial highscoreData = (HighscoreDataSerial)SaveLoadUtil.LoadDataSerial($"/stats/highscores/{category}.highscore", SaveType.HIGHSCORE);
         return highscoreData;
     }
 }

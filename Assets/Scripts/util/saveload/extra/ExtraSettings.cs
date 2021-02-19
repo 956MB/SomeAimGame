@@ -4,9 +4,10 @@ using SomeAimGame.Utilities;
 
 public class ExtraSettings : MonoBehaviour {
     public static int   gameTimer                 = 60;
+    public static bool  showCountdown             = true;
     public static bool  showAAR                   = true;
     public static float mouseSensitivity          = 2.0f;
-    public static bool  hideUI                    = false;
+    public static bool  showWidgets               = true;
     public static bool  showExtraStats            = false;
     public static bool  showExtraStatsBackgrounds = true;
 
@@ -19,27 +20,32 @@ public class ExtraSettings : MonoBehaviour {
     /// Saves supplied game timer int (setGameTimer) to extra settings object (ExtraSettings), then saves extra settings object.
     /// </summary>
     /// <param name="setGameTimer"></param>
-    public static void SaveGameTimerItem(int setGameTimer) { Util.RefSetSettingChange(ref extraSettingsChangeReady, ref gameTimer, setGameTimer); }
+    public static void SaveGameTimerItem(int setGameTimer) {                         Util.RefSetSettingChange(ref extraSettingsChangeReady, ref gameTimer, setGameTimer); }
+    /// <summary>
+    /// Saves supplied show countdown timer bool (setShowCountdown) to extra settings object (ExtraSettings), then saves extra settings object.
+    /// </summary>
+    /// <param name="setShowCountdown"></param>
+    public static void SaveShowCountdownItem(bool setShowCountdown) {                Util.RefSetSettingChange(ref extraSettingsChangeReady, ref showCountdown, setShowCountdown); }
     /// <summary>
     /// Saves supplied show 'AfterActionReport' bool (setShowAAR) to extra settings object (ExtraSettings), then saves extra settings object.
     /// </summary>
     /// <param name="setShowAAR"></param>
-    public static void SaveShowAAR(bool setShowAAR) { Util.RefSetSettingChange(ref extraSettingsChangeReady, ref showAAR, setShowAAR); }
+    public static void SaveShowAAR(bool setShowAAR) {                                Util.RefSetSettingChange(ref extraSettingsChangeReady, ref showAAR, setShowAAR); }
     /// <summary>
     /// Saves supplied mouse sensitivity float (setMouseSens) to extra settings object (ExtraSettings), then saves extra settings object.
     /// </summary>
     /// <param name="setMouseSens"></param>
-    public static void SaveMouseSensItem(float setMouseSens) { Util.RefSetSettingChange(ref extraSettingsChangeReady, ref mouseSensitivity, setMouseSens); }
+    public static void SaveMouseSensItem(float setMouseSens) {                       Util.RefSetSettingChange(ref extraSettingsChangeReady, ref mouseSensitivity, setMouseSens); }
     /// <summary>
     /// Saves supplied hide UI bool (setHideUI) to extra settings object (ExtraSettings), then saves extra settings object.
     /// </summary>
     /// <param name="setHideUI"></param>
-    public static void SaveHideUI(bool setHideUI) { Util.RefSetSettingChange(ref extraSettingsChangeReady, ref hideUI, setHideUI); }
+    public static void SaveHideUI(bool setHideUI) {                                  Util.RefSetSettingChange(ref extraSettingsChangeReady, ref showWidgets, setHideUI); }
     /// <summary>
     /// Saves supplied show 'ExtraStats' bool (setShowExtraStats) to extra settings object (ExtraSettings), then saves extra settings object.
     /// </summary>
     /// <param name="setShowExtraStats"></param>
-    public static void SaveShowExtraStats(bool setShowExtraStats) { Util.RefSetSettingChange(ref extraSettingsChangeReady, ref showExtraStats, setShowExtraStats); }
+    public static void SaveShowExtraStats(bool setShowExtraStats) {                  Util.RefSetSettingChange(ref extraSettingsChangeReady, ref showExtraStats, setShowExtraStats); }
     /// <summary>
     /// Saves supplied show stats backgrounds bool (setShowExtraStatsBackgrounds) to extra settings object (ExtraSettings), then saves extra settings object.
     /// </summary>
@@ -61,11 +67,12 @@ public class ExtraSettings : MonoBehaviour {
     /// <param name="setMouseSens"></param>
     /// <param name="setHideUI"></param>
     /// <param name="setShowExtraStats"></param>
-    public static void SaveAllExtraSettingsDefaults(int setGameTimer, bool setShowAAR, float setMouseSens, bool setHideUI, bool setShowExtraStats, bool setShowExtraStatsBackgrounds) {
+    public static void SaveAllExtraSettingsDefaults(int setGameTimer, bool setShowCountdown, bool setShowAAR, float setMouseSens, bool setShowWidgets, bool setShowExtraStats, bool setShowExtraStatsBackgrounds) {
         gameTimer                 = setGameTimer;
+        showCountdown             = setShowCountdown;
         showAAR                   = setShowAAR;
         mouseSensitivity          = setMouseSens;
-        hideUI                    = setHideUI;
+        showWidgets               = setShowWidgets;
         showExtraStats            = setShowExtraStats;
         showExtraStatsBackgrounds = setShowExtraStatsBackgrounds;
 
@@ -78,9 +85,10 @@ public class ExtraSettings : MonoBehaviour {
     /// <param name="extraData"></param>
     public static void LoadExtraSettings(ExtraSettingsDataSerial extraData) {
         gameTimer                 = extraData.gameTimer;
+        showCountdown             = extraData.showCountdown;
         showAAR                   = extraData.showAAR;
         mouseSensitivity          = extraData.mouseSensitivity;
-        hideUI                    = extraData.hideUI;
+        showWidgets               = extraData.showWidgets;
         showExtraStats            = extraData.showExtraStats;
         showExtraStatsBackgrounds = extraData.showExtraStatsBackgrounds;
     }

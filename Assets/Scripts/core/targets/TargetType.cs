@@ -10,6 +10,7 @@
         BLUE,
         PURPLE,
         PINK,
-        WHITE
+        WHITE,
+        CUSTOM
     }
 }

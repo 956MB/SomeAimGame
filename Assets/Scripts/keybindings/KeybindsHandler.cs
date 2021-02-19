@@ -29,8 +29,9 @@ public class KeybindsHandler : MonoBehaviour {
     public void ChangeKeybind(GameObject clickedButton) {
         currentKey     = clickedButton;
         clickedKeycode = KeybindsUtil.GetButtonKeybind(currentKey.name);
-        currentKey.transform.GetChild(0).GetComponent<TMP_Text>().text = "-";
-        currentKey.transform.GetChild(0).GetComponent<TMP_Text>().color = InterfaceColors.unselectedColor;
+        currentKey.transform.GetChild(0).GetComponent<TMP_Text>().text     = "-";
+        currentKey.transform.GetChild(0).GetComponent<TMP_Text>().fontSize = 18f;
+        currentKey.transform.GetChild(0).GetComponent<TMP_Text>().color    = InterfaceColors.unselectedColor;
     }
 
     /// <summary>
@@ -38,7 +39,7 @@ public class KeybindsHandler : MonoBehaviour {
     /// </summary>
     /// <param name="keyEvent"></param>
     private void HandleKeyEvent(Event keyEvent) {
-        if (keyEvent.keyCode != KeyCode.None && keyEvent.keyCode != clickedKeycode && keyEvent.keyCode != KeyCode.Escape) {
+        if (keyEvent.keyCode != KeyCode.None && keyEvent.keyCode != clickedKeycode && keyEvent.keyCode != KeyCode.Escape && keyEvent.keyCode != KeyCode.Return) {
             //Debug.Log($"new KeyCode: {keyEvent.keyCode}");
             HandleNewKeybindSet(clickedKeycode, keyEvent.keyCode);
             currentKey = null;
@@ -66,8 +67,9 @@ public class KeybindsHandler : MonoBehaviour {
     }
 
     private void ResetKeybindText() {
-        currentKey.transform.GetChild(0).GetComponent<TMP_Text>().text  = KeybindsUtil.ReturnKeybindString(clickedKeycode);
-        currentKey.transform.GetChild(0).GetComponent<TMP_Text>().color = InterfaceColors.selectedColor;
+        currentKey.transform.GetChild(0).GetComponent<TMP_Text>().text     = KeybindsUtil.ReturnKeybindString(clickedKeycode);
+        currentKey.transform.GetChild(0).GetComponent<TMP_Text>().color    = InterfaceColors.selectedColor;
+        currentKey.transform.GetChild(0).GetComponent<TMP_Text>().fontSize = clickedKeycode == KeyCode.BackQuote ? 26f : 14f;
         currentKey = null;
     }
 
@@ -81,29 +83,32 @@ public class KeybindsHandler : MonoBehaviour {
             KeybindSaveSystem.SetShootKeybind(newKeycode);
             KeybindSettings.SaveShootKeybindItem(newKeycode);
 
-            NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("keybindshoot")} \"{clickedKeycode}\" {I18nTextTranslator.SetTranslatedText("keybindrebinded")} \"{newKeycode}\".", InterfaceColors.notificationColorGreen);
+            //NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("keybindshoot")} \"{clickedKeycode}\" {I18nTextTranslator.SetTranslatedText("keybindrebinded")} \"{newKeycode}\".", InterfaceColors.notificationColorGreen);
         } else if (clickedKeycode == KeybindSettings.toggleSettings) {
             KeybindSaveSystem.SetToggleSettingsKeybind(newKeycode);
             KeybindSettings.SaveToggleSettingsKeybindItem(newKeycode);
 
-            NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("keybindtogglesettings")} \"{clickedKeycode}\" {I18nTextTranslator.SetTranslatedText("keybindrebinded")} \"{newKeycode}\".", InterfaceColors.notificationColorGreen);
+            //NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("keybindtogglesettings")} \"{clickedKeycode}\" {I18nTextTranslator.SetTranslatedText("keybindrebinded")} \"{newKeycode}\".", InterfaceColors.notificationColorGreen);
             KeybindSaveSystem.SetAARButtons(KeybindSettings.gameRestart, newKeycode);
         } else if (clickedKeycode == KeybindSettings.toggleAAR) {
             KeybindSaveSystem.SetToggleAARKeybind(newKeycode);
             KeybindSettings.SaveToggleAARKeybindItem(newKeycode);
 
-            NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("keybindtoggleaar")} \"{clickedKeycode}\" {I18nTextTranslator.SetTranslatedText("keybindrebinded")} \"{newKeycode}\".", InterfaceColors.notificationColorGreen);
+            //NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("keybindtoggleaar")} \"{clickedKeycode}\" {I18nTextTranslator.SetTranslatedText("keybindrebinded")} \"{newKeycode}\".", InterfaceColors.notificationColorGreen);
         } else if (clickedKeycode == KeybindSettings.toggleWidgets) {
             KeybindSaveSystem.SetToggleWidgetsKeybind(newKeycode);
             KeybindSettings.SaveToggleWidgetsKeybindItem(newKeycode);
 
-            NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("keybindtogglewidgets")} \"{clickedKeycode}\" {I18nTextTranslator.SetTranslatedText("keybindrebinded")} \"{newKeycode}\".", InterfaceColors.notificationColorGreen);
+            //NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("keybindtogglewidgets")} \"{clickedKeycode}\" {I18nTextTranslator.SetTranslatedText("keybindrebinded")} \"{newKeycode}\".", InterfaceColors.notificationColorGreen);
         } else if (clickedKeycode == KeybindSettings.gameRestart) {
             KeybindSaveSystem.SetGameRestartKeybind(newKeycode);
             KeybindSettings.SaveGameRestartKeybindItem(newKeycode);
 
-            NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("keybindgamerestart")} \"{clickedKeycode}\" {I18nTextTranslator.SetTranslatedText("keybindrebinded")} \"{newKeycode}\".", InterfaceColors.notificationColorGreen);
+            //NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("keybindgamerestart")} \"{clickedKeycode}\" {I18nTextTranslator.SetTranslatedText("keybindrebinded")} \"{newKeycode}\".", InterfaceColors.notificationColorGreen);
             KeybindSaveSystem.SetAARButtons(newKeycode, KeybindSettings.toggleSettings);
+        } else if (clickedKeycode == KeybindSettings.toggleConsole) {
+            KeybindSaveSystem.SetToggleConsoleKeybind(newKeycode);
+            KeybindSettings.SaveToggleConsoleKeybindItem(newKeycode);
         }
     }
 }

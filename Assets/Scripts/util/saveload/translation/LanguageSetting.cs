@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 
+using SomeAimGame.Utilities;
+
 public class LanguageSetting : MonoBehaviour {
     public static string activeLanguageCode = "EN";
+
+    static bool languageSettingChangeReady = false;
 
     private static LanguageSetting languageSetting;
     void Awake() { languageSetting = this; }
@@ -10,10 +14,7 @@ public class LanguageSetting : MonoBehaviour {
     /// Saves supplied language code string (setLanguageCode) to language settings object (LanguageSetting).
     /// </summary>
     /// <param name="setLanguageCode"></param>
-    public static void SaveLanguageCodeItem(string setLanguageCode) {
-        activeLanguageCode = setLanguageCode;
-        languageSetting.SaveLanguageSetting();
-    }
+    public static void SaveLanguageCodeItem(string setLanguageCode) { Util.RefSetSettingChange(ref languageSettingChangeReady, ref activeLanguageCode, setLanguageCode); }
 
     /// <summary>
     /// Calls 'LanguageSaveSystem.SaveLanguageSettingData()' to save language setting object (LanguageSetting) to file.
@@ -35,5 +36,12 @@ public class LanguageSetting : MonoBehaviour {
     /// <param name="languageData"></param>
     public static void LoadLanguageSetting(LanguageSettingDataSerial languageData) {
         activeLanguageCode = languageData.languageCode;
+    }
+
+    public static void CheckSaveLanguageSetting() {
+        if (languageSettingChangeReady) {
+            languageSetting.SaveLanguageSetting();
+            languageSettingChangeReady = false;
+        }
     }
 }

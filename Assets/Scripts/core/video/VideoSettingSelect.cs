@@ -51,8 +51,12 @@ namespace SomeAimGame.Core {
             public static void ToggleMonitorSelect_Static() {      SetMonitorSelect(!monitorSelectOpen); }
             public static void ToggleAntiAliasingSelect_Static() { SetAntiAliasingSelect(!antiAliasingSelectOpen); }
 
+            /// <summary>
+            /// Sets video settings save container state to supplied bool (videoSettingsSaveState).
+            /// </summary>
+            /// <param name="videoSettingsSaveState"></param>
             public static void SetVideoSettingsSaveContainerState(bool videoSettingsSaveState) {
-                Util.SetCanvasGroupState(videoSettingsSelect.settingsSaveContainer, videoSettingsSaveState);
+                Util.SetCanvasGroupState_DisableHover(videoSettingsSelect.settingsSaveContainer, videoSettingsSaveState);
             }
 
             /// <summary>

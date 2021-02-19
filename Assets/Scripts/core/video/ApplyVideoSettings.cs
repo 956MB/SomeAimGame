@@ -28,6 +28,7 @@ namespace SomeAimGame.Core {
                 VideoSettingUtil.SettingChange(ref displayModePlaceholder, ref displayModeStringPlaceholder, ref displayModeChangeReady, newDisplayMode, setText);
                 ToggleSettingsSaveContainer(displayModeStringPlaceholder, displayModeStringCurrent, ref displayModeChangeReady);
             }
+
             /// <summary>
             /// Sets new resolution setting placeholder and sets videoSettingsSaveReady true.
             /// </summary>
@@ -45,6 +46,7 @@ namespace SomeAimGame.Core {
                 
                 ToggleSettingsSaveContainer(resolutionStringPlaceholder, resolutionStringCurrent, ref resolutionChangeReady);
             }
+
             /// <summary>
             /// Sets new monitor setting placeholder and sets videoSettingsSaveReady true.
             /// </summary>
@@ -165,7 +167,7 @@ namespace SomeAimGame.Core {
                     SetResolutionCurrent(resolutionStringCurrent);
                     SetMonitorCurrent(monitorStringCurrent);
 
-                    // Revert fps limit text/slider to previous unsaved values.
+                    // Revert fps limit text/slider to previous unsaved values. (NOT needed as fps limit is seperate from rest of video settings)
                     //FPSLimitSlider.SetFPSLimitValueText(VideoSettings.fpsLimit);
                     //FPSLimitSlider.SetFPSLimitSlider(VideoSettings.fpsLimit);
 
@@ -174,6 +176,12 @@ namespace SomeAimGame.Core {
                 }
             }
 
+            /// <summary>
+            /// Handles settings save container state when settings are changed.
+            /// </summary>
+            /// <param name="placeholder"></param>
+            /// <param name="current"></param>
+            /// <param name="changeReady"></param>
             public static void ToggleSettingsSaveContainer(string placeholder, string current, ref bool changeReady) {
                 // If new setting selected and setting save container not ready.
                 if (!VideoSettingUtil.CheckMatch(placeholder, current) && !videoSettingsSaveReady) {

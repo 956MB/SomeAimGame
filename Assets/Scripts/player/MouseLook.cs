@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 using SomeAimGame.Stats;
+using SomeAimGame.Console;
 
 public class MouseLook : MonoBehaviour {
     [Range(0, 10f)]
@@ -31,8 +32,8 @@ public class MouseLook : MonoBehaviour {
     }
 
     void Update() {
-        // Only detect mouse movement in game if settings panel/'AfterActionReport' are not open.
-        if (!settingsOpen && !afterActionReportOpen) {
+        // Only detect mouse movement in game if settings panel/'AfterActionReport'/console are not open.
+        if (!settingsOpen && !afterActionReportOpen && !SAGConsole.consoleActive) {
             // new mouseLook:
             if (axes == RotationAxes.MouseXAndY) {
                 float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;

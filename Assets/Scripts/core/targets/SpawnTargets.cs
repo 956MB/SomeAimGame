@@ -7,7 +7,7 @@ using SomeAimGame.Utilities;
 
 namespace SomeAimGame.Targets {
     public class SpawnTargets : MonoBehaviour {
-        public GameObject redTarget, orangeTarget, yellowTarget, greenTarget, blueTarget, purpleTarget, pinkTarget, whiteTarget;
+        public GameObject redTarget, orangeTarget, yellowTarget, greenTarget, blueTarget, purpleTarget, pinkTarget, whiteTarget, customTarget;
         public static GameObject primaryTargetObject, currentTargetObj;
         static GameObject[] targetObjects;
         private static Rigidbody targetRb, secondaryTargetRb;
@@ -24,7 +24,7 @@ namespace SomeAimGame.Targets {
 
         private static Vector3 targetInArea, preFallTargetSpawn;
         public int startingTargetCount;
-        public static int count, totalCount;
+        public static int count, shotsTotal;
         private static int stepCount = 4;
         public bool targetFall       = false;
 
@@ -166,7 +166,7 @@ namespace SomeAimGame.Targets {
 
             preFallTargetSpawn = currentTargetObj.transform.position;
             count              += 1;
-            totalCount         += 1;
+            shotsTotal         += 1;
         }
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace SomeAimGame.Targets {
 
                 preFallTargetSpawn = currentTargetObj.transform.position;
                 count              += 1;
-                totalCount         += 1;
+                shotsTotal         += 1;
             }
         }
 
@@ -226,7 +226,7 @@ namespace SomeAimGame.Targets {
             currentTargetObj = Instantiate(primaryTargetObject, starterTargetCords, Quaternion.identity);
             targetSpawns.Add(starterTargetCords);
             count      += 1;
-            totalCount += 1;
+            shotsTotal += 1;
         }
 
         public static void SpawnNewGlobPath() {
@@ -279,7 +279,7 @@ namespace SomeAimGame.Targets {
 
             targetSpawns.Add(starterTargetCords);
             count      += 1;
-            totalCount += 1;
+            shotsTotal += 1;
         }
 
         /// <summary>
@@ -314,7 +314,7 @@ namespace SomeAimGame.Targets {
             }
 
             count      += 2;
-            totalCount += 2;
+            shotsTotal += 2;
         }
 
         /// <summary>
@@ -378,7 +378,7 @@ namespace SomeAimGame.Targets {
         /// Sets targets size to tiny if current gamemode "Gamemode-Grid2".
         /// </summary>
         public static void SetTinyTargets() {
-            Util.GameObjectLoops.Util_SetObjectsLocalScale(tinyTargetSize, ST.redTarget, ST.orangeTarget, ST.yellowTarget, ST.greenTarget, ST.blueTarget, ST.purpleTarget, ST.pinkTarget, ST.whiteTarget);
+            Util.GameObjectLoops.SetObjectsLocalScale(tinyTargetSize, ST.redTarget, ST.orangeTarget, ST.yellowTarget, ST.greenTarget, ST.blueTarget, ST.purpleTarget, ST.pinkTarget, ST.whiteTarget);
             targetSize = primaryTargetObject.transform.lossyScale.y;
         }
 
@@ -386,7 +386,7 @@ namespace SomeAimGame.Targets {
         /// Sets targets size to normal if current gamemode is anything but "Gamemode-Grid2".
         /// </summary>
         public static void SetNormalTargets() {
-            Util.GameObjectLoops.Util_SetObjectsLocalScale(normalTargetSize, ST.redTarget, ST.orangeTarget, ST.yellowTarget, ST.greenTarget, ST.blueTarget, ST.purpleTarget, ST.pinkTarget, ST.whiteTarget);
+            Util.GameObjectLoops.SetObjectsLocalScale(normalTargetSize, ST.redTarget, ST.orangeTarget, ST.yellowTarget, ST.greenTarget, ST.blueTarget, ST.purpleTarget, ST.pinkTarget, ST.whiteTarget);
             targetSize = primaryTargetObject.transform.lossyScale.y;
         }
 
@@ -399,7 +399,7 @@ namespace SomeAimGame.Targets {
 
             preFallTargetSpawn = currentTargetObj.transform.position;
             count              += 1;
-            totalCount         += 1;
+            shotsTotal         += 1;
         }
 
         /// <summary>
@@ -430,6 +430,10 @@ namespace SomeAimGame.Targets {
                 case TargetType.PURPLE: SetTargetObjects(ST.purpleTarget, ST.yellowTarget, gamemodeFollow, TargetColors.PurpleAlbedo, TargetColors.PurpleEmission, TargetColors.PurpleLight); break;
                 case TargetType.PINK:   SetTargetObjects(ST.pinkTarget, ST.yellowTarget, gamemodeFollow, TargetColors.PinkAlbedo, TargetColors.PinkEmission, TargetColors.PinkLight);         break;
                 case TargetType.WHITE:  SetTargetObjects(ST.whiteTarget, ST.blueTarget, gamemodeFollow, TargetColors.WhiteAlbedo, TargetColors.WhiteEmission, TargetColors.WhiteLight);       break;
+                case TargetType.CUSTOM:
+                    SetTargetObjects(ST.customTarget, ST.redTarget, gamemodeFollow, CustomTargetColorUtil.customColorAlbedo, CustomTargetColorUtil.customColorEmission, CustomTargetColorUtil.customColorEmission);
+                    CustomTargetColorUtil.ChangeCurrentTargetColorCustom(primaryTargetObject); // TODO: set custom target color.
+                    break;
             }
         }
 
@@ -587,6 +591,7 @@ namespace SomeAimGame.Targets {
         private static void SetTargetObjects(GameObject setPrimaryTarget, GameObject setSecondaryTarget, bool gamemodeFollow, Color setAlbedo, Color setEmission, Color setLight) {
             primaryTargetObject   = setPrimaryTarget;
             secondaryTargetObject = setSecondaryTarget;
+            CustomTargetPanel.testTargetPrefab = setPrimaryTarget;
 
             if (gamemodeFollow) { FollowRaycast.ChangeFollowTargetColor(setAlbedo, setEmission, setLight); }
         }
@@ -629,7 +634,7 @@ namespace SomeAimGame.Targets {
             shotsHit               = 0;
             shotsTaken             = 0;
             count                  = 0;
-            totalCount             = 0;
+            shotsTotal             = 0;
 
             GunAction.timerRunning = true;
             //TempValues.SetTimerRunningTemp(true);

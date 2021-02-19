@@ -64,36 +64,26 @@ namespace SomeAimGame.SFX {
         /// Sets target sound clip to supplied SFXType (targetSoundClip).
         /// </summary>
         /// <param name="targetSoundClip"></param>
-        private static void SetTargetSoundClip(SFXType targetSoundClip) {
-            SFXManager.targetHitSound = SFXManager.ReturnTargetSFXClip(targetSoundClip);
-        }
+        private static void SetTargetSoundClip(SFXType targetSoundClip) {            SFXManager.targetHitSound                  = SFXManager.ReturnTargetSFXClip(targetSoundClip); }
         /// <summary>
         /// Sets target miss sound clip to supplied SFXType (targetMissSoundClip).
         /// </summary>
         /// <param name="targetMissSoundClip"></param>
-        private static void SetTargetMissSoundClip(SFXType targetMissSoundClip) {
-            SFXManager.targetMissSound = SFXManager.ReturnTargetSFXClip(targetMissSoundClip);
-        }
+        private static void SetTargetMissSoundClip(SFXType targetMissSoundClip) {    SFXManager.targetMissSound                 = SFXManager.ReturnTargetSFXClip(targetMissSoundClip); }
         /// <summary>
         /// Sets target sound on toggle to supplied bool (targetSoundToggle).
         /// </summary>
         /// <param name="targetSoundToggle"></param>
-        private static void SetTargetSoundOnToggle(bool targetSoundToggle) {
-            sfxSave.targetSoundOnToggleObject.isOn = targetSoundToggle;
-        }
+        private static void SetTargetSoundOnToggle(bool targetSoundToggle) {         sfxSave.targetSoundOnToggleObject.isOn     = targetSoundToggle; }
         /// <summary>
         /// Sets target miss sound on toggle to supplied bool (targetMissSoundToggle).
         /// </summary>
         /// <param name="targetMissSoundToggle"></param>
-        private static void SetTargetMissSoundOnToggle(bool targetMissSoundToggle) {
-            sfxSave.targetMissSoundOnToggleObject.isOn = targetMissSoundToggle;
-        }
+        private static void SetTargetMissSoundOnToggle(bool targetMissSoundToggle) { sfxSave.targetMissSoundOnToggleObject.isOn = targetMissSoundToggle; }
         /// <summary>
         /// Sets UI sound on toggle to supplied bool (UISoundToggle).
         /// </summary>
         /// <param name="UISoundToggle"></param>
-        private static void SetUISoundOnToggle(bool UISoundToggle) {
-            sfxSave.UISoundOnToggleObject.isOn = UISoundToggle;
-        }
+        private static void SetUISoundOnToggle(bool UISoundToggle) {                 sfxSave.UISoundOnToggleObject.isOn         = UISoundToggle; }
     }
 }

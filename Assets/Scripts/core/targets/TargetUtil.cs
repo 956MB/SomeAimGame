@@ -6,8 +6,8 @@ using SomeAimGame.Utilities;
 
 namespace SomeAimGame.Targets {
     public class TargetUtil : MonoBehaviour {
-        private static string[] targetsLongStrings  = { "TargetColor-Red", "TargetColor-Orange", "TargetColor-Yellow", "TargetColor-Green", "TargetColor-Blue", "TargetColor-Purple", "TargetColor-Pink", "TargetColor-White" };
-        private static string[] targetsShortStrings = { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "White" };
+        private static string[] targetsLongStrings  = { "TargetColor-Red", "TargetColor-Orange", "TargetColor-Yellow", "TargetColor-Green", "TargetColor-Blue", "TargetColor-Purple", "TargetColor-Pink", "TargetColor-White", "TargetColor-Custom" };
+        private static string[] targetsShortStrings = { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Custom" };
         private static string[] targetsi18nsStrings = { "colorred", "colororange", "coloryellow", "colorgreen", "colorblue", "colorpurple", "colorpink", "colorwhite" };
 
         #region Targets utils
@@ -137,7 +137,7 @@ namespace SomeAimGame.Targets {
                 case "TargetColor-Purple": return TargetType.PURPLE;
                 case "TargetColor-Pink":   return TargetType.PINK;
                 case "TargetColor-White":  return TargetType.WHITE;
-                default:                   return TargetType.YELLOW;
+                default:                   return TargetType.CUSTOM;
             }
         }
 
@@ -147,6 +147,8 @@ namespace SomeAimGame.Targets {
         /// <param name="typeTargetColor"></param>
         /// <returns></returns>
         public static string ReturnTargetColorType_StringFull(TargetType typeTargetColor) {
+            // TODO: set custom button names to saved names
+            if (typeTargetColor == TargetType.CUSTOM && CustomTargetColorUtil.customColorIndex != -1) { return $"TargetColor-{CustomTargetColorUtil.GetCurrentCustomTargetName()}"; }
             return targetsLongStrings[(int)typeTargetColor];
         }
 
@@ -165,6 +167,7 @@ namespace SomeAimGame.Targets {
         /// <param name="typeTargetColor"></param>
         /// <returns></returns>
         public static string ReturnTargetColorType_StringTranslated(TargetType typeTargetColor) {
+            if (typeTargetColor == TargetType.CUSTOM) { return CustomTargetColorUtil.GetCurrentCustomTargetName(); }
             return I18nTextTranslator.SetTranslatedText(targetsi18nsStrings[(int)typeTargetColor]);
         }
 

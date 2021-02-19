@@ -7,6 +7,7 @@ public class KeybindDataSerial {
     public KeyCode gameRestart;
     public KeyCode toggleAAR;
     public KeyCode toggleSettings;
+    public KeyCode toggleConsole;
 
     public KeybindDataSerial() {
         shoot          = KeybindSettings.shoot;
@@ -14,5 +15,6 @@ public class KeybindDataSerial {
         gameRestart    = KeybindSettings.gameRestart;
         toggleAAR      = KeybindSettings.toggleAAR;
         toggleSettings = KeybindSettings.toggleSettings;
+        toggleConsole  = KeybindSettings.toggleConsole;
     }
 }

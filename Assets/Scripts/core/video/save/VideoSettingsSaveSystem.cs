@@ -12,28 +12,30 @@ namespace SomeAimGame.Core {
             private static VideoSettingsSaveSystem videoSave;
             void Awake() { videoSave = this; }
 
+            /// <summary>
+            /// Saves supplied videos settings object (VideoSettings) to file.
+            /// </summary>
             public static void SaveVideoSettingsData() {
                 VideoSettingsDataSerial videoData = new VideoSettingsDataSerial();
                 SaveLoadUtil.SaveDataSerial("/prefs", "/sag_video.prefs", videoData);
             }
 
+            /// <summary>
+            /// Loads video settings data (VideoSettingsDataSerial) from file.
+            /// </summary>
+            /// <returns></returns>
             public static VideoSettingsDataSerial LoadVideoSettingsData() {
                 VideoSettingsDataSerial videoData = (VideoSettingsDataSerial)SaveLoadUtil.LoadDataSerial("/prefs/sag_video.prefs", SaveType.VIDEO);
                 return videoData;
             }
 
+            /// <summary>
+            /// Inits saved video settings object and sets all video settings values.
+            /// </summary>
             public static void InitSavedVideoSettings() {
                 VideoSettingsDataSerial loadedVideoSettingsData = LoadVideoSettingsData();
                 if (loadedVideoSettingsData != null) {
-                    SetDisplayMode(loadedVideoSettingsData.displayMode);
-                    SetResolution(loadedVideoSettingsData.resolutionWidth, loadedVideoSettingsData.resolutionHeight, loadedVideoSettingsData.displayMode, loadedVideoSettingsData.resolutionRefreshRate);
-                    SetMonitor(loadedVideoSettingsData.monitorMain);
-                    SetVSyncToggle(loadedVideoSettingsData.VSync);
-                    SetFPSLimit(loadedVideoSettingsData.fpsLimit);
-                    SetAntiAlias(loadedVideoSettingsData.antiAliasType);
-                    SetVignetteToggle(loadedVideoSettingsData.vignette);
-                    SetChromaticAberrationToggle(loadedVideoSettingsData.chromaticAberration);
-                    //Debug.Log("SAVED FPS LIMIT: " + loadedVideoSettingsData.fpsLimit);
+                    SetVideoSettingsValues(loadedVideoSettingsData.displayMode, loadedVideoSettingsData.resolutionWidth, loadedVideoSettingsData.resolutionHeight, loadedVideoSettingsData.resolutionRefreshRate, loadedVideoSettingsData.monitorMain, loadedVideoSettingsData.VSync, loadedVideoSettingsData.fpsLimit, loadedVideoSettingsData.antiAliasType, loadedVideoSettingsData.vignette, loadedVideoSettingsData.chromaticAberration);
 
                     VideoSettings.LoadVideoSettings(loadedVideoSettingsData);
                 } else {
@@ -42,19 +44,15 @@ namespace SomeAimGame.Core {
                 }
             }
 
+            /// <summary>
+            /// Inits default video settings values and saves to file on first launch.
+            /// </summary>
             public static void InitVideoSettingsDefaults() {
                 // Get users default monitor res/refresh on init
                 Resolution currentRes = VideoSettingUtil.ReturnCurrentScreenValues();
                 //Debug.Log($"current res: {currentRes.refreshRate}");
 
-                SetDisplayMode(FullScreenMode.FullScreenWindow);
-                SetResolution(currentRes.width, currentRes.height, FullScreenMode.FullScreenWindow, currentRes.refreshRate);
-                SetMonitor(0);
-                SetVSyncToggle(false);
-                SetFPSLimit(0);
-                SetAntiAlias(AntiAliasType.SMAA);
-                SetVignetteToggle(false);
-                SetChromaticAberrationToggle(false);
+                SetVideoSettingsValues(FullScreenMode.FullScreenWindow, currentRes.width, currentRes.height, currentRes.refreshRate, 0, false, 0, AntiAliasType.SMAA, false, false);
 
                 VideoSettings.SaveAllExtraSettingsDefaults(FullScreenMode.FullScreenWindow, currentRes.width, currentRes.height, currentRes.refreshRate, 0, false, 0, AntiAliasType.SMAA, false, false);
             }
@@ -102,6 +100,17 @@ namespace SomeAimGame.Core {
             private static void SetChromaticAberrationToggle(bool chromaticAberrationToggle) {
                 // set CA
                 videoSave.chromaticAberrationToggle.isOn = chromaticAberrationToggle;
+            }
+
+            public static void SetVideoSettingsValues(FullScreenMode setDisplayMode, int setResolutionWidth, int setResolutionHeight, int setResolutionRefreshRate, int setMonitorMain, bool setVSync, int setFpsLimit, AntiAliasType setAntiAliasType, bool setVignette, bool setCromaticAberration) {
+                SetDisplayMode(setDisplayMode);
+                SetResolution(setResolutionWidth, setResolutionHeight, setDisplayMode, setResolutionRefreshRate);
+                SetMonitor(setMonitorMain);
+                SetVSyncToggle(setVSync);
+                SetFPSLimit(setFpsLimit);
+                SetAntiAlias(setAntiAliasType);
+                SetVignetteToggle(setVignette);
+                SetChromaticAberrationToggle(setCromaticAberration);
             }
 
             #endregion

@@ -1,30 +1,30 @@
-crosshair preset colors/styles
+** crosshair preset colors/styles
 
 gamemode insights like previous stats in gamemode select
-
-score combo thing
 
 terrain generate brackeys
 
 skyboxes: solid colors, gradients, more premade
 
-more new gamemodes
+** more new gamemodes
 
 map presets: skybox/terrain color combos
 
-hyperlink to patch notes site
+** hyperlink to patch notes site
 
 leaderboard stuff
 
 steam friends api integration
 
-console commands, like csgo
+** console commands, like csgo
+
+** undo/redo for crosshair changes
 
 bunch of spawn flying in one direction gamemode
 
 themes, light/dark/twitch/LoL etc
 
-target spawn size/rate/loation/target spawn area editing stuff
+** target spawn size/rate/loation/target spawn area editing stuff
 
 profile panel to left of main large panel center: draw concepets tomorrow
 
@@ -33,11 +33,6 @@ frenzy gamemode, targets spawn in all different states at same time and are cons
 visualize target spawn area/target size when changing, line shader when chaning values, example videos? example targets spawning?
 
 fix exclusive fullscreen thing
-
-display options
-
-fix "bug" in follow gamemode where target continues on path instead of pausing
-	^ possible fix for this: pause game time completely? need to check if any ui elements or anything will be affected by update
 
 Descriptions:
 Scatter:
@@ -67,6 +62,6 @@ ui drag system for someaimgame. certain elements of the ui will be dragable, lik
 
 NEW STUFF (1/5/2021):
 
-- Click to expand on AAR stat rows. Possibly opens up graph or more extended stats. Saves opened/closed?
+** - Click to expand on AAR stat rows. Possibly opens up graph or more extended stats. Saves opened/closed?
 
-- Write new robust system for new gamemodes? Like config files for gamemodes and what happens on target clicks and stuff. Or at least system for adding new gamemode button, rather than manually going through the files and adding to enums and etc.
+** - Write new robust system for new gamemodes? Like config files for gamemodes and what happens on target clicks and stuff. Or at least system for adding new gamemode button, rather than manually going through the files and adding to enums and etc.

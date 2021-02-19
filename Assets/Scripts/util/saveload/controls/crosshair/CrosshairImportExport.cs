@@ -5,6 +5,7 @@ using TMPro;
 
 using SomeAimGame.Utilities;
 using SomeAimGame.SFX;
+using System.Collections.Generic;
 
 /// <summary>
 /// Extension for TMP_InputField that clears text box.
@@ -39,9 +40,15 @@ public class CrosshairImportExport : MonoBehaviour {
             SetResetConfirm();
         } else {
             CrosshairSaveSystem.InitCrosshairSettingsDefaults();
-            NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("crosshairresetdefault")}", InterfaceColors.notificationColorGreen);
+            //NotificationHandler.ShowTimedNotification_String($"{I18nTextTranslator.SetTranslatedText("crosshairresetdefault")}", InterfaceColors.notificationColorGreen);
             SetResetDefault();
         }
+    }
+
+    public void RandomizeCrosshair() {
+        SimpleCrosshair.GenerateRandomCrosshair();
+        CrosshairOptionsObject.SaveCrosshairObject(true, true);
+        SFXManager.CheckPlayClick_Button();
     }
 
     /// <summary>
@@ -55,7 +62,9 @@ public class CrosshairImportExport : MonoBehaviour {
     /// Sets reset crosshair confirmation to inactive (default).
     /// </summary>
     public static void SetResetDefault() {
-        SetResetButtonValues(crosshairImportExport.crosshairBoxDefault, I18nTextTranslator.SetTranslatedText("resetcrosshair"), InterfaceColors.unselectedColor, false);
+        if (resetConfirmActive) {
+            SetResetButtonValues(crosshairImportExport.crosshairBoxDefault, I18nTextTranslator.SetTranslatedText("resetcrosshair"), InterfaceColors.unselectedColor, false);
+        }
     }
 
     /// <summary>
@@ -87,6 +96,7 @@ public class CrosshairImportExport : MonoBehaviour {
 
     public void CancelCloseImportExport() {
         CloseImportExportPanel_Static();
+        SetResetDefault();
     }
 
     /// <summary>
@@ -120,16 +130,22 @@ public class CrosshairImportExport : MonoBehaviour {
         crosshairStringInputField.Select();
         string importString = crosshairStringInputField.text.ToString();
 
-        if (SimpleCrosshair.ValidateSetCrosshairString(importString, true)) {
-            SetCrosshairNotification_Delay(I18nTextTranslator.SetTranslatedText("crosshairsetsuccess"), InterfaceColors.notificationColorGreen, true);
-            crosshairStringInputField.clear();
-            CrosshairOptionsObject.SaveCrosshairObject(true, true);
-
-            SFXManager.CheckPlayClick_Button();
+        if (CSGOCrosshair.CheckIfCSGOCrosshair(importString)) {
+            if (CSGOCrosshair.ValidateCSGOCrosshair(importString)) {
+                Dictionary<string, double> decodedCrosshair = CSGOCrosshair.DecodeCSGOCrosshair(importString);
+                if (SimpleCrosshair.ValidateSetCSGOCrosshair(decodedCrosshair, true)) {
+                    CrosshairImportSuccess("crosshairimportsuccesscsgo");
+                    Debug.Log("CSGO import success");
+                }
+            } else {
+                CrosshairImportError("crosshairimporterrorcsgo");
+            }
         } else {
-            SetCrosshairNotification_Delay(I18nTextTranslator.SetTranslatedText("crosshairseterror"), InterfaceColors.notificationColorRed, true);
-
-            SFXManager.CheckPlayError();
+            if (SimpleCrosshair.ValidateSetCrosshairString(importString, true)) {
+                CrosshairImportSuccess("crosshairimportsuccess");
+            } else {
+                CrosshairImportError("crosshairimporterror");
+            }
         }
     }
 
@@ -166,14 +182,37 @@ public class CrosshairImportExport : MonoBehaviour {
         crosshairImportExport.SetCrosshairNotification_Delay("", InterfaceColors.unselectedColor, false);
     }
 
+    /// <summary>
+    /// Checks if crosshair reset or presets container are enabled and resets to disabled.
+    /// </summary>
     public static void CheckCloseCrosshairActions() {
         // Closes crosshair import/export panel if open.
         //if (importExportPanelOpen) { CloseImportExportPanel_Static(); }
 
         // Disables crosshair reset confirmation if active.
-        if (resetConfirmActive) { SetResetDefault(); }
+        SetResetDefault();
         // Closes crosshair presets panel if open.
         if (CrosshairPresets.crosshairPresetsPanelOpen) { CrosshairPresets.ClosePresetsPanel_Static(); }
+    }
+
+    /// <summary>
+    /// Method that triggers a success in importing new crosshair from string or CSGO ShareCode.
+    /// </summary>
+    /// <param name="crosshairTypeSuccessString"></param>
+    private void CrosshairImportSuccess(string crosshairTypeSuccessString) {
+        SetCrosshairNotification_Delay(I18nTextTranslator.SetTranslatedText($"{crosshairTypeSuccessString}"), InterfaceColors.notificationColorGreen, true);
+        crosshairStringInputField.clear();
+        CrosshairOptionsObject.SaveCrosshairObject(true, true);
+
+        SFXManager.CheckPlayClick_Button();
+    }
+    /// <summary>
+    /// Method that triggers an error in importing new crosshair from string or CSGO ShareCode.
+    /// </summary>
+    /// <param name="crosshairTypeErrorString"></param>
+    private void CrosshairImportError(string crosshairTypeErrorString) {
+        SetCrosshairNotification_Delay(I18nTextTranslator.SetTranslatedText($"{crosshairTypeErrorString}"), InterfaceColors.notificationColorRed, true);
+        SFXManager.CheckPlayError();
     }
 }
 

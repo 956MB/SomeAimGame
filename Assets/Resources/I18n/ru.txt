@@ -17,6 +17,7 @@ gamemodegrid=Сетка
 gamemodegrid2=Сетка II
 gamemodepairs=Пары
 gamemodefollow=Cледить
+gamemodeglob=Глобус
 gamemodepatrol=Патруль
 #
 #
@@ -78,6 +79,8 @@ colorblue=Синий
 colorpurple=Фиолетовый
 colorpink=Розовый
 colorwhite=Белый
+customtargetcolor=Добавить собственный цвет
+savecustomcolor=СПАСТИ
 #
 #
 # // skyboxes
@@ -99,8 +102,8 @@ testtargetsoundbutton=тестировать
 #
 #
 # // general section items
-gametimer=Таймер (секунды)
-targetsound=Целевой звук
+gametimer=Таймер
+targetsound=Звук попадания в цель
 uisound=Звук пользовательского интерфейса
 movementlock=Блокировка движения
 fpscounter=Счетчик FPS 
@@ -113,6 +116,13 @@ showaccuracy=Показать точность
 showstreak=Показать серию
 showttk=Показать ТТК
 showkps=Показать КПС
+#
+#
+# // timer dropdowns text
+30timertext=30 секунд
+60timertext=60 секунд
+90timertext=90 секунд
+120timertext=120 секунд
 #
 #
 # // general sections tooltips
@@ -150,6 +160,7 @@ keybindrebinded=был переименован в
 # // controls section items
 shoot=''Стрелять''
 showhidesettings=Показать / скрыть настройки
+showhideconsole=Показать / скрыть консоль
 showhideafteractionreport=Показать / скрыть отчет о действиях
 showhidewidgets=Показать / скрыть виджеты
 quickstartgame=Быстрый старт игры
@@ -168,13 +179,16 @@ crosshairgreen=Синий
 crosshairblue=Зеленый
 crosshairalpha=Альфа
 importexportcrosshair=Импорт Экспорт
+randomizecrosshair=Перемешать перекрестие
 resetcrosshair=Сбросить прицел
 resetcrosshairconfirm=ТЫ УВЕРЕН?
 importcrosshairtitle=Импортировать перекрестие
 importcrosshairbutton=ИМПОРТИРОВАТЬ
-exportcrosshairbutton=ЭКСПОРТ ПЕРЕКРЕСТОК
-crosshairsetsuccess=УСПЕШНО ИМПОРТИРОВАН НОВАЯ КОРОБКА
-crosshairseterror=ПЕРЕКРЕСТОК НЕВЕРНО
+exportcrosshairbutton=ЭКСПОРТ
+crosshairimportsuccess=УСПЕШНО ИМПОРТИРОВАН НОВАЯ КОРОБКА
+crosshairimportsuccesscsgo=CSGO CROSSHAIR УСПЕШНО ИМПОРТИРОВАНО
+crosshairimporterror=ПЕРЕКРЕСТОК НЕВЕРНО
+crosshairimporterrorcsgo=ОШИБКА ИМПОРТА CSGO CROSSHAIR
 crosshairsetexported=ПЕРЕКРЕСТНАЯ СТРОКА СКОПИРОВАНА НА ДОСКУ ОБРЕЗКИ
 crosshairresetdefault=ПЕРЕКРЕСТОК УСПЕШНО СБРОСИТЬ В ПО УМОЛЧАНИЮ
 #

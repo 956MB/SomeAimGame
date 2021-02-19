@@ -16,8 +16,8 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     public static string activeTargetColorText, activeSkyboxText;
     public Toggle quickStartToggle;
 
-    private static CosmeticsSaveSystem saveLoad;
-    void Awake() { saveLoad = this; }
+    private static CosmeticsSaveSystem cosmeticsSaveLoad;
+    void Awake() { cosmeticsSaveLoad = this; }
 
     /// <summary>
     /// Saves supplied cosmetics object (CosmeticsSettings) to file.
@@ -44,10 +44,7 @@ public class CosmeticsSaveSystem : MonoBehaviour {
         CosmeticsDataSerial loadedCosmeticsData = LoadCosmeticsSettingsData();
 
         if (loadedCosmeticsData != null) {
-            SetQuickStartGame(loadedCosmeticsData.quickStartGame);
-            SetGamemode(loadedCosmeticsData.gamemode, loadedCosmeticsData.quickStartGame);
-            SetTargetColor(loadedCosmeticsData.targetColor, loadedCosmeticsData.gamemode);
-            SetSkybox(loadedCosmeticsData.skybox);
+            SetCosmeticsValues(loadedCosmeticsData.gamemode, loadedCosmeticsData.targetColor, loadedCosmeticsData.customColorNameStrings, loadedCosmeticsData.customColorIndex, loadedCosmeticsData.customColorStrings, loadedCosmeticsData.skybox, 960f, 540f, 1455.711f, 638.3904f, loadedCosmeticsData.quickStartGame);
             
             CosmeticsSettings.LoadCosmeticsSettings(loadedCosmeticsData);
         } else {
@@ -61,25 +58,10 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     /// Inits default cosmetics values and saves to file on first launch.
     /// </summary>
     public static void InitCosmeticsSettingsDefaults() {
-        // Gamemode value.
-        SetGamemode(GamemodeType.GRID, false);
-
-        // Target color value.
-        SetTargetColor(TargetType.YELLOW, GamemodeType.GRID);
-        saveLoad.targetColorSelected.SetText($"//    {I18nTextTranslator.SetTranslatedText("coloryellow")}");
-        
-        // Skybox value.
-        SetSkybox(SkyboxType.SLATE);
-        saveLoad.skyboxSelected.SetText($"//    {I18nTextTranslator.SetTranslatedText("skyboxslate")}");
-        
-        // Settings and extra stats panel values.
-        //SetAfterActionReportPanel(960f, 540f);
-        //SetExtraStatsPanel(1455.711f, 638.3904f);
-
-        saveLoad.quickStartToggle.isOn = false;
+        SetCosmeticsValues(GamemodeType.GRID, TargetType.YELLOW, "", -1, "", SkyboxType.SLATE, 960f, 540f, 1455.711f, 638.3904f, false);
 
         // Saves defaults to new 'cometics.settings' file.
-        CosmeticsSettings.SaveAllCosmeticsToggleDefaults(GamemodeType.GRID, TargetType.YELLOW, SkyboxType.SLATE, 960f, 540f, 1455.711f, 638.3904f, false);
+        CosmeticsSettings.SaveAllCosmeticsToggleDefaults(GamemodeType.GRID, TargetType.YELLOW, "", -1, "", SkyboxType.SLATE, 960f, 540f, 1455.711f, 638.3904f, false);
     }
 
     /// <summary>
@@ -92,27 +74,21 @@ public class CosmeticsSaveSystem : MonoBehaviour {
         SpawnTargets.gamemode = gamemode;
 
         // Set showMode text to gamemode.
-        saveLoad.showModeText.SetText($"{GamemodeUtil.ReturnGamemodeType_StringShort(gamemode)}");
+        cosmeticsSaveLoad.showModeText.SetText($"{GamemodeUtil.ReturnGamemodeType_StringShort(gamemode)}");
 
         // Populates gamemode select panel with saved gamemode.
         GamemodeSelect.PopulateGamemodeSelect(gamemode, quickStart);
         GamemodeSelect.ClearGamemodeButtonColors(GameObject.Find($"{GamemodeUtil.ReturnGamemodeType_StringFull(gamemode)}-Text (TMP)").GetComponent<TMP_Text>(), true, true);
 
         switch (gamemode) {
-            case GamemodeType.SCATTER: SetGamemodeBorder(saveLoad.gamemodeScatterBorder); break;
-            case GamemodeType.FLICK:   SetGamemodeBorder(saveLoad.gamemodeFlickBorder);   break;
-            case GamemodeType.GRID:    SetGamemodeBorder(saveLoad.gamemodeGridBorder);    break;
-            case GamemodeType.GRID_2:
-                SetGamemodeBorder(saveLoad.gamemodeGrid2Border);
-                saveLoad.showModeText.SetText($"GRID II");
-                break;
-            case GamemodeType.GRID_3:
-                SetGamemodeBorder(saveLoad.gamemodeGrid2Border);
-                saveLoad.showModeText.SetText($"GRID III");
-                break;
-            case GamemodeType.PAIRS:  SetGamemodeBorder(saveLoad.gamemodePairsBorder);  break;
-            case GamemodeType.FOLLOW: SetGamemodeBorder(saveLoad.gamemodeFollowBorder); break;
-            case GamemodeType.GLOB:   SetGamemodeBorder(saveLoad.gamemodeGlobBorder);   break;
+            case GamemodeType.SCATTER: SetGamemodeBorder(cosmeticsSaveLoad.gamemodeScatterBorder); break;
+            case GamemodeType.FLICK:   SetGamemodeBorder(cosmeticsSaveLoad.gamemodeFlickBorder);   break;
+            case GamemodeType.GRID:    SetGamemodeBorder(cosmeticsSaveLoad.gamemodeGridBorder);    break;
+            case GamemodeType.GRID_2:  SetGamemodeBorder(cosmeticsSaveLoad.gamemodeGrid2Border); cosmeticsSaveLoad.showModeText.SetText($"GRID II");  break;
+            case GamemodeType.GRID_3:  SetGamemodeBorder(cosmeticsSaveLoad.gamemodeGrid2Border); cosmeticsSaveLoad.showModeText.SetText($"GRID III"); break;
+            case GamemodeType.PAIRS:   SetGamemodeBorder(cosmeticsSaveLoad.gamemodePairsBorder);   break;
+            case GamemodeType.FOLLOW:  SetGamemodeBorder(cosmeticsSaveLoad.gamemodeFollowBorder);  break;
+            case GamemodeType.GLOB:    SetGamemodeBorder(cosmeticsSaveLoad.gamemodeGlobBorder);    break;
         }
     }
 
@@ -121,22 +97,15 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     /// </summary>
     /// <param name="targetColor"></param>
     /// <param name="gamemode"></param>
-    private static void SetTargetColor(TargetType targetColor, GamemodeType gamemode) {
+    private static void SetTargetColor(TargetType targetColor, GamemodeType gamemode, string setCustomColorNames, int setCustomColorIndex, string setCustomColorStrings) {
+        //Debug.Log($"names: [{setCustomColorNames}] index: [{setCustomColorIndex}] colors: [{setCustomColorStrings}]");
+        CustomTargetColorUtil.LoadCustomColorsFromSave(setCustomColorNames, setCustomColorIndex, setCustomColorStrings);
         SpawnTargets.SetTargetColor(targetColor, gamemode == GamemodeType.FOLLOW);
 
         ButtonHoverHandler.selectedTargetColor = targetColor;
         TargetUtil.ClearTargetColorButtonBorders();
 
-        switch (targetColor) {
-            case TargetType.RED:    SetCosmeticsItems(saveLoad.targetColorRedBorder, saveLoad.targetColorSelected, "colorred");       break;
-            case TargetType.ORANGE: SetCosmeticsItems(saveLoad.targetColorOrangeBorder, saveLoad.targetColorSelected, "colororange"); break;
-            case TargetType.YELLOW: SetCosmeticsItems(saveLoad.targetColorYellowBorder, saveLoad.targetColorSelected, "coloryellow"); break;
-            case TargetType.GREEN:  SetCosmeticsItems(saveLoad.targetColorGreenBorder, saveLoad.targetColorSelected, "colorgreen");   break;
-            case TargetType.BLUE:   SetCosmeticsItems(saveLoad.targetColorBlueBorder, saveLoad.targetColorSelected, "colorblue");     break;
-            case TargetType.PURPLE: SetCosmeticsItems(saveLoad.targetColorPurpleBorder, saveLoad.targetColorSelected, "colorpurple"); break;
-            case TargetType.PINK:   SetCosmeticsItems(saveLoad.targetColorPinkBorder, saveLoad.targetColorSelected, "colorpink");     break;
-            case TargetType.WHITE:  SetCosmeticsItems(saveLoad.targetColorWhiteBorder, saveLoad.targetColorSelected, "colorwhite");   break;
-        }
+        SetTargetColorBorder(targetColor);
 
         activeTargetColorText = $"//  {TargetUtil.ReturnTargetColorType_StringTranslated(targetColor)}";
     }
@@ -151,16 +120,34 @@ public class CosmeticsSaveSystem : MonoBehaviour {
         SkyboxHandler.SetNewSkybox(skybox);
 
         switch (skybox) {
-            case SkyboxType.PINK:   SetCosmeticsItems(saveLoad.skyboxPinkBorder, saveLoad.skyboxSelected, "skyboxpink");     break;
-            case SkyboxType.GOLDEN: SetCosmeticsItems(saveLoad.skyboxGoldenBorder, saveLoad.skyboxSelected, "skyboxgolden"); break;
-            case SkyboxType.NIGHT:  SetCosmeticsItems(saveLoad.skyboxNightBorder, saveLoad.skyboxSelected, "skyboxnight");   break;
-            case SkyboxType.GREY:   SetCosmeticsItems(saveLoad.skyboxGreyBorder, saveLoad.skyboxSelected, "skyboxgrey");     break;
-            case SkyboxType.BLUE:   SetCosmeticsItems(saveLoad.skyboxBlueBorder, saveLoad.skyboxSelected, "skyboxblue");     break;
-            case SkyboxType.SLATE:  SetCosmeticsItems(saveLoad.skyboxSlateBorder, saveLoad.skyboxSelected, "skyboxslate");   break;
+            case SkyboxType.PINK:   SetCosmeticsItems(cosmeticsSaveLoad.skyboxPinkBorder, cosmeticsSaveLoad.skyboxSelected, "skyboxpink");     break;
+            case SkyboxType.GOLDEN: SetCosmeticsItems(cosmeticsSaveLoad.skyboxGoldenBorder, cosmeticsSaveLoad.skyboxSelected, "skyboxgolden"); break;
+            case SkyboxType.NIGHT:  SetCosmeticsItems(cosmeticsSaveLoad.skyboxNightBorder, cosmeticsSaveLoad.skyboxSelected, "skyboxnight");   break;
+            case SkyboxType.GREY:   SetCosmeticsItems(cosmeticsSaveLoad.skyboxGreyBorder, cosmeticsSaveLoad.skyboxSelected, "skyboxgrey");     break;
+            case SkyboxType.BLUE:   SetCosmeticsItems(cosmeticsSaveLoad.skyboxBlueBorder, cosmeticsSaveLoad.skyboxSelected, "skyboxblue");     break;
+            case SkyboxType.SLATE:  SetCosmeticsItems(cosmeticsSaveLoad.skyboxSlateBorder, cosmeticsSaveLoad.skyboxSelected, "skyboxslate");   break;
         }
 
         activeSkyboxText = $"//  {SkyboxUtil.ReturnSkyboxType_StringTranslated(skybox)}";
     }
+
+    #region public utils
+
+    public static void SetTargetColorBorder(TargetType setType) {
+        switch (setType) {
+            case TargetType.RED:    SetCosmeticsItems(cosmeticsSaveLoad.targetColorRedBorder, cosmeticsSaveLoad.targetColorSelected, "colorred");       break;
+            case TargetType.ORANGE: SetCosmeticsItems(cosmeticsSaveLoad.targetColorOrangeBorder, cosmeticsSaveLoad.targetColorSelected, "colororange"); break;
+            case TargetType.YELLOW: SetCosmeticsItems(cosmeticsSaveLoad.targetColorYellowBorder, cosmeticsSaveLoad.targetColorSelected, "coloryellow"); break;
+            case TargetType.GREEN:  SetCosmeticsItems(cosmeticsSaveLoad.targetColorGreenBorder, cosmeticsSaveLoad.targetColorSelected, "colorgreen");   break;
+            case TargetType.BLUE:   SetCosmeticsItems(cosmeticsSaveLoad.targetColorBlueBorder, cosmeticsSaveLoad.targetColorSelected, "colorblue");     break;
+            case TargetType.PURPLE: SetCosmeticsItems(cosmeticsSaveLoad.targetColorPurpleBorder, cosmeticsSaveLoad.targetColorSelected, "colorpurple"); break;
+            case TargetType.PINK:   SetCosmeticsItems(cosmeticsSaveLoad.targetColorPinkBorder, cosmeticsSaveLoad.targetColorSelected, "colorpink");     break;
+            case TargetType.WHITE:  SetCosmeticsItems(cosmeticsSaveLoad.targetColorWhiteBorder, cosmeticsSaveLoad.targetColorSelected, "colorwhite");   break;
+            case TargetType.CUSTOM: break; // TODO: set custom color button
+        }
+    }
+
+    #endregion
 
     /// <summary>
     /// Sets active gamemode border in settings (gamemode sub-section).
@@ -181,7 +168,18 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     private static void SetCosmeticsItems(GameObject border, TMP_Text selectedText, string translatedTextID) {
         border.GetComponent<Image>().color = InterfaceColors.selectedColor;
         border.SetActive(true);
-        selectedText.SetText($"//  {I18nTextTranslator.SetTranslatedText(translatedTextID)}");
+        //selectedText.SetText($"//  {I18nTextTranslator.SetTranslatedText(translatedTextID)}");
+    }
+
+    //private static void SetCustomTargetButton() {
+
+    //}
+
+    private static void SetCosmeticsValues(GamemodeType setGamemode, TargetType setTargetColor, string setCustomNameStrings, int setCustomColorIndex, string setCustomColorStrings, SkyboxType setSkybox, float setPanelSettingsX, float setPanelSettingsY, float setPanelExtraStatsX, float setPanelExtraStatsY, bool setQuickStart) {
+        SetQuickStartGame(setQuickStart);
+        SetGamemode(setGamemode, setQuickStart);
+        SetTargetColor(setTargetColor, setGamemode, setCustomNameStrings, setCustomColorIndex, setCustomColorStrings);
+        SetSkybox(setSkybox);
     }
 
     /// <summary>
@@ -189,24 +187,22 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     /// </summary>
     /// <param name="panelX"></param>
     /// <param name="panelY"></param>
-    private static void SetSettingsPanel(float panelX, float panelY) { saveLoad.settingsPanel.transform.position = new Vector3(panelX, panelY, 0f); }
-
+    private static void SetSettingsPanel(float panelX, float panelY) {          cosmeticsSaveLoad.settingsPanel.transform.position = new Vector3(panelX, panelY, 0f); }
     /// <summary>
     /// Sets 'AfterActionReport' panel X and Y position from supplied cordinates (panelX) (panelY).
     /// </summary>
     /// <param name="panelX"></param>
     /// <param name="panelY"></param>
-    private static void SetAfterActionReportPanel(float panelX, float panelY) { saveLoad.afterActionReportPanel.transform.position = new Vector3(panelX, panelY, 0f); }
-
+    private static void SetAfterActionReportPanel(float panelX, float panelY) { cosmeticsSaveLoad.afterActionReportPanel.transform.position = new Vector3(panelX, panelY, 0f); }
     /// <summary>
     /// Sets extra stats panel X and Y position from supplied cordinates (panelX) (panelY).
     /// </summary>
     /// <param name="panelX"></param>
     /// <param name="panelY"></param>
-    private static void SetExtraStatsPanel(float panelX, float panelY) { saveLoad.extraStatsPanel.transform.position = new Vector3(panelX, panelY, 0f); }
+    private static void SetExtraStatsPanel(float panelX, float panelY) {        cosmeticsSaveLoad.extraStatsPanel.transform.position = new Vector3(panelX, panelY, 0f); }
 
     public static void SetQuickStartGame(bool setQuickStart) {
-        saveLoad.quickStartToggle.isOn = setQuickStart;
+        cosmeticsSaveLoad.quickStartToggle.isOn = setQuickStart;
 
         if (setQuickStart) {
             GamemodeSelect.CloseGamemodeSelect();

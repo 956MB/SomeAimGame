@@ -9,7 +9,9 @@ using SomeAimGame.Targets;
 using SomeAimGame.Utilities;
 using SomeAimGame.Stats;
 using SomeAimGame.SFX;
+using SomeAimGame.Core;
 using SomeAimGame.Core.Video;
+using SomeAimGame.Console;
 
 public class SettingsPanel : MonoBehaviour {
     public GameObject mainMenuCanvas, settingsPanel, afterPanel, extendedStatsPanel, steamDataContainer, devEventContainer, videoContainer;
@@ -51,7 +53,7 @@ public class SettingsPanel : MonoBehaviour {
         CrosshairHide      .HideCrosshairs();
 
         // Close settings, 'AfterActionReport' and video containers at start.
-        Util.GameObjectLoops.Util_SetObjectsLocalScale(closedVector, settings.settingsPanel, settings.afterPanel, settings.videoContainer);
+        Util.GameObjectLoops.SetObjectsLocalScale(closedVector, settings.settingsPanel, settings.afterPanel, settings.videoContainer);
         settings.steamDataContainer.SetActive(false);
 
         //MovePanelCount_Left(7);
@@ -94,7 +96,6 @@ public class SettingsPanel : MonoBehaviour {
     /// Opens settings panel. [EVENT]
     /// </summary>
     public static void OpenSettingsPanel() {
-        CrosshairHide.HideCrosshairs();
 
         settings.settingsPanel.transform.localScale = openVector;
         settings.steamDataContainer.SetActive(true);
@@ -106,8 +107,10 @@ public class SettingsPanel : MonoBehaviour {
         settingsOpen = true;
 
         SubMenuHandler.ResetAllSubMenuScrollviewsTop();
-        GameUI        .HideWidgetsUI();
-        GameTime      .PauseGameTime();
+        GameUI.HideWidgetsUI();
+        GameUI.HideCountdown(false);
+        GameTime.PauseGameTime();
+        CrosshairHide.HideCrosshairs();
 
         if (SubMenuHandler.activeSubMenuText == "CrosshairTitleText (TMP)") { CrosshairHide.ShowSettingsCrosshair(); }
     }
@@ -120,17 +123,20 @@ public class SettingsPanel : MonoBehaviour {
         settings.steamDataContainer.SetActive(false);
         settings.mainMenuCanvas.SetActive(false);
         //Util.CanvasGroupState(settings.mainMenuCanvas.GetComponent<CanvasGroup>(), false);
+        settingsOpen = false;
 
-        // If language select/notification object active, hide
-        if (LanguageSelect.languageSelectOpen) { LanguageSelect.CloseLanguageSelect_Static(); }
-        if (ExtraSettings.hideUI) { GameUI.ShowWidgetsUI(); }
-        
-        CheckSaveSettings();
         CrosshairHide.HideCrosshairs();
         CrosshairHide.ShowMainCrosshair();
-
-        CloseAction();
-        settingsOpen = false;
+        // If language select/notification object active, hide
+        if (LanguageSelect.languageSelectOpen) { LanguageSelect.CloseLanguageSelect_Static(); }
+        if (ExtraSettings.showWidgets) { GameUI.ShowWidgetsUI(); }
+        if (ExtraSettings.showCountdown && GameUI.countdownTimerValue > 0) {
+            CrosshairHide.HideCrosshairs();
+            GameUI.ShowCountdown();
+        }
+        
+        CloseAction(!GameUI.countdownShown);
+        CheckSaveSettings();
 
         GameTime.ContinueGameTime();
     }
@@ -159,12 +165,12 @@ public class SettingsPanel : MonoBehaviour {
     public static void CloseAfterActionReport() {
         settings.mainMenuCanvas.SetActive(false);
         settings.extendedStatsPanel.SetActive(false);
-        CloseAction();
+        CloseAction(true);
 
         settings.afterPanel.transform.localScale = closedVector;
         afterActionReportOpen                    = false;
 
-        if (ExtraSettings.hideUI) { GameUI.ShowWidgetsUI(); }
+        if (ExtraSettings.showWidgets) { GameUI.ShowWidgetsUI(); }
 
         CrosshairHide.HideCrosshairs();
         CrosshairHide.ShowMainCrosshair();
@@ -177,19 +183,19 @@ public class SettingsPanel : MonoBehaviour {
         MouseLook.settingsOpen = true;
         //TempValues.SetSettingsOpenTemp(true);
 
-        ManipulatePostProcess.SetPanelEffects(true);
-        Util.UnlockCursor();
+        ManipulatePostProcess.SetPanelEffects(true, true);
+        Util.SetCursorState(CursorLockMode.None, true);
     }
 
     /// <summary>
     /// Disables post process effects and locks cursor to game.
     /// </summary>
-    private static void CloseAction() {
+    private static void CloseAction(bool changeEffects) {
         MouseLook.settingsOpen = false;
         //TempValues.SetSettingsOpenTemp(false);
 
-        ManipulatePostProcess.SetPanelEffects(false);
-        Util.LockCursor();
+        if (changeEffects) { ManipulatePostProcess.SetPanelEffects(false, false); }
+        if (!SAGConsole.consoleActive) { Util.SetCursorState(CursorLockMode.Locked, false); }
     }
 
     /// <summary>
@@ -261,7 +267,7 @@ public class SettingsPanel : MonoBehaviour {
         gamemodePreviewVideos = PreviewManager.PopulateGamemodePreviews(GamemodeUtil.ReturnGamemodeType_StringFull(CosmeticsSettings.gamemode), TargetUtil.ReturnTargetColorType_StringFull(CosmeticsSettings.targetColor), SkyboxUtil.ReturnSkyboxType_StringFull(CosmeticsSettings.skybox));
 
         // Set clips for every gamemode preview button.
-        Util.VideoLoops.Util_SetVideoPlayerClips(8, gamemodePreviewVideos, settings.scatterVideoPlayer, settings.flickVideoPlayer, settings.gridVideoPlayer, settings.grid2VideoPlayer, settings.pairsVideoPlayer, settings.followVideoPlayer, settings.globVideoPlayer, settings.selectedVideoPlayer);
+        Util.VideoLoops.SetVideoPlayerClips(8, gamemodePreviewVideos, settings.scatterVideoPlayer, settings.flickVideoPlayer, settings.gridVideoPlayer, settings.grid2VideoPlayer, settings.pairsVideoPlayer, settings.followVideoPlayer, settings.globVideoPlayer, settings.selectedVideoPlayer);
         // Set gamemode select clips from loaded previews
         GamemodeSelect.gamemodeScatterClip_Loaded = gamemodePreviewVideos[0];
         GamemodeSelect.gamemodeFlickClip_Loaded   = gamemodePreviewVideos[1];
@@ -271,9 +277,9 @@ public class SettingsPanel : MonoBehaviour {
         GamemodeSelect.gamemodeFollowClip_Loaded  = gamemodePreviewVideos[5];
         GamemodeSelect.gamemodeGlobClip_Loaded    = gamemodePreviewVideos[6];
         // Set video player aspect ratios.
-        Util.VideoLoops.Util_SetVideoPlayersAscpectRatio(VideoAspectRatio.FitHorizontally, settings.scatterVideoPlayer, settings.flickVideoPlayer, settings.gridVideoPlayer, settings.grid2VideoPlayer, settings.pairsVideoPlayer, settings.followVideoPlayer, settings.globVideoPlayer);
+        Util.VideoLoops.SetVideoPlayersAscpectRatio(VideoAspectRatio.FitHorizontally, settings.scatterVideoPlayer, settings.flickVideoPlayer, settings.gridVideoPlayer, settings.grid2VideoPlayer, settings.pairsVideoPlayer, settings.followVideoPlayer, settings.globVideoPlayer);
         // Play clips once set.
-        Util.VideoLoops.Util_PlayVideoPlayers(settings.scatterVideoPlayer, settings.flickVideoPlayer, settings.gridVideoPlayer, settings.grid2VideoPlayer, settings.pairsVideoPlayer, settings.followVideoPlayer, settings.globVideoPlayer, settings.selectedVideoPlayer);
+        Util.VideoLoops.PlayVideoPlayers(settings.scatterVideoPlayer, settings.flickVideoPlayer, settings.gridVideoPlayer, settings.grid2VideoPlayer, settings.pairsVideoPlayer, settings.followVideoPlayer, settings.globVideoPlayer, settings.selectedVideoPlayer);
         settings.selectedVideoPlayer.Play();
     }
 
@@ -282,13 +288,13 @@ public class SettingsPanel : MonoBehaviour {
     /// </summary>
     public static void CheckSaveSettings() {
         CrosshairOptionsObject.SaveCrosshairObject(false);
-        CosmeticsSettings     .CheckSaveCosmeticsSettings();
-        ExtraSettings         .CheckSaveExtraSettings();
-        WidgetSettings        .CheckSaveWidgetSettings();
-        SFXSettings           .CheckSaveSFXSettings();
-        KeybindSettings       .CheckSaveKeybindSettings();
-        TargetSoundSelect     .CheckSaveTargetSoundSelection();
-        FPSLimitSlider        .CheckSaveFPSLimit();
-        NotificationHandler   .CheckHideNotificationObject();
+        CosmeticsSettings.CheckSaveCosmeticsSettings();
+        ExtraSettings.CheckSaveExtraSettings();
+        WidgetSettings.CheckSaveWidgetSettings();
+        SFXSettings.CheckSaveSFXSettings();
+        KeybindSettings.CheckSaveKeybindSettings();
+        TargetSoundSelect.CheckSaveTargetSoundSelection();
+        FPSLimitSlider.CheckSaveFPSLimit();
+        NotificationHandler.CheckHideNotificationObject();
     }
 }

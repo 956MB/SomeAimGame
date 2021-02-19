@@ -19,12 +19,12 @@ namespace SomeAimGame.SFX {
         /// Saves supplied target sound clip SFXType (setTargetSoundClip) to SFX settings object (SFXSettings), then saves SFX settings object.
         /// </summary>
         /// <param name="setTargetSoundClip"></param>
-        public static void SaveTargetSoundClip(SFXType setTargetSoundClip) { Util.RefSetSettingChange(ref SFXSettingsChangeReady, ref targetSoundClip, setTargetSoundClip); }
+        public static void SaveTargetSoundClip(SFXType setTargetSoundClip) {  Util.RefSetSettingChange(ref SFXSettingsChangeReady, ref targetSoundClip, setTargetSoundClip); }
         /// <summary>
         /// Saves supplied target sound on bool (setTargetSoundOn) to SFX settings object (SFXSettings), then saves SFX settings object.
         /// </summary>
         /// <param name="setTargetSoundOn"></param>
-        public static void SaveTargetSoundOn(bool setTargetSoundOn) { Util.RefSetSettingChange(ref SFXSettingsChangeReady, ref targetSoundOn, setTargetSoundOn); }
+        public static void SaveTargetSoundOn(bool setTargetSoundOn) {         Util.RefSetSettingChange(ref SFXSettingsChangeReady, ref targetSoundOn, setTargetSoundOn); }
         /// <summary>
         /// Saves supplied target miss sound on bool (setTargetMissSoundOn) to SFX settings object (SFXSettings), then saves SFX settings object.
         /// </summary>
@@ -34,7 +34,7 @@ namespace SomeAimGame.SFX {
         /// Saves supplied UI sound bool (setUISoundOn) to SFX settings object (SFXSettings), then saves SFX settings object.
         /// </summary>
         /// <param name="setUISoundOn"></param>
-        public static void SaveUISoundOn(bool setUISoundOn) { Util.RefSetSettingChange(ref SFXSettingsChangeReady, ref uiSoundOn, setUISoundOn); }
+        public static void SaveUISoundOn(bool setUISoundOn) {                 Util.RefSetSettingChange(ref SFXSettingsChangeReady, ref uiSoundOn, setUISoundOn); }
 
         /// <summary>
         /// Calls 'SFXSaveSystem.SaveSFXSettingsData()' to save SFX settings object (SFXSettings) to file.

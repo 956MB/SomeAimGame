@@ -12,7 +12,11 @@ public class I18nTextTranslator : MonoBehaviour {
             if (TextId == "ISOCode") {
                 text.SetText(I18n.GetLanguage());
             } else {
-                text.SetText(I18n.Fields[TextId]);
+                try {
+                    text.SetText(I18n.Fields[TextId]);
+                } catch (KeyNotFoundException) {
+                    Debug.LogError($"KNFE: KEY '{TextId}' NOT FOUND;");
+                }
             }
         }
     }

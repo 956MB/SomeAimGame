@@ -1,8 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using SomeAimGame.Utilities;
 using TMPro;
-
-using SomeAimGame.Utilities;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class CrosshairSaveSystem : MonoBehaviour {
     public Slider crosshairSizeSlider, crosshairThicknessSlider, crosshairGapSlider, crosshairOutlineSlider, crosshairRedSlider, crosshairGreenSlider, crosshairBlueSlider, crosshairAlphaSlider, crosshairRedOutlineSlider, crosshairGreenOutlineSlider, crosshairBlueOutlineSlider, crosshairAlphaOutlineSlider;
@@ -52,24 +51,10 @@ public class CrosshairSaveSystem : MonoBehaviour {
 
                 InitCrosshairSettingsDefaults();
             } else {
-                SetCrosshairTStyleToggle(loadedCrosshairData.TStyle, true);
-                SetCrosshairOutlineToggle(loadedCrosshairData.outlineEnabled, true);
-                SetCrosshairCenterDotToggle(loadedCrosshairData.centerDot, true);
-                SetCrosshairSizeSlider(loadedCrosshairData.size, true);
-                SetCrosshairThicknessSlider(loadedCrosshairData.thickness, true);
-                SetCrosshairGapSlider(loadedCrosshairData.gap, true);
-                // Crosshair color
-                SetCrosshairRedSlider(loadedCrosshairData.red, true);
-                SetCrosshairGreenSlider(loadedCrosshairData.green, true);
-                SetCrosshairBlueSlider(loadedCrosshairData.blue, true);
-                SetCrosshairAlphaSlider(loadedCrosshairData.alpha, true);
-                // Crosshair outline color
-                SetCrosshairRedOutlineSlider(loadedCrosshairData.outlineRed, true);
-                SetCrosshairGreenOutlineSlider(loadedCrosshairData.outlineGreen, true);
-                SetCrosshairBlueOutlineSlider(loadedCrosshairData.outlineBlue, true);
-                SetCrosshairAlphaOutlineSlider(loadedCrosshairData.outlineAlpha, true);
+                SetAllCrosshairValues(loadedCrosshairData.TStyle, loadedCrosshairData.centerDot, loadedCrosshairData.size, loadedCrosshairData.thickness, loadedCrosshairData.gap, loadedCrosshairData.outlineEnabled, loadedCrosshairData.red, loadedCrosshairData.green, loadedCrosshairData.blue, loadedCrosshairData.alpha, loadedCrosshairData.outlineRed, loadedCrosshairData.outlineGreen, loadedCrosshairData.outlineBlue, loadedCrosshairData.outlineAlpha, true);
+                SetAllCrosshairControls(loadedCrosshairData.TStyle, loadedCrosshairData.centerDot, loadedCrosshairData.size, loadedCrosshairData.thickness, loadedCrosshairData.gap, loadedCrosshairData.outlineEnabled, loadedCrosshairData.red, loadedCrosshairData.green, loadedCrosshairData.blue, loadedCrosshairData.alpha, loadedCrosshairData.outlineRed, loadedCrosshairData.outlineGreen, loadedCrosshairData.outlineBlue, loadedCrosshairData.outlineAlpha);
 
-                CrosshairOptionsObject.SetOutlineContainerState(loadedCrosshairData.outlineEnabled);
+                CrosshairSettings.LoadCrosshairSettings(loadedCrosshairData);
             }
         } else {
             //Debug.Log("failed to init cosmetics in 'initSettingsDefaults', cosmetics: " + loadedCosmeticsData);
@@ -86,31 +71,18 @@ public class CrosshairSaveSystem : MonoBehaviour {
     /// Inits default crosshair values and saves to file on first launch.
     /// </summary>
     public static void InitCrosshairSettingsDefaults() {
-        // Default Crosshair:
         //
+        //     │
+        //  ──   ──  Default Crosshair: 000601050255255255255000000000255
+        //     │
+        // 
         // 0        0          06    01         05   1        255  255    255   255    255         000           000          255
         // T-Style  CenterDot  Size  Thickness  Gap  Outline  Red  Green  Blue  Alpha  RedOutline  GreenOutline  BlueOutline  AlphaOutline
 
-        SetCrosshairTStyleToggle(false, false);
-        SetCrosshairCenterDotToggle(false, false);
-        SetCrosshairSizeSlider(6f, false);
-        SetCrosshairThicknessSlider(1f, false);
-        SetCrosshairGapSlider(5, false);
-        SetCrosshairOutlineToggle(true, false);
-        // Crosshair color
-        SetCrosshairRedSlider(255f, false);
-        SetCrosshairGreenSlider(255f, false);
-        SetCrosshairBlueSlider(255f, false);
-        SetCrosshairAlphaSlider(255f, false);
-        // Crosshair outline color
-        SetCrosshairRedOutlineSlider(0f, false);
-        SetCrosshairGreenOutlineSlider(0f, false);
-        SetCrosshairBlueOutlineSlider(0f, false);
-        SetCrosshairAlphaOutlineSlider(255f, false);
+        SetAllCrosshairValues(false, false, 6f, 1f, 5f, true, 255f, 255f, 255f, 255f, 0f, 0f, 0f, 255f, false);
+        SetAllCrosshairControls(false, false, 6f, 1f, 5f, true, 255f, 255f, 255f, 255f, 0f, 0f, 0f, 255f);
 
         crosshairSave.simpleCrosshair.GenerateCrosshair();
-
-        CrosshairOptionsObject.SetOutlineContainerState(true);
 
         // Saves defaults to new 'sag_crosshair.settings' file.
         CrosshairSettings.SaveAllCrosshairDefaults(false, false, 6f, 1f, 5f, true, 255f, 255f, 255f, 255f, 0f, 0f, 0f, 255f, "000601050255255255255000000000255");
@@ -121,145 +93,121 @@ public class CrosshairSaveSystem : MonoBehaviour {
     /// </summary>
     /// <param name="setTStyle"></param>
     /// <param name="redraw"></param>
-    public static void SetCrosshairTStyleToggle(bool setTStyle, bool redraw) {
-        crosshairSave.simpleCrosshair.SetTStyle(setTStyle, redraw);
-        crosshairSave.TStyleToggle.isOn = setTStyle;
-        CrosshairSettings.SaveTStyle(setTStyle);
-    }
+    public static void SetCrosshairTStyle(bool setTStyle, bool redraw) {              crosshairSave.simpleCrosshair.SetTStyle(setTStyle, redraw); }
     /// <summary>
     /// Sets crosshair center dot value and toggle to supplied bool (setCenterDot), and redraws crosshair if bool true (redraw).
     /// </summary>
     /// <param name="setCenterDot"></param>
     /// <param name="redraw"></param>
-    public static void SetCrosshairCenterDotToggle(bool setCenterDot, bool redraw) {
-        crosshairSave.simpleCrosshair.SetCenterDot(setCenterDot, redraw);
-        crosshairSave.centerDotToggle.isOn = setCenterDot;
-        CrosshairSettings.SaveCenterDot(setCenterDot);
-    }
+    public static void SetCrosshairCenterDot(bool setCenterDot, bool redraw) {        crosshairSave.simpleCrosshair.SetCenterDot(setCenterDot, redraw); }
     /// <summary>
     /// Sets crosshair outline enable value and toggle to supplied bool (setOutlineEnable), and redraws crosshair if bool true (redraw).
     /// </summary>
     /// <param name="setOutlineEnable"></param>
     /// <param name="redraw"></param>
-    public static void SetCrosshairOutlineToggle(bool setOutlineEnable, bool redraw) {
-        crosshairSave.simpleCrosshair.SetOutlineEnabled(setOutlineEnable, redraw);
-        crosshairSave.OutlineEnabledToggle.isOn = setOutlineEnable;
-        CrosshairSettings.SaveOutlineEnabled(setOutlineEnable);
-    }
+    public static void SetCrosshairOutline(bool setOutlineEnable, bool redraw) {      crosshairSave.simpleCrosshair.SetOutlineEnabled(setOutlineEnable, redraw); }
     /// <summary>
     /// Sets crosshair size value, slider and text to supplied float (setSize), and redraws crosshair if bool true (redraw).
     /// </summary>
     /// <param name="setSize"></param>
     /// <param name="redraw"></param>
-    public static void SetCrosshairSizeSlider(float setSize, bool redraw) {
-        crosshairSave.simpleCrosshair.SetSize((int)setSize, redraw);
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairSizeSlider, crosshairSave.crosshairSizeValueText, crosshairSave.crosshairSizeValueTextPlaceholder, setSize);
-        CrosshairSettings.SaveSize(setSize);
-    }
+    public static void SetCrosshairSize(float setSize, bool redraw) {                 crosshairSave.simpleCrosshair.SetSize((int)setSize, redraw); }
     /// <summary>
     /// Sets crosshair thickness value, slider and text to supplied float (setThickness), and redraws crosshair if bool true (redraw).
     /// </summary>
     /// <param name="setThickness"></param>
     /// <param name="redraw"></param>
-    public static void SetCrosshairThicknessSlider(float setThickness, bool redraw) {
-        crosshairSave.simpleCrosshair.SetThickness((int)setThickness, redraw);
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairThicknessSlider, crosshairSave.crosshairThicknessValueText, crosshairSave.crosshairThicknessValueTextPlaceholder, setThickness);
-        CrosshairSettings.SaveThickness(setThickness);
-    }
+    public static void SetCrosshairThickness(float setThickness, bool redraw) {       crosshairSave.simpleCrosshair.SetThickness((int)setThickness, redraw); }
     /// <summary>
     /// Sets crosshair gap value, slider and text to supplied float (setGap), and redraws crosshair if bool true (redraw).
     /// </summary>
     /// <param name="setGap"></param>
     /// <param name="redraw"></param>
-    public static void SetCrosshairGapSlider(float setGap, bool redraw) {
-        crosshairSave.simpleCrosshair.SetGap((int)setGap, redraw);
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairGapSlider, crosshairSave.crosshairGapValueText, crosshairSave.crosshairGapValueTextPlaceholder, setGap);
-        CrosshairSettings.SaveGap(setGap);
-    }
+    public static void SetCrosshairGap(float setGap, bool redraw) {                   crosshairSave.simpleCrosshair.SetGap((int)setGap, redraw); }
     /// <summary>
     /// Sets crosshair red color value, slider and text to supplied float (setRed), and redraws crosshair if bool true (redraw).
     /// </summary>
     /// <param name="setRed"></param>
     /// <param name="redraw"></param>
-    public static void SetCrosshairRedSlider(float setRed, bool redraw) {
-        crosshairSave.simpleCrosshair.SetColor(CrosshairColorChannel.RED, (int)setRed, redraw);
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairRedSlider, crosshairSave.crosshairRedValueText, crosshairSave.crosshairRedValueTextPlaceholder, setRed);
-        CrosshairSettings.SaveRed(setRed);
-    }
+    public static void SetCrosshairRed(float setRed, bool redraw) {                   crosshairSave.simpleCrosshair.SetColor(CrosshairColorChannel.RED, (int)setRed, redraw); }
     /// <summary>
     /// Sets crosshair green color value, slider and text to supplied float (setGreen), and redraws crosshair if bool true (redraw).
     /// </summary>
     /// <param name="setGreen"></param>
     /// <param name="redraw"></param>
-    public static void SetCrosshairGreenSlider(float setGreen, bool redraw) {
-        crosshairSave.simpleCrosshair.SetColor(CrosshairColorChannel.GREEN, (int)setGreen, redraw);
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairGreenSlider, crosshairSave.crosshairGreenValueText, crosshairSave.crosshairGreenValueTextPlaceholder, setGreen);
-        CrosshairSettings.SaveGreen(setGreen);
-    }
+    public static void SetCrosshairGreen(float setGreen, bool redraw) {               crosshairSave.simpleCrosshair.SetColor(CrosshairColorChannel.GREEN, (int)setGreen, redraw); }
     /// <summary>
     /// Sets crosshair blue color value, slider and text to supplied float (setBlue), and redraws crosshair if bool true (redraw).
     /// </summary>
     /// <param name="setBlue"></param>
     /// <param name="redraw"></param>
-    public static void SetCrosshairBlueSlider(float setBlue, bool redraw) {
-        //Debug.Log("set normal blue here");
-        crosshairSave.simpleCrosshair.SetColor(CrosshairColorChannel.BLUE, (int)setBlue, redraw);
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairBlueSlider, crosshairSave.crosshairBlueValueText, crosshairSave.crosshairBlueValueTextPlaceholder, setBlue);
-        CrosshairSettings.SaveBlue(setBlue);
-    }
+    public static void SetCrosshairBlue(float setBlue, bool redraw) {                 crosshairSave.simpleCrosshair.SetColor(CrosshairColorChannel.BLUE, (int)setBlue, redraw); }
     /// <summary>
     /// Sets crosshair alpha value, slider and text to supplied float (setAlpha), and redraws crosshair if bool true (redraw).
     /// </summary>
     /// <param name="setAlpha"></param>
     /// <param name="redraw"></param>
-    public static void SetCrosshairAlphaSlider(float setAlpha, bool redraw) {
-        crosshairSave.simpleCrosshair.SetColor(CrosshairColorChannel.ALPHA, (int)setAlpha, redraw);
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairAlphaSlider, crosshairSave.crosshairAlphaValueText, crosshairSave.crosshairAlphaValueTextPlaceholder, setAlpha);
-        CrosshairSettings.SaveAlpha(setAlpha);
-    }
+    public static void SetCrosshairAlpha(float setAlpha, bool redraw) {               crosshairSave.simpleCrosshair.SetColor(CrosshairColorChannel.ALPHA, (int)setAlpha, redraw); }
     /// <summary>
     /// Sets crosshair red outline color value, slider and text to supplied float (setRed), and redraws crosshair if bool true (redraw).
     /// </summary>
     /// <param name="setRedOutline"></param>
     /// <param name="redraw"></param>
-    public static void SetCrosshairRedOutlineSlider(float setRedOutline, bool redraw) {
-        crosshairSave.simpleCrosshair.SetOutlineColor(CrosshairColorChannel.RED, (int)setRedOutline, redraw);
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairRedOutlineSlider, crosshairSave.crosshairRedOutlineValueText, crosshairSave.crosshairRedOutlineValueTextPlaceholder, setRedOutline);
-        CrosshairSettings.SaveRedOutline(setRedOutline);
-    }
+    public static void SetCrosshairRedOutline(float setRedOutline, bool redraw) {     crosshairSave.simpleCrosshair.SetOutlineColor(CrosshairColorChannel.RED, (int)setRedOutline, redraw); }
     /// <summary>
     /// Sets crosshair green outline color value, slider and text to supplied float (setGreen), and redraws crosshair if bool true (redraw).
     /// </summary>
     /// <param name="setGreenOutline"></param>
     /// <param name="redraw"></param>
-    public static void SetCrosshairGreenOutlineSlider(float setGreenOutline, bool redraw) {
-        crosshairSave.simpleCrosshair.SetOutlineColor(CrosshairColorChannel.GREEN, (int)setGreenOutline, redraw);
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairGreenOutlineSlider, crosshairSave.crosshairGreenOutlineValueText, crosshairSave.crosshairGreenOutlineValueTextPlaceholder, setGreenOutline);
-        CrosshairSettings.SaveGreenOutline(setGreenOutline);
-    }
+    public static void SetCrosshairGreenOutline(float setGreenOutline, bool redraw) { crosshairSave.simpleCrosshair.SetOutlineColor(CrosshairColorChannel.GREEN, (int)setGreenOutline, redraw); }
     /// <summary>
     /// Sets crosshair blue outline color value, slider and text to supplied float (setBlue), and redraws crosshair if bool true (redraw).
     /// </summary>
     /// <param name="setBlueOutline"></param>
     /// <param name="redraw"></param>
-    public static void SetCrosshairBlueOutlineSlider(float setBlueOutline, bool redraw) {
-        crosshairSave.simpleCrosshair.SetOutlineColor(CrosshairColorChannel.BLUE, (int)setBlueOutline, redraw);
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairBlueOutlineSlider, crosshairSave.crosshairBlueOutlineValueText, crosshairSave.crosshairBlueOutlineValueTextPlaceholder, setBlueOutline);
-        CrosshairSettings.SaveBlueOutline(setBlueOutline);
-    }
+    public static void SetCrosshairBlueOutline(float setBlueOutline, bool redraw) {   crosshairSave.simpleCrosshair.SetOutlineColor(CrosshairColorChannel.BLUE, (int)setBlueOutline, redraw); }
     /// <summary>
     /// Sets crosshair alpha outline value, slider and text to supplied float (setAlpha), and redraws crosshair if bool true (redraw).
     /// </summary>
     /// <param name="setAlphaOutline"></param>
     /// <param name="redraw"></param>
-    public static void SetCrosshairAlphaOutlineSlider(float setAlphaOutline, bool redraw) {
-        crosshairSave.simpleCrosshair.SetOutlineColor(CrosshairColorChannel.ALPHA, (int)setAlphaOutline, redraw);
-        CrosshairOptionsObject.SetCrosshairOptionSlider(crosshairSave.crosshairAlphaOutlineSlider, crosshairSave.crosshairAlphaOutlineValueText, crosshairSave.crosshairAlphaOutlineValueTextPlaceholder, setAlphaOutline);
-        CrosshairSettings.SaveAlphaOutline(setAlphaOutline);
+    public static void SetCrosshairAlphaOutline(float setAlphaOutline, bool redraw) { crosshairSave.simpleCrosshair.SetOutlineColor(CrosshairColorChannel.ALPHA, (int)setAlphaOutline, redraw); }
+    
+    private static void SetAllCrosshairValues(bool setTStyle, bool setCenterDot, float setSize, float setThickness, float setGap, bool setOutline, float setRed, float setGreen, float setBlue, float setAlpha, float setRedOutline, float setGreenOutline, float setBlueOutline, float setAlphaOutline, bool redrawEnd) {
+        SetCrosshairTStyle(setTStyle, false);
+        SetCrosshairCenterDot(setCenterDot, false);
+        SetCrosshairSize(setSize, false);
+        SetCrosshairThickness(setThickness, false);
+        SetCrosshairGap(setGap, false);
+        SetCrosshairOutline(setOutline, false);
+        SetCrosshairRed(setRed, false);
+        SetCrosshairGreen(setGreen, false);
+        SetCrosshairBlue(setBlue, false);
+        SetCrosshairAlpha(setAlpha, false);
+        SetCrosshairRedOutline(setRedOutline, false);
+        SetCrosshairGreenOutline(setGreenOutline, false);
+        SetCrosshairBlueOutline(setBlueOutline, false);
+        SetCrosshairAlphaOutline(setAlphaOutline, redrawEnd);
     }
 
+    /// <summary>
+    /// Sets all crosshair options toggles and sliders to supplied values.
+    /// </summary>
+    /// <param name="setTStyle"></param>
+    /// <param name="setCenterDot"></param>
+    /// <param name="setSize"></param>
+    /// <param name="setThickness"></param>
+    /// <param name="setGap"></param>
+    /// <param name="setOutline"></param>
+    /// <param name="setRed"></param>
+    /// <param name="setGreen"></param>
+    /// <param name="setBlue"></param>
+    /// <param name="setAlpha"></param>
+    /// <param name="setRedOutline"></param>
+    /// <param name="setGreenOutline"></param>
+    /// <param name="setBlueOutline"></param>
+    /// <param name="setAlphaOutline"></param>
     public static void SetAllCrosshairControls(bool setTStyle, bool setCenterDot, float setSize, float setThickness, float setGap, bool setOutline, float setRed, float setGreen, float setBlue, float setAlpha, float setRedOutline, float setGreenOutline, float setBlueOutline, float setAlphaOutline) {
-        //Debug.Log("set all here");
         crosshairSave.TStyleToggle.isOn         = setTStyle;
         crosshairSave.centerDotToggle.isOn      = setCenterDot;
         crosshairSave.OutlineEnabledToggle.isOn = setOutline;

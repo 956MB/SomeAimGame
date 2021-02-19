@@ -9,28 +9,21 @@ namespace SomeAimGame.Core {
 
             public void OnPointerClick(PointerEventData pointerEventData) {
                 VideoDropdowns dropdownOptionClick = (VideoDropdowns)dropdownInt;
-                string clickedText = GetComponentsInChildren<TMP_Text>()[0].text;
+                string clickedText                 = GetComponentsInChildren<TMP_Text>()[0].text;
 
-                if (dropdownOptionClick == VideoDropdowns.DISPLAY_MODE) {
-                    ApplyVideoSettings.SetDisplayModePlaceholder(VideoSettingUtil.ReturnTypeString((FullScreenMode)settingInt), (FullScreenMode)settingInt);
-                }
-                if (dropdownOptionClick == VideoDropdowns.RESOLUTION) {
-                    ApplyVideoSettings.SetResolutionPlaceholder(clickedText);
-                }
-                if (dropdownOptionClick == VideoDropdowns.MONITOR) {
-                    ApplyVideoSettings.SetMonitorPlaceholder(clickedText, settingInt);
-                }
-                if (dropdownOptionClick == VideoDropdowns.ANTI_ALIASING) {
-                    ApplyVideoSettings.ApplyAntiAliasing(clickedText, (AntiAliasType)settingInt);
+                switch (dropdownOptionClick) {
+                    case VideoDropdowns.DISPLAY_MODE:  ApplyVideoSettings.SetDisplayModePlaceholder(VideoSettingUtil.ReturnTypeString((FullScreenMode)settingInt), (FullScreenMode)settingInt); break;
+                    case VideoDropdowns.RESOLUTION:    ApplyVideoSettings.SetResolutionPlaceholder(clickedText);                                                                                break;
+                    case VideoDropdowns.MONITOR:       ApplyVideoSettings.SetMonitorPlaceholder(clickedText, settingInt);                                                                       break;
+                    case VideoDropdowns.ANTI_ALIASING: ApplyVideoSettings.ApplyAntiAliasing(clickedText, (AntiAliasType)settingInt);                                                            break;
                 }
 
                 VideoSettingSelect.CheckCloseVideoSettingsDropdowns();
-                //VideoSettings.SaveVideoSettings_Static();
             }
 
             public void SetDropdownInt(int setDropdownInt, int setSettingInt) {
-                this.dropdownInt = setDropdownInt;
-                this.settingInt  = setSettingInt;
+                dropdownInt = setDropdownInt;
+                settingInt  = setSettingInt;
             }
         }
     }

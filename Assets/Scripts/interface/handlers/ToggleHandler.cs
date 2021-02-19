@@ -12,6 +12,9 @@ public class ToggleHandler : MonoBehaviour {
 
     public SimpleCrosshair simpleCrosshair;
 
+    private static ToggleHandler toggleHandle;
+    void Awake() { toggleHandle = this; }
+
     void Start() {
         if (simpleCrosshair == null) {
             Debug.LogError("You have not set the target SimpleCrosshair. Disabling!");
@@ -30,112 +33,95 @@ public class ToggleHandler : MonoBehaviour {
         switch (clickedToggleName) {
             // SFX //
 
-            case "TargetSoundToggle": // Toggles target hit sound.
+            case "TargetSoundToggle":     // Toggles target hit sound.
                 TargetSoundSelect.SetSoundSelectionContainerState(toggleClicked.isOn);
                 SFXSettings.SaveTargetSoundOn(toggleClicked.isOn);
                 break;
-
             case "TargetMissSoundToggle": // Toggles target miss sound.
                 TargetSoundSelect.SetTargetMissSoundContainerState(toggleClicked.isOn);
                 SFXSettings.SaveTargetMissSoundOn(toggleClicked.isOn);
                 break;
-
-            case "UISoundToggle": // Toggles UI sound.
+            case "UISoundToggle":         // Toggles UI sound.
                 SFXSettings.SaveUISoundOn(toggleClicked.isOn);
                 break;
-
-            case "AARToggle": // Toggles showing 'AfterActionReport'.
+            case "AARToggle":             // Toggles showing 'AfterActionReport'.
                 ExtraSettings.SaveShowAAR(toggleClicked.isOn);
                 break;
 
             // Crosshair //
 
-            case "CenterDotToggle": // Toggles center dot for crosshair.
+            case "CenterDotToggle":            // Toggles center dot for crosshair.
                 simpleCrosshair.SetCenterDot(toggleClicked.isOn, true);
                 CrosshairSettings.SaveCenterDot(toggleClicked.isOn);
                 CrosshairOptionsObject.SaveCrosshairObject(true);
                 break;
-
-            case "TStyleToggle": // Toggles TStyle for crosshair.
+            case "TStyleToggle":               // Toggles TStyle for crosshair.
                 simpleCrosshair.SetTStyle(toggleClicked.isOn, true);
                 CrosshairSettings.SaveTStyle(toggleClicked.isOn);
                 CrosshairOptionsObject.SaveCrosshairObject(true);
                 break;
-
-            case "OutlineEnableToggle": // Toggles outline for crosshair.
+            case "OutlineEnableToggle":        // Toggles outline for crosshair.
                 simpleCrosshair.SetOutlineEnabled(toggleClicked.isOn, true);
                 CrosshairSettings.SaveOutlineEnabled(toggleClicked.isOn);
                 CrosshairOptionsObject.SetOutlineContainerState(toggleClicked.isOn);
                 CrosshairOptionsObject.SaveCrosshairObject(true);
                 break;
-
-            case "ShowExtraStatsToggle": // Toggles 'ExtraStats' panel in 'AfterActionReport'.
+            case "ShowExtraStatsToggle":       // Toggles 'ExtraStats' panel in 'AfterActionReport'.
                 StatsManager.SetExtraStatsState(toggleClicked.isOn);
                 ExtraSettings.SaveShowExtraStats(toggleClicked.isOn);
                 break;
-
             case "ShowStatsBackgroundsToggle": // Toggles stats backgrounds in 'AfterActionReport'.
                 StatsManager.SetStatsBackgroundState(toggleClicked.isOn);
                 ExtraSettings.SaveShowStatsBackgrounds(toggleClicked.isOn);
                 break;
-
-            case "QuickStartToggle": // Toggles quick start game in gamemode panel.
+            case "QuickStartToggle":           // Toggles quick start game in gamemode panel.
                 CosmeticsSaveSystem.SetQuickStartGame(toggleClicked.isOn);
                 CosmeticsSettings.SaveQuickStartGameItem(toggleClicked.isOn);
                 break;
 
             // Widgets //
 
-            case "ShowModeToggle": // Toggles Mode widget.
-                modeWidget.SetActive(toggleClicked.isOn);
+            case "ShowModeToggle":     // Toggles Mode widget.
+                SetShowModeWidgetToggle(toggleClicked.isOn);
                 WidgetSettings.SaveShowModeItem(toggleClicked.isOn);
                 break;
-
-            case "ShowFPSToggle": // Toggles FPS widget.
-                fpsWidget.SetActive(toggleClicked.isOn);
+            case "ShowFPSToggle":      // Toggles FPS widget.
+                SetShowFPSWidgetToggle(toggleClicked.isOn);
                 WidgetSettings.SaveShowFPSItem(toggleClicked.isOn);
                 break;
-
-            case "ShowTimeToggle": // Toggles time widget.
-                timeWidget.SetActive(toggleClicked.isOn);
+            case "ShowTimeToggle":     // Toggles time widget.
+                SetShowTimeWidgetToggle(toggleClicked.isOn);
                 WidgetSettings.SaveShowTimeItem(toggleClicked.isOn);
                 break;
-
-            case "ShowScoreToggle": // Toggles score widget.
-                ScoreWidget.SetActive(toggleClicked.isOn);
+            case "ShowScoreToggle":    // Toggles score widget.
+                SetShowScoreWidgetToggle(toggleClicked.isOn);
                 WidgetSettings.SaveShowScoreItem(toggleClicked.isOn);
                 break;
-
             case "ShowAccuracyToggle": // Toggles accuracy widget.
-                accuracyWidget.SetActive(toggleClicked.isOn);
+                SetShowAccuracyWidgetToggle(toggleClicked.isOn);
                 WidgetSettings.SaveShowAccuracyItem(toggleClicked.isOn);
                 break;
-
-            case "ShowStreakToggle": // Toggles streak widget.
-                streakWidget.SetActive(toggleClicked.isOn);
+            case "ShowStreakToggle":   // Toggles streak widget.
+                SetShowStreakWidgetToggle(toggleClicked.isOn);
                 WidgetSettings.SaveShowStreakItem(toggleClicked.isOn);
                 break;
-
-            case "ShowTTKToggle": // Toggles ttk widget.
-                ttkWidget.SetActive(toggleClicked.isOn);
+            case "ShowTTKToggle":      // Toggles ttk widget.
+                SetShowTTKWidgetToggle(toggleClicked.isOn);
                 WidgetSettings.SaveShowTTKItem(toggleClicked.isOn);
                 break;
-
-            case "ShowKPSToggle": // Toggles kps widget.
-                kpsWidget.SetActive(toggleClicked.isOn);
+            case "ShowKPSToggle":      // Toggles kps widget.
+                SetShowKPSWidgetToggle(toggleClicked.isOn);
                 WidgetSettings.SaveShowKPSItem(toggleClicked.isOn);
                 break;
 
             // Video //
 
-            case "VSyncToggle": // Toggles VSync in video settings.
+            case "VSyncToggle":               // Toggles VSync in video settings.
                 ApplyVideoSettings.ApplyVSync(toggleClicked.isOn);
                 break;
-
-            case "VignetteToggle": // Toggles vignette in video settings.
+            case "VignetteToggle":            // Toggles vignette in video settings.
                 ApplyVideoSettings.ApplyVignette(toggleClicked.isOn);
                 break;
-
             case "ChromaticAberrationToggle": // Toggles cromatic aberration in video settings.
                 ApplyVideoSettings.ApplyChromaticAberration(toggleClicked.isOn);
                 break;
@@ -150,4 +136,17 @@ public class ToggleHandler : MonoBehaviour {
         backgroundToggle.isOn = !backgroundToggle.isOn;
         HandleToggle(backgroundToggle);
     }
+
+    #region utils
+
+    public static void SetShowModeWidgetToggle(bool setMode) { toggleHandle.modeWidget.SetActive(setMode); }
+    public static void SetShowFPSWidgetToggle(bool setFPS) { toggleHandle.fpsWidget.SetActive(setFPS); }
+    public static void SetShowTimeWidgetToggle(bool setTime) { toggleHandle.timeWidget.SetActive(setTime); }
+    public static void SetShowScoreWidgetToggle(bool setScore) { toggleHandle.ScoreWidget.SetActive(setScore); }
+    public static void SetShowAccuracyWidgetToggle(bool setAccuracy) { toggleHandle.accuracyWidget.SetActive(setAccuracy); }
+    public static void SetShowStreakWidgetToggle(bool setStreak) { toggleHandle.streakWidget.SetActive(setStreak); }
+    public static void SetShowTTKWidgetToggle(bool setTTK) { toggleHandle.ttkWidget.SetActive(setTTK); }
+    public static void SetShowKPSWidgetToggle(bool setKPS) { toggleHandle.kpsWidget.SetActive(setKPS); }
+
+    #endregion
 }

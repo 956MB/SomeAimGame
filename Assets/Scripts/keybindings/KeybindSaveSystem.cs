@@ -4,7 +4,7 @@ using TMPro;
 using SomeAimGame.Utilities;
 
 public class KeybindSaveSystem : MonoBehaviour {
-    public TMP_Text shootKeybindText, toggleWidgetsKeybindText, gameRestartKeybindText, toggleAARKeybindText, toggleSettingsKeybindText;
+    public TMP_Text shootKeybindText, toggleWidgetsKeybindText, gameRestartKeybindText, toggleAARKeybindText, toggleSettingsKeybindText, toggleConsoleKeybindText;
     public TMP_Text AARrestartButton, AARcloseButton;
 
     private static KeybindSaveSystem keybindSaveLoad;
@@ -41,6 +41,7 @@ public class KeybindSaveSystem : MonoBehaviour {
             SetToggleAARKeybind(loadedKeybindData.toggleAAR);
             SetToggleSettingsKeybind(loadedKeybindData.toggleSettings);
             SetAARButtons(loadedKeybindData.gameRestart, loadedKeybindData.toggleSettings);
+            SetToggleConsoleKeybind(loadedKeybindData.toggleConsole);
 
             KeybindSettings.LoadKeybindSettings(loadedKeybindData);
         } else {
@@ -58,58 +59,61 @@ public class KeybindSaveSystem : MonoBehaviour {
         SetToggleAARKeybind(KeyCode.Tab);
         SetToggleSettingsKeybind(KeyCode.Escape);
         SetAARButtons(KeyCode.R, KeyCode.Escape);
+        SetToggleConsoleKeybind(KeyCode.C);
 
         // Saves defaults to new 'keybind.settings' file.
-        KeybindSettings.SaveAllKeybindDefaults(KeyCode.Mouse0, KeyCode.H, KeyCode.R, KeyCode.Tab, KeyCode.Escape);
+        KeybindSettings.SaveAllKeybindDefaults(KeyCode.Mouse0, KeyCode.H, KeyCode.R, KeyCode.Tab, KeyCode.Escape, KeyCode.C);
     }
 
     /// <summary>
     /// Sets 'shoot' keybind value text to supplied keycode (setShootKeycode), and sets white color.
     /// </summary>
     /// <param name="setShootKeycode"></param>
-    public static void SetShootKeybind(KeyCode setShootKeycode) {
-        keybindSaveLoad.shootKeybindText.SetText(KeybindsUtil.ReturnKeybindString(setShootKeycode));
-        keybindSaveLoad.shootKeybindText.color = InterfaceColors.selectedColor;
-    }
+    public static void SetShootKeybind(KeyCode setShootKeycode) {                   SetKeybindText(keybindSaveLoad.shootKeybindText, KeybindsUtil.ReturnKeybindString(setShootKeycode)); }
     /// <summary>
     /// Sets 'toggleWidgets' keybind value text to supplied keycode (setToggleWidgetsKeycode), and sets white color.
     /// </summary>
     /// <param name="setToggleWidgetsKeycode"></param>
-    public static void SetToggleWidgetsKeybind(KeyCode setToggleWidgetsKeycode) {
-        keybindSaveLoad.toggleWidgetsKeybindText.SetText(KeybindsUtil.ReturnKeybindString(setToggleWidgetsKeycode));
-        keybindSaveLoad.toggleWidgetsKeybindText.color = InterfaceColors.selectedColor;
-    }
+    public static void SetToggleWidgetsKeybind(KeyCode setToggleWidgetsKeycode) {   SetKeybindText(keybindSaveLoad.toggleWidgetsKeybindText, KeybindsUtil.ReturnKeybindString(setToggleWidgetsKeycode)); }
     /// <summary>
     /// Sets 'gameRestart' keybind value text to supplied keycode (setGameRestartKeycode), and sets white color.
     /// </summary>
     /// <param name="setGameRestartKeycode"></param>
-    public static void SetGameRestartKeybind(KeyCode setGameRestartKeycode) {
-        keybindSaveLoad.gameRestartKeybindText.SetText(KeybindsUtil.ReturnKeybindString(setGameRestartKeycode));
-        keybindSaveLoad.gameRestartKeybindText.color = InterfaceColors.selectedColor;
-    }
+    public static void SetGameRestartKeybind(KeyCode setGameRestartKeycode) {       SetKeybindText(keybindSaveLoad.gameRestartKeybindText, KeybindsUtil.ReturnKeybindString(setGameRestartKeycode)); }
     /// <summary>
     /// Sets 'toggleAAR' keybind value text to supplied keycode (setToggleAARKeycode), and sets white color.
     /// </summary>
     /// <param name="setToggleAARKeycode"></param>
-    public static void SetToggleAARKeybind(KeyCode setToggleAARKeycode) {
-        keybindSaveLoad.toggleAARKeybindText.SetText(KeybindsUtil.ReturnKeybindString(setToggleAARKeycode));
-        keybindSaveLoad.toggleAARKeybindText.color = InterfaceColors.selectedColor;
-    }
+    public static void SetToggleAARKeybind(KeyCode setToggleAARKeycode) {           SetKeybindText(keybindSaveLoad.toggleAARKeybindText, KeybindsUtil.ReturnKeybindString(setToggleAARKeycode)); }
     /// <summary>
     /// Sets 'toggleSettings' keybind value text to supplied keycode (setToggleSettingsKeycode), and sets white color.
     /// </summary>
     /// <param name="setToggleSettingsKeycode"></param>
-    public static void SetToggleSettingsKeybind(KeyCode setToggleSettingsKeycode) {
-        keybindSaveLoad.toggleSettingsKeybindText.SetText(KeybindsUtil.ReturnKeybindString(setToggleSettingsKeycode));
-        keybindSaveLoad.toggleSettingsKeybindText.color = InterfaceColors.selectedColor;
-    }
+    public static void SetToggleSettingsKeybind(KeyCode setToggleSettingsKeycode) { SetKeybindText(keybindSaveLoad.toggleSettingsKeybindText, KeybindsUtil.ReturnKeybindString(setToggleSettingsKeycode)); }
+    /// <summary>
+    /// Sets 'toggleConsole' keybind value text to supplied keycode (setToggleConsoleKeycode), and sets white color.
+    /// </summary>
+    /// <param name="setToggleConsoleKeycode"></param>
+    public static void SetToggleConsoleKeybind(KeyCode setToggleConsoleKeycode) {   SetKeybindText(keybindSaveLoad.toggleConsoleKeybindText, KeybindsUtil.ReturnKeybindString(setToggleConsoleKeycode)); }
+
     /// <summary>
     /// Sets AAR restart and close button text with supplied keycodes (restartKeyCode, escapeKeyCode).
     /// </summary>
     /// <param name="restartKeyCode"></param>
     /// <param name="escapeKeyCode"></param>
     public static void SetAARButtons(KeyCode restartKeyCode, KeyCode escapeKeyCode) {
-        keybindSaveLoad.AARrestartButton.SetText($"[{KeybindsUtil.ReturnKeybindString(restartKeyCode)}]  {I18nTextTranslator.SetTranslatedText("aarrestart")}");
-        keybindSaveLoad.AARcloseButton.SetText($"[{KeybindsUtil.ReturnKeybindString(escapeKeyCode)}]  {I18nTextTranslator.SetTranslatedText("aarclose")}");
+        keybindSaveLoad.AARrestartButton.SetText($"{I18nTextTranslator.SetTranslatedText("aarrestart")}  [{KeybindsUtil.ReturnKeybindString(restartKeyCode)}]");
+        keybindSaveLoad.AARcloseButton.SetText($"{I18nTextTranslator.SetTranslatedText("aarclose")}  [{KeybindsUtil.ReturnKeybindString(escapeKeyCode)}]");
+    }
+
+    /// <summary>
+    /// Set supplied keybind TMP_Text (keybindText) to supplied string (setText).
+    /// </summary>
+    /// <param name="keybindText"></param>
+    /// <param name="setText"></param>
+    private static void SetKeybindText(TMP_Text keybindText, string setText) {
+        keybindText.SetText(setText);
+        keybindText.color = InterfaceColors.selectedColor;
+        keybindText.fontSize = setText == "`" ? 26f : 14f;
     }
 }

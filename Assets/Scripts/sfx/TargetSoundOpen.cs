@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+using SomeAimGame.Core;
+
 namespace SomeAimGame.SFX {
     public class TargetSoundOpen : MonoBehaviour {
         public void OpenTargetSoundDropdown(int dropdownType) {

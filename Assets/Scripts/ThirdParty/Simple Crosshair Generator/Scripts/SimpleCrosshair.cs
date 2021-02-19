@@ -1,5 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+
+using UnityEngine;
 using UnityEngine.UI;
+using UERandom = UnityEngine.Random;
 
 using SomeAimGame.Utilities;
 
@@ -110,13 +114,13 @@ public class SimpleCrosshair : MonoBehaviour
         m_crosshairImageSettings.sprite = crosshairSprite;
     }
     
-    // 000802000255000000255000000000255
-
     /// <summary>
     /// Parses given crosshair string (newCrosshairString), if all values valid SetAllCrosshairValues() called to set all values and redraw crosshair.
     /// 
-    /// Crosshair String: 000601051255255255255255000000255
-    /// 
+    ///     │
+    ///  ──   ──  Crosshair String: 000601051255255255255255000000255
+    ///     │
+    ///     
     /// 0        0          06    01         05   1        255  255    255   255    255         000           000          255
     /// T-Style  CenterDot  Size  Thickness  Gap  Outline  Red  Green  Blue  Alpha  RedOutline  GreenOutline  BlueOutline  AlphaOutline
     /// 
@@ -126,37 +130,37 @@ public class SimpleCrosshair : MonoBehaviour
     public bool ParseCrosshairString(string newCrosshairString, bool setString, bool setValues = true) {
         if (newCrosshairString.Length != 33 || !Util.DigitsOnly(newCrosshairString)) { return false; }
 
-        int tstyleValue, centerDotValue, outlineValue, sizeValueInt, thicknessValueInt, gapValueInt, redValueInt, greenValueInt, blueValueInt, alphaValueInt, redOutlineValueInt, greenOutlineValueInt, blueOutlineValueInt, alphaOutlineValueInt;
-        string sizeValue, thicknessValue, gapValue, redValue, greenValue, blueValue, alphaValue, redOutlineValue, greenOutlineValue, blueOutlineValue, alphaOutlineValue;
+        int tstyleValueInt, centerDotValueInt, outlineValueInt, sizeValueInt, thicknessValueInt, gapValueInt, redValueInt, greenValueInt, blueValueInt, alphaValueInt, redOutlineValueInt, greenOutlineValueInt, blueOutlineValueInt, alphaOutlineValueInt;
+        string sizeValueString, thicknessValueString, gapValueString, redValueString, greenValueString, blueValueString, alphaValueString, redOutlineValueString, greenOutlineValueString, blueOutlineValueString, alphaOutlineValueString;
 
-        tstyleValue       = int.Parse(newCrosshairString[0].ToString());
-        centerDotValue    = int.Parse(newCrosshairString[1].ToString());
-        sizeValue         = newCrosshairString.Substring(2, 2);
-        thicknessValue    = newCrosshairString.Substring(4, 2);
-        gapValue          = newCrosshairString.Substring(6, 2);
-        outlineValue      = int.Parse(newCrosshairString[8].ToString());
-        redValue          = newCrosshairString.Substring(9, 3);
-        greenValue        = newCrosshairString.Substring(12, 3);
-        blueValue         = newCrosshairString.Substring(15, 3);
-        alphaValue        = newCrosshairString.Substring(18, 3);
-        redOutlineValue   = newCrosshairString.Substring(21, 3);
-        greenOutlineValue = newCrosshairString.Substring(24, 3);
-        blueOutlineValue  = newCrosshairString.Substring(27, 3);
-        alphaOutlineValue = newCrosshairString.Substring(30, 3);
+        tstyleValueInt              = int.Parse(newCrosshairString[0].ToString());
+        centerDotValueInt           = int.Parse(newCrosshairString[1].ToString());
+        sizeValueString         = newCrosshairString.Substring(2, 2);
+        thicknessValueString    = newCrosshairString.Substring(4, 2);
+        gapValueString          = newCrosshairString.Substring(6, 2);
+        outlineValueInt             = int.Parse(newCrosshairString[8].ToString());
+        redValueString          = newCrosshairString.Substring(9, 3);
+        greenValueString        = newCrosshairString.Substring(12, 3);
+        blueValueString         = newCrosshairString.Substring(15, 3);
+        alphaValueString        = newCrosshairString.Substring(18, 3);
+        redOutlineValueString   = newCrosshairString.Substring(21, 3);
+        greenOutlineValueString = newCrosshairString.Substring(24, 3);
+        blueOutlineValueString  = newCrosshairString.Substring(27, 3);
+        alphaOutlineValueString = newCrosshairString.Substring(30, 3);
 
-        if (sizeValue      == "00") {      sizeValueInt = 0; } else { sizeValueInt      = int.Parse(sizeValue.TrimStart(new char[] { '0' })); }
-        if (thicknessValue != "00") { thicknessValueInt = int.Parse(thicknessValue.TrimStart(new char[] { '0' })); } else { return false; }
-        if (gapValue       == "00") {       gapValueInt = 0; } else { gapValueInt       = int.Parse(gapValue.TrimStart(new char[] { '0' })); }
+        if (sizeValueString      == "00") {      sizeValueInt = 0; } else { sizeValueInt      = int.Parse(sizeValueString.TrimStart(new char[] { '0' })); }
+        if (thicknessValueString != "00") { thicknessValueInt = int.Parse(thicknessValueString.TrimStart(new char[] { '0' })); } else { return false; }
+        if (gapValueString       == "00") {       gapValueInt = 0; } else { gapValueInt       = int.Parse(gapValueString.TrimStart(new char[] { '0' })); }
 
-        if (redValue   == "000") {   redValueInt = 0; } else { redValueInt   = int.Parse(redValue.TrimStart(new char[] { '0' })); }
-        if (greenValue == "000") { greenValueInt = 0; } else { greenValueInt = int.Parse(greenValue.TrimStart(new char[] { '0' })); }
-        if (blueValue  == "000") {  blueValueInt = 0; } else { blueValueInt  = int.Parse(blueValue.TrimStart(new char[] { '0' })); }
-        if (alphaValue == "000") { alphaValueInt = 0; } else { alphaValueInt = int.Parse(alphaValue.TrimStart(new char[] { '0' })); }
+        if (redValueString   == "000") {   redValueInt = 0; } else { redValueInt   = int.Parse(redValueString.TrimStart(new char[] { '0' })); }
+        if (greenValueString == "000") { greenValueInt = 0; } else { greenValueInt = int.Parse(greenValueString.TrimStart(new char[] { '0' })); }
+        if (blueValueString  == "000") {  blueValueInt = 0; } else { blueValueInt  = int.Parse(blueValueString.TrimStart(new char[] { '0' })); }
+        if (alphaValueString == "000") { alphaValueInt = 0; } else { alphaValueInt = int.Parse(alphaValueString.TrimStart(new char[] { '0' })); }
 
-        if (redOutlineValue   == "000") {   redOutlineValueInt = 0; } else { redOutlineValueInt   = int.Parse(redOutlineValue.TrimStart(new char[] { '0' })); }
-        if (greenOutlineValue == "000") { greenOutlineValueInt = 0; } else { greenOutlineValueInt = int.Parse(greenOutlineValue.TrimStart(new char[] { '0' })); }
-        if (blueOutlineValue  == "000") {  blueOutlineValueInt = 0; } else { blueOutlineValueInt  = int.Parse(blueOutlineValue.TrimStart(new char[] { '0' })); }
-        if (alphaOutlineValue == "000") { alphaOutlineValueInt = 0; } else { alphaOutlineValueInt = int.Parse(alphaOutlineValue.TrimStart(new char[] { '0' })); }
+        if (redOutlineValueString   == "000") {   redOutlineValueInt = 0; } else { redOutlineValueInt   = int.Parse(redOutlineValueString.TrimStart(new char[] { '0' })); }
+        if (greenOutlineValueString == "000") { greenOutlineValueInt = 0; } else { greenOutlineValueInt = int.Parse(greenOutlineValueString.TrimStart(new char[] { '0' })); }
+        if (blueOutlineValueString  == "000") {  blueOutlineValueInt = 0; } else { blueOutlineValueInt  = int.Parse(blueOutlineValueString.TrimStart(new char[] { '0' })); }
+        if (alphaOutlineValueString == "000") { alphaOutlineValueInt = 0; } else { alphaOutlineValueInt = int.Parse(alphaOutlineValueString.TrimStart(new char[] { '0' })); }
 
         #region logs
         //Debug.Log($"TStyle Value:               {tstyleValue}");
@@ -175,17 +179,98 @@ public class SimpleCrosshair : MonoBehaviour
         //Debug.Log($"Alpha Outline Value:        {alphaOutlineValue}");
         #endregion
 
-        if (!ValidateCrosshairValues(tstyleValue, centerDotValue, sizeValueInt, thicknessValueInt, gapValueInt, outlineValue, redValueInt, greenValueInt, blueValueInt, alphaValueInt, redOutlineValueInt, greenOutlineValueInt, blueOutlineValueInt, alphaOutlineValueInt)) { return false; }
+        if (!ValidateCrosshairValues(tstyleValueInt, centerDotValueInt, sizeValueInt, thicknessValueInt, gapValueInt, outlineValueInt, redValueInt, greenValueInt, blueValueInt, alphaValueInt, redOutlineValueInt, greenOutlineValueInt, blueOutlineValueInt, alphaOutlineValueInt)) { return false; }
 
-        bool tstyleValueBool    = tstyleValue    != 0;
-        bool centerDotValueBool = centerDotValue != 0;
-        bool outlineValueBool   = outlineValue   != 0;
+        bool tstyleValueBool    = tstyleValueInt    != 0;
+        bool centerDotValueBool = centerDotValueInt != 0;
+        bool outlineValueBool   = outlineValueInt   != 0;
 
         if (setString) {
-            crosshairStringFull = $"{tstyleValue}{centerDotValue}{sizeValue}{thicknessValue}{gapValue}{outlineValue}{redValue}{greenValue}{blueValue}{alphaValue}{redOutlineValue}{greenOutlineValue}{blueOutlineValue}{alphaOutlineValue}";
+            crosshairStringFull = $"{tstyleValueInt}{centerDotValueInt}{sizeValueString}{thicknessValueString}{gapValueString}{outlineValueInt}{redValueString}{greenValueString}{blueValueString}{alphaValueString}{redOutlineValueString}{greenOutlineValueString}{blueOutlineValueString}{alphaOutlineValueString}";
             //Debug.Log($"crosshaistring: {crosshairStringFull}");
 
             if (setValues) { SetAllCrosshairValues(tstyleValueBool, centerDotValueBool, sizeValueInt, thicknessValueInt, gapValueInt, outlineValueBool, redValueInt, greenValueInt, blueValueInt, alphaValueInt, redOutlineValueInt, greenOutlineValueInt, blueOutlineValueInt, alphaOutlineValueInt, true); }
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Parses given csgo crosshair from Dictionary (crosshairDict), if all values valid SetAllCrosshairValues() called to set all values and redraw crosshair.
+    /// 
+    ///     │
+    ///  ──   ──  Crosshair ShareCode: CSGO-c3YbL-vq5pC-oabtS-DJDTW-mRXXC
+    ///     │
+    ///     
+    /// </summary>
+    /// <param name="crosshairDict"></param>
+    /// <param name="setString"></param>
+    /// <param name="setValues"></param>
+    /// <returns></returns>
+    public bool ParseCSGOCrosshair(IDictionary<string, double> crosshairDict, bool setString, bool setValues = true) {
+        double tstyleValueDouble, centerDotValueDouble, outlineValueDouble, sizeValueDouble, thicknessValueDouble, gapValueDouble, redValueDouble, greenValueDouble, blueValueDouble, alphaValueDouble, redOutlineValueDouble, greenOutlineValueDouble, blueOutlineValueDouble, alphaOutlineValueDouble;
+        string sizeValueString, thicknessValueString, gapValueString, redValueString, greenValueString, blueValueString, alphaValueString, redOutlineValueString, greenOutlineValueString, blueOutlineValueString, alphaOutlineValueString;
+
+        gapValueDouble          = crosshairDict["cl_crosshairgap"];
+        gapValueDouble              = gapValueDouble + 5;
+        // TODO: add outline thickness to SimpleCrosshair // round
+        redValueDouble          = crosshairDict["cl_crosshaircolor_r"];
+        greenValueDouble        = crosshairDict["cl_crosshaircolor_g"];
+        blueValueDouble         = crosshairDict["cl_crosshaircolor_b"];
+        alphaValueDouble        = crosshairDict["cl_crosshairalpha"];
+        outlineValueDouble      = crosshairDict["cl_crosshair_drawoutline"];
+        redOutlineValueDouble   = crosshairDict["cl_crosshaircolor_r_outline"];
+        greenOutlineValueDouble = crosshairDict["cl_crosshaircolor_g_outline"];
+        blueOutlineValueDouble  = crosshairDict["cl_crosshaircolor_b_outline"];
+        alphaOutlineValueDouble = crosshairDict["cl_crosshairalpha_outline"];
+        thicknessValueDouble    = crosshairDict["cl_crosshairthickness"]; // round
+        thicknessValueDouble        = Math.Round(thicknessValueDouble);
+        thicknessValueDouble        = thicknessValueDouble == 0 ? 1 : thicknessValueDouble;
+        centerDotValueDouble    = crosshairDict["cl_crosshairdot"];
+        tstyleValueDouble       = crosshairDict["cl_crosshair_t"];
+        sizeValueDouble         = crosshairDict["cl_crosshairsize"]; // round
+        sizeValueDouble             = (Math.Round(sizeValueDouble) * 2) + 1;
+
+        #region logs
+        Debug.Log($"TStyle Value:               {tstyleValueDouble}");
+        Debug.Log($"Center Dot Value:           {centerDotValueDouble}");
+        Debug.Log($"Size Value:                 {sizeValueDouble}");
+        Debug.Log($"Thickness Value:            {thicknessValueDouble}");
+        Debug.Log($"Gap Value:                  {gapValueDouble}");
+        Debug.Log($"Outline Value:              {outlineValueDouble}");
+        Debug.Log($"Red Value:                  {redValueDouble}");
+        Debug.Log($"Green Value:                {greenValueDouble}");
+        Debug.Log($"Blue Value:                 {blueValueDouble}");
+        Debug.Log($"Alpha Value:                {alphaValueDouble}");
+        Debug.Log($"Red Outline Value:          {redOutlineValueDouble}");
+        Debug.Log($"Green Outline Value:        {greenOutlineValueDouble}");
+        Debug.Log($"Blue Outline Value:         {blueOutlineValueDouble}");
+        Debug.Log($"Alpha Outline Value:        {alphaOutlineValueDouble}");
+        #endregion
+
+        if (!ValidateCrosshairValues(tstyleValueDouble, centerDotValueDouble, sizeValueDouble, thicknessValueDouble, gapValueDouble, outlineValueDouble, redValueDouble, greenValueDouble, blueValueDouble, alphaValueDouble, redOutlineValueDouble, greenOutlineValueDouble, blueOutlineValueDouble, alphaOutlineValueDouble)) { return false; }
+
+        bool tstyleValueBool    = tstyleValueDouble    != 0;
+        bool centerDotValueBool = centerDotValueDouble != 0;
+        bool outlineValueBool   = outlineValueDouble   != 0;
+
+        sizeValueString         = sizeValueDouble.ToString("00");
+        thicknessValueString    = thicknessValueDouble.ToString("00");
+        gapValueString          = gapValueDouble.ToString("00");
+        redValueString          = redValueDouble.ToString("000");
+        greenValueString        = greenValueDouble.ToString("000");
+        blueValueString         = blueValueDouble.ToString("000");
+        alphaValueString        = alphaValueDouble.ToString("000");
+        redOutlineValueString   = redOutlineValueDouble.ToString("000");
+        greenOutlineValueString = greenOutlineValueDouble.ToString("000");
+        blueOutlineValueString  = blueOutlineValueDouble.ToString("000");
+        alphaOutlineValueString = alphaOutlineValueDouble.ToString("000");
+
+        if (setString) {
+            crosshairStringFull = $"{tstyleValueDouble}{centerDotValueDouble}{sizeValueString}{thicknessValueString}{gapValueString}{outlineValueDouble}{redValueString}{greenValueString}{blueValueString}{alphaValueString}{redOutlineValueString}{greenOutlineValueString}{blueOutlineValueString}{alphaOutlineValueString}";
+            //Debug.Log($"CSGO crosshair string: {crosshairStringFull}");
+
+            if (setValues) { SetAllCrosshairValues(tstyleValueBool, centerDotValueBool, (int)sizeValueDouble, (int)thicknessValueDouble, (int)gapValueDouble, outlineValueBool, (int)redValueDouble, (int)greenValueDouble, (int)blueValueDouble, (int)alphaValueDouble, (int)redOutlineValueDouble, (int)greenOutlineValueDouble, (int)blueOutlineValueDouble, (int)alphaOutlineValueDouble, true); }
         }
 
         return true;
@@ -201,6 +286,16 @@ public class SimpleCrosshair : MonoBehaviour
         if (simpleCrosshair.ParseCrosshairString(newCrosshairString, setString)) { return true; }
         return false;
     }
+    /// <summary>
+    /// Validates given csgo crosshair dict and returns true/false for valid, and sets values to current crosshair if supplied bool true (setString).
+    /// </summary>
+    /// <param name="crosshairDict"></param>
+    /// <param name="setString"></param>
+    /// <returns></returns>
+    public static bool ValidateSetCSGOCrosshair(Dictionary<string, double> crosshairDict, bool setString) {
+        if (simpleCrosshair.ParseCSGOCrosshair(crosshairDict, setString)) { return true; }
+        return false;
+    }
 
     /// <summary>
     /// Exports full crosshair string with all current crosshair values.
@@ -208,25 +303,28 @@ public class SimpleCrosshair : MonoBehaviour
     /// <returns></returns>
     public static string ExportCrosshairString_Temp() {
         int tstyleInt, centerDotInt, outlineInt;
-        string sizeString, thicknessString, gapString, redFloat, greenFloat, blueFloat, alphaFloat, redOutlineFloat, greenOutlineFloat, blueOutlineFloat, alphaOutlineFloat;
+        string sizeString, thicknessString, gapString, redString, greenString, blueString, alphaString, redOutlineString, greenOutlineString, blueOutlineString, alphaOutlineString;
 
-        tstyleInt         = simpleCrosshair.m_crosshair.tStyle ? 1 : 0;
-        centerDotInt      = simpleCrosshair.m_crosshair.centerDot ? 1 : 0;
-        sizeString        = simpleCrosshair.m_crosshair.size.ToString("00");
-        thicknessString   = simpleCrosshair.m_crosshair.thickness.ToString("00");
-        gapString         = simpleCrosshair.m_crosshair.gap.ToString("00");
-        outlineInt        = simpleCrosshair.m_crosshair.enableOutline ? 1 : 0;
-        redFloat          = (simpleCrosshair.m_crosshair.color.r * 255.0f).ToString("000");
-        greenFloat        = (simpleCrosshair.m_crosshair.color.g * 255.0f).ToString("000");
-        blueFloat         = (simpleCrosshair.m_crosshair.color.b * 255.0f).ToString("000");
-        alphaFloat        = (simpleCrosshair.m_crosshair.color.a * 255.0f).ToString("000");
-        redOutlineFloat   = (simpleCrosshair.m_crosshair.outlineColor.r * 255.0f).ToString("000");
-        greenOutlineFloat = (simpleCrosshair.m_crosshair.outlineColor.g * 255.0f).ToString("000");
-        blueOutlineFloat  = (simpleCrosshair.m_crosshair.outlineColor.b * 255.0f).ToString("000");
-        alphaOutlineFloat = (simpleCrosshair.m_crosshair.outlineColor.a * 255.0f).ToString("000");
+        tstyleInt          = simpleCrosshair.m_crosshair.tStyle ? 1 : 0;
+        centerDotInt       = simpleCrosshair.m_crosshair.centerDot ? 1 : 0;
+        sizeString         = simpleCrosshair.m_crosshair.size.ToString("00");
+        thicknessString    = simpleCrosshair.m_crosshair.thickness.ToString("00");
+        gapString          = simpleCrosshair.m_crosshair.gap.ToString("00");
+        outlineInt         = simpleCrosshair.m_crosshair.enableOutline ? 1 : 0;
+        redString          = (simpleCrosshair.m_crosshair.color.r * 255.0f).ToString("000");
+        greenString        = (simpleCrosshair.m_crosshair.color.g * 255.0f).ToString("000");
+        blueString         = (simpleCrosshair.m_crosshair.color.b * 255.0f).ToString("000");
+        alphaString        = (simpleCrosshair.m_crosshair.color.a * 255.0f).ToString("000");
+        redOutlineString   = (simpleCrosshair.m_crosshair.outlineColor.r * 255.0f).ToString("000");
+        greenOutlineString = (simpleCrosshair.m_crosshair.outlineColor.g * 255.0f).ToString("000");
+        blueOutlineString  = (simpleCrosshair.m_crosshair.outlineColor.b * 255.0f).ToString("000");
+        alphaOutlineString = (simpleCrosshair.m_crosshair.outlineColor.a * 255.0f).ToString("000");
 
+        #region log
         //Debug.Log($"EXPORTED CROSSHAIR STRING: {tstyleInt}{centerDotInt}{sizeString}{thicknessString}{gapString}{outlineInt}{redFloat}{greenFloat}{blueFloat}{alphaFloat}{redOutlineFloat}{greenOutlineFloat}{blueOutlineFloat}{alphaOutlineFloat}");
-        string exportedString =  $"{tstyleInt}{centerDotInt}{sizeString}{thicknessString}{gapString}{outlineInt}{redFloat}{greenFloat}{blueFloat}{alphaFloat}{redOutlineFloat}{greenOutlineFloat}{blueOutlineFloat}{alphaOutlineFloat}";
+        #endregion
+
+        string exportedString =  $"{tstyleInt}{centerDotInt}{sizeString}{thicknessString}{gapString}{outlineInt}{redString}{greenString}{blueString}{alphaString}{redOutlineString}{greenOutlineString}{blueOutlineString}{alphaOutlineString}";
         crosshairStringFull   = exportedString;
         return exportedString;
     }
@@ -324,31 +422,73 @@ public class SimpleCrosshair : MonoBehaviour
 
         return true;
     }
+    public bool ValidateCrosshairValues(double tstyle, double centerDot, double size, double thickness, double gap, double outlineEnable, double red, double green, double blue, double alpha, double redOutline, double greenOutline, double blueOutline, double alphaOutline) {
+        if (tstyle < 0 || tstyle > 1)               { return false; }
+        if (centerDot < 0 || centerDot > 1)         { return false; }
+        if (size < 0 || size > 45)                  { return false; }
+        if (thickness < 1 || thickness > 15)        { return false; }
+        if (gap < 0 || gap > 25)                    { return false; }
+        if (outlineEnable < 0 || outlineEnable > 1) { return false; }
+        if (red < 0 || red > 255)                   { return false; }
+        if (green < 0 || green > 255)               { return false; }
+        if (blue < 0 || blue > 255)                 { return false; }
+        if (alpha < 0 || alpha > 255)               { return false; }
+        if (redOutline < 0 || redOutline > 255)     { return false; }
+        if (greenOutline < 0 || greenOutline > 255) { return false; }
+        if (blueOutline < 0 || blueOutline > 255)   { return false; }
+        if (alphaOutline < 0 || alphaOutline > 255) { return false; }
+
+        return true;
+    }
 
     /// <summary>
     /// Generates random crosshair values, sets them to crosshair, then redraws.
     /// </summary>
-    public void GenerateRandomCrosshair() {
-        int randomTstyleValue       = UnityEngine.Random.Range(0, 2);
-        int randomCenterDotValue    = UnityEngine.Random.Range(0, 2);
-        int randomSizeValue         = UnityEngine.Random.Range(1, 46);
-        int randomThicknessValue    = UnityEngine.Random.Range(1, 16);
-        int randomGapValue          = UnityEngine.Random.Range(1, 26);
-        int randomOutlineValue      = UnityEngine.Random.Range(0, 2);
-        int randomRedValue          = UnityEngine.Random.Range(0, 256);
-        int randomGreenValue        = UnityEngine.Random.Range(0, 256);
-        int randomBlueValue         = UnityEngine.Random.Range(0, 256);
-        int randomAlphaValue        = UnityEngine.Random.Range(0, 256);
-        int randomRedOutlineValue   = UnityEngine.Random.Range(0, 256);
-        int randomGreenOutlineValue = UnityEngine.Random.Range(0, 256);
-        int randomBlueOutlineValue  = UnityEngine.Random.Range(0, 256);
-        int randomAlphaOutlineValue = UnityEngine.Random.Range(0, 256);
+    public static void GenerateRandomCrosshair() {
+        int[,] colorsMultiArray = new int[8, 3] { { 255, 0, 0 }, { 0, 255, 0 }, { 0, 0, 255 }, { 255, 255, 0 }, { 0, 255, 255 }, { 255, 0, 255 }, { 255, 255, 255 }, { 0, 0, 0 } };
+
+        int randomTstyleValue       = UERandom.Range(0, 3) == 0 ? 1 : 0;
+        int randomCenterDotValue    = UERandom.Range(0, 3) == 0 ? 1 : 0;
+        int randomOutlineValue      = UERandom.Range(0, 2);
+
+        int randomSizeValue         = UERandom.Range(1, 11);
+        int randomThicknessValue    = UERandom.Range(1, 5);
+        int randomGapValue          = UERandom.Range(1, 11);
+
+        int randomRedValue          = UERandom.Range(0, 2) == 1 ? UERandom.Range(0, 256) : colorsMultiArray[UERandom.Range(0, 8), 0];
+        int randomGreenValue        = UERandom.Range(0, 2) == 1 ? UERandom.Range(0, 256) : colorsMultiArray[UERandom.Range(0, 8), 0];
+        int randomBlueValue         = UERandom.Range(0, 2) == 1 ? UERandom.Range(0, 256) : colorsMultiArray[UERandom.Range(0, 8), 0];
+        int randomAlphaValue        = UERandom.Range(0, 3) == 0 ? UERandom.Range(100, 256) : 255;
+
+        int randomRedOutlineValue   = UERandom.Range(0, 2) == 1 ? UERandom.Range(0, 256) : colorsMultiArray[UERandom.Range(0, 8), 0];
+        int randomGreenOutlineValue = UERandom.Range(0, 2) == 1 ? UERandom.Range(0, 256) : colorsMultiArray[UERandom.Range(0, 8), 0];
+        int randomBlueOutlineValue  = UERandom.Range(0, 2) == 1 ? UERandom.Range(0, 256) : colorsMultiArray[UERandom.Range(0, 8), 0];
+        randomRedOutlineValue       = UERandom.Range(0, 3) != 0 ? 0 : randomRedOutlineValue;
+        randomGreenOutlineValue     = UERandom.Range(0, 3) != 0 ? 0 : randomGreenOutlineValue;
+        randomBlueOutlineValue      = UERandom.Range(0, 3) != 0 ? 0 : randomBlueOutlineValue;
+        int randomAlphaOutlineBool  = UERandom.Range(0, 2);
+        int randomAlphaOutlineValue = randomAlphaOutlineBool == 1 ? UERandom.Range(100, 256) : 255;
+        randomAlphaOutlineValue     = UERandom.Range(0, 3) != 0 ? 255 : randomAlphaOutlineValue;
 
         bool randomTstyleValueBool    = randomTstyleValue    != 0;
         bool randomCenterDotValueBool = randomCenterDotValue != 0;
         bool randomOutlineValueBool   = randomOutlineValue   != 0;
 
-        SetAllCrosshairValues(randomTstyleValueBool, randomCenterDotValueBool, randomSizeValue, randomThicknessValue, randomGapValue, randomOutlineValueBool, randomRedValue, randomGreenValue, randomBlueValue, randomAlphaValue, randomRedOutlineValue, randomGreenOutlineValue, randomBlueOutlineValue, randomAlphaOutlineValue, true);
+        string sizeValueString         = randomSizeValue.ToString("00");
+        string thicknessValueString    = randomThicknessValue.ToString("00");
+        string gapValueString          = randomGapValue.ToString("00");
+        string redValueString          = randomRedValue.ToString("000");
+        string greenValueString        = randomGreenValue.ToString("000");
+        string blueValueString         = randomBlueValue.ToString("000");
+        string alphaValueString        = randomAlphaValue.ToString("000");
+        string redOutlineValueString   = randomRedOutlineValue.ToString("000");
+        string greenOutlineValueString = randomGreenOutlineValue.ToString("000");
+        string blueOutlineValueString  = randomBlueOutlineValue.ToString("000");
+        string alphaOutlineValueString = randomAlphaOutlineValue.ToString("000");
+
+        crosshairStringFull = $"{randomTstyleValue}{randomCenterDotValue}{sizeValueString}{thicknessValueString}{gapValueString}{randomOutlineValue}{redValueString}{greenValueString}{blueValueString}{alphaValueString}{redOutlineValueString}{greenOutlineValueString}{blueOutlineValueString}{alphaOutlineValueString}";
+
+        simpleCrosshair.SetAllCrosshairValues(randomTstyleValueBool, randomCenterDotValueBool, randomSizeValue, randomThicknessValue, randomGapValue, randomOutlineValueBool, randomRedValue, randomGreenValue, randomBlueValue, randomAlphaValue, randomRedOutlineValue, randomGreenOutlineValue, randomBlueOutlineValue, randomAlphaOutlineValue, true);
     }
 
     public void SetColor(CrosshairColorChannel channel, int value, bool redrawCrosshair)  // Set between 0 and 255

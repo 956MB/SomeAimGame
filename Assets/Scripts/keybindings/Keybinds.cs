@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+using SomeAimGame.Console;
+
 public class Keybinds : MonoBehaviour {
     public static bool keybindsLoaded = false;
 
@@ -17,11 +19,19 @@ public class Keybinds : MonoBehaviour {
                 ToggleAARPanel_Keybind();
             } else if (Input.GetKeyUp(KeybindSettings.toggleSettings)) {
                 ToggleSettingsPanel_Keybind();
-            } else if (Input.GetKeyUp(KeyCode.RightArrow)) {
-                MoveSettingsPanelRight_Keybind();
-            } else if (Input.GetKeyUp(KeyCode.LeftArrow)) {
-                MoveSettingsPanelLeft_Keybind();
+            } else if (Input.GetKeyUp(KeybindSettings.toggleConsole)) {
+                ToggleConsole_Keybind();
             }
+
+            if (SAGConsole.consoleActive && Input.GetKeyUp(KeyCode.Return)) {
+                SAGConsole.SubmitConsoleInput();
+            }
+
+            //else if (Input.GetKeyUp(KeyCode.RightArrow)) {
+            //    MoveSettingsPanelRight_Keybind();
+            //} else if (Input.GetKeyUp(KeyCode.LeftArrow)) {
+            //    MoveSettingsPanelLeft_Keybind();
+            //}
         }
     }
 
@@ -29,35 +39,31 @@ public class Keybinds : MonoBehaviour {
     /// Toggle WorldUI keybind function. [EVENT]
     /// </summary>
     private static void ToggleWidgetsUI_Keybind() {
-        if (!SettingsPanel.settingsOpen) { GameUI.ToggleWidgetsUI(); }
+        if (!SettingsPanel.settingsOpen && !SAGConsole.consoleActive) { GameUI.ToggleWidgetsUI(); }
     }
 
     /// <summary>
     /// Trigger game restart keybind function.
     /// </summary>
     private static void TriggerGameRestart_Keybind() {
-        if (!SettingsPanel.settingsOpen) { GameUI.RestartGame(CosmeticsSettings.gamemode, true); }
-
-        // EVENT:: for game restart keybind pressed
-        //DevEventHandler.CheckKeybindEvent($"'RestartGame' [R] {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}");
+        if (!SettingsPanel.settingsOpen && !SAGConsole.consoleActive) { GameUI.RestartGame(CosmeticsSettings.gamemode, true); }
     }
 
     /// <summary>
     /// Toggle AAR keybind function. [EVENT]
     /// </summary>
     private static void ToggleAARPanel_Keybind() {
-        if (SettingsPanel.afterActionReportSet) {
-            if (!SettingsPanel.afterActionReportOpen && !SettingsPanel.settingsOpen) {
-                SettingsPanel.CloseSettingsPanel();
-                SettingsPanel.OpenAfterActionReport();
-                GameUI.HideWidgetsUI();
-            } else {
-                SettingsPanel.CloseAfterActionReport();
+        if (!SAGConsole.consoleActive) {
+            if (SettingsPanel.afterActionReportSet) {
+                if (!SettingsPanel.afterActionReportOpen && !SettingsPanel.settingsOpen) {
+                    SettingsPanel.CloseSettingsPanel();
+                    SettingsPanel.OpenAfterActionReport();
+                    GameUI.HideWidgetsUI();
+                } else {
+                    SettingsPanel.CloseAfterActionReport();
+                }
             }
         }
-        
-        // EVENT:: for toggle AAR keybind pressed
-        //DevEventHandler.CheckKeybindEvent($"'Toggle AAR' [TAB] {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}");
     }
 
     /// <summary>
@@ -65,19 +71,25 @@ public class Keybinds : MonoBehaviour {
     /// </summary>
     private static void ToggleSettingsPanel_Keybind() {
         if (KeybindsHandler.currentKey == null) {
-            if (SettingsPanel.settingsOpen) {
-                SettingsPanel.CloseSettingsPanel();
-            } else {
-                if (!SettingsPanel.afterActionReportOpen) {
-                    SettingsPanel.OpenSettingsPanel();
+            if (!SAGConsole.consoleActive) {
+                if (SettingsPanel.settingsOpen) {
+                    SettingsPanel.CloseSettingsPanel();
                 } else {
-                    SettingsPanel.CloseAfterActionReport();
+                    if (!SettingsPanel.afterActionReportOpen) {
+                        SettingsPanel.OpenSettingsPanel();
+                    } else {
+                        SettingsPanel.CloseAfterActionReport();
+                    }
                 }
+            } else {
+                SAGConsole.CloseConsole();
             }
         }
-        
-        // EVENT:: for toggle settings panel keybind pressed
-        //DevEventHandler.CheckKeybindEvent($"'Toggle Settings Panel' [ESC] {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}");
+    }
+
+    private static void ToggleConsole_Keybind() {
+        // TODO: toggle conmsole
+        SAGConsole.ToggleConsoleActive();
     }
 
     /// <summary>
@@ -86,13 +98,7 @@ public class Keybinds : MonoBehaviour {
     private static void MoveSettingsPanelRight_Keybind() {
         if (MouseLook.settingsOpen && !CrosshairImportExport.importExportPanelOpen) {
             Vector3 settingsPanelPos_Right = SettingsPanel.MoveSettingsPanelRight();
-            
-            // EVENT:: for settings panel being moved right
-            //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacepanelmoveright")} ({settingsPanelPos_Right})");
         }
-
-        // EVENT:: for move settings panel right keybind pressed
-        //DevEventHandler.CheckKeybindEvent($"'Move Settings Panel Right' [RightArrow] {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}");
     }
 
     /// <summary>
@@ -101,12 +107,6 @@ public class Keybinds : MonoBehaviour {
     private static void MoveSettingsPanelLeft_Keybind() {
         if (MouseLook.settingsOpen && !CrosshairImportExport.importExportPanelOpen) {
             Vector3 settingsPanelPos_Left = SettingsPanel.MoveSettingsPanelLeft();
-
-            // EVENT:: for settings panel being moved left
-            //DevEventHandler.CheckInterfaceEvent($"{I18nTextTranslator.SetTranslatedText("eventinterfacepanelmoveleft")} ({settingsPanelPos_Left})");
         }
-        
-        // EVENT:: for move settings panel left keybind pressed
-        //DevEventHandler.CheckKeybindEvent($"'Move Settings Panel Left' [LeftArrow] {I18nTextTranslator.SetTranslatedText("eventkeybindpressed")}");
     }
 }

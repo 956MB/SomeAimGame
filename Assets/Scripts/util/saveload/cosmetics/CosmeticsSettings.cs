@@ -8,6 +8,11 @@ using SomeAimGame.Utilities;
 public class CosmeticsSettings : MonoBehaviour {
     public static GamemodeType gamemode                = GamemodeType.SCATTER;
     public static TargetType   targetColor             = TargetType.YELLOW;
+
+    public static string       customColorNameStrings  = "";
+    public static int          customColorIndex        = -1;
+    public static string       customColorStrings      = "";
+
     public static SkyboxType   skybox                  = SkyboxType.SLATE;
     public static float        afterActionReportPanelX = 960f;
     public static float        afterActionReportPanelY = 540f;
@@ -24,17 +29,17 @@ public class CosmeticsSettings : MonoBehaviour {
     /// Saves supplied gamemode string (setGamemode) to cosmetics settings object (CosmeticsSettings), then saves cosmetics settings object.
     /// </summary>
     /// <param name="setGamemode"></param>
-    public static void SaveGamemodeItem(GamemodeType setGamemode) { Util.RefSetSettingChange(ref cosmeticsSettingsChangeReady, ref gamemode, setGamemode); }
+    public static void SaveGamemodeItem(GamemodeType setGamemode) {                              Util.RefSetSettingChange(ref cosmeticsSettingsChangeReady, ref gamemode, setGamemode); }
     /// <summary>
     /// Saves supplied target color string (setTargetColor) to cosmetics settings object (CosmeticsSettings), then saves cosmetics settings object.
     /// </summary>
     /// <param name="setTargetColor"></param>
-    public static void SaveTargetColorItem(TargetType setTargetColor) { Util.RefSetSettingChange(ref cosmeticsSettingsChangeReady, ref targetColor, setTargetColor); }
+    public static void SaveTargetColorItem(TargetType setTargetColor, int setCustomColorIndex) { Util.RefSetSettingChange(ref cosmeticsSettingsChangeReady, ref targetColor, setTargetColor, ref customColorIndex, setCustomColorIndex); }
     /// <summary>
     /// Saves supplied skybox string (setSkybox) to cosmetics settings object (CosmeticsSettings), then saves cosmetics settings object.
     /// </summary>
     /// <param name="setSkybox"></param>
-    public static void SaveSkyboxItem(SkyboxType setSkybox) { Util.RefSetSettingChange(ref cosmeticsSettingsChangeReady, ref skybox, setSkybox); }
+    public static void SaveSkyboxItem(SkyboxType setSkybox) {                                    Util.RefSetSettingChange(ref cosmeticsSettingsChangeReady, ref skybox, setSkybox); }
     /// <summary>
     /// Saves supplied settings panel location floats (setPanelX)/(setPanelY) to cosmetics settings object (CosmeticsSettings), then saves cosmetics settings object.
     /// </summary>
@@ -52,14 +57,28 @@ public class CosmeticsSettings : MonoBehaviour {
                 break;
         }
     }
+    public static void SaveCustomTargetIndex(int setCustomTargetIndex) {
+        Util.RefSetSettingChange(ref cosmeticsSettingsChangeReady, ref customColorIndex, setCustomTargetIndex);
+    }
+    public static void SaveCustomTarget(string setCustomTargetName, string setCustomTargetColor) {
+        string newCustomTargetNamesString, newCustomTargetColorString;
 
+        if (customColorNameStrings == "" && customColorStrings == "") {
+            newCustomTargetNamesString = $"{setCustomTargetName}";
+            newCustomTargetColorString = $"#{setCustomTargetColor}"; // TODO: make sure 'Util.ColorToHex' returns color without "#", and change 'Util.HexToColor' to accept "#RRGGBBAA".
+        } else {
+            newCustomTargetNamesString = $"{customColorNameStrings},{setCustomTargetName}";
+            newCustomTargetColorString = $"{customColorStrings},#{setCustomTargetColor}";
+        }
+
+        Util.RefSetSettingChange(ref cosmeticsSettingsChangeReady, ref customColorNameStrings, newCustomTargetNamesString);
+        Util.RefSetSettingChange(ref cosmeticsSettingsChangeReady, ref customColorStrings, newCustomTargetColorString);
+    }
     /// <summary>
     /// Saves supplied quick start game bool (setQuickStart) to cosmetics settings object (CosmeticsSettings), then saves cosmetics settings object.
     /// </summary>
     /// <param name="setQuickStart"></param>
-    public static void SaveQuickStartGameItem(bool setQuickStart) {
-        Util.RefSetSettingChange(ref cosmeticsSettingsChangeReady, ref quickStartGame, setQuickStart);
-    }
+    public static void SaveQuickStartGameItem(bool setQuickStart) { Util.RefSetSettingChange(ref cosmeticsSettingsChangeReady, ref quickStartGame, setQuickStart); }
 
     /// <summary>
     /// Calls 'CosmeticsSaveSystem.SaveCosmeticsItem()' to save cosmetics settings object (CosmeticsSettings) to file.
@@ -76,9 +95,12 @@ public class CosmeticsSettings : MonoBehaviour {
     /// <param name="setPanelSettingsY"></param>
     /// <param name="setPanelExtraStatsX"></param>
     /// <param name="setPanelExtraStatsY"></param>
-    public static void SaveAllCosmeticsToggleDefaults(GamemodeType setGamemode, TargetType setTargetColor, SkyboxType setSkybox, float setPanelSettingsX, float setPanelSettingsY, float setPanelExtraStatsX, float setPanelExtraStatsY, bool setQuickStart) {
+    public static void SaveAllCosmeticsToggleDefaults(GamemodeType setGamemode, TargetType setTargetColor, string setCustomNameStrings, int setCustomColorIndex, string setCustomColorStrings, SkyboxType setSkybox, float setPanelSettingsX, float setPanelSettingsY, float setPanelExtraStatsX, float setPanelExtraStatsY, bool setQuickStart) {
         gamemode                = setGamemode;
         targetColor             = setTargetColor;
+        customColorNameStrings  = setCustomNameStrings;
+        customColorIndex        = setCustomColorIndex;
+        customColorStrings      = setCustomColorStrings;
         skybox                  = setSkybox;
         afterActionReportPanelX = setPanelSettingsX;
         afterActionReportPanelY = setPanelSettingsY;
@@ -96,6 +118,9 @@ public class CosmeticsSettings : MonoBehaviour {
     public static void LoadCosmeticsSettings(CosmeticsDataSerial cometicsData) {
         gamemode                = cometicsData.gamemode;
         targetColor             = cometicsData.targetColor;
+        customColorNameStrings  = cometicsData.customColorNameStrings;
+        customColorIndex        = cometicsData.customColorIndex;
+        customColorStrings      = cometicsData.customColorStrings;
         skybox                  = cometicsData.skybox;
         afterActionReportPanelX = cometicsData.afterActionReportPanelX;
         afterActionReportPanelY = cometicsData.afterActionReportPanelY;

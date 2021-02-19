@@ -63,6 +63,16 @@ namespace SomeAimGame.Stats {
             }
         }
         /// <summary>
+        /// Sets all supplied TMP_Text items (items) text to supplied strings (statStrings).
+        /// </summary>
+        /// <param name="statStrings"></param>
+        /// <param name="statTexts"></param>
+        public static void SetStatStrings(string[] statStrings, params TMP_Text[] statTexts) {
+            for (int i = 0; i < statTexts.Length; i++) {
+                statTexts[i].SetText(statStrings[i]);
+            }
+        }
+        /// <summary>
         /// Sets all supplied GameObject images (statBackgrounds) colors to supplied Color32 (colorValue).
         /// </summary>
         /// <param name="colorValue"></param>

@@ -12,14 +12,12 @@ public class NotificationHandler : MonoBehaviour {
 
     public static NotificationHandler notification;
     private void Awake() {
+        // TODO: move notification banner to new location and uncomment all "ShowTimedNotification_String" methods not currently being used.
         notification            = this;
         notificationTextContent = gameObject.GetComponentInChildren<TMP_Text>();
 
         // Disable notification gameObject by default.
         gameObject.SetActive(false);
-
-        // EVENT:: for notification object hidden on awake
-        //DevEventHandler.CheckNotificationEvent($"{I18nTextTranslator.SetTranslatedText("eventnotificationdisabled")}");
     }
 
     /// <summary>
@@ -29,9 +27,6 @@ public class NotificationHandler : MonoBehaviour {
     /// <param name="notificationColor"></param>
     public static void ShowTimedNotification_String(string notificationText, Color32 notificationColor) {
         SetShowNotification(notificationText, notificationColor);
-
-        // EVENT:: for new string notification
-        //DevEventHandler.CheckNotificationEvent($"{I18nTextTranslator.SetTranslatedText("eventnotificationcreatedstring")} \"{notificationText}\"");
     }
 
     /// <summary>
@@ -42,11 +37,13 @@ public class NotificationHandler : MonoBehaviour {
     public static void ShowTimedNotification_Translated(string translateTextID, string extraText, Color32 notificationColor) {
         string notificationContent = $"{I18nTextTranslator.SetTranslatedText(translateTextID)}{extraText}";
         SetShowNotification(notificationContent, notificationColor);
-
-        // EVENT:: for new translated notification
-        //DevEventHandler.CheckNotificationEvent($"{I18nTextTranslator.SetTranslatedText("eventnotificationcreatedtranslation")} \"{notificationContent}\"");
     }
 
+    /// <summary>
+    /// Shows new delay notification with supplied text string (setText) and color (notificationColor).
+    /// </summary>
+    /// <param name="setText"></param>
+    /// <param name="notificationColor"></param>
     public static void SetShowNotification(string setText, Color32 notificationColor) {
         notificationTextContent.SetText(setText);
         notificationTextContent.color = notificationColor;
@@ -69,9 +66,6 @@ public class NotificationHandler : MonoBehaviour {
     public static void HideNotification() {
         notification.gameObject.SetActive(false);
         notificationOpen = false;
-
-        // EVENT:: for active notification hidden
-        //DevEventHandler.CheckNotificationEvent(I18nTextTranslator.SetTranslatedText("eventnotificationhidden"));
     }
 
     /// <summary>
