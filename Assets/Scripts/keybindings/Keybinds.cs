@@ -11,27 +11,32 @@ public class Keybinds : MonoBehaviour {
 
     void Update() {
         if (keybindsLoaded) {
-            if (Input.GetKeyUp(KeybindSettings.toggleWidgets)) {
-                ToggleWidgetsUI_Keybind();
-            } else if (Input.GetKeyUp(KeybindSettings.gameRestart)) {
-                TriggerGameRestart_Keybind();
-            } else if (Input.GetKeyUp(KeybindSettings.toggleAAR)) {
-                ToggleAARPanel_Keybind();
-            } else if (Input.GetKeyUp(KeybindSettings.toggleSettings)) {
-                ToggleSettingsPanel_Keybind();
-            } else if (Input.GetKeyUp(KeybindSettings.toggleConsole)) {
+            if (Input.GetKeyUp(KeybindSettings.toggleConsole)) {
                 ToggleConsole_Keybind();
             }
 
-            if (SAGConsole.consoleActive && Input.GetKeyUp(KeyCode.Return)) {
-                SAGConsole.SubmitConsoleInput();
+            if (SAGConsole.consoleActive) {
+                if (Input.GetKeyUp(KeyCode.Return)) {
+                    SAGConsole.SubmitConsoleInput();
+                } else if (Input.GetKeyDown(KeyCode.UpArrow)) {
+                    // special case to hide caret while UpArrow pressed down to avoid glitchy looking thing when navigating console index.
+                    SAGConsole.HideCaretWhileNavigatingConsoleIndex();
+                } else if (Input.GetKeyUp(KeyCode.UpArrow)) {
+                    SAGConsole.NavigateConsoleIndexUp();
+                } else if (Input.GetKeyUp(KeyCode.DownArrow)) {
+                    SAGConsole.NavigateConsoleIndexDown();
+                }
+            } else {
+                if (Input.GetKeyUp(KeybindSettings.toggleWidgets)) {
+                    ToggleWidgetsUI_Keybind();
+                } else if (Input.GetKeyUp(KeybindSettings.gameRestart)) {
+                    TriggerGameRestart_Keybind();
+                } else if (Input.GetKeyUp(KeybindSettings.toggleAAR)) {
+                    ToggleAARPanel_Keybind();
+                } else if (Input.GetKeyUp(KeybindSettings.toggleSettings)) {
+                    ToggleSettingsPanel_Keybind();
+                }
             }
-
-            //else if (Input.GetKeyUp(KeyCode.RightArrow)) {
-            //    MoveSettingsPanelRight_Keybind();
-            //} else if (Input.GetKeyUp(KeyCode.LeftArrow)) {
-            //    MoveSettingsPanelLeft_Keybind();
-            //}
         }
     }
 

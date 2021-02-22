@@ -45,6 +45,9 @@ public class CrosshairImportExport : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Generates new random crosshair.
+    /// </summary>
     public void RandomizeCrosshair() {
         SimpleCrosshair.GenerateRandomCrosshair();
         CrosshairOptionsObject.SaveCrosshairObject(true, true);
@@ -94,6 +97,9 @@ public class CrosshairImportExport : MonoBehaviour {
         SFXManager.CheckPlayClick_Button();
     }
 
+    /// <summary>
+    /// Cancels close of import/export.
+    /// </summary>
     public void CancelCloseImportExport() {
         CloseImportExportPanel_Static();
         SetResetDefault();
@@ -147,6 +153,26 @@ public class CrosshairImportExport : MonoBehaviour {
                 CrosshairImportError("crosshairimporterror");
             }
         }
+    }
+
+    /// <summary>
+    /// Imports new crosshair from supplied sag string (importString, 000601051255255255255255000000255), or supplied csgo string (importString, CSGO-c3YbL-vq5pC-oabtS-DJDTW-mRXXC).
+    /// </summary>
+    /// <param name="importString"></param>
+    /// <returns></returns>
+    public static bool ImportCrosshairFromString(string importString) {
+        if (CSGOCrosshair.CheckIfCSGOCrosshair(importString)) {
+            if (!CSGOCrosshair.ValidateCSGOCrosshair(importString)) {
+                return false;
+            } else {
+                Dictionary<string, double> decodedCrosshair = CSGOCrosshair.DecodeCSGOCrosshair(importString);
+                if (!SimpleCrosshair.ValidateSetCSGOCrosshair(decodedCrosshair, true)) { return false; }
+            }
+        } else {
+            if (!SimpleCrosshair.ValidateSetCrosshairString(importString, true)) { return false; }
+        }
+
+        return true;
     }
 
     /// <summary>

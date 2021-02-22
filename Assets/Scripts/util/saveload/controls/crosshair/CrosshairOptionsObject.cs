@@ -6,10 +6,8 @@ using SomeAimGame.Utilities;
 
 public class CrosshairOptionsObject : MonoBehaviour {
     public Slider crosshairSizeSlider, crosshairThicknessSlider, crosshairGapSlider, crosshairOutlineSlider, crosshairRedSlider, crosshairGreenSlider, crosshairBlueSlider, crosshairAlphaSlider, crosshairRedOutlineSlider, crosshairGreenOutlineSlider, crosshairBlueOutlineSlider, crosshairAlphaOutlineSlider;
-
     public TMP_Text crosshairSizeValueText, crosshairThicknessValueText, crosshairGapValueText, crosshairOutlineValueText, crosshairRedValueText, crosshairGreenValueText, crosshairBlueValueText, crosshairAlphaValueText, crosshairRedOutlineValueText, crosshairGreenOutlineValueText, crosshairBlueOutlineValueText, crosshairAlphaOutlineValueText;
     public TMP_Text crosshairSizeValueTextPlaceholder, crosshairThicknessValueTextPlaceholder, crosshairGapValueTextPlaceholder, crosshairOutlineValueTextPlaceholder, crosshairRedValueTextPlaceholder, crosshairGreenValueTextPlaceholder, crosshairBlueValueTextPlaceholder, crosshairAlphaValueTextPlaceholder, crosshairRedOutlineValueTextPlaceholder, crosshairGreenOutlineValueTextPlaceholder, crosshairBlueOutlineValueTextPlaceholder, crosshairAlphaOutlineValueTextPlaceholder;
-
     private static float crosshairOutlineThicknessValue, crosshairSizeValue, crosshairThicknessValue, crosshairGapValue, crosshairOutlineValue, crosshairRedValue, crosshairGreenValue, crosshairBlueValue, crosshairAlphaValue, crosshairRedOutlineValue, crosshairGreenOutlineValue, crosshairBlueOutlineValue, crosshairAlphaOutlineValue;
 
     public CanvasGroup outlineContainerCanvasGroup;
@@ -210,9 +208,32 @@ public class CrosshairOptionsObject : MonoBehaviour {
         valueText.SetText($"{value}");
         valueTextPlaceholder.SetText($"{value}");
     }
+    /// <summary>
+    /// Sets supplied Slider (optionSlider) value and text to supplied TMP_Text (valueText), TMP_Text (valueTextPlaceholder) and float (value).
+    /// </summary>
+    /// <param name="optionSlider"></param>
+    /// <param name="valueText"></param>
+    /// <param name="valueTextPlaceholder"></param>
+    /// <param name="value"></param>
     public static void SetCrosshairOptionSlider(Slider optionSlider, TMP_Text valueText, TMP_Text valueTextPlaceholder, float value) {
         optionSlider.value = value;
         valueText.SetText($"{value}");
         valueTextPlaceholder.SetText($"{value}");
     }
+
+    #region returns crosshair sliders
+
+    public static Slider ReturnCrosshairSizeSlider()         { return crosshairOptions.crosshairSizeSlider;         }
+    public static Slider ReturnCrosshairThicknessSlider()    { return crosshairOptions.crosshairThicknessSlider;    }
+    public static Slider ReturnCrosshairGapSlider()          { return crosshairOptions.crosshairGapSlider;          }
+    public static Slider ReturnCrosshairRedSlider()          { return crosshairOptions.crosshairRedSlider;          }
+    public static Slider ReturnCrosshairGreenSlider()        { return crosshairOptions.crosshairGreenSlider;        }
+    public static Slider ReturnCrosshairBlueSlider()         { return crosshairOptions.crosshairBlueSlider;         }
+    public static Slider ReturnCrosshairAlphaSlider()        { return crosshairOptions.crosshairAlphaSlider;        }
+    public static Slider ReturnCrosshairRedOutlineSlider()   { return crosshairOptions.crosshairRedOutlineSlider;   }
+    public static Slider ReturnCrosshairGreenOutlineSlider() { return crosshairOptions.crosshairGreenOutlineSlider; }
+    public static Slider ReturnCrosshairBlueOutlineSlider()  { return crosshairOptions.crosshairBlueOutlineSlider;  }
+    public static Slider ReturnCrosshairAlphaOutlineSlider() { return crosshairOptions.crosshairAlphaOutlineSlider; }
+
+    #endregion
 }

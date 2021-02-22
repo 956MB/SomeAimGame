@@ -232,20 +232,20 @@ public class SimpleCrosshair : MonoBehaviour
         sizeValueDouble             = (Math.Round(sizeValueDouble) * 2) + 1;
 
         #region logs
-        Debug.Log($"TStyle Value:               {tstyleValueDouble}");
-        Debug.Log($"Center Dot Value:           {centerDotValueDouble}");
-        Debug.Log($"Size Value:                 {sizeValueDouble}");
-        Debug.Log($"Thickness Value:            {thicknessValueDouble}");
-        Debug.Log($"Gap Value:                  {gapValueDouble}");
-        Debug.Log($"Outline Value:              {outlineValueDouble}");
-        Debug.Log($"Red Value:                  {redValueDouble}");
-        Debug.Log($"Green Value:                {greenValueDouble}");
-        Debug.Log($"Blue Value:                 {blueValueDouble}");
-        Debug.Log($"Alpha Value:                {alphaValueDouble}");
-        Debug.Log($"Red Outline Value:          {redOutlineValueDouble}");
-        Debug.Log($"Green Outline Value:        {greenOutlineValueDouble}");
-        Debug.Log($"Blue Outline Value:         {blueOutlineValueDouble}");
-        Debug.Log($"Alpha Outline Value:        {alphaOutlineValueDouble}");
+        //Debug.Log($"TStyle Value:               {tstyleValueDouble}");
+        //Debug.Log($"Center Dot Value:           {centerDotValueDouble}");
+        //Debug.Log($"Size Value:                 {sizeValueDouble}");
+        //Debug.Log($"Thickness Value:            {thicknessValueDouble}");
+        //Debug.Log($"Gap Value:                  {gapValueDouble}");
+        //Debug.Log($"Outline Value:              {outlineValueDouble}");
+        //Debug.Log($"Red Value:                  {redValueDouble}");
+        //Debug.Log($"Green Value:                {greenValueDouble}");
+        //Debug.Log($"Blue Value:                 {blueValueDouble}");
+        //Debug.Log($"Alpha Value:                {alphaValueDouble}");
+        //Debug.Log($"Red Outline Value:          {redOutlineValueDouble}");
+        //Debug.Log($"Green Outline Value:        {greenOutlineValueDouble}");
+        //Debug.Log($"Blue Outline Value:         {blueOutlineValueDouble}");
+        //Debug.Log($"Alpha Outline Value:        {alphaOutlineValueDouble}");
         #endregion
 
         if (!ValidateCrosshairValues(tstyleValueDouble, centerDotValueDouble, sizeValueDouble, thicknessValueDouble, gapValueDouble, outlineValueDouble, redValueDouble, greenValueDouble, blueValueDouble, alphaValueDouble, redOutlineValueDouble, greenOutlineValueDouble, blueOutlineValueDouble, alphaOutlineValueDouble)) { return false; }

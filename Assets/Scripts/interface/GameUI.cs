@@ -445,13 +445,15 @@ public class GameUI : MonoBehaviour {
     /// Shows UI if hidden and hides UI is shown (toggle), then saves shown/hidden value. [EVENT]
     /// </summary>
     public static void ToggleWidgetsUI() {
-        if (!widgetsShown) {
+        if (!ExtraSettings.showWidgets) {
             ShowWidgetsUI();
             ExtraSettings.SaveHideUI(true);
         } else {
             HideWidgetsUI();
             ExtraSettings.SaveHideUI(false);
         }
+
+        ExtraSettings.CheckSaveExtraSettings();
     }
 
     /// <summary>
@@ -459,25 +461,37 @@ public class GameUI : MonoBehaviour {
     /// </summary>
     public static void ShowWidgetsUI() {
         gameUI.widgetsUICanvas.SetActive(true);
-        widgetsShown = true;
+        ExtraSettings.showWidgets = true;
     }
     /// <summary>
     /// Hides UI holding timer, score and accuracy etc. [EVENT]
     /// </summary>
     public static void HideWidgetsUI() {
         gameUI.widgetsUICanvas.SetActive(false);
-        widgetsShown = false;
+        ExtraSettings.showWidgets = false;
+    }
+    /// <summary>
+    /// Shows UI holding timer, score and accuracy etc. [EVENT]
+    /// </summary>
+    public static void ShowWidgetsUICanvas() {
+        gameUI.widgetsUICanvas.SetActive(true);
+    }
+    /// <summary>
+    /// Hides UI holding timer, score and accuracy etc. [EVENT]
+    /// </summary>
+    public static void HideWidgetsUICanvas() {
+        gameUI.widgetsUICanvas.SetActive(false);
     }
 
     public static void ShowCountdown() {
-        HideWidgetsUI();
+        HideWidgetsUICanvas();
         ManipulatePostProcess.SetPanelEffects(false, true);
         CrosshairHide.HideCrosshairs();
         gameUI.countdownCanvas.SetActive(true);
         countdownShown = true;
     }
     public static void HideCountdown(bool changeEffects) {
-        if (ExtraSettings.showWidgets && !SettingsPanel.settingsOpen) { ShowWidgetsUI(); }
+        if (ExtraSettings.showWidgets && !SettingsPanel.settingsOpen) { ShowWidgetsUICanvas(); }
         if (changeEffects) { ManipulatePostProcess.SetPanelEffects(false, false); }
         gameUI.countdownCanvas.SetActive(false);
         countdownShown = false;

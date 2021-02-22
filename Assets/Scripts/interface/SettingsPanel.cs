@@ -107,7 +107,7 @@ public class SettingsPanel : MonoBehaviour {
         settingsOpen = true;
 
         SubMenuHandler.ResetAllSubMenuScrollviewsTop();
-        GameUI.HideWidgetsUI();
+        GameUI.HideWidgetsUICanvas();
         GameUI.HideCountdown(false);
         GameTime.PauseGameTime();
         CrosshairHide.HideCrosshairs();
@@ -129,7 +129,7 @@ public class SettingsPanel : MonoBehaviour {
         CrosshairHide.ShowMainCrosshair();
         // If language select/notification object active, hide
         if (LanguageSelect.languageSelectOpen) { LanguageSelect.CloseLanguageSelect_Static(); }
-        if (ExtraSettings.showWidgets) { GameUI.ShowWidgetsUI(); }
+        if (ExtraSettings.showWidgets) { GameUI.ShowWidgetsUICanvas(); }
         if (ExtraSettings.showCountdown && GameUI.countdownTimerValue > 0) {
             CrosshairHide.HideCrosshairs();
             GameUI.ShowCountdown();
@@ -170,7 +170,7 @@ public class SettingsPanel : MonoBehaviour {
         settings.afterPanel.transform.localScale = closedVector;
         afterActionReportOpen                    = false;
 
-        if (ExtraSettings.showWidgets) { GameUI.ShowWidgetsUI(); }
+        if (ExtraSettings.showWidgets) { GameUI.ShowWidgetsUICanvas(); }
 
         CrosshairHide.HideCrosshairs();
         CrosshairHide.ShowMainCrosshair();

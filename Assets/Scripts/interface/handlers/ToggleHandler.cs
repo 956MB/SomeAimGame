@@ -51,17 +51,17 @@ public class ToggleHandler : MonoBehaviour {
             // Crosshair //
 
             case "CenterDotToggle":            // Toggles center dot for crosshair.
-                simpleCrosshair.SetCenterDot(toggleClicked.isOn, true);
+                SetCrosshairCenterDotToggle(toggleClicked.isOn);
                 CrosshairSettings.SaveCenterDot(toggleClicked.isOn);
                 CrosshairOptionsObject.SaveCrosshairObject(true);
                 break;
             case "TStyleToggle":               // Toggles TStyle for crosshair.
-                simpleCrosshair.SetTStyle(toggleClicked.isOn, true);
+                SetCrosshairTStyleToggle(toggleClicked.isOn);
                 CrosshairSettings.SaveTStyle(toggleClicked.isOn);
                 CrosshairOptionsObject.SaveCrosshairObject(true);
                 break;
             case "OutlineEnableToggle":        // Toggles outline for crosshair.
-                simpleCrosshair.SetOutlineEnabled(toggleClicked.isOn, true);
+                SetCrosshairOutlineToggle(toggleClicked.isOn);
                 CrosshairSettings.SaveOutlineEnabled(toggleClicked.isOn);
                 CrosshairOptionsObject.SetOutlineContainerState(toggleClicked.isOn);
                 CrosshairOptionsObject.SaveCrosshairObject(true);
@@ -147,6 +147,10 @@ public class ToggleHandler : MonoBehaviour {
     public static void SetShowStreakWidgetToggle(bool setStreak) { toggleHandle.streakWidget.SetActive(setStreak); }
     public static void SetShowTTKWidgetToggle(bool setTTK) { toggleHandle.ttkWidget.SetActive(setTTK); }
     public static void SetShowKPSWidgetToggle(bool setKPS) { toggleHandle.kpsWidget.SetActive(setKPS); }
+
+    public static void SetCrosshairCenterDotToggle(bool setCenterDot) { toggleHandle.simpleCrosshair.SetCenterDot(setCenterDot, true); }
+    public static void SetCrosshairTStyleToggle(bool setTstyle) { toggleHandle.simpleCrosshair.SetTStyle(setTstyle, true); }
+    public static void SetCrosshairOutlineToggle(bool setOutline) { toggleHandle.simpleCrosshair.SetOutlineEnabled(setOutline, true); }
 
     #endregion
 }

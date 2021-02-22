@@ -69,9 +69,9 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     /// </summary>
     /// <param name="gamemode"></param>
     private static void SetGamemode(GamemodeType gamemode, bool quickStart) {
-        ButtonHoverHandler.selectedGamemode = gamemode;
-        GamemodeUtil.ClearGamemodeButtonBorders();
+        //ButtonHoverHandler.selectedGamemode = gamemode;
         SpawnTargets.gamemode = gamemode;
+        GamemodeUtil.ClearGamemodeButtonBorders();
 
         // Set showMode text to gamemode.
         cosmeticsSaveLoad.showModeText.SetText($"{GamemodeUtil.ReturnGamemodeType_StringShort(gamemode)}");
@@ -80,16 +80,7 @@ public class CosmeticsSaveSystem : MonoBehaviour {
         GamemodeSelect.PopulateGamemodeSelect(gamemode, quickStart);
         GamemodeSelect.ClearGamemodeButtonColors(GameObject.Find($"{GamemodeUtil.ReturnGamemodeType_StringFull(gamemode)}-Text (TMP)").GetComponent<TMP_Text>(), true, true);
 
-        switch (gamemode) {
-            case GamemodeType.SCATTER: SetGamemodeBorder(cosmeticsSaveLoad.gamemodeScatterBorder); break;
-            case GamemodeType.FLICK:   SetGamemodeBorder(cosmeticsSaveLoad.gamemodeFlickBorder);   break;
-            case GamemodeType.GRID:    SetGamemodeBorder(cosmeticsSaveLoad.gamemodeGridBorder);    break;
-            case GamemodeType.GRID_2:  SetGamemodeBorder(cosmeticsSaveLoad.gamemodeGrid2Border); cosmeticsSaveLoad.showModeText.SetText($"GRID II");  break;
-            case GamemodeType.GRID_3:  SetGamemodeBorder(cosmeticsSaveLoad.gamemodeGrid2Border); cosmeticsSaveLoad.showModeText.SetText($"GRID III"); break;
-            case GamemodeType.PAIRS:   SetGamemodeBorder(cosmeticsSaveLoad.gamemodePairsBorder);   break;
-            case GamemodeType.FOLLOW:  SetGamemodeBorder(cosmeticsSaveLoad.gamemodeFollowBorder);  break;
-            case GamemodeType.GLOB:    SetGamemodeBorder(cosmeticsSaveLoad.gamemodeGlobBorder);    break;
-        }
+        SetGamemodeBorder(gamemode);
     }
 
     /// <summary>
@@ -132,6 +123,19 @@ public class CosmeticsSaveSystem : MonoBehaviour {
     }
 
     #region public utils
+
+    public static void SetGamemodeBorder(GamemodeType setType) {
+        switch (setType) {
+            case GamemodeType.SCATTER: SetGamemodeBorder(cosmeticsSaveLoad.gamemodeScatterBorder);                                                    break;
+            case GamemodeType.FLICK:   SetGamemodeBorder(cosmeticsSaveLoad.gamemodeFlickBorder);                                                      break;
+            case GamemodeType.GRID:    SetGamemodeBorder(cosmeticsSaveLoad.gamemodeGridBorder);                                                       break;
+            case GamemodeType.GRID_2:  SetGamemodeBorder(cosmeticsSaveLoad.gamemodeGrid2Border); cosmeticsSaveLoad.showModeText.SetText($"GRID II");  break;
+            case GamemodeType.GRID_3:  SetGamemodeBorder(cosmeticsSaveLoad.gamemodeGrid2Border); cosmeticsSaveLoad.showModeText.SetText($"GRID III"); break;
+            case GamemodeType.PAIRS:   SetGamemodeBorder(cosmeticsSaveLoad.gamemodePairsBorder);                                                      break;
+            case GamemodeType.FOLLOW:  SetGamemodeBorder(cosmeticsSaveLoad.gamemodeFollowBorder);                                                     break;
+            case GamemodeType.GLOB:    SetGamemodeBorder(cosmeticsSaveLoad.gamemodeGlobBorder);                                                       break;
+        }
+    }
 
     public static void SetTargetColorBorder(TargetType setType) {
         switch (setType) {

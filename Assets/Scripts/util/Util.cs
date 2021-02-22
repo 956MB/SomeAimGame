@@ -53,7 +53,11 @@ namespace SomeAimGame.Utilities {
             }
             Debug.Log($"String List: {targetList}");
         }
-
+        /// <summary>
+        /// Splits supplied string (splitString) and returns string[].
+        /// </summary>
+        /// <param name="splitString"></param>
+        /// <returns></returns>
         public static string[] SplitString(string splitString) {
             if (splitString != "") {
                 if (splitString.Contains(",")) { return splitString.Split(','); }
@@ -166,12 +170,25 @@ namespace SomeAimGame.Utilities {
         /// <param name="setCanvasGroup"></param>
         public static void SetCanvasGroupState_EnableHover(CanvasGroup setCanvasGroup) { util.SetCanvasGroupState(setCanvasGroup, 0.35f, false, true); }
 
+        /// <summary>
+        /// Sets supplied CanvasGroup (setCanvasGroup) state with supplied alpha flaot (setAlpha), interact bool (setInteract) and blocks raycast bool (setBlocksRaycast).
+        /// </summary>
+        /// <param name="setCanvasGroup"></param>
+        /// <param name="setAlpha"></param>
+        /// <param name="setInteract"></param>
+        /// <param name="setBlocksRaycast"></param>
         private void SetCanvasGroupState(CanvasGroup setCanvasGroup, float setAlpha, bool setInteract, bool setBlocksRaycast) {
             setCanvasGroup.alpha          = 0.35f;
             setCanvasGroup.interactable   = false;
             setCanvasGroup.blocksRaycasts = true;
         }
 
+        /// <summary>
+        /// Sets supplied value TMP_Text (valueText) and value placeholder TMP_Text (valueTextPlaceholder) to supplied float (value).
+        /// </summary>
+        /// <param name="valueText"></param>
+        /// <param name="valueTextPlaceholder"></param>
+        /// <param name="value"></param>
         public static void SetSliderOptionText(TMP_Text valueText, TMP_Text valueTextPlaceholder, float value) {
             valueText.SetText($"{value}");
             valueTextPlaceholder.SetText($"{value}");
@@ -187,6 +204,12 @@ namespace SomeAimGame.Utilities {
             Cursor.visible   = setVisibility;
         }
 
+        /// <summary>
+        /// Checks if supplied string (value) matches supplied regex string (matchString).
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="matchString"></param>
+        /// <returns></returns>
         public static bool ReturnRegexMatch(string value, string matchString) {
             Regex regex = new Regex(matchString);
             return regex.Match(value).Success;

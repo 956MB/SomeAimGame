@@ -145,6 +145,7 @@ namespace SomeAimGame.Gamemode {
         /// Starts new gamemode when gamemode start button in 'GamemodeSelect' panel clicked. Does nothing if current gamemode start clicked.
         /// </summary>
         public void GamemodeSelectStart() {
+            Debug.Log($"current gamemode: {SpawnTargets.gamemode}, new: {currentOpenGamemode}");
             if (SpawnTargets.gamemode != currentOpenGamemode) {
                 if (!CheckFollowGamemode()) { return; }
 

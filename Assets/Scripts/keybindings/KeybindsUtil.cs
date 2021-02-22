@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace SomeAimGame.Utilities {
     public class KeybindsUtil : MonoBehaviour {
@@ -17,6 +18,20 @@ namespace SomeAimGame.Utilities {
                 case "ToggleConsole-Button":  return KeybindSettings.toggleConsole;
                 default:                      return KeyCode.None;
             }
+        }
+
+        /// <summary>
+        /// Returns KeyCode from supplied string (inputString) if valid, otherwise KeyCode.None.
+        /// </summary>
+        /// <param name="inputString"></param>
+        /// <returns></returns>
+        public static KeyCode ReturnKeyCodeFromString(string inputString) {
+            KeyCode newKeyCode = (KeyCode)Enum.Parse(typeof(KeyCode), inputString) ;
+            if (Enum.IsDefined(typeof(KeyCode), newKeyCode) && newKeyCode != KeyCode.None) {
+                return newKeyCode;
+            }
+
+            return KeyCode.None;
         }
 
         /// <summary>
