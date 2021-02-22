@@ -2,7 +2,7 @@
     /// <summary>
     /// Enum holding all console error types.
     /// </summary>
-    public enum ConsoleErrorType {
+    public enum CommandReturnType {
         NULL_COMMAND,
         PRINT_VALUE,
         TOO_MANY_ARGS,

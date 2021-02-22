@@ -20,8 +20,8 @@ namespace SomeAimGame.Console {
         /// </summary>
         /// <param name="fullCommandString"></param>
         /// <returns></returns>
-        public static CommandTrip<ConsoleErrorType, string, string> SplitConsoleCommandString(string fullCommandString) {
-            CommandTrip<ConsoleErrorType, string, string> returnConsoleTrip = new CommandTrip<ConsoleErrorType, string, string>();
+        public static CommandTrip<CommandReturnType, string, string> SplitConsoleCommandString(string fullCommandString) {
+            CommandTrip<CommandReturnType, string, string> returnConsoleTrip = new CommandTrip<CommandReturnType, string, string>();
 
             string[] splitCommand = fullCommandString.Split(' ');
             string commandKey     = "";
@@ -35,12 +35,12 @@ namespace SomeAimGame.Console {
                 returnConsoleTrip.Value = commandValue;
                 
                 switch (splitCommand.Length) {
-                    case 1:  returnConsoleTrip.Type = ConsoleErrorType.PRINT_VALUE;   return returnConsoleTrip;
-                    case 2:  returnConsoleTrip.Type = ConsoleErrorType.VALID_COMMAND; return returnConsoleTrip;
-                    default: returnConsoleTrip.Type = ConsoleErrorType.TOO_MANY_ARGS; return returnConsoleTrip;
+                    case 1:  returnConsoleTrip.Type = CommandReturnType.PRINT_VALUE;   return returnConsoleTrip;
+                    case 2:  returnConsoleTrip.Type = CommandReturnType.VALID_COMMAND; return returnConsoleTrip;
+                    default: returnConsoleTrip.Type = CommandReturnType.TOO_MANY_ARGS; return returnConsoleTrip;
                 }
             } else {
-                returnConsoleTrip.Type = ConsoleErrorType.NULL_COMMAND;
+                returnConsoleTrip.Type = CommandReturnType.NULL_COMMAND;
                 return returnConsoleTrip;
             }
         }
@@ -110,7 +110,7 @@ namespace SomeAimGame.Console {
             // "SUPPLIED VALUE `{}` FOR COMMAND `{}` IS INVALID :: Command format: `{commandKey} 0`"
         }
         public static void ThrowInvalidCommandValueKeybindError(string commandKey, string commandValue) {
-            // "SUPPLIED VALUE `{}` FOR COMMAND `{}` IS INVALID :: Command format: `{commandKey} 0`"
+            // "SUPPLIED KEYBIND STRING `{}` FOR COMMAND `{}` IS INVALID :: Type `ke_keybind_list` to see keybinds list"
         }
 
 
