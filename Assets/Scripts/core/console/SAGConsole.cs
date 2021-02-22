@@ -45,14 +45,14 @@ namespace SomeAimGame.Console {
         /// </summary>
         /// <param name="fullCommandString"></param>
         public static void CheckConsoleCommand(string fullCommandString) {
-            CommandTrip<ConsoleErrorType, string, string> returnConsoleTrip = ConsoleUtil.SplitConsoleCommandString(fullCommandString);
+            CommandTrip<CommandReturnType, string, string> returnConsoleTrip = ConsoleUtil.SplitConsoleCommandString(fullCommandString);
             string commandKey   = returnConsoleTrip.Key;
             string commandValue = returnConsoleTrip.Value;
 
             switch (returnConsoleTrip.Type) {
-                case ConsoleErrorType.PRINT_VALUE:   console.IdentifyAndRunGivenCommand(commandKey, commandValue, true);   break;
-                case ConsoleErrorType.TOO_MANY_ARGS: ConsoleUtil.ThrowTooManyArgumentsError(commandKey, commandValue);     break;
-                case ConsoleErrorType.VALID_COMMAND: console.IdentifyAndRunGivenCommand(commandKey, commandValue, false);  break;
+                case CommandReturnType.PRINT_VALUE:   console.IdentifyAndRunGivenCommand(commandKey, commandValue, true);   break;
+                case CommandReturnType.TOO_MANY_ARGS: ConsoleUtil.ThrowTooManyArgumentsError(commandKey, commandValue);     break;
+                case CommandReturnType.VALID_COMMAND: console.IdentifyAndRunGivenCommand(commandKey, commandValue, false);  break;
             }
 
             console.CheckAddCommandToHistory(commandKey);
@@ -66,11 +66,12 @@ namespace SomeAimGame.Console {
         /// <param name="value"></param>
         /// <param name="printNotset"></param>
         private void IdentifyAndRunGivenCommand(string key, string value, bool printNotset = false) {
-            // TODO: if command given without argument, print value
             switch (key) {
                 // UTIL //
                 case "help":                      ConsoleCommands.PrintCommandList(key, value);                      break;
                 case "version":                   ConsoleCommands.PrintGameVersion(key, value);                      break;
+                case "restart":                   ConsoleCommands.RestartCurrentGame(key, value);                    break;
+                case "quit":                      ConsoleCommands.QuitGame(key, value);                              break;
                 // GAMEMODE //
                 case "ga_gamemode":               ConsoleCommands.SetGamemode(key, value, printNotset);              break;
                 // TARGET //
@@ -92,6 +93,7 @@ namespace SomeAimGame.Console {
                 // CONTROLS //
                 case "co_mouse_sensitivity":      ConsoleCommands.SetMouseSensitivity(key, value, printNotset);      break;
                 // KEYBINDS //
+                case "ke_keybind_list":           ConsoleCommands.PrintKeybindsList(key, value, printNotset);        break;
                 case "ke_keybind_shoot":          ConsoleCommands.SetShootKeybind(key, value, printNotset);          break;
                 case "ke_keybind_togglewidets":   ConsoleCommands.SetToggleWidgetsKeybind(key, value, printNotset);  break;
                 case "ke_keybind_togglesettings": ConsoleCommands.SetToggleSettingsKeybind(key, value, printNotset); break;

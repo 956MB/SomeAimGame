@@ -7,7 +7,8 @@ using SomeAimGame.Utilities;
 
 namespace SomeAimGame.Console {
     public class ConsoleCommands : MonoBehaviour {
-        #region commands
+
+        #region util commands
 
         /// <summary>
         /// Help command: Prints full command list in console.
@@ -29,7 +30,32 @@ namespace SomeAimGame.Console {
                 // print game version
             } else { ConsoleUtil.ThrowInvalidCommandValueError(commandKey, commandValue); }
         }
-        
+        /// <summary>
+        /// Restart command: Restarts current running game.
+        /// </summary>
+        /// <param name="commandKey"></param>
+        /// <param name="commandValue"></param>
+        public static void RestartCurrentGame(string commandKey, string commandValue) {
+            if (commandValue == "") {
+                SAGConsole.CloseConsole();
+                GameUI.RestartGame(CosmeticsSettings.gamemode, true);
+            } else { ConsoleUtil.ThrowInvalidCommandValueError(commandKey, commandValue); }
+        }
+        /// <summary>
+        /// Quit command: Quits game.
+        /// </summary>
+        /// <param name="commandKey"></param>
+        /// <param name="commandValue"></param>
+        public static void QuitGame(string commandKey, string commandValue) {
+            if (commandValue == "") {
+                // quit
+            } else { ConsoleUtil.ThrowInvalidCommandValueError(commandKey, commandValue); }
+        }
+
+        #endregion
+
+        #region gamemode commands
+
         /// <summary>
         /// Gamemode command: Sets gamemode
         /// </summary>
@@ -48,7 +74,11 @@ namespace SomeAimGame.Console {
                 } else { ConsoleUtil.ThrowInvalidCommandValueError(commandKey, setGamemode); }
             }
         }
-        
+
+        #endregion
+
+        #region targets commands
+
         /// <summary>
         /// Target color command: Sets new target color
         /// </summary>
@@ -70,7 +100,11 @@ namespace SomeAimGame.Console {
                 } else { ConsoleUtil.ThrowInvalidCommandValueError(commandKey, setTargetColor); }
             }
         }
-        
+
+        #endregion
+
+        #region sound commands
+
         /// <summary>
         /// Target hit command: Toggles hit sound effect on/off
         /// </summary>
@@ -121,7 +155,11 @@ namespace SomeAimGame.Console {
                 } else { ConsoleUtil.ThrowInvalidCommandValueError(commandKey, setUISound); }
             }
         }
-        
+
+        #endregion
+
+        #region widgets commands
+
         /// <summary>
         /// Widgets hidden command: Sets widget layer hidden on/off (0,1).
         /// </summary>
@@ -275,6 +313,10 @@ namespace SomeAimGame.Console {
             }
         }
 
+        #endregion
+
+        #region controls commands
+
         /// <summary>
         /// Mouse sensitivity command: Sets mouse sensitivity (float 0-10)
         /// </summary>
@@ -297,6 +339,21 @@ namespace SomeAimGame.Console {
             }
         }
 
+        #endregion
+
+        #region keybinds commands
+
+        /// <summary>
+        /// Keybinds list command: Prints full keybinds list in console.
+        /// </summary>
+        /// <param name="commandKey"></param>
+        /// <param name="commandValue"></param>
+        /// <param name="printNotset"></param>
+        public static void PrintKeybindsList(string commandKey, string commandValue, bool printNotset = false) {
+            if (commandValue == "") {
+                // print keybinds list
+            } else { ConsoleUtil.ThrowInvalidCommandValueError(commandKey, commandValue); }
+        }
         /// <summary>
         /// Keybind shoot command: Sets shoot keybind (string)
         /// </summary>
@@ -384,6 +441,10 @@ namespace SomeAimGame.Console {
                 } else { ConsoleUtil.ThrowInvalidCommandValueKeybindError(commandKey, setRestart); }
             }
         }
+
+        #endregion
+
+        #region crosshair commands
 
         /// <summary>
         /// Crosshair center dot command: Sets crosshairs center dot on/off (0,1)
