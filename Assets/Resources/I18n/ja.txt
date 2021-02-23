@@ -146,6 +146,8 @@ keybindstitle=キーバインド
 keybindlegend=さまざまなゲームのキーバインドをカスタマイズする
 crosshairtitle=十字線
 outlinetitle=概要
+consoletitle=コンソール
+submitbutton=参加する
 #
 #
 # // keybinds

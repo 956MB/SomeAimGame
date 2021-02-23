@@ -146,6 +146,8 @@ keybindstitle=Связки клавиш
 keybindlegend=Настроить различные игровые сочетания клавиш
 crosshairtitle=Перекрестие
 outlinetitle=Контур
+consoletitle=Консоль
+submitbutton=РАЗМЕСТИТЬ
 #
 #
 # // keybinds

@@ -146,6 +146,8 @@ keybindstitle=키 바인드
 keybindlegend=다양한 게임 키 바인딩 사용자 지정
 crosshairtitle=십자선
 outlinetitle=개요
+consoletitle=콘솔
+submitbutton=제출
 #
 #
 # // keybinds

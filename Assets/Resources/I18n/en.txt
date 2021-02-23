@@ -150,6 +150,8 @@ keybindstitle=Keybinds
 keybindlegend=Customize various game keybindings
 crosshairtitle=Crosshair
 outlinetitle=Outline
+consoletitle=Console
+submitbutton=SUBMIT
 #
 #
 # // keybinds

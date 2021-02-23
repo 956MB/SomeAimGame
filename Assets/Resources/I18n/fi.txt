@@ -150,6 +150,8 @@ keybindstitle=Avaimenperät
 keybindlegend=Mukauta erilaisia ​​pelinäppäimiä
 crosshairtitle=Ristikko
 outlinetitle=Ääriviivat
+consoletitle=Konsoli
+submitbutton=LÄHETÄ
 #
 #
 # // keybinds
