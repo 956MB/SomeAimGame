@@ -75,11 +75,7 @@ public class ExtraSaveSystem : MonoBehaviour {
     /// <returns></returns>
     public static int InitGameTimer() {
         ExtraSettingsDataSerial loadedExtraData = LoadExtraSettingsData();
-        if (loadedExtraData != null) {
-            return loadedExtraData.gameTimer + 1;
-        } else {
-            return 61;
-        }
+        if (loadedExtraData != null) { return loadedExtraData.gameTimer + 1; } else { return 61; }
     }
     /// <summary>
     /// Inits show countdown timer from saved extra settings file (if exists), or sets default true.
@@ -87,11 +83,7 @@ public class ExtraSaveSystem : MonoBehaviour {
     /// <returns></returns>
     public static bool InitShowCountdown() {
         ExtraSettingsDataSerial loadedExtraData = LoadExtraSettingsData();
-        if (loadedExtraData != null) {
-            return loadedExtraData.showCountdown;
-        } else {
-            return true;
-        }
+        if (loadedExtraData != null) { return loadedExtraData.showCountdown; } else { return true; }
     }
 
     /// <summary>

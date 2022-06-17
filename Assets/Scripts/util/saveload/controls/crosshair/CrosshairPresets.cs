@@ -18,11 +18,7 @@ public class CrosshairPresets : MonoBehaviour {
     /// Toggles crosshair presets panel open/closed.
     /// </summary>
     public void TriggerPresetsPanelOpen() {
-        if (!crosshairPresetsPanelOpen) {
-            OpenPresetsPanel_Static();
-        } else {
-            ClosePresetsPanel_Static();
-        }
+        if (!crosshairPresetsPanelOpen) { OpenPresetsPanel_Static(); } else { ClosePresetsPanel_Static(); }
 
         SFXManager.CheckPlayClick_Button();
     }

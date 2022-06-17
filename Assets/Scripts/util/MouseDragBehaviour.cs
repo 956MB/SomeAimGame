@@ -5,17 +5,19 @@ namespace SomeAimGame.Utilities {
     public class MouseDragBehaviour : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler {
         private Vector2 lastMousePosition;
         private RectTransform windowsRectTransform;
+
+        //void Start() {
+        //    Debug.Log(transform.position);
+        //    Debug.Log(GetComponent<RectTransform>().position);
+        //}
+
         /// <summary>
         /// This method will be called on the start of the mouse drag
         /// </summary>
         /// <param name="eventData">mouse pointer event data</param>
         public void OnBeginDrag(PointerEventData eventData) {
-            //Debug.Log("Begin Drag");
             lastMousePosition    = eventData.position;
             windowsRectTransform = GetComponent<RectTransform>();
-            //Debug.Log($"START windwosRectTransform: {windwosRectTransform.position.x}");
-            //Debug.Log($"START windwosRectTransform: {windwosRectTransform.position.y}");
-            //Debug.Log($"START windwosRectTransform: {windwosRectTransform.position.z}");
         }
 
         /// <summary>
@@ -27,8 +29,11 @@ namespace SomeAimGame.Utilities {
             Vector2 diff                 = currentMousePosition - lastMousePosition;
             windowsRectTransform         = GetComponent<RectTransform>();
 
-            Vector3 newPosition           = windowsRectTransform.position + new Vector3(diff.x, diff.y, transform.position.z);
             Vector3 oldPos                = windowsRectTransform.position;
+            Vector3 newPosition           = windowsRectTransform.position + new Vector3(diff.x, diff.y, transform.position.z);
+
+            newPosition.x = 0.95f;
+            newPosition.y = newPosition.y <= 913f ? newPosition.y : 913f;
             windowsRectTransform.position = newPosition;
 
             if (!IsRectTransformInsideSreen(windowsRectTransform)) {
@@ -43,8 +48,8 @@ namespace SomeAimGame.Utilities {
         /// </summary>
         /// <param name="eventData"></param>
         public void OnEndDrag(PointerEventData eventData) {
-            Debug.Log($"{windowsRectTransform.name}, {transform.position.x}, {transform.position.y}");
-            CosmeticsSettings.SavePanelLocationXY(windowsRectTransform.name, transform.position.x, transform.position.y);
+            //Debug.Log($"{windowsRectTransform.name}, {transform.position.x}, {transform.position.y}");
+            CosmeticsSettings.SavePanelLocationXY("Console", transform.position.x, transform.position.y);
         }
 
         /// <summary>

@@ -19,11 +19,7 @@ public class TargetWaypoint : MonoBehaviour {
         position = Camera.main.WorldToScreenPoint(targetArea.position + yOffset);
 
         if (Vector3.Dot((targetArea.position - transform.position), transform.forward) < 0) {
-            if (position.x < Screen.width / 2) {
-                position.x = maxX;
-            } else {
-                position.x = minX;
-            }
+            if (position.x < Screen.width / 2) { position.x = maxX; } else { position.x = minX; }
         }
 
         position.x = Mathf.Clamp(position.x, minX, maxX);

@@ -52,17 +52,5 @@ namespace SomeAimGame.Skybox {
         public static string ReturnSkyboxType_StringTranslated(SkyboxType typeSkybox) {
             return I18nTextTranslator.SetTranslatedText(skyboxi18nsStrings[(int)typeSkybox]);
         }
-
-        /// <summary>
-        /// Clears all skybox button borders in settings panel (general sub-section).
-        /// </summary>
-        public static void ClearSkyboxButtonBorders() {
-            foreach (GameObject buttonBorder in GameObject.FindGameObjectsWithTag("ButtonBorderSkybox")) {
-                if (buttonBorder != null) {
-                    buttonBorder.GetComponent<Image>().color = InterfaceColors.unselectedColor;
-                    buttonBorder.SetActive(false);
-                }
-            }
-        }
     }
 }

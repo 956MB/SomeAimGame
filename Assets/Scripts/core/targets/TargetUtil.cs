@@ -172,17 +172,5 @@ namespace SomeAimGame.Targets {
         }
 
         #endregion
-
-        /// <summary>
-        /// Clears all target color button borders in settings panel (general sub-section).
-        /// </summary>
-        public static void ClearTargetColorButtonBorders() {
-            foreach (GameObject buttonBorder in GameObject.FindGameObjectsWithTag("ButtonBorderTargetColor")) {
-                if (buttonBorder != null) {
-                    buttonBorder.GetComponent<Image>().color = InterfaceColors.unselectedColor;
-                    buttonBorder.SetActive(false);
-                }
-            }
-        }
     }
 }

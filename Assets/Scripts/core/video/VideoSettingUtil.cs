@@ -38,13 +38,13 @@ namespace SomeAimGame.Core {
             /// <summary>
             /// Triggers current setting change for supplied display mode (refDiplayMode).
             /// </summary>
-            /// <param name="refDiplayMode"></param>
+            /// <param name="refDisplayMode"></param>
             /// <param name="refPlaceholderString"></param>
             /// <param name="refChangeReady"></param>
-            /// <param name="setDiplayMode"></param>
+            /// <param name="setDisplayMode"></param>
             /// <param name="setPlaceholderString"></param>
-            public static void SettingChange(ref FullScreenMode refDiplayMode, ref string refPlaceholderString, ref bool refChangeReady, FullScreenMode setDiplayMode, string setPlaceholderString) {
-                refDiplayMode        = setDiplayMode;
+            public static void SettingChange(ref FullScreenMode refDisplayMode, ref string refPlaceholderString, ref bool refChangeReady, FullScreenMode setDisplayMode, string setPlaceholderString) {
+                refDisplayMode       = setDisplayMode;
                 refPlaceholderString = setPlaceholderString;
                 refChangeReady       = true;
             }
@@ -71,6 +71,9 @@ namespace SomeAimGame.Core {
                 refPlaceholderString = setPlaceholderString;
                 refChangeReady       = true;
             }
+            public static void MatchPlaceholderCurrentSetting(ref string placeholder, ref string current, string setSetting) {
+                placeholder = current = setSetting;
+            }
 
             #region returns
 
@@ -94,6 +97,17 @@ namespace SomeAimGame.Core {
             /// </summary>
             /// <returns></returns>
             public static Resolution ReturnCurrentScreenValues() { return Screen.currentResolution; }
+
+            public static int ReturnFPSLimitFromValue(int value) {
+                switch (value) {
+                    case 0:  return 0;
+                    case 1:  return 30;
+                    case 2:  return 60;
+                    case 3:  return 144;
+                    case 4:  return 240;
+                    default: return 0;
+                }
+            }
 
             #endregion
         }

@@ -51,10 +51,13 @@ namespace SomeAimGame.Core {
                 // Get users default monitor res/refresh on init
                 Resolution currentRes = VideoSettingUtil.ReturnCurrentScreenValues();
                 //Debug.Log($"current res: {currentRes.refreshRate}");
+                if (!Application.isEditor) {
+                    Screen.fullScreen     = true;
+                    Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+                }
+                SetVideoSettingsValues(FullScreenMode.ExclusiveFullScreen, currentRes.width, currentRes.height, currentRes.refreshRate, 0, false, 0, AntiAliasType.SMAA, false, false);
 
-                SetVideoSettingsValues(FullScreenMode.FullScreenWindow, currentRes.width, currentRes.height, currentRes.refreshRate, 0, false, 0, AntiAliasType.SMAA, false, false);
-
-                VideoSettings.SaveAllExtraSettingsDefaults(FullScreenMode.FullScreenWindow, currentRes.width, currentRes.height, currentRes.refreshRate, 0, false, 0, AntiAliasType.SMAA, false, false);
+                VideoSettings.SaveAllExtraSettingsDefaults(FullScreenMode.ExclusiveFullScreen, currentRes.width, currentRes.height, currentRes.refreshRate, 0, false, 0, AntiAliasType.SMAA, false, false);
             }
 
 
@@ -62,27 +65,29 @@ namespace SomeAimGame.Core {
 
             private static void SetDisplayMode(FullScreenMode displayMode) {
                 string displayModeString = VideoSettingUtil.ReturnTypeString(displayMode);
-                VideoSettingSelect.SetDisplayModeText(displayModeString);
                 ApplyVideoSettings.SetDisplayModeCurrent(displayModeString);
+                ApplyVideoSettings.ApplyDisplayMode();
+                VideoSettingSelect.SetDisplayModeText(displayModeString);
             }
             private static void SetResolution(int w, int h, FullScreenMode displayMode, int refresh) {
+                //Debug.Log($"given refreshrate: {refresh}");
                 string resolutionFormatted = $"{w} x {h} {Util.ReturnAspectRatio_string(w, h)} ({refresh}Hz)";
+                ApplyVideoSettings.SetResolutionCurrent(resolutionFormatted);
                 ApplyVideoSettings.ApplyResolution(w, h, displayMode, refresh);
                 VideoSettingSelect.SetResolutionText(resolutionFormatted);
-                ApplyVideoSettings.SetResolutionCurrent(resolutionFormatted);
             }
             private static void SetMonitor(int setMonitor) {
                 WindowsDisplayAPI.DisplayConfig.PathDisplayTarget[] connectedDisplays = VideoSettingUtil.ReturnConnectedMonitors_WindowsDisplayAPI();
                 string monitorString = $"Display {setMonitor+1}: {connectedDisplays[setMonitor].FriendlyName}";
+                ApplyVideoSettings.SetMonitorCurrent(monitorString);
                 ApplyVideoSettings.ApplyMonitor(setMonitor);
                 VideoSettingSelect.SetMonitorText(monitorString);
-                ApplyVideoSettings.SetMonitorCurrent(monitorString);
             }
             private static void SetFPSLimit(int setFPSLimit) {
                 FPSLimitSlider.limitFPSValue = setFPSLimit;
-                ApplyVideoSettings.ApplyFPSLimit(setFPSLimit);
-                FPSLimitSlider.SetFPSLimitValueText(setFPSLimit);
+                ApplyVideoSettings.ApplyFPSLimit(VideoSettingUtil.ReturnFPSLimitFromValue(setFPSLimit));
                 FPSLimitSlider.SetFPSLimitSlider(setFPSLimit);
+                FPSLimitSlider.SetFPSLimitValueText(VideoSettingUtil.ReturnFPSLimitFromValue(setFPSLimit));
             }
             private static void SetAntiAlias(AntiAliasType setAntiAlias) {
                 string antiAliasString = VideoSettingUtil.ReturnTypeString(setAntiAlias);

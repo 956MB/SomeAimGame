@@ -88,11 +88,7 @@ public class CrosshairImportExport : MonoBehaviour {
     /// Toggles opened/closed the import/export crosshair panel.
     /// </summary>
     public void TriggerImportExportPanelOpen() {
-        if (!importExportPanelOpen) {
-            OpenImportExportPanel_Static();
-        } else {
-            CloseImportExportPanel_Static();
-        }
+        if (!importExportPanelOpen) { OpenImportExportPanel_Static(); } else { CloseImportExportPanel_Static(); }
 
         SFXManager.CheckPlayClick_Button();
     }
@@ -109,20 +105,18 @@ public class CrosshairImportExport : MonoBehaviour {
     /// Opens import/export crosshair panel.
     /// </summary>
     public static void OpenImportExportPanel_Static() {
-        if (!importExportPanelOpen) {
-            crosshairImportExport.importExportPanel.SetActive(true);
-            Util.RefreshRootLayoutGroup(crosshairImportExport.parentCrosshairGroup);
-            Util.RefreshRootLayoutGroup(crosshairImportExport.importExportPanel);
-            //SubMenuHandler.ResetCrosshairScrollview();
-            importExportPanelOpen = true;
-        }
+        crosshairImportExport.importExportPanel.transform.localScale = Util.enabledSubMenuScrollView;
+        Util.RefreshRootLayoutGroup(crosshairImportExport.parentCrosshairGroup);
+        Util.RefreshRootLayoutGroup(crosshairImportExport.importExportPanel);
+        //SubMenuHandler.ResetCrosshairScrollview();
+        importExportPanelOpen = true;
     }
 
     /// <summary>
     /// Closes import/export crosshair panel.
     /// </summary>
     public static void CloseImportExportPanel_Static() {
-        crosshairImportExport.importExportPanel.SetActive(false);
+        crosshairImportExport.importExportPanel.transform.localScale = Util.disabledSubMenuScrollView;
         Util.RefreshRootLayoutGroup(crosshairImportExport.parentCrosshairGroup);
         crosshairImportExport.crosshairStringInputField.clear();
         ButtonHighlight_Hover.ResetImportExportButton_TextColor();
@@ -139,19 +133,12 @@ public class CrosshairImportExport : MonoBehaviour {
         if (CSGOCrosshair.CheckIfCSGOCrosshair(importString)) {
             if (CSGOCrosshair.ValidateCSGOCrosshair(importString)) {
                 Dictionary<string, double> decodedCrosshair = CSGOCrosshair.DecodeCSGOCrosshair(importString);
-                if (SimpleCrosshair.ValidateSetCSGOCrosshair(decodedCrosshair, true)) {
-                    CrosshairImportSuccess("crosshairimportsuccesscsgo");
-                    Debug.Log("CSGO import success");
-                }
+                if (SimpleCrosshair.ValidateSetCSGOCrosshair(decodedCrosshair, true)) { CrosshairImportSuccess("crosshairimportsuccesscsgo"); }
             } else {
                 CrosshairImportError("crosshairimporterrorcsgo");
             }
         } else {
-            if (SimpleCrosshair.ValidateSetCrosshairString(importString, true)) {
-                CrosshairImportSuccess("crosshairimportsuccess");
-            } else {
-                CrosshairImportError("crosshairimporterror");
-            }
+            if (SimpleCrosshair.ValidateSetCrosshairString(importString, true)) { CrosshairImportSuccess("crosshairimportsuccess"); } else { CrosshairImportError("crosshairimporterror"); }
         }
     }
 

@@ -13,7 +13,7 @@ namespace SomeAimGame.Stats {
         public static Color32 newHighscoreBackgroundColor = new Color32(255, 255, 0, 160);
         public static Color32 upBackgroundColor           = new Color32(0, 255, 0, 80);
         public static Color32 downBackgroundColor         = new Color32(255, 0, 0, 80);
-        public static Color32 neutralBackgroundColor      = new Color32(255, 255, 255, 15);
+        public static Color32 neutralBackgroundColor      = new Color32(255, 255, 255, 20);
         public static Color32 itemColorRed                = new Color32(255, 0, 0, 255);
         public static Color32 itemColorGreen              = new Color32(0, 255, 0, 255);
         public static Color32 itemColorGrey               = new Color32(255, 255, 255, 85);

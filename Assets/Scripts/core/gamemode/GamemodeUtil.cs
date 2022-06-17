@@ -44,17 +44,5 @@ namespace SomeAimGame.Gamemode {
         public static string ReturnGamemodeType_StringShort(GamemodeType typeGamemode) {
             return gamemodeShortStrings[(int)typeGamemode];
         }
-
-        /// <summary>
-        /// Clears all gamemode button borders in settings panel (gamemode sub-section).
-        /// </summary>
-        public static void ClearGamemodeButtonBorders() {
-            foreach (GameObject buttonBorder in GameObject.FindGameObjectsWithTag("ButtonBorderGamemode")) {
-                if (buttonBorder != null) {
-                    buttonBorder.GetComponent<Image>().color = InterfaceColors.unselectedColor;
-                    buttonBorder.SetActive(false);
-                }
-            }
-        }
     }
 }

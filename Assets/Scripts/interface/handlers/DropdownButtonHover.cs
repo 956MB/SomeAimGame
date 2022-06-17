@@ -18,7 +18,7 @@ public class DropdownButtonHover : MonoBehaviour, IPointerEnterHandler, IPointer
     }
 
     public void OnPointerExit(PointerEventData pointerEventData) {
-        buttonImage.color = InterfaceColors.buttonBackgroundLight;
+        buttonImage.color = InterfaceColors.buttonBackgroundLight_Dropdown;
         buttonText.color  = InterfaceColors.widgetsNeutralColor;
     }
 }

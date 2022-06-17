@@ -14,6 +14,8 @@ public class CosmeticsDataSerial {
     public float        afterActionReportPanelY;
     public float        extraStatsPanelX;
     public float        extraStatsPanelY;
+    public float        consolePanelX;
+    public float        consolePanelY;
     public bool         quickStartGame;
 
     public CosmeticsDataSerial() {
@@ -27,6 +29,8 @@ public class CosmeticsDataSerial {
         afterActionReportPanelY = CosmeticsSettings.afterActionReportPanelY;
         extraStatsPanelX        = CosmeticsSettings.extraStatsPanelX;
         extraStatsPanelY        = CosmeticsSettings.extraStatsPanelY;
+        consolePanelX           = CosmeticsSettings.consolePanelX;
+        consolePanelY           = CosmeticsSettings.consolePanelY;
         quickStartGame          = CosmeticsSettings.quickStartGame;
     }
 }

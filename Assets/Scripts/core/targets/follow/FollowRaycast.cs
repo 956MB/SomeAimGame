@@ -2,6 +2,7 @@
 
 using SomeAimGame.Gamemode;
 using SomeAimGame.Targets;
+using SomeAimGame.Utilities;
 
 public class FollowRaycast : MonoBehaviour {
     public Camera playerCamera;
@@ -17,8 +18,12 @@ public class FollowRaycast : MonoBehaviour {
     private Color followTargetAlbedo, followTargetEmission, followTargetLight;
 
     void Update() {
+        //Debug.Log($"\nCamera position: {playerCamera.transform.position}");
+        //Debug.Log($"Camera rotation:   {playerCamera.transform.rotation.eulerAngles}");
+        //Debug.Log($"Camera forward:    {playerCamera.transform.forward}\n");
+
         // Only if game timer is running and gamemode is "Gamemode-Follow".
-        if (GunAction.timerRunning && SpawnTargets.gamemode == GamemodeType.FOLLOW) {
+        if (GunAction.timerRunning && SpawnTargets.gamemode == GamemodeType.FOLLOW && !GameUI.countdownShown) {
             ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
 
             if (Physics.Raycast(ray, out raycastHit)) {

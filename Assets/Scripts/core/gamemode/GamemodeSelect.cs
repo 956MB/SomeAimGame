@@ -42,7 +42,7 @@ namespace SomeAimGame.Gamemode {
         /// Sets current selected gamemode, and calls 'PopulateAllGamemodeInfo()' to populate all 'GamemodeSelect' panel info.
         /// </summary>
         /// <param name="gamemodeName"></param>
-        public static void PopulateGamemodeSelect(GamemodeType gamemodeName, bool quickStart) {
+        public static void PopulateGamemodeSelectText(GamemodeType gamemodeName, bool quickStart) {
             // Set current selected gamemode and its buttons hover border.
             currentOpenGamemode                       = gamemodeName;
             ButtonHoverHandler.selectedGamemode       = gamemodeName;
@@ -53,14 +53,26 @@ namespace SomeAimGame.Gamemode {
                 gamemodeSelect.GamemodeSelectStart();
             } else {
                 switch (gamemodeName) {
-                    case GamemodeType.SCATTER: PopulateAllGamemodeInfo(gamemodeScatterClip_Loaded, "gamemodestartscatter", "gamemodecapsscatter", "gamemodetypespeed", InterfaceColors.gamemodeEasyColor, gamemodeSelect.scatterDescription);  break;
-                    case GamemodeType.FLICK:   PopulateAllGamemodeInfo(gamemodeFlickClip_Loaded, "gamemodestartflick", "gamemodecapsflick", "gamemodetypecontrol", InterfaceColors.gamemodeEasyColor, gamemodeSelect.flickDescription);        break;
-                    case GamemodeType.GRID:    PopulateAllGamemodeInfo(gamemodeGridClip_Loaded, "gamemodestartgrid", "gamemodecapsgrid", "gamemodetypespeed", InterfaceColors.gamemodeEasyColor, gamemodeSelect.gridDescription);              break;
-                    case GamemodeType.GRID_2:  PopulateAllGamemodeInfo(gamemodeGrid2Clip_Loaded, "gamemodestartgrid2", "gamemodecapsgrid2", "gamemodetypecontrol", InterfaceColors.gamemodeHardColor, gamemodeSelect.grid2Description);        break;
-                    case GamemodeType.PAIRS:   PopulateAllGamemodeInfo(gamemodePairsClip_Loaded, "gamemodestartpairs", "gamemodecapspairs", "gamemodetypecontrol", InterfaceColors.gamemodeMediumColor, gamemodeSelect.pairsDescription);      break;
-                    case GamemodeType.FOLLOW:  PopulateAllGamemodeInfo(gamemodeFollowClip_Loaded, "gamemodestartfollow", "gamemodecapsfollow", "gamemodetypetracking", InterfaceColors.gamemodeMediumColor, gamemodeSelect.followDescription); break;
-                    case GamemodeType.GLOB:    PopulateAllGamemodeInfo(gamemodeGlobClip_Loaded, "gamemodestartglob", "gamemodecapsglob", "gamemodetypetracking", InterfaceColors.gamemodeMediumColor, gamemodeSelect.globDescription);         break;
+                    case GamemodeType.SCATTER: PopulateAllGamemodeText("gamemodestartscatter", "gamemodecapsscatter", "gamemodetypespeed", InterfaceColors.gamemodeEasyColor, gamemodeSelect.scatterDescription);   break;
+                    case GamemodeType.FLICK:   PopulateAllGamemodeText("gamemodestartflick", "gamemodecapsflick", "gamemodetypecontrol", InterfaceColors.gamemodeEasyColor, gamemodeSelect.flickDescription);       break;
+                    case GamemodeType.GRID:    PopulateAllGamemodeText("gamemodestartgrid", "gamemodecapsgrid", "gamemodetypespeed", InterfaceColors.gamemodeEasyColor, gamemodeSelect.gridDescription);            break;
+                    case GamemodeType.GRID_2:  PopulateAllGamemodeText("gamemodestartgrid2", "gamemodecapsgrid2", "gamemodetypecontrol", InterfaceColors.gamemodeHardColor, gamemodeSelect.grid2Description);       break;
+                    case GamemodeType.PAIRS:   PopulateAllGamemodeText("gamemodestartpairs", "gamemodecapspairs", "gamemodetypecontrol", InterfaceColors.gamemodeMediumColor, gamemodeSelect.pairsDescription);     break;
+                    case GamemodeType.FOLLOW:  PopulateAllGamemodeText("gamemodestartfollow", "gamemodecapsfollow", "gamemodetypetracking", InterfaceColors.gamemodeMediumColor, gamemodeSelect.followDescription); break;
+                    case GamemodeType.GLOB:    PopulateAllGamemodeText("gamemodestartglob", "gamemodecapsglob", "gamemodetypetracking", InterfaceColors.gamemodeMediumColor, gamemodeSelect.globDescription);       break;
                 }
+            }
+        }
+
+        public static void PopulateGamemodeSelectVideoClip(GamemodeType gamemodeName) {
+            switch (gamemodeName) {
+                case GamemodeType.SCATTER: PopulateGamemodeVideoClip(gamemodeScatterClip_Loaded); break;
+                case GamemodeType.FLICK:   PopulateGamemodeVideoClip(gamemodeFlickClip_Loaded);   break;
+                case GamemodeType.GRID:    PopulateGamemodeVideoClip(gamemodeGridClip_Loaded);    break;
+                case GamemodeType.GRID_2:  PopulateGamemodeVideoClip(gamemodeGrid2Clip_Loaded);   break;
+                case GamemodeType.PAIRS:   PopulateGamemodeVideoClip(gamemodePairsClip_Loaded);   break;
+                case GamemodeType.FOLLOW:  PopulateGamemodeVideoClip(gamemodeFollowClip_Loaded);  break;
+                case GamemodeType.GLOB:    PopulateGamemodeVideoClip(gamemodeGlobClip_Loaded);    break;
             }
         }
 
@@ -77,8 +89,7 @@ namespace SomeAimGame.Gamemode {
         /// </summary>
         /// <param name="gamemodeNameContent"></param>
         private static void PopulateGamemodeName_Text(string gamemodeNameContent, bool translate = false) {
-            string setText = gamemodeNameContent;
-            if (translate) { setText = $"{I18nTextTranslator.SetTranslatedText(gamemodeNameContent)}"; }
+            string setText = translate ? I18nTextTranslator.SetTranslatedText(gamemodeNameContent) : gamemodeNameContent;
 
             gamemodeSelect.gamemodeNameText.SetText($"{setText}");
         }
@@ -88,8 +99,7 @@ namespace SomeAimGame.Gamemode {
         /// <param name="gamemodeTypeContent"></param>
         /// <param name="typeColor"></param>
         private static void PopulateGamemodeType_Text(string gamemodeTypeContent, Color32 typeColor, bool translate = false) {
-            string setText = gamemodeTypeContent;
-            if (translate) { setText = $"{I18nTextTranslator.SetTranslatedText(gamemodeTypeContent)}"; }
+            string setText = translate ? I18nTextTranslator.SetTranslatedText(gamemodeTypeContent) : gamemodeTypeContent;
 
             gamemodeSelect.gamemodeTypeText.SetText($"{setText}");
             gamemodeSelect.gamemodeTypeText.color = typeColor;
@@ -99,19 +109,17 @@ namespace SomeAimGame.Gamemode {
         /// </summary>
         /// <param name="gamemodeDescriptionContent"></param>
         private static void PopulateGamemodeDescription_Text(string gamemodeDescriptionContent, bool translate = false) {
-            string setText = gamemodeDescriptionContent;
-            if (translate) { setText = $"{I18nTextTranslator.SetTranslatedText(gamemodeDescriptionContent)}"; }
+            string setText = translate ? I18nTextTranslator.SetTranslatedText(gamemodeDescriptionContent) : gamemodeDescriptionContent;
             //gamemodeSelect.gamemodeDescriptionText.SetText($"{gamemodeDescriptionContent}");
             gamemodeSelect.gamemodeDescriptionText_TMP_Text.SetText($"{setText}");
-            gamemodeSelect.gamemodeDescriptionText_Text.text = $"{setText}";
+            //gamemodeSelect.gamemodeDescriptionText_Text.text = $"{setText}";
         }
         /// <summary>
         /// Populates gamemode startbutton text inside 'GamemodeSelect' in settings. (gamemode sub-section).
         /// </summary>
         /// <param name="gamemodeNameContent"></param>
         private static void PopulateGamemodeStartButton_Text(string gamemodeNameStartContent, bool translate = false) {
-            string setText = gamemodeNameStartContent;
-            if (translate) { setText = $"{I18nTextTranslator.SetTranslatedText(gamemodeNameStartContent)}"; }
+            string setText = translate ? I18nTextTranslator.SetTranslatedText(gamemodeNameStartContent) : gamemodeNameStartContent;
 
             gamemodeSelect.gamemodeStartButtonText.SetText($"{setText}");
         }
@@ -122,13 +130,12 @@ namespace SomeAimGame.Gamemode {
         /// <param name="gamemodeType"></param>
         /// <param name="gamemodeTypeColor"></param>
         /// <param name="gamemodeDescription"></param>
-        private static void PopulateAllGamemodeInfo(VideoClip gamemodeVideoClip, string gamemodeNameStart, string gamemodeName, string gamemodeType, Color32 gamemodeTypeColor, string 
+        private static void PopulateAllGamemodeText(string gamemodeNameStart, string gamemodeName, string gamemodeType, Color32 gamemodeTypeColor, string 
     gamemodeDescription) {
             PopulateGamemodeName_Text(gamemodeName, true);
             PopulateGamemodeType_Text(gamemodeType, gamemodeTypeColor, true);
             PopulateGamemodeDescription_Text(gamemodeDescription);
             PopulateGamemodeStartButton_Text(gamemodeNameStart, true);
-            PopulateGamemodeVideoClip(gamemodeVideoClip);
         }
 
         public static void LoadTranslatedDescriptions(string setScatterDescription, string setFlickDescription, string setGridDescription, string setGrid2Description, string setPairsDescription, string setFollowDescription, string setGlobDescription) {
@@ -145,7 +152,7 @@ namespace SomeAimGame.Gamemode {
         /// Starts new gamemode when gamemode start button in 'GamemodeSelect' panel clicked. Does nothing if current gamemode start clicked.
         /// </summary>
         public void GamemodeSelectStart() {
-            Debug.Log($"current gamemode: {SpawnTargets.gamemode}, new: {currentOpenGamemode}");
+            //Debug.Log($"current gamemode: {SpawnTargets.gamemode}, new: {currentOpenGamemode}");
             if (SpawnTargets.gamemode != currentOpenGamemode) {
                 if (!CheckFollowGamemode()) { return; }
 

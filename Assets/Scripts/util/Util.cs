@@ -13,6 +13,8 @@ using SomeAimGame.SFX;
 
 namespace SomeAimGame.Utilities {
     public class Util : MonoBehaviour {
+        public static Vector3 disabledSubMenuScrollView = new Vector3(0, 0, 0);
+        public static Vector3 enabledSubMenuScrollView  = new Vector3(1, 1, 1);
 
         private static Util util;
         void Awake() { util = this; }
@@ -204,6 +206,13 @@ namespace SomeAimGame.Utilities {
             Cursor.visible   = setVisibility;
         }
 
+        public static void SetTextPlaceholderColors(TMP_Text mainText, TMP_Text placeholderText, Color32 setColor) {
+            if (mainText.color != setColor && placeholderText.color != setColor) {
+                mainText.color        = setColor;
+                placeholderText.color = setColor;
+            }
+        }
+
         /// <summary>
         /// Checks if supplied string (value) matches supplied regex string (matchString).
         /// </summary>
@@ -241,7 +250,8 @@ namespace SomeAimGame.Utilities {
             /// <param name="setColor"></param>
             /// <param name="textElements"></param>
             public static void ClearTMPTextColor(Color32 setColor, params TMP_Text[] textElements) {
-                foreach (TMP_Text text in textElements) { text.color = setColor; }
+                //foreach (TMP_Text text in textElements) { text.color = setColor; }
+                for (int i = 0; i < textElements.Length; i++) { textElements[i].color = setColor; }
             }
             public static void ClearButtonBackgrounds(Color32 setColor, params TMP_Text[] textElements) {
                 foreach (TMP_Text text in textElements) { text.transform.parent.gameObject.GetComponent<Image>().color = setColor; }

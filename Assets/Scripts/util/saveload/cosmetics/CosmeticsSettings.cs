@@ -8,16 +8,16 @@ using SomeAimGame.Utilities;
 public class CosmeticsSettings : MonoBehaviour {
     public static GamemodeType gamemode                = GamemodeType.SCATTER;
     public static TargetType   targetColor             = TargetType.YELLOW;
-
     public static string       customColorNameStrings  = "";
     public static int          customColorIndex        = -1;
     public static string       customColorStrings      = "";
-
     public static SkyboxType   skybox                  = SkyboxType.SLATE;
     public static float        afterActionReportPanelX = 960f;
     public static float        afterActionReportPanelY = 540f;
     public static float        extraStatsPanelX        = 1455.711f;
     public static float        extraStatsPanelY        = 638.3904f;
+    public static float        consolePanelX           = 0f;
+    public static float        consolePanelY           = 885.6f;
     public static bool         quickStartGame          = false;
 
     static bool cosmeticsSettingsChangeReady = false;
@@ -54,6 +54,10 @@ public class CosmeticsSettings : MonoBehaviour {
             case "ExtraStats":
                 Util.RefSetSettingChange(ref cosmeticsSettingsChangeReady, ref extraStatsPanelX, setPanelX);
                 Util.RefSetSettingChange(ref cosmeticsSettingsChangeReady, ref extraStatsPanelY, setPanelY);
+                break;
+            case "Console":
+                Util.RefSetSettingChange(ref cosmeticsSettingsChangeReady, ref consolePanelX, setPanelX);
+                Util.RefSetSettingChange(ref cosmeticsSettingsChangeReady, ref consolePanelY, setPanelY);
                 break;
         }
     }
@@ -95,7 +99,7 @@ public class CosmeticsSettings : MonoBehaviour {
     /// <param name="setPanelSettingsY"></param>
     /// <param name="setPanelExtraStatsX"></param>
     /// <param name="setPanelExtraStatsY"></param>
-    public static void SaveAllCosmeticsToggleDefaults(GamemodeType setGamemode, TargetType setTargetColor, string setCustomNameStrings, int setCustomColorIndex, string setCustomColorStrings, SkyboxType setSkybox, float setPanelSettingsX, float setPanelSettingsY, float setPanelExtraStatsX, float setPanelExtraStatsY, bool setQuickStart) {
+    public static void SaveAllCosmeticsToggleDefaults(GamemodeType setGamemode, TargetType setTargetColor, string setCustomNameStrings, int setCustomColorIndex, string setCustomColorStrings, SkyboxType setSkybox, float setPanelSettingsX, float setPanelSettingsY, float setPanelExtraStatsX, float setPanelExtraStatsY, float setPanelConsoleX, float setPanelConsoleY, bool setQuickStart) {
         gamemode                = setGamemode;
         targetColor             = setTargetColor;
         customColorNameStrings  = setCustomNameStrings;
@@ -106,6 +110,8 @@ public class CosmeticsSettings : MonoBehaviour {
         afterActionReportPanelY = setPanelSettingsY;
         extraStatsPanelX        = setPanelExtraStatsX;
         extraStatsPanelY        = setPanelExtraStatsY;
+        consolePanelX           = setPanelConsoleX;
+        consolePanelY           = setPanelConsoleY;
         quickStartGame          = setQuickStart;
 
         cosmeticsSettings.SaveCosmeticsSettings();
@@ -126,6 +132,8 @@ public class CosmeticsSettings : MonoBehaviour {
         afterActionReportPanelY = cometicsData.afterActionReportPanelY;
         extraStatsPanelX        = cometicsData.extraStatsPanelX;
         extraStatsPanelX        = cometicsData.extraStatsPanelY;
+        consolePanelX           = cometicsData.consolePanelX;
+        consolePanelY           = cometicsData.consolePanelY;
         quickStartGame          = cometicsData.quickStartGame;
     }
 
@@ -139,7 +147,7 @@ public class CosmeticsSettings : MonoBehaviour {
     /// <summary>
     /// Sets 'AfterActionReport' panel location (X/Y) back to center, then saves cosmetics settings.
     /// </summary>
-    public static void resetAfterActionReportPanelCenter() {
+    public static void ResetAfterActionReportPanelCenter() {
         afterActionReportPanelX = 960f;
         afterActionReportPanelY = 540f;
         cosmeticsSettings.SaveCosmeticsSettings();
@@ -148,9 +156,18 @@ public class CosmeticsSettings : MonoBehaviour {
     /// <summary>
     /// Sets 'ExtraStats' panel location (X/Y) back to default location, then saves cosmetics settings.
     /// </summary>
-    public static void resetExtraStatsPanelCenter() {
+    public static void ResetExtraStatsPanelCenter() {
         extraStatsPanelX = 1455.711f;
         extraStatsPanelY = 638.3904f;
+        cosmeticsSettings.SaveCosmeticsSettings();
+    }
+
+    /// <summary>
+    /// Sets Console panel location (X/Y) back to default, then saves cosmetics settings.
+    /// </summary>
+    public static void ResetConsolePanelCenter() {
+        consolePanelX = 0f;
+        consolePanelY = 885.6f;
         cosmeticsSettings.SaveCosmeticsSettings();
     }
 }

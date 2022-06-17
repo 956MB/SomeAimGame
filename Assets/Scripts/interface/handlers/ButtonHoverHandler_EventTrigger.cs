@@ -15,21 +15,13 @@ public class ButtonHoverHandler_EventTrigger : MonoBehaviour {
     public static void ToggleOptionsObject_Static() { hoverHandle.ToggleOptionsObject(); }
 
     public void ToggleOptionsObject() {
-        if (optionsObjectOpen) {
-            DisableBorder();
-        } else {
-            EnableBorder();
-        }
+        if (optionsObjectOpen) { DisableBorder(); } else { EnableBorder(); }
 
         LoopToggleOptions();
     }
 
     public void LoopToggleOptions() {
-        if (optionsObjectOpen) {
-            QuitGame.CloseQuitButton();
-        } else {
-            QuitGame.OpenQuitButton();
-        }
+        if (optionsObjectOpen) { QuitGame.CloseQuitButton(); } else { QuitGame.OpenQuitButton(); }
 
         optionsObjectOpen = !optionsObjectOpen;
     }

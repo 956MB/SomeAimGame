@@ -13,9 +13,6 @@ public class SubMenuHandler : MonoBehaviour {
     public Image gamemodeBar, generalBar, controlsBar, crosshairBar, videoBar;
     //public ;
 
-    public static Vector3 disabledSubMenuScrollView = new Vector3(0, 0, 0);
-    public static Vector3 enabledSubMenuScrollView  = new Vector3(1, 1, 1);
-
     public static string activeSubMenuText = "GamemodeTitleText (TMP)";
 
     private static SubMenuHandler subMenu;
@@ -52,7 +49,7 @@ public class SubMenuHandler : MonoBehaviour {
     /// <param name="showCrosshair"></param>
     public void SetSubMenu(TMP_Text subMenuText, GameObject subMenuActive, Image subMenuBar, bool showCrosshair = false) {
         subMenuText.color                  = InterfaceColors.selectedColor;
-        subMenuActive.transform.localScale = enabledSubMenuScrollView;
+        subMenuActive.transform.localScale = Util.enabledSubMenuScrollView;
         //ScrollRectExtension.ScrollToTop(subMenuActive.GetComponent<ScrollRect>());
         subMenuBar.transform.gameObject.SetActive(true);
 
@@ -87,7 +84,7 @@ public class SubMenuHandler : MonoBehaviour {
     /// </summary>
     public void ClearSubMenus() {
         Util.GameObjectLoops.ClearTMPTextColor(InterfaceColors.unselectedColor, gamemodeSubMenuText, generalSubMenuText, controlsSubMenuText, crosshairSubMenuText, videoSubMenuText);
-        Util.GameObjectLoops.SetObjectsLocalScale(disabledSubMenuScrollView, gamemodeContainer, generalContainer, controlsContainer, crosshairContainer, videoContainer);
+        Util.GameObjectLoops.SetObjectsLocalScale(Util.disabledSubMenuScrollView, gamemodeContainer, generalContainer, controlsContainer, crosshairContainer, videoContainer);
         Util.GameObjectLoops.ImagesSetActive(false, gamemodeBar, generalBar, controlsBar, crosshairBar, videoBar);
         
         CrosshairHide.HideCrosshairs();

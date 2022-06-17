@@ -17,12 +17,12 @@ public class PathFollower : MonoBehaviour {
     void Update() {
         // Update target position along follow path if gamemode is "Gamemode-Follow" and 'pathCreator' not null.
         if (pathCreator != null) {
-            if (SpawnTargets.gamemode == GamemodeType.FOLLOW || (SpawnTargets.gamemode == GamemodeType.GLOB && !SpawnTargets.globStarterActive)) {
+            if ((SpawnTargets.gamemode == GamemodeType.FOLLOW) || (SpawnTargets.gamemode == GamemodeType.GLOB && !SpawnTargets.globStarterActive)) {
                 distanceTravelled += speed * Time.deltaTime;
 
                 try {
                     TargetPathing.pathFollowerTarget.transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
-                } catch (NullReferenceException) {
+                } catch (Exception ex) {
                     // fff
                 }
             }

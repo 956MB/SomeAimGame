@@ -20,11 +20,7 @@ namespace SomeAimGame.Utilities {
         /// <param name="arrowText"></param>
         /// <param name="dropdownOpenRef"></param>
         public static void SetDropdownState(bool dropdownOpen, GameObject dropdownBody, TMP_Text arrowText, ref bool dropdownOpenRef) {
-            if (dropdownOpen) {
-                DropdownAction_Open(dropdownBody, arrowText, ref dropdownOpenRef);
-            } else {
-                DropdownAction_Close(dropdownBody, arrowText, ref dropdownOpenRef);
-            }
+            if (dropdownOpen) { DropdownAction_Open(dropdownBody, arrowText, ref dropdownOpenRef); } else { DropdownAction_Close(dropdownBody, arrowText, ref dropdownOpenRef); }
         }
 
         /// <summary>
@@ -93,14 +89,20 @@ namespace SomeAimGame.Utilities {
         /// <param name="parentDropdownPrefab"></param>
         public static void CreateDropdownItem(int setDropdownInt, int setSettingInt, GameObject dropdownItemPrefab, GameObject parentDropdownPrefab) {
             GameObject dropdownItem = Instantiate(dropdownItemPrefab);
-            dropdownItem.GetComponent<VideoSettingChange>().SetDropdownInt(setDropdownInt, setSettingInt);
 
             TMP_Text itemText = dropdownItem.GetComponentsInChildren<TMP_Text>()[0];
 
-            if ((VideoDropdowns)setDropdownInt == VideoDropdowns.DISPLAY_MODE) { itemText.SetText($"{VideoSettingUtil.ReturnTypeString((FullScreenMode)setSettingInt)}"); }
-            if ((VideoDropdowns)setDropdownInt == VideoDropdowns.ANTI_ALIASING) { itemText.SetText($"{VideoSettingUtil.ReturnTypeString((AntiAliasType)setSettingInt)}"); }
+            if ((VideoDropdowns)setDropdownInt == VideoDropdowns.DISPLAY_MODE) {
+                itemText.SetText($"{VideoSettingUtil.ReturnTypeString((FullScreenMode)setSettingInt)}");
+                dropdownItem.GetComponent<VideoSettingChange>().SetSettingValues(setDropdownInt, setSettingInt, VideoSettingUtil.ReturnTypeString((FullScreenMode)setSettingInt));
+            }
+            if ((VideoDropdowns)setDropdownInt == VideoDropdowns.ANTI_ALIASING) {
+                itemText.SetText($"{VideoSettingUtil.ReturnTypeString((AntiAliasType)setSettingInt)}");
+                dropdownItem.GetComponent<VideoSettingChange>().SetSettingValues(setDropdownInt, setSettingInt, VideoSettingUtil.ReturnTypeString((AntiAliasType)setSettingInt));
+            }
 
-            dropdownItem.transform.SetParent(parentDropdownPrefab.transform);
+            //Debug.Log(dropdownItem.transform.GetComponent<RectTransform>().sizeDelta);
+            dropdownItem.transform.SetParent(parentDropdownPrefab.transform, false);
         }
         /// <summary>
         /// Creates dropdown item inside parent dropdown body (parentDropdownPrefab), and sets dropdown values from supplied ints (setDropdownInt/setSettingInt).
@@ -112,12 +114,12 @@ namespace SomeAimGame.Utilities {
         /// <param name="parentDropdownPrefab"></param>
         public static void CreateDropdownItem(int setDropdownInt, int setSettingInt, string setDropdownText, GameObject dropdownItemPrefab, GameObject parentDropdownPrefab) {
             GameObject dropdownItem = Instantiate(dropdownItemPrefab);
-            dropdownItem.GetComponent<VideoSettingChange>().SetDropdownInt(setDropdownInt, setSettingInt);
+            dropdownItem.GetComponent<VideoSettingChange>().SetSettingValues(setDropdownInt, setSettingInt, setDropdownText);
 
             TMP_Text itemText = dropdownItem.GetComponentsInChildren<TMP_Text>()[0];
             itemText.SetText($"{setDropdownText}");
 
-            dropdownItem.transform.SetParent(parentDropdownPrefab.transform);
+            dropdownItem.transform.SetParent(parentDropdownPrefab.transform, false);
         }
     }
 }

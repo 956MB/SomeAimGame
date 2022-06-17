@@ -24,6 +24,7 @@ namespace SomeAimGame.Console {
         void Start() {
             // TODO: add console command auto complete and options in dropdown
             // TODO: add arrow up/down navigation for suggested commands and previously used commands
+            OpenConsole();
             CloseConsole();
         }
 
@@ -71,7 +72,7 @@ namespace SomeAimGame.Console {
                 case "help":                      ConsoleCommands.PrintCommandList(key, value);                      break;
                 case "version":                   ConsoleCommands.PrintGameVersion(key, value);                      break;
                 case "restart":                   ConsoleCommands.RestartCurrentGame(key, value);                    break;
-                case "quit":                      ConsoleCommands.QuitGame(key, value);                              break;
+                case "quit":                      ConsoleCommands.QuitCurrentGame(key, value);                       break;
                 // GAMEMODE //
                 case "ga_gamemode":               ConsoleCommands.SetGamemode(key, value, printNotset);              break;
                 // TARGET //
@@ -129,32 +130,26 @@ namespace SomeAimGame.Console {
         /// Toggles console on/off.
         /// </summary>
         public static void ToggleConsoleActive() {
-            if (consoleActive) {
-                CloseConsole();
-            } else {
-                OpenConsole();
-            }
+            if (consoleActive) { CloseConsole(); } else { OpenConsole(); }
         }
         /// <summary>
         /// Opens console.
         /// </summary>
         public static void OpenConsole() {
-            consoleActive = true;
             Util.SetCursorState(CursorLockMode.None, true);
-            console.consoleCanvas.SetActive(true);
+            console.consoleCanvas.SetActive(consoleActive = true);
             console.FocusConsole();
         }
         /// <summary>
         /// CLoses console.
         /// </summary>
         public static void CloseConsole() {
-            consoleActive = false;
-            if (!SettingsPanel.settingsOpen && !SettingsPanel.afterActionReportOpen) { Util.SetCursorState(CursorLockMode.Locked, false); }
-            if (!SettingsPanel.settingsOpen && ExtraSettings.showWidgets) { GameUI.ShowWidgetsUICanvas(); }
-            if (!SettingsPanel.settingsOpen && !ExtraSettings.showWidgets) { GameUI.HideWidgetsUICanvas(); }
+            if (!SettingsPanel.settingsOpen && !SettingsPanel.afterActionReportOpen)                                { Util.SetCursorState(CursorLockMode.Locked, false); }
+            if (!SettingsPanel.settingsOpen && !SettingsPanel.afterActionReportOpen && ExtraSettings.showWidgets)   { GameUI.ShowWidgetsUICanvas(); }
+            if (!SettingsPanel.settingsOpen && (!ExtraSettings.showWidgets || SettingsPanel.afterActionReportOpen)) { GameUI.HideWidgetsUICanvas(); }
             ClearConsole();
             console.UnfocusConsole();
-            console.consoleCanvas.SetActive(false);
+            console.consoleCanvas.SetActive(consoleActive = false);
         }
 
         /// <summary>
@@ -220,8 +215,10 @@ namespace SomeAimGame.Console {
             } catch (ArgumentOutOfRangeException) { }
         }
 
-        public void TabCompleteCommandKey() {
+        public static void TabCompleteCommandKey() {
+            if (ConsoleUtil.CheckValidCommandValue_NotEmpty(console.consoleInputField.text)) {
 
+            }
         }
 
         #endregion

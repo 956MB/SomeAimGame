@@ -11,29 +11,33 @@ public class Keybinds : MonoBehaviour {
 
     void Update() {
         if (keybindsLoaded) {
-            if (Input.GetKeyUp(KeybindSettings.toggleConsole)) {
+            if (Input.GetKeyDown(KeybindSettings.toggleConsole)) {
                 ToggleConsole_Keybind();
             }
 
             if (SAGConsole.consoleActive) {
-                if (Input.GetKeyUp(KeyCode.Return)) {
+                if (Input.GetKeyDown(KeyCode.Escape)) {
+                    if (SAGConsole.consoleActive) { SAGConsole.CloseConsole(); }
+                } else if (Input.GetKeyDown(KeyCode.Return)) {
                     SAGConsole.SubmitConsoleInput();
+                } else if (Input.GetKeyDown(KeyCode.Tab)) {
+                    //SAGConsole.TabCompleteCommandKey();
                 } else if (Input.GetKeyDown(KeyCode.UpArrow)) {
                     // special case to hide caret while UpArrow pressed down to avoid glitchy looking thing when navigating console index.
                     SAGConsole.HideCaretWhileNavigatingConsoleIndex();
-                } else if (Input.GetKeyUp(KeyCode.UpArrow)) {
+                } else if (Input.GetKeyDown(KeyCode.UpArrow)) {
                     SAGConsole.NavigateConsoleIndexUp();
-                } else if (Input.GetKeyUp(KeyCode.DownArrow)) {
+                } else if (Input.GetKeyDown(KeyCode.DownArrow)) {
                     SAGConsole.NavigateConsoleIndexDown();
                 }
             } else {
-                if (Input.GetKeyUp(KeybindSettings.toggleWidgets)) {
+                if (Input.GetKeyDown(KeybindSettings.toggleWidgets)) {
                     ToggleWidgetsUI_Keybind();
-                } else if (Input.GetKeyUp(KeybindSettings.gameRestart)) {
+                } else if (Input.GetKeyDown(KeybindSettings.gameRestart)) {
                     TriggerGameRestart_Keybind();
-                } else if (Input.GetKeyUp(KeybindSettings.toggleAAR)) {
+                } else if (Input.GetKeyDown(KeybindSettings.toggleAAR)) {
                     ToggleAARPanel_Keybind();
-                } else if (Input.GetKeyUp(KeybindSettings.toggleSettings)) {
+                } else if (Input.GetKeyDown(KeybindSettings.toggleSettings)) {
                     ToggleSettingsPanel_Keybind();
                 }
             }
@@ -63,7 +67,6 @@ public class Keybinds : MonoBehaviour {
                 if (!SettingsPanel.afterActionReportOpen && !SettingsPanel.settingsOpen) {
                     SettingsPanel.CloseSettingsPanel();
                     SettingsPanel.OpenAfterActionReport();
-                    GameUI.HideWidgetsUI();
                 } else {
                     SettingsPanel.CloseAfterActionReport();
                 }
@@ -101,17 +104,13 @@ public class Keybinds : MonoBehaviour {
     /// Move settings panel right keybind function.
     /// </summary>
     private static void MoveSettingsPanelRight_Keybind() {
-        if (MouseLook.settingsOpen && !CrosshairImportExport.importExportPanelOpen) {
-            Vector3 settingsPanelPos_Right = SettingsPanel.MoveSettingsPanelRight();
-        }
+        if (MouseLook.settingsOpen && !CrosshairImportExport.importExportPanelOpen) { Vector3 settingsPanelPos_Right = SettingsPanel.MoveSettingsPanelRight(); }
     }
 
     /// <summary>
     /// Move settings panel left keybind function.
     /// </summary>
     private static void MoveSettingsPanelLeft_Keybind() {
-        if (MouseLook.settingsOpen && !CrosshairImportExport.importExportPanelOpen) {
-            Vector3 settingsPanelPos_Left = SettingsPanel.MoveSettingsPanelLeft();
-        }
+        if (MouseLook.settingsOpen && !CrosshairImportExport.importExportPanelOpen) { Vector3 settingsPanelPos_Left = SettingsPanel.MoveSettingsPanelLeft(); }
     }
 }

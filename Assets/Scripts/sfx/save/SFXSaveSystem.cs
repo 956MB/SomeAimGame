@@ -35,12 +35,7 @@ namespace SomeAimGame.SFX {
             SFXSettingsDataSerial loadedSFXData = LoadSFXSettingsData();
             if (loadedSFXData != null) {
                 SFXSettings.LoadExtraSettings(loadedSFXData);
-
-                SetTargetSoundClip(loadedSFXData.targetSoundClip);
-                SetTargetMissSoundClip(loadedSFXData.targetMissSoundClip);
-                SetTargetSoundOnToggle(loadedSFXData.targetSoundOn);
-                SetUISoundOnToggle(loadedSFXData.uiSoundOn);
-                SetTargetMissSoundOnToggle(loadedSFXData.targetMissSoundOn);
+                sfxSave.SetAllSFXSettings(loadedSFXData.targetSoundClip, loadedSFXData.targetMissSoundClip, loadedSFXData.targetSoundOn, loadedSFXData.targetMissSoundOn, loadedSFXData.uiSoundOn);
             } else {
                 //Debug.Log("failed to init extra in 'initSavedSettings', extra: " + loadedExtraData);
                 InitSFXSettingsDefaults();
@@ -51,13 +46,16 @@ namespace SomeAimGame.SFX {
         /// Inits default SFX settings values and saves to file on first launch.
         /// </summary>
         public static void InitSFXSettingsDefaults() {
-            SetTargetSoundOnToggle(true);
-            SetUISoundOnToggle(true);
-            SetTargetSoundClip(SFXType.TARGET_HIT_SFX_0);
-            SetTargetMissSoundClip(SFXType.TARGET_MISS_SFX_0);
-            SetTargetMissSoundOnToggle(false);
-
+            sfxSave.SetAllSFXSettings(SFXType.TARGET_HIT_SFX_0, SFXType.TARGET_MISS_SFX_0, true, false, true);
             SFXSettings.SaveAllSFXSettingsDefaults(SFXType.TARGET_HIT_SFX_0, SFXType.TARGET_MISS_SFX_0, true, false, true);
+        }
+
+        public void SetAllSFXSettings(SFXType setTargetSoundClip, SFXType setTargetMissSoundClip, bool setTargetSoundOn, bool setTargetMissSoundOn, bool setUISoundOn) {
+            SetTargetSoundClip(setTargetSoundClip);
+            SetTargetMissSoundClip(setTargetMissSoundClip);
+            SetTargetSoundOnToggle(setTargetSoundOn);
+            SetTargetMissSoundOnToggle(setTargetMissSoundOn);
+            SetUISoundOnToggle(setUISoundOn);
         }
 
         /// <summary>

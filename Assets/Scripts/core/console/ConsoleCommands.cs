@@ -46,9 +46,9 @@ namespace SomeAimGame.Console {
         /// </summary>
         /// <param name="commandKey"></param>
         /// <param name="commandValue"></param>
-        public static void QuitGame(string commandKey, string commandValue) {
+        public static void QuitCurrentGame(string commandKey, string commandValue) {
             if (commandValue == "") {
-                // quit
+                if (!Application.isEditor) { QuitGame.QuitCurrentGame_Static(); }
             } else { ConsoleUtil.ThrowInvalidCommandValueError(commandKey, commandValue); }
         }
 
@@ -69,7 +69,7 @@ namespace SomeAimGame.Console {
                 if (ConsoleUtil.CheckValidCommandValue_Int(setGamemode)) {
                     int gamemodeValue = int.Parse(setGamemode);
                     if (gamemodeValue >= 0 && gamemodeValue <= 5) {
-                        GamemodeSelect.PopulateGamemodeSelect((GamemodeType)gamemodeValue, true);
+                        GamemodeSelect.PopulateGamemodeSelectText((GamemodeType)gamemodeValue, true);
                     } else { ConsoleUtil.ThrowInvalidCommandValueError(commandKey, setGamemode); }
                 } else { ConsoleUtil.ThrowInvalidCommandValueError(commandKey, setGamemode); }
             }
@@ -88,7 +88,7 @@ namespace SomeAimGame.Console {
         public static void SetTargetColor(string commandKey, string setTargetColor, bool printNotset = false) {
             if (printNotset) {
                 // TODO: print method for console
-                Debug.Log($"command: {commandKey}");
+                //Debug.Log($"command: {commandKey}");
             } else {
                 if (ConsoleUtil.CheckValidCommandValue_Int(setTargetColor)) {
                     int targetColorValue = int.Parse(setTargetColor);

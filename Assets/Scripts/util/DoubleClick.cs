@@ -22,11 +22,11 @@ namespace SomeAimGame.Utilities {
             switch (transform.name) {
                 case "AfterActionReport":
                     transform.position = AARStartVector;
-                    CosmeticsSettings.resetAfterActionReportPanelCenter();
+                    CosmeticsSettings.ResetAfterActionReportPanelCenter();
                     break;
                 case "ExtraStats":
                     transform.position = extraStatsStartVector;
-                    CosmeticsSettings.resetExtraStatsPanelCenter();
+                    CosmeticsSettings.ResetExtraStatsPanelCenter();
                     break;
             }
         }

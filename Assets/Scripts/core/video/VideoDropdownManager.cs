@@ -7,6 +7,7 @@ using SomeAimGame.Utilities;
 namespace SomeAimGame.Core {
     namespace Video {
         public class VideoDropdownManager : MonoBehaviour {
+            public GameObject dropdownSelectButton;
             public GameObject displayModesDropdownBody, resolutionDropdownBody, monitorDropdownBody, antiAliasDropdownBody;
             public GameObject dropdownItemPrefab;
 
@@ -19,6 +20,7 @@ namespace SomeAimGame.Core {
             /// Inits all video setting dropdowns with available options.
             /// </summary>
             public static void InitAllVideoSettingsDropdowns() {
+                // TODO: get parent dropdown button w/h and pass that to newly created dropdown item prefabs
                 InitDisplayModesDropdownItems();
                 InitResolutionDropdownItems();
                 InitMonitorsDropdownItems();
@@ -29,6 +31,10 @@ namespace SomeAimGame.Core {
             /// </summary>
             public static void InitDisplayModesDropdownItems() {
                 DropdownUtils.CreateDropdownItems_Loop(VideoDropdowns.DISPLAY_MODE, videoDropdownManager.dropdownItemPrefab, videoDropdownManager.displayModesDropdownBody, FullScreenMode.FullScreenWindow, FullScreenMode.ExclusiveFullScreen, FullScreenMode.MaximizedWindow, FullScreenMode.Windowed);
+
+                //Debug.Log(videoDropdownManager.dropdownSelectButton.transform.GetComponent<RectTransform>().sizeDelta.x);
+                //Debug.Log(videoDropdownManager.dropdownSelectButton.transform.GetComponent<RectTransform>().sizeDelta.y);
+                //Debug.Log(videoDropdownManager.displayModesDropdownBody.transform.GetComponent<RectTransform>().sizeDelta);
             }
             /// <summary>
             /// Loads all available resolution options into resolution dropdown from available monitor resolutions.
@@ -39,12 +45,17 @@ namespace SomeAimGame.Core {
 
                 for (int i = fullscreenResolutions.Length-1; i > 0; i--) {
                     Resolution currentRes = fullscreenResolutions[i];
-                    string aspectRatio    = Util.ReturnAspectRatio_string(currentRes.width, currentRes.height);
+                    int refresh           = currentRes.refreshRate;
+                    
+                    // check if resolution refresh rate is within range of currently set refresh: 143, 144, 145 Hz
+                    if(refresh >= VideoSettings.resolutionRefreshRate-1 && refresh <= VideoSettings.resolutionRefreshRate+1) {
+                        string aspectRatio = Util.ReturnAspectRatio_string(currentRes.width, currentRes.height);
 
-                    if (videoDropdownManager.aspectRatios.Any(aspectRatio.Contains)) {
-                        string formattedResString = $"{currentRes.width} x {currentRes.height} {aspectRatio} ({currentRes.refreshRate}Hz)";
-                        DropdownUtils.CreateDropdownItem(1, setInt, formattedResString, videoDropdownManager.dropdownItemPrefab, videoDropdownManager.resolutionDropdownBody);
-                        setInt++;
+                        if (videoDropdownManager.aspectRatios.Any(aspectRatio.Contains)) {
+                            string formattedResString = $"{currentRes.width} x {currentRes.height} {aspectRatio} ({currentRes.refreshRate}Hz)";
+                            DropdownUtils.CreateDropdownItem(1, setInt, formattedResString, videoDropdownManager.dropdownItemPrefab, videoDropdownManager.resolutionDropdownBody);
+                            setInt++;
+                        }
                     }
                 }
             }

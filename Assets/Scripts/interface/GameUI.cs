@@ -19,10 +19,11 @@ public class GameUI : MonoBehaviour {
     public GameObject widgetsUICanvas, countdownCanvas;
     public TMP_Text countdownNumText, countdownNumTextBack;
     private Coroutine timerCoroutine, spawnScatterCoroutine, countdownCoroutine;
+    private Quaternion initialCameraRotation = new Quaternion(0.0f, 0.7f, 0.0f, -0.7f);
 
     // Core game score values
     // TODO: (keep eye on score system changes, may need fixing) Maybe add AimLab like score system. Score up/down amount increases/decreases with streaks.
-    public static int scoreUp         = 300;
+    public static int scoreUp         = 150;
     public static int scoreDown       = 150;
     public static int followScoreUp   = 10;
     public static int followScoreDown = 3;
@@ -70,6 +71,7 @@ public class GameUI : MonoBehaviour {
         showPreCountdown          = ExtraSaveSystem.InitShowCountdown();
         countdownShown            = showPreCountdown;
         countdownCoroutineRunning = showPreCountdown;
+        MouseLook.SetPlayerCameraRotation();
 
         timeCount     = ExtraSaveSystem.InitGameTimer();
         timeStart     = timeCount;
@@ -126,7 +128,7 @@ public class GameUI : MonoBehaviour {
     /// <returns></returns>
     public static IEnumerator ContinuousScatterSpawn() {
         while (true) {
-            if (!MouseLook.settingsOpen) { SpawnTargets.CheckScatterSpawns(); }
+            if (!MouseLook.settingsOpen && !countdownShown) { SpawnTargets.CheckScatterSpawns(); }
 
             yield return scatterDelay;
         }
@@ -160,7 +162,7 @@ public class GameUI : MonoBehaviour {
                     // Wiggle timer text, set all stats in 'AfterActionReport', then stop timer.
                     if (WidgetSettings.showTime) { TextEffects.WiggleText(gameUI.timeText, 0.5f, 55); }
                     StopEverything();
-                    HideWidgetsUI();
+                    HideWidgetsUICanvas();
                     StatsManager.CheckAndSetAllStats();
                     timeCount -= 1;
                 }
@@ -387,12 +389,12 @@ public class GameUI : MonoBehaviour {
             coroutinesRunning = false;
         }
 
+        // check for unsaved settings then save
+        SettingsPanel.CheckSaveSettings();
         // Reset important game values.
         ResetAllStatValues();
-
         // reset targets and reload scene.
         SpawnTargets.ResetSpawnTargetsValues();
-
         //if (newGamemode != SpawnTargets.gamemode) {
         ReloadScene();
         //} else {

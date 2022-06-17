@@ -14,9 +14,9 @@ namespace SomeAimGame.SFX {
             SFXAudioSrc = GetComponent<AudioSource>();
             SFXSaveSystem.InitSavedSFXSettings();
 
-            TargetSoundInit();
-            TargetSoundSelect.SetTargetHitSoundText($"{SFXUtil.ReturnTargetSoundStrings(SFXSettings.targetSoundClip)}");
-            TargetSoundSelect.SetTargetMissSoundText($"{SFXUtil.ReturnTargetSoundStrings(SFXSettings.targetMissSoundClip)}");
+            //TargetSoundInit();
+            //TargetSoundSelect.SetTargetHitSoundText($"{SFXUtil.ReturnTargetSoundStrings(SFXSettings.targetSoundClip)}");
+            //TargetSoundSelect.SetTargetMissSoundText($"{SFXUtil.ReturnTargetSoundStrings(SFXSettings.targetMissSoundClip)}");
         }
 
         /// <summary>

@@ -50,13 +50,16 @@ namespace SomeAimGame.Console {
         public static bool CheckValidCommandKey(string commandKey) {
             return true;
         }
+        public static bool CheckValidCommandValue_NotEmpty(string commandValue) {
+            return Util.ReturnRegexMatch(commandValue, @"^(\w|\d)+(\w|\d|\s)*$");
+        }
         /// <summary>
         /// Checks if supplied command value matches int Regex ("[-]?[0-9]+")
         /// </summary>
         /// <param name="commandValue"></param>
         /// <returns></returns>
         public static bool CheckValidCommandValue_Int(string commandValue) {
-            return Util.ReturnRegexMatch(commandValue, "[-]?[0-9]+");
+            return Util.ReturnRegexMatch(commandValue, "^[-]?[0-9]+$");
         }
         /// <summary>
         /// Checks if supplied command value matches float Regex ("[-]?([0-9]*[.])+[0-9]+").
@@ -64,7 +67,7 @@ namespace SomeAimGame.Console {
         /// <param name="commandValue"></param>
         /// <returns></returns>
         public static bool CheckValidCommandValue_Float(string commandValue) {
-            return Util.ReturnRegexMatch(commandValue, "[-]?([0-9]*[.])+[0-9]+");
+            return Util.ReturnRegexMatch(commandValue, "^[-]?([0-9]*[.])+[0-9]+$");
         }
         /// <summary>
         /// Checks if supplied command value matches bool Regex ("[0-1]{1}").
@@ -72,7 +75,7 @@ namespace SomeAimGame.Console {
         /// <param name="commandValue"></param>
         /// <returns></returns>
         public static bool CheckValidCommandValue_Bool(string commandValue) {
-            return Util.ReturnRegexMatch(commandValue, "[0-1]{1}");
+            return Util.ReturnRegexMatch(commandValue, "^[0-1]{1}$");
         }
         /// <summary>
         /// Checks if supplied command value matches crosshair Regex (@"^(\d){33}$").
@@ -88,7 +91,7 @@ namespace SomeAimGame.Console {
         /// <param name="commandValue"></param>
         /// <returns></returns>
         public static bool CheckValidCommandValue_CrosshairCSGO(string commandValue) {
-            return Util.ReturnRegexMatch(commandValue, @"(CSGO)(-?[\w]{5}){5}$");
+            return Util.ReturnRegexMatch(commandValue, @"^(CSGO)(-?[\w]{5}){5}$");
         }
 
         #endregion

@@ -5,7 +5,7 @@ using SomeAimGame.Utilities;
 namespace SomeAimGame.Core {
     namespace Video {
         public class VideoSettings : MonoBehaviour {
-            public static FullScreenMode displayMode            = FullScreenMode.FullScreenWindow;
+            public static FullScreenMode displayMode            = FullScreenMode.ExclusiveFullScreen;
             public static int            resolutionWidth        = 1920;
             public static int            resolutionHeight       = 1080;
             public static int            resolutionRefreshRate  = 60;

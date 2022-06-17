@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 using TMPro;
 
+using SomeAimGame.Utilities;
+
 namespace SomeAimGame.Core {
     namespace Video {
         public class FPSLimitSlider : MonoBehaviour {
@@ -23,7 +25,7 @@ namespace SomeAimGame.Core {
             /// </summary>
             public static void SetFPSLimit() {
                 limitFPSValue = FPSLimit.limitFPSSlider.value;
-                SetFPSLimitValueText(limitFPSValue);
+                SetFPSLimitValueText(VideoSettingUtil.ReturnFPSLimitFromValue((int)limitFPSValue));
                 //if (!FPSLimitChangeReady) { FPSLimitChangeReady = true; }
             }
 
@@ -31,9 +33,15 @@ namespace SomeAimGame.Core {
             /// Sets FPS Limit text and placeholder to supplied value (limit).
             /// </summary>
             /// <param name="limit"></param>
-            public static void SetFPSLimitValueText(float limit) {
+            public static void SetFPSLimitValueText(int limit) {
                 FPSLimit.limitFPSValueText.SetText($"{limit}");
                 FPSLimit.limitFPSPlaceholderText.SetText($"{limit}");
+
+                if (limit <= 0) {
+                    Util.SetTextPlaceholderColors(FPSLimit.limitFPSValueText, FPSLimit.limitFPSPlaceholderText, InterfaceColors.unselectedColor);
+                } else {
+                    Util.SetTextPlaceholderColors(FPSLimit.limitFPSValueText, FPSLimit.limitFPSPlaceholderText, InterfaceColors.selectedColor);
+                }
             }
 
             /// <summary>
@@ -47,7 +55,7 @@ namespace SomeAimGame.Core {
             /// </summary>
             public static void CheckSaveFPSLimit() {
                 // BUG: When checking if save is ready, sometimes value of fps is not saved? it saves instead null value of 0 every other time? IDK. Forcing save everytime keeps fps limit set.
-                ApplyVideoSettings.ApplyFPSLimit((int)limitFPSValue);
+                ApplyVideoSettings.ApplyFPSLimit(VideoSettingUtil.ReturnFPSLimitFromValue((int)limitFPSValue));
                 VideoSettings.SaveFPSLimitItem((int)limitFPSValue);
                 VideoSettings.SaveVideoSettings_Static();
                 //FPSLimitChangeReady = false;

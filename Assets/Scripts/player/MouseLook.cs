@@ -5,7 +5,7 @@ using SomeAimGame.Console;
 
 public class MouseLook : MonoBehaviour {
     [Range(0, 10f)]
-    public static float mouseSensitivity;
+    public static float mouseSensitivity = 4f;
 
     public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2 }
     public RotationAxes axes = RotationAxes.MouseXAndY;
@@ -17,15 +17,15 @@ public class MouseLook : MonoBehaviour {
 
     public static bool settingsOpen, afterActionReportOpen;
 
+    private static MouseLook mouseLook;
     void Awake() {
+        mouseLook = this;
         // Lock/hide cursor to game on awake.
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible   = false;
     }
 
     void Start() {
-        mouseSensitivity = 4f;
-
         // Init saved mouse sesitivity setting.
         ExtraSaveSystem.InitSavedExtraSettings();
         StatsManager.HideExtraStatsPanel();
@@ -51,5 +51,10 @@ public class MouseLook : MonoBehaviour {
                 transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
             }
         }
+    }
+
+    public static void SetPlayerCameraRotation() {
+        mouseLook.transform.localRotation = Quaternion.identity;
+        mouseLook.transform.localPosition = Vector3.zero;
     }
 }

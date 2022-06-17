@@ -18,15 +18,13 @@ public class QuitGame : MonoBehaviour {
         Application.Quit();
     }
 
+    public static void QuitCurrentGame_Static() { quit.QuitCurrentGame(); }
+
     /// <summary>
     /// Opens game quit confirmation if not open, otherwise quits game.
     /// </summary>
     public void ConfirmGameQuit() {
-        if (!gameQuitConfirmationOpen) {
-            OpenQuitConfirmation();
-        } else {
-            CloseQuitConfirmation();
-        }
+        if (!gameQuitConfirmationOpen) { OpenQuitConfirmation(); } else { CloseQuitConfirmation(); }
     }
 
     /// <summary>

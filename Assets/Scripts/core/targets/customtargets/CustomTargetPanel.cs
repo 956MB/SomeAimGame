@@ -118,11 +118,7 @@ namespace SomeAimGame.Targets {
         /// </summary>
         /// <param name="disableHover"></param>
         public static void SetNewCustomTargetButtonState(bool disableHover) {
-            if (disableHover) {
-                newCreatedCustomTargetButton.GetComponent<CustomTargetButtonHover>().DisableHover();
-            } else {
-                newCreatedCustomTargetButton.GetComponent<CustomTargetButtonHover>().EnableHover();
-            }
+            if (disableHover) { newCreatedCustomTargetButton.GetComponent<CustomTargetButtonHover>().DisableHover(); } else { newCreatedCustomTargetButton.GetComponent<CustomTargetButtonHover>().EnableHover(); }
         }
     }
 }

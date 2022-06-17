@@ -68,7 +68,12 @@ namespace SomeAimGame.Core {
             /// </summary>
             public static void ApplyDisplayMode() {
                 if (!VideoSettingUtil.CheckMatch(displayModeStringPlaceholder, displayModeStringCurrent)) {
+                    if (!Application.isEditor) {
+                        Screen.fullScreen     = displayModePlaceholder == FullScreenMode.Windowed ? false : true;
+                        Screen.fullScreenMode = displayModePlaceholder;
+                    }
                     VideoSettings.SaveDisplayModeItem(displayModePlaceholder);
+                    VideoSettingUtil.MatchPlaceholderCurrentSetting(ref displayModeStringPlaceholder, ref displayModeStringCurrent, displayModeStringPlaceholder);
                 }
             }
             /// <summary>
@@ -80,6 +85,7 @@ namespace SomeAimGame.Core {
                     VideoSettings.SaveResoltionWidthItem(w);
                     VideoSettings.SaveResolutionHeightItem(h);
                     VideoSettings.SaveResoltionRefreshRateItem(refresh);
+                    VideoSettingUtil.MatchPlaceholderCurrentSetting(ref resolutionStringPlaceholder, ref resolutionStringCurrent, resolutionStringPlaceholder);
                 }
             }
             /// <summary>
@@ -89,6 +95,7 @@ namespace SomeAimGame.Core {
                 if (!VideoSettingUtil.CheckMatch(monitorStringPlaceholder, monitorStringCurrent)) {
                     if (!Application.isEditor && Display.displays.Length >= 1) { Display.displays[setMonitor].Activate(); }
                     VideoSettings.SaveMonitorMainItem(monitorPlaceholder);
+                    VideoSettingUtil.MatchPlaceholderCurrentSetting(ref monitorStringPlaceholder, ref monitorStringCurrent, monitorStringPlaceholder);
                 }
             }
             public static void ApplyFPSLimit(int newFPSTarget) {

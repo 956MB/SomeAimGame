@@ -44,7 +44,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     /// </summary>
     /// <param name="pointerEventData"></param>
     public void OnPointerClick(PointerEventData pointerEventData) {
-        string clickedButtonName = pointerEventData.pointerCurrentRaycast.gameObject.name;
+        string clickedButtonName  = pointerEventData.pointerCurrentRaycast.gameObject.name;
         GameObject clickButtonObj = pointerEventData.pointerCurrentRaycast.gameObject;
 
         try {
@@ -68,13 +68,15 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     /// <param name="clickedButtonBorder"></param>
     public void SelectNewGamemode(GameObject clickedButtonBorder) {
         gamemodeClickedName = GamemodeUtil.ReturnGamemodeType_Gamemode(clickedButtonBorder.transform.parent.name);
-        GamemodeUtil.ClearGamemodeButtonBorders();
-        clickedButtonBorder.GetComponent<Image>().color = InterfaceColors.selectedColor;
-        clickedButtonBorder.SetActive(true);
 
         // Populate selected gamemode based on button clicked in gamemode settings panel.
-        GamemodeSelect.PopulateGamemodeSelect(gamemodeClickedName, CosmeticsSettings.quickStartGame);
+        GamemodeSelect.PopulateGamemodeSelectText(gamemodeClickedName, CosmeticsSettings.quickStartGame);
+
+        CosmeticsSaveSystem.ClearGamemodeButtonBorders();
         GamemodeSelect.ClearGamemodeButtonColors(GameObject.Find($"{GamemodeUtil.ReturnGamemodeType_StringFull(gamemodeClickedName)}-Text (TMP)").GetComponent<TMP_Text>(), true, true);
+        clickedButtonBorder.GetComponent<Image>().color = InterfaceColors.selectedColor;
+
+        GamemodeSelect.PopulateGamemodeSelectVideoClip(gamemodeClickedName);
 
         SFXManager.CheckPlayClick_Regular();
     }
@@ -89,7 +91,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
         if (!SetTargetColor(targetTypeClicked)) { return; }
 
         clickedButtonBorder.GetComponent<Image>().color = InterfaceColors.selectedColor;
-        clickedButtonBorder.SetActive(true);
+        //clickedButtonBorder.SetActive(true);
     }
 
     /// <summary>
@@ -99,10 +101,10 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
     public void SetNewSkyboxColor(GameObject clickedButtonBorder) {
         SkyboxType skyboxClickedName = SkyboxUtil.ReturnSkyboxType_Skybox(clickedButtonBorder.transform.parent.name);
 
-        SkyboxUtil.ClearSkyboxButtonBorders();
+        CosmeticsSaveSystem.ClearSkyboxButtonBorders();
         ButtonHoverHandler.selectedSkybox               = skyboxClickedName;
         clickedButtonBorder.GetComponent<Image>().color = InterfaceColors.selectedColor;
-        clickedButtonBorder.SetActive(true);
+        //clickedButtonBorder.SetActive(true);
 
         SFXManager.CheckPlayClick_Regular();
 
@@ -124,7 +126,7 @@ public class ButtonClickHandler : MonoBehaviour, IPointerClickHandler {
         NotificationHandler.CheckHideNotificationObject();
 
         SpawnTargets.targetColorReset = true;
-        TargetUtil.ClearTargetColorButtonBorders();
+        CosmeticsSaveSystem.ClearTargetButtonBorders();
         ButtonHoverHandler.selectedTargetColor = newTargetType;
 
         SFXManager.CheckPlayClick_Regular();

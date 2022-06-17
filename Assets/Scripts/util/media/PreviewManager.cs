@@ -26,7 +26,7 @@ public class PreviewManager : MonoBehaviour {
         previewManager.previewsObject[4] = LoopVideoClips("Gamemode-Pairs", targetColor, "Skybox-Slate");
         previewManager.previewsObject[5] = LoopVideoClips("Gamemode-Follow", targetColor, "Skybox-Slate");
         previewManager.previewsObject[6] = LoopVideoClips("Gamemode-Follow", targetColor, "Skybox-Slate"); // TODO: Create glob gamemode clip when ready
-        previewManager.previewsObject[7] = LoopVideoClips("Gamemode-Follow", targetColor, "Skybox-Slate");
+        previewManager.previewsObject[7] = LoopVideoClips(currentGamemode, targetColor, "Skybox-Slate");
 
         return previewManager.previewsObject;
     }

@@ -68,11 +68,7 @@ public class SettingsPanel : MonoBehaviour {
     /// Shows settings panel if hidden, and hides settings panel if shown (toggle).
     /// </summary>
     public static void ToggleSettingsPanel() {
-        if (settingsOpen) {
-            CloseSettingsPanel();
-        } else {
-            OpenSettingsPanel();
-        }
+        if (settingsOpen) { CloseSettingsPanel(); } else { OpenSettingsPanel(); }
 
         settingsOpen = !settingsOpen;
     }
@@ -96,7 +92,6 @@ public class SettingsPanel : MonoBehaviour {
     /// Opens settings panel. [EVENT]
     /// </summary>
     public static void OpenSettingsPanel() {
-
         settings.settingsPanel.transform.localScale = openVector;
         settings.steamDataContainer.SetActive(true);
         settings.mainMenuCanvas.SetActive(true);
@@ -150,13 +145,13 @@ public class SettingsPanel : MonoBehaviour {
         settings.mainMenuCanvas.SetActive(true);
         //Util.CanvasGroupState(settings.mainMenuCanvas.GetComponent<CanvasGroup>(), true);
         if (ExtraSettings.showExtraStats) { settings.extendedStatsPanel.SetActive(true); }
-        OpenAction();
 
         settings.afterPanel.transform.localScale = openVector;
         afterActionReportOpen                    = true;
 
         StatsManager.ResetAARScrollView();
-        GameUI.HideWidgetsUI();
+        GameUI.HideWidgetsUICanvas();
+        OpenAction();
     }
 
     /// <summary>
@@ -184,6 +179,7 @@ public class SettingsPanel : MonoBehaviour {
         //TempValues.SetSettingsOpenTemp(true);
 
         ManipulatePostProcess.SetPanelEffects(true, true);
+        ManipulatePostProcess.SetCameraClearFlags(CameraClearFlags.Nothing);
         Util.SetCursorState(CursorLockMode.None, true);
     }
 
@@ -195,6 +191,7 @@ public class SettingsPanel : MonoBehaviour {
         //TempValues.SetSettingsOpenTemp(false);
 
         if (changeEffects) { ManipulatePostProcess.SetPanelEffects(false, false); }
+        ManipulatePostProcess.SetCameraClearFlags(CameraClearFlags.Skybox);
         if (!SAGConsole.consoleActive) { Util.SetCursorState(CursorLockMode.Locked, false); }
     }
 

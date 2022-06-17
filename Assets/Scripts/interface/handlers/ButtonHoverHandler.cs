@@ -7,6 +7,7 @@ using SomeAimGame.Gamemode;
 using SomeAimGame.Targets;
 using SomeAimGame.Utilities;
 using SomeAimGame.SFX;
+using UnityEngine.UI;
 
 public class ButtonHoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     //public Texture2D hoverBorder;
@@ -29,7 +30,8 @@ public class ButtonHoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
         currentHoveredButton = buttonName;
 
         if (buttonName != TargetUtil.ReturnTargetColorType_StringFull(selectedTargetColor) && buttonName != SkyboxUtil.ReturnSkyboxType_StringFull(selectedSkybox) && buttonName != GamemodeUtil.ReturnGamemodeType_StringFull(selectedGamemode)) {
-            childBorder.SetActive(true);
+            //childBorder.SetActive(true);
+            childBorder.GetComponent<Image>().color = InterfaceColors.disabledColor;
             //SetHoverButtonText(buttonName);
             if (currentHoveredButton.Contains("Gamemode")) { SetHoverButtonColor(buttonName, GameObject.Find($"{buttonName}-Text (TMP)").GetComponent<TMP_Text>()); }
             //CursorHandler.setHoverCursorStatic();
@@ -44,7 +46,8 @@ public class ButtonHoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
     public void OnPointerExit(PointerEventData pointerEventData) {
         //Debug.Log($"currentHoveredButton: {currentHoveredButton} selectedTargetColor: {TargetUtil.ReturnTargetColorType_StringFull(selectedTargetColor)}");
         if (currentHoveredButton != TargetUtil.ReturnTargetColorType_StringFull(selectedTargetColor) && currentHoveredButton != SkyboxUtil.ReturnSkyboxType_StringFull(selectedSkybox) && currentHoveredButton != selectedGamemodeString) {
-            childBorder.SetActive(false);
+            //childBorder.SetActive(false);
+            childBorder.GetComponent<Image>().color = InterfaceColors.inactiveColor;
             //targetColorSelected.SetText(CosmeticsSaveSystem.activeTargetColorText);
             //skyboxSelected.SetText(CosmeticsSaveSystem.activeSkyboxText);
 

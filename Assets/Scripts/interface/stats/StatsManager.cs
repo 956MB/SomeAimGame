@@ -41,7 +41,7 @@ namespace SomeAimGame.Stats {
         void Awake() { statsManager = this; }
 
         private void Start() {
-            scoreTitleText.enabled        = true;
+            scoreTitleText.enabled        = false;
             newHighscoreTitleText.enabled = false;
             backgroundsSaves              = new Color32[8];
         }
@@ -130,7 +130,7 @@ namespace SomeAimGame.Stats {
                 }
             } else {
                 // No saved highscore on first run, sets current games run as new highscore.
-                SetScoreLine(StatsUtil.neutralLineColor);
+                //SetScoreLine(StatsUtil.neutralLineColor);
                 statsManager.newHighscoreTitleText.transform.parent.gameObject.GetComponent<Image>().color = StatsUtil.neutralBackgroundColor;
                 HighscoreSave.SaveNewHighscoreStats(GamemodeUtil.ReturnGamemodeType_StringShort(CosmeticsSettings.gamemode), scoreStat, accuracyStat, ttkStat, kpsStat, bestStreakStat, targetTotalStat, targetHitStat, targetMissesStat);
             }
@@ -347,12 +347,12 @@ namespace SomeAimGame.Stats {
         /// Enables "NEW HIGHSCORE!" text in 'AfterActionReport' UI;
         /// </summary>
         private static void EnableNewHighscoreText() {
-            statsManager.newHighscoreTitleText.enabled = true;
-            statsManager.scoreTitleText.enabled        = false;
+            //statsManager.newHighscoreTitleText.enabled = true;
+            //statsManager.scoreTitleText.enabled        = false;
 
             statsManager.newHighscoreTitleText.transform.parent.gameObject.GetComponent<Image>().color = StatsUtil.newHighscoreBackgroundColor;
 
-            SetScoreLine(StatsUtil.highscoreLineColor);
+            //SetScoreLine(StatsUtil.highscoreLineColor);
         }
 
         /// <summary>
@@ -443,7 +443,7 @@ namespace SomeAimGame.Stats {
         /// Sets all stat container background colors to corresponding backgroundsSaves item.
         /// </summary>
         public static void SetStatBackgrounds() {
-            SetScoreLine(StatsUtil.GetLineColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue));
+            //SetScoreLine(StatsUtil.GetLineColor(scoreStat, previousGameStats.scoreValue, bestGameStats.scoreValue));
             StatsUtil.ClearStatBackgrounds(backgroundsSaves, statsManager.scoreContainerBackground, statsManager.accuracyContainerBackground, statsManager.ttkContainerBackground, statsManager.kpsContainerBackground, statsManager.bestStreakContainerBackground, statsManager.targetsTotalContainerBackground, statsManager.taretsHitContainerBackground, statsManager.targetsMissesContainerBackground);
         }
 
@@ -451,7 +451,7 @@ namespace SomeAimGame.Stats {
         /// Resets all stat container background colors to original background colors.
         /// </summary>
         public static void ClearStatBackgrounds() {
-            SetScoreLine(StatsUtil.neutralLineColor);
+            //SetScoreLine(StatsUtil.neutralLineColor);
 
             // Solid grey stat backgrounds
             StatsUtil.ClearStatBackgrounds(StatsUtil.clearBackgroundLight, statsManager.scoreContainerBackground, statsManager.accuracyContainerBackground, statsManager.ttkContainerBackground, statsManager.kpsContainerBackground, statsManager.bestStreakContainerBackground, statsManager.targetsTotalContainerBackground, statsManager.taretsHitContainerBackground, statsManager.targetsMissesContainerBackground);

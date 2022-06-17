@@ -65,3 +65,121 @@ NEW STUFF (1/5/2021):
 ** - Click to expand on AAR stat rows. Possibly opens up graph or more extended stats. Saves opened/closed?
 
 ** - Write new robust system for new gamemodes? Like config files for gamemodes and what happens on target clicks and stuff. Or at least system for adding new gamemode button, rather than manually going through the files and adding to enums and etc.
+
+
+
+
+
+NEW STUFF (4/14/2021):
+
+[X] - DELAY CAUSE: language other than english based letters causes delay in setting text and things, near or all the way fixed in english, maybe more so a delay with japanese, DEVELOPMENT: PROBLEM EXCLUSIVELY JAPANESE, JESUS FUCKING CHRIST FINALLY, maybe korean too
+
+[X] - dropdowns for video settings still dont scale size properly
+
+[ ] - Resolution options dont do anything currently, and if youre in windowed mode and you try to set a resolution then restart, it resizes windowed game to max size
+
+[X] - Theres a space between crosshair import/export panel and top render texture panel when in windowed
+
+[X] - Border on top of aar score box still cut off or something, thinner than bottom
+
+[ ] - Still need to recenter camera when restart happens to make it less glitchy
+
+[ ] - Give more of a random apperance to where targets spawn rathr than looking like it spawns exclusivly in a box
+
+[X] - Make crosshair import input box text smaller
+
+[ ] - Maybe make crosshair canvas scale with size?
+
+[X] - Make fps limit number greyed out if 0
+
+[X] - Make gamemode difficulty text bigger if not readable in kor
+
+[X] - Maybe remove middle bg bar in second gamemode row
+
+[X] - Maybe make close buttons bigger
+
+[ ] - Give notification text to “press r to restart” when game is done and aar is closed, also “press tab to open aar”
+
+[?] - Maybe remove aar title
+
+[X] - Add bg and dragging to console, and save position when moved
+[ ] - need to save/load console position after drag
+
+[ ] - Maybe dim color of scrollbar when hovered/dragged
+
+[X] - Maybe dim settings when console opened
+
+[?] - Figure out how to have blur on camera be radial when settings opened (less blurry on outsides)
+
+[X] - Brighten console
+
+[X] - Add ! tooltips to rest of settings (or remove/make invisible) maybe put on text?
+
+[X] - Reduce padding of keybinds stack on right side (make same as toggle bgs)
+
+[X] - Increase padding inside keybind buttons
+
+[X] - Spacing on video settings dropdowns still messsed up
+
+[ ] - Maybe translate video settings dropdown items?
+
+[ ] - Reorganize/scramble translation files
+
+[X] - Make game unresizable to not fuck up resolution in windowed
+
+[X] - Maybe?? make cursor not stuck in window when in windowed
+
+[X] - Video settings dropdowns size fucked up when starting in windowed/different resolution. Maybe manually set dropdown item widths to parent dropdown button width when loading items, so width is not messed up
+
+[X] - Height of video settings dropdown items also not correct
+
+[ ] - Mess with work around glow effect to more vertically center effect
+
+[X] - Give score box in aar button color hover thing
+	
+[X] - Maybe remove top/bottom lines from score box
+
+[X] - Give settings close buttons same light hover thing as aar buttons
+
+[ ] - Finish console text box and put notifications there
+
+[X] - Maybe add dim back to pre countdown 
+
+[ ] - Bug: gamemode video being set to follow on restart for some reason (gamemode video string not being saved?)
+
+[ ] - Maybe make text bigger for kor?(maybe not very readable)
+
+[ ] - Add quit button of some sort back
+
+[X] - Maybe quick enable/disable of console on start will remove the slight glitch opening 
+
+[ ] - When alt-tab or clicking out of console, make any click in window while console up give focus to console for typing, or never lose focus for typing if console active
+
+[ ] - Handle ui elements like stat boxes if window is set to small 4:3 res
+
+[ ] - Dynamically load appropriately translated splash screen for saved language, instead of looping through all
+
+[X] - Make default game language the language set in windows settings 
+
+[X] - Add “notches” to scrollbars (fps limit), notches like 144fps, 60fps, uncapped etc
+
+
+
+[ ] - still need to make video settings dropdowns like resolution scrollview, too many resolution/refreshrate combos making list really long
+[X]	- maybe remove options with refresh not at set level (144hz default)
+
+[X] - revert close button sizes back to 30
+
+[X] - top line on aar score needs to be removed
+
+[X] - make "console" text above console color white
+
+[X] - make console bg dark like widgets background
+
+[ ] - console design is shit
+
+[ ] - follow gamemode target not paused while countdown going
+
+[ ] - opening/closing console in AAR makes widgets ui stay on screen after first open/close. is removed when aar is closed, but still happens afterwards.
+
+[X] - some or all widgets toggles not properly disabling associated widgets, also pressing these toggles is not saving the settings for them 
